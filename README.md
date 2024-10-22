@@ -1,5 +1,5 @@
 # experimental-rescript-webapi
-Experimental successor to rescript-webapi
+Experimental successor to [rescript-webapi](https://github.com/TheSpyder/rescript-webapi)
 
 ## New approach to webapi bindings (TODO)
 
