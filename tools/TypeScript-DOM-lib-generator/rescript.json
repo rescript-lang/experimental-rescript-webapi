@@ -1,0 +1,14 @@
+{
+  "version": "0.0.0",
+  "name": "rescript-dom-generator",
+  "sources": [
+    {
+      "dir": "generated"
+    }
+  ],
+  "package-specs": {
+    "module": "esmodule",
+    "in-source": true
+  },
+  "suffix": ".js"
+}
