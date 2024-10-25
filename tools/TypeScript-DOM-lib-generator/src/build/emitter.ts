@@ -1825,11 +1825,29 @@ export function emitWebIdl(
   }
 }
 
-function toCamelCase(name: string) {
-  return name[0].toLowerCase() + name.slice(1);
+function toCamelCase(input: string) {
+  let i = 0;
+
+  // Count uppercase letters at the start
+  while (i < input.length && input[i] === input[i].toUpperCase()) {
+    i++;
+  }
+
+  // If only one capital, lowercase it
+  if (i === 1) return input[0].toLowerCase() + input.slice(1);
+
+  // If more than one capital, lowercase until the last one in the sequence
+  return input.slice(0, i - 1).toLowerCase() + input.slice(i - 1);
 }
 
-const reservedRescriptWords = ["type", "open", "as", "constraint", "external", "module"];
+const reservedRescriptWords = [
+  "type",
+  "open",
+  "as",
+  "constraint",
+  "external",
+  "module",
+];
 const validVariantConstructorNameRegexp = /[^a-zA-Z0-9_]/g;
 
 function getFieldName(fieldName: string): string {
@@ -1883,12 +1901,14 @@ interface Dictionary {
 
 type DictionaryMap<T extends Dictionary> = { [name: string]: T };
 
-function topologicalSortDictionaries<T extends Dictionary>(dictionaries: T[]): T[] {
+function topologicalSortDictionaries<T extends Dictionary>(
+  dictionaries: T[],
+): T[] {
   const sorted: T[] = [];
   const visited: Set<string> = new Set();
   const tempMarked: Set<string> = new Set();
   const dictMap: DictionaryMap<T> = Object.fromEntries(
-    dictionaries.map((d) => [d.name, d])
+    dictionaries.map((d) => [d.name, d]),
   );
 
   function visit(dictName: string) {
@@ -2049,19 +2069,20 @@ export function emitRescriptBindings(webidl: Browser.WebIdl): string {
       return (
         toCamelCase(extds) +
         "<" +
-        entry.typeParameters.map((t) => `${t.default ?? toCamelCase(t.name)}`).join(", ") +
+        entry.typeParameters
+          .map((t) => `${t.default ?? toCamelCase(t.name)}`)
+          .join(", ") +
         ">"
       );
     }
-    return extds
-      .split("<")
-      .map(toCamelCase)
-      .join("<");
+    return extds.split("<").map(toCamelCase).join("<");
   }
 
-  function printTypeParams(typeParameters: Browser.TypeParameter[] | undefined) {
-    let hasTypeParams = false
-    typeParameters?.forEach(t => {
+  function printTypeParams(
+    typeParameters: Browser.TypeParameter[] | undefined,
+  ) {
+    let hasTypeParams = false;
+    typeParameters?.forEach((t) => {
       if (!hasTypeParams) {
         hasTypeParams = true;
         printer.print("<");
@@ -2069,7 +2090,7 @@ export function emitRescriptBindings(webidl: Browser.WebIdl): string {
         printer.print(", ");
       }
       printer.print(`'${toCamelCase(t.name)}`);
-    })
+    });
     if (hasTypeParams) {
       printer.print(">");
     }
@@ -2078,6 +2099,15 @@ export function emitRescriptBindings(webidl: Browser.WebIdl): string {
   // Track field names so we can avoid reprinting fields we've already covered by a spread
   const typeFieldNames = new Map<string, Set<string>>();
 
+  function transformPropertyValue(property: Browser.Member): string {
+    console.log(typeof property.type === "string", property.type);
+    if (typeof property.type === "string") {
+      return toCamelCase(property.type);
+    }
+
+    return "unknown";
+  }
+
   // TODO: This and emitInterfaceRecord should share most of the logic at some point
   function emitDictionaryRecord(i: Browser.Dictionary) {
     seenItems.set(i.name, i);
@@ -2085,7 +2115,9 @@ export function emitRescriptBindings(webidl: Browser.WebIdl): string {
       ? Array.from(typeFieldNames.get(i.extends.split("<")[0])?.values() ?? [])
       : [];
     const typename = toCamelCase(i.name);
-    printer.print(`type ${typename}${reservedRescriptWords.includes(typename) ? "_" : ""}`);
+    printer.print(
+      `type ${typename}${reservedRescriptWords.includes(typename) ? "_" : ""}`,
+    );
     printTypeParams(i.typeParameters);
     printer.printLine(` = {`);
     printer.increaseIndent();
@@ -2099,7 +2131,7 @@ export function emitRescriptBindings(webidl: Browser.WebIdl): string {
         if (fieldNamesFromExtended.includes(key)) continue;
         let property = i.members.member[key];
         printComment({ comment: property.comment });
-        let propertyValue = "unknown"; // TODO: implement actual values
+        let propertyValue = transformPropertyValue(property);
         printer.print(`${getFieldName(key)}`);
         printer.print(`: `);
         if (property.nullable) printer.print(`Null.t<${propertyValue}>`);
@@ -2126,7 +2158,7 @@ export function emitRescriptBindings(webidl: Browser.WebIdl): string {
     const typename = toCamelCase(i.name);
     printComment({ name: i.name, mdnUrl: i.mdnUrl, comment: i.comment });
     printer.print(
-      `type ${typename}${reservedRescriptWords.includes(typename) ? "_" : ""}`
+      `type ${typename}${reservedRescriptWords.includes(typename) ? "_" : ""}`,
     );
     printTypeParams(i.typeParameters);
     printer.printLine(` = {`);
@@ -2144,7 +2176,7 @@ export function emitRescriptBindings(webidl: Browser.WebIdl): string {
           mdnUrl: property.mdnUrl,
           comment: property.comment,
         });
-        let propertyValue = "unknown"; // TODO: implement actual values
+        let propertyValue = transformPropertyValue(property);
         printer.print(`${getFieldName(key)}`);
         if (property.optional) printer.print(`?`);
         printer.print(`: `);
@@ -2190,6 +2222,26 @@ export function emitRescriptBindings(webidl: Browser.WebIdl): string {
     sortedDicts.forEach(emitDictionaryRecord);
   }
 
+  function emitDomString() {
+    let globalEventHandlers = webidl.mixins?.mixin["GlobalEventHandlers"];
+    if (globalEventHandlers) {
+      let properties = globalEventHandlers.properties?.property || {};
+      const keys = Object.keys(properties);
+      if (keys.length > 0) {
+        printer.printLine("type domString =");
+        printer.increaseIndent();
+        for (const key of Object.keys(properties)) {
+          const property = properties[key];
+          const eventName = property.eventHandler;
+          if (eventName) {
+            printer.printLine(`| ${getVariantName(eventName)}`);
+          }
+        }
+        printer.decreaseIndent();
+      }
+    }
+  }
+
   function emit() {
     printer.reset();
     printer.printLine("/** Temporary, to be fixed */");
@@ -2200,13 +2252,22 @@ export function emitRescriptBindings(webidl: Browser.WebIdl): string {
     printer.printLine("");
 
     // emitDictionaries();
-    // emitEnums();
+    emitEnums();
 
-    const interfacesICurrentlyCareAbout = new Set(["Event", "UIEvent", "MouseEvent"]);
+    emitDomString();
 
-    const sortedInterfaces = topologicalSortDictionaries(allInterfaces).filter(i => interfacesICurrentlyCareAbout.has(i.name));
+    const interfacesICurrentlyCareAbout = new Set([
+      "Event",
+      "UIEvent",
+      "MouseEvent",
+      "EventTarget",
+    ]);
 
-    for(const i of sortedInterfaces) {
+    const sortedInterfaces = topologicalSortDictionaries(allInterfaces).filter(
+      (i) => interfacesICurrentlyCareAbout.has(i.name),
+    );
+
+    for (const i of sortedInterfaces) {
       emitInterfaceRecord(i);
 
       // TODO: construct a %identity function to convert to the base interface?
