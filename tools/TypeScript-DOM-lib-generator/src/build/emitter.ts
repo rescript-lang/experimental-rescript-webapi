@@ -2100,9 +2100,18 @@ export function emitRescriptBindings(webidl: Browser.WebIdl): string {
   const typeFieldNames = new Map<string, Set<string>>();
 
   function transformPropertyValue(property: Browser.Member): string {
-    console.log(typeof property.type === "string", property.type);
     if (typeof property.type === "string") {
+      if (property.type === "unsigned short") {
+        if (property.name === "eventPhase") {
+          return `eventPhase`;
+        }
+
+        return "int";
+      }
+
       return toCamelCase(property.type);
+    } else {
+      console.log(property.type);
     }
 
     return "unknown";
@@ -2238,8 +2247,20 @@ export function emitRescriptBindings(webidl: Browser.WebIdl): string {
           }
         }
         printer.decreaseIndent();
+        printer.endLine();
       }
     }
+  }
+
+  function emitEventPhase() {
+    printer.printLine("type eventPhase  =");
+    printer.increaseIndent();
+    printer.printLine("| @as(0) NONE");
+    printer.printLine("| @as(1) CAPTURING_PHASE");
+    printer.printLine("| @as(2) AT_TARGET");
+    printer.printLine("| @as(3) BUBBLING_PHASE");
+    printer.decreaseIndent();
+    printer.endLine();
   }
 
   function emit() {
@@ -2255,6 +2276,7 @@ export function emitRescriptBindings(webidl: Browser.WebIdl): string {
     emitEnums();
 
     emitDomString();
+    emitEventPhase();
 
     const interfacesICurrentlyCareAbout = new Set([
       "Event",

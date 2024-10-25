@@ -1187,8 +1187,6 @@ type domString =
     | @as("webkitanimationstart") Webkitanimationstart
     | @as("webkittransitionend") Webkittransitionend
     | @as("wheel") Wheel
-    | @as("selectstart") Selectstart
-    | @as("selectionchange") Selectionchange
     | @as("animationstart") Animationstart
     | @as("animationiteration") Animationiteration
     | @as("animationend") Animationend
@@ -1197,10 +1195,6 @@ type domString =
     | @as("transitionstart") Transitionstart
     | @as("transitionend") Transitionend
     | @as("transitioncancel") Transitioncancel
-    | @as("touchstart") Touchstart
-    | @as("touchend") Touchend
-    | @as("touchmove") Touchmove
-    | @as("touchcancel") Touchcancel
     | @as("pointerover") Pointerover
     | @as("pointerenter") Pointerenter
     | @as("pointerdown") Pointerdown
@@ -1211,12 +1205,19 @@ type domString =
     | @as("pointerleave") Pointerleave
     | @as("gotpointercapture") Gotpointercapture
     | @as("lostpointercapture") Lostpointercapture
-/**
-EventTarget is a DOM interface implemented by objects that can receive events and may have listeners for them.
-[See EventTarget on MDN](https://developer.mozilla.org/docs/Web/API/EventTarget)
-*/
-type eventTarget = {
-}
+    | @as("selectstart") Selectstart
+    | @as("selectionchange") Selectionchange
+    | @as("touchstart") Touchstart
+    | @as("touchend") Touchend
+    | @as("touchmove") Touchmove
+    | @as("touchcancel") Touchcancel
+
+type eventPhase  =
+    | @as(0) NONE
+    | @as(1) CAPTURING_PHASE
+    | @as(2) AT_TARGET
+    | @as(3) BUBBLING_PHASE
+
 /**
 An event which takes place in the DOM.
 [See Event on MDN](https://developer.mozilla.org/docs/Web/API/Event)
@@ -1245,7 +1246,7 @@ type event = {
     Returns the event's phase, which is one of NONE, CAPTURING_PHASE, AT_TARGET, and BUBBLING_PHASE.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Event/eventPhase)
     */
-    eventPhase: unsigned short,
+    eventPhase: eventPhase,
     /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Event/cancelBubble)
     */
@@ -1284,6 +1285,12 @@ type event = {
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Event/timeStamp)
     */
     timeStamp: domHighResTimeStamp,
+}
+/**
+EventTarget is a DOM interface implemented by objects that can receive events and may have listeners for them.
+[See EventTarget on MDN](https://developer.mozilla.org/docs/Web/API/EventTarget)
+*/
+type eventTarget = {
 }
 /**
 Simple user interface events.
@@ -1357,19 +1364,11 @@ type mouseEvent = {
     /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/MouseEvent/buttons)
     */
-    buttons: unsigned short,
+    buttons: int,
     /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/MouseEvent/relatedTarget)
     */
     relatedTarget: Null.t<eventTarget>,
-    /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/MouseEvent/movementX)
-    */
-    movementX: double,
-    /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/MouseEvent/movementY)
-    */
-    movementY: double,
     /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/MouseEvent/pageX)
     */
@@ -1394,4 +1393,12 @@ type mouseEvent = {
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/MouseEvent/offsetY)
     */
     offsetY: double,
+    /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/MouseEvent/movementX)
+    */
+    movementX: double,
+    /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/MouseEvent/movementY)
+    */
+    movementY: double,
 }
