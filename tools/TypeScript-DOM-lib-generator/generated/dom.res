@@ -2,6 +2,8 @@
 type error = {}
 type any
 type arrayBufferView = {}
+type domHighResTimeStamp
+type usvString
 /* End temporary */
 
 type alignSetting =
@@ -91,8 +93,7 @@ type autoFillContactKind =
   | @as("mobile") Mobile
   | @as("work") Work
 
-type autoFillCredentialField =
-  | @as("webauthn") Webauthn
+type autoFillCredentialField = | @as("webauthn") Webauthn
 
 type autoFillNormalField =
   | @as("additional-name") AdditionalName
@@ -132,8 +133,7 @@ type autoFillNormalField =
   | @as("transaction-currency") TransactionCurrency
   | @as("username") Username
 
-type autoKeyword =
-  | @as("auto") Auto
+type autoKeyword = | @as("auto") Auto
 
 type automationRate =
   | @as("a-rate") ARate
@@ -685,8 +685,7 @@ type presentationStyle =
   | @as("inline") Inline
   | @as("unspecified") Unspecified
 
-type publicKeyCredentialType =
-  | @as("public-key") PublicKey
+type publicKeyCredentialType = | @as("public-key") PublicKey
 
 type pushEncryptionKeyName =
   | @as("auth") Auth
@@ -794,8 +793,7 @@ type rtcPriorityType =
   | @as("medium") Medium
   | @as("very-low") VeryLow
 
-type rtcRtcpMuxPolicy =
-  | @as("require") Require
+type rtcRtcpMuxPolicy = | @as("require") Require
 
 type rtcRtpTransceiverDirection =
   | @as("inactive") Inactive
@@ -847,11 +845,9 @@ type rtcStatsType =
   | @as("remote-outbound-rtp") RemoteOutboundRtp
   | @as("transport") Transport
 
-type readableStreamReaderMode =
-  | @as("byob") Byob
+type readableStreamReaderMode = | @as("byob") Byob
 
-type readableStreamType =
-  | @as("bytes") Bytes
+type readableStreamType = | @as("bytes") Bytes
 
 type readyState =
   | @as("closed") Closed
@@ -967,8 +963,7 @@ type scrollRestoration =
   | @as("auto") Auto
   | @as("manual") Manual
 
-type scrollSetting =
-  | @as("up") Up
+type scrollSetting = | @as("up") Up
 
 type securityPolicyViolationEventDisposition =
   | @as("enforce") Enforce
@@ -1079,8 +1074,7 @@ type videoTransferCharacteristics =
   | @as("iec61966-2-1") Iec6196621
   | @as("smpte170m") Smpte170m
 
-type wakeLockType =
-  | @as("screen") Screen
+type wakeLockType = | @as("screen") Screen
 
 type webGLPowerPreference =
   | @as("default") Default
@@ -1113,292 +1107,999 @@ type xmlHttpRequestResponseType =
   | @as("text") Text
 
 type domString =
-    | @as("abort") Abort
-    | @as("auxclick") Auxclick
-    | @as("beforeinput") Beforeinput
-    | @as("beforetoggle") Beforetoggle
-    | @as("blur") Blur
-    | @as("cancel") Cancel
-    | @as("canplay") Canplay
-    | @as("canplaythrough") Canplaythrough
-    | @as("change") Change
-    | @as("click") Click
-    | @as("close") Close
-    | @as("contextlost") Contextlost
-    | @as("contextmenu") Contextmenu
-    | @as("contextrestored") Contextrestored
-    | @as("copy") Copy
-    | @as("cuechange") Cuechange
-    | @as("cut") Cut
-    | @as("dblclick") Dblclick
-    | @as("drag") Drag
-    | @as("dragend") Dragend
-    | @as("dragenter") Dragenter
-    | @as("dragleave") Dragleave
-    | @as("dragover") Dragover
-    | @as("dragstart") Dragstart
-    | @as("drop") Drop
-    | @as("durationchange") Durationchange
-    | @as("emptied") Emptied
-    | @as("ended") Ended
-    | @as("error") Error
-    | @as("focus") Focus
-    | @as("formdata") Formdata
-    | @as("input") Input
-    | @as("invalid") Invalid
-    | @as("keydown") Keydown
-    | @as("keypress") Keypress
-    | @as("keyup") Keyup
-    | @as("load") Load
-    | @as("loadeddata") Loadeddata
-    | @as("loadedmetadata") Loadedmetadata
-    | @as("loadstart") Loadstart
-    | @as("mousedown") Mousedown
-    | @as("mouseenter") Mouseenter
-    | @as("mouseleave") Mouseleave
-    | @as("mousemove") Mousemove
-    | @as("mouseout") Mouseout
-    | @as("mouseover") Mouseover
-    | @as("mouseup") Mouseup
-    | @as("paste") Paste
-    | @as("pause") Pause
-    | @as("play") Play
-    | @as("playing") Playing
-    | @as("progress") Progress
-    | @as("ratechange") Ratechange
-    | @as("reset") Reset
-    | @as("resize") Resize
-    | @as("scroll") Scroll
-    | @as("scrollend") Scrollend
-    | @as("securitypolicyviolation") Securitypolicyviolation
-    | @as("seeked") Seeked
-    | @as("seeking") Seeking
-    | @as("select") Select
-    | @as("slotchange") Slotchange
-    | @as("stalled") Stalled
-    | @as("submit") Submit
-    | @as("suspend") Suspend
-    | @as("timeupdate") Timeupdate
-    | @as("toggle") Toggle
-    | @as("volumechange") Volumechange
-    | @as("waiting") Waiting
-    | @as("webkitanimationend") Webkitanimationend
-    | @as("webkitanimationiteration") Webkitanimationiteration
-    | @as("webkitanimationstart") Webkitanimationstart
-    | @as("webkittransitionend") Webkittransitionend
-    | @as("wheel") Wheel
-    | @as("animationstart") Animationstart
-    | @as("animationiteration") Animationiteration
-    | @as("animationend") Animationend
-    | @as("animationcancel") Animationcancel
-    | @as("transitionrun") Transitionrun
-    | @as("transitionstart") Transitionstart
-    | @as("transitionend") Transitionend
-    | @as("transitioncancel") Transitioncancel
-    | @as("pointerover") Pointerover
-    | @as("pointerenter") Pointerenter
-    | @as("pointerdown") Pointerdown
-    | @as("pointermove") Pointermove
-    | @as("pointerup") Pointerup
-    | @as("pointercancel") Pointercancel
-    | @as("pointerout") Pointerout
-    | @as("pointerleave") Pointerleave
-    | @as("gotpointercapture") Gotpointercapture
-    | @as("lostpointercapture") Lostpointercapture
-    | @as("selectstart") Selectstart
-    | @as("selectionchange") Selectionchange
-    | @as("touchstart") Touchstart
-    | @as("touchend") Touchend
-    | @as("touchmove") Touchmove
-    | @as("touchcancel") Touchcancel
+  | @as("abort") Abort
+  | @as("auxclick") Auxclick
+  | @as("beforeinput") Beforeinput
+  | @as("beforetoggle") Beforetoggle
+  | @as("blur") Blur
+  | @as("cancel") Cancel
+  | @as("canplay") Canplay
+  | @as("canplaythrough") Canplaythrough
+  | @as("change") Change
+  | @as("click") Click
+  | @as("close") Close
+  | @as("contextlost") Contextlost
+  | @as("contextmenu") Contextmenu
+  | @as("contextrestored") Contextrestored
+  | @as("copy") Copy
+  | @as("cuechange") Cuechange
+  | @as("cut") Cut
+  | @as("dblclick") Dblclick
+  | @as("drag") Drag
+  | @as("dragend") Dragend
+  | @as("dragenter") Dragenter
+  | @as("dragleave") Dragleave
+  | @as("dragover") Dragover
+  | @as("dragstart") Dragstart
+  | @as("drop") Drop
+  | @as("durationchange") Durationchange
+  | @as("emptied") Emptied
+  | @as("ended") Ended
+  | @as("error") Error
+  | @as("focus") Focus
+  | @as("formdata") Formdata
+  | @as("input") Input
+  | @as("invalid") Invalid
+  | @as("keydown") Keydown
+  | @as("keypress") Keypress
+  | @as("keyup") Keyup
+  | @as("load") Load
+  | @as("loadeddata") Loadeddata
+  | @as("loadedmetadata") Loadedmetadata
+  | @as("loadstart") Loadstart
+  | @as("mousedown") Mousedown
+  | @as("mouseenter") Mouseenter
+  | @as("mouseleave") Mouseleave
+  | @as("mousemove") Mousemove
+  | @as("mouseout") Mouseout
+  | @as("mouseover") Mouseover
+  | @as("mouseup") Mouseup
+  | @as("paste") Paste
+  | @as("pause") Pause
+  | @as("play") Play
+  | @as("playing") Playing
+  | @as("progress") Progress
+  | @as("ratechange") Ratechange
+  | @as("reset") Reset
+  | @as("resize") Resize
+  | @as("scroll") Scroll
+  | @as("scrollend") Scrollend
+  | @as("securitypolicyviolation") Securitypolicyviolation
+  | @as("seeked") Seeked
+  | @as("seeking") Seeking
+  | @as("select") Select
+  | @as("slotchange") Slotchange
+  | @as("stalled") Stalled
+  | @as("submit") Submit
+  | @as("suspend") Suspend
+  | @as("timeupdate") Timeupdate
+  | @as("toggle") Toggle
+  | @as("volumechange") Volumechange
+  | @as("waiting") Waiting
+  | @as("webkitanimationend") Webkitanimationend
+  | @as("webkitanimationiteration") Webkitanimationiteration
+  | @as("webkitanimationstart") Webkitanimationstart
+  | @as("webkittransitionend") Webkittransitionend
+  | @as("wheel") Wheel
+  | @as("animationstart") Animationstart
+  | @as("animationiteration") Animationiteration
+  | @as("animationend") Animationend
+  | @as("animationcancel") Animationcancel
+  | @as("transitionrun") Transitionrun
+  | @as("transitionstart") Transitionstart
+  | @as("transitionend") Transitionend
+  | @as("transitioncancel") Transitioncancel
+  | @as("pointerover") Pointerover
+  | @as("pointerenter") Pointerenter
+  | @as("pointerdown") Pointerdown
+  | @as("pointermove") Pointermove
+  | @as("pointerup") Pointerup
+  | @as("pointercancel") Pointercancel
+  | @as("pointerout") Pointerout
+  | @as("pointerleave") Pointerleave
+  | @as("gotpointercapture") Gotpointercapture
+  | @as("lostpointercapture") Lostpointercapture
+  | @as("selectstart") Selectstart
+  | @as("selectionchange") Selectionchange
+  | @as("touchstart") Touchstart
+  | @as("touchend") Touchend
+  | @as("touchmove") Touchmove
+  | @as("touchcancel") Touchcancel
 
-type eventPhase  =
-    | @as(0) NONE
-    | @as(1) CAPTURING_PHASE
-    | @as(2) AT_TARGET
-    | @as(3) BUBBLING_PHASE
+type eventPhase =
+  | @as(0) NONE
+  | @as(1) CAPTURING_PHASE
+  | @as(2) AT_TARGET
+  | @as(3) BUBBLING_PHASE
+
+/**
+EventTarget is a DOM interface implemented by objects that can receive events and may have listeners for them.
+[See EventTarget on MDN](https://developer.mozilla.org/docs/Web/API/EventTarget)
+*/
+type eventTarget = {}
+
+/**
+Node is an interface from which a number of DOM API object types inherit. It allows those types to be treated similarly; for example, inheriting the same set of methods, or being tested in the same way.
+[See Node on MDN](https://developer.mozilla.org/docs/Web/API/Node)
+*/
+type node = {
+  ...eventTarget,
+  /**
+    Returns the type of node.
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/nodeType)
+    */
+  nodeType: int,
+  /**
+    Returns a string appropriate for the type of node.
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/nodeName)
+    */
+  nodeName: domString,
+  /**
+    Returns node's node document's document base URL.
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/baseURI)
+    */
+  baseURI: usvString,
+  /**
+    Returns true if node is connected and false otherwise.
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/isConnected)
+    */
+  isConnected: bool,
+  /**
+    Returns the node document. Returns null for documents.
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/ownerDocument)
+    */
+  ownerDocument: Null.t<document>,
+  /**
+    Returns the parent.
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/parentNode)
+    */
+  parentNode: Null.t<node>,
+  /**
+    Returns the parent element.
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/parentElement)
+    */
+  parentElement: Null.t<element>,
+  /**
+    Returns the children.
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/childNodes)
+    */
+  childNodes: nodeList,
+  /**
+    Returns the first child.
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/firstChild)
+    */
+  firstChild: Null.t<node>,
+  /**
+    Returns the last child.
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/lastChild)
+    */
+  lastChild: Null.t<node>,
+  /**
+    Returns the previous sibling.
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/previousSibling)
+    */
+  previousSibling: Null.t<node>,
+  /**
+    Returns the next sibling.
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/nextSibling)
+    */
+  nextSibling: Null.t<node>,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/nodeValue)
+    */
+  nodeValue: Null.t<domString>,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/textContent)
+    */
+  textContent: Null.t<domString>,
+}
+
+/**
+Element is the most general base class from which all objects in a Document inherit. It only has methods and properties common to all kinds of elements. More specific classes inherit from Element.
+[See Element on MDN](https://developer.mozilla.org/docs/Web/API/Element)
+*/
+type element = {
+  ...node,
+  /**
+    Returns the namespace.
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/namespaceURI)
+    */
+  namespaceURI: Null.t<domString>,
+  /**
+    Returns the namespace prefix.
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/prefix)
+    */
+  prefix: Null.t<domString>,
+  /**
+    Returns the local name.
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/localName)
+    */
+  localName: domString,
+  /**
+    Returns the HTML-uppercased qualified name.
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/tagName)
+    */
+  tagName: domString,
+  /**
+    Returns the value of element's id content attribute. Can be set to change it.
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/id)
+    */
+  id: domString,
+  /**
+    Returns the value of element's class content attribute. Can be set to change it.
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/className)
+    */
+  className: domString,
+  /**
+    Allows for manipulation of element's class content attribute as a set of whitespace-separated tokens through a DOMTokenList object.
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/classList)
+    */
+  classList: domTokenList,
+  /**
+    Returns the value of element's slot content attribute. Can be set to change it.
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/slot)
+    */
+  slot: domString,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/attributes)
+    */
+  attributes: namedNodeMap,
+  /**
+    Returns element's shadow root, if any, and if shadow root's mode is "open", and null otherwise.
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/shadowRoot)
+    */
+  shadowRoot: Null.t<shadowRoot>,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/part)
+    */
+  part: domTokenList,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/scrollTop)
+    */
+  scrollTop: any,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/scrollLeft)
+    */
+  scrollLeft: any,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/scrollWidth)
+    */
+  scrollWidth: long,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/scrollHeight)
+    */
+  scrollHeight: long,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/clientTop)
+    */
+  clientTop: long,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/clientLeft)
+    */
+  clientLeft: long,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/clientWidth)
+    */
+  clientWidth: long,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/clientHeight)
+    */
+  clientHeight: long,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/currentCSSZoom)
+    */
+  currentCSSZoom: double,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/fullscreenchange_event)
+    */
+  onfullscreenchange: eventHandler,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/fullscreenerror_event)
+    */
+  onfullscreenerror: eventHandler,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/innerHTML)
+    */
+  innerHTML: unknown,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/outerHTML)
+    */
+  outerHTML: unknown,
+}
+
+/**
+Any HTML element. Some elements directly implement this interface, while others implement it via an interface that inherits it.
+[See HTMLElement on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement)
+*/
+type htmlElement = {
+  ...element,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/title)
+    */
+  title: domString,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/lang)
+    */
+  lang: domString,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/translate)
+    */
+  translate: bool,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/dir)
+    */
+  dir: domString,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/hidden)
+    */
+  hidden: unknown,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/inert)
+    */
+  inert: bool,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/accessKey)
+    */
+  accessKey: domString,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/accessKeyLabel)
+    */
+  accessKeyLabel: domString,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/draggable)
+    */
+  draggable: bool,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/spellcheck)
+    */
+  spellcheck: bool,
+  writingSuggestions: domString,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/autocapitalize)
+    */
+  autocapitalize: domString,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/innerText)
+    */
+  innerText: domString,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/outerText)
+    */
+  outerText: domString,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/popover)
+    */
+  popover: Null.t<domString>,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/offsetParent)
+    */
+  offsetParent: Null.t<element>,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/offsetTop)
+    */
+  offsetTop: long,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/offsetLeft)
+    */
+  offsetLeft: long,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/offsetWidth)
+    */
+  offsetWidth: long,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/offsetHeight)
+    */
+  offsetHeight: long,
+}
+
+/**
+Any web page loaded in the browser and serves as an entry point into the web page's content, which is the DOM tree.
+[See Document on MDN](https://developer.mozilla.org/docs/Web/API/Document)
+*/
+type document = {
+  ...node,
+  /**
+    Gets the implementation object of the current document.
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Document/implementation)
+    */
+  implementation: domImplementation,
+  /**
+    Sets or gets the URL for the current document.
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Document/URL)
+    */
+  @as("URL")
+  uRL: usvString,
+  /**
+    Returns document's URL.
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Document/documentURI)
+    */
+  documentURI: usvString,
+  /**
+    Gets a value that indicates whether standards-compliant mode is switched on for the object.
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Document/compatMode)
+    */
+  compatMode: domString,
+  /**
+    Returns document's encoding.
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Document/characterSet)
+    */
+  characterSet: domString,
+  /**
+    Returns document's content type.
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Document/contentType)
+    */
+  contentType: domString,
+  /**
+    Gets an object representing the document type declaration associated with the current document.
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Document/doctype)
+    */
+  doctype: Null.t<documentType>,
+  /**
+    Gets a reference to the root node of the document.
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Document/documentElement)
+    */
+  documentElement: element,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Document/scrollingElement)
+    */
+  scrollingElement: Null.t<element>,
+  /**
+    Returns true if document has the ability to display elements fullscreen and fullscreen is supported, or false otherwise.
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Document/fullscreenEnabled)
+    */
+  fullscreenEnabled: bool,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Document/fullscreenchange_event)
+    */
+  onfullscreenchange: eventHandler,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Document/fullscreenerror_event)
+    */
+  onfullscreenerror: eventHandler,
+  /**
+    Contains information about the current URL.
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Document/location)
+    */
+  location: location,
+  /**
+    Gets the URL of the location that referred the user to the current page.
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Document/referrer)
+    */
+  referrer: usvString,
+  /**
+    Returns the HTTP cookies that apply to the Document. If there are no cookies or cookies can't be applied to this resource, the empty string will be returned.
+
+Can be set, to add a new cookie to the element's set of HTTP cookies.
+
+If the contents are sandboxed into a unique origin (e.g. in an iframe with the sandbox attribute), a "SecurityError" DOMException will be thrown on getting and setting.
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Document/cookie)
+    */
+  cookie: usvString,
+  /**
+    Gets the date that the page was last modified, if the page supplies one.
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Document/lastModified)
+    */
+  lastModified: domString,
+  /**
+    Retrieves a value that indicates the current state of the object.
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Document/readyState)
+    */
+  readyState: documentReadyState,
+  /**
+    Contains the title of the document.
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Document/title)
+    */
+  title: domString,
+  /**
+    Sets or retrieves a value that indicates the reading order of the object.
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Document/dir)
+    */
+  dir: domString,
+  /**
+    Specifies the beginning and end of the document body.
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Document/body)
+    */
+  body: htmlElement,
+  /**
+    Returns the head element.
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Document/head)
+    */
+  head: htmlHeadElement,
+  /**
+    Retrieves a collection, in source order, of img objects in the document.
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Document/images)
+    */
+  images: htmlCollection,
+  /**
+    Retrieves a collection of all embed objects in the document.
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Document/embeds)
+    */
+  embeds: htmlCollection,
+  /**
+    Return an HTMLCollection of the embed elements in the Document.
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Document/plugins)
+    */
+  plugins: htmlCollection,
+  /**
+    Retrieves a collection of all a objects that specify the href property and all area objects in the document.
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Document/links)
+    */
+  links: htmlCollection,
+  /**
+    Retrieves a collection, in source order, of all form objects in the document.
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Document/forms)
+    */
+  forms: htmlCollection,
+  /**
+    Retrieves a collection of all script objects in the document.
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Document/scripts)
+    */
+  scripts: htmlCollection,
+  /**
+    Returns the script element, or the SVG script element, that is currently executing, as long as the element represents a classic script. In the case of reentrant script execution, returns the one that most recently started executing amongst those that have not yet finished executing.
+
+Returns null if the Document is not currently executing a script or SVG script element (e.g., because the running script is an event handler, or a timeout), or if the currently executing script or SVG script element represents a module script.
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Document/currentScript)
+    */
+  currentScript: Null.t<htmlOrSVGScriptElement>,
+  /**
+    Returns the Window object of the active document.
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Document/defaultView)
+    */
+  defaultView: Null.t<windowProxy>,
+  /**
+    Sets or gets a value that indicates whether the document can be edited.
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Document/designMode)
+    */
+  designMode: domString,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Document/hidden)
+    */
+  hidden: bool,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Document/visibilityState)
+    */
+  visibilityState: documentVisibilityState,
+  /**
+    Fires when the state of the object has changed.
+@param ev The event
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Document/readystatechange_event)
+    */
+  onreadystatechange: eventHandler,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Document/visibilitychange_event)
+    */
+  onvisibilitychange: eventHandler,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Document/pictureInPictureEnabled)
+    */
+  pictureInPictureEnabled: bool,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Document/pointerlockchange_event)
+    */
+  onpointerlockchange: eventHandler,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Document/pointerlockerror_event)
+    */
+  onpointerlockerror: eventHandler,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Document/fragmentDirective)
+    */
+  fragmentDirective: fragmentDirective,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Document/timeline)
+    */
+  timeline: documentTimeline,
+}
+
+/**
+A window containing a DOM document; the document property points to the DOM document loaded in that window.
+[See Window on MDN](https://developer.mozilla.org/docs/Web/API/Window)
+*/
+type window = {
+  ...eventTarget,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/window)
+    */
+  window: windowProxy,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/self)
+    */
+  self: windowProxy,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/document)
+    */
+  document: document,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/name)
+    */
+  name: domString,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/location)
+    */
+  location: location,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/history)
+    */
+  history: history,
+  /**
+    Defines a new custom element, mapping the given name to the given constructor as an autonomous custom element.
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/customElements)
+    */
+  customElements: customElementRegistry,
+  /**
+    Returns true if the location bar is visible; otherwise, returns false.
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/locationbar)
+    */
+  locationbar: barProp,
+  /**
+    Returns true if the menu bar is visible; otherwise, returns false.
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/menubar)
+    */
+  menubar: barProp,
+  /**
+    Returns true if the personal bar is visible; otherwise, returns false.
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/personalbar)
+    */
+  personalbar: barProp,
+  /**
+    Returns true if the scrollbars are visible; otherwise, returns false.
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/scrollbars)
+    */
+  scrollbars: barProp,
+  /**
+    Returns true if the status bar is visible; otherwise, returns false.
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/statusbar)
+    */
+  statusbar: barProp,
+  /**
+    Returns true if the toolbar is visible; otherwise, returns false.
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/toolbar)
+    */
+  toolbar: barProp,
+  /**
+    Returns true if the window has been closed, false otherwise.
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/closed)
+    */
+  closed: bool,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/frames)
+    */
+  frames: windowProxy,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/length)
+    */
+  length: any,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/top)
+    */
+  top: Null.t<windowProxy>,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/opener)
+    */
+  opener: any,
+  /**
+    Refers to either the parent WindowProxy, or itself.
+
+It can rarely be null e.g. for contentWindow of an iframe that is already removed from the parent.
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/parent)
+    */
+  parent: windowProxy,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/frameElement)
+    */
+  frameElement: Null.t<element>,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/navigator)
+    */
+  navigator: navigator,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/screen)
+    */
+  screen: screen,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/visualViewport)
+    */
+  visualViewport: Null.t<visualViewport>,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/innerWidth)
+    */
+  innerWidth: long,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/innerHeight)
+    */
+  innerHeight: long,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/scrollX)
+    */
+  scrollX: double,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/scrollY)
+    */
+  scrollY: double,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/screenX)
+    */
+  screenX: long,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/screenLeft)
+    */
+  screenLeft: long,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/screenY)
+    */
+  screenY: long,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/screenTop)
+    */
+  screenTop: long,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/outerWidth)
+    */
+  outerWidth: long,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/outerHeight)
+    */
+  outerHeight: long,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/devicePixelRatio)
+    */
+  devicePixelRatio: double,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/deviceorientation_event)
+    */
+  ondeviceorientation: eventHandler,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/deviceorientationabsolute_event)
+    */
+  ondeviceorientationabsolute: eventHandler,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/devicemotion_event)
+    */
+  ondevicemotion: eventHandler,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/speechSynthesis)
+    */
+  speechSynthesis: speechSynthesis,
+}
 
 /**
 An event which takes place in the DOM.
 [See Event on MDN](https://developer.mozilla.org/docs/Web/API/Event)
 */
 type event = {
-    /**
+  /**
     Returns the type of event, e.g. "click", "hashchange", or "submit".
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Event/type)
     */
-    @as("type") type_: domString,
-    /**
+  @as("type")
+  type_: domString,
+  /**
     Returns the object to which event is dispatched (its target).
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Event/target)
     */
-    target: Null.t<eventTarget>,
-    /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Event/srcElement)
-    */
-    srcElement: Null.t<eventTarget>,
-    /**
+  target: Null.t<eventTarget>,
+  /**
     Returns the object whose event listener's callback is currently being invoked.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Event/currentTarget)
     */
-    currentTarget: Null.t<eventTarget>,
-    /**
+  currentTarget: Null.t<eventTarget>,
+  /**
     Returns the event's phase, which is one of NONE, CAPTURING_PHASE, AT_TARGET, and BUBBLING_PHASE.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Event/eventPhase)
     */
-    eventPhase: eventPhase,
-    /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Event/cancelBubble)
-    */
-    cancelBubble: boolean,
-    /**
+  eventPhase: eventPhase,
+  /**
     Returns true or false depending on how event was initialized. True if event goes through its target's ancestors in reverse tree order, and false otherwise.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Event/bubbles)
     */
-    bubbles: boolean,
-    /**
+  bubbles: bool,
+  /**
     Returns true or false depending on how event was initialized. Its return value does not always carry meaning, but true can indicate that part of the operation during which event was dispatched, can be canceled by invoking the preventDefault() method.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Event/cancelable)
     */
-    cancelable: boolean,
-    /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Event/returnValue)
-    */
-    returnValue: boolean,
-    /**
+  cancelable: bool,
+  /**
     Returns true if preventDefault() was invoked successfully to indicate cancelation, and false otherwise.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Event/defaultPrevented)
     */
-    defaultPrevented: boolean,
-    /**
+  defaultPrevented: bool,
+  /**
     Returns true or false depending on how event was initialized. True if event invokes listeners past a ShadowRoot node that is the root of its target, and false otherwise.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Event/composed)
     */
-    composed: boolean,
-    /**
+  composed: bool,
+  /**
     Returns true if event was dispatched by the user agent, and false otherwise.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Event/isTrusted)
     */
-    isTrusted: boolean,
-    /**
+  isTrusted: bool,
+  /**
     Returns the event's timestamp as the number of milliseconds measured relative to the time origin.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Event/timeStamp)
     */
-    timeStamp: domHighResTimeStamp,
+  timeStamp: domHighResTimeStamp,
 }
-/**
-EventTarget is a DOM interface implemented by objects that can receive events and may have listeners for them.
-[See EventTarget on MDN](https://developer.mozilla.org/docs/Web/API/EventTarget)
-*/
-type eventTarget = {
-}
+
 /**
 Simple user interface events.
 [See UIEvent on MDN](https://developer.mozilla.org/docs/Web/API/UIEvent)
 */
 type uiEvent = {
-    ...event,
-    /**
+  ...event,
+  /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/UIEvent/view)
     */
-    view: Null.t<window>,
-    /**
+  view: Null.t<window>,
+  /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/UIEvent/detail)
     */
-    detail: long,
-    /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/UIEvent/which)
-    */
-    which: unsigned long,
+  detail: long,
 }
+
 /**
 Events that occur due to the user interacting with a pointing device (such as a mouse). Common events using this interface include click, dblclick, mouseup, mousedown.
 [See MouseEvent on MDN](https://developer.mozilla.org/docs/Web/API/MouseEvent)
 */
 type mouseEvent = {
-    ...uiEvent,
-    /**
+  ...uiEvent,
+  /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/MouseEvent/screenX)
     */
-    screenX: long,
-    /**
+  screenX: long,
+  /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/MouseEvent/screenY)
     */
-    screenY: long,
-    /**
+  screenY: long,
+  /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/MouseEvent/clientX)
     */
-    clientX: long,
-    /**
+  clientX: long,
+  /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/MouseEvent/clientY)
     */
-    clientY: long,
-    /**
+  clientY: long,
+  /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/MouseEvent/layerX)
     */
-    layerX: long,
-    /**
+  layerX: long,
+  /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/MouseEvent/layerY)
     */
-    layerY: long,
-    /**
+  layerY: long,
+  /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/MouseEvent/ctrlKey)
     */
-    ctrlKey: boolean,
-    /**
+  ctrlKey: bool,
+  /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/MouseEvent/shiftKey)
     */
-    shiftKey: boolean,
-    /**
+  shiftKey: bool,
+  /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/MouseEvent/altKey)
     */
-    altKey: boolean,
-    /**
+  altKey: bool,
+  /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/MouseEvent/metaKey)
     */
-    metaKey: boolean,
-    /**
+  metaKey: bool,
+  /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/MouseEvent/button)
     */
-    button: short,
-    /**
+  button: short,
+  /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/MouseEvent/buttons)
     */
-    buttons: int,
-    /**
+  buttons: int,
+  /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/MouseEvent/relatedTarget)
     */
-    relatedTarget: Null.t<eventTarget>,
-    /**
+  relatedTarget: Null.t<eventTarget>,
+  /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/MouseEvent/pageX)
     */
-    pageX: double,
-    /**
+  pageX: double,
+  /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/MouseEvent/pageY)
     */
-    pageY: double,
-    /**
+  pageY: double,
+  /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/MouseEvent/x)
     */
-    x: double,
-    /**
+  x: double,
+  /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/MouseEvent/y)
     */
-    y: double,
-    /**
+  y: double,
+  /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/MouseEvent/offsetX)
     */
-    offsetX: double,
-    /**
+  offsetX: double,
+  /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/MouseEvent/offsetY)
     */
-    offsetY: double,
-    /**
+  offsetY: double,
+  /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/MouseEvent/movementX)
     */
-    movementX: double,
-    /**
+  movementX: double,
+  /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/MouseEvent/movementY)
     */
-    movementY: double,
+  movementY: double,
+}
+
+/**
+Provides properties and methods (beyond the regular HTMLElement interface it also has available to it by inheritance) for manipulating <button> elements.
+[See HTMLButtonElement on MDN](https://developer.mozilla.org/docs/Web/API/HTMLButtonElement)
+*/
+type htmlButtonElement = {
+  ...htmlElement,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLButtonElement/disabled)
+    */
+  disabled: bool,
+  /**
+    Retrieves a reference to the form that the object is embedded in.
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLButtonElement/form)
+    */
+  form: Null.t<htmlFormElement>,
+  /**
+    Overrides the action attribute (where the data on a form is sent) on the parent form element.
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLButtonElement/formAction)
+    */
+  formAction: usvString,
+  /**
+    Used to override the encoding (formEnctype attribute) specified on the form element.
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLButtonElement/formEnctype)
+    */
+  formEnctype: domString,
+  /**
+    Overrides the submit method attribute previously specified on a form element.
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLButtonElement/formMethod)
+    */
+  formMethod: domString,
+  /**
+    Overrides any validation or required attributes on a form or form elements to allow it to be submitted without validation. This can be used to create a "save draft"-type submit option.
+    */
+  formNoValidate: bool,
+  /**
+    Overrides the target attribute on a form element.
+    */
+  formTarget: domString,
+  /**
+    Sets or retrieves the name of the object.
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLButtonElement/name)
+    */
+  name: domString,
+  /**
+    Gets the classification and default behavior of the button.
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLButtonElement/type)
+    */
+  @as("type")
+  type_: domString,
+  /**
+    Sets or retrieves the default or selected value of the control.
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLButtonElement/value)
+    */
+  value: domString,
+  /**
+    Returns whether an element will successfully validate based on forms validation rules and constraints.
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLButtonElement/willValidate)
+    */
+  willValidate: bool,
+  /**
+    Returns a  ValidityState object that represents the validity states of an element.
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLButtonElement/validity)
+    */
+  validity: validityState,
+  /**
+    Returns the error message that would be displayed if the user submits the form, or an empty string if no error message. It also triggers the standard error message, such as "this is a required field". The result is that the user sees validation messages without actually submitting.
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLButtonElement/validationMessage)
+    */
+  validationMessage: domString,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLButtonElement/labels)
+    */
+  labels: nodeList,
 }

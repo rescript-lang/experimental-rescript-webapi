@@ -2101,17 +2101,26 @@ export function emitRescriptBindings(webidl: Browser.WebIdl): string {
 
   function transformPropertyValue(property: Browser.Member): string {
     if (typeof property.type === "string") {
-      if (property.type === "unsigned short") {
-        if (property.name === "eventPhase") {
-          return `eventPhase`;
-        }
+      switch (property.type) {
+        case "unsigned short":
+          if (property.name === "eventPhase") {
+            return `eventPhase`;
+          }
 
-        return "int";
+          return "int";
+
+        case "boolean":
+          return "bool";
+
+        case "unrestricted double":
+        case "unsigned long":
+          return "any";
+
+        default:
+          return toCamelCase(property.type);
       }
-
-      return toCamelCase(property.type);
     } else {
-      console.log(property.type);
+      console.log("non string property type", property.type);
     }
 
     return "unknown";
@@ -2179,8 +2188,10 @@ export function emitRescriptBindings(webidl: Browser.WebIdl): string {
 
     if (i.properties?.property) {
       for (const key of Object.keys(i.properties.property)) {
-        if (fieldNamesFromExtended.includes(key)) continue;
         let property = i.properties.property[key];
+        if (fieldNamesFromExtended.includes(key) || property.deprecated)
+          continue;
+
         printComment({
           mdnUrl: property.mdnUrl,
           comment: property.comment,
@@ -2203,6 +2214,7 @@ export function emitRescriptBindings(webidl: Browser.WebIdl): string {
 
     printer.decreaseIndent();
     printer.printLine("}");
+    printer.endLine();
   }
 
   function emitEnum(e: Browser.Enum) {
@@ -2269,6 +2281,8 @@ export function emitRescriptBindings(webidl: Browser.WebIdl): string {
     printer.printLine("type error = {}");
     printer.printLine("type any");
     printer.printLine("type arrayBufferView = {}");
+    printer.printLine("type domHighResTimeStamp");
+    printer.printLine("type usvString");
     printer.printLine("/* End temporary */");
     printer.printLine("");
 
@@ -2278,20 +2292,29 @@ export function emitRescriptBindings(webidl: Browser.WebIdl): string {
     emitDomString();
     emitEventPhase();
 
-    const interfacesICurrentlyCareAbout = new Set([
+    // TODO: WindowProxy is an alias for Window
+
+    const interfacesICurrentlyCareAbout = [
+      "EventTarget",
+      "Node",
+      "Element",
+      "HTMLElement",
+      "Document",
+      "Window",
       "Event",
       "UIEvent",
       "MouseEvent",
-      "EventTarget",
-    ]);
 
-    const sortedInterfaces = topologicalSortDictionaries(allInterfaces).filter(
-      (i) => interfacesICurrentlyCareAbout.has(i.name),
-    );
+      "HTMLButtonElement",
+    ];
 
-    for (const i of sortedInterfaces) {
-      emitInterfaceRecord(i);
+    const sortedInterfaces = topologicalSortDictionaries(allInterfaces);
 
+    for (const name of interfacesICurrentlyCareAbout) {
+      const i = sortedInterfaces.find((i) => i.name === name);
+      if (i) {
+        emitInterfaceRecord(i);
+      }
       // TODO: construct a %identity function to convert to the base interface?
       // Or perhaps this happens in a separate file/module?
     }

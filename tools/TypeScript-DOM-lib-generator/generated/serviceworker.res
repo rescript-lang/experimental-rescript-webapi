@@ -433,10 +433,6 @@ type event = {
     */
   target: Null.t<eventTarget>,
   /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Event/srcElement)
-    */
-  srcElement: Null.t<eventTarget>,
-  /**
     Returns the object whose event listener's callback is currently being invoked.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Event/currentTarget)
     */
@@ -447,10 +443,6 @@ type event = {
     */
   eventPhase: eventPhase,
   /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Event/cancelBubble)
-    */
-  cancelBubble: boolean,
-  /**
     Returns true or false depending on how event was initialized. True if event goes through its target's ancestors in reverse tree order, and false otherwise.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Event/bubbles)
     */
@@ -460,10 +452,6 @@ type event = {
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Event/cancelable)
     */
   cancelable: boolean,
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Event/returnValue)
-    */
-  returnValue: boolean,
   /**
     Returns true if preventDefault() was invoked successfully to indicate cancelation, and false otherwise.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Event/defaultPrevented)
