@@ -1826,18 +1826,26 @@ export function emitWebIdl(
 }
 
 function toCamelCase(input: string) {
-  let i = 0;
+  try {
+    let i = 0;
 
-  // Count uppercase letters at the start
-  while (i < input.length && input[i] === input[i].toUpperCase()) {
-    i++;
+    // Count uppercase letters at the start
+    while (i < input.length && input[i] === input[i].toUpperCase()) {
+      i++;
+    }
+
+    // If only one capital, lowercase it
+    if (i === 1) return input[0].toLowerCase() + input.slice(1);
+
+    // If more than one capital, lowercase until the last one in the sequence
+    return input.slice(0, i - 1).toLowerCase() + input.slice(i - 1);
+  } catch (ex) {
+    console.error(
+      `FAILED TO CAMELIZE: ${input}, typeof input = ${typeof input}`,
+      ex,
+    );
+    return input;
   }
-
-  // If only one capital, lowercase it
-  if (i === 1) return input[0].toLowerCase() + input.slice(1);
-
-  // If more than one capital, lowercase until the last one in the sequence
-  return input.slice(0, i - 1).toLowerCase() + input.slice(i - 1);
 }
 
 const reservedRescriptWords = [
@@ -2141,7 +2149,16 @@ export function emitRescriptBindings(webidl: Browser.WebIdl): string {
 
   function transformPropertyValue(property: Browser.Member): string {
     if (typeof property.type === "string") {
-      switch (property.type) {
+      let t = property.type;
+      if (typeof property.overrideType === "string") {
+        t = property.overrideType;
+      }
+
+      if (Array.isArray(property.overrideType)) {
+        t = property.overrideType[0];
+      }
+
+      switch (t) {
         case "unsigned short":
           if (property.name === "eventPhase") {
             return `eventPhase`;
@@ -2154,24 +2171,140 @@ export function emitRescriptBindings(webidl: Browser.WebIdl): string {
 
         // Not sure if this is correct
         case "long":
+        case "unsigned long long":
+        case "long long":
+        case "SVGAnimatedNumber":
+        case "EpochTimeStamp":
+        case "short":
+        // TODO: model https://developer.mozilla.org/en-US/docs/Web/API/FileReader/readyState
+        case "typeof FileReader.EMPTY | typeof FileReader.LOADING | typeof FileReader.DONE":
+        // TODO: https://developer.mozilla.org/en-US/docs/Web/API/ByteLengthQueuingStrategy/size
+        case "QueuingStrategySize<ArrayBufferView>":
           return "int";
 
         case "double":
+        case "CSSNumberish":
           return "float";
 
         // TODO: represent this as a variant type
         case "HTMLOrSVGScriptElement":
           return "htmlElement";
 
+        // TODO: have a better representation for this
+        // See https://developer.mozilla.org/en-US/docs/Web/API/ClipboardItem/types
+        case "FrozenArray":
+          return "array<string>";
+
+        // TODO: deal with generic types in general
+        case "Promise":
+          return "Promise.t<unit>";
+
         case "WindowProxy":
+        case "WindowProxy & typeof globalThis":
+        case "Window & typeof globalThis":
           return "window";
+
+        // https://developer.mozilla.org/en-US/docs/Web/API/CSSAnimation/animationName
+        case "CSSOMString":
+        case "ByteString":
+          return "string";
 
         case "unrestricted double":
         case "unsigned long":
           return "any";
 
+        case "Date":
+          return "Date.t";
+
+        // TODO: "ReadableStream<Uint8Array>"
+        case "ReadableStream<Uint8Array>":
+          return "any";
+
+        case "ParentNode":
+        case "ChildNode":
+          return "node";
+
+        case "NodeListOf<ChildNode>":
+          return "nodeList";
+
+        // TODO: https://developer.mozilla.org/en-US/docs/Web/API/HTMLImageElement/decoding
+        case '"async" | "sync" | "auto"':
+          return "string";
+
+        // TODO: https://developer.mozilla.org/en-US/docs/Web/API/HTMLImageElement/loading
+        case '"eager" | "lazy"':
+          return "string";
+
+        // TODO: https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/preload
+        case '"none" | "metadata" | "auto" | ""':
+          return "string";
+
+        // Jesus, fix generics already...
+        case "HTMLCollectionOf<HTMLImageElement>":
+          return "htmlCollectionOf<htmlImageElement>";
+
+        case "HTMLCollectionOf<HTMLEmbedElement>":
+          return "htmlCollectionOf<htmlEmbedElement>";
+
+        // TODO: this is wrong
+        case "HTMLCollectionOf<HTMLAnchorElement | HTMLAreaElement>":
+          return "htmlCollectionOf<htmlElement>";
+
+        case "HTMLCollectionOf<HTMLTableCellElement>":
+          return "htmlCollectionOf<htmlTableCellElement>";
+
+        // TODO: model better https://developer.mozilla.org/en-US/docs/Web/API/HTMLButtonElement/type
+        case '"submit" | "reset" | "button"':
+          return "string";
+
+        // TODO: model better https://developer.mozilla.org/en-US/docs/Web/API/HTMLSelectElement/type
+        case '"select-one" | "select-multiple"':
+          return "string";
+
+        case "HTMLCollectionOf<HTMLOptionElement>":
+          return "htmlCollectionOf<htmlOptionElement>";
+
+        case "NodeListOf<HTMLLabelElement>":
+          return "nodeListOf<htmlLabelElement>";
+
+        // TODO: https://developer.mozilla.org/en-US/docs/Web/API/TransformStream/readable
+        case "ReadableStream<O>":
+          return "any";
+
+        case "WritableStream<I>":
+          return "any";
+
+        case "HTMLCollectionOf<HTMLFormElement>":
+          return "htmlCollectionOf<htmlFormElement>";
+
+        case "HTMLCollectionOf<HTMLScriptElement>":
+          return "htmlCollectionOf<htmlScriptElement>";
+
+        case "HTMLCollectionOf<HTMLTableSectionElement>":
+          return "htmlCollectionOf<htmlTableSectionElement>";
+
+        case "HTMLCollectionOf<HTMLTableRowElement>":
+          return "htmlCollectionOf<htmlTableRowElement>";
+
+        case "HTMLCollectionOf<HTMLTableRowElement>":
+          return "htmlCollectionOf<htmlTableRowElement>";
+
+        // https://developer.mozilla.org/en-US/docs/Web/API/HTMLInputElement/selectionDirection
+        case '"forward" | "backward" | "none"':
+          return "string";
+
+        case "string | string[]":
+          return "string";
+
+        // https://developer.mozilla.org/en-US/docs/Web/API/HTMLInputElement/autocomplete
+        case "AutoFill":
+          return "string";
+
+        case "object":
+          return "Dict.t<string>";
+
         default:
-          return toCamelCase(property.type);
+          return toCamelCase(t);
       }
     } else {
       console.log("non string property type", property.type);
@@ -2364,6 +2497,26 @@ export function emitRescriptBindings(webidl: Browser.WebIdl): string {
     printer.endLine();
   }
 
+  function emitInterfaceChain(
+    sortedInterfaces: Browser.Interface[],
+    chain: string[],
+  ) {
+    for (const [idx, name] of chain.entries()) {
+      const i = sortedInterfaces.find((i) => i.name === name);
+      if (i) {
+        emitInterfaceRecord(
+          {
+            allowSpreading: false,
+            typeKeywords: idx === 0 ? "type rec" : "and",
+          },
+          i,
+        );
+      }
+      // TODO: construct a %identity function to convert to the base interface?
+      // Or perhaps this happens in a separate file/module?
+    }
+  }
+
   function emit() {
     printer.reset();
     printer.printLine('@@warning("-30")');
@@ -2390,7 +2543,9 @@ export function emitRescriptBindings(webidl: Browser.WebIdl): string {
       "NamedNodeMap",
       "Location",
       "FragmentDirective",
+      // DocumentTimeline inherits AnimationTimeline
       "DocumentTimeline",
+      "AnimationTimeline",
       "History",
       "CustomElementRegistry",
       // https://developer.mozilla.org/en-US/docs/Web/API/Window/locationbar
@@ -2399,50 +2554,112 @@ export function emitRescriptBindings(webidl: Browser.WebIdl): string {
       "Screen",
       "VisualViewport",
       "SpeechSynthesis",
+      "DOMException",
+      "IDBTransaction",
+      "DOMStringList",
+      "IDBCursor",
+      "SubtleCrypto",
+      "CryptoKey",
+      "DataTransfer",
+      "AnimationEffect",
+      "MediaList",
+      "CSSStyleDeclaration",
+      "CSSNumericArray",
+      "CSSPerspective",
+      "CSSMatrixComponent",
+      "DOMMatrix",
+      "NodeFilter",
+      "MediaKeySession",
+      "ArrayBuffer",
+      "FileSystem",
+      "GamepadHapticActuator",
+      "GeolocationCoordinates",
+      "HTMLFormControlsCollection",
+      "ValidityState",
+      "MediaError",
+      "MediaProvider", // The object can be a MediaStream, a MediaSource, a Blob, or a File (which inherits from Blob).
+      "TimeRanges", // https://developer.mozilla.org/en-US/docs/Web/API/TimeRanges#normalized_timeranges_objects
+      "TextTrackList",
+      "RemotePlayback",
+      "TextTrackCueList",
+      "FileList",
+      "FormData",
+      "Uint8ClampedArray",
+      "CustomStateSet",
+      "MutationRecord",
+      "MessageEventSource",
+      "MessagePort",
+      "SourceBufferList",
+      "MediaMetadata",
+      "NavigationPreloadManager",
+      "SpeechSynthesisVoice",
+      "ReadableStreamBYOBRequest",
     ];
 
-    // DocumentTimeline inherits AnimationTimeline
-
-    const interfacesICurrentlyCareAbout = [
-      // "EventTarget",
-      "Node",
-      "NodeList",
-      "Element",
-      "ShadowRoot",
-      "HTMLElement",
-      "HTMLCollection",
-      "HTMLHeadElement",
-      "DOMImplementation",
-      "DocumentType",
-      "Document",
-      "Window",
-      // "Event",
-
-      // "UIEvent",
-      // "MouseEvent",
-
-      // "HTMLButtonElement",
+    const chains = [
+      [
+        "EventTarget",
+        "Node",
+        "NodeList",
+        "NodeListOf",
+        "Element",
+        "ShadowRoot",
+        "HTMLElement",
+        "HTMLCollection",
+        "HTMLCollectionOf",
+        "HTMLHeadElement",
+        "HTMLFormElement",
+        "HTMLImageElement",
+        "HTMLEmbedElement",
+        "HTMLAnchorElement",
+        "HTMLAreaElement",
+        "HTMLScriptElement",
+        "DOMImplementation",
+        "DocumentType",
+        "Document",
+        "Window",
+        "Event",
+      ],
+      ["StyleSheet", "CSSStyleSheet", "CSSRule", "CSSRuleList"],
+      ["AbortController", "AbortSignal"],
+      [
+        "HTMLTableElement",
+        "HTMLTableCaptionElement",
+        "HTMLTableSectionElement",
+        "HTMLTableCellElement",
+        "HTMLTableRowElement",
+      ],
+      [
+        "HTMLButtonElement",
+        "HTMLLabelElement",
+        "HTMLTextAreaElement",
+        "HTMLOutputElement",
+        "HTMLInputElement",
+        "HTMLDataListElement",
+        "HTMLSelectElement",
+        "HTMLOptionElement",
+        "HTMLOptionsCollection",
+      ],
+      ["ReadableByteStreamController", "ReadableStreamBYOBRequest"],
     ];
 
     for (const precursor of precursors) {
-      printer.printLine(`type ${toCamelCase(precursor)}`);
+      printer.printLine(`type ${toCamelCase(precursor)} = {}`);
     }
 
     const sortedInterfaces = topologicalSortDictionaries(allInterfaces);
 
-    for (const [idx, name] of interfacesICurrentlyCareAbout.entries()) {
-      const i = sortedInterfaces.find((i) => i.name === name);
-      if (i) {
-        emitInterfaceRecord(
-          {
-            allowSpreading: false,
-            typeKeywords: idx === 0 ? "type rec" : "and",
-          },
-          i,
-        );
-      }
-      // TODO: construct a %identity function to convert to the base interface?
-      // Or perhaps this happens in a separate file/module?
+    for (const chain of chains) {
+      emitInterfaceChain(sortedInterfaces, chain);
+    }
+
+    for (const i of sortedInterfaces) {
+      if (
+        chains.some((chain) => chain.includes(i.name)) ||
+        precursors.includes(i.name)
+      )
+        continue;
+      emitInterfaceRecord({ allowSpreading: true, typeKeywords: "type" }, i);
     }
 
     return printer.getResult();
