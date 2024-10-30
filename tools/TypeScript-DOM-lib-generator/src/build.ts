@@ -298,10 +298,10 @@ async function emitDom() {
   const knownTypes = await readInputJSON("knownTypes.json");
 
   const emitVariations = [
-    {
-      outputFolder: new URL("./ts5.5/", outputFolder),
-      useIteratorObject: false,
-    },
+    // {
+    //   outputFolder: new URL("./ts5.5/", outputFolder),
+    //   useIteratorObject: false,
+    // },
     { outputFolder, useIteratorObject: true },
   ];
 

@@ -1853,7 +1853,7 @@ const validVariantConstructorNameRegexp = /[^a-zA-Z0-9_]/g;
 function getFieldName(fieldName: string): string {
   if (reservedRescriptWords.includes(fieldName)) {
     return `@as("${fieldName}") ${fieldName}_`;
-  } else if (fieldName[0] !== fieldName[0].toLowerCase()) {
+  } else if (fieldName && fieldName[0] !== fieldName[0].toLowerCase()) {
     return `@as("${fieldName}") ${fieldName[0].toLowerCase()}${fieldName.slice(1)}`;
   }
 
@@ -1940,6 +1940,11 @@ function topologicalSortDictionaries<T extends Dictionary>(
 
   return sorted;
 }
+
+type interfaceSettings = {
+  allowSpreading: boolean;
+  typeKeywords: "type" | "type rec" | "and";
+};
 
 export function emitRescriptBindings(webidl: Browser.WebIdl): string {
   // Global print target
@@ -2078,6 +2083,41 @@ export function emitRescriptBindings(webidl: Browser.WebIdl): string {
     return extds.split("<").map(toCamelCase).join("<");
   }
 
+  function extractExtendsName(
+    i: Browser.Interface | Browser.Dictionary,
+  ): string | null {
+    return i.extends?.split("<")[0] || null;
+  }
+
+  function collectExtendsProperties(
+    current: Browser.Interface,
+  ): Record<string, Browser.Property[]> {
+    function collectExtendsPropertiesFrom(
+      entry: Browser.Interface,
+    ): Browser.Property[] {
+      const props = (<any>entry).properties?.property || {};
+      const currentProps = Object.keys(props).map((p) => props[p]);
+      return currentProps;
+    }
+
+    function findBaseInterfaces(name: string): Browser.Interface[] {
+      const entry = allInterfaces.find((i) => i.name === name);
+      if (!entry) return [];
+
+      const extendsName = extractExtendsName(entry);
+
+      return [entry, ...(extendsName ? findBaseInterfaces(extendsName) : [])];
+    }
+
+    const extendsName = extractExtendsName(current);
+    if (!extendsName) return {};
+
+    const interfaces = findBaseInterfaces(extendsName);
+    return Object.fromEntries(
+      interfaces.map((i) => [i.name, collectExtendsPropertiesFrom(i)]),
+    );
+  }
+
   function printTypeParams(
     typeParameters: Browser.TypeParameter[] | undefined,
   ) {
@@ -2112,6 +2152,20 @@ export function emitRescriptBindings(webidl: Browser.WebIdl): string {
         case "boolean":
           return "bool";
 
+        // Not sure if this is correct
+        case "long":
+          return "int";
+
+        case "double":
+          return "float";
+
+        // TODO: represent this as a variant type
+        case "HTMLOrSVGScriptElement":
+          return "htmlElement";
+
+        case "WindowProxy":
+          return "window";
+
         case "unrestricted double":
         case "unsigned long":
           return "any";
@@ -2124,6 +2178,22 @@ export function emitRescriptBindings(webidl: Browser.WebIdl): string {
     }
 
     return "unknown";
+  }
+
+  function printProperty(property: Browser.Property) {
+    if (!("mdnUrl" in property)) return;
+
+    printComment({
+      mdnUrl: property.mdnUrl,
+      comment: property.comment,
+    });
+    let propertyValue = transformPropertyValue(property);
+    printer.print(`${getFieldName(property.name)}`);
+    if (property.optional) printer.print(`?`);
+    printer.print(`: `);
+    if (property.nullable) printer.print(`Null.t<${propertyValue}>`);
+    else printer.print(propertyValue);
+    printer.printLine(`,`);
   }
 
   // TODO: This and emitInterfaceRecord should share most of the logic at some point
@@ -2168,7 +2238,10 @@ export function emitRescriptBindings(webidl: Browser.WebIdl): string {
     printer.printLine("}");
   }
 
-  function emitInterfaceRecord(i: Browser.Interface) {
+  function emitInterfaceRecord(
+    options: interfaceSettings,
+    i: Browser.Interface,
+  ) {
     seenItems.set(i.name, i);
     const fieldNamesFromExtended = i.extends
       ? Array.from(typeFieldNames.get(i.extends.split("<")[0])?.values() ?? [])
@@ -2176,33 +2249,49 @@ export function emitRescriptBindings(webidl: Browser.WebIdl): string {
     const typename = toCamelCase(i.name);
     printComment({ name: i.name, mdnUrl: i.mdnUrl, comment: i.comment });
     printer.print(
-      `type ${typename}${reservedRescriptWords.includes(typename) ? "_" : ""}`,
+      `${options.typeKeywords} ${typename}${reservedRescriptWords.includes(typename) ? "_" : ""}`,
     );
     printTypeParams(i.typeParameters);
     printer.printLine(` = {`);
     printer.increaseIndent();
 
     if (i.extends) {
-      printer.printLine(`...${transformExtends(i.extends)},`);
+      if (options.allowSpreading) {
+        printer.printLine(`...${transformExtends(i.extends)},`);
+      } else {
+        const baseProperties = collectExtendsProperties(i);
+        Object.entries(baseProperties).forEach(([name, properties]) => {
+          if (properties.length !== 0) {
+            printer.printLine(`// Base properties from ${name}`);
+            properties
+              .filter((p) => !p.eventHandler)
+              .forEach((p) => {
+                printProperty(p);
+              });
+            printer.printLine(`// End base properties from ${name}`);
+            printer.endLine();
+          }
+        });
+      }
     }
 
     if (i.properties?.property) {
       for (const key of Object.keys(i.properties.property)) {
         let property = i.properties.property[key];
-        if (fieldNamesFromExtended.includes(key) || property.deprecated)
+
+        // I'm curious to know which properties are overwritten in the extended interface
+        if (fieldNamesFromExtended.includes(key)) {
+          console.log(`skipping ${i.name}.${key}, mdn: ${i.mdnUrl}`);
+        }
+
+        if (
+          fieldNamesFromExtended.includes(key) ||
+          property.deprecated ||
+          property.eventHandler
+        )
           continue;
 
-        printComment({
-          mdnUrl: property.mdnUrl,
-          comment: property.comment,
-        });
-        let propertyValue = transformPropertyValue(property);
-        printer.print(`${getFieldName(key)}`);
-        if (property.optional) printer.print(`?`);
-        printer.print(`: `);
-        if (property.nullable) printer.print(`Null.t<${propertyValue}>`);
-        else printer.print(propertyValue);
-        printer.printLine(`,`);
+        printProperty(property);
       }
     }
 
@@ -2277,6 +2366,7 @@ export function emitRescriptBindings(webidl: Browser.WebIdl): string {
 
   function emit() {
     printer.reset();
+    printer.printLine('@@warning("-30")');
     printer.printLine("/** Temporary, to be fixed */");
     printer.printLine("type error = {}");
     printer.printLine("type any");
@@ -2294,26 +2384,62 @@ export function emitRescriptBindings(webidl: Browser.WebIdl): string {
 
     // TODO: WindowProxy is an alias for Window
 
+    // These are interfaces that need to be defined first but are not part of the root chain.
+    const precursors = [
+      "DOMTokenList",
+      "NamedNodeMap",
+      "Location",
+      "FragmentDirective",
+      "DocumentTimeline",
+      "History",
+      "CustomElementRegistry",
+      // https://developer.mozilla.org/en-US/docs/Web/API/Window/locationbar
+      "BarProp",
+      "Navigator",
+      "Screen",
+      "VisualViewport",
+      "SpeechSynthesis",
+    ];
+
+    // DocumentTimeline inherits AnimationTimeline
+
     const interfacesICurrentlyCareAbout = [
-      "EventTarget",
+      // "EventTarget",
       "Node",
+      "NodeList",
       "Element",
+      "ShadowRoot",
       "HTMLElement",
+      "HTMLCollection",
+      "HTMLHeadElement",
+      "DOMImplementation",
+      "DocumentType",
       "Document",
       "Window",
-      "Event",
-      "UIEvent",
-      "MouseEvent",
+      // "Event",
 
-      "HTMLButtonElement",
+      // "UIEvent",
+      // "MouseEvent",
+
+      // "HTMLButtonElement",
     ];
+
+    for (const precursor of precursors) {
+      printer.printLine(`type ${toCamelCase(precursor)}`);
+    }
 
     const sortedInterfaces = topologicalSortDictionaries(allInterfaces);
 
-    for (const name of interfacesICurrentlyCareAbout) {
+    for (const [idx, name] of interfacesICurrentlyCareAbout.entries()) {
       const i = sortedInterfaces.find((i) => i.name === name);
       if (i) {
-        emitInterfaceRecord(i);
+        emitInterfaceRecord(
+          {
+            allowSpreading: false,
+            typeKeywords: idx === 0 ? "type rec" : "and",
+          },
+          i,
+        );
       }
       // TODO: construct a %identity function to convert to the base interface?
       // Or perhaps this happens in a separate file/module?

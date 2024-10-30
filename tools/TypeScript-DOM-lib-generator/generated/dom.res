@@ -1,3 +1,4 @@
+@@warning("-30")
 /** Temporary, to be fixed */
 type error = {}
 type any
@@ -1212,18 +1213,23 @@ type eventPhase =
   | @as(2) AT_TARGET
   | @as(3) BUBBLING_PHASE
 
-/**
-EventTarget is a DOM interface implemented by objects that can receive events and may have listeners for them.
-[See EventTarget on MDN](https://developer.mozilla.org/docs/Web/API/EventTarget)
-*/
-type eventTarget = {}
-
+type domTokenList
+type namedNodeMap
+type location
+type fragmentDirective
+type documentTimeline
+type history
+type customElementRegistry
+type barProp
+type navigator
+type screen
+type visualViewport
+type speechSynthesis
 /**
 Node is an interface from which a number of DOM API object types inherit. It allows those types to be treated similarly; for example, inheriting the same set of methods, or being tested in the same way.
 [See Node on MDN](https://developer.mozilla.org/docs/Web/API/Node)
 */
-type node = {
-  ...eventTarget,
+type rec node = {
   /**
     Returns the type of node.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/nodeType)
@@ -1295,11 +1301,93 @@ type node = {
 }
 
 /**
+NodeList objects are collections of nodes, usually returned by properties such as Node.childNodes and methods such as document.querySelectorAll().
+[See NodeList on MDN](https://developer.mozilla.org/docs/Web/API/NodeList)
+*/
+and nodeList = {
+  /**
+    Returns the number of nodes in the collection.
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/NodeList/length)
+    */
+  length: any,
+}
+
+/**
 Element is the most general base class from which all objects in a Document inherit. It only has methods and properties common to all kinds of elements. More specific classes inherit from Element.
 [See Element on MDN](https://developer.mozilla.org/docs/Web/API/Element)
 */
-type element = {
-  ...node,
+and element = {
+  // Base properties from Node
+  /**
+    Returns the type of node.
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/nodeType)
+    */
+  nodeType: int,
+  /**
+    Returns a string appropriate for the type of node.
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/nodeName)
+    */
+  nodeName: domString,
+  /**
+    Returns node's node document's document base URL.
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/baseURI)
+    */
+  baseURI: usvString,
+  /**
+    Returns true if node is connected and false otherwise.
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/isConnected)
+    */
+  isConnected: bool,
+  /**
+    Returns the node document. Returns null for documents.
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/ownerDocument)
+    */
+  ownerDocument: Null.t<document>,
+  /**
+    Returns the parent.
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/parentNode)
+    */
+  parentNode: Null.t<node>,
+  /**
+    Returns the parent element.
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/parentElement)
+    */
+  parentElement: Null.t<element>,
+  /**
+    Returns the children.
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/childNodes)
+    */
+  childNodes: nodeList,
+  /**
+    Returns the first child.
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/firstChild)
+    */
+  firstChild: Null.t<node>,
+  /**
+    Returns the last child.
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/lastChild)
+    */
+  lastChild: Null.t<node>,
+  /**
+    Returns the previous sibling.
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/previousSibling)
+    */
+  previousSibling: Null.t<node>,
+  /**
+    Returns the next sibling.
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/nextSibling)
+    */
+  nextSibling: Null.t<node>,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/nodeValue)
+    */
+  nodeValue: Null.t<domString>,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/textContent)
+    */
+  textContent: Null.t<domString>,
+  // End base properties from Node
+
   /**
     Returns the namespace.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/namespaceURI)
@@ -1364,39 +1452,31 @@ type element = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/scrollWidth)
     */
-  scrollWidth: long,
+  scrollWidth: int,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/scrollHeight)
     */
-  scrollHeight: long,
+  scrollHeight: int,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/clientTop)
     */
-  clientTop: long,
+  clientTop: int,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/clientLeft)
     */
-  clientLeft: long,
+  clientLeft: int,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/clientWidth)
     */
-  clientWidth: long,
+  clientWidth: int,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/clientHeight)
     */
-  clientHeight: long,
+  clientHeight: int,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/currentCSSZoom)
     */
-  currentCSSZoom: double,
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/fullscreenchange_event)
-    */
-  onfullscreenchange: eventHandler,
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/fullscreenerror_event)
-    */
-  onfullscreenerror: eventHandler,
+  currentCSSZoom: float,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/innerHTML)
     */
@@ -1408,11 +1488,289 @@ type element = {
 }
 
 /**
+[See ShadowRoot on MDN](https://developer.mozilla.org/docs/Web/API/ShadowRoot)
+*/
+and shadowRoot = {
+  // Base properties from DocumentFragment
+  // End base properties from DocumentFragment
+
+  // Base properties from Node
+  /**
+    Returns the type of node.
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/nodeType)
+    */
+  nodeType: int,
+  /**
+    Returns a string appropriate for the type of node.
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/nodeName)
+    */
+  nodeName: domString,
+  /**
+    Returns node's node document's document base URL.
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/baseURI)
+    */
+  baseURI: usvString,
+  /**
+    Returns true if node is connected and false otherwise.
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/isConnected)
+    */
+  isConnected: bool,
+  /**
+    Returns the node document. Returns null for documents.
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/ownerDocument)
+    */
+  ownerDocument: Null.t<document>,
+  /**
+    Returns the parent.
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/parentNode)
+    */
+  parentNode: Null.t<node>,
+  /**
+    Returns the parent element.
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/parentElement)
+    */
+  parentElement: Null.t<element>,
+  /**
+    Returns the children.
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/childNodes)
+    */
+  childNodes: nodeList,
+  /**
+    Returns the first child.
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/firstChild)
+    */
+  firstChild: Null.t<node>,
+  /**
+    Returns the last child.
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/lastChild)
+    */
+  lastChild: Null.t<node>,
+  /**
+    Returns the previous sibling.
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/previousSibling)
+    */
+  previousSibling: Null.t<node>,
+  /**
+    Returns the next sibling.
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/nextSibling)
+    */
+  nextSibling: Null.t<node>,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/nodeValue)
+    */
+  nodeValue: Null.t<domString>,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/textContent)
+    */
+  textContent: Null.t<domString>,
+  // End base properties from Node
+
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/ShadowRoot/mode)
+    */
+  mode: shadowRootMode,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/ShadowRoot/delegatesFocus)
+    */
+  delegatesFocus: bool,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/ShadowRoot/slotAssignment)
+    */
+  slotAssignment: slotAssignmentMode,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/ShadowRoot/clonable)
+    */
+  clonable: bool,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/ShadowRoot/serializable)
+    */
+  serializable: bool,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/ShadowRoot/host)
+    */
+  host: element,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/ShadowRoot/innerHTML)
+    */
+  innerHTML: unknown,
+}
+
+/**
 Any HTML element. Some elements directly implement this interface, while others implement it via an interface that inherits it.
 [See HTMLElement on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement)
 */
-type htmlElement = {
-  ...element,
+and htmlElement = {
+  // Base properties from Element
+  /**
+    Returns the namespace.
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/namespaceURI)
+    */
+  namespaceURI: Null.t<domString>,
+  /**
+    Returns the namespace prefix.
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/prefix)
+    */
+  prefix: Null.t<domString>,
+  /**
+    Returns the local name.
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/localName)
+    */
+  localName: domString,
+  /**
+    Returns the HTML-uppercased qualified name.
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/tagName)
+    */
+  tagName: domString,
+  /**
+    Returns the value of element's id content attribute. Can be set to change it.
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/id)
+    */
+  id: domString,
+  /**
+    Returns the value of element's class content attribute. Can be set to change it.
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/className)
+    */
+  className: domString,
+  /**
+    Allows for manipulation of element's class content attribute as a set of whitespace-separated tokens through a DOMTokenList object.
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/classList)
+    */
+  classList: domTokenList,
+  /**
+    Returns the value of element's slot content attribute. Can be set to change it.
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/slot)
+    */
+  slot: domString,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/attributes)
+    */
+  attributes: namedNodeMap,
+  /**
+    Returns element's shadow root, if any, and if shadow root's mode is "open", and null otherwise.
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/shadowRoot)
+    */
+  shadowRoot: Null.t<shadowRoot>,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/part)
+    */
+  part: domTokenList,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/scrollTop)
+    */
+  scrollTop: any,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/scrollLeft)
+    */
+  scrollLeft: any,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/scrollWidth)
+    */
+  scrollWidth: int,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/scrollHeight)
+    */
+  scrollHeight: int,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/clientTop)
+    */
+  clientTop: int,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/clientLeft)
+    */
+  clientLeft: int,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/clientWidth)
+    */
+  clientWidth: int,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/clientHeight)
+    */
+  clientHeight: int,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/currentCSSZoom)
+    */
+  currentCSSZoom: float,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/innerHTML)
+    */
+  innerHTML: unknown,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/outerHTML)
+    */
+  outerHTML: unknown,
+  // End base properties from Element
+
+  // Base properties from Node
+  /**
+    Returns the type of node.
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/nodeType)
+    */
+  nodeType: int,
+  /**
+    Returns a string appropriate for the type of node.
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/nodeName)
+    */
+  nodeName: domString,
+  /**
+    Returns node's node document's document base URL.
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/baseURI)
+    */
+  baseURI: usvString,
+  /**
+    Returns true if node is connected and false otherwise.
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/isConnected)
+    */
+  isConnected: bool,
+  /**
+    Returns the node document. Returns null for documents.
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/ownerDocument)
+    */
+  ownerDocument: Null.t<document>,
+  /**
+    Returns the parent.
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/parentNode)
+    */
+  parentNode: Null.t<node>,
+  /**
+    Returns the parent element.
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/parentElement)
+    */
+  parentElement: Null.t<element>,
+  /**
+    Returns the children.
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/childNodes)
+    */
+  childNodes: nodeList,
+  /**
+    Returns the first child.
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/firstChild)
+    */
+  firstChild: Null.t<node>,
+  /**
+    Returns the last child.
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/lastChild)
+    */
+  lastChild: Null.t<node>,
+  /**
+    Returns the previous sibling.
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/previousSibling)
+    */
+  previousSibling: Null.t<node>,
+  /**
+    Returns the next sibling.
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/nextSibling)
+    */
+  nextSibling: Null.t<node>,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/nodeValue)
+    */
+  nodeValue: Null.t<domString>,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/textContent)
+    */
+  textContent: Null.t<domString>,
+  // End base properties from Node
+
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/title)
     */
@@ -1453,7 +1811,6 @@ type htmlElement = {
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/spellcheck)
     */
   spellcheck: bool,
-  writingSuggestions: domString,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/autocapitalize)
     */
@@ -1477,27 +1834,461 @@ type htmlElement = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/offsetTop)
     */
-  offsetTop: long,
+  offsetTop: int,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/offsetLeft)
     */
-  offsetLeft: long,
+  offsetLeft: int,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/offsetWidth)
     */
-  offsetWidth: long,
+  offsetWidth: int,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/offsetHeight)
     */
-  offsetHeight: long,
+  offsetHeight: int,
+}
+
+/**
+A generic collection (array-like object similar to arguments) of elements (in document order) and offers methods and properties for selecting from the list.
+[See HTMLCollection on MDN](https://developer.mozilla.org/docs/Web/API/HTMLCollection)
+*/
+and htmlCollection = {
+  /**
+    Sets or retrieves the number of objects in a collection.
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLCollection/length)
+    */
+  length: any,
+}
+
+/**
+Contains the descriptive information, or metadata, for a document. This object inherits all of the properties and methods described in the HTMLElement interface.
+[See HTMLHeadElement on MDN](https://developer.mozilla.org/docs/Web/API/HTMLHeadElement)
+*/
+and htmlHeadElement = {
+  // Base properties from HTMLElement
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/title)
+    */
+  title: domString,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/lang)
+    */
+  lang: domString,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/translate)
+    */
+  translate: bool,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/dir)
+    */
+  dir: domString,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/hidden)
+    */
+  hidden: unknown,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/inert)
+    */
+  inert: bool,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/accessKey)
+    */
+  accessKey: domString,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/accessKeyLabel)
+    */
+  accessKeyLabel: domString,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/draggable)
+    */
+  draggable: bool,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/spellcheck)
+    */
+  spellcheck: bool,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/autocapitalize)
+    */
+  autocapitalize: domString,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/innerText)
+    */
+  innerText: domString,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/outerText)
+    */
+  outerText: domString,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/popover)
+    */
+  popover: Null.t<domString>,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/offsetParent)
+    */
+  offsetParent: Null.t<element>,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/offsetTop)
+    */
+  offsetTop: int,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/offsetLeft)
+    */
+  offsetLeft: int,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/offsetWidth)
+    */
+  offsetWidth: int,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/offsetHeight)
+    */
+  offsetHeight: int,
+  // End base properties from HTMLElement
+
+  // Base properties from Element
+  /**
+    Returns the namespace.
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/namespaceURI)
+    */
+  namespaceURI: Null.t<domString>,
+  /**
+    Returns the namespace prefix.
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/prefix)
+    */
+  prefix: Null.t<domString>,
+  /**
+    Returns the local name.
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/localName)
+    */
+  localName: domString,
+  /**
+    Returns the HTML-uppercased qualified name.
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/tagName)
+    */
+  tagName: domString,
+  /**
+    Returns the value of element's id content attribute. Can be set to change it.
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/id)
+    */
+  id: domString,
+  /**
+    Returns the value of element's class content attribute. Can be set to change it.
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/className)
+    */
+  className: domString,
+  /**
+    Allows for manipulation of element's class content attribute as a set of whitespace-separated tokens through a DOMTokenList object.
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/classList)
+    */
+  classList: domTokenList,
+  /**
+    Returns the value of element's slot content attribute. Can be set to change it.
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/slot)
+    */
+  slot: domString,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/attributes)
+    */
+  attributes: namedNodeMap,
+  /**
+    Returns element's shadow root, if any, and if shadow root's mode is "open", and null otherwise.
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/shadowRoot)
+    */
+  shadowRoot: Null.t<shadowRoot>,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/part)
+    */
+  part: domTokenList,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/scrollTop)
+    */
+  scrollTop: any,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/scrollLeft)
+    */
+  scrollLeft: any,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/scrollWidth)
+    */
+  scrollWidth: int,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/scrollHeight)
+    */
+  scrollHeight: int,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/clientTop)
+    */
+  clientTop: int,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/clientLeft)
+    */
+  clientLeft: int,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/clientWidth)
+    */
+  clientWidth: int,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/clientHeight)
+    */
+  clientHeight: int,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/currentCSSZoom)
+    */
+  currentCSSZoom: float,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/innerHTML)
+    */
+  innerHTML: unknown,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/outerHTML)
+    */
+  outerHTML: unknown,
+  // End base properties from Element
+
+  // Base properties from Node
+  /**
+    Returns the type of node.
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/nodeType)
+    */
+  nodeType: int,
+  /**
+    Returns a string appropriate for the type of node.
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/nodeName)
+    */
+  nodeName: domString,
+  /**
+    Returns node's node document's document base URL.
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/baseURI)
+    */
+  baseURI: usvString,
+  /**
+    Returns true if node is connected and false otherwise.
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/isConnected)
+    */
+  isConnected: bool,
+  /**
+    Returns the node document. Returns null for documents.
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/ownerDocument)
+    */
+  ownerDocument: Null.t<document>,
+  /**
+    Returns the parent.
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/parentNode)
+    */
+  parentNode: Null.t<node>,
+  /**
+    Returns the parent element.
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/parentElement)
+    */
+  parentElement: Null.t<element>,
+  /**
+    Returns the children.
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/childNodes)
+    */
+  childNodes: nodeList,
+  /**
+    Returns the first child.
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/firstChild)
+    */
+  firstChild: Null.t<node>,
+  /**
+    Returns the last child.
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/lastChild)
+    */
+  lastChild: Null.t<node>,
+  /**
+    Returns the previous sibling.
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/previousSibling)
+    */
+  previousSibling: Null.t<node>,
+  /**
+    Returns the next sibling.
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/nextSibling)
+    */
+  nextSibling: Null.t<node>,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/nodeValue)
+    */
+  nodeValue: Null.t<domString>,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/textContent)
+    */
+  textContent: Null.t<domString>,
+  // End base properties from Node
+}
+
+/**
+An object providing methods which are not dependent on any particular document. Such an object is returned by the Document.implementation property.
+[See DOMImplementation on MDN](https://developer.mozilla.org/docs/Web/API/DOMImplementation)
+*/
+and domImplementation = {}
+
+/**
+A Node containing a doctype.
+[See DocumentType on MDN](https://developer.mozilla.org/docs/Web/API/DocumentType)
+*/
+and documentType = {
+  // Base properties from Node
+  /**
+    Returns the type of node.
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/nodeType)
+    */
+  nodeType: int,
+  /**
+    Returns a string appropriate for the type of node.
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/nodeName)
+    */
+  nodeName: domString,
+  /**
+    Returns node's node document's document base URL.
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/baseURI)
+    */
+  baseURI: usvString,
+  /**
+    Returns true if node is connected and false otherwise.
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/isConnected)
+    */
+  isConnected: bool,
+  /**
+    Returns the node document. Returns null for documents.
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/ownerDocument)
+    */
+  ownerDocument: Null.t<document>,
+  /**
+    Returns the parent.
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/parentNode)
+    */
+  parentNode: Null.t<node>,
+  /**
+    Returns the parent element.
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/parentElement)
+    */
+  parentElement: Null.t<element>,
+  /**
+    Returns the children.
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/childNodes)
+    */
+  childNodes: nodeList,
+  /**
+    Returns the first child.
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/firstChild)
+    */
+  firstChild: Null.t<node>,
+  /**
+    Returns the last child.
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/lastChild)
+    */
+  lastChild: Null.t<node>,
+  /**
+    Returns the previous sibling.
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/previousSibling)
+    */
+  previousSibling: Null.t<node>,
+  /**
+    Returns the next sibling.
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/nextSibling)
+    */
+  nextSibling: Null.t<node>,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/nodeValue)
+    */
+  nodeValue: Null.t<domString>,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/textContent)
+    */
+  textContent: Null.t<domString>,
+  // End base properties from Node
+
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/DocumentType/name)
+    */
+  name: domString,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/DocumentType/publicId)
+    */
+  publicId: domString,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/DocumentType/systemId)
+    */
+  systemId: domString,
 }
 
 /**
 Any web page loaded in the browser and serves as an entry point into the web page's content, which is the DOM tree.
 [See Document on MDN](https://developer.mozilla.org/docs/Web/API/Document)
 */
-type document = {
-  ...node,
+and document = {
+  // Base properties from Node
+  /**
+    Returns the type of node.
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/nodeType)
+    */
+  nodeType: int,
+  /**
+    Returns a string appropriate for the type of node.
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/nodeName)
+    */
+  nodeName: domString,
+  /**
+    Returns node's node document's document base URL.
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/baseURI)
+    */
+  baseURI: usvString,
+  /**
+    Returns true if node is connected and false otherwise.
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/isConnected)
+    */
+  isConnected: bool,
+  /**
+    Returns the node document. Returns null for documents.
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/ownerDocument)
+    */
+  ownerDocument: Null.t<document>,
+  /**
+    Returns the parent.
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/parentNode)
+    */
+  parentNode: Null.t<node>,
+  /**
+    Returns the parent element.
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/parentElement)
+    */
+  parentElement: Null.t<element>,
+  /**
+    Returns the children.
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/childNodes)
+    */
+  childNodes: nodeList,
+  /**
+    Returns the first child.
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/firstChild)
+    */
+  firstChild: Null.t<node>,
+  /**
+    Returns the last child.
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/lastChild)
+    */
+  lastChild: Null.t<node>,
+  /**
+    Returns the previous sibling.
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/previousSibling)
+    */
+  previousSibling: Null.t<node>,
+  /**
+    Returns the next sibling.
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/nextSibling)
+    */
+  nextSibling: Null.t<node>,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/nodeValue)
+    */
+  nodeValue: Null.t<domString>,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/textContent)
+    */
+  textContent: Null.t<domString>,
+  // End base properties from Node
+
   /**
     Gets the implementation object of the current document.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Document/implementation)
@@ -1548,14 +2339,6 @@ type document = {
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Document/fullscreenEnabled)
     */
   fullscreenEnabled: bool,
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Document/fullscreenchange_event)
-    */
-  onfullscreenchange: eventHandler,
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Document/fullscreenerror_event)
-    */
-  onfullscreenerror: eventHandler,
   /**
     Contains information about the current URL.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Document/location)
@@ -1641,12 +2424,12 @@ If the contents are sandboxed into a unique origin (e.g. in an iframe with the s
 Returns null if the Document is not currently executing a script or SVG script element (e.g., because the running script is an event handler, or a timeout), or if the currently executing script or SVG script element represents a module script.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Document/currentScript)
     */
-  currentScript: Null.t<htmlOrSVGScriptElement>,
+  currentScript: Null.t<htmlElement>,
   /**
     Returns the Window object of the active document.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Document/defaultView)
     */
-  defaultView: Null.t<windowProxy>,
+  defaultView: Null.t<window>,
   /**
     Sets or gets a value that indicates whether the document can be edited.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Document/designMode)
@@ -1661,27 +2444,9 @@ Returns null if the Document is not currently executing a script or SVG script e
     */
   visibilityState: documentVisibilityState,
   /**
-    Fires when the state of the object has changed.
-@param ev The event
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Document/readystatechange_event)
-    */
-  onreadystatechange: eventHandler,
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Document/visibilitychange_event)
-    */
-  onvisibilitychange: eventHandler,
-  /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Document/pictureInPictureEnabled)
     */
   pictureInPictureEnabled: bool,
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Document/pointerlockchange_event)
-    */
-  onpointerlockchange: eventHandler,
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Document/pointerlockerror_event)
-    */
-  onpointerlockerror: eventHandler,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Document/fragmentDirective)
     */
@@ -1696,16 +2461,15 @@ Returns null if the Document is not currently executing a script or SVG script e
 A window containing a DOM document; the document property points to the DOM document loaded in that window.
 [See Window on MDN](https://developer.mozilla.org/docs/Web/API/Window)
 */
-type window = {
-  ...eventTarget,
+and window = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/window)
     */
-  window: windowProxy,
+  window: window,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/self)
     */
-  self: windowProxy,
+  self: window,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/document)
     */
@@ -1765,7 +2529,7 @@ type window = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/frames)
     */
-  frames: windowProxy,
+  frames: window,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/length)
     */
@@ -1773,7 +2537,7 @@ type window = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/top)
     */
-  top: Null.t<windowProxy>,
+  top: Null.t<window>,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/opener)
     */
@@ -1784,7 +2548,7 @@ type window = {
 It can rarely be null e.g. for contentWindow of an iframe that is already removed from the parent.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/parent)
     */
-  parent: windowProxy,
+  parent: window,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/frameElement)
     */
@@ -1804,302 +2568,49 @@ It can rarely be null e.g. for contentWindow of an iframe that is already remove
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/innerWidth)
     */
-  innerWidth: long,
+  innerWidth: int,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/innerHeight)
     */
-  innerHeight: long,
+  innerHeight: int,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/scrollX)
     */
-  scrollX: double,
+  scrollX: float,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/scrollY)
     */
-  scrollY: double,
+  scrollY: float,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/screenX)
     */
-  screenX: long,
+  screenX: int,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/screenLeft)
     */
-  screenLeft: long,
+  screenLeft: int,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/screenY)
     */
-  screenY: long,
+  screenY: int,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/screenTop)
     */
-  screenTop: long,
+  screenTop: int,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/outerWidth)
     */
-  outerWidth: long,
+  outerWidth: int,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/outerHeight)
     */
-  outerHeight: long,
+  outerHeight: int,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/devicePixelRatio)
     */
-  devicePixelRatio: double,
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/deviceorientation_event)
-    */
-  ondeviceorientation: eventHandler,
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/deviceorientationabsolute_event)
-    */
-  ondeviceorientationabsolute: eventHandler,
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/devicemotion_event)
-    */
-  ondevicemotion: eventHandler,
+  devicePixelRatio: float,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/speechSynthesis)
     */
   speechSynthesis: speechSynthesis,
-}
-
-/**
-An event which takes place in the DOM.
-[See Event on MDN](https://developer.mozilla.org/docs/Web/API/Event)
-*/
-type event = {
-  /**
-    Returns the type of event, e.g. "click", "hashchange", or "submit".
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Event/type)
-    */
-  @as("type")
-  type_: domString,
-  /**
-    Returns the object to which event is dispatched (its target).
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Event/target)
-    */
-  target: Null.t<eventTarget>,
-  /**
-    Returns the object whose event listener's callback is currently being invoked.
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Event/currentTarget)
-    */
-  currentTarget: Null.t<eventTarget>,
-  /**
-    Returns the event's phase, which is one of NONE, CAPTURING_PHASE, AT_TARGET, and BUBBLING_PHASE.
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Event/eventPhase)
-    */
-  eventPhase: eventPhase,
-  /**
-    Returns true or false depending on how event was initialized. True if event goes through its target's ancestors in reverse tree order, and false otherwise.
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Event/bubbles)
-    */
-  bubbles: bool,
-  /**
-    Returns true or false depending on how event was initialized. Its return value does not always carry meaning, but true can indicate that part of the operation during which event was dispatched, can be canceled by invoking the preventDefault() method.
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Event/cancelable)
-    */
-  cancelable: bool,
-  /**
-    Returns true if preventDefault() was invoked successfully to indicate cancelation, and false otherwise.
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Event/defaultPrevented)
-    */
-  defaultPrevented: bool,
-  /**
-    Returns true or false depending on how event was initialized. True if event invokes listeners past a ShadowRoot node that is the root of its target, and false otherwise.
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Event/composed)
-    */
-  composed: bool,
-  /**
-    Returns true if event was dispatched by the user agent, and false otherwise.
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Event/isTrusted)
-    */
-  isTrusted: bool,
-  /**
-    Returns the event's timestamp as the number of milliseconds measured relative to the time origin.
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Event/timeStamp)
-    */
-  timeStamp: domHighResTimeStamp,
-}
-
-/**
-Simple user interface events.
-[See UIEvent on MDN](https://developer.mozilla.org/docs/Web/API/UIEvent)
-*/
-type uiEvent = {
-  ...event,
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/UIEvent/view)
-    */
-  view: Null.t<window>,
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/UIEvent/detail)
-    */
-  detail: long,
-}
-
-/**
-Events that occur due to the user interacting with a pointing device (such as a mouse). Common events using this interface include click, dblclick, mouseup, mousedown.
-[See MouseEvent on MDN](https://developer.mozilla.org/docs/Web/API/MouseEvent)
-*/
-type mouseEvent = {
-  ...uiEvent,
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/MouseEvent/screenX)
-    */
-  screenX: long,
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/MouseEvent/screenY)
-    */
-  screenY: long,
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/MouseEvent/clientX)
-    */
-  clientX: long,
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/MouseEvent/clientY)
-    */
-  clientY: long,
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/MouseEvent/layerX)
-    */
-  layerX: long,
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/MouseEvent/layerY)
-    */
-  layerY: long,
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/MouseEvent/ctrlKey)
-    */
-  ctrlKey: bool,
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/MouseEvent/shiftKey)
-    */
-  shiftKey: bool,
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/MouseEvent/altKey)
-    */
-  altKey: bool,
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/MouseEvent/metaKey)
-    */
-  metaKey: bool,
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/MouseEvent/button)
-    */
-  button: short,
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/MouseEvent/buttons)
-    */
-  buttons: int,
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/MouseEvent/relatedTarget)
-    */
-  relatedTarget: Null.t<eventTarget>,
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/MouseEvent/pageX)
-    */
-  pageX: double,
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/MouseEvent/pageY)
-    */
-  pageY: double,
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/MouseEvent/x)
-    */
-  x: double,
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/MouseEvent/y)
-    */
-  y: double,
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/MouseEvent/offsetX)
-    */
-  offsetX: double,
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/MouseEvent/offsetY)
-    */
-  offsetY: double,
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/MouseEvent/movementX)
-    */
-  movementX: double,
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/MouseEvent/movementY)
-    */
-  movementY: double,
-}
-
-/**
-Provides properties and methods (beyond the regular HTMLElement interface it also has available to it by inheritance) for manipulating <button> elements.
-[See HTMLButtonElement on MDN](https://developer.mozilla.org/docs/Web/API/HTMLButtonElement)
-*/
-type htmlButtonElement = {
-  ...htmlElement,
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLButtonElement/disabled)
-    */
-  disabled: bool,
-  /**
-    Retrieves a reference to the form that the object is embedded in.
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLButtonElement/form)
-    */
-  form: Null.t<htmlFormElement>,
-  /**
-    Overrides the action attribute (where the data on a form is sent) on the parent form element.
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLButtonElement/formAction)
-    */
-  formAction: usvString,
-  /**
-    Used to override the encoding (formEnctype attribute) specified on the form element.
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLButtonElement/formEnctype)
-    */
-  formEnctype: domString,
-  /**
-    Overrides the submit method attribute previously specified on a form element.
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLButtonElement/formMethod)
-    */
-  formMethod: domString,
-  /**
-    Overrides any validation or required attributes on a form or form elements to allow it to be submitted without validation. This can be used to create a "save draft"-type submit option.
-    */
-  formNoValidate: bool,
-  /**
-    Overrides the target attribute on a form element.
-    */
-  formTarget: domString,
-  /**
-    Sets or retrieves the name of the object.
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLButtonElement/name)
-    */
-  name: domString,
-  /**
-    Gets the classification and default behavior of the button.
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLButtonElement/type)
-    */
-  @as("type")
-  type_: domString,
-  /**
-    Sets or retrieves the default or selected value of the control.
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLButtonElement/value)
-    */
-  value: domString,
-  /**
-    Returns whether an element will successfully validate based on forms validation rules and constraints.
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLButtonElement/willValidate)
-    */
-  willValidate: bool,
-  /**
-    Returns a  ValidityState object that represents the validity states of an element.
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLButtonElement/validity)
-    */
-  validity: validityState,
-  /**
-    Returns the error message that would be displayed if the user submits the form, or an empty string if no error message. It also triggers the standard error message, such as "this is a required field". The result is that the user sees validation messages without actually submitting.
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLButtonElement/validationMessage)
-    */
-  validationMessage: domString,
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLButtonElement/labels)
-    */
-  labels: nodeList,
 }
