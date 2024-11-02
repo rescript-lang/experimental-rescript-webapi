@@ -1213,6 +1213,7 @@ type eventPhase =
   | @as(2) AT_TARGET
   | @as(3) BUBBLING_PHASE
 
+type queuingStrategy<'t> = {}
 type domTokenList = {}
 type namedNodeMap = {}
 type location = {}
@@ -1258,6 +1259,33 @@ type fileList = {}
 type formData = {}
 type uint8ClampedArray = {}
 type customStateSet = {}
+type mutationRecord = {}
+type messageEventSource = {}
+type messagePort = {}
+type sourceBufferList = {}
+type mediaMetadata = {}
+type navigationPreloadManager = {}
+type speechSynthesisVoice = {}
+type fileSystemEntry = {}
+type fontFace = {}
+type gamepadButton = {}
+type performanceServerTiming = {}
+type resizeObserverSize = {}
+type urlSearchParams = {}
+type audioDestinationNode = {}
+type audioListener = {}
+type audioWorklet = {}
+type audioBuffer = {}
+type authenticatorResponse = {}
+type videoColorSpace = {}
+type rtcSessionDescription = {}
+type rtcSctpTransport = {}
+type rtcDtlsTransport = {}
+type rtcRtpScriptTransform = {}
+type rtcdtmfSender = {}
+type webTransportCloseInfo = {}
+type vttRegion = {}
+type lineAndPositionSetting = {}
 /**
 EventTarget is a DOM interface implemented by objects that can receive events and may have listeners for them.
 [See EventTarget on MDN](https://developer.mozilla.org/docs/Web/API/EventTarget)
@@ -1308,7 +1336,7 @@ and node = {
     Returns the children.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/childNodes)
     */
-  childNodes: nodeList,
+  childNodes: nodeListOf<node>,
   /**
     Returns the first child.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/firstChild)
@@ -1406,7 +1434,7 @@ and element = {
     Returns the children.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/childNodes)
     */
-  childNodes: nodeList,
+  childNodes: nodeListOf<node>,
   /**
     Returns the first child.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/firstChild)
@@ -1583,7 +1611,7 @@ and shadowRoot = {
     Returns the children.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/childNodes)
     */
-  childNodes: nodeList,
+  childNodes: nodeListOf<node>,
   /**
     Returns the first child.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/firstChild)
@@ -1789,7 +1817,7 @@ and htmlElement = {
     Returns the children.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/childNodes)
     */
-  childNodes: nodeList,
+  childNodes: nodeListOf<node>,
   /**
     Returns the first child.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/firstChild)
@@ -2144,7 +2172,7 @@ and htmlHeadElement = {
     Returns the children.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/childNodes)
     */
-  childNodes: nodeList,
+  childNodes: nodeListOf<node>,
   /**
     Returns the first child.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/firstChild)
@@ -2400,7 +2428,7 @@ and htmlFormElement = {
     Returns the children.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/childNodes)
     */
-  childNodes: nodeList,
+  childNodes: nodeListOf<node>,
   /**
     Returns the first child.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/firstChild)
@@ -2707,7 +2735,7 @@ and htmlImageElement = {
     Returns the children.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/childNodes)
     */
-  childNodes: nodeList,
+  childNodes: nodeListOf<node>,
   /**
     Returns the first child.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/firstChild)
@@ -3050,7 +3078,7 @@ and htmlEmbedElement = {
     Returns the children.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/childNodes)
     */
-  childNodes: nodeList,
+  childNodes: nodeListOf<node>,
   /**
     Returns the first child.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/firstChild)
@@ -3322,7 +3350,7 @@ and htmlAnchorElement = {
     Returns the children.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/childNodes)
     */
-  childNodes: nodeList,
+  childNodes: nodeListOf<node>,
   /**
     Returns the first child.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/firstChild)
@@ -3620,7 +3648,7 @@ and htmlAreaElement = {
     Returns the children.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/childNodes)
     */
-  childNodes: nodeList,
+  childNodes: nodeListOf<node>,
   /**
     Returns the first child.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/firstChild)
@@ -3898,7 +3926,7 @@ and htmlScriptElement = {
     Returns the children.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/childNodes)
     */
-  childNodes: nodeList,
+  childNodes: nodeListOf<node>,
   /**
     Returns the first child.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/firstChild)
@@ -4027,7 +4055,7 @@ and documentType = {
     Returns the children.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/childNodes)
     */
-  childNodes: nodeList,
+  childNodes: nodeListOf<node>,
   /**
     Returns the first child.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/firstChild)
@@ -4117,7 +4145,7 @@ and document = {
     Returns the children.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/childNodes)
     */
-  childNodes: nodeList,
+  childNodes: nodeListOf<node>,
   /**
     Returns the first child.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/firstChild)
@@ -4499,7 +4527,7 @@ and event = {
     Returns the event's phase, which is one of NONE, CAPTURING_PHASE, AT_TARGET, and BUBBLING_PHASE.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Event/eventPhase)
     */
-  eventPhase: eventPhase,
+  eventPhase: int,
   /**
     Returns true or false depending on how event was initialized. True if event goes through its target's ancestors in reverse tree order, and false otherwise.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Event/bubbles)
@@ -4897,7 +4925,7 @@ type rec htmlTableElement = {
     Returns the children.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/childNodes)
     */
-  childNodes: nodeList,
+  childNodes: nodeListOf<node>,
   /**
     Returns the first child.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/firstChild)
@@ -5179,7 +5207,7 @@ and htmlTableCaptionElement = {
     Returns the children.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/childNodes)
     */
-  childNodes: nodeList,
+  childNodes: nodeListOf<node>,
   /**
     Returns the first child.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/firstChild)
@@ -5435,7 +5463,7 @@ and htmlTableSectionElement = {
     Returns the children.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/childNodes)
     */
-  childNodes: nodeList,
+  childNodes: nodeListOf<node>,
   /**
     Returns the first child.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/firstChild)
@@ -5697,7 +5725,7 @@ and htmlTableCellElement = {
     Returns the children.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/childNodes)
     */
-  childNodes: nodeList,
+  childNodes: nodeListOf<node>,
   /**
     Returns the first child.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/firstChild)
@@ -5984,7 +6012,7 @@ and htmlTableRowElement = {
     Returns the children.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/childNodes)
     */
-  childNodes: nodeList,
+  childNodes: nodeListOf<node>,
   /**
     Returns the first child.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/firstChild)
@@ -6256,7 +6284,7 @@ type rec htmlButtonElement = {
     Returns the children.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/childNodes)
     */
-  childNodes: nodeList,
+  childNodes: nodeListOf<node>,
   /**
     Returns the first child.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/firstChild)
@@ -6572,7 +6600,7 @@ and htmlLabelElement = {
     Returns the children.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/childNodes)
     */
-  childNodes: nodeList,
+  childNodes: nodeListOf<node>,
   /**
     Returns the first child.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/firstChild)
@@ -6844,7 +6872,7 @@ and htmlTextAreaElement = {
     Returns the children.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/childNodes)
     */
-  childNodes: nodeList,
+  childNodes: nodeListOf<node>,
   /**
     Returns the first child.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/firstChild)
@@ -7211,7 +7239,7 @@ and htmlOutputElement = {
     Returns the children.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/childNodes)
     */
-  childNodes: nodeList,
+  childNodes: nodeListOf<node>,
   /**
     Returns the first child.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/firstChild)
@@ -7513,7 +7541,7 @@ and htmlInputElement = {
     Returns the children.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/childNodes)
     */
-  childNodes: nodeList,
+  childNodes: nodeListOf<node>,
   /**
     Returns the first child.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/firstChild)
@@ -7746,7 +7774,7 @@ and htmlInputElement = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLInputElement/webkitEntries)
     */
-  webkitEntries: array<string>,
+  webkitEntries: array<fileSystemEntry>,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLInputElement/capture)
     */
@@ -7977,7 +8005,7 @@ and htmlDataListElement = {
     Returns the children.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/childNodes)
     */
-  childNodes: nodeList,
+  childNodes: nodeListOf<node>,
   /**
     Returns the first child.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/firstChild)
@@ -8239,7 +8267,7 @@ and htmlSelectElement = {
     Returns the children.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/childNodes)
     */
-  childNodes: nodeList,
+  childNodes: nodeListOf<node>,
   /**
     Returns the first child.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/firstChild)
@@ -8574,7 +8602,7 @@ and htmlOptionElement = {
     Returns the children.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/childNodes)
     */
-  childNodes: nodeList,
+  childNodes: nodeListOf<node>,
   /**
     Returns the first child.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/firstChild)
@@ -8666,6 +8694,94 @@ Can be set, to change the selection.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLOptionsCollection/selectedIndex)
     */
   selectedIndex: int,
+}
+
+/**
+[See ReadableByteStreamController on MDN](https://developer.mozilla.org/docs/Web/API/ReadableByteStreamController)
+*/
+type rec readableByteStreamController = {
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/ReadableByteStreamController/byobRequest)
+    */
+  byobRequest: Null.t<readableStreamBYOBRequest>,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/ReadableByteStreamController/desiredSize)
+    */
+  desiredSize: Null.t<any>,
+}
+
+/**
+[See ReadableStreamBYOBRequest on MDN](https://developer.mozilla.org/docs/Web/API/ReadableStreamBYOBRequest)
+*/
+and readableStreamBYOBRequest = {
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/ReadableStreamBYOBRequest/view)
+    */
+  view: Null.t<arrayBufferView>,
+}
+
+/**
+[See Animation on MDN](https://developer.mozilla.org/docs/Web/API/Animation)
+*/
+type rec animation = {
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Animation/id)
+    */
+  id: domString,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Animation/effect)
+    */
+  effect: Null.t<animationEffect>,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Animation/timeline)
+    */
+  timeline: Null.t<animationTimeline>,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Animation/playbackRate)
+    */
+  playbackRate: float,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Animation/playState)
+    */
+  playState: animationPlayState,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Animation/replaceState)
+    */
+  replaceState: animationReplaceState,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Animation/pending)
+    */
+  pending: bool,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Animation/ready)
+    */
+  ready: Promise.t<animation>,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Animation/finished)
+    */
+  finished: Promise.t<animation>,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Animation/startTime)
+    */
+  startTime: Null.t<float>,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Animation/currentTime)
+    */
+  currentTime: Null.t<float>,
+}
+
+/**
+[See FontFaceSet on MDN](https://developer.mozilla.org/docs/Web/API/FontFaceSet)
+*/
+type rec fontFaceSet = {
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/FontFaceSet/ready)
+    */
+  ready: Promise.t<fontFaceSet>,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/FontFaceSet/status)
+    */
+  status: fontFaceSetLoadStatus,
 }
 
 /**
@@ -9748,7 +9864,7 @@ type clipboardItem = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/ClipboardItem/types)
     */
-  types: array<string>,
+  types: array<domString>,
 }
 
 /**
@@ -9811,7 +9927,7 @@ type paymentAddress = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/ContactAddress/addressLine)
     */
-  addressLine: array<string>,
+  addressLine: array<domString>,
 }
 
 /**
@@ -9833,57 +9949,6 @@ type credential = {
 [See CredentialsContainer on MDN](https://developer.mozilla.org/docs/Web/API/CredentialsContainer)
 */
 type credentialsContainer = {}
-
-/**
-[See Animation on MDN](https://developer.mozilla.org/docs/Web/API/Animation)
-*/
-type animation = {
-  ...eventTarget,
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Animation/id)
-    */
-  id: domString,
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Animation/effect)
-    */
-  effect: Null.t<animationEffect>,
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Animation/timeline)
-    */
-  timeline: Null.t<animationTimeline>,
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Animation/playbackRate)
-    */
-  playbackRate: float,
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Animation/playState)
-    */
-  playState: animationPlayState,
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Animation/replaceState)
-    */
-  replaceState: animationReplaceState,
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Animation/pending)
-    */
-  pending: bool,
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Animation/ready)
-    */
-  ready: Promise.t<unit>,
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Animation/finished)
-    */
-  finished: Promise.t<unit>,
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Animation/startTime)
-    */
-  startTime: Null.t<float>,
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Animation/currentTime)
-    */
-  currentTime: Null.t<float>,
-}
 
 /**
 [See CSSAnimation on MDN](https://developer.mozilla.org/docs/Web/API/CSSAnimation)
@@ -10111,60 +10176,6 @@ type cssCounterStyleRule = {
 }
 
 /**
-[See FontFace on MDN](https://developer.mozilla.org/docs/Web/API/FontFace)
-*/
-type fontFace = {
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/FontFace/family)
-    */
-  family: string,
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/FontFace/style)
-    */
-  style: string,
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/FontFace/weight)
-    */
-  weight: string,
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/FontFace/stretch)
-    */
-  stretch: string,
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/FontFace/unicodeRange)
-    */
-  unicodeRange: string,
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/FontFace/featureSettings)
-    */
-  featureSettings: string,
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/FontFace/display)
-    */
-  display: fontDisplay,
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/FontFace/ascentOverride)
-    */
-  ascentOverride: string,
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/FontFace/descentOverride)
-    */
-  descentOverride: string,
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/FontFace/lineGapOverride)
-    */
-  lineGapOverride: string,
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/FontFace/status)
-    */
-  status: fontFaceLoadStatus,
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/FontFace/loaded)
-    */
-  loaded: Promise.t<unit>,
-}
-
-/**
 [See FontFaceSetLoadEvent on MDN](https://developer.mozilla.org/docs/Web/API/FontFaceSetLoadEvent)
 */
 type fontFaceSetLoadEvent = {
@@ -10172,22 +10183,7 @@ type fontFaceSetLoadEvent = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/FontFaceSetLoadEvent/fontfaces)
     */
-  fontfaces: array<string>,
-}
-
-/**
-[See FontFaceSet on MDN](https://developer.mozilla.org/docs/Web/API/FontFaceSet)
-*/
-type fontFaceSet = {
-  ...eventTarget,
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/FontFaceSet/ready)
-    */
-  ready: Promise.t<unit>,
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/FontFaceSet/status)
-    */
-  status: fontFaceSetLoadStatus,
+  fontfaces: array<fontFace>,
 }
 
 /**
@@ -10666,15 +10662,15 @@ type viewTransition = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/ViewTransition/updateCallbackDone)
     */
-  updateCallbackDone: Promise.t<unit>,
+  updateCallbackDone: Promise.t<undefined<unit>>,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/ViewTransition/ready)
     */
-  ready: Promise.t<unit>,
+  ready: Promise.t<undefined<unit>>,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/ViewTransition/finished)
     */
-  finished: Promise.t<unit>,
+  finished: Promise.t<undefined<unit>>,
 }
 
 /**
@@ -10820,59 +10816,6 @@ Provides the ability to watch for changes being made to the DOM tree. It is desi
 [See MutationObserver on MDN](https://developer.mozilla.org/docs/Web/API/MutationObserver)
 */
 type mutationObserver = {}
-
-/**
-A MutationRecord represents an individual DOM mutation. It is the object that is passed to MutationObserver's callback.
-[See MutationRecord on MDN](https://developer.mozilla.org/docs/Web/API/MutationRecord)
-*/
-type mutationRecord = {
-  /**
-    Returns "attributes" if it was an attribute mutation. "characterData" if it was a mutation to a CharacterData node. And "childList" if it was a mutation to the tree of nodes.
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/MutationRecord/type)
-    */
-  @as("type")
-  type_: any,
-  /**
-    Returns the node the mutation affected, depending on the type. For "attributes", it is the element whose attribute changed. For "characterData", it is the CharacterData node. For "childList", it is the node whose children changed.
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/MutationRecord/target)
-    */
-  target: node,
-  /**
-    Return the nodes added and removed respectively.
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/MutationRecord/addedNodes)
-    */
-  addedNodes: nodeList,
-  /**
-    Return the nodes added and removed respectively.
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/MutationRecord/removedNodes)
-    */
-  removedNodes: nodeList,
-  /**
-    Return the previous and next sibling respectively of the added or removed nodes, and null otherwise.
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/MutationRecord/previousSibling)
-    */
-  previousSibling: Null.t<node>,
-  /**
-    Return the previous and next sibling respectively of the added or removed nodes, and null otherwise.
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/MutationRecord/nextSibling)
-    */
-  nextSibling: Null.t<node>,
-  /**
-    Returns the local name of the changed attribute, and null otherwise.
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/MutationRecord/attributeName)
-    */
-  attributeName: Null.t<domString>,
-  /**
-    Returns the namespace of the changed attribute, and null otherwise.
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/MutationRecord/attributeNamespace)
-    */
-  attributeNamespace: Null.t<domString>,
-  /**
-    The return value depends on type. For "attributes", it is the value of the changed attribute before the change. For "characterData", it is the data of the changed node before the change. For "childList", it is null.
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/MutationRecord/oldValue)
-    */
-  oldValue: Null.t<domString>,
-}
 
 /**
 An XML document. It inherits from the generic Document and does not add any specific methods or properties to it: nevertheless, several algorithms behave differently with the two types of documents.
@@ -11212,32 +11155,6 @@ type mediaEncryptedEvent = {
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/MediaEncryptedEvent/initData)
     */
   initData: Null.t<arrayBuffer>,
-}
-
-/**
-[See FileSystemEntry on MDN](https://developer.mozilla.org/docs/Web/API/FileSystemEntry)
-*/
-type fileSystemEntry = {
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/FileSystemEntry/isFile)
-    */
-  isFile: bool,
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/FileSystemEntry/isDirectory)
-    */
-  isDirectory: bool,
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/FileSystemEntry/name)
-    */
-  name: usvString,
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/FileSystemEntry/fullPath)
-    */
-  fullPath: usvString,
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/FileSystemEntry/filesystem)
-    */
-  filesystem: fileSystem,
 }
 
 /**
@@ -11713,34 +11630,15 @@ type gamepad = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Gamepad/axes)
     */
-  axes: array<string>,
+  axes: array<float>,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Gamepad/buttons)
     */
-  buttons: array<string>,
+  buttons: array<gamepadButton>,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Gamepad/vibrationActuator)
     */
   vibrationActuator: gamepadHapticActuator,
-}
-
-/**
-An individual button of a gamepad or other controller, allowing access to the current state of different types of buttons available on the control device.
-[See GamepadButton on MDN](https://developer.mozilla.org/docs/Web/API/GamepadButton)
-*/
-type gamepadButton = {
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/GamepadButton/pressed)
-    */
-  pressed: bool,
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/GamepadButton/touched)
-    */
-  touched: bool,
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/GamepadButton/value)
-    */
-  value: float,
 }
 
 /**
@@ -13539,7 +13437,7 @@ type promiseRejectionEvent = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/PromiseRejectionEvent/promise)
     */
-  promise: promise<any>,
+  promise: Promise.t<any>,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/PromiseRejectionEvent/reason)
     */
@@ -13617,12 +13515,12 @@ type messageEvent<'t> = {
     Returns the WindowProxy of the source window, for cross-document messaging, and the MessagePort being attached, in the connect event fired at SharedWorkerGlobalScope objects.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/MessageEvent/source)
     */
-  source: Null.t<any>,
+  source: Null.t<messageEventSource>,
   /**
     Returns the MessagePort array sent with the message, for cross-document messaging and channel messaging.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/MessageEvent/ports)
     */
-  ports: array<string>,
+  ports: array<messagePort>,
 }
 
 /**
@@ -13656,20 +13554,12 @@ type messageChannel = {
     Returns the first MessagePort object.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/MessageChannel/port1)
     */
-  port1: any,
+  port1: messagePort,
   /**
     Returns the second MessagePort object.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/MessageChannel/port2)
     */
-  port2: any,
-}
-
-/**
-This Channel Messaging API interface represents one of the two ports of a MessageChannel, allowing messages to be sent from one port and listening out for them arriving at the other.
-[See MessagePort on MDN](https://developer.mozilla.org/docs/Web/API/MessagePort)
-*/
-type messagePort = {
-  ...eventTarget,
+  port2: messagePort,
 }
 
 /**
@@ -13812,7 +13702,7 @@ type intersectionObserver = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/IntersectionObserver/thresholds)
     */
-  thresholds: array<string>,
+  thresholds: array<float>,
 }
 
 /**
@@ -13921,11 +13811,11 @@ type mediaSource = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/MediaSource/sourceBuffers)
     */
-  sourceBuffers: any,
+  sourceBuffers: sourceBufferList,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/MediaSource/activeSourceBuffers)
     */
-  activeSourceBuffers: any,
+  activeSourceBuffers: sourceBufferList,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/MediaSource/readyState)
     */
@@ -14109,33 +13999,11 @@ type mediaSession = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/MediaSession/metadata)
     */
-  metadata: Null.t<any>,
+  metadata: Null.t<mediaMetadata>,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/MediaSession/playbackState)
     */
   playbackState: mediaSessionPlaybackState,
-}
-
-/**
-[See MediaMetadata on MDN](https://developer.mozilla.org/docs/Web/API/MediaMetadata)
-*/
-type mediaMetadata = {
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/MediaMetadata/title)
-    */
-  title: domString,
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/MediaMetadata/artist)
-    */
-  artist: domString,
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/MediaMetadata/album)
-    */
-  album: domString,
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/MediaMetadata/artwork)
-    */
-  artwork: array<string>,
 }
 
 /**
@@ -14261,7 +14129,7 @@ type performanceResourceTiming = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/PerformanceResourceTiming/serverTiming)
     */
-  serverTiming: array<string>,
+  serverTiming: array<performanceServerTiming>,
 }
 
 /**
@@ -14550,7 +14418,7 @@ type performanceObserver = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/PerformanceObserver/supportedEntryTypes_static)
     */
-  supportedEntryTypes: array<string>,
+  supportedEntryTypes: array<domString>,
 }
 
 /**
@@ -14668,7 +14536,7 @@ type pushManager = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/PushManager/supportedContentEncodings_static)
     */
-  supportedContentEncodings: array<string>,
+  supportedContentEncodings: array<domString>,
 }
 
 /**
@@ -14763,29 +14631,15 @@ type resizeObserverEntry = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/ResizeObserverEntry/borderBoxSize)
     */
-  borderBoxSize: array<string>,
+  borderBoxSize: array<resizeObserverSize>,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/ResizeObserverEntry/contentBoxSize)
     */
-  contentBoxSize: array<string>,
+  contentBoxSize: array<resizeObserverSize>,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/ResizeObserverEntry/devicePixelContentBoxSize)
     */
-  devicePixelContentBoxSize: array<string>,
-}
-
-/**
-[See ResizeObserverSize on MDN](https://developer.mozilla.org/docs/Web/API/ResizeObserverSize)
-*/
-type resizeObserverSize = {
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/ResizeObserverSize/inlineSize)
-    */
-  inlineSize: any,
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/ResizeObserverSize/blockSize)
-    */
-  blockSize: any,
+  devicePixelContentBoxSize: array<resizeObserverSize>,
 }
 
 /**
@@ -14866,24 +14720,6 @@ type selection = {
 }
 
 /**
-[See PerformanceServerTiming on MDN](https://developer.mozilla.org/docs/Web/API/PerformanceServerTiming)
-*/
-type performanceServerTiming = {
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/PerformanceServerTiming/name)
-    */
-  name: domString,
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/PerformanceServerTiming/duration)
-    */
-  duration: domHighResTimeStamp,
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/PerformanceServerTiming/description)
-    */
-  description: domString,
-}
-
-/**
 This ServiceWorker API interface provides a reference to a service worker. Multiple browsing contexts (e.g. pages, workers, etc.) can be associated with the same service worker, each through a unique ServiceWorker object.
 [See ServiceWorker on MDN](https://developer.mozilla.org/docs/Web/API/ServiceWorker)
 */
@@ -14920,7 +14756,7 @@ type serviceWorkerRegistration = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/ServiceWorkerRegistration/navigationPreload)
     */
-  navigationPreload: any,
+  navigationPreload: navigationPreloadManager,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/ServiceWorkerRegistration/scope)
     */
@@ -14948,13 +14784,8 @@ type serviceWorkerContainer = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/ServiceWorkerContainer/ready)
     */
-  ready: Promise.t<unit>,
+  ready: Promise.t<serviceWorkerRegistration>,
 }
-
-/**
-[See NavigationPreloadManager on MDN](https://developer.mozilla.org/docs/Web/API/NavigationPreloadManager)
-*/
-type navigationPreloadManager = {}
 
 /**
 Provides a storage mechanism for Request / Response object pairs that are cached, for example as part of the ServiceWorker life cycle. Note that the Cache interface is exposed to windowed scopes as well as workers. You don't have to use it in conjunction with service workers, even though it is defined in the service worker spec.
@@ -15023,7 +14854,7 @@ type speechSynthesisUtterance = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/SpeechSynthesisUtterance/voice)
     */
-  voice: Null.t<any>,
+  voice: Null.t<speechSynthesisVoice>,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/SpeechSynthesisUtterance/volume)
     */
@@ -15078,33 +14909,6 @@ type speechSynthesisErrorEvent = {
 }
 
 /**
-This Web Speech API interface represents a voice that the system supports. Every SpeechSynthesisVoice has its own relative speech service including information about language, name and URI.
-[See SpeechSynthesisVoice on MDN](https://developer.mozilla.org/docs/Web/API/SpeechSynthesisVoice)
-*/
-type speechSynthesisVoice = {
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/SpeechSynthesisVoice/voiceURI)
-    */
-  voiceURI: domString,
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/SpeechSynthesisVoice/name)
-    */
-  name: domString,
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/SpeechSynthesisVoice/lang)
-    */
-  lang: domString,
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/SpeechSynthesisVoice/localService)
-    */
-  localService: bool,
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/SpeechSynthesisVoice/default)
-    */
-  default: bool,
-}
-
-/**
 [See StorageManager on MDN](https://developer.mozilla.org/docs/Web/API/StorageManager)
 */
 type storageManager = {}
@@ -15141,30 +14945,6 @@ type readableStreamDefaultController<'r> = {
 }
 
 /**
-[See ReadableByteStreamController on MDN](https://developer.mozilla.org/docs/Web/API/ReadableByteStreamController)
-*/
-type rec readableByteStreamController = {
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/ReadableByteStreamController/byobRequest)
-    */
-  byobRequest: Null.t<readableStreamBYOBRequest>,
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/ReadableByteStreamController/desiredSize)
-    */
-  desiredSize: Null.t<any>,
-}
-
-/**
-[See ReadableStreamBYOBRequest on MDN](https://developer.mozilla.org/docs/Web/API/ReadableStreamBYOBRequest)
-*/
-and readableStreamBYOBRequest = {
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/ReadableStreamBYOBRequest/view)
-    */
-  view: Null.t<arrayBufferView>,
-}
-
-/**
 This Streams API interface is the object returned by WritableStream.getWriter() and once created locks the < writer to the WritableStream ensuring that no other streams can write to the underlying sink.
 [See WritableStreamDefaultWriter on MDN](https://developer.mozilla.org/docs/Web/API/WritableStreamDefaultWriter)
 */
@@ -15172,7 +14952,7 @@ type writableStreamDefaultWriter<'w> = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/WritableStreamDefaultWriter/closed)
     */
-  closed: Promise.t<unit>,
+  closed: Promise.t<undefined<unit>>,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/WritableStreamDefaultWriter/desiredSize)
     */
@@ -15180,7 +14960,7 @@ type writableStreamDefaultWriter<'w> = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/WritableStreamDefaultWriter/ready)
     */
-  ready: Promise.t<unit>,
+  ready: Promise.t<undefined<unit>>,
 }
 
 /**
@@ -15201,11 +14981,11 @@ type transformStream<'i, 'o> = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/TransformStream/readable)
     */
-  readable: any,
+  readable: readableStream<'o>,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/TransformStream/writable)
     */
-  writable: any,
+  writable: writableStream<'i>,
 }
 
 /**
@@ -15223,6 +15003,7 @@ This Streams API interface provides a built-in byte length queuing strategy tha
 [See ByteLengthQueuingStrategy on MDN](https://developer.mozilla.org/docs/Web/API/ByteLengthQueuingStrategy)
 */
 type byteLengthQueuingStrategy = {
+  ...queuingStrategy<arrayBufferView>,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/ByteLengthQueuingStrategy/highWaterMark)
     */
@@ -15238,6 +15019,7 @@ This Streams API interface provides a built-in byte length queuing strategy tha
 [See CountQueuingStrategy on MDN](https://developer.mozilla.org/docs/Web/API/CountQueuingStrategy)
 */
 type countQueuingStrategy = {
+  ...queuingStrategy<unit>,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CountQueuingStrategy/highWaterMark)
     */
@@ -15566,21 +15348,11 @@ type urL = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/URL/searchParams)
     */
-  searchParams: int,
+  searchParams: urlSearchParams,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/URL/hash)
     */
   hash: usvString,
-}
-
-/**
-[See URLSearchParams on MDN](https://developer.mozilla.org/docs/Web/API/URLSearchParams)
-*/
-type urlSearchParams = {
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/URLSearchParams/size)
-    */
-  size: any,
 }
 
 /**
@@ -15619,7 +15391,7 @@ type instance = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/WebAssembly/JavaScript_interface/Instance/exports)
     */
-  exports: any,
+  exports: Dict.t<string>,
 }
 
 /**
@@ -15712,7 +15484,7 @@ type baseAudioContext = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/BaseAudioContext/destination)
     */
-  destination: any,
+  destination: audioDestinationNode,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/BaseAudioContext/sampleRate)
     */
@@ -15724,7 +15496,7 @@ type baseAudioContext = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/BaseAudioContext/listener)
     */
-  listener: any,
+  listener: audioListener,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/BaseAudioContext/state)
     */
@@ -15732,7 +15504,7 @@ type baseAudioContext = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/BaseAudioContext/audioWorklet)
     */
-  audioWorklet: any,
+  audioWorklet: audioWorklet,
 }
 
 /**
@@ -15772,30 +15544,7 @@ type offlineAudioCompletionEvent = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/OfflineAudioCompletionEvent/renderedBuffer)
     */
-  renderedBuffer: any,
-}
-
-/**
-A short audio asset residing in memory, created from an audio file using the AudioContext.decodeAudioData() method, or from raw data using AudioContext.createBuffer(). Once put into an AudioBuffer, the audio can then be played by being passed into an AudioBufferSourceNode.
-[See AudioBuffer on MDN](https://developer.mozilla.org/docs/Web/API/AudioBuffer)
-*/
-type audioBuffer = {
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/AudioBuffer/sampleRate)
-    */
-  sampleRate: float,
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/AudioBuffer/length)
-    */
-  length: any,
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/AudioBuffer/duration)
-    */
-  duration: float,
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/AudioBuffer/numberOfChannels)
-    */
-  numberOfChannels: any,
+  renderedBuffer: audioBuffer,
 }
 
 /**
@@ -15918,61 +15667,6 @@ type audioBufferSourceNode = {
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/AudioBufferSourceNode/loopEnd)
     */
   loopEnd: float,
-}
-
-/**
-AudioDestinationNode has no output (as it is the output, no more AudioNode can be linked after it in the audio graph) and one input. The number of channels in the input must be between 0 and the maxChannelCount value or an exception is raised.
-[See AudioDestinationNode on MDN](https://developer.mozilla.org/docs/Web/API/AudioDestinationNode)
-*/
-type audioDestinationNode = {
-  ...audioNode,
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/AudioDestinationNode/maxChannelCount)
-    */
-  maxChannelCount: any,
-}
-
-/**
-The position and orientation of the unique person listening to the audio scene, and is used in audio spatialization. All PannerNodes spatialize in relation to the AudioListener stored in the BaseAudioContext.listener attribute.
-[See AudioListener on MDN](https://developer.mozilla.org/docs/Web/API/AudioListener)
-*/
-type audioListener = {
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/AudioListener/positionX)
-    */
-  positionX: audioParam,
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/AudioListener/positionY)
-    */
-  positionY: audioParam,
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/AudioListener/positionZ)
-    */
-  positionZ: audioParam,
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/AudioListener/forwardX)
-    */
-  forwardX: audioParam,
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/AudioListener/forwardY)
-    */
-  forwardY: audioParam,
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/AudioListener/forwardZ)
-    */
-  forwardZ: audioParam,
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/AudioListener/upX)
-    */
-  upX: audioParam,
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/AudioListener/upY)
-    */
-  upY: audioParam,
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/AudioListener/upZ)
-    */
-  upZ: audioParam,
 }
 
 /**
@@ -16275,18 +15969,11 @@ type waveShaperNode = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/WaveShaperNode/curve)
     */
-  curve: Null.t<any>,
+  curve: Null.t<array<float>>,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/WaveShaperNode/oversample)
     */
   oversample: overSampleType,
-}
-
-/**
-[See AudioWorklet on MDN](https://developer.mozilla.org/docs/Web/API/AudioWorklet)
-*/
-type audioWorklet = {
-  ...worklet,
 }
 
 /**
@@ -16321,21 +16008,11 @@ type publicKeyCredential = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/PublicKeyCredential/response)
     */
-  response: any,
+  response: authenticatorResponse,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/PublicKeyCredential/authenticatorAttachment)
     */
   authenticatorAttachment: Null.t<domString>,
-}
-
-/**
-[See AuthenticatorResponse on MDN](https://developer.mozilla.org/docs/Web/API/AuthenticatorResponse)
-*/
-type authenticatorResponse = {
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/AuthenticatorResponse/clientDataJSON)
-    */
-  clientDataJSON: arrayBuffer,
 }
 
 /**
@@ -16547,29 +16224,7 @@ type videoFrame = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/VideoFrame/colorSpace)
     */
-  colorSpace: any,
-}
-
-/**
-[See VideoColorSpace on MDN](https://developer.mozilla.org/docs/Web/API/VideoColorSpace)
-*/
-type videoColorSpace = {
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/VideoColorSpace/primaries)
-    */
-  primaries: Null.t<videoColorPrimaries>,
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/VideoColorSpace/transfer)
-    */
-  transfer: Null.t<videoTransferCharacteristics>,
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/VideoColorSpace/matrix)
-    */
-  matrix: Null.t<videoMatrixCoefficients>,
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/VideoColorSpace/fullRange)
-    */
-  fullRange: Null.t<bool>,
+  colorSpace: videoColorSpace,
 }
 
 /**
@@ -16622,12 +16277,12 @@ type webGLActiveInfo = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/WebGLActiveInfo/size)
     */
-  size: any,
+  size: float,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/WebGLActiveInfo/type)
     */
   @as("type")
-  type_: any,
+  type_: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/WebGLActiveInfo/name)
     */
@@ -16642,15 +16297,15 @@ type webGLShaderPrecisionFormat = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/WebGLShaderPrecisionFormat/rangeMin)
     */
-  rangeMin: any,
+  rangeMin: float,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/WebGLShaderPrecisionFormat/rangeMax)
     */
-  rangeMax: any,
+  rangeMax: float,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/WebGLShaderPrecisionFormat/precision)
     */
-  precision: any,
+  precision: float,
 }
 
 /**
@@ -16788,7 +16443,7 @@ type midiMessageEvent = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/MIDIMessageEvent/data)
     */
-  data: Null.t<any>,
+  data: Null.t<array<int>>,
 }
 
 /**
@@ -16836,11 +16491,6 @@ type rtcEncodedAudioFrame = {
 }
 
 /**
-[See RTCRtpScriptTransform on MDN](https://developer.mozilla.org/docs/Web/API/RTCRtpScriptTransform)
-*/
-type rtcRtpScriptTransform = {}
-
-/**
 A WebRTC connection between the local computer and a remote peer. It provides methods to connect to a remote peer, maintain and monitor the connection, and close the connection once it's no longer needed.
 [See RTCPeerConnection on MDN](https://developer.mozilla.org/docs/Web/API/RTCPeerConnection)
 */
@@ -16849,27 +16499,27 @@ type rtcPeerConnection = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/RTCPeerConnection/localDescription)
     */
-  localDescription: Null.t<any>,
+  localDescription: Null.t<rtcSessionDescription>,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/RTCPeerConnection/currentLocalDescription)
     */
-  currentLocalDescription: Null.t<any>,
+  currentLocalDescription: Null.t<rtcSessionDescription>,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/RTCPeerConnection/pendingLocalDescription)
     */
-  pendingLocalDescription: Null.t<any>,
+  pendingLocalDescription: Null.t<rtcSessionDescription>,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/RTCPeerConnection/remoteDescription)
     */
-  remoteDescription: Null.t<any>,
+  remoteDescription: Null.t<rtcSessionDescription>,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/RTCPeerConnection/currentRemoteDescription)
     */
-  currentRemoteDescription: Null.t<any>,
+  currentRemoteDescription: Null.t<rtcSessionDescription>,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/RTCPeerConnection/pendingRemoteDescription)
     */
-  pendingRemoteDescription: Null.t<any>,
+  pendingRemoteDescription: Null.t<rtcSessionDescription>,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/RTCPeerConnection/signalingState)
     */
@@ -16893,23 +16543,7 @@ type rtcPeerConnection = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/RTCPeerConnection/sctp)
     */
-  sctp: Null.t<any>,
-}
-
-/**
-One end of a connection—or potential connection—and how it's configured. Each RTCSessionDescription consists of a description type indicating which part of the offer/answer negotiation process it describes and of the SDP descriptor of the session.
-[See RTCSessionDescription on MDN](https://developer.mozilla.org/docs/Web/API/RTCSessionDescription)
-*/
-type rtcSessionDescription = {
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/RTCSessionDescription/type)
-    */
-  @as("type")
-  type_: rtcSdpType,
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/RTCSessionDescription/sdp)
-    */
-  sdp: domString,
+  sctp: Null.t<rtcSctpTransport>,
 }
 
 /**
@@ -17021,15 +16655,15 @@ type rtcRtpSender = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/RTCRtpSender/transport)
     */
-  transport: Null.t<any>,
+  transport: Null.t<rtcDtlsTransport>,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/RTCRtpSender/transform)
     */
-  transform: Null.t<any>,
+  transform: Null.t<rtcRtpScriptTransform>,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/RTCRtpSender/dtmf)
     */
-  dtmf: Null.t<any>,
+  dtmf: Null.t<rtcdtmfSender>,
 }
 
 /**
@@ -17044,7 +16678,7 @@ type rtcRtpReceiver = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/RTCRtpReceiver/transport)
     */
-  transport: Null.t<any>,
+  transport: Null.t<rtcDtlsTransport>,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/RTCRtpReceiver/jitterBufferTarget)
     */
@@ -17052,7 +16686,7 @@ type rtcRtpReceiver = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/RTCRtpReceiver/transform)
     */
-  transform: Null.t<any>,
+  transform: Null.t<rtcRtpScriptTransform>,
 }
 
 /**
@@ -17082,21 +16716,6 @@ type rtcRtpTransceiver = {
 }
 
 /**
-[See RTCDtlsTransport on MDN](https://developer.mozilla.org/docs/Web/API/RTCDtlsTransport)
-*/
-type rtcDtlsTransport = {
-  ...eventTarget,
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/RTCDtlsTransport/iceTransport)
-    */
-  iceTransport: any,
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/RTCDtlsTransport/state)
-    */
-  state: rtcDtlsTransportState,
-}
-
-/**
 Provides access to information about the ICE transport layer over which the data is being sent and received.
 [See RTCIceTransport on MDN](https://developer.mozilla.org/docs/Web/API/RTCIceTransport)
 */
@@ -17105,7 +16724,7 @@ type rtcIceTransport = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/RTCIceTransport/state)
     */
-  state: any,
+  state: rtcIceTransportState,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/RTCIceTransport/gatheringState)
     */
@@ -17130,34 +16749,11 @@ type rtcTrackEvent = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/RTCTrackEvent/streams)
     */
-  streams: array<string>,
+  streams: array<mediaStream>,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/RTCTrackEvent/transceiver)
     */
   transceiver: rtcRtpTransceiver,
-}
-
-/**
-[See RTCSctpTransport on MDN](https://developer.mozilla.org/docs/Web/API/RTCSctpTransport)
-*/
-type rtcSctpTransport = {
-  ...eventTarget,
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/RTCSctpTransport/transport)
-    */
-  transport: rtcDtlsTransport,
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/RTCSctpTransport/state)
-    */
-  state: rtcSctpTransportState,
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/RTCSctpTransport/maxMessageSize)
-    */
-  maxMessageSize: any,
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/RTCSctpTransport/maxChannels)
-    */
-  maxChannels: Null.t<int>,
 }
 
 /**
@@ -17220,21 +16816,6 @@ type rtcDataChannelEvent = {
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/RTCDataChannelEvent/channel)
     */
   channel: rtcDataChannel,
-}
-
-/**
-[See RTCDTMFSender on MDN](https://developer.mozilla.org/docs/Web/API/RTCDTMFSender)
-*/
-type rtcdtmfSender = {
-  ...eventTarget,
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/RTCDTMFSender/canInsertDTMF)
-    */
-  canInsertDTMF: bool,
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/RTCDTMFSender/toneBuffer)
-    */
-  toneBuffer: domString,
 }
 
 /**
@@ -17364,11 +16945,11 @@ type webTransportDatagramDuplexStream = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/WebTransportDatagramDuplexStream/readable)
     */
-  readable: readableStream<any>,
+  readable: readableStream<unit>,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/WebTransportDatagramDuplexStream/writable)
     */
-  writable: writableStream<any>,
+  writable: writableStream<unit>,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/WebTransportDatagramDuplexStream/maxDatagramSize)
     */
@@ -17398,11 +16979,11 @@ type webTransport = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/WebTransport/ready)
     */
-  ready: Promise.t<unit>,
+  ready: Promise.t<undefined<unit>>,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/WebTransport/closed)
     */
-  closed: Promise.t<unit>,
+  closed: Promise.t<webTransportCloseInfo>,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/WebTransport/datagrams)
     */
@@ -17410,11 +16991,11 @@ type webTransport = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/WebTransport/incomingBidirectionalStreams)
     */
-  incomingBidirectionalStreams: readableStream<any>,
+  incomingBidirectionalStreams: readableStream<unit>,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/WebTransport/incomingUnidirectionalStreams)
     */
-  incomingUnidirectionalStreams: readableStream<any>,
+  incomingUnidirectionalStreams: readableStream<unit>,
 }
 
 /**
@@ -17424,11 +17005,11 @@ type webTransportBidirectionalStream = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/WebTransportBidirectionalStream/readable)
     */
-  readable: readableStream<any>,
+  readable: readableStream<unit>,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/WebTransportBidirectionalStream/writable)
     */
-  writable: writableStream<any>,
+  writable: writableStream<unit>,
 }
 
 /**
@@ -17454,7 +17035,7 @@ type vttCue = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/VTTCue/region)
     */
-  region: Null.t<any>,
+  region: Null.t<vttRegion>,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/VTTCue/vertical)
     */
@@ -17466,7 +17047,7 @@ type vttCue = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/VTTCue/line)
     */
-  line: any,
+  line: lineAndPositionSetting,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/VTTCue/lineAlign)
     */
@@ -17474,7 +17055,7 @@ type vttCue = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/VTTCue/position)
     */
-  position: any,
+  position: lineAndPositionSetting,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/VTTCue/positionAlign)
     */
@@ -17492,11 +17073,6 @@ type vttCue = {
     */
   text: domString,
 }
-
-/**
-[See VTTRegion on MDN](https://developer.mozilla.org/docs/Web/API/VTTRegion)
-*/
-type vttRegion = {}
 
 /**
 [See XMLHttpRequestEventTarget on MDN](https://developer.mozilla.org/docs/Web/API/XMLHttpRequestEventTarget)
@@ -17701,7 +17277,7 @@ type documentOrShadowRoot = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Document/adoptedStyleSheets)
     */
-  adoptedStyleSheets: any,
+  adoptedStyleSheets: array<cssStyleSheet>,
   /**
     Returns document's fullscreen element.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Document/fullscreenElement)
@@ -17805,7 +17381,7 @@ type body = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Request/body)
     */
-  body: Null.t<any>,
+  body: Null.t<readableStream<array<int>>>,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Request/bodyUsed)
     */
@@ -18134,7 +17710,7 @@ type navigatorLanguage = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Navigator/languages)
     */
-  languages: array<string>,
+  languages: array<domString>,
 }
 
 type navigatorOnLine = {
@@ -18196,18 +17772,18 @@ type readableStreamGenericReader = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/ReadableStreamBYOBReader/closed)
     */
-  closed: Promise.t<unit>,
+  closed: Promise.t<undefined<unit>>,
 }
 
 type genericTransformStream = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CompressionStream/readable)
     */
-  readable: any,
+  readable: readableStream<unit>,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CompressionStream/writable)
     */
-  writable: any,
+  writable: writableStream<unit>,
 }
 
 type ariaMixin = {
@@ -18401,11 +17977,11 @@ type webGLRenderingContextBase = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/WebGLRenderingContext/drawingBufferWidth)
     */
-  drawingBufferWidth: any,
+  drawingBufferWidth: float,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/WebGLRenderingContext/drawingBufferHeight)
     */
-  drawingBufferHeight: any,
+  drawingBufferHeight: float,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/WebGLRenderingContext/drawingBufferColorSpace)
     */

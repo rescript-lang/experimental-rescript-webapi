@@ -2073,6 +2073,14 @@ export function emitRescriptBindings(webidl: Browser.WebIdl): string {
   // Track all items we've seen so we can look up things from them
   const seenItems = new Map<string, Browser.Interface | Browser.Dictionary>();
 
+  // These are types that take a generic parameter but it could not be mentioned in the type definition.
+  // In this case, we need to produce a type with a default generic parameter <unit>.
+  const alwaysGenericTypes = new Set<string>([
+    "QueuingStrategy",
+    "ReadableStream",
+    "WritableStream",
+  ]);
+
   function transformExtends(extds: string) {
     const hasTypeParams = extds.includes("<");
     const entry = seenItems.get(extds);
@@ -2088,6 +2096,11 @@ export function emitRescriptBindings(webidl: Browser.WebIdl): string {
         ">"
       );
     }
+
+    if (alwaysGenericTypes.has(extds)) {
+      return toCamelCase(extds) + "<unit>";
+    }
+
     return extds.split("<").map(toCamelCase).join("<");
   }
 
@@ -2147,8 +2160,150 @@ export function emitRescriptBindings(webidl: Browser.WebIdl): string {
   // Track field names so we can avoid reprinting fields we've already covered by a spread
   const typeFieldNames = new Map<string, Set<string>>();
 
+  function mapTypeToReScript(typeName: string): string {
+    switch (typeName) {
+      case "undefined":
+        return "undefined<unit>";
+      case "boolean":
+        return "bool";
+
+      // Not sure if this is correct
+      case "unsigned short":
+      case "long":
+      case "unsigned long long":
+      case "long long":
+      case "SVGAnimatedNumber":
+      case "EpochTimeStamp":
+      case "short":
+      // TODO: model https://developer.mozilla.org/en-US/docs/Web/API/FileReader/readyState
+      case "typeof FileReader.EMPTY | typeof FileReader.LOADING | typeof FileReader.DONE":
+      // TODO: https://developer.mozilla.org/en-US/docs/Web/API/ByteLengthQueuingStrategy/size
+      case "QueuingStrategySize":
+        return "int";
+
+      case "double":
+      case "CSSNumberish":
+      case "GLint":
+      case "GLsizei":
+        return "float";
+
+      // TODO: represent this as a variant type
+      case "HTMLOrSVGScriptElement":
+        return "htmlElement";
+
+      // TODO: have a better representation for this
+      // See https://developer.mozilla.org/en-US/docs/Web/API/ClipboardItem/types
+      case "FrozenArray":
+      case "ObservableArray":
+        return "array";
+
+      case "Promise":
+        return "Promise.t";
+
+      case "WindowProxy":
+      case "WindowProxy & typeof globalThis":
+      case "Window & typeof globalThis":
+        return "window";
+
+      // https://developer.mozilla.org/en-US/docs/Web/API/CSSAnimation/animationName
+      case "CSSOMString":
+      case "ByteString":
+      case "GLenum":
+        return "string";
+
+      case "unrestricted double":
+      case "unsigned long":
+        return "any";
+
+      case "Date":
+        return "Date.t";
+
+      case "Uint8Array":
+        return "array<int>";
+
+      case "ParentNode":
+      case "ChildNode":
+        return "node";
+
+      // TODO: https://developer.mozilla.org/en-US/docs/Web/API/HTMLImageElement/decoding
+      case '"async" | "sync" | "auto"':
+        return "string";
+
+      // TODO: https://developer.mozilla.org/en-US/docs/Web/API/HTMLImageElement/loading
+      case '"eager" | "lazy"':
+        return "string";
+
+      // TODO: https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/preload
+      case '"none" | "metadata" | "auto" | ""':
+        return "string";
+
+      // TODO: this is wrong
+      case "HTMLCollectionOf<HTMLAnchorElement | HTMLAreaElement>":
+        return "htmlCollectionOf<htmlElement>";
+
+      // TODO: model better https://developer.mozilla.org/en-US/docs/Web/API/HTMLButtonElement/type
+      case '"submit" | "reset" | "button"':
+        return "string";
+
+      // TODO: model better https://developer.mozilla.org/en-US/docs/Web/API/HTMLSelectElement/type
+      case '"select-one" | "select-multiple"':
+        return "string";
+
+      // https://developer.mozilla.org/en-US/docs/Web/API/HTMLInputElement/selectionDirection
+      case '"forward" | "backward" | "none"':
+        return "string";
+
+      case "string | string[]":
+        return "string";
+
+      // https://developer.mozilla.org/en-US/docs/Web/API/HTMLInputElement/autocomplete
+      case "AutoFill":
+        return "string";
+
+      case "object":
+      case "Exports":
+        return "Dict.t<string>";
+
+      case "Float32Array":
+        return "array<float>";
+
+      case "RTCRtpTransform":
+        return "rtcRtpScriptTransform";
+
+      default:
+        return toCamelCase(typeName);
+    }
+  }
+
+  function parseGenericType(input: string) {
+    const regex = /^(\w+)<(\w+(?:,\s*\w+)*)>$/;
+    const match = input.match(regex);
+
+    if (!match) return null; // Return null if input doesn't match the expected pattern with < and >
+
+    const typeName = match[1];
+    const genericParameters = match[2].split(/\s*,\s*/);
+
+    return {
+      typeName,
+      genericParameters,
+    };
+  }
+
   function transformPropertyValue(property: Browser.Member): string {
     if (typeof property.type === "string") {
+      if (property.overrideType === "T" && property.type === "any") {
+        return "'t";
+      }
+
+      if (
+        property.subtype &&
+        !Array.isArray(property.subtype) &&
+        typeof property.subtype.type === "string"
+      ) {
+        return `${mapTypeToReScript(property.type)}<${mapTypeToReScript(property.subtype.type)}>`;
+      }
+
       let t = property.type;
       if (typeof property.overrideType === "string") {
         t = property.overrideType;
@@ -2158,154 +2313,28 @@ export function emitRescriptBindings(webidl: Browser.WebIdl): string {
         t = property.overrideType[0];
       }
 
-      switch (t) {
-        case "unsigned short":
-          if (property.name === "eventPhase") {
-            return `eventPhase`;
-          }
-
-          return "int";
-
-        case "boolean":
-          return "bool";
-
-        // Not sure if this is correct
-        case "long":
-        case "unsigned long long":
-        case "long long":
-        case "SVGAnimatedNumber":
-        case "EpochTimeStamp":
-        case "short":
-        // TODO: model https://developer.mozilla.org/en-US/docs/Web/API/FileReader/readyState
-        case "typeof FileReader.EMPTY | typeof FileReader.LOADING | typeof FileReader.DONE":
-        // TODO: https://developer.mozilla.org/en-US/docs/Web/API/ByteLengthQueuingStrategy/size
-        case "QueuingStrategySize<ArrayBufferView>":
-          return "int";
-
-        case "double":
-        case "CSSNumberish":
-          return "float";
-
-        // TODO: represent this as a variant type
-        case "HTMLOrSVGScriptElement":
-          return "htmlElement";
-
-        // TODO: have a better representation for this
-        // See https://developer.mozilla.org/en-US/docs/Web/API/ClipboardItem/types
-        case "FrozenArray":
-          return "array<string>";
-
-        // TODO: deal with generic types in general
-        case "Promise":
-          return "Promise.t<unit>";
-
-        case "WindowProxy":
-        case "WindowProxy & typeof globalThis":
-        case "Window & typeof globalThis":
-          return "window";
-
-        // https://developer.mozilla.org/en-US/docs/Web/API/CSSAnimation/animationName
-        case "CSSOMString":
-        case "ByteString":
-          return "string";
-
-        case "unrestricted double":
-        case "unsigned long":
-          return "any";
-
-        case "Date":
-          return "Date.t";
-
-        // TODO: "ReadableStream<Uint8Array>"
-        case "ReadableStream<Uint8Array>":
-          return "any";
-
-        case "ParentNode":
-        case "ChildNode":
-          return "node";
-
-        case "NodeListOf<ChildNode>":
-          return "nodeList";
-
-        // TODO: https://developer.mozilla.org/en-US/docs/Web/API/HTMLImageElement/decoding
-        case '"async" | "sync" | "auto"':
-          return "string";
-
-        // TODO: https://developer.mozilla.org/en-US/docs/Web/API/HTMLImageElement/loading
-        case '"eager" | "lazy"':
-          return "string";
-
-        // TODO: https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/preload
-        case '"none" | "metadata" | "auto" | ""':
-          return "string";
-
-        // Jesus, fix generics already...
-        case "HTMLCollectionOf<HTMLImageElement>":
-          return "htmlCollectionOf<htmlImageElement>";
-
-        case "HTMLCollectionOf<HTMLEmbedElement>":
-          return "htmlCollectionOf<htmlEmbedElement>";
-
-        // TODO: this is wrong
-        case "HTMLCollectionOf<HTMLAnchorElement | HTMLAreaElement>":
-          return "htmlCollectionOf<htmlElement>";
-
-        case "HTMLCollectionOf<HTMLTableCellElement>":
-          return "htmlCollectionOf<htmlTableCellElement>";
-
-        // TODO: model better https://developer.mozilla.org/en-US/docs/Web/API/HTMLButtonElement/type
-        case '"submit" | "reset" | "button"':
-          return "string";
-
-        // TODO: model better https://developer.mozilla.org/en-US/docs/Web/API/HTMLSelectElement/type
-        case '"select-one" | "select-multiple"':
-          return "string";
-
-        case "HTMLCollectionOf<HTMLOptionElement>":
-          return "htmlCollectionOf<htmlOptionElement>";
-
-        case "NodeListOf<HTMLLabelElement>":
-          return "nodeListOf<htmlLabelElement>";
-
-        // TODO: https://developer.mozilla.org/en-US/docs/Web/API/TransformStream/readable
-        case "ReadableStream<O>":
-          return "any";
-
-        case "WritableStream<I>":
-          return "any";
-
-        case "HTMLCollectionOf<HTMLFormElement>":
-          return "htmlCollectionOf<htmlFormElement>";
-
-        case "HTMLCollectionOf<HTMLScriptElement>":
-          return "htmlCollectionOf<htmlScriptElement>";
-
-        case "HTMLCollectionOf<HTMLTableSectionElement>":
-          return "htmlCollectionOf<htmlTableSectionElement>";
-
-        case "HTMLCollectionOf<HTMLTableRowElement>":
-          return "htmlCollectionOf<htmlTableRowElement>";
-
-        case "HTMLCollectionOf<HTMLTableRowElement>":
-          return "htmlCollectionOf<htmlTableRowElement>";
-
-        // https://developer.mozilla.org/en-US/docs/Web/API/HTMLInputElement/selectionDirection
-        case '"forward" | "backward" | "none"':
-          return "string";
-
-        case "string | string[]":
-          return "string";
-
-        // https://developer.mozilla.org/en-US/docs/Web/API/HTMLInputElement/autocomplete
-        case "AutoFill":
-          return "string";
-
-        case "object":
-          return "Dict.t<string>";
-
-        default:
-          return toCamelCase(t);
+      if (t === "QueuingStrategySize<ArrayBufferView>") {
+        return "int";
       }
+
+      if (alwaysGenericTypes.has(t)) {
+        return `${mapTypeToReScript(t)}<unit>`;
+      }
+
+      const genericType = parseGenericType(t);
+      if (genericType) {
+        const ps = genericType.genericParameters
+          .map((p) => {
+            if (p.length === 1) {
+              return `'${p.toLocaleLowerCase()}`;
+            }
+            return mapTypeToReScript(p);
+          })
+          .join(", ");
+        return `${mapTypeToReScript(genericType.typeName)}<${ps}>`;
+      }
+
+      return mapTypeToReScript(t);
     } else {
       console.log("non string property type", property.type);
     }
@@ -2497,6 +2526,10 @@ export function emitRescriptBindings(webidl: Browser.WebIdl): string {
     printer.endLine();
   }
 
+  function emitQueuingStrategy() {
+    printer.printLine("type queuingStrategy<'t> = {}");
+  }
+
   function emitInterfaceChain(
     sortedInterfaces: Browser.Interface[],
     chain: string[],
@@ -2534,6 +2567,7 @@ export function emitRescriptBindings(webidl: Browser.WebIdl): string {
 
     emitDomString();
     emitEventPhase();
+    emitQueuingStrategy();
 
     // TODO: WindowProxy is an alias for Window
 
@@ -2593,7 +2627,26 @@ export function emitRescriptBindings(webidl: Browser.WebIdl): string {
       "MediaMetadata",
       "NavigationPreloadManager",
       "SpeechSynthesisVoice",
-      "ReadableStreamBYOBRequest",
+      "FileSystemEntry",
+      "FontFace",
+      "GamepadButton",
+      "PerformanceServerTiming",
+      "ResizeObserverSize",
+      "URLSearchParams",
+      "AudioDestinationNode",
+      "AudioListener",
+      "AudioWorklet",
+      "AudioBuffer",
+      "AuthenticatorResponse", // https://developer.mozilla.org/en-US/docs/Web/API/PublicKeyCredential/response
+      "VideoColorSpace",
+      "RTCSessionDescription",
+      "RTCSctpTransport",
+      "RTCDtlsTransport",
+      "RTCRtpScriptTransform",
+      "RTCDTMFSender",
+      "WebTransportCloseInfo", // https://developer.mozilla.org/en-US/docs/Web/API/WebTransport/closed
+      "VTTRegion",
+      "LineAndPositionSetting", // https://developer.mozilla.org/en-US/docs/Web/API/VTTCue/line
     ];
 
     const chains = [
@@ -2641,6 +2694,8 @@ export function emitRescriptBindings(webidl: Browser.WebIdl): string {
         "HTMLOptionsCollection",
       ],
       ["ReadableByteStreamController", "ReadableStreamBYOBRequest"],
+      ["Animation"],
+      ["FontFaceSet"],
     ];
 
     for (const precursor of precursors) {
