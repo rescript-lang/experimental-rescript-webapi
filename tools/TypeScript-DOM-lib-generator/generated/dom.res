@@ -5,6 +5,14 @@ type any
 type arrayBufferView = {}
 type domHighResTimeStamp
 type usvString
+type idbValidKey = unknown
+type keyAlgorithm = unknown
+type cssPerspectiveValue = unknown
+type arrayBuffer = unknown
+type mediaProvider = unknown
+type messageEventSource = unknown
+type webTransportCloseInfo = unknown
+type lineAndPositionSetting = unknown
 /* End temporary */
 
 type alignSetting =
@@ -1214,89 +1222,1623 @@ type eventPhase =
   | @as(3) BUBBLING_PHASE
 
 type queuingStrategy<'t> = {}
-type domTokenList = {}
-type namedNodeMap = {}
-type location = {}
-type fragmentDirective = {}
-type documentTimeline = {}
-type animationTimeline = {}
-type history = {}
-type customElementRegistry = {}
-type barProp = {}
-type navigator = {}
-type screen = {}
-type visualViewport = {}
-type speechSynthesis = {}
-type domException = {}
-type idbTransaction = {}
-type domStringList = {}
-type idbCursor = {}
-type subtleCrypto = {}
-type cryptoKey = {}
-type dataTransfer = {}
-type animationEffect = {}
-type mediaList = {}
-type cssStyleDeclaration = {}
-type cssNumericArray = {}
-type cssPerspective = {}
-type cssMatrixComponent = {}
-type domMatrix = {}
-type nodeFilter = {}
-type mediaKeySession = {}
-type arrayBuffer = {}
-type fileSystem = {}
-type gamepadHapticActuator = {}
-type geolocationCoordinates = {}
-type htmlFormControlsCollection = {}
-type validityState = {}
-type mediaError = {}
-type mediaProvider = {}
-type timeRanges = {}
-type textTrackList = {}
-type remotePlayback = {}
-type textTrackCueList = {}
-type fileList = {}
-type formData = {}
-type uint8ClampedArray = {}
-type customStateSet = {}
-type mutationRecord = {}
-type messageEventSource = {}
-type messagePort = {}
-type sourceBufferList = {}
-type mediaMetadata = {}
-type navigationPreloadManager = {}
-type speechSynthesisVoice = {}
-type fileSystemEntry = {}
-type fontFace = {}
-type gamepadButton = {}
-type performanceServerTiming = {}
-type resizeObserverSize = {}
-type urlSearchParams = {}
-type audioDestinationNode = {}
-type audioListener = {}
-type audioWorklet = {}
-type audioBuffer = {}
-type authenticatorResponse = {}
-type videoColorSpace = {}
-type rtcSessionDescription = {}
-type rtcSctpTransport = {}
-type rtcDtlsTransport = {}
-type rtcRtpScriptTransform = {}
-type rtcdtmfSender = {}
-type webTransportCloseInfo = {}
-type vttRegion = {}
-type lineAndPositionSetting = {}
+type mediaImage = {
+  src: string,
+  sizes?: string,
+  @as("type") type_?: string,
+}
 /**
 EventTarget is a DOM interface implemented by objects that can receive events and may have listeners for them.
 [See EventTarget on MDN](https://developer.mozilla.org/docs/Web/API/EventTarget)
 */
-type rec eventTarget = {}
+type eventTarget = {}
+
+/**
+A generic interface for representing an audio processing module. Examples include:
+[See AudioNode on MDN](https://developer.mozilla.org/docs/Web/API/AudioNode)
+*/
+type rec audioNode = {
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/AudioNode/context)
+    */
+  context: baseAudioContext,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/AudioNode/numberOfInputs)
+    */
+  numberOfInputs: any,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/AudioNode/numberOfOutputs)
+    */
+  numberOfOutputs: any,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/AudioNode/channelCount)
+    */
+  channelCount: any,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/AudioNode/channelCountMode)
+    */
+  channelCountMode: channelCountMode,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/AudioNode/channelInterpretation)
+    */
+  channelInterpretation: channelInterpretation,
+}
+
+/**
+AudioDestinationNode has no output (as it is the output, no more AudioNode can be linked after it in the audio graph) and one input. The number of channels in the input must be between 0 and the maxChannelCount value or an exception is raised.
+[See AudioDestinationNode on MDN](https://developer.mozilla.org/docs/Web/API/AudioDestinationNode)
+*/
+and audioDestinationNode = {
+  // Base properties from AudioNode
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/AudioNode/context)
+    */
+  context: baseAudioContext,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/AudioNode/numberOfInputs)
+    */
+  numberOfInputs: any,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/AudioNode/numberOfOutputs)
+    */
+  numberOfOutputs: any,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/AudioNode/channelCount)
+    */
+  channelCount: any,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/AudioNode/channelCountMode)
+    */
+  channelCountMode: channelCountMode,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/AudioNode/channelInterpretation)
+    */
+  channelInterpretation: channelInterpretation,
+  // End base properties from AudioNode
+
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/AudioDestinationNode/maxChannelCount)
+    */
+  maxChannelCount: any,
+}
+
+/**
+[See BaseAudioContext on MDN](https://developer.mozilla.org/docs/Web/API/BaseAudioContext)
+*/
+and baseAudioContext = {
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/BaseAudioContext/destination)
+    */
+  destination: audioDestinationNode,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/BaseAudioContext/sampleRate)
+    */
+  sampleRate: float,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/BaseAudioContext/currentTime)
+    */
+  currentTime: float,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/BaseAudioContext/listener)
+    */
+  listener: audioListener,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/BaseAudioContext/state)
+    */
+  state: audioContextState,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/BaseAudioContext/audioWorklet)
+    */
+  audioWorklet: audioWorklet,
+}
+
+/**
+The position and orientation of the unique person listening to the audio scene, and is used in audio spatialization. All PannerNodes spatialize in relation to the AudioListener stored in the BaseAudioContext.listener attribute.
+[See AudioListener on MDN](https://developer.mozilla.org/docs/Web/API/AudioListener)
+*/
+and audioListener = {
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/AudioListener/positionX)
+    */
+  positionX: audioParam,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/AudioListener/positionY)
+    */
+  positionY: audioParam,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/AudioListener/positionZ)
+    */
+  positionZ: audioParam,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/AudioListener/forwardX)
+    */
+  forwardX: audioParam,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/AudioListener/forwardY)
+    */
+  forwardY: audioParam,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/AudioListener/forwardZ)
+    */
+  forwardZ: audioParam,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/AudioListener/upX)
+    */
+  upX: audioParam,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/AudioListener/upY)
+    */
+  upY: audioParam,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/AudioListener/upZ)
+    */
+  upZ: audioParam,
+}
+
+/**
+[See AudioWorklet on MDN](https://developer.mozilla.org/docs/Web/API/AudioWorklet)
+*/
+and audioWorklet = {}
+
+/**
+The Web Audio API's AudioParam interface represents an audio-related parameter, usually a parameter of an AudioNode (such as GainNode.gain).
+[See AudioParam on MDN](https://developer.mozilla.org/docs/Web/API/AudioParam)
+*/
+and audioParam = {
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/AudioParam/value)
+    */
+  value: float,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/AudioParam/defaultValue)
+    */
+  defaultValue: float,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/AudioParam/minValue)
+    */
+  minValue: float,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/AudioParam/maxValue)
+    */
+  maxValue: float,
+}
+
+/**
+[See NavigationPreloadManager on MDN](https://developer.mozilla.org/docs/Web/API/NavigationPreloadManager)
+*/
+type navigationPreloadManager = {}
+
+/**
+This Push API interface provides a way to receive notifications from third-party servers as well as request URLs for push notifications.
+[See PushManager on MDN](https://developer.mozilla.org/docs/Web/API/PushManager)
+*/
+type pushManager = {
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/PushManager/supportedContentEncodings_static)
+    */
+  supportedContentEncodings: array<domString>,
+}
+
+/**
+This ServiceWorker API interface represents the service worker registration. You register a service worker to control one or more pages that share the same origin.
+[See ServiceWorkerRegistration on MDN](https://developer.mozilla.org/docs/Web/API/ServiceWorkerRegistration)
+*/
+type rec serviceWorkerRegistration = {
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/ServiceWorkerRegistration/installing)
+    */
+  installing: Null.t<serviceWorker>,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/ServiceWorkerRegistration/waiting)
+    */
+  waiting: Null.t<serviceWorker>,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/ServiceWorkerRegistration/active)
+    */
+  active: Null.t<serviceWorker>,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/ServiceWorkerRegistration/navigationPreload)
+    */
+  navigationPreload: navigationPreloadManager,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/ServiceWorkerRegistration/scope)
+    */
+  scope: usvString,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/ServiceWorkerRegistration/updateViaCache)
+    */
+  updateViaCache: serviceWorkerUpdateViaCache,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/ServiceWorkerRegistration/pushManager)
+    */
+  pushManager: pushManager,
+}
+
+/**
+This ServiceWorker API interface provides a reference to a service worker. Multiple browsing contexts (e.g. pages, workers, etc.) can be associated with the same service worker, each through a unique ServiceWorker object.
+[See ServiceWorker on MDN](https://developer.mozilla.org/docs/Web/API/ServiceWorker)
+*/
+and serviceWorker = {
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/ServiceWorker/scriptURL)
+    */
+  scriptURL: usvString,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/ServiceWorker/state)
+    */
+  state: serviceWorkerState,
+}
+
+/**
+The ServiceWorkerContainer interface of the ServiceWorker API provides an object representing the service worker as an overall unit in the network ecosystem, including facilities to register, unregister and update service workers, and access the state of service workers and their registrations.
+[See ServiceWorkerContainer on MDN](https://developer.mozilla.org/docs/Web/API/ServiceWorkerContainer)
+*/
+and serviceWorkerContainer = {
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/ServiceWorkerContainer/controller)
+    */
+  controller: Null.t<serviceWorker>,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/ServiceWorkerContainer/ready)
+    */
+  ready: Promise.t<serviceWorkerRegistration>,
+}
+
+/**
+[See FileSystemEntry on MDN](https://developer.mozilla.org/docs/Web/API/FileSystemEntry)
+*/
+type rec fileSystemEntry = {
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/FileSystemEntry/isFile)
+    */
+  isFile: bool,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/FileSystemEntry/isDirectory)
+    */
+  isDirectory: bool,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/FileSystemEntry/name)
+    */
+  name: usvString,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/FileSystemEntry/fullPath)
+    */
+  fullPath: usvString,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/FileSystemEntry/filesystem)
+    */
+  filesystem: fileSystem,
+}
+
+/**
+[See FileSystemDirectoryEntry on MDN](https://developer.mozilla.org/docs/Web/API/FileSystemDirectoryEntry)
+*/
+and fileSystemDirectoryEntry = {
+  // Base properties from FileSystemEntry
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/FileSystemEntry/isFile)
+    */
+  isFile: bool,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/FileSystemEntry/isDirectory)
+    */
+  isDirectory: bool,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/FileSystemEntry/name)
+    */
+  name: usvString,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/FileSystemEntry/fullPath)
+    */
+  fullPath: usvString,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/FileSystemEntry/filesystem)
+    */
+  filesystem: fileSystem,
+  // End base properties from FileSystemEntry
+}
+
+/**
+[See FileSystem on MDN](https://developer.mozilla.org/docs/Web/API/FileSystem)
+*/
+and fileSystem = {
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/FileSystem/name)
+    */
+  name: usvString,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/FileSystem/root)
+    */
+  root: fileSystemDirectoryEntry,
+}
+
+/**
+A set of space-separated tokens. Such a set is returned by Element.classList, HTMLLinkElement.relList, HTMLAnchorElement.relList, HTMLAreaElement.relList, HTMLIframeElement.sandbox, or HTMLOutputElement.htmlFor. It is indexed beginning with 0 as with JavaScript Array objects. DOMTokenList is always case-sensitive.
+[See DOMTokenList on MDN](https://developer.mozilla.org/docs/Web/API/DOMTokenList)
+*/
+type domTokenList = {
+  /**
+    Returns the number of tokens.
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/DOMTokenList/length)
+    */
+  length: any,
+  /**
+    Returns the associated set as string.
+
+Can be set, to change the associated attribute.
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/DOMTokenList/value)
+    */
+  value: domString,
+}
+
+/**
+A collection of Attr objects. Objects inside a NamedNodeMap are not in any particular order, unlike NodeList, although they may be accessed by an index as in an array.
+[See NamedNodeMap on MDN](https://developer.mozilla.org/docs/Web/API/NamedNodeMap)
+*/
+type namedNodeMap = {
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/NamedNodeMap/length)
+    */
+  length: any,
+}
+
+/**
+A type returned by some APIs which contains a list of DOMString (strings).
+[See DOMStringList on MDN](https://developer.mozilla.org/docs/Web/API/DOMStringList)
+*/
+type domStringList = {
+  /**
+    Returns the number of strings in strings.
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/DOMStringList/length)
+    */
+  length: any,
+}
+
+/**
+The location (URL) of the object it is linked to. Changes done on it are reflected on the object it relates to. Both the Document and Window interface have such a linked Location, accessible via Document.location and Window.location respectively.
+[See Location on MDN](https://developer.mozilla.org/docs/Web/API/Location)
+*/
+type location = {
+  /**
+    Returns the Location object's URL.
+
+Can be set, to navigate to the given URL.
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Location/href)
+    */
+  href: usvString,
+  /**
+    Returns the Location object's URL's origin.
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Location/origin)
+    */
+  origin: usvString,
+  /**
+    Returns the Location object's URL's scheme.
+
+Can be set, to navigate to the same URL with a changed scheme.
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Location/protocol)
+    */
+  protocol: usvString,
+  /**
+    Returns the Location object's URL's host and port (if different from the default port for the scheme).
+
+Can be set, to navigate to the same URL with a changed host and port.
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Location/host)
+    */
+  host: usvString,
+  /**
+    Returns the Location object's URL's host.
+
+Can be set, to navigate to the same URL with a changed host.
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Location/hostname)
+    */
+  hostname: usvString,
+  /**
+    Returns the Location object's URL's port.
+
+Can be set, to navigate to the same URL with a changed port.
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Location/port)
+    */
+  port: usvString,
+  /**
+    Returns the Location object's URL's path.
+
+Can be set, to navigate to the same URL with a changed path.
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Location/pathname)
+    */
+  pathname: usvString,
+  /**
+    Returns the Location object's URL's query (includes leading "?" if non-empty).
+
+Can be set, to navigate to the same URL with a changed query (ignores leading "?").
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Location/search)
+    */
+  search: usvString,
+  /**
+    Returns the Location object's URL's fragment (includes leading "#" if non-empty).
+
+Can be set, to navigate to the same URL with a changed fragment (ignores leading "#").
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Location/hash)
+    */
+  hash: usvString,
+  /**
+    Returns a DOMStringList object listing the origins of the ancestor browsing contexts, from the parent browsing context to the top-level browsing context.
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Location/ancestorOrigins)
+    */
+  ancestorOrigins: domStringList,
+}
+
+/**
+[See FragmentDirective on MDN](https://developer.mozilla.org/docs/Web/API/FragmentDirective)
+*/
+type fragmentDirective = {}
+
+/**
+Allows manipulation of the browser session history, that is the pages visited in the tab or frame that the current page is loaded in.
+[See History on MDN](https://developer.mozilla.org/docs/Web/API/History)
+*/
+type history = {
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/History/length)
+    */
+  length: any,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/History/scrollRestoration)
+    */
+  scrollRestoration: scrollRestoration,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/History/state)
+    */
+  state: any,
+}
+
+/**
+[See CustomElementRegistry on MDN](https://developer.mozilla.org/docs/Web/API/CustomElementRegistry)
+*/
+type customElementRegistry = {}
+
+/**
+[See BarProp on MDN](https://developer.mozilla.org/docs/Web/API/BarProp)
+*/
+type barProp = {
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/BarProp/visible)
+    */
+  visible: bool,
+}
+
+/**
+[See Clipboard on MDN](https://developer.mozilla.org/docs/Web/API/Clipboard)
+*/
+type clipboard = {
+  ...eventTarget,
+}
+
+/**
+[See CredentialsContainer on MDN](https://developer.mozilla.org/docs/Web/API/CredentialsContainer)
+*/
+type credentialsContainer = {}
+
+/**
+An object able to programmatically obtain the position of the device. It gives Web content access to the location of the device. This allows a Web site or app to offer customized results based on the user's location.
+[See Geolocation on MDN](https://developer.mozilla.org/docs/Web/API/Geolocation)
+*/
+type geolocation = {}
+
+/**
+[See MediaCapabilities on MDN](https://developer.mozilla.org/docs/Web/API/MediaCapabilities)
+*/
+type mediaCapabilities = {}
+
+/**
+[See UserActivation on MDN](https://developer.mozilla.org/docs/Web/API/UserActivation)
+*/
+type userActivation = {
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/UserActivation/hasBeenActive)
+    */
+  hasBeenActive: bool,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/UserActivation/isActive)
+    */
+  isActive: bool,
+}
+
+/**
+Provides access to connected media input devices like cameras and microphones, as well as screen sharing. In essence, it lets you obtain access to any hardware source of media data.
+[See MediaDevices on MDN](https://developer.mozilla.org/docs/Web/API/MediaDevices)
+*/
+type mediaDevices = {
+  ...eventTarget,
+}
+
+/**
+[See MediaMetadata on MDN](https://developer.mozilla.org/docs/Web/API/MediaMetadata)
+*/
+type mediaMetadata = {
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/MediaMetadata/title)
+    */
+  title: domString,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/MediaMetadata/artist)
+    */
+  artist: domString,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/MediaMetadata/album)
+    */
+  album: domString,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/MediaMetadata/artwork)
+    */
+  artwork: array<mediaImage>,
+}
+
+/**
+[See MediaSession on MDN](https://developer.mozilla.org/docs/Web/API/MediaSession)
+*/
+type mediaSession = {
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/MediaSession/metadata)
+    */
+  metadata: Null.t<mediaMetadata>,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/MediaSession/playbackState)
+    */
+  playbackState: mediaSessionPlaybackState,
+}
+
+/**
+[See Permissions on MDN](https://developer.mozilla.org/docs/Web/API/Permissions)
+*/
+type permissions = {}
+
+/**
+[See WakeLock on MDN](https://developer.mozilla.org/docs/Web/API/WakeLock)
+*/
+type wakeLock = {}
+
+/**
+The state and the identity of the user agent. It allows scripts to query it and to register themselves to carry on some activities.
+[See Navigator on MDN](https://developer.mozilla.org/docs/Web/API/Navigator)
+*/
+type navigator = {
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Navigator/clipboard)
+    */
+  clipboard: clipboard,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Navigator/credentials)
+    */
+  credentials: credentialsContainer,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Navigator/geolocation)
+    */
+  geolocation: geolocation,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Navigator/userActivation)
+    */
+  userActivation: userActivation,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Navigator/mediaCapabilities)
+    */
+  mediaCapabilities: mediaCapabilities,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Navigator/mediaDevices)
+    */
+  mediaDevices: mediaDevices,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Navigator/mediaSession)
+    */
+  mediaSession: mediaSession,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Navigator/permissions)
+    */
+  permissions: permissions,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Navigator/maxTouchPoints)
+    */
+  maxTouchPoints: int,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Navigator/wakeLock)
+    */
+  wakeLock: wakeLock,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Navigator/serviceWorker)
+    */
+  serviceWorker: serviceWorkerContainer,
+}
+
+/**
+[See ScreenOrientation on MDN](https://developer.mozilla.org/docs/Web/API/ScreenOrientation)
+*/
+type screenOrientation = {
+  ...eventTarget,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/ScreenOrientation/type)
+    */
+  @as("type")
+  type_: orientationType,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/ScreenOrientation/angle)
+    */
+  angle: int,
+}
+
+/**
+A screen, usually the one on which the current window is being rendered, and is obtained using window.screen.
+[See Screen on MDN](https://developer.mozilla.org/docs/Web/API/Screen)
+*/
+type screen = {
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Screen/availWidth)
+    */
+  availWidth: int,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Screen/availHeight)
+    */
+  availHeight: int,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Screen/width)
+    */
+  width: int,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Screen/height)
+    */
+  height: int,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Screen/colorDepth)
+    */
+  colorDepth: any,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Screen/pixelDepth)
+    */
+  pixelDepth: any,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Screen/orientation)
+    */
+  orientation: screenOrientation,
+}
+
+/**
+[See VisualViewport on MDN](https://developer.mozilla.org/docs/Web/API/VisualViewport)
+*/
+type visualViewport = {
+  ...eventTarget,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/VisualViewport/offsetLeft)
+    */
+  offsetLeft: float,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/VisualViewport/offsetTop)
+    */
+  offsetTop: float,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/VisualViewport/pageLeft)
+    */
+  pageLeft: float,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/VisualViewport/pageTop)
+    */
+  pageTop: float,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/VisualViewport/width)
+    */
+  width: float,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/VisualViewport/height)
+    */
+  height: float,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/VisualViewport/scale)
+    */
+  scale: float,
+}
+
+/**
+This Web Speech API interface is the controller interface for the speech service; this can be used to retrieve information about the synthesis voices available on the device, start and pause speech, and other commands besides.
+[See SpeechSynthesis on MDN](https://developer.mozilla.org/docs/Web/API/SpeechSynthesis)
+*/
+type speechSynthesis = {
+  ...eventTarget,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/SpeechSynthesis/pending)
+    */
+  pending: bool,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/SpeechSynthesis/speaking)
+    */
+  speaking: bool,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/SpeechSynthesis/paused)
+    */
+  paused: bool,
+}
+
+/**
+An abnormal event (called an exception) which occurs as a result of calling a method or accessing a property of a web API.
+[See DOMException on MDN](https://developer.mozilla.org/docs/Web/API/DOMException)
+*/
+type domException = {
+  ...error,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/DOMException/name)
+    */
+  name: domString,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/DOMException/message)
+    */
+  message: domString,
+}
+
+/**
+This IndexedDB API interface provides a connection to a database; you can use an IDBDatabase object to open a transaction on your database then create, manipulate, and delete objects (data) in that database. The interface provides the only way to get and manage versions of the database.
+[See IDBDatabase on MDN](https://developer.mozilla.org/docs/Web/API/IDBDatabase)
+*/
+type idbDatabase = {
+  ...eventTarget,
+  /**
+    Returns the name of the database.
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/IDBDatabase/name)
+    */
+  name: domString,
+  /**
+    Returns the version of the database.
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/IDBDatabase/version)
+    */
+  version: int,
+  /**
+    Returns a list of the names of object stores in the database.
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/IDBDatabase/objectStoreNames)
+    */
+  objectStoreNames: domStringList,
+}
+
+/**
+[See IDBTransaction on MDN](https://developer.mozilla.org/docs/Web/API/IDBTransaction)
+*/
+type idbTransaction = {
+  ...eventTarget,
+  /**
+    Returns a list of the names of object stores in the transaction's scope. For an upgrade transaction this is all object stores in the database.
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/IDBTransaction/objectStoreNames)
+    */
+  objectStoreNames: domStringList,
+  /**
+    Returns the mode the transaction was created with ("readonly" or "readwrite"), or "versionchange" for an upgrade transaction.
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/IDBTransaction/mode)
+    */
+  mode: idbTransactionMode,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/IDBTransaction/durability)
+    */
+  durability: idbTransactionDurability,
+  /**
+    Returns the transaction's connection.
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/IDBTransaction/db)
+    */
+  db: idbDatabase,
+  /**
+    If the transaction was aborted, returns the error (a DOMException) providing the reason.
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/IDBTransaction/error)
+    */
+  error: Null.t<domException>,
+}
+
+/**
+The request object does not initially contain any information about the result of the operation, but once information becomes available, an event is fired on the request, and the information becomes available through the properties of the IDBRequest instance.
+[See IDBRequest on MDN](https://developer.mozilla.org/docs/Web/API/IDBRequest)
+*/
+type idbRequest<'t> = {
+  ...eventTarget,
+  /**
+    When a request is completed, returns the result, or undefined if the request failed. Throws a "InvalidStateError" DOMException if the request is still pending.
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/IDBRequest/result)
+    */
+  result: 't,
+  /**
+    When a request is completed, returns the error (a DOMException), or null if the request succeeded. Throws a "InvalidStateError" DOMException if the request is still pending.
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/IDBRequest/error)
+    */
+  error: Null.t<domException>,
+  /**
+    Returns the IDBObjectStore, IDBIndex, or IDBCursor the request was made against, or null if is was an open request.
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/IDBRequest/source)
+    */
+  source: unknown,
+  /**
+    Returns the IDBTransaction the request was made within. If this as an open request, then it returns an upgrade transaction while it is running, or null otherwise.
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/IDBRequest/transaction)
+    */
+  transaction: Null.t<idbTransaction>,
+  /**
+    Returns "pending" until a request is complete, then returns "done".
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/IDBRequest/readyState)
+    */
+  readyState: idbRequestReadyState,
+}
+
+/**
+This IndexedDB API interface represents a cursor for traversing or iterating over multiple records in a database.
+[See IDBCursor on MDN](https://developer.mozilla.org/docs/Web/API/IDBCursor)
+*/
+type idbCursor = {
+  /**
+    Returns the IDBObjectStore or IDBIndex the cursor was opened from.
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/IDBCursor/source)
+    */
+  source: unknown,
+  /**
+    Returns the direction ("next", "nextunique", "prev" or "prevunique") of the cursor.
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/IDBCursor/direction)
+    */
+  direction: idbCursorDirection,
+  /**
+    Returns the key of the cursor. Throws a "InvalidStateError" DOMException if the cursor is advancing or is finished.
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/IDBCursor/key)
+    */
+  key: idbValidKey,
+  /**
+    Returns the effective key of the cursor. Throws a "InvalidStateError" DOMException if the cursor is advancing or is finished.
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/IDBCursor/primaryKey)
+    */
+  primaryKey: idbValidKey,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/IDBCursor/request)
+    */
+  request: idbRequest<unit>,
+}
+
+/**
+This Web Crypto API interface provides a number of low-level cryptographic functions. It is accessed via the Crypto.subtle properties available in a window context (via Window.crypto).
+[See SubtleCrypto on MDN](https://developer.mozilla.org/docs/Web/API/SubtleCrypto)
+*/
+type subtleCrypto = {}
+
+/**
+The CryptoKey dictionary of the Web Crypto API represents a cryptographic key.
+[See CryptoKey on MDN](https://developer.mozilla.org/docs/Web/API/CryptoKey)
+*/
+type cryptoKey = {
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CryptoKey/type)
+    */
+  @as("type")
+  type_: keyType,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CryptoKey/extractable)
+    */
+  extractable: bool,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CryptoKey/algorithm)
+    */
+  algorithm: keyAlgorithm,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CryptoKey/usages)
+    */
+  usages: array<keyUsage>,
+}
+
+/**
+A list of DataTransferItem objects representing items being dragged. During a drag operation, each DragEvent has a dataTransfer property and that property is a DataTransferItemList.
+[See DataTransferItemList on MDN](https://developer.mozilla.org/docs/Web/API/DataTransferItemList)
+*/
+type dataTransferItemList = {
+  /**
+    Returns the number of items in the drag data store.
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/DataTransferItemList/length)
+    */
+  length: any,
+}
+
+/**
+An object of this type is returned by the files property of the HTML <input> element; this lets you access the list of files selected with the <input type="file"> element. It's also used for a list of files dropped into web content when using the drag and drop API; see the DataTransfer object for details on this usage.
+[See FileList on MDN](https://developer.mozilla.org/docs/Web/API/FileList)
+*/
+type fileList = {
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/FileList/length)
+    */
+  length: any,
+}
+
+/**
+Used to hold the data that is being dragged during a drag and drop operation. It may hold one or more data items, each of one or more data types. For more information about drag and drop, see HTML Drag and Drop API.
+[See DataTransfer on MDN](https://developer.mozilla.org/docs/Web/API/DataTransfer)
+*/
+type dataTransfer = {
+  /**
+    Returns the kind of operation that is currently selected. If the kind of operation isn't one of those that is allowed by the effectAllowed attribute, then the operation will fail.
+
+Can be set, to change the selected operation.
+
+The possible values are "none", "copy", "link", and "move".
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/DataTransfer/dropEffect)
+    */
+  dropEffect: string,
+  /**
+    Returns the kinds of operations that are to be allowed.
+
+Can be set (during the dragstart event), to change the allowed operations.
+
+The possible values are "none", "copy", "copyLink", "copyMove", "link", "linkMove", "move", "all", and "uninitialized",
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/DataTransfer/effectAllowed)
+    */
+  effectAllowed: string,
+  /**
+    Returns a DataTransferItemList object, with the drag data.
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/DataTransfer/items)
+    */
+  items: dataTransferItemList,
+  /**
+    Returns a frozen array listing the formats that were set in the dragstart event. In addition, if any files are being dragged, then one of the types will be the string "Files".
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/DataTransfer/types)
+    */
+  types: array<domString>,
+  /**
+    Returns a FileList of the files being dragged, if any.
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/DataTransfer/files)
+    */
+  files: fileList,
+}
+
+/**
+[See AnimationEffect on MDN](https://developer.mozilla.org/docs/Web/API/AnimationEffect)
+*/
+type animationEffect = {}
+
+/**
+[See MediaList on MDN](https://developer.mozilla.org/docs/Web/API/MediaList)
+*/
+type mediaList = {
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/MediaList/mediaText)
+    */
+  mediaText: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/MediaList/length)
+    */
+  length: any,
+}
+
+/**
+[See CSSNumericArray on MDN](https://developer.mozilla.org/docs/Web/API/CSSNumericArray)
+*/
+type cssNumericArray = {
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CSSNumericArray/length)
+    */
+  length: any,
+}
+
+/**
+[See CSSTransformComponent on MDN](https://developer.mozilla.org/docs/Web/API/CSSTransformComponent)
+*/
+type cssTransformComponent = {
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CSSTransformComponent/is2D)
+    */
+  is2D: bool,
+}
+
+/**
+[See CSSStyleValue on MDN](https://developer.mozilla.org/docs/Web/API/CSSStyleValue)
+*/
+type cssStyleValue = {}
+
+/**
+[See CSSNumericValue on MDN](https://developer.mozilla.org/docs/Web/API/CSSNumericValue)
+*/
+type cssNumericValue = {
+  ...cssStyleValue,
+}
+
+/**
+[See CSSPerspective on MDN](https://developer.mozilla.org/docs/Web/API/CSSPerspective)
+*/
+type cssPerspective = {
+  ...cssTransformComponent,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CSSPerspective/length)
+    */
+  length: cssPerspectiveValue,
+}
+
+/**
+[See DOMMatrixReadOnly on MDN](https://developer.mozilla.org/docs/Web/API/DOMMatrixReadOnly)
+*/
+type domMatrixReadOnly = {
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/DOMMatrixReadOnly#instance_properties)
+    */
+  a: any,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/DOMMatrixReadOnly#instance_properties)
+    */
+  b: any,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/DOMMatrixReadOnly#instance_properties)
+    */
+  c: any,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/DOMMatrixReadOnly#instance_properties)
+    */
+  d: any,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/DOMMatrixReadOnly#instance_properties)
+    */
+  e: any,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/DOMMatrixReadOnly#instance_properties)
+    */
+  f: any,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/DOMMatrixReadOnly#instance_properties)
+    */
+  m11: any,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/DOMMatrixReadOnly#instance_properties)
+    */
+  m12: any,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/DOMMatrixReadOnly#instance_properties)
+    */
+  m13: any,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/DOMMatrixReadOnly#instance_properties)
+    */
+  m14: any,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/DOMMatrixReadOnly#instance_properties)
+    */
+  m21: any,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/DOMMatrixReadOnly#instance_properties)
+    */
+  m22: any,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/DOMMatrixReadOnly#instance_properties)
+    */
+  m23: any,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/DOMMatrixReadOnly#instance_properties)
+    */
+  m24: any,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/DOMMatrixReadOnly#instance_properties)
+    */
+  m31: any,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/DOMMatrixReadOnly#instance_properties)
+    */
+  m32: any,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/DOMMatrixReadOnly#instance_properties)
+    */
+  m33: any,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/DOMMatrixReadOnly#instance_properties)
+    */
+  m34: any,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/DOMMatrixReadOnly#instance_properties)
+    */
+  m41: any,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/DOMMatrixReadOnly#instance_properties)
+    */
+  m42: any,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/DOMMatrixReadOnly#instance_properties)
+    */
+  m43: any,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/DOMMatrixReadOnly#instance_properties)
+    */
+  m44: any,
+}
+
+/**
+[See DOMMatrix on MDN](https://developer.mozilla.org/docs/Web/API/DOMMatrix)
+*/
+type domMatrix = {
+  ...domMatrixReadOnly,
+}
+
+/**
+[See CSSMatrixComponent on MDN](https://developer.mozilla.org/docs/Web/API/CSSMatrixComponent)
+*/
+type cssMatrixComponent = {
+  ...cssTransformComponent,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CSSMatrixComponent/matrix)
+    */
+  matrix: domMatrix,
+}
+
+type nodeFilter = {}
+
+/**
+This EncryptedMediaExtensions API interface is a read-only map of media key statuses by key IDs.
+[See MediaKeyStatusMap on MDN](https://developer.mozilla.org/docs/Web/API/MediaKeyStatusMap)
+*/
+type mediaKeyStatusMap = {
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/MediaKeyStatusMap/size)
+    */
+  size: any,
+}
+
+/**
+This EncryptedMediaExtensions API interface represents a context for message exchange with a content decryption module (CDM).
+[See MediaKeySession on MDN](https://developer.mozilla.org/docs/Web/API/MediaKeySession)
+*/
+type mediaKeySession = {
+  ...eventTarget,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/MediaKeySession/sessionId)
+    */
+  sessionId: domString,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/MediaKeySession/expiration)
+    */
+  expiration: any,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/MediaKeySession/closed)
+    */
+  closed: Promise.t<mediaKeySessionClosedReason>,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/MediaKeySession/keyStatuses)
+    */
+  keyStatuses: mediaKeyStatusMap,
+}
+
+/**
+This Gamepad API interface represents hardware in the controller designed to provide haptic feedback to the user (if available), most commonly vibration hardware.
+[See GamepadHapticActuator on MDN](https://developer.mozilla.org/docs/Web/API/GamepadHapticActuator)
+*/
+type gamepadHapticActuator = {}
+
+/**
+[See GeolocationCoordinates on MDN](https://developer.mozilla.org/docs/Web/API/GeolocationCoordinates)
+*/
+type geolocationCoordinates = {
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/GeolocationCoordinates/accuracy)
+    */
+  accuracy: float,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/GeolocationCoordinates/latitude)
+    */
+  latitude: float,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/GeolocationCoordinates/longitude)
+    */
+  longitude: float,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/GeolocationCoordinates/altitude)
+    */
+  altitude: Null.t<float>,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/GeolocationCoordinates/altitudeAccuracy)
+    */
+  altitudeAccuracy: Null.t<float>,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/GeolocationCoordinates/heading)
+    */
+  heading: Null.t<float>,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/GeolocationCoordinates/speed)
+    */
+  speed: Null.t<float>,
+}
+
+/**
+The validity states that an element can be in, with respect to constraint validation. Together, they help explain why an element's value fails to validate, if it's not valid.
+[See ValidityState on MDN](https://developer.mozilla.org/docs/Web/API/ValidityState)
+*/
+type validityState = {
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/ValidityState/valueMissing)
+    */
+  valueMissing: bool,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/ValidityState/typeMismatch)
+    */
+  typeMismatch: bool,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/ValidityState/patternMismatch)
+    */
+  patternMismatch: bool,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/ValidityState/tooLong)
+    */
+  tooLong: bool,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/ValidityState/tooShort)
+    */
+  tooShort: bool,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/ValidityState/rangeUnderflow)
+    */
+  rangeUnderflow: bool,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/ValidityState/rangeOverflow)
+    */
+  rangeOverflow: bool,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/ValidityState/stepMismatch)
+    */
+  stepMismatch: bool,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/ValidityState/badInput)
+    */
+  badInput: bool,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/ValidityState/customError)
+    */
+  customError: bool,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/ValidityState/valid)
+    */
+  valid: bool,
+}
+
+/**
+An error which occurred while handling media in an HTML media element based on HTMLMediaElement, such as <audio> or <video>.
+[See MediaError on MDN](https://developer.mozilla.org/docs/Web/API/MediaError)
+*/
+type mediaError = {
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/MediaError/code)
+    */
+  code: int,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/MediaError/message)
+    */
+  message: domString,
+}
+
+/**
+Used to represent a set of time ranges, primarily for the purpose of tracking which portions of media have been buffered when loading it for use by the <audio> and <video> elements.
+[See TimeRanges on MDN](https://developer.mozilla.org/docs/Web/API/TimeRanges)
+*/
+type timeRanges = {
+  /**
+    Returns the number of ranges in the object.
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/TimeRanges/length)
+    */
+  length: any,
+}
+
+/**
+[See TextTrackList on MDN](https://developer.mozilla.org/docs/Web/API/TextTrackList)
+*/
+type textTrackList = {
+  ...eventTarget,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/TextTrackList/length)
+    */
+  length: any,
+}
+
+/**
+[See RemotePlayback on MDN](https://developer.mozilla.org/docs/Web/API/RemotePlayback)
+*/
+type remotePlayback = {
+  ...eventTarget,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/RemotePlayback/state)
+    */
+  state: remotePlaybackState,
+}
+
+/**
+[See TextTrackCueList on MDN](https://developer.mozilla.org/docs/Web/API/TextTrackCueList)
+*/
+type textTrackCueList = {
+  /**
+    Returns the number of cues in the list.
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/TextTrackCueList/length)
+    */
+  length: any,
+}
+
+/**
+Provides a way to easily construct a set of key/value pairs representing form fields and their values, which can then be easily sent using the XMLHttpRequest.send() method. It uses the same format a form would use if the encoding type were set to "multipart/form-data".
+[See FormData on MDN](https://developer.mozilla.org/docs/Web/API/FormData)
+*/
+type formData = {}
+
+/**
+[See CustomStateSet on MDN](https://developer.mozilla.org/docs/Web/API/CustomStateSet)
+*/
+type customStateSet = {}
+
+/**
+This Channel Messaging API interface represents one of the two ports of a MessageChannel, allowing messages to be sent from one port and listening out for them arriving at the other.
+[See MessagePort on MDN](https://developer.mozilla.org/docs/Web/API/MessagePort)
+*/
+type messagePort = {
+  ...eventTarget,
+}
+
+/**
+A simple container list for multiple SourceBuffer objects.
+[See SourceBufferList on MDN](https://developer.mozilla.org/docs/Web/API/SourceBufferList)
+*/
+type sourceBufferList = {
+  ...eventTarget,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/SourceBufferList/length)
+    */
+  length: any,
+}
+
+/**
+This Web Speech API interface represents a voice that the system supports. Every SpeechSynthesisVoice has its own relative speech service including information about language, name and URI.
+[See SpeechSynthesisVoice on MDN](https://developer.mozilla.org/docs/Web/API/SpeechSynthesisVoice)
+*/
+type speechSynthesisVoice = {
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/SpeechSynthesisVoice/voiceURI)
+    */
+  voiceURI: domString,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/SpeechSynthesisVoice/name)
+    */
+  name: domString,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/SpeechSynthesisVoice/lang)
+    */
+  lang: domString,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/SpeechSynthesisVoice/localService)
+    */
+  localService: bool,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/SpeechSynthesisVoice/default)
+    */
+  default: bool,
+}
+
+/**
+An individual button of a gamepad or other controller, allowing access to the current state of different types of buttons available on the control device.
+[See GamepadButton on MDN](https://developer.mozilla.org/docs/Web/API/GamepadButton)
+*/
+type gamepadButton = {
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/GamepadButton/pressed)
+    */
+  pressed: bool,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/GamepadButton/touched)
+    */
+  touched: bool,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/GamepadButton/value)
+    */
+  value: float,
+}
+
+/**
+[See PerformanceServerTiming on MDN](https://developer.mozilla.org/docs/Web/API/PerformanceServerTiming)
+*/
+type performanceServerTiming = {
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/PerformanceServerTiming/name)
+    */
+  name: domString,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/PerformanceServerTiming/duration)
+    */
+  duration: domHighResTimeStamp,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/PerformanceServerTiming/description)
+    */
+  description: domString,
+}
+
+/**
+[See ResizeObserverSize on MDN](https://developer.mozilla.org/docs/Web/API/ResizeObserverSize)
+*/
+type resizeObserverSize = {
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/ResizeObserverSize/inlineSize)
+    */
+  inlineSize: any,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/ResizeObserverSize/blockSize)
+    */
+  blockSize: any,
+}
+
+/**
+[See URLSearchParams on MDN](https://developer.mozilla.org/docs/Web/API/URLSearchParams)
+*/
+type urlSearchParams = {
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/URLSearchParams/size)
+    */
+  size: any,
+}
+
+/**
+A short audio asset residing in memory, created from an audio file using the AudioContext.decodeAudioData() method, or from raw data using AudioContext.createBuffer(). Once put into an AudioBuffer, the audio can then be played by being passed into an AudioBufferSourceNode.
+[See AudioBuffer on MDN](https://developer.mozilla.org/docs/Web/API/AudioBuffer)
+*/
+type audioBuffer = {
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/AudioBuffer/sampleRate)
+    */
+  sampleRate: float,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/AudioBuffer/length)
+    */
+  length: any,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/AudioBuffer/duration)
+    */
+  duration: float,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/AudioBuffer/numberOfChannels)
+    */
+  numberOfChannels: any,
+}
+
+/**
+[See AuthenticatorResponse on MDN](https://developer.mozilla.org/docs/Web/API/AuthenticatorResponse)
+*/
+type authenticatorResponse = {
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/AuthenticatorResponse/clientDataJSON)
+    */
+  clientDataJSON: arrayBuffer,
+}
+
+/**
+[See VideoColorSpace on MDN](https://developer.mozilla.org/docs/Web/API/VideoColorSpace)
+*/
+type videoColorSpace = {
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/VideoColorSpace/primaries)
+    */
+  primaries: Null.t<videoColorPrimaries>,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/VideoColorSpace/transfer)
+    */
+  transfer: Null.t<videoTransferCharacteristics>,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/VideoColorSpace/matrix)
+    */
+  matrix: Null.t<videoMatrixCoefficients>,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/VideoColorSpace/fullRange)
+    */
+  fullRange: Null.t<bool>,
+}
+
+/**
+One end of a connection—or potential connection—and how it's configured. Each RTCSessionDescription consists of a description type indicating which part of the offer/answer negotiation process it describes and of the SDP descriptor of the session.
+[See RTCSessionDescription on MDN](https://developer.mozilla.org/docs/Web/API/RTCSessionDescription)
+*/
+type rtcSessionDescription = {
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/RTCSessionDescription/type)
+    */
+  @as("type")
+  type_: rtcSdpType,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/RTCSessionDescription/sdp)
+    */
+  sdp: domString,
+}
+
+/**
+Provides access to information about the ICE transport layer over which the data is being sent and received.
+[See RTCIceTransport on MDN](https://developer.mozilla.org/docs/Web/API/RTCIceTransport)
+*/
+type rtcIceTransport = {
+  ...eventTarget,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/RTCIceTransport/state)
+    */
+  state: rtcIceTransportState,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/RTCIceTransport/gatheringState)
+    */
+  gatheringState: rtcIceGathererState,
+}
+
+/**
+[See RTCDtlsTransport on MDN](https://developer.mozilla.org/docs/Web/API/RTCDtlsTransport)
+*/
+type rtcDtlsTransport = {
+  ...eventTarget,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/RTCDtlsTransport/iceTransport)
+    */
+  iceTransport: rtcIceTransport,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/RTCDtlsTransport/state)
+    */
+  state: rtcDtlsTransportState,
+}
+
+/**
+[See RTCSctpTransport on MDN](https://developer.mozilla.org/docs/Web/API/RTCSctpTransport)
+*/
+type rtcSctpTransport = {
+  ...eventTarget,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/RTCSctpTransport/transport)
+    */
+  transport: rtcDtlsTransport,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/RTCSctpTransport/state)
+    */
+  state: rtcSctpTransportState,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/RTCSctpTransport/maxMessageSize)
+    */
+  maxMessageSize: any,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/RTCSctpTransport/maxChannels)
+    */
+  maxChannels: Null.t<int>,
+}
+
+/**
+[See RTCRtpScriptTransform on MDN](https://developer.mozilla.org/docs/Web/API/RTCRtpScriptTransform)
+*/
+type rtcRtpScriptTransform = {}
+
+/**
+[See RTCDTMFSender on MDN](https://developer.mozilla.org/docs/Web/API/RTCDTMFSender)
+*/
+type rtcdtmfSender = {
+  ...eventTarget,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/RTCDTMFSender/canInsertDTMF)
+    */
+  canInsertDTMF: bool,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/RTCDTMFSender/toneBuffer)
+    */
+  toneBuffer: domString,
+}
+
+/**
+[See VTTRegion on MDN](https://developer.mozilla.org/docs/Web/API/VTTRegion)
+*/
+type vttRegion = {}
+
+/**
+[See AnimationTimeline on MDN](https://developer.mozilla.org/docs/Web/API/AnimationTimeline)
+*/
+type rec animationTimeline = {
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/AnimationTimeline/currentTime)
+    */
+  currentTime: Null.t<float>,
+}
+
+/**
+[See DocumentTimeline on MDN](https://developer.mozilla.org/docs/Web/API/DocumentTimeline)
+*/
+and documentTimeline = {
+  // Base properties from AnimationTimeline
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/AnimationTimeline/currentTime)
+    */
+  currentTime: Null.t<float>,
+  // End base properties from AnimationTimeline
+}
 
 /**
 Node is an interface from which a number of DOM API object types inherit. It allows those types to be treated similarly; for example, inheriting the same set of methods, or being tested in the same way.
 [See Node on MDN](https://developer.mozilla.org/docs/Web/API/Node)
 */
-and node = {
+type rec node = {
   /**
     Returns the type of node.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/nodeType)
@@ -1673,6 +3215,42 @@ and shadowRoot = {
 }
 
 /**
+A generic collection (array-like object similar to arguments) of elements (in document order) and offers methods and properties for selecting from the list.
+[See HTMLCollection on MDN](https://developer.mozilla.org/docs/Web/API/HTMLCollection)
+*/
+and htmlCollection = {
+  /**
+    Sets or retrieves the number of objects in a collection.
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLCollection/length)
+    */
+  length: any,
+}
+
+and htmlCollectionOf<'t> = {
+  // Base properties from HTMLCollection
+  /**
+    Sets or retrieves the number of objects in a collection.
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLCollection/length)
+    */
+  length: any,
+  // End base properties from HTMLCollection
+}
+
+/**
+A collection of HTML form control elements. 
+[See HTMLFormControlsCollection on MDN](https://developer.mozilla.org/docs/Web/API/HTMLFormControlsCollection)
+*/
+and htmlFormControlsCollection = {
+  // Base properties from HTMLCollection
+  /**
+    Sets or retrieves the number of objects in a collection.
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLCollection/length)
+    */
+  length: any,
+  // End base properties from HTMLCollection
+}
+
+/**
 Any HTML element. Some elements directly implement this interface, while others implement it via an interface that inherits it.
 [See HTMLElement on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement)
 */
@@ -1924,28 +3502,6 @@ and htmlElement = {
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/offsetHeight)
     */
   offsetHeight: int,
-}
-
-/**
-A generic collection (array-like object similar to arguments) of elements (in document order) and offers methods and properties for selecting from the list.
-[See HTMLCollection on MDN](https://developer.mozilla.org/docs/Web/API/HTMLCollection)
-*/
-and htmlCollection = {
-  /**
-    Sets or retrieves the number of objects in a collection.
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLCollection/length)
-    */
-  length: any,
-}
-
-and htmlCollectionOf<'t> = {
-  // Base properties from HTMLCollection
-  /**
-    Sets or retrieves the number of objects in a collection.
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLCollection/length)
-    */
-  length: any,
-  // End base properties from HTMLCollection
 }
 
 /**
@@ -4561,6 +6117,59 @@ and event = {
 }
 
 /**
+A MutationRecord represents an individual DOM mutation. It is the object that is passed to MutationObserver's callback.
+[See MutationRecord on MDN](https://developer.mozilla.org/docs/Web/API/MutationRecord)
+*/
+and mutationRecord = {
+  /**
+    Returns "attributes" if it was an attribute mutation. "characterData" if it was a mutation to a CharacterData node. And "childList" if it was a mutation to the tree of nodes.
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/MutationRecord/type)
+    */
+  @as("type")
+  type_: string,
+  /**
+    Returns the node the mutation affected, depending on the type. For "attributes", it is the element whose attribute changed. For "characterData", it is the CharacterData node. For "childList", it is the node whose children changed.
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/MutationRecord/target)
+    */
+  target: node,
+  /**
+    Return the nodes added and removed respectively.
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/MutationRecord/addedNodes)
+    */
+  addedNodes: nodeList,
+  /**
+    Return the nodes added and removed respectively.
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/MutationRecord/removedNodes)
+    */
+  removedNodes: nodeList,
+  /**
+    Return the previous and next sibling respectively of the added or removed nodes, and null otherwise.
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/MutationRecord/previousSibling)
+    */
+  previousSibling: Null.t<node>,
+  /**
+    Return the previous and next sibling respectively of the added or removed nodes, and null otherwise.
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/MutationRecord/nextSibling)
+    */
+  nextSibling: Null.t<node>,
+  /**
+    Returns the local name of the changed attribute, and null otherwise.
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/MutationRecord/attributeName)
+    */
+  attributeName: Null.t<domString>,
+  /**
+    Returns the namespace of the changed attribute, and null otherwise.
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/MutationRecord/attributeNamespace)
+    */
+  attributeNamespace: Null.t<domString>,
+  /**
+    The return value depends on type. For "attributes", it is the value of the changed attribute before the change. For "characterData", it is the data of the changed node before the change. For "childList", it is null.
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/MutationRecord/oldValue)
+    */
+  oldValue: Null.t<domString>,
+}
+
+/**
 A single style sheet. CSS style sheets will further implement the more specialized CSSStyleSheet interface.
 [See StyleSheet on MDN](https://developer.mozilla.org/docs/Web/API/StyleSheet)
 */
@@ -4671,6 +6280,1713 @@ and cssRuleList = {
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CSSRuleList/length)
     */
   length: any,
+}
+
+/**
+An object that is a CSS declaration block, and exposes style information and various style-related methods and properties.
+[See CSSStyleDeclaration on MDN](https://developer.mozilla.org/docs/Web/API/CSSStyleDeclaration)
+*/
+and cssStyleDeclaration = {
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CSSStyleDeclaration/cssText)
+    */
+  cssText: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CSSStyleDeclaration/length)
+    */
+  length: any,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CSSStyleDeclaration/parentRule)
+    */
+  parentRule: Null.t<cssRule>,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/cx)
+    */
+  cx: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/cy)
+    */
+  cy: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/r)
+    */
+  r: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/rx)
+    */
+  rx: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/ry)
+    */
+  ry: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/x)
+    */
+  x: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/y)
+    */
+  y: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/vector-effect)
+    */
+  vectorEffect: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/d)
+    */
+  d: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/text-anchor)
+    */
+  textAnchor: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/fill)
+    */
+  fill: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/stroke)
+    */
+  stroke: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/marker-start)
+    */
+  markerStart: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/marker-mid)
+    */
+  markerMid: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/marker-end)
+    */
+  markerEnd: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/marker)
+    */
+  marker: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/paint-order)
+    */
+  paintOrder: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/color-interpolation)
+    */
+  colorInterpolation: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/shape-rendering)
+    */
+  shapeRendering: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/text-rendering)
+    */
+  textRendering: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/pointer-events)
+    */
+  pointerEvents: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/stop-color)
+    */
+  stopColor: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/stop-opacity)
+    */
+  stopOpacity: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/-webkit-text-fill-color)
+    */
+  webkitTextFillColor: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/-webkit-text-stroke-color)
+    */
+  webkitTextStrokeColor: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/-webkit-text-stroke-width)
+    */
+  webkitTextStrokeWidth: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/-webkit-text-stroke)
+    */
+  webkitTextStroke: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/touch-action)
+    */
+  touchAction: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/position-area)
+    */
+  positionArea: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/top)
+    */
+  top: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/left)
+    */
+  left: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/right)
+    */
+  right: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/bottom)
+    */
+  bottom: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/justify-self)
+    */
+  justifySelf: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/align-self)
+    */
+  alignSelf: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/justify-items)
+    */
+  justifyItems: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/align-items)
+    */
+  alignItems: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/width)
+    */
+  width: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/height)
+    */
+  height: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/min-width)
+    */
+  minWidth: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/min-height)
+    */
+  minHeight: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/max-width)
+    */
+  maxWidth: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/max-height)
+    */
+  maxHeight: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/margin-top)
+    */
+  marginTop: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/margin-left)
+    */
+  marginLeft: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/margin-right)
+    */
+  marginRight: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/margin-bottom)
+    */
+  marginBottom: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/animation-duration)
+    */
+  animationDuration: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/animation-composition)
+    */
+  animationComposition: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/animation-name)
+    */
+  animationName: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/animation-timing-function)
+    */
+  animationTimingFunction: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/animation-iteration-count)
+    */
+  animationIterationCount: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/animation-direction)
+    */
+  animationDirection: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/animation-play-state)
+    */
+  animationPlayState: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/animation-delay)
+    */
+  animationDelay: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/animation-fill-mode)
+    */
+  animationFillMode: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/animation)
+    */
+  animation: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/all)
+    */
+  all: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/container-type)
+    */
+  containerType: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/container-name)
+    */
+  containerName: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/container)
+    */
+  container: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/contain)
+    */
+  contain: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/content-visibility)
+    */
+  contentVisibility: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/font-family)
+    */
+  fontFamily: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/font-weight)
+    */
+  fontWeight: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/font-style)
+    */
+  fontStyle: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/font-size)
+    */
+  fontSize: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/font-size-adjust)
+    */
+  fontSizeAdjust: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/font)
+    */
+  font: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/font-synthesis-weight)
+    */
+  fontSynthesisWeight: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/font-synthesis-style)
+    */
+  fontSynthesisStyle: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/font-synthesis-small-caps)
+    */
+  fontSynthesisSmallCaps: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/font-synthesis)
+    */
+  fontSynthesis: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/font-kerning)
+    */
+  fontKerning: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/font-variant-ligatures)
+    */
+  fontVariantLigatures: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/font-variant-position)
+    */
+  fontVariantPosition: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/font-variant-caps)
+    */
+  fontVariantCaps: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/font-variant-numeric)
+    */
+  fontVariantNumeric: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/font-variant-alternates)
+    */
+  fontVariantAlternates: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/font-variant-east-asian)
+    */
+  fontVariantEastAsian: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/font-variant)
+    */
+  fontVariant: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/font-feature-settings)
+    */
+  fontFeatureSettings: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/font-optical-sizing)
+    */
+  fontOpticalSizing: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/font-variation-settings)
+    */
+  fontVariationSettings: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/font-palette)
+    */
+  fontPalette: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/font-stretch)
+    */
+  fontStretch: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/object-fit)
+    */
+  objectFit: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/clip-path)
+    */
+  clipPath: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/clip-rule)
+    */
+  clipRule: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/mask-image)
+    */
+  maskImage: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/mask-mode)
+    */
+  maskMode: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/mask-repeat)
+    */
+  maskRepeat: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/mask-position)
+    */
+  maskPosition: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/mask-clip)
+    */
+  maskClip: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/mask-origin)
+    */
+  maskOrigin: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/mask-size)
+    */
+  maskSize: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/mask-composite)
+    */
+  maskComposite: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/mask)
+    */
+  mask: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/mask-type)
+    */
+  maskType: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/transition-behavior)
+    */
+  transitionBehavior: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/transition-property)
+    */
+  transitionProperty: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/transition-duration)
+    */
+  transitionDuration: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/transition-timing-function)
+    */
+  transitionTimingFunction: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/transition-delay)
+    */
+  transitionDelay: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/transition)
+    */
+  transition: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/view-transition-name)
+    */
+  viewTransitionName: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/zoom)
+    */
+  zoom: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/filter)
+    */
+  filter: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/color-interpolation-filters)
+    */
+  colorInterpolationFilters: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/display)
+    */
+  display: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/text-transform)
+    */
+  textTransform: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/math-style)
+    */
+  mathStyle: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/math-depth)
+    */
+  mathDepth: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/z-index)
+    */
+  zIndex: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/page-break-before)
+    */
+  pageBreakBefore: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/page-break-after)
+    */
+  pageBreakAfter: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/page-break-inside)
+    */
+  pageBreakInside: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/mix-blend-mode)
+    */
+  mixBlendMode: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/isolation)
+    */
+  isolation: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/background-blend-mode)
+    */
+  backgroundBlendMode: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/align-content)
+    */
+  alignContent: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/justify-content)
+    */
+  justifyContent: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/place-content)
+    */
+  placeContent: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/place-self)
+    */
+  placeSelf: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/place-items)
+    */
+  placeItems: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/row-gap)
+    */
+  rowGap: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/column-gap)
+    */
+  columnGap: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/gap)
+    */
+  gap: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/background-repeat)
+    */
+  backgroundRepeat: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/background-position)
+    */
+  backgroundPosition: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/background-position-x)
+    */
+  backgroundPositionX: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/background-position-y)
+    */
+  backgroundPositionY: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/background-clip)
+    */
+  backgroundClip: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/background-color)
+    */
+  backgroundColor: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/background-image)
+    */
+  backgroundImage: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/background-attachment)
+    */
+  backgroundAttachment: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/background-origin)
+    */
+  backgroundOrigin: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/background-size)
+    */
+  backgroundSize: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/background)
+    */
+  background: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/border-style)
+    */
+  borderStyle: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/border-width)
+    */
+  borderWidth: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/border)
+    */
+  border: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/border-image-source)
+    */
+  borderImageSource: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/border-image-slice)
+    */
+  borderImageSlice: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/border-image-width)
+    */
+  borderImageWidth: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/border-image-outset)
+    */
+  borderImageOutset: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/border-image-repeat)
+    */
+  borderImageRepeat: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/border-image)
+    */
+  borderImage: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/border-top-color)
+    */
+  borderTopColor: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/border-right-color)
+    */
+  borderRightColor: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/border-bottom-color)
+    */
+  borderBottomColor: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/border-left-color)
+    */
+  borderLeftColor: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/border-block-start-color)
+    */
+  borderBlockStartColor: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/border-block-end-color)
+    */
+  borderBlockEndColor: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/border-inline-start-color)
+    */
+  borderInlineStartColor: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/border-inline-end-color)
+    */
+  borderInlineEndColor: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/border-color)
+    */
+  borderColor: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/border-block-color)
+    */
+  borderBlockColor: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/border-inline-color)
+    */
+  borderInlineColor: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/border-top-style)
+    */
+  borderTopStyle: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/border-right-style)
+    */
+  borderRightStyle: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/border-bottom-style)
+    */
+  borderBottomStyle: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/border-left-style)
+    */
+  borderLeftStyle: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/border-block-start-style)
+    */
+  borderBlockStartStyle: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/border-block-end-style)
+    */
+  borderBlockEndStyle: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/border-inline-start-style)
+    */
+  borderInlineStartStyle: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/border-inline-end-style)
+    */
+  borderInlineEndStyle: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/border-block-style)
+    */
+  borderBlockStyle: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/border-inline-style)
+    */
+  borderInlineStyle: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/border-top-width)
+    */
+  borderTopWidth: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/border-right-width)
+    */
+  borderRightWidth: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/border-bottom-width)
+    */
+  borderBottomWidth: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/border-left-width)
+    */
+  borderLeftWidth: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/border-block-start-width)
+    */
+  borderBlockStartWidth: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/border-block-end-width)
+    */
+  borderBlockEndWidth: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/border-inline-start-width)
+    */
+  borderInlineStartWidth: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/border-inline-end-width)
+    */
+  borderInlineEndWidth: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/border-block-width)
+    */
+  borderBlockWidth: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/border-inline-width)
+    */
+  borderInlineWidth: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/border-top)
+    */
+  borderTop: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/border-right)
+    */
+  borderRight: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/border-bottom)
+    */
+  borderBottom: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/border-left)
+    */
+  borderLeft: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/border-block-start)
+    */
+  borderBlockStart: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/border-block-end)
+    */
+  borderBlockEnd: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/border-inline-start)
+    */
+  borderInlineStart: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/border-inline-end)
+    */
+  borderInlineEnd: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/border-block)
+    */
+  borderBlock: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/border-inline)
+    */
+  borderInline: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/border-top-left-radius)
+    */
+  borderTopLeftRadius: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/border-top-right-radius)
+    */
+  borderTopRightRadius: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/border-bottom-right-radius)
+    */
+  borderBottomRightRadius: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/border-bottom-left-radius)
+    */
+  borderBottomLeftRadius: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/border-start-start-radius)
+    */
+  borderStartStartRadius: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/border-start-end-radius)
+    */
+  borderStartEndRadius: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/border-end-start-radius)
+    */
+  borderEndStartRadius: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/border-end-end-radius)
+    */
+  borderEndEndRadius: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/border-radius)
+    */
+  borderRadius: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/box-shadow)
+    */
+  boxShadow: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/margin)
+    */
+  margin: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/padding-top)
+    */
+  paddingTop: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/padding-right)
+    */
+  paddingRight: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/padding-bottom)
+    */
+  paddingBottom: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/padding-left)
+    */
+  paddingLeft: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/padding)
+    */
+  padding: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/break-before)
+    */
+  breakBefore: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/break-after)
+    */
+  breakAfter: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/break-inside)
+    */
+  breakInside: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/orphans)
+    */
+  orphans: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/widows)
+    */
+  widows: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/box-decoration-break)
+    */
+  boxDecorationBreak: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/color-scheme)
+    */
+  colorScheme: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/forced-color-adjust)
+    */
+  forcedColorAdjust: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/print-color-adjust)
+    */
+  printColorAdjust: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/color)
+    */
+  color: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/opacity)
+    */
+  opacity: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/content)
+    */
+  content: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/quotes)
+    */
+  quotes: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/order)
+    */
+  order: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/visibility)
+    */
+  visibility: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/flex-direction)
+    */
+  flexDirection: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/flex-wrap)
+    */
+  flexWrap: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/flex-flow)
+    */
+  flexFlow: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/flex)
+    */
+  flex: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/flex-grow)
+    */
+  flexGrow: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/flex-shrink)
+    */
+  flexShrink: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/flex-basis)
+    */
+  flexBasis: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/position)
+    */
+  position: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/float)
+    */
+  float: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/grid-template-columns)
+    */
+  gridTemplateColumns: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/grid-template-rows)
+    */
+  gridTemplateRows: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/grid-auto-flow)
+    */
+  gridAutoFlow: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/grid-template-areas)
+    */
+  gridTemplateAreas: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/grid-template)
+    */
+  gridTemplate: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/grid-auto-columns)
+    */
+  gridAutoColumns: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/grid-auto-rows)
+    */
+  gridAutoRows: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/grid)
+    */
+  grid: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/grid-row-start)
+    */
+  gridRowStart: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/grid-column-start)
+    */
+  gridColumnStart: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/grid-row-end)
+    */
+  gridRowEnd: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/grid-column-end)
+    */
+  gridColumnEnd: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/grid-row)
+    */
+  gridRow: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/grid-column)
+    */
+  gridColumn: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/grid-area)
+    */
+  gridArea: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/object-position)
+    */
+  objectPosition: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/image-rendering)
+    */
+  imageRendering: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/dominant-baseline)
+    */
+  dominantBaseline: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/vertical-align)
+    */
+  verticalAlign: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/line-height)
+    */
+  lineHeight: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/list-style-image)
+    */
+  listStyleImage: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/list-style-type)
+    */
+  listStyleType: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/list-style-position)
+    */
+  listStylePosition: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/list-style)
+    */
+  listStyle: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/counter-reset)
+    */
+  counterReset: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/counter-increment)
+    */
+  counterIncrement: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/counter-set)
+    */
+  counterSet: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/block-size)
+    */
+  blockSize: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/inline-size)
+    */
+  inlineSize: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/min-block-size)
+    */
+  minBlockSize: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/min-inline-size)
+    */
+  minInlineSize: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/max-block-size)
+    */
+  maxBlockSize: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/max-inline-size)
+    */
+  maxInlineSize: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/margin-block-start)
+    */
+  marginBlockStart: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/margin-block-end)
+    */
+  marginBlockEnd: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/margin-inline-start)
+    */
+  marginInlineStart: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/margin-inline-end)
+    */
+  marginInlineEnd: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/margin-block)
+    */
+  marginBlock: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/margin-inline)
+    */
+  marginInline: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/padding-block-start)
+    */
+  paddingBlockStart: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/padding-block-end)
+    */
+  paddingBlockEnd: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/padding-inline-start)
+    */
+  paddingInlineStart: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/padding-inline-end)
+    */
+  paddingInlineEnd: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/padding-block)
+    */
+  paddingBlock: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/padding-inline)
+    */
+  paddingInline: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/column-span)
+    */
+  columnSpan: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/column-width)
+    */
+  columnWidth: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/column-count)
+    */
+  columnCount: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/columns)
+    */
+  columns: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/column-rule-color)
+    */
+  columnRuleColor: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/column-rule-style)
+    */
+  columnRuleStyle: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/column-rule-width)
+    */
+  columnRuleWidth: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/column-rule)
+    */
+  columnRule: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/column-fill)
+    */
+  columnFill: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/overflow-clip-margin)
+    */
+  overflowClipMargin: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/text-overflow)
+    */
+  textOverflow: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/overflow-x)
+    */
+  overflowX: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/overflow-y)
+    */
+  overflowY: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/overflow)
+    */
+  overflow: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/scroll-behavior)
+    */
+  scrollBehavior: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/scrollbar-gutter)
+    */
+  scrollbarGutter: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/overscroll-behavior)
+    */
+  overscrollBehavior: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/overscroll-behavior-x)
+    */
+  overscrollBehaviorX: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/overscroll-behavior-y)
+    */
+  overscrollBehaviorY: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/overscroll-behavior-inline)
+    */
+  overscrollBehaviorInline: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/overscroll-behavior-block)
+    */
+  overscrollBehaviorBlock: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/clear)
+    */
+  clear: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/page)
+    */
+  page: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/inset-block-start)
+    */
+  insetBlockStart: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/inset-inline-start)
+    */
+  insetInlineStart: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/inset-block-end)
+    */
+  insetBlockEnd: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/inset-inline-end)
+    */
+  insetInlineEnd: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/inset-block)
+    */
+  insetBlock: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/inset-inline)
+    */
+  insetInline: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/inset)
+    */
+  inset: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/ruby-position)
+    */
+  rubyPosition: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/ruby-align)
+    */
+  rubyAlign: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/overflow-anchor)
+    */
+  overflowAnchor: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/scroll-snap-type)
+    */
+  scrollSnapType: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/scroll-padding)
+    */
+  scrollPadding: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/scroll-margin)
+    */
+  scrollMargin: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/scroll-snap-align)
+    */
+  scrollSnapAlign: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/scroll-snap-stop)
+    */
+  scrollSnapStop: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/scroll-padding-top)
+    */
+  scrollPaddingTop: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/scroll-padding-right)
+    */
+  scrollPaddingRight: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/scroll-padding-bottom)
+    */
+  scrollPaddingBottom: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/scroll-padding-left)
+    */
+  scrollPaddingLeft: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/scroll-padding-inline-start)
+    */
+  scrollPaddingInlineStart: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/scroll-padding-block-start)
+    */
+  scrollPaddingBlockStart: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/scroll-padding-inline-end)
+    */
+  scrollPaddingInlineEnd: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/scroll-padding-block-end)
+    */
+  scrollPaddingBlockEnd: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/scroll-padding-block)
+    */
+  scrollPaddingBlock: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/scroll-padding-inline)
+    */
+  scrollPaddingInline: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/scroll-margin-top)
+    */
+  scrollMarginTop: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/scroll-margin-right)
+    */
+  scrollMarginRight: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/scroll-margin-bottom)
+    */
+  scrollMarginBottom: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/scroll-margin-left)
+    */
+  scrollMarginLeft: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/scroll-margin-block-start)
+    */
+  scrollMarginBlockStart: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/scroll-margin-inline-start)
+    */
+  scrollMarginInlineStart: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/scroll-margin-block-end)
+    */
+  scrollMarginBlockEnd: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/scroll-margin-inline-end)
+    */
+  scrollMarginInlineEnd: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/scroll-margin-block)
+    */
+  scrollMarginBlock: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/scroll-margin-inline)
+    */
+  scrollMarginInline: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/scrollbar-color)
+    */
+  scrollbarColor: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/scrollbar-width)
+    */
+  scrollbarWidth: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/shape-outside)
+    */
+  shapeOutside: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/shape-image-threshold)
+    */
+  shapeImageThreshold: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/shape-margin)
+    */
+  shapeMargin: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/aspect-ratio)
+    */
+  aspectRatio: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/contain-intrinsic-width)
+    */
+  containIntrinsicWidth: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/contain-intrinsic-height)
+    */
+  containIntrinsicHeight: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/contain-intrinsic-block-size)
+    */
+  containIntrinsicBlockSize: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/contain-intrinsic-inline-size)
+    */
+  containIntrinsicInlineSize: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/contain-intrinsic-size)
+    */
+  containIntrinsicSize: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/box-sizing)
+    */
+  boxSizing: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/table-layout)
+    */
+  tableLayout: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/border-collapse)
+    */
+  borderCollapse: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/border-spacing)
+    */
+  borderSpacing: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/caption-side)
+    */
+  captionSide: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/empty-cells)
+    */
+  emptyCells: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/white-space)
+    */
+  whiteSpace: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/white-space-collapse)
+    */
+  whiteSpaceCollapse: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/tab-size)
+    */
+  tabSize: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/text-wrap-mode)
+    */
+  textWrapMode: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/text-wrap-style)
+    */
+  textWrapStyle: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/text-wrap)
+    */
+  textWrap: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/word-break)
+    */
+  wordBreak: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/line-break)
+    */
+  lineBreak: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/hyphens)
+    */
+  hyphens: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/hyphenate-character)
+    */
+  hyphenateCharacter: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/overflow-wrap)
+    */
+  overflowWrap: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/text-align)
+    */
+  textAlign: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/text-align-last)
+    */
+  textAlignLast: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/word-spacing)
+    */
+  wordSpacing: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/letter-spacing)
+    */
+  letterSpacing: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/text-indent)
+    */
+  textIndent: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/text-decoration-line)
+    */
+  textDecorationLine: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/text-decoration-style)
+    */
+  textDecorationStyle: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/text-decoration-color)
+    */
+  textDecorationColor: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/text-decoration-thickness)
+    */
+  textDecorationThickness: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/text-decoration)
+    */
+  textDecoration: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/text-underline-position)
+    */
+  textUnderlinePosition: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/text-underline-offset)
+    */
+  textUnderlineOffset: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/text-decoration-skip-ink)
+    */
+  textDecorationSkipInk: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/text-emphasis-style)
+    */
+  textEmphasisStyle: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/text-emphasis-color)
+    */
+  textEmphasisColor: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/text-emphasis)
+    */
+  textEmphasis: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/text-emphasis-position)
+    */
+  textEmphasisPosition: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/text-shadow)
+    */
+  textShadow: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/translate)
+    */
+  translate: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/rotate)
+    */
+  rotate: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/scale)
+    */
+  scale: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/transform-style)
+    */
+  transformStyle: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/perspective)
+    */
+  perspective: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/perspective-origin)
+    */
+  perspectiveOrigin: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/backface-visibility)
+    */
+  backfaceVisibility: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/transform)
+    */
+  transform: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/transform-origin)
+    */
+  transformOrigin: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/transform-box)
+    */
+  transformBox: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/outline)
+    */
+  outline: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/outline-width)
+    */
+  outlineWidth: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/outline-style)
+    */
+  outlineStyle: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/outline-color)
+    */
+  outlineColor: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/outline-offset)
+    */
+  outlineOffset: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/resize)
+    */
+  resize: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/cursor)
+    */
+  cursor: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/caret-color)
+    */
+  caretColor: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/user-select)
+    */
+  userSelect: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/accent-color)
+    */
+  accentColor: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/appearance)
+    */
+  appearance: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/will-change)
+    */
+  willChange: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/direction)
+    */
+  direction: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/unicode-bidi)
+    */
+  unicodeBidi: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/writing-mode)
+    */
+  writingMode: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/text-orientation)
+    */
+  textOrientation: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/text-combine-upright)
+    */
+  textCombineUpright: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/fill-rule)
+    */
+  fillRule: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/fill-opacity)
+    */
+  fillOpacity: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/stroke-width)
+    */
+  strokeWidth: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/stroke-linecap)
+    */
+  strokeLinecap: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/stroke-linejoin)
+    */
+  strokeLinejoin: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/stroke-miterlimit)
+    */
+  strokeMiterlimit: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/stroke-dasharray)
+    */
+  strokeDasharray: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/stroke-dashoffset)
+    */
+  strokeDashoffset: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/stroke-opacity)
+    */
+  strokeOpacity: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/backdrop-filter)
+    */
+  backdropFilter: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/offset-path)
+    */
+  offsetPath: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/offset-distance)
+    */
+  offsetDistance: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/offset-position)
+    */
+  offsetPosition: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/offset-anchor)
+    */
+  offsetAnchor: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/offset-rotate)
+    */
+  offsetRotate: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/offset)
+    */
+  offset: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CSSStyleDeclaration/cssFloat)
+    */
+  cssFloat: string,
 }
 
 /**
@@ -8785,6 +12101,60 @@ type rec fontFaceSet = {
 }
 
 /**
+[See FontFace on MDN](https://developer.mozilla.org/docs/Web/API/FontFace)
+*/
+type rec fontFace = {
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/FontFace/family)
+    */
+  family: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/FontFace/style)
+    */
+  style: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/FontFace/weight)
+    */
+  weight: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/FontFace/stretch)
+    */
+  stretch: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/FontFace/unicodeRange)
+    */
+  unicodeRange: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/FontFace/featureSettings)
+    */
+  featureSettings: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/FontFace/display)
+    */
+  display: fontDisplay,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/FontFace/ascentOverride)
+    */
+  ascentOverride: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/FontFace/descentOverride)
+    */
+  descentOverride: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/FontFace/lineGapOverride)
+    */
+  lineGapOverride: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/FontFace/status)
+    */
+  status: fontFaceLoadStatus,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/FontFace/loaded)
+    */
+  loaded: Promise.t<fontFace>,
+}
+
+/**
 The ANGLE_instanced_arrays extension is part of the WebGL API and allows to draw the same object, or groups of similar objects multiple times, if they share the same vertex data, primitive count and type.
 [See ANGLE_instanced_arrays on MDN](https://developer.mozilla.org/docs/Web/API/ANGLE_instanced_arrays)
 */
@@ -8963,62 +12333,6 @@ type fileReader = {
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/FileReader/error)
     */
   error: Null.t<domException>,
-}
-
-/**
-The request object does not initially contain any information about the result of the operation, but once information becomes available, an event is fired on the request, and the information becomes available through the properties of the IDBRequest instance.
-[See IDBRequest on MDN](https://developer.mozilla.org/docs/Web/API/IDBRequest)
-*/
-type idbRequest<'t> = {
-  ...eventTarget,
-  /**
-    When a request is completed, returns the result, or undefined if the request failed. Throws a "InvalidStateError" DOMException if the request is still pending.
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/IDBRequest/result)
-    */
-  result: 't,
-  /**
-    When a request is completed, returns the error (a DOMException), or null if the request succeeded. Throws a "InvalidStateError" DOMException if the request is still pending.
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/IDBRequest/error)
-    */
-  error: Null.t<domException>,
-  /**
-    Returns the IDBObjectStore, IDBIndex, or IDBCursor the request was made against, or null if is was an open request.
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/IDBRequest/source)
-    */
-  source: unknown,
-  /**
-    Returns the IDBTransaction the request was made within. If this as an open request, then it returns an upgrade transaction while it is running, or null otherwise.
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/IDBRequest/transaction)
-    */
-  transaction: Null.t<idbTransaction>,
-  /**
-    Returns "pending" until a request is complete, then returns "done".
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/IDBRequest/readyState)
-    */
-  readyState: idbRequestReadyState,
-}
-
-/**
-This IndexedDB API interface provides a connection to a database; you can use an IDBDatabase object to open a transaction on your database then create, manipulate, and delete objects (data) in that database. The interface provides the only way to get and manage versions of the database.
-[See IDBDatabase on MDN](https://developer.mozilla.org/docs/Web/API/IDBDatabase)
-*/
-type idbDatabase = {
-  ...eventTarget,
-  /**
-    Returns the name of the database.
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/IDBDatabase/name)
-    */
-  name: domString,
-  /**
-    Returns the version of the database.
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/IDBDatabase/version)
-    */
-  version: int,
-  /**
-    Returns a list of the names of object stores in the database.
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/IDBDatabase/objectStoreNames)
-    */
-  objectStoreNames: domStringList,
 }
 
 /**
@@ -9868,13 +13182,6 @@ type clipboardItem = {
 }
 
 /**
-[See Clipboard on MDN](https://developer.mozilla.org/docs/Web/API/Clipboard)
-*/
-type clipboard = {
-  ...eventTarget,
-}
-
-/**
 [See CompressionStream on MDN](https://developer.mozilla.org/docs/Web/API/CompressionStream)
 */
 type compressionStream = {}
@@ -9944,11 +13251,6 @@ type credential = {
   @as("type")
   type_: domString,
 }
-
-/**
-[See CredentialsContainer on MDN](https://developer.mozilla.org/docs/Web/API/CredentialsContainer)
-*/
-type credentialsContainer = {}
 
 /**
 [See CSSAnimation on MDN](https://developer.mozilla.org/docs/Web/API/CSSAnimation)
@@ -10365,11 +13667,6 @@ type transitionEvent = {
 }
 
 /**
-[See CSSStyleValue on MDN](https://developer.mozilla.org/docs/Web/API/CSSStyleValue)
-*/
-type cssStyleValue = {}
-
-/**
 [See StylePropertyMapReadOnly on MDN](https://developer.mozilla.org/docs/Web/API/StylePropertyMapReadOnly)
 */
 type stylePropertyMapReadOnly = {
@@ -10420,13 +13717,6 @@ type cssKeywordValue = {
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CSSKeywordValue/value)
     */
   value: usvString,
-}
-
-/**
-[See CSSNumericValue on MDN](https://developer.mozilla.org/docs/Web/API/CSSNumericValue)
-*/
-type cssNumericValue = {
-  ...cssStyleValue,
 }
 
 /**
@@ -10536,16 +13826,6 @@ type cssTransformValue = {
   length: any,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CSSTransformValue/is2D)
-    */
-  is2D: bool,
-}
-
-/**
-[See CSSTransformComponent on MDN](https://developer.mozilla.org/docs/Web/API/CSSTransformComponent)
-*/
-type cssTransformComponent = {
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CSSTransformComponent/is2D)
     */
   is2D: bool,
 }
@@ -11116,17 +14396,6 @@ This EncryptedMediaExtensions API interface the represents a set of keys that an
 type mediaKeys = {}
 
 /**
-This EncryptedMediaExtensions API interface is a read-only map of media key statuses by key IDs.
-[See MediaKeyStatusMap on MDN](https://developer.mozilla.org/docs/Web/API/MediaKeyStatusMap)
-*/
-type mediaKeyStatusMap = {
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/MediaKeyStatusMap/size)
-    */
-  size: any,
-}
-
-/**
 This EncryptedMediaExtensions API interface contains the content and related data when the content decryption module generates a message for the session.
 [See MediaKeyMessageEvent on MDN](https://developer.mozilla.org/docs/Web/API/MediaKeyMessageEvent)
 */
@@ -11155,13 +14424,6 @@ type mediaEncryptedEvent = {
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/MediaEncryptedEvent/initData)
     */
   initData: Null.t<arrayBuffer>,
-}
-
-/**
-[See FileSystemDirectoryEntry on MDN](https://developer.mozilla.org/docs/Web/API/FileSystemDirectoryEntry)
-*/
-type fileSystemDirectoryEntry = {
-  ...fileSystemEntry,
 }
 
 /**
@@ -11654,12 +14916,6 @@ type gamepadEvent = {
 }
 
 /**
-An object able to programmatically obtain the position of the device. It gives Web content access to the location of the device. This allows a Web site or app to offer customized results based on the user's location.
-[See Geolocation on MDN](https://developer.mozilla.org/docs/Web/API/Geolocation)
-*/
-type geolocation = {}
-
-/**
 [See GeolocationPosition on MDN](https://developer.mozilla.org/docs/Web/API/GeolocationPosition)
 */
 type geolocationPosition = {
@@ -11767,100 +15023,6 @@ type domRectList = {}
 [See DOMQuad on MDN](https://developer.mozilla.org/docs/Web/API/DOMQuad)
 */
 type domQuad = {}
-
-/**
-[See DOMMatrixReadOnly on MDN](https://developer.mozilla.org/docs/Web/API/DOMMatrixReadOnly)
-*/
-type domMatrixReadOnly = {
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/DOMMatrixReadOnly#instance_properties)
-    */
-  a: any,
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/DOMMatrixReadOnly#instance_properties)
-    */
-  b: any,
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/DOMMatrixReadOnly#instance_properties)
-    */
-  c: any,
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/DOMMatrixReadOnly#instance_properties)
-    */
-  d: any,
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/DOMMatrixReadOnly#instance_properties)
-    */
-  e: any,
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/DOMMatrixReadOnly#instance_properties)
-    */
-  f: any,
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/DOMMatrixReadOnly#instance_properties)
-    */
-  m11: any,
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/DOMMatrixReadOnly#instance_properties)
-    */
-  m12: any,
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/DOMMatrixReadOnly#instance_properties)
-    */
-  m13: any,
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/DOMMatrixReadOnly#instance_properties)
-    */
-  m14: any,
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/DOMMatrixReadOnly#instance_properties)
-    */
-  m21: any,
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/DOMMatrixReadOnly#instance_properties)
-    */
-  m22: any,
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/DOMMatrixReadOnly#instance_properties)
-    */
-  m23: any,
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/DOMMatrixReadOnly#instance_properties)
-    */
-  m24: any,
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/DOMMatrixReadOnly#instance_properties)
-    */
-  m31: any,
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/DOMMatrixReadOnly#instance_properties)
-    */
-  m32: any,
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/DOMMatrixReadOnly#instance_properties)
-    */
-  m33: any,
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/DOMMatrixReadOnly#instance_properties)
-    */
-  m34: any,
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/DOMMatrixReadOnly#instance_properties)
-    */
-  m41: any,
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/DOMMatrixReadOnly#instance_properties)
-    */
-  m42: any,
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/DOMMatrixReadOnly#instance_properties)
-    */
-  m43: any,
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/DOMMatrixReadOnly#instance_properties)
-    */
-  m44: any,
-}
 
 /**
 Provides access to performance-related information for the current page. It's part of the High Resolution Time API, but is enhanced by the Performance Timeline API, the Navigation Timing API, the User Timing API, and the Resource Timing API.
@@ -13065,7 +16227,7 @@ type imageData = {
     Returns the one-dimensional array containing the data in RGBA order, as integers in the range 0 to 255.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/ImageData/data)
     */
-  data: uint8ClampedArray,
+  data: array<int>,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/ImageData/colorSpace)
     */
@@ -13161,20 +16323,6 @@ type elementInternals = {
 }
 
 /**
-[See UserActivation on MDN](https://developer.mozilla.org/docs/Web/API/UserActivation)
-*/
-type userActivation = {
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/UserActivation/hasBeenActive)
-    */
-  hasBeenActive: bool,
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/UserActivation/isActive)
-    */
-  isActive: bool,
-}
-
-/**
 [See ToggleEvent on MDN](https://developer.mozilla.org/docs/Web/API/ToggleEvent)
 */
 type toggleEvent = {
@@ -13187,18 +16335,6 @@ type toggleEvent = {
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/ToggleEvent/newState)
     */
   newState: domString,
-}
-
-/**
-A list of DataTransferItem objects representing items being dragged. During a drag operation, each DragEvent has a dataTransfer property and that property is a DataTransferItemList.
-[See DataTransferItemList on MDN](https://developer.mozilla.org/docs/Web/API/DataTransferItemList)
-*/
-type dataTransferItemList = {
-  /**
-    Returns the number of items in the drag data store.
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/DataTransferItemList/length)
-    */
-  length: any,
 }
 
 /**
@@ -13779,11 +16915,6 @@ type mathMLElement = {
 }
 
 /**
-[See MediaCapabilities on MDN](https://developer.mozilla.org/docs/Web/API/MediaCapabilities)
-*/
-type mediaCapabilities = {}
-
-/**
 Returned by the HTMLVideoElement.getVideoPlaybackQuality() method and contains metrics that can be used to determine the playback quality of a video.
 [See VideoPlaybackQuality on MDN](https://developer.mozilla.org/docs/Web/API/VideoPlaybackQuality)
 */
@@ -13955,14 +17086,6 @@ type overconstrainedError = {
 }
 
 /**
-Provides access to connected media input devices like cameras and microphones, as well as screen sharing. In essence, it lets you obtain access to any hardware source of media data.
-[See MediaDevices on MDN](https://developer.mozilla.org/docs/Web/API/MediaDevices)
-*/
-type mediaDevices = {
-  ...eventTarget,
-}
-
-/**
 The MediaDevicesInfo interface contains information that describes a single media input or output device.
 [See MediaDeviceInfo on MDN](https://developer.mozilla.org/docs/Web/API/MediaDeviceInfo)
 */
@@ -13990,20 +17113,6 @@ type mediaDeviceInfo = {
 */
 type inputDeviceInfo = {
   ...mediaDeviceInfo,
-}
-
-/**
-[See MediaSession on MDN](https://developer.mozilla.org/docs/Web/API/MediaSession)
-*/
-type mediaSession = {
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/MediaSession/metadata)
-    */
-  metadata: Null.t<mediaMetadata>,
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/MediaSession/playbackState)
-    */
-  playbackState: mediaSessionPlaybackState,
 }
 
 /**
@@ -14427,11 +17536,6 @@ type performanceObserver = {
 type performanceObserverEntryList = {}
 
 /**
-[See Permissions on MDN](https://developer.mozilla.org/docs/Web/API/Permissions)
-*/
-type permissions = {}
-
-/**
 [See PermissionStatus on MDN](https://developer.mozilla.org/docs/Web/API/PermissionStatus)
 */
 type permissionStatus = {
@@ -14526,17 +17630,6 @@ type pointerEvent = {
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/PointerEvent/isPrimary)
     */
   isPrimary: bool,
-}
-
-/**
-This Push API interface provides a way to receive notifications from third-party servers as well as request URLs for push notifications.
-[See PushManager on MDN](https://developer.mozilla.org/docs/Web/API/PushManager)
-*/
-type pushManager = {
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/PushManager/supportedContentEncodings_static)
-    */
-  supportedContentEncodings: array<domString>,
 }
 
 /**
@@ -14643,27 +17736,6 @@ type resizeObserverEntry = {
 }
 
 /**
-[See ScreenOrientation on MDN](https://developer.mozilla.org/docs/Web/API/ScreenOrientation)
-*/
-type screenOrientation = {
-  ...eventTarget,
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/ScreenOrientation/type)
-    */
-  @as("type")
-  type_: orientationType,
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/ScreenOrientation/angle)
-    */
-  angle: int,
-}
-
-/**
-[See WakeLock on MDN](https://developer.mozilla.org/docs/Web/API/WakeLock)
-*/
-type wakeLock = {}
-
-/**
 [See WakeLockSentinel on MDN](https://developer.mozilla.org/docs/Web/API/WakeLockSentinel)
 */
 type wakeLockSentinel = {
@@ -14717,74 +17789,6 @@ type selection = {
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Selection/direction)
     */
   direction: domString,
-}
-
-/**
-This ServiceWorker API interface provides a reference to a service worker. Multiple browsing contexts (e.g. pages, workers, etc.) can be associated with the same service worker, each through a unique ServiceWorker object.
-[See ServiceWorker on MDN](https://developer.mozilla.org/docs/Web/API/ServiceWorker)
-*/
-type serviceWorker = {
-  ...eventTarget,
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/ServiceWorker/scriptURL)
-    */
-  scriptURL: usvString,
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/ServiceWorker/state)
-    */
-  state: serviceWorkerState,
-}
-
-/**
-This ServiceWorker API interface represents the service worker registration. You register a service worker to control one or more pages that share the same origin.
-[See ServiceWorkerRegistration on MDN](https://developer.mozilla.org/docs/Web/API/ServiceWorkerRegistration)
-*/
-type serviceWorkerRegistration = {
-  ...eventTarget,
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/ServiceWorkerRegistration/installing)
-    */
-  installing: Null.t<serviceWorker>,
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/ServiceWorkerRegistration/waiting)
-    */
-  waiting: Null.t<serviceWorker>,
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/ServiceWorkerRegistration/active)
-    */
-  active: Null.t<serviceWorker>,
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/ServiceWorkerRegistration/navigationPreload)
-    */
-  navigationPreload: navigationPreloadManager,
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/ServiceWorkerRegistration/scope)
-    */
-  scope: usvString,
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/ServiceWorkerRegistration/updateViaCache)
-    */
-  updateViaCache: serviceWorkerUpdateViaCache,
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/ServiceWorkerRegistration/pushManager)
-    */
-  pushManager: pushManager,
-}
-
-/**
-The ServiceWorkerContainer interface of the ServiceWorker API provides an object representing the service worker as an overall unit in the network ecosystem, including facilities to register, unregister and update service workers, and access the state of service workers and their registrations.
-[See ServiceWorkerContainer on MDN](https://developer.mozilla.org/docs/Web/API/ServiceWorkerContainer)
-*/
-type serviceWorkerContainer = {
-  ...eventTarget,
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/ServiceWorkerContainer/controller)
-    */
-  controller: Null.t<serviceWorker>,
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/ServiceWorkerContainer/ready)
-    */
-  ready: Promise.t<serviceWorkerRegistration>,
 }
 
 /**
@@ -15477,37 +18481,6 @@ type lock = {
 }
 
 /**
-[See BaseAudioContext on MDN](https://developer.mozilla.org/docs/Web/API/BaseAudioContext)
-*/
-type baseAudioContext = {
-  ...eventTarget,
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/BaseAudioContext/destination)
-    */
-  destination: audioDestinationNode,
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/BaseAudioContext/sampleRate)
-    */
-  sampleRate: float,
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/BaseAudioContext/currentTime)
-    */
-  currentTime: float,
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/BaseAudioContext/listener)
-    */
-  listener: audioListener,
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/BaseAudioContext/state)
-    */
-  state: audioContextState,
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/BaseAudioContext/audioWorklet)
-    */
-  audioWorklet: audioWorklet,
-}
-
-/**
 An audio-processing graph built from audio modules linked together, each represented by an AudioNode.
 [See AudioContext on MDN](https://developer.mozilla.org/docs/Web/API/AudioContext)
 */
@@ -15545,61 +18518,6 @@ type offlineAudioCompletionEvent = {
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/OfflineAudioCompletionEvent/renderedBuffer)
     */
   renderedBuffer: audioBuffer,
-}
-
-/**
-A generic interface for representing an audio processing module. Examples include:
-[See AudioNode on MDN](https://developer.mozilla.org/docs/Web/API/AudioNode)
-*/
-type audioNode = {
-  ...eventTarget,
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/AudioNode/context)
-    */
-  context: baseAudioContext,
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/AudioNode/numberOfInputs)
-    */
-  numberOfInputs: any,
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/AudioNode/numberOfOutputs)
-    */
-  numberOfOutputs: any,
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/AudioNode/channelCount)
-    */
-  channelCount: any,
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/AudioNode/channelCountMode)
-    */
-  channelCountMode: channelCountMode,
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/AudioNode/channelInterpretation)
-    */
-  channelInterpretation: channelInterpretation,
-}
-
-/**
-The Web Audio API's AudioParam interface represents an audio-related parameter, usually a parameter of an AudioNode (such as GainNode.gain).
-[See AudioParam on MDN](https://developer.mozilla.org/docs/Web/API/AudioParam)
-*/
-type audioParam = {
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/AudioParam/value)
-    */
-  value: float,
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/AudioParam/defaultValue)
-    */
-  defaultValue: float,
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/AudioParam/minValue)
-    */
-  minValue: float,
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/AudioParam/maxValue)
-    */
-  maxValue: float,
 }
 
 /**
@@ -16713,22 +19631,6 @@ type rtcRtpTransceiver = {
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/RTCRtpTransceiver/currentDirection)
     */
   currentDirection: Null.t<rtcRtpTransceiverDirection>,
-}
-
-/**
-Provides access to information about the ICE transport layer over which the data is being sent and received.
-[See RTCIceTransport on MDN](https://developer.mozilla.org/docs/Web/API/RTCIceTransport)
-*/
-type rtcIceTransport = {
-  ...eventTarget,
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/RTCIceTransport/state)
-    */
-  state: rtcIceTransportState,
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/RTCIceTransport/gatheringState)
-    */
-  gatheringState: rtcIceGathererState,
 }
 
 type rtcIceCandidatePair = {}

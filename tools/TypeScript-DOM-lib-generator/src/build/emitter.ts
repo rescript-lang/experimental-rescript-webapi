@@ -2079,6 +2079,7 @@ export function emitRescriptBindings(webidl: Browser.WebIdl): string {
     "QueuingStrategy",
     "ReadableStream",
     "WritableStream",
+    "IDBRequest",
   ]);
 
   function transformExtends(extds: string) {
@@ -2195,7 +2196,11 @@ export function emitRescriptBindings(webidl: Browser.WebIdl): string {
       // See https://developer.mozilla.org/en-US/docs/Web/API/ClipboardItem/types
       case "FrozenArray":
       case "ObservableArray":
+      case "sequence":
         return "array";
+
+      case "Uint8ClampedArray":
+        return "array<int>";
 
       case "Promise":
         return "Promise.t";
@@ -2251,6 +2256,22 @@ export function emitRescriptBindings(webidl: Browser.WebIdl): string {
 
       // https://developer.mozilla.org/en-US/docs/Web/API/HTMLInputElement/selectionDirection
       case '"forward" | "backward" | "none"':
+        return "string";
+
+      // https://developer.mozilla.org/en-US/docs/Web/API/DataTransfer/dropEffect
+      case '"none" | "copy" | "link" | "move"':
+        return "string";
+
+      // https://developer.mozilla.org/en-US/docs/Web/API/DataTransfer/effectAllowed
+      case '"none" | "copy" | "copyLink" | "copyMove" | "link" | "linkMove" | "move" | "':
+        return "string";
+
+      // https://developer.mozilla.org/en-US/docs/Web/API/DataTransfer/effectAllowed
+      case '"none" | "copy" | "copyLink" | "copyMove" | "link" | "linkMove" | "move" | "all" | "uninitialized"':
+        return "string";
+
+      // "\"attributes\" | \"characterData\" | \"childList\""
+      case "MutationRecordType":
         return "string";
 
       case "string | string[]":
@@ -2530,24 +2551,34 @@ export function emitRescriptBindings(webidl: Browser.WebIdl): string {
     printer.printLine("type queuingStrategy<'t> = {}");
   }
 
-  function emitInterfaceChain(
-    sortedInterfaces: Browser.Interface[],
-    chain: string[],
-  ) {
-    for (const [idx, name] of chain.entries()) {
-      const i = sortedInterfaces.find((i) => i.name === name);
-      if (i) {
-        emitInterfaceRecord(
-          {
-            allowSpreading: false,
-            typeKeywords: idx === 0 ? "type rec" : "and",
-          },
-          i,
-        );
-      }
+  function emitIndividualInterfaces(items: Browser.Interface[]) {
+    for (const i of items) {
+      emitInterfaceRecord({ allowSpreading: true, typeKeywords: "type" }, i);
+    }
+  }
+
+  function emitInterfaceChain(chain: Browser.Interface[]) {
+    for (const [idx, i] of chain.entries()) {
+      emitInterfaceRecord(
+        {
+          allowSpreading: false,
+          typeKeywords: idx === 0 ? "type rec" : "and",
+        },
+        i,
+      );
       // TODO: construct a %identity function to convert to the base interface?
       // Or perhaps this happens in a separate file/module?
     }
+  }
+
+  function emitMediaImage() {
+    printer.printLine("type mediaImage = {");
+    printer.increaseIndent();
+    printer.printLine("src: string,");
+    printer.printLine("sizes?: string,");
+    printer.printLine('@as("type") type_?: string,');
+    printer.decreaseIndent();
+    printer.printLine("}");
   }
 
   function emit() {
@@ -2559,6 +2590,19 @@ export function emitRescriptBindings(webidl: Browser.WebIdl): string {
     printer.printLine("type arrayBufferView = {}");
     printer.printLine("type domHighResTimeStamp");
     printer.printLine("type usvString");
+    // TODO: "number | string | Date | BufferSource | IDBValidKey[]"
+    printer.printLine("type idbValidKey = unknown");
+    // TODO: https://developer.mozilla.org/en-US/docs/Web/API/CryptoKey/algorithm
+    printer.printLine("type keyAlgorithm = unknown");
+    printer.printLine("type cssPerspectiveValue = unknown");
+    printer.printLine("type arrayBuffer = unknown");
+    // "MediaProvider", // The object can be a MediaStream, a MediaSource, a Blob, or a File (which inherits from Blob).
+    printer.printLine("type mediaProvider = unknown");
+    // https://developer.mozilla.org/en-US/docs/Web/API/MessageEvent/source
+    printer.printLine("type messageEventSource = unknown");
+    // https://developer.mozilla.org/en-US/docs/Web/API/WebTransport/closed
+    printer.printLine("type webTransportCloseInfo = unknown");
+    printer.printLine("type lineAndPositionSetting = unknown");
     printer.printLine("/* End temporary */");
     printer.printLine("");
 
@@ -2568,98 +2612,158 @@ export function emitRescriptBindings(webidl: Browser.WebIdl): string {
     emitDomString();
     emitEventPhase();
     emitQueuingStrategy();
+    emitMediaImage();
 
-    // TODO: WindowProxy is an alias for Window
+    type Individuals = {
+      kind: "individuals";
+      interfaces: Browser.Interface[];
+    };
 
-    // These are interfaces that need to be defined first but are not part of the root chain.
-    const precursors = [
-      "DOMTokenList",
-      "NamedNodeMap",
-      "Location",
-      "FragmentDirective",
-      // DocumentTimeline inherits AnimationTimeline
-      "DocumentTimeline",
-      "AnimationTimeline",
-      "History",
-      "CustomElementRegistry",
-      // https://developer.mozilla.org/en-US/docs/Web/API/Window/locationbar
-      "BarProp",
-      "Navigator",
-      "Screen",
-      "VisualViewport",
-      "SpeechSynthesis",
-      "DOMException",
-      "IDBTransaction",
-      "DOMStringList",
-      "IDBCursor",
-      "SubtleCrypto",
-      "CryptoKey",
-      "DataTransfer",
-      "AnimationEffect",
-      "MediaList",
-      "CSSStyleDeclaration",
-      "CSSNumericArray",
-      "CSSPerspective",
-      "CSSMatrixComponent",
-      "DOMMatrix",
-      "NodeFilter",
-      "MediaKeySession",
-      "ArrayBuffer",
-      "FileSystem",
-      "GamepadHapticActuator",
-      "GeolocationCoordinates",
-      "HTMLFormControlsCollection",
-      "ValidityState",
-      "MediaError",
-      "MediaProvider", // The object can be a MediaStream, a MediaSource, a Blob, or a File (which inherits from Blob).
-      "TimeRanges", // https://developer.mozilla.org/en-US/docs/Web/API/TimeRanges#normalized_timeranges_objects
-      "TextTrackList",
-      "RemotePlayback",
-      "TextTrackCueList",
-      "FileList",
-      "FormData",
-      "Uint8ClampedArray",
-      "CustomStateSet",
-      "MutationRecord",
-      "MessageEventSource",
-      "MessagePort",
-      "SourceBufferList",
-      "MediaMetadata",
-      "NavigationPreloadManager",
-      "SpeechSynthesisVoice",
-      "FileSystemEntry",
-      "FontFace",
-      "GamepadButton",
-      "PerformanceServerTiming",
-      "ResizeObserverSize",
-      "URLSearchParams",
-      "AudioDestinationNode",
-      "AudioListener",
-      "AudioWorklet",
-      "AudioBuffer",
-      "AuthenticatorResponse", // https://developer.mozilla.org/en-US/docs/Web/API/PublicKeyCredential/response
-      "VideoColorSpace",
-      "RTCSessionDescription",
-      "RTCSctpTransport",
-      "RTCDtlsTransport",
-      "RTCRtpScriptTransform",
-      "RTCDTMFSender",
-      "WebTransportCloseInfo", // https://developer.mozilla.org/en-US/docs/Web/API/WebTransport/closed
-      "VTTRegion",
-      "LineAndPositionSetting", // https://developer.mozilla.org/en-US/docs/Web/API/VTTCue/line
-    ];
+    type Chain = {
+      kind: "chain";
+      interfaces: Browser.Interface[];
+    };
 
-    const chains = [
-      [
-        "EventTarget",
+    type InterfaceGeneration = Individuals | Chain;
+
+    function individualInterfaces(names: string[]): InterfaceGeneration {
+      const interfaces = names
+        .map((name) => {
+          const i = allInterfaces.find((i) => i.name === name);
+          return i;
+        })
+        .filter((i) => i !== undefined) as Browser.Interface[];
+
+      return {
+        kind: "individuals",
+        interfaces: interfaces,
+      };
+    }
+
+    function chain(names: string[]): InterfaceGeneration {
+      const interfaces = names
+        .map((name) => {
+          const i = allInterfaces.find((i) => i.name === name);
+          return i;
+        })
+        .filter((i) => i !== undefined) as Browser.Interface[];
+
+      return {
+        kind: "chain",
+        interfaces,
+      };
+    }
+
+    const interfaceHierarchy: InterfaceGeneration[] = [
+      individualInterfaces(["EventTarget"]),
+      chain([
+        "AudioNode",
+        "AudioDestinationNode",
+        "BaseAudioContext",
+        "AudioListener",
+        "AudioWorklet",
+        "AudioParam",
+      ]),
+      individualInterfaces(["NavigationPreloadManager", "PushManager"]),
+      chain([
+        "ServiceWorkerRegistration",
+        "ServiceWorker",
+        "ServiceWorkerContainer",
+      ]),
+      chain(["FileSystemEntry", "FileSystemDirectoryEntry", "FileSystem"]),
+      individualInterfaces([
+        "DOMTokenList",
+        "NamedNodeMap",
+        "DOMStringList",
+        "Location",
+        "FragmentDirective",
+        "History",
+        "CustomElementRegistry",
+        // https://developer.mozilla.org/en-US/docs/Web/API/Window/locationbar
+        "BarProp",
+        "Clipboard",
+        "CredentialsContainer",
+        "Geolocation",
+        "MediaCapabilities",
+        "UserActivation",
+        "MediaDevices",
+        "MediaMetadata",
+        "MediaSession",
+        "Permissions",
+        "WakeLock",
+        "Navigator",
+        "ScreenOrientation",
+        "Screen",
+        "VisualViewport",
+        "SpeechSynthesis",
+        "DOMException",
+        "IDBValidKey",
+        "IDBDatabase",
+        "IDBTransaction",
+        "IDBRequest",
+        "IDBCursor",
+        "SubtleCrypto",
+        "KeyAlgorithm",
+        "CryptoKey",
+        "DataTransferItemList",
+        "FileList",
+        "DataTransfer",
+        "AnimationEffect",
+        "MediaList",
+        "CSSNumericArray",
+        "CSSTransformComponent",
+        "CSSStyleValue",
+        "CSSNumericValue",
+        "CSSPerspective",
+        "DOMMatrixReadOnly",
+        "DOMMatrix",
+        "CSSMatrixComponent",
+        "NodeFilter",
+        "MediaKeyStatusMap",
+        "MediaKeySession",
+        "ArrayBuffer",
+        "GamepadHapticActuator",
+        "GeolocationCoordinates",
+        "ValidityState",
+        "MediaError",
+        "TimeRanges", // https://developer.mozilla.org/en-US/docs/Web/API/TimeRanges#normalized_timeranges_objects
+        "TextTrackList",
+        "RemotePlayback",
+        "TextTrackCueList",
+        "FormData",
+        "CustomStateSet",
+        "MessageEventSource",
+        "MessagePort",
+        "SourceBufferList",
+        "SpeechSynthesisVoice",
+        "GamepadButton",
+        "PerformanceServerTiming",
+        "ResizeObserverSize",
+        "URLSearchParams",
+        "AudioBuffer",
+        "AuthenticatorResponse", // https://developer.mozilla.org/en-US/docs/Web/API/PublicKeyCredential/response
+        "VideoColorSpace",
+        "RTCSessionDescription",
+        "RTCIceTransport",
+        "RTCDtlsTransport",
+        "RTCSctpTransport",
+        "RTCRtpScriptTransform",
+        "RTCDTMFSender",
+        "WebTransportCloseInfo", // https://developer.mozilla.org/en-US/docs/Web/API/WebTransport/closed
+        "VTTRegion",
+        "LineAndPositionSetting", // https://developer.mozilla.org/en-US/docs/Web/API/VTTCue/line
+      ]),
+      chain(["AnimationTimeline", "DocumentTimeline"]),
+      chain([
         "Node",
         "NodeList",
         "NodeListOf",
         "Element",
         "ShadowRoot",
-        "HTMLElement",
         "HTMLCollection",
         "HTMLCollectionOf",
+        "HTMLFormControlsCollection",
+        "HTMLElement",
         "HTMLHeadElement",
         "HTMLFormElement",
         "HTMLImageElement",
@@ -2672,17 +2776,24 @@ export function emitRescriptBindings(webidl: Browser.WebIdl): string {
         "Document",
         "Window",
         "Event",
-      ],
-      ["StyleSheet", "CSSStyleSheet", "CSSRule", "CSSRuleList"],
-      ["AbortController", "AbortSignal"],
-      [
+        "MutationRecord",
+      ]),
+      chain([
+        "StyleSheet",
+        "CSSStyleSheet",
+        "CSSRule",
+        "CSSRuleList",
+        "CSSStyleDeclaration",
+      ]),
+      chain(["AbortController", "AbortSignal"]),
+      chain([
         "HTMLTableElement",
         "HTMLTableCaptionElement",
         "HTMLTableSectionElement",
         "HTMLTableCellElement",
         "HTMLTableRowElement",
-      ],
-      [
+      ]),
+      chain([
         "HTMLButtonElement",
         "HTMLLabelElement",
         "HTMLTextAreaElement",
@@ -2692,30 +2803,33 @@ export function emitRescriptBindings(webidl: Browser.WebIdl): string {
         "HTMLSelectElement",
         "HTMLOptionElement",
         "HTMLOptionsCollection",
-      ],
-      ["ReadableByteStreamController", "ReadableStreamBYOBRequest"],
-      ["Animation"],
-      ["FontFaceSet"],
+      ]),
+      chain(["ReadableByteStreamController", "ReadableStreamBYOBRequest"]),
+      chain(["Animation"]),
+      chain(["FontFaceSet"]),
+      chain(["FontFace"]),
     ];
 
-    for (const precursor of precursors) {
-      printer.printLine(`type ${toCamelCase(precursor)} = {}`);
+    for (const entry of interfaceHierarchy) {
+      if (entry.kind === "individuals") {
+        emitIndividualInterfaces(entry.interfaces);
+      } else {
+        emitInterfaceChain(entry.interfaces);
+      }
     }
 
-    const sortedInterfaces = topologicalSortDictionaries(allInterfaces);
+    let remainers = allInterfaces.filter((i) => {
+      return !interfaceHierarchy.some((h) => {
+        return h.interfaces.some((j) => {
+          return j.name === i.name;
+        });
+      });
+    });
+    remainers = topologicalSortDictionaries(remainers);
 
-    for (const chain of chains) {
-      emitInterfaceChain(sortedInterfaces, chain);
-    }
+    console.log(`Remainders: ${remainers.length}`);
 
-    for (const i of sortedInterfaces) {
-      if (
-        chains.some((chain) => chain.includes(i.name)) ||
-        precursors.includes(i.name)
-      )
-        continue;
-      emitInterfaceRecord({ allowSpreading: true, typeKeywords: "type" }, i);
-    }
+    emitIndividualInterfaces(remainers);
 
     return printer.getResult();
   }
