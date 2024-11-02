@@ -1253,15 +1253,15 @@ type rec audioNode = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/AudioNode/channelCount)
     */
-  channelCount: any,
+  mutable channelCount: any,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/AudioNode/channelCountMode)
     */
-  channelCountMode: channelCountMode,
+  mutable channelCountMode: channelCountMode,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/AudioNode/channelInterpretation)
     */
-  channelInterpretation: channelInterpretation,
+  mutable channelInterpretation: channelInterpretation,
 }
 
 /**
@@ -1285,15 +1285,15 @@ and audioDestinationNode = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/AudioNode/channelCount)
     */
-  channelCount: any,
+  mutable channelCount: any,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/AudioNode/channelCountMode)
     */
-  channelCountMode: channelCountMode,
+  mutable channelCountMode: channelCountMode,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/AudioNode/channelInterpretation)
     */
-  channelInterpretation: channelInterpretation,
+  mutable channelInterpretation: channelInterpretation,
   // End base properties from AudioNode
 
   /**
@@ -1388,7 +1388,7 @@ and audioParam = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/AudioParam/value)
     */
-  value: float,
+  mutable value: float,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/AudioParam/defaultValue)
     */
@@ -1568,7 +1568,7 @@ type domTokenList = {
 Can be set, to change the associated attribute.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/DOMTokenList/value)
     */
-  value: domString,
+  mutable value: domString,
 }
 
 /**
@@ -1605,7 +1605,7 @@ type location = {
 Can be set, to navigate to the given URL.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Location/href)
     */
-  href: usvString,
+  mutable href: usvString,
   /**
     Returns the Location object's URL's origin.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Location/origin)
@@ -1617,49 +1617,49 @@ Can be set, to navigate to the given URL.
 Can be set, to navigate to the same URL with a changed scheme.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Location/protocol)
     */
-  protocol: usvString,
+  mutable protocol: usvString,
   /**
     Returns the Location object's URL's host and port (if different from the default port for the scheme).
 
 Can be set, to navigate to the same URL with a changed host and port.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Location/host)
     */
-  host: usvString,
+  mutable host: usvString,
   /**
     Returns the Location object's URL's host.
 
 Can be set, to navigate to the same URL with a changed host.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Location/hostname)
     */
-  hostname: usvString,
+  mutable hostname: usvString,
   /**
     Returns the Location object's URL's port.
 
 Can be set, to navigate to the same URL with a changed port.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Location/port)
     */
-  port: usvString,
+  mutable port: usvString,
   /**
     Returns the Location object's URL's path.
 
 Can be set, to navigate to the same URL with a changed path.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Location/pathname)
     */
-  pathname: usvString,
+  mutable pathname: usvString,
   /**
     Returns the Location object's URL's query (includes leading "?" if non-empty).
 
 Can be set, to navigate to the same URL with a changed query (ignores leading "?").
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Location/search)
     */
-  search: usvString,
+  mutable search: usvString,
   /**
     Returns the Location object's URL's fragment (includes leading "#" if non-empty).
 
 Can be set, to navigate to the same URL with a changed fragment (ignores leading "#").
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Location/hash)
     */
-  hash: usvString,
+  mutable hash: usvString,
   /**
     Returns a DOMStringList object listing the origins of the ancestor browsing contexts, from the parent browsing context to the top-level browsing context.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Location/ancestorOrigins)
@@ -1684,7 +1684,7 @@ type history = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/History/scrollRestoration)
     */
-  scrollRestoration: scrollRestoration,
+  mutable scrollRestoration: scrollRestoration,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/History/state)
     */
@@ -1758,19 +1758,19 @@ type mediaMetadata = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/MediaMetadata/title)
     */
-  title: domString,
+  mutable title: domString,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/MediaMetadata/artist)
     */
-  artist: domString,
+  mutable artist: domString,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/MediaMetadata/album)
     */
-  album: domString,
+  mutable album: domString,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/MediaMetadata/artwork)
     */
-  artwork: array<mediaImage>,
+  mutable artwork: array<mediaImage>,
 }
 
 /**
@@ -1780,11 +1780,11 @@ type mediaSession = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/MediaSession/metadata)
     */
-  metadata: Null.t<mediaMetadata>,
+  mutable metadata: Null.t<mediaMetadata>,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/MediaSession/playbackState)
     */
-  playbackState: mediaSessionPlaybackState,
+  mutable playbackState: mediaSessionPlaybackState,
 }
 
 /**
@@ -2154,7 +2154,7 @@ Can be set, to change the selected operation.
 The possible values are "none", "copy", "link", and "move".
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/DataTransfer/dropEffect)
     */
-  dropEffect: string,
+  mutable dropEffect: string,
   /**
     Returns the kinds of operations that are to be allowed.
 
@@ -2163,7 +2163,7 @@ Can be set (during the dragstart event), to change the allowed operations.
 The possible values are "none", "copy", "copyLink", "copyMove", "link", "linkMove", "move", "all", and "uninitialized",
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/DataTransfer/effectAllowed)
     */
-  effectAllowed: string,
+  mutable effectAllowed: string,
   /**
     Returns a DataTransferItemList object, with the drag data.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/DataTransfer/items)
@@ -2193,7 +2193,7 @@ type mediaList = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/MediaList/mediaText)
     */
-  mediaText: string,
+  mutable mediaText: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/MediaList/length)
     */
@@ -2217,7 +2217,7 @@ type cssTransformComponent = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CSSTransformComponent/is2D)
     */
-  is2D: bool,
+  mutable is2D: bool,
 }
 
 /**
@@ -2240,7 +2240,7 @@ type cssPerspective = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CSSPerspective/length)
     */
-  length: cssPerspectiveValue,
+  mutable length: cssPerspectiveValue,
 }
 
 /**
@@ -2352,7 +2352,7 @@ type cssMatrixComponent = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CSSMatrixComponent/matrix)
     */
-  matrix: domMatrix,
+  mutable matrix: domMatrix,
 }
 
 type nodeFilter = {}
@@ -2902,11 +2902,11 @@ type rec node = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/nodeValue)
     */
-  nodeValue: Null.t<domString>,
+  mutable nodeValue: Null.t<domString>,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/textContent)
     */
-  textContent: Null.t<domString>,
+  mutable textContent: Null.t<domString>,
 }
 
 /**
@@ -3000,11 +3000,11 @@ and element = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/nodeValue)
     */
-  nodeValue: Null.t<domString>,
+  mutable nodeValue: Null.t<domString>,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/textContent)
     */
-  textContent: Null.t<domString>,
+  mutable textContent: Null.t<domString>,
   // End base properties from Node
 
   /**
@@ -3031,12 +3031,12 @@ and element = {
     Returns the value of element's id content attribute. Can be set to change it.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/id)
     */
-  id: domString,
+  mutable id: domString,
   /**
     Returns the value of element's class content attribute. Can be set to change it.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/className)
     */
-  className: domString,
+  mutable className: domString,
   /**
     Allows for manipulation of element's class content attribute as a set of whitespace-separated tokens through a DOMTokenList object.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/classList)
@@ -3046,7 +3046,7 @@ and element = {
     Returns the value of element's slot content attribute. Can be set to change it.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/slot)
     */
-  slot: domString,
+  mutable slot: domString,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/attributes)
     */
@@ -3063,11 +3063,11 @@ and element = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/scrollTop)
     */
-  scrollTop: any,
+  mutable scrollTop: any,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/scrollLeft)
     */
-  scrollLeft: any,
+  mutable scrollLeft: any,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/scrollWidth)
     */
@@ -3099,11 +3099,11 @@ and element = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/innerHTML)
     */
-  innerHTML: unknown,
+  mutable innerHTML: unknown,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/outerHTML)
     */
-  outerHTML: unknown,
+  mutable outerHTML: unknown,
 }
 
 /**
@@ -3177,11 +3177,11 @@ and shadowRoot = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/nodeValue)
     */
-  nodeValue: Null.t<domString>,
+  mutable nodeValue: Null.t<domString>,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/textContent)
     */
-  textContent: Null.t<domString>,
+  mutable textContent: Null.t<domString>,
   // End base properties from Node
 
   /**
@@ -3211,7 +3211,7 @@ and shadowRoot = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/ShadowRoot/innerHTML)
     */
-  innerHTML: unknown,
+  mutable innerHTML: unknown,
 }
 
 /**
@@ -3280,12 +3280,12 @@ and htmlElement = {
     Returns the value of element's id content attribute. Can be set to change it.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/id)
     */
-  id: domString,
+  mutable id: domString,
   /**
     Returns the value of element's class content attribute. Can be set to change it.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/className)
     */
-  className: domString,
+  mutable className: domString,
   /**
     Allows for manipulation of element's class content attribute as a set of whitespace-separated tokens through a DOMTokenList object.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/classList)
@@ -3295,7 +3295,7 @@ and htmlElement = {
     Returns the value of element's slot content attribute. Can be set to change it.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/slot)
     */
-  slot: domString,
+  mutable slot: domString,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/attributes)
     */
@@ -3312,11 +3312,11 @@ and htmlElement = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/scrollTop)
     */
-  scrollTop: any,
+  mutable scrollTop: any,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/scrollLeft)
     */
-  scrollLeft: any,
+  mutable scrollLeft: any,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/scrollWidth)
     */
@@ -3348,11 +3348,11 @@ and htmlElement = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/innerHTML)
     */
-  innerHTML: unknown,
+  mutable innerHTML: unknown,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/outerHTML)
     */
-  outerHTML: unknown,
+  mutable outerHTML: unknown,
   // End base properties from Element
 
   // Base properties from Node
@@ -3419,41 +3419,41 @@ and htmlElement = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/nodeValue)
     */
-  nodeValue: Null.t<domString>,
+  mutable nodeValue: Null.t<domString>,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/textContent)
     */
-  textContent: Null.t<domString>,
+  mutable textContent: Null.t<domString>,
   // End base properties from Node
 
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/title)
     */
-  title: domString,
+  mutable title: domString,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/lang)
     */
-  lang: domString,
+  mutable lang: domString,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/translate)
     */
-  translate: bool,
+  mutable translate: bool,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/dir)
     */
-  dir: domString,
+  mutable dir: domString,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/hidden)
     */
-  hidden: unknown,
+  mutable hidden: unknown,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/inert)
     */
-  inert: bool,
+  mutable inert: bool,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/accessKey)
     */
-  accessKey: domString,
+  mutable accessKey: domString,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/accessKeyLabel)
     */
@@ -3461,27 +3461,27 @@ and htmlElement = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/draggable)
     */
-  draggable: bool,
+  mutable draggable: bool,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/spellcheck)
     */
-  spellcheck: bool,
+  mutable spellcheck: bool,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/autocapitalize)
     */
-  autocapitalize: domString,
+  mutable autocapitalize: domString,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/innerText)
     */
-  innerText: domString,
+  mutable innerText: domString,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/outerText)
     */
-  outerText: domString,
+  mutable outerText: domString,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/popover)
     */
-  popover: Null.t<domString>,
+  mutable popover: Null.t<domString>,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/offsetParent)
     */
@@ -3513,31 +3513,31 @@ and htmlHeadElement = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/title)
     */
-  title: domString,
+  mutable title: domString,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/lang)
     */
-  lang: domString,
+  mutable lang: domString,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/translate)
     */
-  translate: bool,
+  mutable translate: bool,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/dir)
     */
-  dir: domString,
+  mutable dir: domString,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/hidden)
     */
-  hidden: unknown,
+  mutable hidden: unknown,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/inert)
     */
-  inert: bool,
+  mutable inert: bool,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/accessKey)
     */
-  accessKey: domString,
+  mutable accessKey: domString,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/accessKeyLabel)
     */
@@ -3545,27 +3545,27 @@ and htmlHeadElement = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/draggable)
     */
-  draggable: bool,
+  mutable draggable: bool,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/spellcheck)
     */
-  spellcheck: bool,
+  mutable spellcheck: bool,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/autocapitalize)
     */
-  autocapitalize: domString,
+  mutable autocapitalize: domString,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/innerText)
     */
-  innerText: domString,
+  mutable innerText: domString,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/outerText)
     */
-  outerText: domString,
+  mutable outerText: domString,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/popover)
     */
-  popover: Null.t<domString>,
+  mutable popover: Null.t<domString>,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/offsetParent)
     */
@@ -3613,12 +3613,12 @@ and htmlHeadElement = {
     Returns the value of element's id content attribute. Can be set to change it.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/id)
     */
-  id: domString,
+  mutable id: domString,
   /**
     Returns the value of element's class content attribute. Can be set to change it.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/className)
     */
-  className: domString,
+  mutable className: domString,
   /**
     Allows for manipulation of element's class content attribute as a set of whitespace-separated tokens through a DOMTokenList object.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/classList)
@@ -3628,7 +3628,7 @@ and htmlHeadElement = {
     Returns the value of element's slot content attribute. Can be set to change it.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/slot)
     */
-  slot: domString,
+  mutable slot: domString,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/attributes)
     */
@@ -3645,11 +3645,11 @@ and htmlHeadElement = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/scrollTop)
     */
-  scrollTop: any,
+  mutable scrollTop: any,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/scrollLeft)
     */
-  scrollLeft: any,
+  mutable scrollLeft: any,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/scrollWidth)
     */
@@ -3681,11 +3681,11 @@ and htmlHeadElement = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/innerHTML)
     */
-  innerHTML: unknown,
+  mutable innerHTML: unknown,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/outerHTML)
     */
-  outerHTML: unknown,
+  mutable outerHTML: unknown,
   // End base properties from Element
 
   // Base properties from Node
@@ -3752,11 +3752,11 @@ and htmlHeadElement = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/nodeValue)
     */
-  nodeValue: Null.t<domString>,
+  mutable nodeValue: Null.t<domString>,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/textContent)
     */
-  textContent: Null.t<domString>,
+  mutable textContent: Null.t<domString>,
   // End base properties from Node
 }
 
@@ -3769,31 +3769,31 @@ and htmlFormElement = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/title)
     */
-  title: domString,
+  mutable title: domString,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/lang)
     */
-  lang: domString,
+  mutable lang: domString,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/translate)
     */
-  translate: bool,
+  mutable translate: bool,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/dir)
     */
-  dir: domString,
+  mutable dir: domString,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/hidden)
     */
-  hidden: unknown,
+  mutable hidden: unknown,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/inert)
     */
-  inert: bool,
+  mutable inert: bool,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/accessKey)
     */
-  accessKey: domString,
+  mutable accessKey: domString,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/accessKeyLabel)
     */
@@ -3801,27 +3801,27 @@ and htmlFormElement = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/draggable)
     */
-  draggable: bool,
+  mutable draggable: bool,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/spellcheck)
     */
-  spellcheck: bool,
+  mutable spellcheck: bool,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/autocapitalize)
     */
-  autocapitalize: domString,
+  mutable autocapitalize: domString,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/innerText)
     */
-  innerText: domString,
+  mutable innerText: domString,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/outerText)
     */
-  outerText: domString,
+  mutable outerText: domString,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/popover)
     */
-  popover: Null.t<domString>,
+  mutable popover: Null.t<domString>,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/offsetParent)
     */
@@ -3869,12 +3869,12 @@ and htmlFormElement = {
     Returns the value of element's id content attribute. Can be set to change it.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/id)
     */
-  id: domString,
+  mutable id: domString,
   /**
     Returns the value of element's class content attribute. Can be set to change it.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/className)
     */
-  className: domString,
+  mutable className: domString,
   /**
     Allows for manipulation of element's class content attribute as a set of whitespace-separated tokens through a DOMTokenList object.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/classList)
@@ -3884,7 +3884,7 @@ and htmlFormElement = {
     Returns the value of element's slot content attribute. Can be set to change it.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/slot)
     */
-  slot: domString,
+  mutable slot: domString,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/attributes)
     */
@@ -3901,11 +3901,11 @@ and htmlFormElement = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/scrollTop)
     */
-  scrollTop: any,
+  mutable scrollTop: any,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/scrollLeft)
     */
-  scrollLeft: any,
+  mutable scrollLeft: any,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/scrollWidth)
     */
@@ -3937,11 +3937,11 @@ and htmlFormElement = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/innerHTML)
     */
-  innerHTML: unknown,
+  mutable innerHTML: unknown,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/outerHTML)
     */
-  outerHTML: unknown,
+  mutable outerHTML: unknown,
   // End base properties from Element
 
   // Base properties from Node
@@ -4008,53 +4008,53 @@ and htmlFormElement = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/nodeValue)
     */
-  nodeValue: Null.t<domString>,
+  mutable nodeValue: Null.t<domString>,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/textContent)
     */
-  textContent: Null.t<domString>,
+  mutable textContent: Null.t<domString>,
   // End base properties from Node
 
   /**
     Sets or retrieves a list of character encodings for input data that must be accepted by the server processing the form.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLFormElement/acceptCharset)
     */
-  acceptCharset: domString,
+  mutable acceptCharset: domString,
   /**
     Sets or retrieves the URL to which the form content is sent for processing.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLFormElement/action)
     */
-  action: usvString,
+  mutable action: usvString,
   /**
     Specifies whether autocomplete is applied to an editable text field.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLFormElement/autocomplete)
     */
-  autocomplete: autoFillBase,
+  mutable autocomplete: autoFillBase,
   /**
     Sets or retrieves the encoding type for the form.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLFormElement/enctype)
     */
-  enctype: domString,
+  mutable enctype: domString,
   /**
     Sets or retrieves the MIME encoding for the form.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLFormElement/encoding)
     */
-  encoding: domString,
+  mutable encoding: domString,
   /**
     Sets or retrieves how to send the form data to the server.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLFormElement/method)
     */
-  method: domString,
+  mutable method: domString,
   /**
     Sets or retrieves the name of the object.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLFormElement/name)
     */
-  name: domString,
+  mutable name: domString,
   /**
     Sets or retrieves the window or frame at which to target content.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLFormElement/target)
     */
-  target: domString,
+  mutable target: domString,
   /**
     Retrieves a collection, in source order, of all controls in a given form.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLFormElement/elements)
@@ -4076,31 +4076,31 @@ and htmlImageElement = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/title)
     */
-  title: domString,
+  mutable title: domString,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/lang)
     */
-  lang: domString,
+  mutable lang: domString,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/translate)
     */
-  translate: bool,
+  mutable translate: bool,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/dir)
     */
-  dir: domString,
+  mutable dir: domString,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/hidden)
     */
-  hidden: unknown,
+  mutable hidden: unknown,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/inert)
     */
-  inert: bool,
+  mutable inert: bool,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/accessKey)
     */
-  accessKey: domString,
+  mutable accessKey: domString,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/accessKeyLabel)
     */
@@ -4108,27 +4108,27 @@ and htmlImageElement = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/draggable)
     */
-  draggable: bool,
+  mutable draggable: bool,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/spellcheck)
     */
-  spellcheck: bool,
+  mutable spellcheck: bool,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/autocapitalize)
     */
-  autocapitalize: domString,
+  mutable autocapitalize: domString,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/innerText)
     */
-  innerText: domString,
+  mutable innerText: domString,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/outerText)
     */
-  outerText: domString,
+  mutable outerText: domString,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/popover)
     */
-  popover: Null.t<domString>,
+  mutable popover: Null.t<domString>,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/offsetParent)
     */
@@ -4176,12 +4176,12 @@ and htmlImageElement = {
     Returns the value of element's id content attribute. Can be set to change it.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/id)
     */
-  id: domString,
+  mutable id: domString,
   /**
     Returns the value of element's class content attribute. Can be set to change it.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/className)
     */
-  className: domString,
+  mutable className: domString,
   /**
     Allows for manipulation of element's class content attribute as a set of whitespace-separated tokens through a DOMTokenList object.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/classList)
@@ -4191,7 +4191,7 @@ and htmlImageElement = {
     Returns the value of element's slot content attribute. Can be set to change it.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/slot)
     */
-  slot: domString,
+  mutable slot: domString,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/attributes)
     */
@@ -4208,11 +4208,11 @@ and htmlImageElement = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/scrollTop)
     */
-  scrollTop: any,
+  mutable scrollTop: any,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/scrollLeft)
     */
-  scrollLeft: any,
+  mutable scrollLeft: any,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/scrollWidth)
     */
@@ -4244,11 +4244,11 @@ and htmlImageElement = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/innerHTML)
     */
-  innerHTML: unknown,
+  mutable innerHTML: unknown,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/outerHTML)
     */
-  outerHTML: unknown,
+  mutable outerHTML: unknown,
   // End base properties from Element
 
   // Base properties from Node
@@ -4315,55 +4315,55 @@ and htmlImageElement = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/nodeValue)
     */
-  nodeValue: Null.t<domString>,
+  mutable nodeValue: Null.t<domString>,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/textContent)
     */
-  textContent: Null.t<domString>,
+  mutable textContent: Null.t<domString>,
   // End base properties from Node
 
   /**
     Sets or retrieves a text alternative to the graphic.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLImageElement/alt)
     */
-  alt: domString,
+  mutable alt: domString,
   /**
     The address or URL of the a media resource that is to be considered.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLImageElement/src)
     */
-  src: usvString,
+  mutable src: usvString,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLImageElement/srcset)
     */
-  srcset: usvString,
+  mutable srcset: usvString,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLImageElement/sizes)
     */
-  sizes: domString,
+  mutable sizes: domString,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLImageElement/crossOrigin)
     */
-  crossOrigin: Null.t<domString>,
+  mutable crossOrigin: Null.t<domString>,
   /**
     Sets or retrieves the URL, often with a bookmark extension (#name), to use as a client-side image map.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLImageElement/useMap)
     */
-  useMap: domString,
+  mutable useMap: domString,
   /**
     Sets or retrieves whether the image is a server-side image map.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLImageElement/isMap)
     */
-  isMap: bool,
+  mutable isMap: bool,
   /**
     Sets or retrieves the width of the object.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLImageElement/width)
     */
-  width: any,
+  mutable width: any,
   /**
     Sets or retrieves the height of the object.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLImageElement/height)
     */
-  height: any,
+  mutable height: any,
   /**
     The original width of the image resource before sizing.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLImageElement/naturalWidth)
@@ -4386,20 +4386,20 @@ and htmlImageElement = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLImageElement/referrerPolicy)
     */
-  referrerPolicy: domString,
+  mutable referrerPolicy: domString,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLImageElement/decoding)
     */
-  decoding: string,
+  mutable decoding: string,
   /**
     Sets or retrieves the policy for loading image elements that are outside the viewport.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLImageElement/loading)
     */
-  loading: string,
+  mutable loading: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLImageElement/fetchPriority)
     */
-  fetchPriority: domString,
+  mutable fetchPriority: domString,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLImageElement/x)
     */
@@ -4419,31 +4419,31 @@ and htmlEmbedElement = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/title)
     */
-  title: domString,
+  mutable title: domString,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/lang)
     */
-  lang: domString,
+  mutable lang: domString,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/translate)
     */
-  translate: bool,
+  mutable translate: bool,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/dir)
     */
-  dir: domString,
+  mutable dir: domString,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/hidden)
     */
-  hidden: unknown,
+  mutable hidden: unknown,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/inert)
     */
-  inert: bool,
+  mutable inert: bool,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/accessKey)
     */
-  accessKey: domString,
+  mutable accessKey: domString,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/accessKeyLabel)
     */
@@ -4451,27 +4451,27 @@ and htmlEmbedElement = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/draggable)
     */
-  draggable: bool,
+  mutable draggable: bool,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/spellcheck)
     */
-  spellcheck: bool,
+  mutable spellcheck: bool,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/autocapitalize)
     */
-  autocapitalize: domString,
+  mutable autocapitalize: domString,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/innerText)
     */
-  innerText: domString,
+  mutable innerText: domString,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/outerText)
     */
-  outerText: domString,
+  mutable outerText: domString,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/popover)
     */
-  popover: Null.t<domString>,
+  mutable popover: Null.t<domString>,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/offsetParent)
     */
@@ -4519,12 +4519,12 @@ and htmlEmbedElement = {
     Returns the value of element's id content attribute. Can be set to change it.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/id)
     */
-  id: domString,
+  mutable id: domString,
   /**
     Returns the value of element's class content attribute. Can be set to change it.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/className)
     */
-  className: domString,
+  mutable className: domString,
   /**
     Allows for manipulation of element's class content attribute as a set of whitespace-separated tokens through a DOMTokenList object.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/classList)
@@ -4534,7 +4534,7 @@ and htmlEmbedElement = {
     Returns the value of element's slot content attribute. Can be set to change it.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/slot)
     */
-  slot: domString,
+  mutable slot: domString,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/attributes)
     */
@@ -4551,11 +4551,11 @@ and htmlEmbedElement = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/scrollTop)
     */
-  scrollTop: any,
+  mutable scrollTop: any,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/scrollLeft)
     */
-  scrollLeft: any,
+  mutable scrollLeft: any,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/scrollWidth)
     */
@@ -4587,11 +4587,11 @@ and htmlEmbedElement = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/innerHTML)
     */
-  innerHTML: unknown,
+  mutable innerHTML: unknown,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/outerHTML)
     */
-  outerHTML: unknown,
+  mutable outerHTML: unknown,
   // End base properties from Element
 
   // Base properties from Node
@@ -4658,28 +4658,28 @@ and htmlEmbedElement = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/nodeValue)
     */
-  nodeValue: Null.t<domString>,
+  mutable nodeValue: Null.t<domString>,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/textContent)
     */
-  textContent: Null.t<domString>,
+  mutable textContent: Null.t<domString>,
   // End base properties from Node
 
   /**
     Sets or retrieves a URL to be loaded by the object.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLEmbedElement/src)
     */
-  src: usvString,
+  mutable src: usvString,
   /**
     Sets or retrieves the width of the object.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLEmbedElement/width)
     */
-  width: domString,
+  mutable width: domString,
   /**
     Sets or retrieves the height of the object.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLEmbedElement/height)
     */
-  height: domString,
+  mutable height: domString,
 }
 
 /**
@@ -4691,31 +4691,31 @@ and htmlAnchorElement = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/title)
     */
-  title: domString,
+  mutable title: domString,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/lang)
     */
-  lang: domString,
+  mutable lang: domString,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/translate)
     */
-  translate: bool,
+  mutable translate: bool,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/dir)
     */
-  dir: domString,
+  mutable dir: domString,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/hidden)
     */
-  hidden: unknown,
+  mutable hidden: unknown,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/inert)
     */
-  inert: bool,
+  mutable inert: bool,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/accessKey)
     */
-  accessKey: domString,
+  mutable accessKey: domString,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/accessKeyLabel)
     */
@@ -4723,27 +4723,27 @@ and htmlAnchorElement = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/draggable)
     */
-  draggable: bool,
+  mutable draggable: bool,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/spellcheck)
     */
-  spellcheck: bool,
+  mutable spellcheck: bool,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/autocapitalize)
     */
-  autocapitalize: domString,
+  mutable autocapitalize: domString,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/innerText)
     */
-  innerText: domString,
+  mutable innerText: domString,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/outerText)
     */
-  outerText: domString,
+  mutable outerText: domString,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/popover)
     */
-  popover: Null.t<domString>,
+  mutable popover: Null.t<domString>,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/offsetParent)
     */
@@ -4791,12 +4791,12 @@ and htmlAnchorElement = {
     Returns the value of element's id content attribute. Can be set to change it.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/id)
     */
-  id: domString,
+  mutable id: domString,
   /**
     Returns the value of element's class content attribute. Can be set to change it.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/className)
     */
-  className: domString,
+  mutable className: domString,
   /**
     Allows for manipulation of element's class content attribute as a set of whitespace-separated tokens through a DOMTokenList object.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/classList)
@@ -4806,7 +4806,7 @@ and htmlAnchorElement = {
     Returns the value of element's slot content attribute. Can be set to change it.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/slot)
     */
-  slot: domString,
+  mutable slot: domString,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/attributes)
     */
@@ -4823,11 +4823,11 @@ and htmlAnchorElement = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/scrollTop)
     */
-  scrollTop: any,
+  mutable scrollTop: any,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/scrollLeft)
     */
-  scrollLeft: any,
+  mutable scrollLeft: any,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/scrollWidth)
     */
@@ -4859,11 +4859,11 @@ and htmlAnchorElement = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/innerHTML)
     */
-  innerHTML: unknown,
+  mutable innerHTML: unknown,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/outerHTML)
     */
-  outerHTML: unknown,
+  mutable outerHTML: unknown,
   // End base properties from Element
 
   // Base properties from Node
@@ -4930,31 +4930,31 @@ and htmlAnchorElement = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/nodeValue)
     */
-  nodeValue: Null.t<domString>,
+  mutable nodeValue: Null.t<domString>,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/textContent)
     */
-  textContent: Null.t<domString>,
+  mutable textContent: Null.t<domString>,
   // End base properties from Node
 
   /**
     Sets or retrieves the window or frame at which to target content.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLAnchorElement/target)
     */
-  target: domString,
+  mutable target: domString,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLAnchorElement/download)
     */
-  download: domString,
+  mutable download: domString,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLAnchorElement/ping)
     */
-  ping: usvString,
+  mutable ping: usvString,
   /**
     Sets or retrieves the relationship between the object and the destination of the link.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLAnchorElement/rel)
     */
-  rel: domString,
+  mutable rel: domString,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLAnchorElement/relList)
     */
@@ -4963,21 +4963,21 @@ and htmlAnchorElement = {
     Sets or retrieves the language code of the object.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLAnchorElement/hreflang)
     */
-  hreflang: domString,
+  mutable hreflang: domString,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLAnchorElement/type)
     */
   @as("type")
-  type_: domString,
+  mutable type_: domString,
   /**
     Retrieves or sets the text of the object as a string.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLAnchorElement/text)
     */
-  text: domString,
+  mutable text: domString,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLAnchorElement/referrerPolicy)
     */
-  referrerPolicy: domString,
+  mutable referrerPolicy: domString,
 }
 
 /**
@@ -4989,31 +4989,31 @@ and htmlAreaElement = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/title)
     */
-  title: domString,
+  mutable title: domString,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/lang)
     */
-  lang: domString,
+  mutable lang: domString,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/translate)
     */
-  translate: bool,
+  mutable translate: bool,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/dir)
     */
-  dir: domString,
+  mutable dir: domString,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/hidden)
     */
-  hidden: unknown,
+  mutable hidden: unknown,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/inert)
     */
-  inert: bool,
+  mutable inert: bool,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/accessKey)
     */
-  accessKey: domString,
+  mutable accessKey: domString,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/accessKeyLabel)
     */
@@ -5021,27 +5021,27 @@ and htmlAreaElement = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/draggable)
     */
-  draggable: bool,
+  mutable draggable: bool,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/spellcheck)
     */
-  spellcheck: bool,
+  mutable spellcheck: bool,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/autocapitalize)
     */
-  autocapitalize: domString,
+  mutable autocapitalize: domString,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/innerText)
     */
-  innerText: domString,
+  mutable innerText: domString,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/outerText)
     */
-  outerText: domString,
+  mutable outerText: domString,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/popover)
     */
-  popover: Null.t<domString>,
+  mutable popover: Null.t<domString>,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/offsetParent)
     */
@@ -5089,12 +5089,12 @@ and htmlAreaElement = {
     Returns the value of element's id content attribute. Can be set to change it.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/id)
     */
-  id: domString,
+  mutable id: domString,
   /**
     Returns the value of element's class content attribute. Can be set to change it.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/className)
     */
-  className: domString,
+  mutable className: domString,
   /**
     Allows for manipulation of element's class content attribute as a set of whitespace-separated tokens through a DOMTokenList object.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/classList)
@@ -5104,7 +5104,7 @@ and htmlAreaElement = {
     Returns the value of element's slot content attribute. Can be set to change it.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/slot)
     */
-  slot: domString,
+  mutable slot: domString,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/attributes)
     */
@@ -5121,11 +5121,11 @@ and htmlAreaElement = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/scrollTop)
     */
-  scrollTop: any,
+  mutable scrollTop: any,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/scrollLeft)
     */
-  scrollLeft: any,
+  mutable scrollLeft: any,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/scrollWidth)
     */
@@ -5157,11 +5157,11 @@ and htmlAreaElement = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/innerHTML)
     */
-  innerHTML: unknown,
+  mutable innerHTML: unknown,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/outerHTML)
     */
-  outerHTML: unknown,
+  mutable outerHTML: unknown,
   // End base properties from Element
 
   // Base properties from Node
@@ -5228,26 +5228,26 @@ and htmlAreaElement = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/nodeValue)
     */
-  nodeValue: Null.t<domString>,
+  mutable nodeValue: Null.t<domString>,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/textContent)
     */
-  textContent: Null.t<domString>,
+  mutable textContent: Null.t<domString>,
   // End base properties from Node
 
   /**
     Sets or retrieves the window or frame at which to target content.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLAreaElement/target)
     */
-  target: domString,
+  mutable target: domString,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLAreaElement/ping)
     */
-  ping: usvString,
+  mutable ping: usvString,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLAreaElement/rel)
     */
-  rel: domString,
+  mutable rel: domString,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLAreaElement/relList)
     */
@@ -5255,7 +5255,7 @@ and htmlAreaElement = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLAreaElement/referrerPolicy)
     */
-  referrerPolicy: domString,
+  mutable referrerPolicy: domString,
 }
 
 /**
@@ -5267,31 +5267,31 @@ and htmlScriptElement = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/title)
     */
-  title: domString,
+  mutable title: domString,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/lang)
     */
-  lang: domString,
+  mutable lang: domString,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/translate)
     */
-  translate: bool,
+  mutable translate: bool,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/dir)
     */
-  dir: domString,
+  mutable dir: domString,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/hidden)
     */
-  hidden: unknown,
+  mutable hidden: unknown,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/inert)
     */
-  inert: bool,
+  mutable inert: bool,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/accessKey)
     */
-  accessKey: domString,
+  mutable accessKey: domString,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/accessKeyLabel)
     */
@@ -5299,27 +5299,27 @@ and htmlScriptElement = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/draggable)
     */
-  draggable: bool,
+  mutable draggable: bool,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/spellcheck)
     */
-  spellcheck: bool,
+  mutable spellcheck: bool,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/autocapitalize)
     */
-  autocapitalize: domString,
+  mutable autocapitalize: domString,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/innerText)
     */
-  innerText: domString,
+  mutable innerText: domString,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/outerText)
     */
-  outerText: domString,
+  mutable outerText: domString,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/popover)
     */
-  popover: Null.t<domString>,
+  mutable popover: Null.t<domString>,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/offsetParent)
     */
@@ -5367,12 +5367,12 @@ and htmlScriptElement = {
     Returns the value of element's id content attribute. Can be set to change it.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/id)
     */
-  id: domString,
+  mutable id: domString,
   /**
     Returns the value of element's class content attribute. Can be set to change it.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/className)
     */
-  className: domString,
+  mutable className: domString,
   /**
     Allows for manipulation of element's class content attribute as a set of whitespace-separated tokens through a DOMTokenList object.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/classList)
@@ -5382,7 +5382,7 @@ and htmlScriptElement = {
     Returns the value of element's slot content attribute. Can be set to change it.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/slot)
     */
-  slot: domString,
+  mutable slot: domString,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/attributes)
     */
@@ -5399,11 +5399,11 @@ and htmlScriptElement = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/scrollTop)
     */
-  scrollTop: any,
+  mutable scrollTop: any,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/scrollLeft)
     */
-  scrollLeft: any,
+  mutable scrollLeft: any,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/scrollWidth)
     */
@@ -5435,11 +5435,11 @@ and htmlScriptElement = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/innerHTML)
     */
-  innerHTML: unknown,
+  mutable innerHTML: unknown,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/outerHTML)
     */
-  outerHTML: unknown,
+  mutable outerHTML: unknown,
   // End base properties from Element
 
   // Base properties from Node
@@ -5506,58 +5506,58 @@ and htmlScriptElement = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/nodeValue)
     */
-  nodeValue: Null.t<domString>,
+  mutable nodeValue: Null.t<domString>,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/textContent)
     */
-  textContent: Null.t<domString>,
+  mutable textContent: Null.t<domString>,
   // End base properties from Node
 
   /**
     Retrieves the URL to an external file that contains the source code or data.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLScriptElement/src)
     */
-  src: usvString,
+  mutable src: usvString,
   /**
     Sets or retrieves the MIME type for the associated scripting engine.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLScriptElement/type)
     */
   @as("type")
-  type_: domString,
+  mutable type_: domString,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLScriptElement/noModule)
     */
-  noModule: bool,
+  mutable noModule: bool,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLScriptElement/async)
     */
-  async: bool,
+  mutable async: bool,
   /**
     Sets or retrieves the status of the script.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLScriptElement/defer)
     */
-  defer: bool,
+  mutable defer: bool,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLScriptElement/crossOrigin)
     */
-  crossOrigin: Null.t<domString>,
+  mutable crossOrigin: Null.t<domString>,
   /**
     Retrieves or sets the text of the object as a string.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLScriptElement/text)
     */
-  text: domString,
+  mutable text: domString,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLScriptElement/integrity)
     */
-  integrity: domString,
+  mutable integrity: domString,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLScriptElement/referrerPolicy)
     */
-  referrerPolicy: domString,
+  mutable referrerPolicy: domString,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLScriptElement/fetchPriority)
     */
-  fetchPriority: domString,
+  mutable fetchPriority: domString,
 }
 
 /**
@@ -5635,11 +5635,11 @@ and documentType = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/nodeValue)
     */
-  nodeValue: Null.t<domString>,
+  mutable nodeValue: Null.t<domString>,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/textContent)
     */
-  textContent: Null.t<domString>,
+  mutable textContent: Null.t<domString>,
   // End base properties from Node
 
   /**
@@ -5725,11 +5725,11 @@ and document = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/nodeValue)
     */
-  nodeValue: Null.t<domString>,
+  mutable nodeValue: Null.t<domString>,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/textContent)
     */
-  textContent: Null.t<domString>,
+  mutable textContent: Null.t<domString>,
   // End base properties from Node
 
   /**
@@ -5786,7 +5786,7 @@ and document = {
     Contains information about the current URL.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Document/location)
     */
-  location: location,
+  mutable location: location,
   /**
     Gets the URL of the location that referred the user to the current page.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Document/referrer)
@@ -5800,7 +5800,7 @@ Can be set, to add a new cookie to the element's set of HTTP cookies.
 If the contents are sandboxed into a unique origin (e.g. in an iframe with the sandbox attribute), a "SecurityError" DOMException will be thrown on getting and setting.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Document/cookie)
     */
-  cookie: usvString,
+  mutable cookie: usvString,
   /**
     Gets the date that the page was last modified, if the page supplies one.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Document/lastModified)
@@ -5815,17 +5815,17 @@ If the contents are sandboxed into a unique origin (e.g. in an iframe with the s
     Contains the title of the document.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Document/title)
     */
-  title: domString,
+  mutable title: domString,
   /**
     Sets or retrieves a value that indicates the reading order of the object.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Document/dir)
     */
-  dir: domString,
+  mutable dir: domString,
   /**
     Specifies the beginning and end of the document body.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Document/body)
     */
-  body: htmlElement,
+  mutable body: htmlElement,
   /**
     Returns the head element.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Document/head)
@@ -5877,7 +5877,7 @@ Returns null if the Document is not currently executing a script or SVG script e
     Sets or gets a value that indicates whether the document can be edited.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Document/designMode)
     */
-  designMode: domString,
+  mutable designMode: domString,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Document/hidden)
     */
@@ -5920,11 +5920,11 @@ and window = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/name)
     */
-  name: domString,
+  mutable name: domString,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/location)
     */
-  location: location,
+  mutable location: location,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/history)
     */
@@ -5984,7 +5984,7 @@ and window = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/opener)
     */
-  opener: any,
+  mutable opener: any,
   /**
     Refers to either the parent WindowProxy, or itself.
 
@@ -6202,7 +6202,7 @@ type rec styleSheet = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/StyleSheet/disabled)
     */
-  disabled: bool,
+  mutable disabled: bool,
 }
 
 /**
@@ -6239,7 +6239,7 @@ and cssStyleSheet = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/StyleSheet/disabled)
     */
-  disabled: bool,
+  mutable disabled: bool,
   // End base properties from StyleSheet
 
   /**
@@ -6260,7 +6260,7 @@ and cssRule = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CSSRule/cssText)
     */
-  cssText: string,
+  mutable cssText: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CSSRule/parentRule)
     */
@@ -6290,7 +6290,7 @@ and cssStyleDeclaration = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CSSStyleDeclaration/cssText)
     */
-  cssText: string,
+  mutable cssText: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CSSStyleDeclaration/length)
     */
@@ -6302,1691 +6302,1691 @@ and cssStyleDeclaration = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/cx)
     */
-  cx: string,
+  mutable cx: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/cy)
     */
-  cy: string,
+  mutable cy: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/r)
     */
-  r: string,
+  mutable r: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/rx)
     */
-  rx: string,
+  mutable rx: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/ry)
     */
-  ry: string,
+  mutable ry: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/x)
     */
-  x: string,
+  mutable x: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/y)
     */
-  y: string,
+  mutable y: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/vector-effect)
     */
-  vectorEffect: string,
+  mutable vectorEffect: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/d)
     */
-  d: string,
+  mutable d: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/text-anchor)
     */
-  textAnchor: string,
+  mutable textAnchor: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/fill)
     */
-  fill: string,
+  mutable fill: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/stroke)
     */
-  stroke: string,
+  mutable stroke: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/marker-start)
     */
-  markerStart: string,
+  mutable markerStart: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/marker-mid)
     */
-  markerMid: string,
+  mutable markerMid: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/marker-end)
     */
-  markerEnd: string,
+  mutable markerEnd: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/marker)
     */
-  marker: string,
+  mutable marker: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/paint-order)
     */
-  paintOrder: string,
+  mutable paintOrder: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/color-interpolation)
     */
-  colorInterpolation: string,
+  mutable colorInterpolation: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/shape-rendering)
     */
-  shapeRendering: string,
+  mutable shapeRendering: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/text-rendering)
     */
-  textRendering: string,
+  mutable textRendering: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/pointer-events)
     */
-  pointerEvents: string,
+  mutable pointerEvents: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/stop-color)
     */
-  stopColor: string,
+  mutable stopColor: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/stop-opacity)
     */
-  stopOpacity: string,
+  mutable stopOpacity: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/-webkit-text-fill-color)
     */
-  webkitTextFillColor: string,
+  mutable webkitTextFillColor: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/-webkit-text-stroke-color)
     */
-  webkitTextStrokeColor: string,
+  mutable webkitTextStrokeColor: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/-webkit-text-stroke-width)
     */
-  webkitTextStrokeWidth: string,
+  mutable webkitTextStrokeWidth: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/-webkit-text-stroke)
     */
-  webkitTextStroke: string,
+  mutable webkitTextStroke: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/touch-action)
     */
-  touchAction: string,
+  mutable touchAction: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/position-area)
     */
-  positionArea: string,
+  mutable positionArea: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/top)
     */
-  top: string,
+  mutable top: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/left)
     */
-  left: string,
+  mutable left: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/right)
     */
-  right: string,
+  mutable right: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/bottom)
     */
-  bottom: string,
+  mutable bottom: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/justify-self)
     */
-  justifySelf: string,
+  mutable justifySelf: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/align-self)
     */
-  alignSelf: string,
+  mutable alignSelf: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/justify-items)
     */
-  justifyItems: string,
+  mutable justifyItems: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/align-items)
     */
-  alignItems: string,
+  mutable alignItems: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/width)
     */
-  width: string,
+  mutable width: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/height)
     */
-  height: string,
+  mutable height: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/min-width)
     */
-  minWidth: string,
+  mutable minWidth: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/min-height)
     */
-  minHeight: string,
+  mutable minHeight: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/max-width)
     */
-  maxWidth: string,
+  mutable maxWidth: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/max-height)
     */
-  maxHeight: string,
+  mutable maxHeight: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/margin-top)
     */
-  marginTop: string,
+  mutable marginTop: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/margin-left)
     */
-  marginLeft: string,
+  mutable marginLeft: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/margin-right)
     */
-  marginRight: string,
+  mutable marginRight: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/margin-bottom)
     */
-  marginBottom: string,
+  mutable marginBottom: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/animation-duration)
     */
-  animationDuration: string,
+  mutable animationDuration: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/animation-composition)
     */
-  animationComposition: string,
+  mutable animationComposition: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/animation-name)
     */
-  animationName: string,
+  mutable animationName: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/animation-timing-function)
     */
-  animationTimingFunction: string,
+  mutable animationTimingFunction: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/animation-iteration-count)
     */
-  animationIterationCount: string,
+  mutable animationIterationCount: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/animation-direction)
     */
-  animationDirection: string,
+  mutable animationDirection: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/animation-play-state)
     */
-  animationPlayState: string,
+  mutable animationPlayState: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/animation-delay)
     */
-  animationDelay: string,
+  mutable animationDelay: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/animation-fill-mode)
     */
-  animationFillMode: string,
+  mutable animationFillMode: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/animation)
     */
-  animation: string,
+  mutable animation: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/all)
     */
-  all: string,
+  mutable all: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/container-type)
     */
-  containerType: string,
+  mutable containerType: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/container-name)
     */
-  containerName: string,
+  mutable containerName: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/container)
     */
-  container: string,
+  mutable container: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/contain)
     */
-  contain: string,
+  mutable contain: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/content-visibility)
     */
-  contentVisibility: string,
+  mutable contentVisibility: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/font-family)
     */
-  fontFamily: string,
+  mutable fontFamily: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/font-weight)
     */
-  fontWeight: string,
+  mutable fontWeight: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/font-style)
     */
-  fontStyle: string,
+  mutable fontStyle: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/font-size)
     */
-  fontSize: string,
+  mutable fontSize: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/font-size-adjust)
     */
-  fontSizeAdjust: string,
+  mutable fontSizeAdjust: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/font)
     */
-  font: string,
+  mutable font: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/font-synthesis-weight)
     */
-  fontSynthesisWeight: string,
+  mutable fontSynthesisWeight: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/font-synthesis-style)
     */
-  fontSynthesisStyle: string,
+  mutable fontSynthesisStyle: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/font-synthesis-small-caps)
     */
-  fontSynthesisSmallCaps: string,
+  mutable fontSynthesisSmallCaps: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/font-synthesis)
     */
-  fontSynthesis: string,
+  mutable fontSynthesis: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/font-kerning)
     */
-  fontKerning: string,
+  mutable fontKerning: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/font-variant-ligatures)
     */
-  fontVariantLigatures: string,
+  mutable fontVariantLigatures: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/font-variant-position)
     */
-  fontVariantPosition: string,
+  mutable fontVariantPosition: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/font-variant-caps)
     */
-  fontVariantCaps: string,
+  mutable fontVariantCaps: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/font-variant-numeric)
     */
-  fontVariantNumeric: string,
+  mutable fontVariantNumeric: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/font-variant-alternates)
     */
-  fontVariantAlternates: string,
+  mutable fontVariantAlternates: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/font-variant-east-asian)
     */
-  fontVariantEastAsian: string,
+  mutable fontVariantEastAsian: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/font-variant)
     */
-  fontVariant: string,
+  mutable fontVariant: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/font-feature-settings)
     */
-  fontFeatureSettings: string,
+  mutable fontFeatureSettings: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/font-optical-sizing)
     */
-  fontOpticalSizing: string,
+  mutable fontOpticalSizing: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/font-variation-settings)
     */
-  fontVariationSettings: string,
+  mutable fontVariationSettings: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/font-palette)
     */
-  fontPalette: string,
+  mutable fontPalette: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/font-stretch)
     */
-  fontStretch: string,
+  mutable fontStretch: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/object-fit)
     */
-  objectFit: string,
+  mutable objectFit: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/clip-path)
     */
-  clipPath: string,
+  mutable clipPath: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/clip-rule)
     */
-  clipRule: string,
+  mutable clipRule: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/mask-image)
     */
-  maskImage: string,
+  mutable maskImage: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/mask-mode)
     */
-  maskMode: string,
+  mutable maskMode: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/mask-repeat)
     */
-  maskRepeat: string,
+  mutable maskRepeat: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/mask-position)
     */
-  maskPosition: string,
+  mutable maskPosition: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/mask-clip)
     */
-  maskClip: string,
+  mutable maskClip: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/mask-origin)
     */
-  maskOrigin: string,
+  mutable maskOrigin: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/mask-size)
     */
-  maskSize: string,
+  mutable maskSize: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/mask-composite)
     */
-  maskComposite: string,
+  mutable maskComposite: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/mask)
     */
-  mask: string,
+  mutable mask: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/mask-type)
     */
-  maskType: string,
+  mutable maskType: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/transition-behavior)
     */
-  transitionBehavior: string,
+  mutable transitionBehavior: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/transition-property)
     */
-  transitionProperty: string,
+  mutable transitionProperty: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/transition-duration)
     */
-  transitionDuration: string,
+  mutable transitionDuration: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/transition-timing-function)
     */
-  transitionTimingFunction: string,
+  mutable transitionTimingFunction: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/transition-delay)
     */
-  transitionDelay: string,
+  mutable transitionDelay: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/transition)
     */
-  transition: string,
+  mutable transition: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/view-transition-name)
     */
-  viewTransitionName: string,
+  mutable viewTransitionName: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/zoom)
     */
-  zoom: string,
+  mutable zoom: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/filter)
     */
-  filter: string,
+  mutable filter: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/color-interpolation-filters)
     */
-  colorInterpolationFilters: string,
+  mutable colorInterpolationFilters: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/display)
     */
-  display: string,
+  mutable display: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/text-transform)
     */
-  textTransform: string,
+  mutable textTransform: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/math-style)
     */
-  mathStyle: string,
+  mutable mathStyle: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/math-depth)
     */
-  mathDepth: string,
+  mutable mathDepth: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/z-index)
     */
-  zIndex: string,
+  mutable zIndex: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/page-break-before)
     */
-  pageBreakBefore: string,
+  mutable pageBreakBefore: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/page-break-after)
     */
-  pageBreakAfter: string,
+  mutable pageBreakAfter: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/page-break-inside)
     */
-  pageBreakInside: string,
+  mutable pageBreakInside: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/mix-blend-mode)
     */
-  mixBlendMode: string,
+  mutable mixBlendMode: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/isolation)
     */
-  isolation: string,
+  mutable isolation: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/background-blend-mode)
     */
-  backgroundBlendMode: string,
+  mutable backgroundBlendMode: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/align-content)
     */
-  alignContent: string,
+  mutable alignContent: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/justify-content)
     */
-  justifyContent: string,
+  mutable justifyContent: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/place-content)
     */
-  placeContent: string,
+  mutable placeContent: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/place-self)
     */
-  placeSelf: string,
+  mutable placeSelf: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/place-items)
     */
-  placeItems: string,
+  mutable placeItems: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/row-gap)
     */
-  rowGap: string,
+  mutable rowGap: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/column-gap)
     */
-  columnGap: string,
+  mutable columnGap: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/gap)
     */
-  gap: string,
+  mutable gap: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/background-repeat)
     */
-  backgroundRepeat: string,
+  mutable backgroundRepeat: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/background-position)
     */
-  backgroundPosition: string,
+  mutable backgroundPosition: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/background-position-x)
     */
-  backgroundPositionX: string,
+  mutable backgroundPositionX: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/background-position-y)
     */
-  backgroundPositionY: string,
+  mutable backgroundPositionY: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/background-clip)
     */
-  backgroundClip: string,
+  mutable backgroundClip: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/background-color)
     */
-  backgroundColor: string,
+  mutable backgroundColor: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/background-image)
     */
-  backgroundImage: string,
+  mutable backgroundImage: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/background-attachment)
     */
-  backgroundAttachment: string,
+  mutable backgroundAttachment: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/background-origin)
     */
-  backgroundOrigin: string,
+  mutable backgroundOrigin: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/background-size)
     */
-  backgroundSize: string,
+  mutable backgroundSize: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/background)
     */
-  background: string,
+  mutable background: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/border-style)
     */
-  borderStyle: string,
+  mutable borderStyle: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/border-width)
     */
-  borderWidth: string,
+  mutable borderWidth: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/border)
     */
-  border: string,
+  mutable border: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/border-image-source)
     */
-  borderImageSource: string,
+  mutable borderImageSource: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/border-image-slice)
     */
-  borderImageSlice: string,
+  mutable borderImageSlice: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/border-image-width)
     */
-  borderImageWidth: string,
+  mutable borderImageWidth: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/border-image-outset)
     */
-  borderImageOutset: string,
+  mutable borderImageOutset: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/border-image-repeat)
     */
-  borderImageRepeat: string,
+  mutable borderImageRepeat: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/border-image)
     */
-  borderImage: string,
+  mutable borderImage: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/border-top-color)
     */
-  borderTopColor: string,
+  mutable borderTopColor: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/border-right-color)
     */
-  borderRightColor: string,
+  mutable borderRightColor: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/border-bottom-color)
     */
-  borderBottomColor: string,
+  mutable borderBottomColor: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/border-left-color)
     */
-  borderLeftColor: string,
+  mutable borderLeftColor: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/border-block-start-color)
     */
-  borderBlockStartColor: string,
+  mutable borderBlockStartColor: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/border-block-end-color)
     */
-  borderBlockEndColor: string,
+  mutable borderBlockEndColor: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/border-inline-start-color)
     */
-  borderInlineStartColor: string,
+  mutable borderInlineStartColor: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/border-inline-end-color)
     */
-  borderInlineEndColor: string,
+  mutable borderInlineEndColor: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/border-color)
     */
-  borderColor: string,
+  mutable borderColor: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/border-block-color)
     */
-  borderBlockColor: string,
+  mutable borderBlockColor: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/border-inline-color)
     */
-  borderInlineColor: string,
+  mutable borderInlineColor: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/border-top-style)
     */
-  borderTopStyle: string,
+  mutable borderTopStyle: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/border-right-style)
     */
-  borderRightStyle: string,
+  mutable borderRightStyle: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/border-bottom-style)
     */
-  borderBottomStyle: string,
+  mutable borderBottomStyle: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/border-left-style)
     */
-  borderLeftStyle: string,
+  mutable borderLeftStyle: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/border-block-start-style)
     */
-  borderBlockStartStyle: string,
+  mutable borderBlockStartStyle: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/border-block-end-style)
     */
-  borderBlockEndStyle: string,
+  mutable borderBlockEndStyle: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/border-inline-start-style)
     */
-  borderInlineStartStyle: string,
+  mutable borderInlineStartStyle: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/border-inline-end-style)
     */
-  borderInlineEndStyle: string,
+  mutable borderInlineEndStyle: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/border-block-style)
     */
-  borderBlockStyle: string,
+  mutable borderBlockStyle: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/border-inline-style)
     */
-  borderInlineStyle: string,
+  mutable borderInlineStyle: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/border-top-width)
     */
-  borderTopWidth: string,
+  mutable borderTopWidth: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/border-right-width)
     */
-  borderRightWidth: string,
+  mutable borderRightWidth: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/border-bottom-width)
     */
-  borderBottomWidth: string,
+  mutable borderBottomWidth: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/border-left-width)
     */
-  borderLeftWidth: string,
+  mutable borderLeftWidth: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/border-block-start-width)
     */
-  borderBlockStartWidth: string,
+  mutable borderBlockStartWidth: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/border-block-end-width)
     */
-  borderBlockEndWidth: string,
+  mutable borderBlockEndWidth: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/border-inline-start-width)
     */
-  borderInlineStartWidth: string,
+  mutable borderInlineStartWidth: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/border-inline-end-width)
     */
-  borderInlineEndWidth: string,
+  mutable borderInlineEndWidth: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/border-block-width)
     */
-  borderBlockWidth: string,
+  mutable borderBlockWidth: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/border-inline-width)
     */
-  borderInlineWidth: string,
+  mutable borderInlineWidth: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/border-top)
     */
-  borderTop: string,
+  mutable borderTop: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/border-right)
     */
-  borderRight: string,
+  mutable borderRight: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/border-bottom)
     */
-  borderBottom: string,
+  mutable borderBottom: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/border-left)
     */
-  borderLeft: string,
+  mutable borderLeft: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/border-block-start)
     */
-  borderBlockStart: string,
+  mutable borderBlockStart: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/border-block-end)
     */
-  borderBlockEnd: string,
+  mutable borderBlockEnd: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/border-inline-start)
     */
-  borderInlineStart: string,
+  mutable borderInlineStart: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/border-inline-end)
     */
-  borderInlineEnd: string,
+  mutable borderInlineEnd: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/border-block)
     */
-  borderBlock: string,
+  mutable borderBlock: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/border-inline)
     */
-  borderInline: string,
+  mutable borderInline: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/border-top-left-radius)
     */
-  borderTopLeftRadius: string,
+  mutable borderTopLeftRadius: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/border-top-right-radius)
     */
-  borderTopRightRadius: string,
+  mutable borderTopRightRadius: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/border-bottom-right-radius)
     */
-  borderBottomRightRadius: string,
+  mutable borderBottomRightRadius: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/border-bottom-left-radius)
     */
-  borderBottomLeftRadius: string,
+  mutable borderBottomLeftRadius: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/border-start-start-radius)
     */
-  borderStartStartRadius: string,
+  mutable borderStartStartRadius: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/border-start-end-radius)
     */
-  borderStartEndRadius: string,
+  mutable borderStartEndRadius: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/border-end-start-radius)
     */
-  borderEndStartRadius: string,
+  mutable borderEndStartRadius: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/border-end-end-radius)
     */
-  borderEndEndRadius: string,
+  mutable borderEndEndRadius: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/border-radius)
     */
-  borderRadius: string,
+  mutable borderRadius: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/box-shadow)
     */
-  boxShadow: string,
+  mutable boxShadow: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/margin)
     */
-  margin: string,
+  mutable margin: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/padding-top)
     */
-  paddingTop: string,
+  mutable paddingTop: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/padding-right)
     */
-  paddingRight: string,
+  mutable paddingRight: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/padding-bottom)
     */
-  paddingBottom: string,
+  mutable paddingBottom: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/padding-left)
     */
-  paddingLeft: string,
+  mutable paddingLeft: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/padding)
     */
-  padding: string,
+  mutable padding: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/break-before)
     */
-  breakBefore: string,
+  mutable breakBefore: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/break-after)
     */
-  breakAfter: string,
+  mutable breakAfter: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/break-inside)
     */
-  breakInside: string,
+  mutable breakInside: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/orphans)
     */
-  orphans: string,
+  mutable orphans: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/widows)
     */
-  widows: string,
+  mutable widows: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/box-decoration-break)
     */
-  boxDecorationBreak: string,
+  mutable boxDecorationBreak: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/color-scheme)
     */
-  colorScheme: string,
+  mutable colorScheme: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/forced-color-adjust)
     */
-  forcedColorAdjust: string,
+  mutable forcedColorAdjust: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/print-color-adjust)
     */
-  printColorAdjust: string,
+  mutable printColorAdjust: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/color)
     */
-  color: string,
+  mutable color: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/opacity)
     */
-  opacity: string,
+  mutable opacity: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/content)
     */
-  content: string,
+  mutable content: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/quotes)
     */
-  quotes: string,
+  mutable quotes: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/order)
     */
-  order: string,
+  mutable order: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/visibility)
     */
-  visibility: string,
+  mutable visibility: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/flex-direction)
     */
-  flexDirection: string,
+  mutable flexDirection: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/flex-wrap)
     */
-  flexWrap: string,
+  mutable flexWrap: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/flex-flow)
     */
-  flexFlow: string,
+  mutable flexFlow: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/flex)
     */
-  flex: string,
+  mutable flex: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/flex-grow)
     */
-  flexGrow: string,
+  mutable flexGrow: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/flex-shrink)
     */
-  flexShrink: string,
+  mutable flexShrink: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/flex-basis)
     */
-  flexBasis: string,
+  mutable flexBasis: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/position)
     */
-  position: string,
+  mutable position: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/float)
     */
-  float: string,
+  mutable float: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/grid-template-columns)
     */
-  gridTemplateColumns: string,
+  mutable gridTemplateColumns: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/grid-template-rows)
     */
-  gridTemplateRows: string,
+  mutable gridTemplateRows: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/grid-auto-flow)
     */
-  gridAutoFlow: string,
+  mutable gridAutoFlow: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/grid-template-areas)
     */
-  gridTemplateAreas: string,
+  mutable gridTemplateAreas: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/grid-template)
     */
-  gridTemplate: string,
+  mutable gridTemplate: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/grid-auto-columns)
     */
-  gridAutoColumns: string,
+  mutable gridAutoColumns: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/grid-auto-rows)
     */
-  gridAutoRows: string,
+  mutable gridAutoRows: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/grid)
     */
-  grid: string,
+  mutable grid: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/grid-row-start)
     */
-  gridRowStart: string,
+  mutable gridRowStart: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/grid-column-start)
     */
-  gridColumnStart: string,
+  mutable gridColumnStart: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/grid-row-end)
     */
-  gridRowEnd: string,
+  mutable gridRowEnd: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/grid-column-end)
     */
-  gridColumnEnd: string,
+  mutable gridColumnEnd: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/grid-row)
     */
-  gridRow: string,
+  mutable gridRow: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/grid-column)
     */
-  gridColumn: string,
+  mutable gridColumn: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/grid-area)
     */
-  gridArea: string,
+  mutable gridArea: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/object-position)
     */
-  objectPosition: string,
+  mutable objectPosition: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/image-rendering)
     */
-  imageRendering: string,
+  mutable imageRendering: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/dominant-baseline)
     */
-  dominantBaseline: string,
+  mutable dominantBaseline: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/vertical-align)
     */
-  verticalAlign: string,
+  mutable verticalAlign: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/line-height)
     */
-  lineHeight: string,
+  mutable lineHeight: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/list-style-image)
     */
-  listStyleImage: string,
+  mutable listStyleImage: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/list-style-type)
     */
-  listStyleType: string,
+  mutable listStyleType: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/list-style-position)
     */
-  listStylePosition: string,
+  mutable listStylePosition: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/list-style)
     */
-  listStyle: string,
+  mutable listStyle: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/counter-reset)
     */
-  counterReset: string,
+  mutable counterReset: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/counter-increment)
     */
-  counterIncrement: string,
+  mutable counterIncrement: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/counter-set)
     */
-  counterSet: string,
+  mutable counterSet: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/block-size)
     */
-  blockSize: string,
+  mutable blockSize: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/inline-size)
     */
-  inlineSize: string,
+  mutable inlineSize: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/min-block-size)
     */
-  minBlockSize: string,
+  mutable minBlockSize: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/min-inline-size)
     */
-  minInlineSize: string,
+  mutable minInlineSize: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/max-block-size)
     */
-  maxBlockSize: string,
+  mutable maxBlockSize: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/max-inline-size)
     */
-  maxInlineSize: string,
+  mutable maxInlineSize: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/margin-block-start)
     */
-  marginBlockStart: string,
+  mutable marginBlockStart: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/margin-block-end)
     */
-  marginBlockEnd: string,
+  mutable marginBlockEnd: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/margin-inline-start)
     */
-  marginInlineStart: string,
+  mutable marginInlineStart: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/margin-inline-end)
     */
-  marginInlineEnd: string,
+  mutable marginInlineEnd: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/margin-block)
     */
-  marginBlock: string,
+  mutable marginBlock: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/margin-inline)
     */
-  marginInline: string,
+  mutable marginInline: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/padding-block-start)
     */
-  paddingBlockStart: string,
+  mutable paddingBlockStart: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/padding-block-end)
     */
-  paddingBlockEnd: string,
+  mutable paddingBlockEnd: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/padding-inline-start)
     */
-  paddingInlineStart: string,
+  mutable paddingInlineStart: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/padding-inline-end)
     */
-  paddingInlineEnd: string,
+  mutable paddingInlineEnd: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/padding-block)
     */
-  paddingBlock: string,
+  mutable paddingBlock: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/padding-inline)
     */
-  paddingInline: string,
+  mutable paddingInline: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/column-span)
     */
-  columnSpan: string,
+  mutable columnSpan: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/column-width)
     */
-  columnWidth: string,
+  mutable columnWidth: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/column-count)
     */
-  columnCount: string,
+  mutable columnCount: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/columns)
     */
-  columns: string,
+  mutable columns: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/column-rule-color)
     */
-  columnRuleColor: string,
+  mutable columnRuleColor: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/column-rule-style)
     */
-  columnRuleStyle: string,
+  mutable columnRuleStyle: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/column-rule-width)
     */
-  columnRuleWidth: string,
+  mutable columnRuleWidth: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/column-rule)
     */
-  columnRule: string,
+  mutable columnRule: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/column-fill)
     */
-  columnFill: string,
+  mutable columnFill: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/overflow-clip-margin)
     */
-  overflowClipMargin: string,
+  mutable overflowClipMargin: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/text-overflow)
     */
-  textOverflow: string,
+  mutable textOverflow: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/overflow-x)
     */
-  overflowX: string,
+  mutable overflowX: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/overflow-y)
     */
-  overflowY: string,
+  mutable overflowY: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/overflow)
     */
-  overflow: string,
+  mutable overflow: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/scroll-behavior)
     */
-  scrollBehavior: string,
+  mutable scrollBehavior: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/scrollbar-gutter)
     */
-  scrollbarGutter: string,
+  mutable scrollbarGutter: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/overscroll-behavior)
     */
-  overscrollBehavior: string,
+  mutable overscrollBehavior: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/overscroll-behavior-x)
     */
-  overscrollBehaviorX: string,
+  mutable overscrollBehaviorX: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/overscroll-behavior-y)
     */
-  overscrollBehaviorY: string,
+  mutable overscrollBehaviorY: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/overscroll-behavior-inline)
     */
-  overscrollBehaviorInline: string,
+  mutable overscrollBehaviorInline: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/overscroll-behavior-block)
     */
-  overscrollBehaviorBlock: string,
+  mutable overscrollBehaviorBlock: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/clear)
     */
-  clear: string,
+  mutable clear: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/page)
     */
-  page: string,
+  mutable page: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/inset-block-start)
     */
-  insetBlockStart: string,
+  mutable insetBlockStart: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/inset-inline-start)
     */
-  insetInlineStart: string,
+  mutable insetInlineStart: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/inset-block-end)
     */
-  insetBlockEnd: string,
+  mutable insetBlockEnd: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/inset-inline-end)
     */
-  insetInlineEnd: string,
+  mutable insetInlineEnd: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/inset-block)
     */
-  insetBlock: string,
+  mutable insetBlock: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/inset-inline)
     */
-  insetInline: string,
+  mutable insetInline: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/inset)
     */
-  inset: string,
+  mutable inset: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/ruby-position)
     */
-  rubyPosition: string,
+  mutable rubyPosition: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/ruby-align)
     */
-  rubyAlign: string,
+  mutable rubyAlign: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/overflow-anchor)
     */
-  overflowAnchor: string,
+  mutable overflowAnchor: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/scroll-snap-type)
     */
-  scrollSnapType: string,
+  mutable scrollSnapType: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/scroll-padding)
     */
-  scrollPadding: string,
+  mutable scrollPadding: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/scroll-margin)
     */
-  scrollMargin: string,
+  mutable scrollMargin: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/scroll-snap-align)
     */
-  scrollSnapAlign: string,
+  mutable scrollSnapAlign: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/scroll-snap-stop)
     */
-  scrollSnapStop: string,
+  mutable scrollSnapStop: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/scroll-padding-top)
     */
-  scrollPaddingTop: string,
+  mutable scrollPaddingTop: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/scroll-padding-right)
     */
-  scrollPaddingRight: string,
+  mutable scrollPaddingRight: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/scroll-padding-bottom)
     */
-  scrollPaddingBottom: string,
+  mutable scrollPaddingBottom: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/scroll-padding-left)
     */
-  scrollPaddingLeft: string,
+  mutable scrollPaddingLeft: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/scroll-padding-inline-start)
     */
-  scrollPaddingInlineStart: string,
+  mutable scrollPaddingInlineStart: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/scroll-padding-block-start)
     */
-  scrollPaddingBlockStart: string,
+  mutable scrollPaddingBlockStart: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/scroll-padding-inline-end)
     */
-  scrollPaddingInlineEnd: string,
+  mutable scrollPaddingInlineEnd: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/scroll-padding-block-end)
     */
-  scrollPaddingBlockEnd: string,
+  mutable scrollPaddingBlockEnd: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/scroll-padding-block)
     */
-  scrollPaddingBlock: string,
+  mutable scrollPaddingBlock: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/scroll-padding-inline)
     */
-  scrollPaddingInline: string,
+  mutable scrollPaddingInline: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/scroll-margin-top)
     */
-  scrollMarginTop: string,
+  mutable scrollMarginTop: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/scroll-margin-right)
     */
-  scrollMarginRight: string,
+  mutable scrollMarginRight: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/scroll-margin-bottom)
     */
-  scrollMarginBottom: string,
+  mutable scrollMarginBottom: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/scroll-margin-left)
     */
-  scrollMarginLeft: string,
+  mutable scrollMarginLeft: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/scroll-margin-block-start)
     */
-  scrollMarginBlockStart: string,
+  mutable scrollMarginBlockStart: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/scroll-margin-inline-start)
     */
-  scrollMarginInlineStart: string,
+  mutable scrollMarginInlineStart: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/scroll-margin-block-end)
     */
-  scrollMarginBlockEnd: string,
+  mutable scrollMarginBlockEnd: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/scroll-margin-inline-end)
     */
-  scrollMarginInlineEnd: string,
+  mutable scrollMarginInlineEnd: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/scroll-margin-block)
     */
-  scrollMarginBlock: string,
+  mutable scrollMarginBlock: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/scroll-margin-inline)
     */
-  scrollMarginInline: string,
+  mutable scrollMarginInline: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/scrollbar-color)
     */
-  scrollbarColor: string,
+  mutable scrollbarColor: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/scrollbar-width)
     */
-  scrollbarWidth: string,
+  mutable scrollbarWidth: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/shape-outside)
     */
-  shapeOutside: string,
+  mutable shapeOutside: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/shape-image-threshold)
     */
-  shapeImageThreshold: string,
+  mutable shapeImageThreshold: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/shape-margin)
     */
-  shapeMargin: string,
+  mutable shapeMargin: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/aspect-ratio)
     */
-  aspectRatio: string,
+  mutable aspectRatio: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/contain-intrinsic-width)
     */
-  containIntrinsicWidth: string,
+  mutable containIntrinsicWidth: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/contain-intrinsic-height)
     */
-  containIntrinsicHeight: string,
+  mutable containIntrinsicHeight: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/contain-intrinsic-block-size)
     */
-  containIntrinsicBlockSize: string,
+  mutable containIntrinsicBlockSize: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/contain-intrinsic-inline-size)
     */
-  containIntrinsicInlineSize: string,
+  mutable containIntrinsicInlineSize: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/contain-intrinsic-size)
     */
-  containIntrinsicSize: string,
+  mutable containIntrinsicSize: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/box-sizing)
     */
-  boxSizing: string,
+  mutable boxSizing: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/table-layout)
     */
-  tableLayout: string,
+  mutable tableLayout: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/border-collapse)
     */
-  borderCollapse: string,
+  mutable borderCollapse: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/border-spacing)
     */
-  borderSpacing: string,
+  mutable borderSpacing: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/caption-side)
     */
-  captionSide: string,
+  mutable captionSide: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/empty-cells)
     */
-  emptyCells: string,
+  mutable emptyCells: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/white-space)
     */
-  whiteSpace: string,
+  mutable whiteSpace: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/white-space-collapse)
     */
-  whiteSpaceCollapse: string,
+  mutable whiteSpaceCollapse: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/tab-size)
     */
-  tabSize: string,
+  mutable tabSize: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/text-wrap-mode)
     */
-  textWrapMode: string,
+  mutable textWrapMode: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/text-wrap-style)
     */
-  textWrapStyle: string,
+  mutable textWrapStyle: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/text-wrap)
     */
-  textWrap: string,
+  mutable textWrap: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/word-break)
     */
-  wordBreak: string,
+  mutable wordBreak: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/line-break)
     */
-  lineBreak: string,
+  mutable lineBreak: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/hyphens)
     */
-  hyphens: string,
+  mutable hyphens: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/hyphenate-character)
     */
-  hyphenateCharacter: string,
+  mutable hyphenateCharacter: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/overflow-wrap)
     */
-  overflowWrap: string,
+  mutable overflowWrap: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/text-align)
     */
-  textAlign: string,
+  mutable textAlign: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/text-align-last)
     */
-  textAlignLast: string,
+  mutable textAlignLast: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/word-spacing)
     */
-  wordSpacing: string,
+  mutable wordSpacing: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/letter-spacing)
     */
-  letterSpacing: string,
+  mutable letterSpacing: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/text-indent)
     */
-  textIndent: string,
+  mutable textIndent: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/text-decoration-line)
     */
-  textDecorationLine: string,
+  mutable textDecorationLine: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/text-decoration-style)
     */
-  textDecorationStyle: string,
+  mutable textDecorationStyle: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/text-decoration-color)
     */
-  textDecorationColor: string,
+  mutable textDecorationColor: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/text-decoration-thickness)
     */
-  textDecorationThickness: string,
+  mutable textDecorationThickness: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/text-decoration)
     */
-  textDecoration: string,
+  mutable textDecoration: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/text-underline-position)
     */
-  textUnderlinePosition: string,
+  mutable textUnderlinePosition: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/text-underline-offset)
     */
-  textUnderlineOffset: string,
+  mutable textUnderlineOffset: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/text-decoration-skip-ink)
     */
-  textDecorationSkipInk: string,
+  mutable textDecorationSkipInk: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/text-emphasis-style)
     */
-  textEmphasisStyle: string,
+  mutable textEmphasisStyle: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/text-emphasis-color)
     */
-  textEmphasisColor: string,
+  mutable textEmphasisColor: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/text-emphasis)
     */
-  textEmphasis: string,
+  mutable textEmphasis: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/text-emphasis-position)
     */
-  textEmphasisPosition: string,
+  mutable textEmphasisPosition: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/text-shadow)
     */
-  textShadow: string,
+  mutable textShadow: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/translate)
     */
-  translate: string,
+  mutable translate: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/rotate)
     */
-  rotate: string,
+  mutable rotate: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/scale)
     */
-  scale: string,
+  mutable scale: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/transform-style)
     */
-  transformStyle: string,
+  mutable transformStyle: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/perspective)
     */
-  perspective: string,
+  mutable perspective: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/perspective-origin)
     */
-  perspectiveOrigin: string,
+  mutable perspectiveOrigin: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/backface-visibility)
     */
-  backfaceVisibility: string,
+  mutable backfaceVisibility: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/transform)
     */
-  transform: string,
+  mutable transform: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/transform-origin)
     */
-  transformOrigin: string,
+  mutable transformOrigin: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/transform-box)
     */
-  transformBox: string,
+  mutable transformBox: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/outline)
     */
-  outline: string,
+  mutable outline: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/outline-width)
     */
-  outlineWidth: string,
+  mutable outlineWidth: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/outline-style)
     */
-  outlineStyle: string,
+  mutable outlineStyle: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/outline-color)
     */
-  outlineColor: string,
+  mutable outlineColor: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/outline-offset)
     */
-  outlineOffset: string,
+  mutable outlineOffset: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/resize)
     */
-  resize: string,
+  mutable resize: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/cursor)
     */
-  cursor: string,
+  mutable cursor: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/caret-color)
     */
-  caretColor: string,
+  mutable caretColor: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/user-select)
     */
-  userSelect: string,
+  mutable userSelect: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/accent-color)
     */
-  accentColor: string,
+  mutable accentColor: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/appearance)
     */
-  appearance: string,
+  mutable appearance: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/will-change)
     */
-  willChange: string,
+  mutable willChange: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/direction)
     */
-  direction: string,
+  mutable direction: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/unicode-bidi)
     */
-  unicodeBidi: string,
+  mutable unicodeBidi: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/writing-mode)
     */
-  writingMode: string,
+  mutable writingMode: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/text-orientation)
     */
-  textOrientation: string,
+  mutable textOrientation: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/text-combine-upright)
     */
-  textCombineUpright: string,
+  mutable textCombineUpright: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/fill-rule)
     */
-  fillRule: string,
+  mutable fillRule: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/fill-opacity)
     */
-  fillOpacity: string,
+  mutable fillOpacity: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/stroke-width)
     */
-  strokeWidth: string,
+  mutable strokeWidth: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/stroke-linecap)
     */
-  strokeLinecap: string,
+  mutable strokeLinecap: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/stroke-linejoin)
     */
-  strokeLinejoin: string,
+  mutable strokeLinejoin: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/stroke-miterlimit)
     */
-  strokeMiterlimit: string,
+  mutable strokeMiterlimit: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/stroke-dasharray)
     */
-  strokeDasharray: string,
+  mutable strokeDasharray: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/stroke-dashoffset)
     */
-  strokeDashoffset: string,
+  mutable strokeDashoffset: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/stroke-opacity)
     */
-  strokeOpacity: string,
+  mutable strokeOpacity: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/backdrop-filter)
     */
-  backdropFilter: string,
+  mutable backdropFilter: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/offset-path)
     */
-  offsetPath: string,
+  mutable offsetPath: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/offset-distance)
     */
-  offsetDistance: string,
+  mutable offsetDistance: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/offset-position)
     */
-  offsetPosition: string,
+  mutable offsetPosition: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/offset-anchor)
     */
-  offsetAnchor: string,
+  mutable offsetAnchor: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/offset-rotate)
     */
-  offsetRotate: string,
+  mutable offsetRotate: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/offset)
     */
-  offset: string,
+  mutable offset: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CSSStyleDeclaration/cssFloat)
     */
-  cssFloat: string,
+  mutable cssFloat: string,
 }
 
 /**
@@ -8026,31 +8026,31 @@ type rec htmlTableElement = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/title)
     */
-  title: domString,
+  mutable title: domString,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/lang)
     */
-  lang: domString,
+  mutable lang: domString,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/translate)
     */
-  translate: bool,
+  mutable translate: bool,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/dir)
     */
-  dir: domString,
+  mutable dir: domString,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/hidden)
     */
-  hidden: unknown,
+  mutable hidden: unknown,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/inert)
     */
-  inert: bool,
+  mutable inert: bool,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/accessKey)
     */
-  accessKey: domString,
+  mutable accessKey: domString,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/accessKeyLabel)
     */
@@ -8058,27 +8058,27 @@ type rec htmlTableElement = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/draggable)
     */
-  draggable: bool,
+  mutable draggable: bool,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/spellcheck)
     */
-  spellcheck: bool,
+  mutable spellcheck: bool,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/autocapitalize)
     */
-  autocapitalize: domString,
+  mutable autocapitalize: domString,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/innerText)
     */
-  innerText: domString,
+  mutable innerText: domString,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/outerText)
     */
-  outerText: domString,
+  mutable outerText: domString,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/popover)
     */
-  popover: Null.t<domString>,
+  mutable popover: Null.t<domString>,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/offsetParent)
     */
@@ -8126,12 +8126,12 @@ type rec htmlTableElement = {
     Returns the value of element's id content attribute. Can be set to change it.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/id)
     */
-  id: domString,
+  mutable id: domString,
   /**
     Returns the value of element's class content attribute. Can be set to change it.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/className)
     */
-  className: domString,
+  mutable className: domString,
   /**
     Allows for manipulation of element's class content attribute as a set of whitespace-separated tokens through a DOMTokenList object.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/classList)
@@ -8141,7 +8141,7 @@ type rec htmlTableElement = {
     Returns the value of element's slot content attribute. Can be set to change it.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/slot)
     */
-  slot: domString,
+  mutable slot: domString,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/attributes)
     */
@@ -8158,11 +8158,11 @@ type rec htmlTableElement = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/scrollTop)
     */
-  scrollTop: any,
+  mutable scrollTop: any,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/scrollLeft)
     */
-  scrollLeft: any,
+  mutable scrollLeft: any,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/scrollWidth)
     */
@@ -8194,11 +8194,11 @@ type rec htmlTableElement = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/innerHTML)
     */
-  innerHTML: unknown,
+  mutable innerHTML: unknown,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/outerHTML)
     */
-  outerHTML: unknown,
+  mutable outerHTML: unknown,
   // End base properties from Element
 
   // Base properties from Node
@@ -8265,28 +8265,28 @@ type rec htmlTableElement = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/nodeValue)
     */
-  nodeValue: Null.t<domString>,
+  mutable nodeValue: Null.t<domString>,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/textContent)
     */
-  textContent: Null.t<domString>,
+  mutable textContent: Null.t<domString>,
   // End base properties from Node
 
   /**
     Retrieves the caption object of a table.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLTableElement/caption)
     */
-  caption: Null.t<htmlTableCaptionElement>,
+  mutable caption: Null.t<htmlTableCaptionElement>,
   /**
     Retrieves the tHead object of the table.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLTableElement/tHead)
     */
-  tHead: Null.t<htmlTableSectionElement>,
+  mutable tHead: Null.t<htmlTableSectionElement>,
   /**
     Retrieves the tFoot object of the table.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLTableElement/tFoot)
     */
-  tFoot: Null.t<htmlTableSectionElement>,
+  mutable tFoot: Null.t<htmlTableSectionElement>,
   /**
     Retrieves a collection of all tBody objects in the table. Objects in this collection are in source order.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLTableElement/tBodies)
@@ -8308,31 +8308,31 @@ and htmlTableCaptionElement = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/title)
     */
-  title: domString,
+  mutable title: domString,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/lang)
     */
-  lang: domString,
+  mutable lang: domString,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/translate)
     */
-  translate: bool,
+  mutable translate: bool,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/dir)
     */
-  dir: domString,
+  mutable dir: domString,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/hidden)
     */
-  hidden: unknown,
+  mutable hidden: unknown,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/inert)
     */
-  inert: bool,
+  mutable inert: bool,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/accessKey)
     */
-  accessKey: domString,
+  mutable accessKey: domString,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/accessKeyLabel)
     */
@@ -8340,27 +8340,27 @@ and htmlTableCaptionElement = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/draggable)
     */
-  draggable: bool,
+  mutable draggable: bool,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/spellcheck)
     */
-  spellcheck: bool,
+  mutable spellcheck: bool,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/autocapitalize)
     */
-  autocapitalize: domString,
+  mutable autocapitalize: domString,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/innerText)
     */
-  innerText: domString,
+  mutable innerText: domString,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/outerText)
     */
-  outerText: domString,
+  mutable outerText: domString,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/popover)
     */
-  popover: Null.t<domString>,
+  mutable popover: Null.t<domString>,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/offsetParent)
     */
@@ -8408,12 +8408,12 @@ and htmlTableCaptionElement = {
     Returns the value of element's id content attribute. Can be set to change it.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/id)
     */
-  id: domString,
+  mutable id: domString,
   /**
     Returns the value of element's class content attribute. Can be set to change it.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/className)
     */
-  className: domString,
+  mutable className: domString,
   /**
     Allows for manipulation of element's class content attribute as a set of whitespace-separated tokens through a DOMTokenList object.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/classList)
@@ -8423,7 +8423,7 @@ and htmlTableCaptionElement = {
     Returns the value of element's slot content attribute. Can be set to change it.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/slot)
     */
-  slot: domString,
+  mutable slot: domString,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/attributes)
     */
@@ -8440,11 +8440,11 @@ and htmlTableCaptionElement = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/scrollTop)
     */
-  scrollTop: any,
+  mutable scrollTop: any,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/scrollLeft)
     */
-  scrollLeft: any,
+  mutable scrollLeft: any,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/scrollWidth)
     */
@@ -8476,11 +8476,11 @@ and htmlTableCaptionElement = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/innerHTML)
     */
-  innerHTML: unknown,
+  mutable innerHTML: unknown,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/outerHTML)
     */
-  outerHTML: unknown,
+  mutable outerHTML: unknown,
   // End base properties from Element
 
   // Base properties from Node
@@ -8547,11 +8547,11 @@ and htmlTableCaptionElement = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/nodeValue)
     */
-  nodeValue: Null.t<domString>,
+  mutable nodeValue: Null.t<domString>,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/textContent)
     */
-  textContent: Null.t<domString>,
+  mutable textContent: Null.t<domString>,
   // End base properties from Node
 }
 
@@ -8564,31 +8564,31 @@ and htmlTableSectionElement = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/title)
     */
-  title: domString,
+  mutable title: domString,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/lang)
     */
-  lang: domString,
+  mutable lang: domString,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/translate)
     */
-  translate: bool,
+  mutable translate: bool,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/dir)
     */
-  dir: domString,
+  mutable dir: domString,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/hidden)
     */
-  hidden: unknown,
+  mutable hidden: unknown,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/inert)
     */
-  inert: bool,
+  mutable inert: bool,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/accessKey)
     */
-  accessKey: domString,
+  mutable accessKey: domString,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/accessKeyLabel)
     */
@@ -8596,27 +8596,27 @@ and htmlTableSectionElement = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/draggable)
     */
-  draggable: bool,
+  mutable draggable: bool,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/spellcheck)
     */
-  spellcheck: bool,
+  mutable spellcheck: bool,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/autocapitalize)
     */
-  autocapitalize: domString,
+  mutable autocapitalize: domString,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/innerText)
     */
-  innerText: domString,
+  mutable innerText: domString,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/outerText)
     */
-  outerText: domString,
+  mutable outerText: domString,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/popover)
     */
-  popover: Null.t<domString>,
+  mutable popover: Null.t<domString>,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/offsetParent)
     */
@@ -8664,12 +8664,12 @@ and htmlTableSectionElement = {
     Returns the value of element's id content attribute. Can be set to change it.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/id)
     */
-  id: domString,
+  mutable id: domString,
   /**
     Returns the value of element's class content attribute. Can be set to change it.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/className)
     */
-  className: domString,
+  mutable className: domString,
   /**
     Allows for manipulation of element's class content attribute as a set of whitespace-separated tokens through a DOMTokenList object.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/classList)
@@ -8679,7 +8679,7 @@ and htmlTableSectionElement = {
     Returns the value of element's slot content attribute. Can be set to change it.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/slot)
     */
-  slot: domString,
+  mutable slot: domString,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/attributes)
     */
@@ -8696,11 +8696,11 @@ and htmlTableSectionElement = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/scrollTop)
     */
-  scrollTop: any,
+  mutable scrollTop: any,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/scrollLeft)
     */
-  scrollLeft: any,
+  mutable scrollLeft: any,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/scrollWidth)
     */
@@ -8732,11 +8732,11 @@ and htmlTableSectionElement = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/innerHTML)
     */
-  innerHTML: unknown,
+  mutable innerHTML: unknown,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/outerHTML)
     */
-  outerHTML: unknown,
+  mutable outerHTML: unknown,
   // End base properties from Element
 
   // Base properties from Node
@@ -8803,11 +8803,11 @@ and htmlTableSectionElement = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/nodeValue)
     */
-  nodeValue: Null.t<domString>,
+  mutable nodeValue: Null.t<domString>,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/textContent)
     */
-  textContent: Null.t<domString>,
+  mutable textContent: Null.t<domString>,
   // End base properties from Node
 
   /**
@@ -8826,31 +8826,31 @@ and htmlTableCellElement = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/title)
     */
-  title: domString,
+  mutable title: domString,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/lang)
     */
-  lang: domString,
+  mutable lang: domString,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/translate)
     */
-  translate: bool,
+  mutable translate: bool,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/dir)
     */
-  dir: domString,
+  mutable dir: domString,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/hidden)
     */
-  hidden: unknown,
+  mutable hidden: unknown,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/inert)
     */
-  inert: bool,
+  mutable inert: bool,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/accessKey)
     */
-  accessKey: domString,
+  mutable accessKey: domString,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/accessKeyLabel)
     */
@@ -8858,27 +8858,27 @@ and htmlTableCellElement = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/draggable)
     */
-  draggable: bool,
+  mutable draggable: bool,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/spellcheck)
     */
-  spellcheck: bool,
+  mutable spellcheck: bool,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/autocapitalize)
     */
-  autocapitalize: domString,
+  mutable autocapitalize: domString,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/innerText)
     */
-  innerText: domString,
+  mutable innerText: domString,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/outerText)
     */
-  outerText: domString,
+  mutable outerText: domString,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/popover)
     */
-  popover: Null.t<domString>,
+  mutable popover: Null.t<domString>,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/offsetParent)
     */
@@ -8926,12 +8926,12 @@ and htmlTableCellElement = {
     Returns the value of element's id content attribute. Can be set to change it.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/id)
     */
-  id: domString,
+  mutable id: domString,
   /**
     Returns the value of element's class content attribute. Can be set to change it.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/className)
     */
-  className: domString,
+  mutable className: domString,
   /**
     Allows for manipulation of element's class content attribute as a set of whitespace-separated tokens through a DOMTokenList object.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/classList)
@@ -8941,7 +8941,7 @@ and htmlTableCellElement = {
     Returns the value of element's slot content attribute. Can be set to change it.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/slot)
     */
-  slot: domString,
+  mutable slot: domString,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/attributes)
     */
@@ -8958,11 +8958,11 @@ and htmlTableCellElement = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/scrollTop)
     */
-  scrollTop: any,
+  mutable scrollTop: any,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/scrollLeft)
     */
-  scrollLeft: any,
+  mutable scrollLeft: any,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/scrollWidth)
     */
@@ -8994,11 +8994,11 @@ and htmlTableCellElement = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/innerHTML)
     */
-  innerHTML: unknown,
+  mutable innerHTML: unknown,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/outerHTML)
     */
-  outerHTML: unknown,
+  mutable outerHTML: unknown,
   // End base properties from Element
 
   // Base properties from Node
@@ -9065,28 +9065,28 @@ and htmlTableCellElement = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/nodeValue)
     */
-  nodeValue: Null.t<domString>,
+  mutable nodeValue: Null.t<domString>,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/textContent)
     */
-  textContent: Null.t<domString>,
+  mutable textContent: Null.t<domString>,
   // End base properties from Node
 
   /**
     Sets or retrieves the number columns in the table that the object should span.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLTableCellElement/colSpan)
     */
-  colSpan: any,
+  mutable colSpan: any,
   /**
     Sets or retrieves how many rows in a table the cell should span.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLTableCellElement/rowSpan)
     */
-  rowSpan: any,
+  mutable rowSpan: any,
   /**
     Sets or retrieves a list of header cells that provide information for the object.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLTableCellElement/headers)
     */
-  headers: domString,
+  mutable headers: domString,
   /**
     Retrieves the position of the object in the cells collection of a row.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLTableCellElement/cellIndex)
@@ -9096,12 +9096,12 @@ and htmlTableCellElement = {
     Sets or retrieves the group of cells in a table to which the object's information applies.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLTableCellElement/scope)
     */
-  scope: domString,
+  mutable scope: domString,
   /**
     Sets or retrieves abbreviated text for the object.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLTableCellElement/abbr)
     */
-  abbr: domString,
+  mutable abbr: domString,
 }
 
 /**
@@ -9113,31 +9113,31 @@ and htmlTableRowElement = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/title)
     */
-  title: domString,
+  mutable title: domString,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/lang)
     */
-  lang: domString,
+  mutable lang: domString,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/translate)
     */
-  translate: bool,
+  mutable translate: bool,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/dir)
     */
-  dir: domString,
+  mutable dir: domString,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/hidden)
     */
-  hidden: unknown,
+  mutable hidden: unknown,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/inert)
     */
-  inert: bool,
+  mutable inert: bool,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/accessKey)
     */
-  accessKey: domString,
+  mutable accessKey: domString,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/accessKeyLabel)
     */
@@ -9145,27 +9145,27 @@ and htmlTableRowElement = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/draggable)
     */
-  draggable: bool,
+  mutable draggable: bool,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/spellcheck)
     */
-  spellcheck: bool,
+  mutable spellcheck: bool,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/autocapitalize)
     */
-  autocapitalize: domString,
+  mutable autocapitalize: domString,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/innerText)
     */
-  innerText: domString,
+  mutable innerText: domString,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/outerText)
     */
-  outerText: domString,
+  mutable outerText: domString,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/popover)
     */
-  popover: Null.t<domString>,
+  mutable popover: Null.t<domString>,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/offsetParent)
     */
@@ -9213,12 +9213,12 @@ and htmlTableRowElement = {
     Returns the value of element's id content attribute. Can be set to change it.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/id)
     */
-  id: domString,
+  mutable id: domString,
   /**
     Returns the value of element's class content attribute. Can be set to change it.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/className)
     */
-  className: domString,
+  mutable className: domString,
   /**
     Allows for manipulation of element's class content attribute as a set of whitespace-separated tokens through a DOMTokenList object.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/classList)
@@ -9228,7 +9228,7 @@ and htmlTableRowElement = {
     Returns the value of element's slot content attribute. Can be set to change it.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/slot)
     */
-  slot: domString,
+  mutable slot: domString,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/attributes)
     */
@@ -9245,11 +9245,11 @@ and htmlTableRowElement = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/scrollTop)
     */
-  scrollTop: any,
+  mutable scrollTop: any,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/scrollLeft)
     */
-  scrollLeft: any,
+  mutable scrollLeft: any,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/scrollWidth)
     */
@@ -9281,11 +9281,11 @@ and htmlTableRowElement = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/innerHTML)
     */
-  innerHTML: unknown,
+  mutable innerHTML: unknown,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/outerHTML)
     */
-  outerHTML: unknown,
+  mutable outerHTML: unknown,
   // End base properties from Element
 
   // Base properties from Node
@@ -9352,11 +9352,11 @@ and htmlTableRowElement = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/nodeValue)
     */
-  nodeValue: Null.t<domString>,
+  mutable nodeValue: Null.t<domString>,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/textContent)
     */
-  textContent: Null.t<domString>,
+  mutable textContent: Null.t<domString>,
   // End base properties from Node
 
   /**
@@ -9385,31 +9385,31 @@ type rec htmlButtonElement = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/title)
     */
-  title: domString,
+  mutable title: domString,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/lang)
     */
-  lang: domString,
+  mutable lang: domString,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/translate)
     */
-  translate: bool,
+  mutable translate: bool,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/dir)
     */
-  dir: domString,
+  mutable dir: domString,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/hidden)
     */
-  hidden: unknown,
+  mutable hidden: unknown,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/inert)
     */
-  inert: bool,
+  mutable inert: bool,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/accessKey)
     */
-  accessKey: domString,
+  mutable accessKey: domString,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/accessKeyLabel)
     */
@@ -9417,27 +9417,27 @@ type rec htmlButtonElement = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/draggable)
     */
-  draggable: bool,
+  mutable draggable: bool,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/spellcheck)
     */
-  spellcheck: bool,
+  mutable spellcheck: bool,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/autocapitalize)
     */
-  autocapitalize: domString,
+  mutable autocapitalize: domString,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/innerText)
     */
-  innerText: domString,
+  mutable innerText: domString,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/outerText)
     */
-  outerText: domString,
+  mutable outerText: domString,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/popover)
     */
-  popover: Null.t<domString>,
+  mutable popover: Null.t<domString>,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/offsetParent)
     */
@@ -9485,12 +9485,12 @@ type rec htmlButtonElement = {
     Returns the value of element's id content attribute. Can be set to change it.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/id)
     */
-  id: domString,
+  mutable id: domString,
   /**
     Returns the value of element's class content attribute. Can be set to change it.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/className)
     */
-  className: domString,
+  mutable className: domString,
   /**
     Allows for manipulation of element's class content attribute as a set of whitespace-separated tokens through a DOMTokenList object.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/classList)
@@ -9500,7 +9500,7 @@ type rec htmlButtonElement = {
     Returns the value of element's slot content attribute. Can be set to change it.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/slot)
     */
-  slot: domString,
+  mutable slot: domString,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/attributes)
     */
@@ -9517,11 +9517,11 @@ type rec htmlButtonElement = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/scrollTop)
     */
-  scrollTop: any,
+  mutable scrollTop: any,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/scrollLeft)
     */
-  scrollLeft: any,
+  mutable scrollLeft: any,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/scrollWidth)
     */
@@ -9553,11 +9553,11 @@ type rec htmlButtonElement = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/innerHTML)
     */
-  innerHTML: unknown,
+  mutable innerHTML: unknown,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/outerHTML)
     */
-  outerHTML: unknown,
+  mutable outerHTML: unknown,
   // End base properties from Element
 
   // Base properties from Node
@@ -9624,17 +9624,17 @@ type rec htmlButtonElement = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/nodeValue)
     */
-  nodeValue: Null.t<domString>,
+  mutable nodeValue: Null.t<domString>,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/textContent)
     */
-  textContent: Null.t<domString>,
+  mutable textContent: Null.t<domString>,
   // End base properties from Node
 
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLButtonElement/disabled)
     */
-  disabled: bool,
+  mutable disabled: bool,
   /**
     Retrieves a reference to the form that the object is embedded in.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLButtonElement/form)
@@ -9644,33 +9644,33 @@ type rec htmlButtonElement = {
     Overrides the action attribute (where the data on a form is sent) on the parent form element.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLButtonElement/formAction)
     */
-  formAction: usvString,
+  mutable formAction: usvString,
   /**
     Used to override the encoding (formEnctype attribute) specified on the form element.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLButtonElement/formEnctype)
     */
-  formEnctype: domString,
+  mutable formEnctype: domString,
   /**
     Overrides the submit method attribute previously specified on a form element.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLButtonElement/formMethod)
     */
-  formMethod: domString,
+  mutable formMethod: domString,
   /**
     Sets or retrieves the name of the object.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLButtonElement/name)
     */
-  name: domString,
+  mutable name: domString,
   /**
     Gets the classification and default behavior of the button.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLButtonElement/type)
     */
   @as("type")
-  type_: string,
+  mutable type_: string,
   /**
     Sets or retrieves the default or selected value of the control.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLButtonElement/value)
     */
-  value: domString,
+  mutable value: domString,
   /**
     Returns whether an element will successfully validate based on forms validation rules and constraints.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLButtonElement/willValidate)
@@ -9701,31 +9701,31 @@ and htmlLabelElement = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/title)
     */
-  title: domString,
+  mutable title: domString,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/lang)
     */
-  lang: domString,
+  mutable lang: domString,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/translate)
     */
-  translate: bool,
+  mutable translate: bool,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/dir)
     */
-  dir: domString,
+  mutable dir: domString,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/hidden)
     */
-  hidden: unknown,
+  mutable hidden: unknown,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/inert)
     */
-  inert: bool,
+  mutable inert: bool,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/accessKey)
     */
-  accessKey: domString,
+  mutable accessKey: domString,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/accessKeyLabel)
     */
@@ -9733,27 +9733,27 @@ and htmlLabelElement = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/draggable)
     */
-  draggable: bool,
+  mutable draggable: bool,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/spellcheck)
     */
-  spellcheck: bool,
+  mutable spellcheck: bool,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/autocapitalize)
     */
-  autocapitalize: domString,
+  mutable autocapitalize: domString,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/innerText)
     */
-  innerText: domString,
+  mutable innerText: domString,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/outerText)
     */
-  outerText: domString,
+  mutable outerText: domString,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/popover)
     */
-  popover: Null.t<domString>,
+  mutable popover: Null.t<domString>,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/offsetParent)
     */
@@ -9801,12 +9801,12 @@ and htmlLabelElement = {
     Returns the value of element's id content attribute. Can be set to change it.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/id)
     */
-  id: domString,
+  mutable id: domString,
   /**
     Returns the value of element's class content attribute. Can be set to change it.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/className)
     */
-  className: domString,
+  mutable className: domString,
   /**
     Allows for manipulation of element's class content attribute as a set of whitespace-separated tokens through a DOMTokenList object.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/classList)
@@ -9816,7 +9816,7 @@ and htmlLabelElement = {
     Returns the value of element's slot content attribute. Can be set to change it.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/slot)
     */
-  slot: domString,
+  mutable slot: domString,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/attributes)
     */
@@ -9833,11 +9833,11 @@ and htmlLabelElement = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/scrollTop)
     */
-  scrollTop: any,
+  mutable scrollTop: any,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/scrollLeft)
     */
-  scrollLeft: any,
+  mutable scrollLeft: any,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/scrollWidth)
     */
@@ -9869,11 +9869,11 @@ and htmlLabelElement = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/innerHTML)
     */
-  innerHTML: unknown,
+  mutable innerHTML: unknown,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/outerHTML)
     */
-  outerHTML: unknown,
+  mutable outerHTML: unknown,
   // End base properties from Element
 
   // Base properties from Node
@@ -9940,11 +9940,11 @@ and htmlLabelElement = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/nodeValue)
     */
-  nodeValue: Null.t<domString>,
+  mutable nodeValue: Null.t<domString>,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/textContent)
     */
-  textContent: Null.t<domString>,
+  mutable textContent: Null.t<domString>,
   // End base properties from Node
 
   /**
@@ -9956,7 +9956,7 @@ and htmlLabelElement = {
     Sets or retrieves the object to which the given label object is assigned.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLLabelElement/htmlFor)
     */
-  htmlFor: domString,
+  mutable htmlFor: domString,
   /**
     Returns the form control that is associated with this element.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLLabelElement/control)
@@ -9973,31 +9973,31 @@ and htmlTextAreaElement = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/title)
     */
-  title: domString,
+  mutable title: domString,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/lang)
     */
-  lang: domString,
+  mutable lang: domString,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/translate)
     */
-  translate: bool,
+  mutable translate: bool,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/dir)
     */
-  dir: domString,
+  mutable dir: domString,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/hidden)
     */
-  hidden: unknown,
+  mutable hidden: unknown,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/inert)
     */
-  inert: bool,
+  mutable inert: bool,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/accessKey)
     */
-  accessKey: domString,
+  mutable accessKey: domString,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/accessKeyLabel)
     */
@@ -10005,27 +10005,27 @@ and htmlTextAreaElement = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/draggable)
     */
-  draggable: bool,
+  mutable draggable: bool,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/spellcheck)
     */
-  spellcheck: bool,
+  mutable spellcheck: bool,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/autocapitalize)
     */
-  autocapitalize: domString,
+  mutable autocapitalize: domString,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/innerText)
     */
-  innerText: domString,
+  mutable innerText: domString,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/outerText)
     */
-  outerText: domString,
+  mutable outerText: domString,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/popover)
     */
-  popover: Null.t<domString>,
+  mutable popover: Null.t<domString>,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/offsetParent)
     */
@@ -10073,12 +10073,12 @@ and htmlTextAreaElement = {
     Returns the value of element's id content attribute. Can be set to change it.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/id)
     */
-  id: domString,
+  mutable id: domString,
   /**
     Returns the value of element's class content attribute. Can be set to change it.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/className)
     */
-  className: domString,
+  mutable className: domString,
   /**
     Allows for manipulation of element's class content attribute as a set of whitespace-separated tokens through a DOMTokenList object.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/classList)
@@ -10088,7 +10088,7 @@ and htmlTextAreaElement = {
     Returns the value of element's slot content attribute. Can be set to change it.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/slot)
     */
-  slot: domString,
+  mutable slot: domString,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/attributes)
     */
@@ -10105,11 +10105,11 @@ and htmlTextAreaElement = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/scrollTop)
     */
-  scrollTop: any,
+  mutable scrollTop: any,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/scrollLeft)
     */
-  scrollLeft: any,
+  mutable scrollLeft: any,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/scrollWidth)
     */
@@ -10141,11 +10141,11 @@ and htmlTextAreaElement = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/innerHTML)
     */
-  innerHTML: unknown,
+  mutable innerHTML: unknown,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/outerHTML)
     */
-  outerHTML: unknown,
+  mutable outerHTML: unknown,
   // End base properties from Element
 
   // Base properties from Node
@@ -10212,26 +10212,26 @@ and htmlTextAreaElement = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/nodeValue)
     */
-  nodeValue: Null.t<domString>,
+  mutable nodeValue: Null.t<domString>,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/textContent)
     */
-  textContent: Null.t<domString>,
+  mutable textContent: Null.t<domString>,
   // End base properties from Node
 
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLTextAreaElement/autocomplete)
     */
-  autocomplete: string,
+  mutable autocomplete: string,
   /**
     Sets or retrieves the width of the object.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLTextAreaElement/cols)
     */
-  cols: any,
+  mutable cols: any,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLTextAreaElement/disabled)
     */
-  disabled: bool,
+  mutable disabled: bool,
   /**
     Retrieves a reference to the form that the object is embedded in.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLTextAreaElement/form)
@@ -10241,41 +10241,41 @@ and htmlTextAreaElement = {
     Sets or retrieves the maximum number of characters that the user can enter in a text control.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLTextAreaElement/maxLength)
     */
-  maxLength: int,
+  mutable maxLength: int,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLTextAreaElement/minLength)
     */
-  minLength: int,
+  mutable minLength: int,
   /**
     Sets or retrieves the name of the object.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLTextAreaElement/name)
     */
-  name: domString,
+  mutable name: domString,
   /**
     Gets or sets a text string that is displayed in an input field as a hint or prompt to users as the format or type of information they need to enter.The text appears in an input field until the user puts focus on the field.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLTextAreaElement/placeholder)
     */
-  placeholder: domString,
+  mutable placeholder: domString,
   /**
     Sets or retrieves the value indicated whether the content of the object is read-only.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLTextAreaElement/readOnly)
     */
-  readOnly: bool,
+  mutable readOnly: bool,
   /**
     When present, marks an element that can't be submitted without a value.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLTextAreaElement/required)
     */
-  required: bool,
+  mutable required: bool,
   /**
     Sets or retrieves the number of horizontal rows contained in the object.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLTextAreaElement/rows)
     */
-  rows: any,
+  mutable rows: any,
   /**
     Sets or retrieves how to handle wordwrapping in the object.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLTextAreaElement/wrap)
     */
-  wrap: domString,
+  mutable wrap: domString,
   /**
     Retrieves the type of control.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLTextAreaElement/type)
@@ -10286,12 +10286,12 @@ and htmlTextAreaElement = {
     Sets or retrieves the initial contents of the object.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLTextAreaElement/defaultValue)
     */
-  defaultValue: domString,
+  mutable defaultValue: domString,
   /**
     Retrieves or sets the text in the entry field of the textArea element.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLTextAreaElement/value)
     */
-  value: domString,
+  mutable value: domString,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLTextAreaElement/textLength)
     */
@@ -10319,16 +10319,16 @@ and htmlTextAreaElement = {
     Gets or sets the starting position or offset of a text selection.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLTextAreaElement/selectionStart)
     */
-  selectionStart: any,
+  mutable selectionStart: any,
   /**
     Gets or sets the end position or offset of a text selection.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLTextAreaElement/selectionEnd)
     */
-  selectionEnd: any,
+  mutable selectionEnd: any,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLTextAreaElement/selectionDirection)
     */
-  selectionDirection: string,
+  mutable selectionDirection: string,
 }
 
 /**
@@ -10340,31 +10340,31 @@ and htmlOutputElement = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/title)
     */
-  title: domString,
+  mutable title: domString,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/lang)
     */
-  lang: domString,
+  mutable lang: domString,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/translate)
     */
-  translate: bool,
+  mutable translate: bool,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/dir)
     */
-  dir: domString,
+  mutable dir: domString,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/hidden)
     */
-  hidden: unknown,
+  mutable hidden: unknown,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/inert)
     */
-  inert: bool,
+  mutable inert: bool,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/accessKey)
     */
-  accessKey: domString,
+  mutable accessKey: domString,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/accessKeyLabel)
     */
@@ -10372,27 +10372,27 @@ and htmlOutputElement = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/draggable)
     */
-  draggable: bool,
+  mutable draggable: bool,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/spellcheck)
     */
-  spellcheck: bool,
+  mutable spellcheck: bool,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/autocapitalize)
     */
-  autocapitalize: domString,
+  mutable autocapitalize: domString,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/innerText)
     */
-  innerText: domString,
+  mutable innerText: domString,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/outerText)
     */
-  outerText: domString,
+  mutable outerText: domString,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/popover)
     */
-  popover: Null.t<domString>,
+  mutable popover: Null.t<domString>,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/offsetParent)
     */
@@ -10440,12 +10440,12 @@ and htmlOutputElement = {
     Returns the value of element's id content attribute. Can be set to change it.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/id)
     */
-  id: domString,
+  mutable id: domString,
   /**
     Returns the value of element's class content attribute. Can be set to change it.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/className)
     */
-  className: domString,
+  mutable className: domString,
   /**
     Allows for manipulation of element's class content attribute as a set of whitespace-separated tokens through a DOMTokenList object.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/classList)
@@ -10455,7 +10455,7 @@ and htmlOutputElement = {
     Returns the value of element's slot content attribute. Can be set to change it.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/slot)
     */
-  slot: domString,
+  mutable slot: domString,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/attributes)
     */
@@ -10472,11 +10472,11 @@ and htmlOutputElement = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/scrollTop)
     */
-  scrollTop: any,
+  mutable scrollTop: any,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/scrollLeft)
     */
-  scrollLeft: any,
+  mutable scrollLeft: any,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/scrollWidth)
     */
@@ -10508,11 +10508,11 @@ and htmlOutputElement = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/innerHTML)
     */
-  innerHTML: unknown,
+  mutable innerHTML: unknown,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/outerHTML)
     */
-  outerHTML: unknown,
+  mutable outerHTML: unknown,
   // End base properties from Element
 
   // Base properties from Node
@@ -10579,11 +10579,11 @@ and htmlOutputElement = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/nodeValue)
     */
-  nodeValue: Null.t<domString>,
+  mutable nodeValue: Null.t<domString>,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/textContent)
     */
-  textContent: Null.t<domString>,
+  mutable textContent: Null.t<domString>,
   // End base properties from Node
 
   /**
@@ -10597,7 +10597,7 @@ and htmlOutputElement = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLOutputElement/name)
     */
-  name: domString,
+  mutable name: domString,
   /**
     Returns the string "output".
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLOutputElement/type)
@@ -10607,14 +10607,14 @@ and htmlOutputElement = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLOutputElement/defaultValue)
     */
-  defaultValue: domString,
+  mutable defaultValue: domString,
   /**
     Returns the element's current value.
 
 Can be set, to change the value.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLOutputElement/value)
     */
-  value: domString,
+  mutable value: domString,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLOutputElement/willValidate)
     */
@@ -10642,31 +10642,31 @@ and htmlInputElement = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/title)
     */
-  title: domString,
+  mutable title: domString,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/lang)
     */
-  lang: domString,
+  mutable lang: domString,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/translate)
     */
-  translate: bool,
+  mutable translate: bool,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/dir)
     */
-  dir: domString,
+  mutable dir: domString,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/hidden)
     */
-  hidden: unknown,
+  mutable hidden: unknown,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/inert)
     */
-  inert: bool,
+  mutable inert: bool,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/accessKey)
     */
-  accessKey: domString,
+  mutable accessKey: domString,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/accessKeyLabel)
     */
@@ -10674,27 +10674,27 @@ and htmlInputElement = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/draggable)
     */
-  draggable: bool,
+  mutable draggable: bool,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/spellcheck)
     */
-  spellcheck: bool,
+  mutable spellcheck: bool,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/autocapitalize)
     */
-  autocapitalize: domString,
+  mutable autocapitalize: domString,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/innerText)
     */
-  innerText: domString,
+  mutable innerText: domString,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/outerText)
     */
-  outerText: domString,
+  mutable outerText: domString,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/popover)
     */
-  popover: Null.t<domString>,
+  mutable popover: Null.t<domString>,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/offsetParent)
     */
@@ -10742,12 +10742,12 @@ and htmlInputElement = {
     Returns the value of element's id content attribute. Can be set to change it.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/id)
     */
-  id: domString,
+  mutable id: domString,
   /**
     Returns the value of element's class content attribute. Can be set to change it.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/className)
     */
-  className: domString,
+  mutable className: domString,
   /**
     Allows for manipulation of element's class content attribute as a set of whitespace-separated tokens through a DOMTokenList object.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/classList)
@@ -10757,7 +10757,7 @@ and htmlInputElement = {
     Returns the value of element's slot content attribute. Can be set to change it.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/slot)
     */
-  slot: domString,
+  mutable slot: domString,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/attributes)
     */
@@ -10774,11 +10774,11 @@ and htmlInputElement = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/scrollTop)
     */
-  scrollTop: any,
+  mutable scrollTop: any,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/scrollLeft)
     */
-  scrollLeft: any,
+  mutable scrollLeft: any,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/scrollWidth)
     */
@@ -10810,11 +10810,11 @@ and htmlInputElement = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/innerHTML)
     */
-  innerHTML: unknown,
+  mutable innerHTML: unknown,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/outerHTML)
     */
-  outerHTML: unknown,
+  mutable outerHTML: unknown,
   // End base properties from Element
 
   // Base properties from Node
@@ -10881,42 +10881,42 @@ and htmlInputElement = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/nodeValue)
     */
-  nodeValue: Null.t<domString>,
+  mutable nodeValue: Null.t<domString>,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/textContent)
     */
-  textContent: Null.t<domString>,
+  mutable textContent: Null.t<domString>,
   // End base properties from Node
 
   /**
     Sets or retrieves a comma-separated list of content types.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLInputElement/accept)
     */
-  accept: domString,
+  mutable accept: domString,
   /**
     Sets or retrieves a text alternative to the graphic.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLInputElement/alt)
     */
-  alt: domString,
+  mutable alt: domString,
   /**
     Specifies whether autocomplete is applied to an editable text field.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLInputElement/autocomplete)
     */
-  autocomplete: string,
+  mutable autocomplete: string,
   /**
     Sets or retrieves the state of the check box or radio button.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLInputElement/defaultChecked)
     */
-  defaultChecked: bool,
+  mutable defaultChecked: bool,
   /**
     Sets or retrieves the state of the check box or radio button.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLInputElement/checked)
     */
-  checked: bool,
+  mutable checked: bool,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLInputElement/disabled)
     */
-  disabled: bool,
+  mutable disabled: bool,
   /**
     Retrieves a reference to the form that the object is embedded in.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLInputElement/form)
@@ -10926,32 +10926,32 @@ and htmlInputElement = {
     Returns a FileList object on a file type input object.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLInputElement/files)
     */
-  files: Null.t<fileList>,
+  mutable files: Null.t<fileList>,
   /**
     Overrides the action attribute (where the data on a form is sent) on the parent form element.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLInputElement/formAction)
     */
-  formAction: usvString,
+  mutable formAction: usvString,
   /**
     Used to override the encoding (formEnctype attribute) specified on the form element.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLInputElement/formEnctype)
     */
-  formEnctype: domString,
+  mutable formEnctype: domString,
   /**
     Overrides the submit method attribute previously specified on a form element.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLInputElement/formMethod)
     */
-  formMethod: domString,
+  mutable formMethod: domString,
   /**
     Sets or retrieves the height of the object.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLInputElement/height)
     */
-  height: any,
+  mutable height: any,
   /**
     When set, overrides the rendering of checkbox controls so that the current value is not visible.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLInputElement/indeterminate)
     */
-  indeterminate: bool,
+  mutable indeterminate: bool,
   /**
     Specifies the ID of a pre-defined datalist of options for an input element.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLInputElement/list)
@@ -10961,95 +10961,95 @@ and htmlInputElement = {
     Defines the maximum acceptable value for an input element with type="number".When used with the min and step attributes, lets you control the range and increment (such as only even numbers) that the user can enter into an input field.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLInputElement/max)
     */
-  max: domString,
+  mutable max: domString,
   /**
     Sets or retrieves the maximum number of characters that the user can enter in a text control.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLInputElement/maxLength)
     */
-  maxLength: int,
+  mutable maxLength: int,
   /**
     Defines the minimum acceptable value for an input element with type="number". When used with the max and step attributes, lets you control the range and increment (such as even numbers only) that the user can enter into an input field.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLInputElement/min)
     */
-  min: domString,
+  mutable min: domString,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLInputElement/minLength)
     */
-  minLength: int,
+  mutable minLength: int,
   /**
     Sets or retrieves the Boolean value indicating whether multiple items can be selected from a list.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLInputElement/multiple)
     */
-  multiple: bool,
+  mutable multiple: bool,
   /**
     Sets or retrieves the name of the object.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLInputElement/name)
     */
-  name: domString,
+  mutable name: domString,
   /**
     Gets or sets a string containing a regular expression that the user's input must match.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLInputElement/pattern)
     */
-  pattern: domString,
+  mutable pattern: domString,
   /**
     Gets or sets a text string that is displayed in an input field as a hint or prompt to users as the format or type of information they need to enter.The text appears in an input field until the user puts focus on the field.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLInputElement/placeholder)
     */
-  placeholder: domString,
+  mutable placeholder: domString,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLInputElement/readOnly)
     */
-  readOnly: bool,
+  mutable readOnly: bool,
   /**
     When present, marks an element that can't be submitted without a value.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLInputElement/required)
     */
-  required: bool,
+  mutable required: bool,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLInputElement/size)
     */
-  size: any,
+  mutable size: any,
   /**
     The address or URL of the a media resource that is to be considered.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLInputElement/src)
     */
-  src: usvString,
+  mutable src: usvString,
   /**
     Defines an increment or jump between values that you want to allow the user to enter. When used with the max and min attributes, lets you control the range and increment (for example, allow only even numbers) that the user can enter into an input field.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLInputElement/step)
     */
-  step: domString,
+  mutable step: domString,
   /**
     Returns the content type of the object.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLInputElement/type)
     */
   @as("type")
-  type_: domString,
+  mutable type_: domString,
   /**
     Sets or retrieves the initial contents of the object.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLInputElement/defaultValue)
     */
-  defaultValue: domString,
+  mutable defaultValue: domString,
   /**
     Returns the value of the data at the cursor's current position.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLInputElement/value)
     */
-  value: domString,
+  mutable value: domString,
   /**
     Returns a Date object representing the form control's value, if applicable; otherwise, returns null. Can be set, to change the value. Throws an "InvalidStateError" DOMException if the control isn't date- or time-based.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLInputElement/valueAsDate)
     */
-  valueAsDate: Null.t<Date.t>,
+  mutable valueAsDate: Null.t<Date.t>,
   /**
     Returns the input field value as a number.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLInputElement/valueAsNumber)
     */
-  valueAsNumber: any,
+  mutable valueAsNumber: any,
   /**
     Sets or retrieves the width of the object.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLInputElement/width)
     */
-  width: any,
+  mutable width: any,
   /**
     Returns whether an element will successfully validate based on forms validation rules and constraints.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLInputElement/willValidate)
@@ -11073,20 +11073,20 @@ and htmlInputElement = {
     Gets or sets the starting position or offset of a text selection.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLInputElement/selectionStart)
     */
-  selectionStart: Null.t<any>,
+  mutable selectionStart: Null.t<any>,
   /**
     Gets or sets the end position or offset of a text selection.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLInputElement/selectionEnd)
     */
-  selectionEnd: Null.t<any>,
+  mutable selectionEnd: Null.t<any>,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLInputElement/selectionDirection)
     */
-  selectionDirection: Null.t<string>,
+  mutable selectionDirection: Null.t<string>,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLInputElement/webkitdirectory)
     */
-  webkitdirectory: bool,
+  mutable webkitdirectory: bool,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLInputElement/webkitEntries)
     */
@@ -11094,7 +11094,7 @@ and htmlInputElement = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLInputElement/capture)
     */
-  capture: domString,
+  mutable capture: domString,
 }
 
 /**
@@ -11106,31 +11106,31 @@ and htmlDataListElement = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/title)
     */
-  title: domString,
+  mutable title: domString,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/lang)
     */
-  lang: domString,
+  mutable lang: domString,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/translate)
     */
-  translate: bool,
+  mutable translate: bool,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/dir)
     */
-  dir: domString,
+  mutable dir: domString,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/hidden)
     */
-  hidden: unknown,
+  mutable hidden: unknown,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/inert)
     */
-  inert: bool,
+  mutable inert: bool,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/accessKey)
     */
-  accessKey: domString,
+  mutable accessKey: domString,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/accessKeyLabel)
     */
@@ -11138,27 +11138,27 @@ and htmlDataListElement = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/draggable)
     */
-  draggable: bool,
+  mutable draggable: bool,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/spellcheck)
     */
-  spellcheck: bool,
+  mutable spellcheck: bool,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/autocapitalize)
     */
-  autocapitalize: domString,
+  mutable autocapitalize: domString,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/innerText)
     */
-  innerText: domString,
+  mutable innerText: domString,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/outerText)
     */
-  outerText: domString,
+  mutable outerText: domString,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/popover)
     */
-  popover: Null.t<domString>,
+  mutable popover: Null.t<domString>,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/offsetParent)
     */
@@ -11206,12 +11206,12 @@ and htmlDataListElement = {
     Returns the value of element's id content attribute. Can be set to change it.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/id)
     */
-  id: domString,
+  mutable id: domString,
   /**
     Returns the value of element's class content attribute. Can be set to change it.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/className)
     */
-  className: domString,
+  mutable className: domString,
   /**
     Allows for manipulation of element's class content attribute as a set of whitespace-separated tokens through a DOMTokenList object.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/classList)
@@ -11221,7 +11221,7 @@ and htmlDataListElement = {
     Returns the value of element's slot content attribute. Can be set to change it.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/slot)
     */
-  slot: domString,
+  mutable slot: domString,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/attributes)
     */
@@ -11238,11 +11238,11 @@ and htmlDataListElement = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/scrollTop)
     */
-  scrollTop: any,
+  mutable scrollTop: any,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/scrollLeft)
     */
-  scrollLeft: any,
+  mutable scrollLeft: any,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/scrollWidth)
     */
@@ -11274,11 +11274,11 @@ and htmlDataListElement = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/innerHTML)
     */
-  innerHTML: unknown,
+  mutable innerHTML: unknown,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/outerHTML)
     */
-  outerHTML: unknown,
+  mutable outerHTML: unknown,
   // End base properties from Element
 
   // Base properties from Node
@@ -11345,11 +11345,11 @@ and htmlDataListElement = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/nodeValue)
     */
-  nodeValue: Null.t<domString>,
+  mutable nodeValue: Null.t<domString>,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/textContent)
     */
-  textContent: Null.t<domString>,
+  mutable textContent: Null.t<domString>,
   // End base properties from Node
 
   /**
@@ -11368,31 +11368,31 @@ and htmlSelectElement = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/title)
     */
-  title: domString,
+  mutable title: domString,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/lang)
     */
-  lang: domString,
+  mutable lang: domString,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/translate)
     */
-  translate: bool,
+  mutable translate: bool,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/dir)
     */
-  dir: domString,
+  mutable dir: domString,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/hidden)
     */
-  hidden: unknown,
+  mutable hidden: unknown,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/inert)
     */
-  inert: bool,
+  mutable inert: bool,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/accessKey)
     */
-  accessKey: domString,
+  mutable accessKey: domString,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/accessKeyLabel)
     */
@@ -11400,27 +11400,27 @@ and htmlSelectElement = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/draggable)
     */
-  draggable: bool,
+  mutable draggable: bool,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/spellcheck)
     */
-  spellcheck: bool,
+  mutable spellcheck: bool,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/autocapitalize)
     */
-  autocapitalize: domString,
+  mutable autocapitalize: domString,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/innerText)
     */
-  innerText: domString,
+  mutable innerText: domString,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/outerText)
     */
-  outerText: domString,
+  mutable outerText: domString,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/popover)
     */
-  popover: Null.t<domString>,
+  mutable popover: Null.t<domString>,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/offsetParent)
     */
@@ -11468,12 +11468,12 @@ and htmlSelectElement = {
     Returns the value of element's id content attribute. Can be set to change it.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/id)
     */
-  id: domString,
+  mutable id: domString,
   /**
     Returns the value of element's class content attribute. Can be set to change it.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/className)
     */
-  className: domString,
+  mutable className: domString,
   /**
     Allows for manipulation of element's class content attribute as a set of whitespace-separated tokens through a DOMTokenList object.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/classList)
@@ -11483,7 +11483,7 @@ and htmlSelectElement = {
     Returns the value of element's slot content attribute. Can be set to change it.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/slot)
     */
-  slot: domString,
+  mutable slot: domString,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/attributes)
     */
@@ -11500,11 +11500,11 @@ and htmlSelectElement = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/scrollTop)
     */
-  scrollTop: any,
+  mutable scrollTop: any,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/scrollLeft)
     */
-  scrollLeft: any,
+  mutable scrollLeft: any,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/scrollWidth)
     */
@@ -11536,11 +11536,11 @@ and htmlSelectElement = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/innerHTML)
     */
-  innerHTML: unknown,
+  mutable innerHTML: unknown,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/outerHTML)
     */
-  outerHTML: unknown,
+  mutable outerHTML: unknown,
   // End base properties from Element
 
   // Base properties from Node
@@ -11607,17 +11607,17 @@ and htmlSelectElement = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/nodeValue)
     */
-  nodeValue: Null.t<domString>,
+  mutable nodeValue: Null.t<domString>,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/textContent)
     */
-  textContent: Null.t<domString>,
+  mutable textContent: Null.t<domString>,
   // End base properties from Node
 
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLSelectElement/disabled)
     */
-  disabled: bool,
+  mutable disabled: bool,
   /**
     Retrieves a reference to the form that the object is embedded in.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLSelectElement/form)
@@ -11627,22 +11627,22 @@ and htmlSelectElement = {
     Sets or retrieves the Boolean value indicating whether multiple items can be selected from a list.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLSelectElement/multiple)
     */
-  multiple: bool,
+  mutable multiple: bool,
   /**
     Sets or retrieves the name of the object.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLSelectElement/name)
     */
-  name: domString,
+  mutable name: domString,
   /**
     When present, marks an element that can't be submitted without a value.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLSelectElement/required)
     */
-  required: bool,
+  mutable required: bool,
   /**
     Sets or retrieves the number of rows in the list box.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLSelectElement/size)
     */
-  size: any,
+  mutable size: any,
   /**
     Retrieves the type of select control based on the value of the MULTIPLE attribute.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLSelectElement/type)
@@ -11658,7 +11658,7 @@ and htmlSelectElement = {
     Sets or retrieves the number of objects in a collection.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLSelectElement/length)
     */
-  length: any,
+  mutable length: any,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLSelectElement/selectedOptions)
     */
@@ -11667,12 +11667,12 @@ and htmlSelectElement = {
     Sets or retrieves the index of the selected option in a select object.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLSelectElement/selectedIndex)
     */
-  selectedIndex: int,
+  mutable selectedIndex: int,
   /**
     Sets or retrieves the value which is returned to the server when the form control is submitted.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLSelectElement/value)
     */
-  value: domString,
+  mutable value: domString,
   /**
     Returns whether an element will successfully validate based on forms validation rules and constraints.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLSelectElement/willValidate)
@@ -11703,31 +11703,31 @@ and htmlOptionElement = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/title)
     */
-  title: domString,
+  mutable title: domString,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/lang)
     */
-  lang: domString,
+  mutable lang: domString,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/translate)
     */
-  translate: bool,
+  mutable translate: bool,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/dir)
     */
-  dir: domString,
+  mutable dir: domString,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/hidden)
     */
-  hidden: unknown,
+  mutable hidden: unknown,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/inert)
     */
-  inert: bool,
+  mutable inert: bool,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/accessKey)
     */
-  accessKey: domString,
+  mutable accessKey: domString,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/accessKeyLabel)
     */
@@ -11735,27 +11735,27 @@ and htmlOptionElement = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/draggable)
     */
-  draggable: bool,
+  mutable draggable: bool,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/spellcheck)
     */
-  spellcheck: bool,
+  mutable spellcheck: bool,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/autocapitalize)
     */
-  autocapitalize: domString,
+  mutable autocapitalize: domString,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/innerText)
     */
-  innerText: domString,
+  mutable innerText: domString,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/outerText)
     */
-  outerText: domString,
+  mutable outerText: domString,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/popover)
     */
-  popover: Null.t<domString>,
+  mutable popover: Null.t<domString>,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/offsetParent)
     */
@@ -11803,12 +11803,12 @@ and htmlOptionElement = {
     Returns the value of element's id content attribute. Can be set to change it.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/id)
     */
-  id: domString,
+  mutable id: domString,
   /**
     Returns the value of element's class content attribute. Can be set to change it.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/className)
     */
-  className: domString,
+  mutable className: domString,
   /**
     Allows for manipulation of element's class content attribute as a set of whitespace-separated tokens through a DOMTokenList object.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/classList)
@@ -11818,7 +11818,7 @@ and htmlOptionElement = {
     Returns the value of element's slot content attribute. Can be set to change it.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/slot)
     */
-  slot: domString,
+  mutable slot: domString,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/attributes)
     */
@@ -11835,11 +11835,11 @@ and htmlOptionElement = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/scrollTop)
     */
-  scrollTop: any,
+  mutable scrollTop: any,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/scrollLeft)
     */
-  scrollLeft: any,
+  mutable scrollLeft: any,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/scrollWidth)
     */
@@ -11871,11 +11871,11 @@ and htmlOptionElement = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/innerHTML)
     */
-  innerHTML: unknown,
+  mutable innerHTML: unknown,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/outerHTML)
     */
-  outerHTML: unknown,
+  mutable outerHTML: unknown,
   // End base properties from Element
 
   // Base properties from Node
@@ -11942,17 +11942,17 @@ and htmlOptionElement = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/nodeValue)
     */
-  nodeValue: Null.t<domString>,
+  mutable nodeValue: Null.t<domString>,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/textContent)
     */
-  textContent: Null.t<domString>,
+  mutable textContent: Null.t<domString>,
   // End base properties from Node
 
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLOptionElement/disabled)
     */
-  disabled: bool,
+  mutable disabled: bool,
   /**
     Retrieves a reference to the form that the object is embedded in.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLOptionElement/form)
@@ -11962,27 +11962,27 @@ and htmlOptionElement = {
     Sets or retrieves a value that you can use to implement your own label functionality for the object.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLOptionElement/label)
     */
-  label: domString,
+  mutable label: domString,
   /**
     Sets or retrieves the status of an option.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLOptionElement/defaultSelected)
     */
-  defaultSelected: bool,
+  mutable defaultSelected: bool,
   /**
     Sets or retrieves whether the option in the list box is the default item.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLOptionElement/selected)
     */
-  selected: bool,
+  mutable selected: bool,
   /**
     Sets or retrieves the value which is returned to the server when the form control is submitted.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLOptionElement/value)
     */
-  value: domString,
+  mutable value: domString,
   /**
     Sets or retrieves the text string specified by the option tag.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLOptionElement/text)
     */
-  text: domString,
+  mutable text: domString,
   /**
     Sets or retrieves the ordinal position of an option in a list box.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLOptionElement/index)
@@ -12009,7 +12009,7 @@ and htmlOptionsCollection = {
 Can be set, to change the selection.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLOptionsCollection/selectedIndex)
     */
-  selectedIndex: int,
+  mutable selectedIndex: int,
 }
 
 /**
@@ -12043,19 +12043,19 @@ type rec animation = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Animation/id)
     */
-  id: domString,
+  mutable id: domString,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Animation/effect)
     */
-  effect: Null.t<animationEffect>,
+  mutable effect: Null.t<animationEffect>,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Animation/timeline)
     */
-  timeline: Null.t<animationTimeline>,
+  mutable timeline: Null.t<animationTimeline>,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Animation/playbackRate)
     */
-  playbackRate: float,
+  mutable playbackRate: float,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Animation/playState)
     */
@@ -12079,11 +12079,11 @@ type rec animation = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Animation/startTime)
     */
-  startTime: Null.t<float>,
+  mutable startTime: Null.t<float>,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Animation/currentTime)
     */
-  currentTime: Null.t<float>,
+  mutable currentTime: Null.t<float>,
 }
 
 /**
@@ -12107,43 +12107,43 @@ type rec fontFace = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/FontFace/family)
     */
-  family: string,
+  mutable family: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/FontFace/style)
     */
-  style: string,
+  mutable style: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/FontFace/weight)
     */
-  weight: string,
+  mutable weight: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/FontFace/stretch)
     */
-  stretch: string,
+  mutable stretch: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/FontFace/unicodeRange)
     */
-  unicodeRange: string,
+  mutable unicodeRange: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/FontFace/featureSettings)
     */
-  featureSettings: string,
+  mutable featureSettings: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/FontFace/display)
     */
-  display: fontDisplay,
+  mutable display: fontDisplay,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/FontFace/ascentOverride)
     */
-  ascentOverride: string,
+  mutable ascentOverride: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/FontFace/descentOverride)
     */
-  descentOverride: string,
+  mutable descentOverride: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/FontFace/lineGapOverride)
     */
-  lineGapOverride: string,
+  mutable lineGapOverride: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/FontFace/status)
     */
@@ -12374,7 +12374,7 @@ type idbObjectStore = {
     Returns the name of the store.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/IDBObjectStore/name)
     */
-  name: domString,
+  mutable name: domString,
   /**
     Returns the key path of the store, or null if none.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/IDBObjectStore/keyPath)
@@ -12406,7 +12406,7 @@ type idbIndex = {
     Returns the name of the index.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/IDBIndex/name)
     */
-  name: domString,
+  mutable name: domString,
   /**
     Returns the IDBObjectStore the index belongs to.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/IDBIndex/objectStore)
@@ -12618,7 +12618,7 @@ type svgAnimatedEnumeration = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/SVGAnimatedEnumeration/baseVal)
     */
-  baseVal: int,
+  mutable baseVal: int,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/SVGAnimatedEnumeration/animVal)
     */
@@ -12666,7 +12666,7 @@ type svgAnimatedString = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/SVGAnimatedString/baseVal)
     */
-  baseVal: domString,
+  mutable baseVal: domString,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/SVGAnimatedString/animVal)
     */
@@ -12778,11 +12778,11 @@ type svgStyleElement = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/SVGStyleElement/media)
     */
-  media: domString,
+  mutable media: domString,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/SVGStyleElement/title)
     */
-  title: domString,
+  mutable title: domString,
 }
 
 /**
@@ -13292,7 +13292,7 @@ type cssKeyframeRule = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CSSKeyframeRule/keyText)
     */
-  keyText: string,
+  mutable keyText: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CSSKeyframeRule/style)
     */
@@ -13308,7 +13308,7 @@ type cssKeyframesRule = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CSSKeyframesRule/name)
     */
-  name: string,
+  mutable name: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CSSKeyframesRule/cssRules)
     */
@@ -13434,47 +13434,47 @@ type cssCounterStyleRule = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CSSCounterStyleRule/name)
     */
-  name: string,
+  mutable name: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CSSCounterStyleRule/system)
     */
-  system: string,
+  mutable system: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CSSCounterStyleRule/symbols)
     */
-  symbols: string,
+  mutable symbols: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CSSCounterStyleRule/additiveSymbols)
     */
-  additiveSymbols: string,
+  mutable additiveSymbols: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CSSCounterStyleRule/negative)
     */
-  negative: string,
+  mutable negative: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CSSCounterStyleRule/prefix)
     */
-  prefix: string,
+  mutable prefix: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CSSCounterStyleRule/suffix)
     */
-  suffix: string,
+  mutable suffix: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CSSCounterStyleRule/range)
     */
-  range: string,
+  mutable range: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CSSCounterStyleRule/pad)
     */
-  pad: string,
+  mutable pad: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CSSCounterStyleRule/speakAs)
     */
-  speakAs: string,
+  mutable speakAs: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CSSCounterStyleRule/fallback)
     */
-  fallback: string,
+  mutable fallback: string,
 }
 
 /**
@@ -13507,7 +13507,7 @@ type cssFontFeatureValuesRule = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CSSFontFeatureValuesRule/fontFamily)
     */
-  fontFamily: string,
+  mutable fontFamily: string,
 }
 
 /**
@@ -13540,12 +13540,12 @@ type highlight = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Highlight/priority)
     */
-  priority: int,
+  mutable priority: int,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Highlight/type)
     */
   @as("type")
-  type_: highlightType,
+  mutable type_: highlightType,
 }
 
 /**
@@ -13701,7 +13701,7 @@ type cssVariableReferenceValue = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CSSVariableReferenceValue/variable)
     */
-  variable: usvString,
+  mutable variable: usvString,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CSSVariableReferenceValue/fallback)
     */
@@ -13716,7 +13716,7 @@ type cssKeywordValue = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CSSKeywordValue/value)
     */
-  value: usvString,
+  mutable value: usvString,
 }
 
 /**
@@ -13727,7 +13727,7 @@ type cssUnitValue = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CSSUnitValue/value)
     */
-  value: float,
+  mutable value: float,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CSSUnitValue/unit)
     */
@@ -13838,15 +13838,15 @@ type cssTranslate = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CSSTranslate/x)
     */
-  x: cssNumericValue,
+  mutable x: cssNumericValue,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CSSTranslate/y)
     */
-  y: cssNumericValue,
+  mutable y: cssNumericValue,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CSSTranslate/z)
     */
-  z: cssNumericValue,
+  mutable z: cssNumericValue,
 }
 
 /**
@@ -13857,19 +13857,19 @@ type cssRotate = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CSSRotate/x)
     */
-  x: float,
+  mutable x: float,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CSSRotate/y)
     */
-  y: float,
+  mutable y: float,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CSSRotate/z)
     */
-  z: float,
+  mutable z: float,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CSSRotate/angle)
     */
-  angle: cssNumericValue,
+  mutable angle: cssNumericValue,
 }
 
 /**
@@ -13880,15 +13880,15 @@ type cssScale = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CSSScale/x)
     */
-  x: float,
+  mutable x: float,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CSSScale/y)
     */
-  y: float,
+  mutable y: float,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CSSScale/z)
     */
-  z: float,
+  mutable z: float,
 }
 
 /**
@@ -13899,11 +13899,11 @@ type cssSkew = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CSSSkew/ax)
     */
-  ax: cssNumericValue,
+  mutable ax: cssNumericValue,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CSSSkew/ay)
     */
-  ay: cssNumericValue,
+  mutable ay: cssNumericValue,
 }
 
 /**
@@ -13914,7 +13914,7 @@ type cssSkewX = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CSSSkewX/ax)
     */
-  ax: cssNumericValue,
+  mutable ax: cssNumericValue,
 }
 
 /**
@@ -13925,7 +13925,7 @@ type cssSkewY = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CSSSkewY/ay)
     */
-  ay: cssNumericValue,
+  mutable ay: cssNumericValue,
 }
 
 /**
@@ -14009,7 +14009,7 @@ type cssStyleRule = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CSSStyleRule/selectorText)
     */
-  selectorText: string,
+  mutable selectorText: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CSSStyleRule/style)
     */
@@ -14056,7 +14056,7 @@ type cssPageRule = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CSSPageRule/selectorText)
     */
-  selectorText: string,
+  mutable selectorText: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CSSPageRule/style)
     */
@@ -14138,7 +14138,7 @@ type attr = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Attr/value)
     */
-  value: domString,
+  mutable value: domString,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Attr/ownerElement)
     */
@@ -14154,7 +14154,7 @@ type characterData = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CharacterData/data)
     */
-  data: domString,
+  mutable data: domString,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CharacterData/length)
     */
@@ -14300,7 +14300,7 @@ type treeWalker = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/TreeWalker/currentNode)
     */
-  currentNode: node,
+  mutable currentNode: node,
 }
 
 /**
@@ -15059,7 +15059,7 @@ type radioNodeList = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/RadioNodeList/value)
     */
-  value: domString,
+  mutable value: domString,
 }
 
 /**
@@ -15094,7 +15094,7 @@ type htmlTitleElement = {
     Retrieves or sets the text of the object as a string.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLTitleElement/text)
     */
-  text: domString,
+  mutable text: domString,
 }
 
 /**
@@ -15107,12 +15107,12 @@ type htmlBaseElement = {
     Gets or sets the baseline URL on which relative links are based.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLBaseElement/href)
     */
-  href: usvString,
+  mutable href: usvString,
   /**
     Sets or retrieves the window or frame at which to target content.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLBaseElement/target)
     */
-  target: domString,
+  mutable target: domString,
 }
 
 /**
@@ -15125,21 +15125,21 @@ type htmlLinkElement = {
     Sets or retrieves a destination URL or an anchor point.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLLinkElement/href)
     */
-  href: usvString,
+  mutable href: usvString,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLLinkElement/crossOrigin)
     */
-  crossOrigin: Null.t<domString>,
+  mutable crossOrigin: Null.t<domString>,
   /**
     Sets or retrieves the relationship between the object and the destination of the link.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLLinkElement/rel)
     */
-  rel: domString,
+  mutable rel: domString,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLLinkElement/as)
     */
   @as("as")
-  as_: domString,
+  mutable as_: domString,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLLinkElement/relList)
     */
@@ -15148,34 +15148,34 @@ type htmlLinkElement = {
     Sets or retrieves the media type.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLLinkElement/media)
     */
-  media: domString,
+  mutable media: domString,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLLinkElement/integrity)
     */
-  integrity: domString,
+  mutable integrity: domString,
   /**
     Sets or retrieves the language code of the object.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLLinkElement/hreflang)
     */
-  hreflang: domString,
+  mutable hreflang: domString,
   /**
     Sets or retrieves the MIME type of the object.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLLinkElement/type)
     */
   @as("type")
-  type_: domString,
+  mutable type_: domString,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLLinkElement/referrerPolicy)
     */
-  referrerPolicy: domString,
+  mutable referrerPolicy: domString,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLLinkElement/disabled)
     */
-  disabled: bool,
+  mutable disabled: bool,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLLinkElement/fetchPriority)
     */
-  fetchPriority: domString,
+  mutable fetchPriority: domString,
 }
 
 /**
@@ -15188,21 +15188,21 @@ type htmlMetaElement = {
     Sets or retrieves the value specified in the content attribute of the meta object.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLMetaElement/name)
     */
-  name: domString,
+  mutable name: domString,
   /**
     Gets or sets information used to bind the value of a content attribute of a meta element to an HTTP response header.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLMetaElement/httpEquiv)
     */
-  httpEquiv: domString,
+  mutable httpEquiv: domString,
   /**
     Gets or sets meta-information to associate with httpEquiv or name.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLMetaElement/content)
     */
-  content: domString,
+  mutable content: domString,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLMetaElement/media)
     */
-  media: domString,
+  mutable media: domString,
 }
 
 /**
@@ -15215,12 +15215,12 @@ type htmlStyleElement = {
     Enables or disables the style sheet.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLStyleElement/disabled)
     */
-  disabled: bool,
+  mutable disabled: bool,
   /**
     Sets or retrieves the media type.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLStyleElement/media)
     */
-  media: domString,
+  mutable media: domString,
 }
 
 /**
@@ -15280,17 +15280,17 @@ type htmloListElement = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLOListElement/reversed)
     */
-  reversed: bool,
+  mutable reversed: bool,
   /**
     The starting number.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLOListElement/start)
     */
-  start: int,
+  mutable start: int,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLOListElement/type)
     */
   @as("type")
-  type_: domString,
+  mutable type_: domString,
 }
 
 /**
@@ -15341,7 +15341,7 @@ type htmlDataElement = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLDataElement/value)
     */
-  value: domString,
+  mutable value: domString,
 }
 
 /**
@@ -15353,7 +15353,7 @@ type htmlTimeElement = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLTimeElement/dateTime)
     */
-  dateTime: domString,
+  mutable dateTime: domString,
 }
 
 /**
@@ -15397,11 +15397,11 @@ type htmlSourceElement = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLSourceElement/width)
     */
-  width: any,
+  mutable width: any,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLSourceElement/height)
     */
-  height: any,
+  mutable height: any,
 }
 
 /**
@@ -15414,17 +15414,17 @@ type htmliFrameElement = {
     Sets or retrieves a URL to be loaded by the object.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLIFrameElement/src)
     */
-  src: usvString,
+  mutable src: usvString,
   /**
     Sets or retrives the content of the page that is to contain.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLIFrameElement/srcdoc)
     */
-  srcdoc: unknown,
+  mutable srcdoc: unknown,
   /**
     Sets or retrieves the frame name.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLIFrameElement/name)
     */
-  name: domString,
+  mutable name: domString,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLIFrameElement/sandbox)
     */
@@ -15432,29 +15432,29 @@ type htmliFrameElement = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLIFrameElement/allow)
     */
-  allow: domString,
+  mutable allow: domString,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLIFrameElement/allowFullscreen)
     */
-  allowFullscreen: bool,
+  mutable allowFullscreen: bool,
   /**
     Sets or retrieves the width of the object.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLIFrameElement/width)
     */
-  width: domString,
+  mutable width: domString,
   /**
     Sets or retrieves the height of the object.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLIFrameElement/height)
     */
-  height: domString,
+  mutable height: domString,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLIFrameElement/referrerPolicy)
     */
-  referrerPolicy: referrerPolicy,
+  mutable referrerPolicy: referrerPolicy,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLIFrameElement/loading)
     */
-  loading: domString,
+  mutable loading: domString,
   /**
     Retrieves the document object of the page or frame.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLIFrameElement/contentDocument)
@@ -15477,18 +15477,18 @@ type htmlObjectElement = {
     Sets or retrieves the URL that references the data of the object.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLObjectElement/data)
     */
-  data: usvString,
+  mutable data: usvString,
   /**
     Sets or retrieves the MIME type of the object.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLObjectElement/type)
     */
   @as("type")
-  type_: domString,
+  mutable type_: domString,
   /**
     Sets or retrieves the name of the object.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLObjectElement/name)
     */
-  name: domString,
+  mutable name: domString,
   /**
     Retrieves a reference to the form that the object is embedded in.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLObjectElement/form)
@@ -15498,12 +15498,12 @@ type htmlObjectElement = {
     Sets or retrieves the width of the object.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLObjectElement/width)
     */
-  width: domString,
+  mutable width: domString,
   /**
     Sets or retrieves the height of the object.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLObjectElement/height)
     */
-  height: domString,
+  mutable height: domString,
   /**
     Retrieves the document object of the page or frame.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLObjectElement/contentDocument)
@@ -15545,11 +15545,11 @@ type htmlMediaElement = {
     The address or URL of the a media resource that is to be considered.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLMediaElement/src)
     */
-  src: usvString,
+  mutable src: usvString,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLMediaElement/srcObject)
     */
-  srcObject: Null.t<mediaProvider>,
+  mutable srcObject: Null.t<mediaProvider>,
   /**
     Gets the address or URL of the current media resource that is selected by IHTMLMediaElement.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLMediaElement/currentSrc)
@@ -15558,7 +15558,7 @@ type htmlMediaElement = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLMediaElement/crossOrigin)
     */
-  crossOrigin: Null.t<domString>,
+  mutable crossOrigin: Null.t<domString>,
   /**
     Gets the current network activity for the element.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLMediaElement/networkState)
@@ -15568,7 +15568,7 @@ type htmlMediaElement = {
     Gets or sets a value indicating what data should be preloaded, if any.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLMediaElement/preload)
     */
-  preload: string,
+  mutable preload: string,
   /**
     Gets a collection of buffered time ranges.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLMediaElement/buffered)
@@ -15582,7 +15582,7 @@ type htmlMediaElement = {
     Gets or sets the current playback position, in seconds.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLMediaElement/currentTime)
     */
-  currentTime: float,
+  mutable currentTime: float,
   /**
     Returns the duration in seconds of the current media resource. A NaN value is returned if duration is not available, or Infinity if the media resource is streaming.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLMediaElement/duration)
@@ -15597,16 +15597,16 @@ type htmlMediaElement = {
     Gets or sets the default playback rate when the user is not using fast forward or reverse for a video or audio resource.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLMediaElement/defaultPlaybackRate)
     */
-  defaultPlaybackRate: float,
+  mutable defaultPlaybackRate: float,
   /**
     Gets or sets the current rate of speed for the media resource to play. This speed is expressed as a multiple of the normal speed of the media resource.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLMediaElement/playbackRate)
     */
-  playbackRate: float,
+  mutable playbackRate: float,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLMediaElement/preservesPitch)
     */
-  preservesPitch: bool,
+  mutable preservesPitch: bool,
   /**
     Returns a TimeRanges object that represents the ranges of the current media resource that can be seeked.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLMediaElement/seekable)
@@ -15621,31 +15621,31 @@ type htmlMediaElement = {
     Gets or sets a value that indicates whether to start playing the media automatically.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLMediaElement/autoplay)
     */
-  autoplay: bool,
+  mutable autoplay: bool,
   /**
     Gets or sets a flag to specify whether playback should restart after it completes.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLMediaElement/loop)
     */
-  loop: bool,
+  mutable loop: bool,
   /**
     Gets or sets a flag that indicates whether the client provides a set of controls for the media (in case the developer does not include controls for the player).
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLMediaElement/controls)
     */
-  controls: bool,
+  mutable controls: bool,
   /**
     Gets or sets the volume level for audio portions of the media element.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLMediaElement/volume)
     */
-  volume: float,
+  mutable volume: float,
   /**
     Gets or sets a flag that indicates whether the audio (either audio or the audio track on video media) is muted.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLMediaElement/muted)
     */
-  muted: bool,
+  mutable muted: bool,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLMediaElement/defaultMuted)
     */
-  defaultMuted: bool,
+  mutable defaultMuted: bool,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLMediaElement/textTracks)
     */
@@ -15665,7 +15665,7 @@ type htmlMediaElement = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLMediaElement/disableRemotePlayback)
     */
-  disableRemotePlayback: bool,
+  mutable disableRemotePlayback: bool,
 }
 
 /**
@@ -15678,12 +15678,12 @@ type htmlVideoElement = {
     Gets or sets the width of the video element.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLVideoElement/width)
     */
-  width: any,
+  mutable width: any,
   /**
     Gets or sets the height of the video element.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLVideoElement/height)
     */
-  height: any,
+  mutable height: any,
   /**
     Gets the intrinsic width of a video in CSS pixels, or zero if the dimensions are not known.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLVideoElement/videoWidth)
@@ -15698,11 +15698,11 @@ type htmlVideoElement = {
     Gets or sets a URL of an image to display, for example, like a movie poster. This can be a still frame from the video, or another image if no video data is available.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLVideoElement/poster)
     */
-  poster: usvString,
+  mutable poster: usvString,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLVideoElement/disablePictureInPicture)
     */
-  disablePictureInPicture: bool,
+  mutable disablePictureInPicture: bool,
 }
 
 /**
@@ -15722,7 +15722,7 @@ type htmlTrackElement = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLTrackElement/src)
     */
-  src: usvString,
+  mutable src: usvString,
 }
 
 /**
@@ -15766,7 +15766,7 @@ For TextTrack objects corresponding to track elements, this is the ID of the tra
 Can be set, to change the mode.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/TextTrack/mode)
     */
-  mode: textTrackMode,
+  mutable mode: textTrackMode,
   /**
     Returns the text track list of cues, as a TextTrackCueList object.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/TextTrack/cues)
@@ -15796,28 +15796,28 @@ type textTrackCue = {
 Can be set.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/TextTrackCue/id)
     */
-  id: domString,
+  mutable id: domString,
   /**
     Returns the text track cue start time, in seconds.
 
 Can be set.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/TextTrackCue/startTime)
     */
-  startTime: float,
+  mutable startTime: float,
   /**
     Returns the text track cue end time, in seconds.
 
 Can be set.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/TextTrackCue/endTime)
     */
-  endTime: any,
+  mutable endTime: any,
   /**
     Returns true if the text track cue pause-on-exit flag is set, false otherwise.
 
 Can be set.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/TextTrackCue/pauseOnExit)
     */
-  pauseOnExit: bool,
+  mutable pauseOnExit: bool,
 }
 
 /**
@@ -15843,7 +15843,7 @@ type htmlMapElement = {
     Sets or retrieves the name of the object.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLMapElement/name)
     */
-  name: domString,
+  mutable name: domString,
   /**
     Retrieves a collection of the area objects defined for the given map object.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLMapElement/areas)
@@ -15861,7 +15861,7 @@ type htmlTableColElement = {
     Sets or retrieves the number of columns in the group.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLTableColElement/span)
     */
-  span: any,
+  mutable span: any,
 }
 
 /**
@@ -15873,12 +15873,12 @@ type htmlOptGroupElement = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLOptGroupElement/disabled)
     */
-  disabled: bool,
+  mutable disabled: bool,
   /**
     Sets or retrieves a value that you can use to implement your own label functionality for the object.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLOptGroupElement/label)
     */
-  label: domString,
+  mutable label: domString,
 }
 
 /**
@@ -15891,12 +15891,12 @@ type htmlProgressElement = {
     Sets or gets the current value of a progress element. The value must be a non-negative number between 0 and the max value.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLProgressElement/value)
     */
-  value: float,
+  mutable value: float,
   /**
     Defines the maximum, or "done" value for a progress element.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLProgressElement/max)
     */
-  max: float,
+  mutable max: float,
   /**
     Returns the quotient of value/max when the value attribute is set (determinate progress bar), or -1 when the value attribute is missing (indeterminate progress bar).
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLProgressElement/position)
@@ -15917,27 +15917,27 @@ type htmlMeterElement = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLMeterElement/value)
     */
-  value: float,
+  mutable value: float,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLMeterElement/min)
     */
-  min: float,
+  mutable min: float,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLMeterElement/max)
     */
-  max: float,
+  mutable max: float,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLMeterElement/low)
     */
-  low: float,
+  mutable low: float,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLMeterElement/high)
     */
-  high: float,
+  mutable high: float,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLMeterElement/optimum)
     */
-  optimum: float,
+  mutable optimum: float,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLMeterElement/labels)
     */
@@ -15953,7 +15953,7 @@ type htmlFieldSetElement = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLFieldSetElement/disabled)
     */
-  disabled: bool,
+  mutable disabled: bool,
   /**
     Retrieves a reference to the form that the object is embedded in.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLFieldSetElement/form)
@@ -15962,7 +15962,7 @@ type htmlFieldSetElement = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLFieldSetElement/name)
     */
-  name: domString,
+  mutable name: domString,
   /**
     Returns the string "fieldset".
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLFieldSetElement/type)
@@ -16036,12 +16036,12 @@ type htmlDetailsElement = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLDetailsElement/open)
     */
-  name: domString,
+  mutable name: domString,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLDetailsElement/open)
     */
   @as("open")
-  open_: bool,
+  mutable open_: bool,
 }
 
 /**
@@ -16053,11 +16053,11 @@ type htmlDialogElement = {
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLDialogElement/open)
     */
   @as("open")
-  open_: bool,
+  mutable open_: bool,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLDialogElement/returnValue)
     */
-  returnValue: domString,
+  mutable returnValue: domString,
 }
 
 /**
@@ -16074,19 +16074,19 @@ type htmlTemplateElement = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLTemplateElement/shadowRootMode)
     */
-  shadowRootMode: domString,
+  mutable shadowRootMode: domString,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLTemplateElement/shadowRootDelegatesFocus)
     */
-  shadowRootDelegatesFocus: bool,
+  mutable shadowRootDelegatesFocus: bool,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLTemplateElement/shadowRootClonable)
     */
-  shadowRootClonable: bool,
+  mutable shadowRootClonable: bool,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLTemplateElement/shadowRootSerializable)
     */
-  shadowRootSerializable: bool,
+  mutable shadowRootSerializable: bool,
 }
 
 /**
@@ -16097,7 +16097,7 @@ type htmlSlotElement = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLSlotElement/name)
     */
-  name: domString,
+  mutable name: domString,
 }
 
 /**
@@ -16110,12 +16110,12 @@ type htmlCanvasElement = {
     Gets or sets the width of a canvas element on a document.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLCanvasElement/width)
     */
-  width: any,
+  mutable width: any,
   /**
     Gets or sets the height of a canvas element on a document.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLCanvasElement/height)
     */
-  height: any,
+  mutable height: any,
 }
 
 /**
@@ -16262,14 +16262,14 @@ type offscreenCanvas = {
 They can be set, to replace the bitmap with a new, transparent black bitmap of the specified dimensions (effectively resizing it).
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/OffscreenCanvas/width)
     */
-  width: int,
+  mutable width: int,
   /**
     These attributes return the dimensions of the OffscreenCanvas object's bitmap.
 
 They can be set, to replace the bitmap with a new, transparent black bitmap of the specified dimensions (effectively resizing it).
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/OffscreenCanvas/height)
     */
-  height: int,
+  mutable height: int,
 }
 
 /**
@@ -16954,7 +16954,7 @@ type mediaSource = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/MediaSource/duration)
     */
-  duration: any,
+  mutable duration: any,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/MediaSource/canConstructInDedicatedWorker_static)
     */
@@ -16975,7 +16975,7 @@ type sourceBuffer = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/SourceBuffer/mode)
     */
-  mode: appendMode,
+  mutable mode: appendMode,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/SourceBuffer/updating)
     */
@@ -16987,15 +16987,15 @@ type sourceBuffer = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/SourceBuffer/timestampOffset)
     */
-  timestampOffset: float,
+  mutable timestampOffset: float,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/SourceBuffer/appendWindowStart)
     */
-  appendWindowStart: float,
+  mutable appendWindowStart: float,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/SourceBuffer/appendWindowEnd)
     */
-  appendWindowEnd: any,
+  mutable appendWindowEnd: any,
 }
 
 /**
@@ -17019,7 +17019,7 @@ type mediaStreamTrack = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/MediaStreamTrack/enabled)
     */
-  enabled: bool,
+  mutable enabled: bool,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/MediaStreamTrack/muted)
     */
@@ -17031,7 +17031,7 @@ type mediaStreamTrack = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/MediaStreamTrack/contentHint)
     */
-  contentHint: domString,
+  mutable contentHint: domString,
 }
 
 /**
@@ -17850,27 +17850,27 @@ type speechSynthesisUtterance = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/SpeechSynthesisUtterance/text)
     */
-  text: domString,
+  mutable text: domString,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/SpeechSynthesisUtterance/lang)
     */
-  lang: domString,
+  mutable lang: domString,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/SpeechSynthesisUtterance/voice)
     */
-  voice: Null.t<speechSynthesisVoice>,
+  mutable voice: Null.t<speechSynthesisVoice>,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/SpeechSynthesisUtterance/volume)
     */
-  volume: float,
+  mutable volume: float,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/SpeechSynthesisUtterance/rate)
     */
-  rate: float,
+  mutable rate: float,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/SpeechSynthesisUtterance/pitch)
     */
-  pitch: float,
+  mutable pitch: float,
 }
 
 /**
@@ -18312,7 +18312,7 @@ type urL = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/URL/href)
     */
-  href: usvString,
+  mutable href: usvString,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/URL/origin)
     */
@@ -18320,35 +18320,35 @@ type urL = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/URL/protocol)
     */
-  protocol: usvString,
+  mutable protocol: usvString,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/URL/username)
     */
-  username: usvString,
+  mutable username: usvString,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/URL/password)
     */
-  password: usvString,
+  mutable password: usvString,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/URL/host)
     */
-  host: usvString,
+  mutable host: usvString,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/URL/hostname)
     */
-  hostname: usvString,
+  mutable hostname: usvString,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/URL/port)
     */
-  port: usvString,
+  mutable port: usvString,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/URL/pathname)
     */
-  pathname: usvString,
+  mutable pathname: usvString,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/URL/search)
     */
-  search: usvString,
+  mutable search: usvString,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/URL/searchParams)
     */
@@ -18356,7 +18356,7 @@ type urL = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/URL/hash)
     */
-  hash: usvString,
+  mutable hash: usvString,
 }
 
 /**
@@ -18446,19 +18446,19 @@ type keyframeEffect = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/KeyframeEffect/target)
     */
-  target: Null.t<element>,
+  mutable target: Null.t<element>,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/KeyframeEffect/pseudoElement)
     */
-  pseudoElement: Null.t<string>,
+  mutable pseudoElement: Null.t<string>,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/KeyframeEffect/composite)
     */
-  composite: compositeOperation,
+  mutable composite: compositeOperation,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/KeyframeEffect/iterationComposite)
     */
-  iterationComposite: iterationCompositeOperation,
+  mutable iterationComposite: iterationCompositeOperation,
 }
 
 /**
@@ -18536,7 +18536,7 @@ type analyserNode = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/AnalyserNode/fftSize)
     */
-  fftSize: any,
+  mutable fftSize: any,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/AnalyserNode/frequencyBinCount)
     */
@@ -18544,15 +18544,15 @@ type analyserNode = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/AnalyserNode/minDecibels)
     */
-  minDecibels: float,
+  mutable minDecibels: float,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/AnalyserNode/maxDecibels)
     */
-  maxDecibels: float,
+  mutable maxDecibels: float,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/AnalyserNode/smoothingTimeConstant)
     */
-  smoothingTimeConstant: float,
+  mutable smoothingTimeConstant: float,
 }
 
 /**
@@ -18564,7 +18564,7 @@ type audioBufferSourceNode = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/AudioBufferSourceNode/buffer)
     */
-  buffer: Null.t<audioBuffer>,
+  mutable buffer: Null.t<audioBuffer>,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/AudioBufferSourceNode/playbackRate)
     */
@@ -18576,15 +18576,15 @@ type audioBufferSourceNode = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/AudioBufferSourceNode/loop)
     */
-  loop: bool,
+  mutable loop: bool,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/AudioBufferSourceNode/loopStart)
     */
-  loopStart: float,
+  mutable loopStart: float,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/AudioBufferSourceNode/loopEnd)
     */
-  loopEnd: float,
+  mutable loopEnd: float,
 }
 
 /**
@@ -18605,7 +18605,7 @@ type biquadFilterNode = {
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/BiquadFilterNode/type)
     */
   @as("type")
-  type_: biquadFilterType,
+  mutable type_: biquadFilterType,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/BiquadFilterNode/frequency)
     */
@@ -18661,11 +18661,11 @@ type convolverNode = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/ConvolverNode/buffer)
     */
-  buffer: Null.t<audioBuffer>,
+  mutable buffer: Null.t<audioBuffer>,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/ConvolverNode/normalize)
     */
-  normalize: bool,
+  mutable normalize: bool,
 }
 
 /**
@@ -18777,7 +18777,7 @@ type oscillatorNode = {
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/OscillatorNode/type)
     */
   @as("type")
-  type_: oscillatorType,
+  mutable type_: oscillatorType,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/OscillatorNode/frequency)
     */
@@ -18797,7 +18797,7 @@ type pannerNode = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/PannerNode/panningModel)
     */
-  panningModel: panningModelType,
+  mutable panningModel: panningModelType,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/PannerNode/positionX)
     */
@@ -18825,31 +18825,31 @@ type pannerNode = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/PannerNode/distanceModel)
     */
-  distanceModel: distanceModelType,
+  mutable distanceModel: distanceModelType,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/PannerNode/refDistance)
     */
-  refDistance: float,
+  mutable refDistance: float,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/PannerNode/maxDistance)
     */
-  maxDistance: float,
+  mutable maxDistance: float,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/PannerNode/rolloffFactor)
     */
-  rolloffFactor: float,
+  mutable rolloffFactor: float,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/PannerNode/coneInnerAngle)
     */
-  coneInnerAngle: float,
+  mutable coneInnerAngle: float,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/PannerNode/coneOuterAngle)
     */
-  coneOuterAngle: float,
+  mutable coneOuterAngle: float,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/PannerNode/coneOuterGain)
     */
-  coneOuterGain: float,
+  mutable coneOuterGain: float,
 }
 
 /**
@@ -18887,11 +18887,11 @@ type waveShaperNode = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/WaveShaperNode/curve)
     */
-  curve: Null.t<array<float>>,
+  mutable curve: Null.t<array<float>>,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/WaveShaperNode/oversample)
     */
-  oversample: overSampleType,
+  mutable oversample: overSampleType,
 }
 
 /**
@@ -19387,7 +19387,7 @@ type rtcEncodedVideoFrame = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/RTCEncodedVideoFrame/data)
     */
-  data: arrayBuffer,
+  mutable data: arrayBuffer,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/RTCEncodedVideoFrame/timestamp)
     */
@@ -19401,7 +19401,7 @@ type rtcEncodedAudioFrame = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/RTCEncodedAudioFrame/data)
     */
-  data: arrayBuffer,
+  mutable data: arrayBuffer,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/RTCEncodedAudioFrame/timestamp)
     */
@@ -19577,7 +19577,7 @@ type rtcRtpSender = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/RTCRtpSender/transform)
     */
-  transform: Null.t<rtcRtpScriptTransform>,
+  mutable transform: Null.t<rtcRtpScriptTransform>,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/RTCRtpSender/dtmf)
     */
@@ -19600,11 +19600,11 @@ type rtcRtpReceiver = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/RTCRtpReceiver/jitterBufferTarget)
     */
-  jitterBufferTarget: Null.t<domHighResTimeStamp>,
+  mutable jitterBufferTarget: Null.t<domHighResTimeStamp>,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/RTCRtpReceiver/transform)
     */
-  transform: Null.t<rtcRtpScriptTransform>,
+  mutable transform: Null.t<rtcRtpScriptTransform>,
 }
 
 /**
@@ -19626,7 +19626,7 @@ type rtcRtpTransceiver = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/RTCRtpTransceiver/direction)
     */
-  direction: rtcRtpTransceiverDirection,
+  mutable direction: rtcRtpTransceiverDirection,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/RTCRtpTransceiver/currentDirection)
     */
@@ -19702,11 +19702,11 @@ type rtcDataChannel = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/RTCDataChannel/bufferedAmountLowThreshold)
     */
-  bufferedAmountLowThreshold: any,
+  mutable bufferedAmountLowThreshold: any,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/RTCDataChannel/binaryType)
     */
-  binaryType: binaryType,
+  mutable binaryType: binaryType,
 }
 
 /**
@@ -19814,7 +19814,7 @@ If the WebSocket connection is closed, this attribute's value will only increase
 Can be set, to change how binary data is returned. The default is "blob".
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/WebSocket/binaryType)
     */
-  binaryType: binaryType,
+  mutable binaryType: binaryType,
 }
 
 /**
@@ -19859,19 +19859,19 @@ type webTransportDatagramDuplexStream = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/WebTransportDatagramDuplexStream/incomingMaxAge)
     */
-  incomingMaxAge: Null.t<any>,
+  mutable incomingMaxAge: Null.t<any>,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/WebTransportDatagramDuplexStream/outgoingMaxAge)
     */
-  outgoingMaxAge: Null.t<any>,
+  mutable outgoingMaxAge: Null.t<any>,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/WebTransportDatagramDuplexStream/incomingHighWaterMark)
     */
-  incomingHighWaterMark: any,
+  mutable incomingHighWaterMark: any,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/WebTransportDatagramDuplexStream/outgoingHighWaterMark)
     */
-  outgoingHighWaterMark: any,
+  mutable outgoingHighWaterMark: any,
 }
 
 /**
@@ -19937,43 +19937,43 @@ type vttCue = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/VTTCue/region)
     */
-  region: Null.t<vttRegion>,
+  mutable region: Null.t<vttRegion>,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/VTTCue/vertical)
     */
-  vertical: directionSetting,
+  mutable vertical: directionSetting,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/VTTCue/snapToLines)
     */
-  snapToLines: bool,
+  mutable snapToLines: bool,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/VTTCue/line)
     */
-  line: lineAndPositionSetting,
+  mutable line: lineAndPositionSetting,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/VTTCue/lineAlign)
     */
-  lineAlign: lineAlignSetting,
+  mutable lineAlign: lineAlignSetting,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/VTTCue/position)
     */
-  position: lineAndPositionSetting,
+  mutable position: lineAndPositionSetting,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/VTTCue/positionAlign)
     */
-  positionAlign: positionAlignSetting,
+  mutable positionAlign: positionAlignSetting,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/VTTCue/size)
     */
-  size: float,
+  mutable size: float,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/VTTCue/align)
     */
-  align: alignSetting,
+  mutable align: alignSetting,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/VTTCue/text)
     */
-  text: domString,
+  mutable text: domString,
 }
 
 /**
@@ -20007,14 +20007,14 @@ type xmlHttpRequest = {
 When set: throws an "InvalidAccessError" DOMException if the synchronous flag is set and current global object is a Window object.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/XMLHttpRequest/timeout)
     */
-  timeout: any,
+  mutable timeout: any,
   /**
     True when credentials are to be included in a cross-origin request. False when they are to be excluded in a cross-origin request and when cookies are to be ignored in its response. Initially false.
 
 When set: throws an "InvalidStateError" DOMException if state is not unsent or opened, or if the send() flag is set.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/XMLHttpRequest/withCredentials)
     */
-  withCredentials: bool,
+  mutable withCredentials: bool,
   /**
     Returns the associated XMLHttpRequestUpload object. It can be used to gather transmission information when data is transferred to a server.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/XMLHttpRequest/upload)
@@ -20044,7 +20044,7 @@ When set: throws an "InvalidStateError" DOMException if state is loading or done
 When set: throws an "InvalidAccessError" DOMException if the synchronous flag is set and current global object is a Window object.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/XMLHttpRequest/responseType)
     */
-  responseType: xmlHttpRequestResponseType,
+  mutable responseType: xmlHttpRequestResponseType,
   /**
     Returns the response body.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/XMLHttpRequest/response)
@@ -20179,7 +20179,7 @@ type documentOrShadowRoot = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Document/adoptedStyleSheets)
     */
-  adoptedStyleSheets: array<cssStyleSheet>,
+  mutable adoptedStyleSheets: array<cssStyleSheet>,
   /**
     Returns document's fullscreen element.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Document/fullscreenElement)
@@ -20300,15 +20300,15 @@ type htmlOrSVGElement = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/nonce)
     */
-  nonce?: domString,
+  mutable nonce?: domString,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/autofocus)
     */
-  autofocus: bool,
+  mutable autofocus: bool,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/tabIndex)
     */
-  tabIndex: int,
+  mutable tabIndex: int,
 }
 
 type htmlHyperlinkElementUtils = {
@@ -20318,7 +20318,7 @@ type htmlHyperlinkElementUtils = {
 Can be set, to change the URL.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLAnchorElement/href)
     */
-  href: usvString,
+  mutable href: usvString,
   /**
     Returns the hyperlink's URL's origin.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLAnchorElement/origin)
@@ -20330,63 +20330,63 @@ Can be set, to change the URL.
 Can be set, to change the URL's scheme.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLAnchorElement/protocol)
     */
-  protocol: usvString,
+  mutable protocol: usvString,
   /**
     Returns the hyperlink's URL's username.
 
 Can be set, to change the URL's username.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLAnchorElement/username)
     */
-  username: usvString,
+  mutable username: usvString,
   /**
     Returns the hyperlink's URL's password.
 
 Can be set, to change the URL's password.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLAnchorElement/password)
     */
-  password: usvString,
+  mutable password: usvString,
   /**
     Returns the hyperlink's URL's host and port (if different from the default port for the scheme).
 
 Can be set, to change the URL's host and port.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLAnchorElement/host)
     */
-  host: usvString,
+  mutable host: usvString,
   /**
     Returns the hyperlink's URL's host.
 
 Can be set, to change the URL's host.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLAnchorElement/hostname)
     */
-  hostname: usvString,
+  mutable hostname: usvString,
   /**
     Returns the hyperlink's URL's port.
 
 Can be set, to change the URL's port.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLAnchorElement/port)
     */
-  port: usvString,
+  mutable port: usvString,
   /**
     Returns the hyperlink's URL's path.
 
 Can be set, to change the URL's path.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLAnchorElement/pathname)
     */
-  pathname: usvString,
+  mutable pathname: usvString,
   /**
     Returns the hyperlink's URL's query (includes leading "?" if non-empty).
 
 Can be set, to change the URL's query (ignores leading "?").
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLAnchorElement/search)
     */
-  search: usvString,
+  mutable search: usvString,
   /**
     Returns the hyperlink's URL's fragment (includes leading "#" if non-empty).
 
 Can be set, to change the URL's fragment (ignores leading "#").
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLAnchorElement/hash)
     */
-  hash: usvString,
+  mutable hash: usvString,
 }
 
 type canvasState = {}
@@ -20397,59 +20397,59 @@ type canvasCompositing = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CanvasRenderingContext2D/globalAlpha)
     */
-  globalAlpha: any,
+  mutable globalAlpha: any,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CanvasRenderingContext2D/globalCompositeOperation)
     */
-  globalCompositeOperation: globalCompositeOperation,
+  mutable globalCompositeOperation: globalCompositeOperation,
 }
 
 type canvasImageSmoothing = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CanvasRenderingContext2D/imageSmoothingEnabled)
     */
-  imageSmoothingEnabled: bool,
+  mutable imageSmoothingEnabled: bool,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CanvasRenderingContext2D/imageSmoothingQuality)
     */
-  imageSmoothingQuality: imageSmoothingQuality,
+  mutable imageSmoothingQuality: imageSmoothingQuality,
 }
 
 type canvasFillStrokeStyles = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CanvasRenderingContext2D/strokeStyle)
     */
-  strokeStyle: unknown,
+  mutable strokeStyle: unknown,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CanvasRenderingContext2D/fillStyle)
     */
-  fillStyle: unknown,
+  mutable fillStyle: unknown,
 }
 
 type canvasShadowStyles = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CanvasRenderingContext2D/shadowOffsetX)
     */
-  shadowOffsetX: any,
+  mutable shadowOffsetX: any,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CanvasRenderingContext2D/shadowOffsetY)
     */
-  shadowOffsetY: any,
+  mutable shadowOffsetY: any,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CanvasRenderingContext2D/shadowBlur)
     */
-  shadowBlur: any,
+  mutable shadowBlur: any,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CanvasRenderingContext2D/shadowColor)
     */
-  shadowColor: domString,
+  mutable shadowColor: domString,
 }
 
 type canvasFilters = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CanvasRenderingContext2D/filter)
     */
-  filter: domString,
+  mutable filter: domString,
 }
 
 type canvasRect = {}
@@ -20468,66 +20468,66 @@ type canvasPathDrawingStyles = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CanvasRenderingContext2D/lineWidth)
     */
-  lineWidth: any,
+  mutable lineWidth: any,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CanvasRenderingContext2D/lineCap)
     */
-  lineCap: canvasLineCap,
+  mutable lineCap: canvasLineCap,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CanvasRenderingContext2D/lineJoin)
     */
-  lineJoin: canvasLineJoin,
+  mutable lineJoin: canvasLineJoin,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CanvasRenderingContext2D/miterLimit)
     */
-  miterLimit: any,
+  mutable miterLimit: any,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CanvasRenderingContext2D/lineDashOffset)
     */
-  lineDashOffset: any,
+  mutable lineDashOffset: any,
 }
 
 type canvasTextDrawingStyles = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CanvasRenderingContext2D/font)
     */
-  font: domString,
+  mutable font: domString,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CanvasRenderingContext2D/textAlign)
     */
-  textAlign: canvasTextAlign,
+  mutable textAlign: canvasTextAlign,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CanvasRenderingContext2D/textBaseline)
     */
-  textBaseline: canvasTextBaseline,
+  mutable textBaseline: canvasTextBaseline,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CanvasRenderingContext2D/direction)
     */
-  direction: canvasDirection,
+  mutable direction: canvasDirection,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CanvasRenderingContext2D/letterSpacing)
     */
-  letterSpacing: domString,
+  mutable letterSpacing: domString,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CanvasRenderingContext2D/fontKerning)
     */
-  fontKerning: canvasFontKerning,
+  mutable fontKerning: canvasFontKerning,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CanvasRenderingContext2D/fontStretch)
     */
-  fontStretch: canvasFontStretch,
+  mutable fontStretch: canvasFontStretch,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CanvasRenderingContext2D/fontVariantCaps)
     */
-  fontVariantCaps: canvasFontVariantCaps,
+  mutable fontVariantCaps: canvasFontVariantCaps,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CanvasRenderingContext2D/textRendering)
     */
-  textRendering: canvasTextRendering,
+  mutable textRendering: canvasTextRendering,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CanvasRenderingContext2D/wordSpacing)
     */
-  wordSpacing: domString,
+  mutable wordSpacing: domString,
 }
 
 type canvasPath = {}
@@ -20536,11 +20536,11 @@ type elementContentEditable = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/contentEditable)
     */
-  contentEditable: domString,
+  mutable contentEditable: domString,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/enterKeyHint)
     */
-  enterKeyHint: domString,
+  mutable enterKeyHint: domString,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/isContentEditable)
     */
@@ -20548,18 +20548,18 @@ type elementContentEditable = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/inputMode)
     */
-  inputMode: domString,
+  mutable inputMode: domString,
 }
 
 type popoverInvokerElement = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLButtonElement/popoverTargetElement)
     */
-  popoverTargetElement: Null.t<element>,
+  mutable popoverTargetElement: Null.t<element>,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLButtonElement/popoverTargetAction)
     */
-  popoverTargetAction: domString,
+  mutable popoverTargetAction: domString,
 }
 
 type globalEventHandlers = {}
@@ -20692,167 +20692,167 @@ type ariaMixin = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/ariaAtomic)
     */
-  ariaAtomic: Null.t<domString>,
+  mutable ariaAtomic: Null.t<domString>,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/ariaAutoComplete)
     */
-  ariaAutoComplete: Null.t<domString>,
+  mutable ariaAutoComplete: Null.t<domString>,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/ariaBrailleLabel)
     */
-  ariaBrailleLabel: Null.t<domString>,
+  mutable ariaBrailleLabel: Null.t<domString>,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/ariaBrailleRoleDescription)
     */
-  ariaBrailleRoleDescription: Null.t<domString>,
+  mutable ariaBrailleRoleDescription: Null.t<domString>,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/ariaBusy)
     */
-  ariaBusy: Null.t<domString>,
+  mutable ariaBusy: Null.t<domString>,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/ariaChecked)
     */
-  ariaChecked: Null.t<domString>,
+  mutable ariaChecked: Null.t<domString>,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/ariaColCount)
     */
-  ariaColCount: Null.t<domString>,
+  mutable ariaColCount: Null.t<domString>,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/ariaColIndex)
     */
-  ariaColIndex: Null.t<domString>,
+  mutable ariaColIndex: Null.t<domString>,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/ariaColIndexText)
     */
-  ariaColIndexText: Null.t<domString>,
+  mutable ariaColIndexText: Null.t<domString>,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/ariaColSpan)
     */
-  ariaColSpan: Null.t<domString>,
+  mutable ariaColSpan: Null.t<domString>,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/ariaCurrent)
     */
-  ariaCurrent: Null.t<domString>,
+  mutable ariaCurrent: Null.t<domString>,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/ariaDescription)
     */
-  ariaDescription: Null.t<domString>,
+  mutable ariaDescription: Null.t<domString>,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/ariaDisabled)
     */
-  ariaDisabled: Null.t<domString>,
+  mutable ariaDisabled: Null.t<domString>,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/ariaExpanded)
     */
-  ariaExpanded: Null.t<domString>,
+  mutable ariaExpanded: Null.t<domString>,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/ariaHasPopup)
     */
-  ariaHasPopup: Null.t<domString>,
+  mutable ariaHasPopup: Null.t<domString>,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/ariaHidden)
     */
-  ariaHidden: Null.t<domString>,
+  mutable ariaHidden: Null.t<domString>,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/ariaKeyShortcuts)
     */
-  ariaKeyShortcuts: Null.t<domString>,
+  mutable ariaKeyShortcuts: Null.t<domString>,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/ariaLabel)
     */
-  ariaLabel: Null.t<domString>,
+  mutable ariaLabel: Null.t<domString>,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/ariaLevel)
     */
-  ariaLevel: Null.t<domString>,
+  mutable ariaLevel: Null.t<domString>,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/ariaLive)
     */
-  ariaLive: Null.t<domString>,
+  mutable ariaLive: Null.t<domString>,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/ariaModal)
     */
-  ariaModal: Null.t<domString>,
+  mutable ariaModal: Null.t<domString>,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/ariaMultiLine)
     */
-  ariaMultiLine: Null.t<domString>,
+  mutable ariaMultiLine: Null.t<domString>,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/ariaMultiSelectable)
     */
-  ariaMultiSelectable: Null.t<domString>,
+  mutable ariaMultiSelectable: Null.t<domString>,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/ariaOrientation)
     */
-  ariaOrientation: Null.t<domString>,
+  mutable ariaOrientation: Null.t<domString>,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/ariaPlaceholder)
     */
-  ariaPlaceholder: Null.t<domString>,
+  mutable ariaPlaceholder: Null.t<domString>,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/ariaPosInSet)
     */
-  ariaPosInSet: Null.t<domString>,
+  mutable ariaPosInSet: Null.t<domString>,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/ariaPressed)
     */
-  ariaPressed: Null.t<domString>,
+  mutable ariaPressed: Null.t<domString>,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/ariaReadOnly)
     */
-  ariaReadOnly: Null.t<domString>,
+  mutable ariaReadOnly: Null.t<domString>,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/ariaRequired)
     */
-  ariaRequired: Null.t<domString>,
+  mutable ariaRequired: Null.t<domString>,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/ariaRoleDescription)
     */
-  ariaRoleDescription: Null.t<domString>,
+  mutable ariaRoleDescription: Null.t<domString>,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/ariaRowCount)
     */
-  ariaRowCount: Null.t<domString>,
+  mutable ariaRowCount: Null.t<domString>,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/ariaRowIndex)
     */
-  ariaRowIndex: Null.t<domString>,
+  mutable ariaRowIndex: Null.t<domString>,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/ariaRowIndexText)
     */
-  ariaRowIndexText: Null.t<domString>,
+  mutable ariaRowIndexText: Null.t<domString>,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/ariaRowSpan)
     */
-  ariaRowSpan: Null.t<domString>,
+  mutable ariaRowSpan: Null.t<domString>,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/ariaSelected)
     */
-  ariaSelected: Null.t<domString>,
+  mutable ariaSelected: Null.t<domString>,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/ariaSetSize)
     */
-  ariaSetSize: Null.t<domString>,
+  mutable ariaSetSize: Null.t<domString>,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/ariaSort)
     */
-  ariaSort: Null.t<domString>,
+  mutable ariaSort: Null.t<domString>,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/ariaValueMax)
     */
-  ariaValueMax: Null.t<domString>,
+  mutable ariaValueMax: Null.t<domString>,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/ariaValueMin)
     */
-  ariaValueMin: Null.t<domString>,
+  mutable ariaValueMin: Null.t<domString>,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/ariaValueNow)
     */
-  ariaValueNow: Null.t<domString>,
+  mutable ariaValueNow: Null.t<domString>,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/ariaValueText)
     */
-  ariaValueText: Null.t<domString>,
+  mutable ariaValueText: Null.t<domString>,
 }
 
 type animatable = {}
@@ -20887,11 +20887,11 @@ type webGLRenderingContextBase = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/WebGLRenderingContext/drawingBufferColorSpace)
     */
-  drawingBufferColorSpace: predefinedColorSpace,
+  mutable drawingBufferColorSpace: predefinedColorSpace,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/WebGL2RenderingContext/unpackColorSpace)
     */
-  unpackColorSpace: predefinedColorSpace,
+  mutable unpackColorSpace: predefinedColorSpace,
 }
 
 type webGLRenderingContextOverloads = {}

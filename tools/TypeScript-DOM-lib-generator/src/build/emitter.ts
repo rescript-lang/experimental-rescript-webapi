@@ -1858,14 +1858,16 @@ const reservedRescriptWords = [
 ];
 const validVariantConstructorNameRegexp = /[^a-zA-Z0-9_]/g;
 
-function getFieldName(fieldName: string): string {
+function getFieldName(property: Browser.Property): string {
+  const fieldName = property.name;
+  const mutable = property.readonly ? "" : " mutable ";
   if (reservedRescriptWords.includes(fieldName)) {
-    return `@as("${fieldName}") ${fieldName}_`;
+    return `@as("${fieldName}")${mutable} ${fieldName}_`;
   } else if (fieldName && fieldName[0] !== fieldName[0].toLowerCase()) {
-    return `@as("${fieldName}") ${fieldName[0].toLowerCase()}${fieldName.slice(1)}`;
+    return `@as("${fieldName}")${mutable} ${fieldName[0].toLowerCase()}${fieldName.slice(1)}`;
   }
 
-  return fieldName;
+  return `${mutable}${fieldName}`;
 }
 
 function getVariantName(variantRawName: string): string {
@@ -2363,7 +2365,7 @@ export function emitRescriptBindings(webidl: Browser.WebIdl): string {
     return "unknown";
   }
 
-  function printProperty(property: Browser.Property) {
+  function emitProperty(property: Browser.Property) {
     if (!("mdnUrl" in property)) return;
 
     printComment({
@@ -2371,7 +2373,7 @@ export function emitRescriptBindings(webidl: Browser.WebIdl): string {
       comment: property.comment,
     });
     let propertyValue = transformPropertyValue(property);
-    printer.print(`${getFieldName(property.name)}`);
+    printer.print(`${getFieldName(property)}`);
     if (property.optional) printer.print(`?`);
     printer.print(`: `);
     if (property.nullable) printer.print(`Null.t<${propertyValue}>`);
@@ -2403,7 +2405,7 @@ export function emitRescriptBindings(webidl: Browser.WebIdl): string {
         let property = i.members.member[key];
         printComment({ comment: property.comment });
         let propertyValue = transformPropertyValue(property);
-        printer.print(`${getFieldName(key)}`);
+        printer.print(`${getFieldName(property)}`);
         printer.print(`: `);
         if (property.nullable) printer.print(`Null.t<${propertyValue}>`);
         else printer.print(propertyValue);
@@ -2449,7 +2451,7 @@ export function emitRescriptBindings(webidl: Browser.WebIdl): string {
             properties
               .filter((p) => !p.eventHandler)
               .forEach((p) => {
-                printProperty(p);
+                emitProperty(p);
               });
             printer.printLine(`// End base properties from ${name}`);
             printer.endLine();
@@ -2474,7 +2476,7 @@ export function emitRescriptBindings(webidl: Browser.WebIdl): string {
         )
           continue;
 
-        printProperty(property);
+        emitProperty(property);
       }
     }
 
