@@ -1983,6 +1983,11 @@ export async function emitRescriptBindings(
 
   const allEnums = getElements(webidl.enums, "enum");
 
+  const allCallbacks = getElements(
+    webidl.callbackFunctions,
+    "callbackFunction",
+  );
+
   // const allLegacyWindowAliases = allInterfaces.flatMap(
   //   (i) => i.legacyWindowAlias,
   // );
@@ -2177,6 +2182,7 @@ export async function emitRescriptBindings(
       case "undefined":
         return "unit";
       case "boolean":
+      case "ConstrainBoolean":
         return "bool";
 
       // Not sure if this is correct
@@ -2191,6 +2197,7 @@ export async function emitRescriptBindings(
       case "typeof FileReader.EMPTY | typeof FileReader.LOADING | typeof FileReader.DONE":
       // TODO: https://developer.mozilla.org/en-US/docs/Web/API/ByteLengthQueuingStrategy/size
       case "QueuingStrategySize":
+      case "ConstrainULong":
         return "int";
 
       case "double":
@@ -2198,6 +2205,7 @@ export async function emitRescriptBindings(
       case "GLint":
       case "GLsizei":
       case "DOMHighResTimeStamp":
+      case "ConstrainDouble":
         return "float";
 
       // TODO: represent this as a variant type
@@ -2229,6 +2237,8 @@ export async function emitRescriptBindings(
       case "CSSOMString":
       case "ByteString":
       case "GLenum":
+      case "DOMString":
+      case "ConstrainDOMString":
         return "string";
 
       case "unrestricted double":
@@ -2469,7 +2479,8 @@ export async function emitRescriptBindings(
     printer.printLine(` = {`);
     printer.increaseIndent();
 
-    if (i.extends) {
+    // TODO: what to do with error?
+    if (i.extends && i.extends !== "Error") {
       if (options.allowSpreading) {
         printer.printLine(`...${transformExtends(i.extends)},`);
       } else {
@@ -2617,6 +2628,23 @@ export async function emitRescriptBindings(
       if (v !== "") printer.printLine(`  | ${getVariantName(v)}`);
     });
     printer.printLine("");
+  }
+
+  function emitCallback(c: Browser.CallbackFunction) {
+    if (c.signature.length === 0) return;
+
+    const signature = c.signature[0];
+
+    const ps =
+      signature.param?.length === 0
+        ? ""
+        : (signature.param || []).map((p) => transformTyped(p)).join(", ") +
+          ", ";
+
+    printer.printLine(
+      `type ${toCamelCase(c.name)} = (${ps}${transformTyped(signature)})`,
+    );
+    printer.endLine();
   }
 
   function emitEnums() {
@@ -2848,12 +2876,29 @@ export async function emitRescriptBindings(
       };
     }
 
+    function callbacks(names: string[]): GenerationEntry[] {
+      return names
+        .map((name) => {
+          const c = allCallbacks.find((c) => c.name === name);
+          return c;
+        })
+        .filter((c) => c !== undefined)
+        .map((c) => {
+          return {
+            kind: "byHand",
+            name: c.name,
+            emitInterface: () => emitCallback(c),
+          };
+        });
+    }
+
     const interfaceHierarchy: RescriptFile[] = [
       {
         name: "Prelude",
         entries: [byHand("any", () => printer.printLine("type any = {}"))],
         opens: [],
       },
+
       {
         name: "Event",
         entries: [
@@ -2866,6 +2911,24 @@ export async function emitRescriptBindings(
           ]),
           chain(["AbortController", "AbortSignal"]),
           dictionaries(["EventListenerOptions", "AddEventListenerOptions"]),
+        ],
+        opens: ["Prelude"],
+      },
+      // https://developer.mozilla.org/en-US/docs/Web/API/Channel_Messaging_API
+      {
+        name: "ChannelMessaging",
+        entries: [individualInterfaces(["MessagePort"])],
+        opens: ["Prelude", "Event"],
+      },
+      {
+        name: "DOM",
+        entries: [
+          // Placing this in Event, might not be correct.
+          // Reason is that WebAudio depends on this.
+          individualInterfaces(["DOMException"]),
+          byHand("HTMLMediaElement", () =>
+            printer.printLine("type htmlMediaElement = any"),
+          ),
         ],
         opens: ["Prelude"],
       },
@@ -2882,8 +2945,15 @@ export async function emitRescriptBindings(
             "PanningModelType",
             "DistanceModelType",
             "OverSampleType",
+            "MediaStreamTrackState",
           ]),
-          individualInterfaces(["AudioBuffer"]),
+          individualInterfaces([
+            "AudioBuffer",
+            "AudioProcessingEvent",
+            "MediaStreamTrack",
+            "MediaTrackCapabilities",
+            "OfflineAudioCompletionEvent",
+          ]),
           chain([
             "AudioNode",
             "AudioDestinationNode",
@@ -2910,10 +2980,28 @@ export async function emitRescriptBindings(
             "PeriodicWave",
             "StereoPannerNode",
             "WaveShaperNode",
+            "AudioContext",
+            "MediaElementAudioSourceNode",
+            "MediaStream",
+            "MediaStreamAudioSourceNode",
+            "MediaStreamAudioDestinationNode",
+            "AudioParamMap",
+            "AudioWorkletNode",
+            "OfflineAudioContext",
           ]),
-          dictionaries(["PeriodicWaveConstraints"]),
+          dictionaries([
+            "PeriodicWaveConstraints",
+            "AudioTimestamp",
+            "ULongRange",
+            "DoubleRange",
+            "MediaTrackCapabilities",
+            "MediaTrackConstraintSet",
+            "MediaTrackConstraints",
+            "MediaTrackSettings",
+          ]),
+          ...callbacks(["DecodeSuccessCallback", "DecodeErrorCallback"]),
         ],
-        opens: ["Prelude"],
+        opens: ["Prelude", "ChannelMessaging", "Event", "DOM"],
       },
 
       // chain([

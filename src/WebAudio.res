@@ -1,6 +1,9 @@
 @@warning("-30")
 
 open Prelude
+open ChannelMessaging
+open Event
+open DOM
 
 type audioContextState =
   | @as("closed") Closed
@@ -47,6 +50,10 @@ type overSampleType =
   | @as("4x") V4x
   | @as("none") None
 
+type mediaStreamTrackState =
+  | @as("ended") Ended
+  | @as("live") Live
+
 /**
 A short audio asset residing in memory, created from an audio file using the AudioContext.decodeAudioData() method, or from raw data using AudioContext.createBuffer(). Once put into an AudioBuffer, the audio can then be played by being passed into an AudioBufferSourceNode.
 [See AudioBuffer on MDN](https://developer.mozilla.org/docs/Web/API/AudioBuffer)
@@ -68,6 +75,62 @@ type audioBuffer = {
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/AudioBuffer/numberOfChannels)
     */
   numberOfChannels: any,
+}
+
+/**
+The Web Audio API events that occur when a ScriptProcessorNode input buffer is ready to be processed.
+[See AudioProcessingEvent on MDN](https://developer.mozilla.org/docs/Web/API/AudioProcessingEvent)
+*/
+type audioProcessingEvent = {
+  ...event,
+}
+
+/**
+A single media track within a stream; typically, these are audio or video tracks, but other track types may exist as well.
+[See MediaStreamTrack on MDN](https://developer.mozilla.org/docs/Web/API/MediaStreamTrack)
+*/
+type mediaStreamTrack = {
+  ...eventTarget,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/MediaStreamTrack/kind)
+    */
+  kind: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/MediaStreamTrack/id)
+    */
+  id: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/MediaStreamTrack/label)
+    */
+  label: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/MediaStreamTrack/enabled)
+    */
+  mutable enabled: bool,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/MediaStreamTrack/muted)
+    */
+  muted: bool,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/MediaStreamTrack/readyState)
+    */
+  readyState: mediaStreamTrackState,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/MediaStreamTrack/contentHint)
+    */
+  mutable contentHint: string,
+}
+
+/**
+The Web Audio API OfflineAudioCompletionEvent interface represents events that occur when the processing of an OfflineAudioContext is terminated. The complete event implements this interface.
+[See OfflineAudioCompletionEvent on MDN](https://developer.mozilla.org/docs/Web/API/OfflineAudioCompletionEvent)
+*/
+type offlineAudioCompletionEvent = {
+  ...event,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/OfflineAudioCompletionEvent/renderedBuffer)
+    */
+  renderedBuffer: audioBuffer,
 }
 
 /**
@@ -906,7 +969,184 @@ type waveShaperNode = {
   mutable oversample: overSampleType,
 }
 
+/**
+An audio-processing graph built from audio modules linked together, each represented by an AudioNode.
+[See AudioContext on MDN](https://developer.mozilla.org/docs/Web/API/AudioContext)
+*/
+type audioContext = {
+  ...baseAudioContext,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/AudioContext/baseLatency)
+    */
+  baseLatency: float,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/AudioContext/outputLatency)
+    */
+  outputLatency: float,
+}
+
+/**
+A MediaElementSourceNode has no inputs and exactly one output, and is created using the AudioContext.createMediaElementSource method. The amount of channels in the output equals the number of channels of the audio referenced by the HTMLMediaElement used in the creation of the node, or is 1 if the HTMLMediaElement has no audio.
+[See MediaElementAudioSourceNode on MDN](https://developer.mozilla.org/docs/Web/API/MediaElementAudioSourceNode)
+*/
+type mediaElementAudioSourceNode = {
+  ...audioNode,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/MediaElementAudioSourceNode/mediaElement)
+    */
+  mediaElement: htmlMediaElement,
+}
+
+/**
+A stream of media content. A stream consists of several tracks such as video or audio tracks. Each track is specified as an instance of MediaStreamTrack.
+[See MediaStream on MDN](https://developer.mozilla.org/docs/Web/API/MediaStream)
+*/
+type mediaStream = {
+  ...eventTarget,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/MediaStream/id)
+    */
+  id: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/MediaStream/active)
+    */
+  active: bool,
+}
+
+/**
+A type of AudioNode which operates as an audio source whose media is received from a MediaStream obtained using the WebRTC or Media Capture and Streams APIs.
+[See MediaStreamAudioSourceNode on MDN](https://developer.mozilla.org/docs/Web/API/MediaStreamAudioSourceNode)
+*/
+type mediaStreamAudioSourceNode = {
+  ...audioNode,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/MediaStreamAudioSourceNode/mediaStream)
+    */
+  mediaStream: mediaStream,
+}
+
+/**
+[See MediaStreamAudioDestinationNode on MDN](https://developer.mozilla.org/docs/Web/API/MediaStreamAudioDestinationNode)
+*/
+type mediaStreamAudioDestinationNode = {
+  ...audioNode,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/MediaStreamAudioDestinationNode/stream)
+    */
+  stream: mediaStream,
+}
+
+/**
+[See AudioParamMap on MDN](https://developer.mozilla.org/docs/Web/API/AudioParamMap)
+*/
+type audioParamMap = {}
+
+/**
+[See AudioWorkletNode on MDN](https://developer.mozilla.org/docs/Web/API/AudioWorkletNode)
+*/
+type audioWorkletNode = {
+  ...audioNode,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/AudioWorkletNode/parameters)
+    */
+  parameters: audioParamMap,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/AudioWorkletNode/port)
+    */
+  port: messagePort,
+}
+
+/**
+An AudioContext interface representing an audio-processing graph built from linked together AudioNodes. In contrast with a standard AudioContext, an OfflineAudioContext doesn't render the audio to the device hardware; instead, it generates it, as fast as it can, and outputs the result to an AudioBuffer.
+[See OfflineAudioContext on MDN](https://developer.mozilla.org/docs/Web/API/OfflineAudioContext)
+*/
+type offlineAudioContext = {
+  ...baseAudioContext,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/OfflineAudioContext/length)
+    */
+  length: any,
+}
+
 type periodicWaveConstraints = {mutable disableNormalization: bool}
+
+type audioTimestamp = {
+  mutable contextTime: float,
+  mutable performanceTime: float,
+}
+
+type uLongRange = {
+  mutable max: any,
+  mutable min: any,
+}
+
+type doubleRange = {
+  mutable max: float,
+  mutable min: float,
+}
+
+type mediaTrackCapabilities = {
+  mutable width: uLongRange,
+  mutable height: uLongRange,
+  mutable aspectRatio: doubleRange,
+  mutable frameRate: doubleRange,
+  mutable facingMode: array<string>,
+  mutable sampleRate: uLongRange,
+  mutable sampleSize: uLongRange,
+  mutable echoCancellation: array<bool>,
+  mutable autoGainControl: array<bool>,
+  mutable noiseSuppression: array<bool>,
+  mutable channelCount: uLongRange,
+  mutable deviceId: string,
+  mutable groupId: string,
+  mutable backgroundBlur: array<bool>,
+  mutable displaySurface: string,
+}
+
+type mediaTrackConstraintSet = {
+  mutable width: int,
+  mutable height: int,
+  mutable aspectRatio: float,
+  mutable frameRate: float,
+  mutable facingMode: string,
+  mutable sampleRate: int,
+  mutable sampleSize: int,
+  mutable echoCancellation: bool,
+  mutable autoGainControl: bool,
+  mutable noiseSuppression: bool,
+  mutable channelCount: int,
+  mutable deviceId: string,
+  mutable groupId: string,
+  mutable backgroundBlur: bool,
+  mutable displaySurface: string,
+}
+
+type mediaTrackConstraints = {
+  ...mediaTrackConstraintSet,
+  mutable advanced: array<mediaTrackConstraintSet>,
+}
+
+type mediaTrackSettings = {
+  mutable width: any,
+  mutable height: any,
+  mutable aspectRatio: float,
+  mutable frameRate: float,
+  mutable facingMode: string,
+  mutable sampleRate: any,
+  mutable sampleSize: any,
+  mutable echoCancellation: bool,
+  mutable autoGainControl: bool,
+  mutable noiseSuppression: bool,
+  mutable channelCount: any,
+  mutable deviceId: string,
+  mutable groupId: string,
+  mutable backgroundBlur: bool,
+  mutable displaySurface: string,
+}
+
+type decodeSuccessCallback = (audioBuffer, unit)
+
+type decodeErrorCallback = (domException, unit)
 
 module AudioBuffer = {
   /**
@@ -926,6 +1166,45 @@ module AudioBuffer = {
     */
   @send
   external copyToChannel: (audioBuffer, array<float>, any, any) => unit = "copyToChannel"
+}
+
+module MediaStreamTrack = {
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/MediaStreamTrack/clone)
+    */
+  @send
+  external clone: mediaStreamTrack => mediaStreamTrack = "clone"
+
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/MediaStreamTrack/stop)
+    */
+  @send
+  external stop: mediaStreamTrack => unit = "stop"
+
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/MediaStreamTrack/getCapabilities)
+    */
+  @send
+  external getCapabilities: mediaStreamTrack => mediaTrackCapabilities = "getCapabilities"
+
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/MediaStreamTrack/getConstraints)
+    */
+  @send
+  external getConstraints: mediaStreamTrack => mediaTrackConstraints = "getConstraints"
+
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/MediaStreamTrack/getSettings)
+    */
+  @send
+  external getSettings: mediaStreamTrack => mediaTrackSettings = "getSettings"
+
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/MediaStreamTrack/applyConstraints)
+    */
+  @send
+  external applyConstraints: (mediaStreamTrack, mediaTrackConstraints) => Promise.t<unit> =
+    "applyConstraints"
 }
 
 module AudioNode = {
@@ -1192,4 +1471,117 @@ module AnalyserNode = {
     */
   @send
   external getByteTimeDomainData: (analyserNode, array<int>) => unit = "getByteTimeDomainData"
+}
+
+module AudioContext = {
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/AudioContext/getOutputTimestamp)
+    */
+  @send
+  external getOutputTimestamp: audioContext => audioTimestamp = "getOutputTimestamp"
+
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/AudioContext/resume)
+    */
+  @send
+  external resume: audioContext => Promise.t<unit> = "resume"
+
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/AudioContext/suspend)
+    */
+  @send
+  external suspend: audioContext => Promise.t<unit> = "suspend"
+
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/AudioContext/close)
+    */
+  @send
+  external close: audioContext => Promise.t<unit> = "close"
+
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/AudioContext/createMediaElementSource)
+    */
+  @send
+  external createMediaElementSource: (
+    audioContext,
+    htmlMediaElement,
+  ) => mediaElementAudioSourceNode = "createMediaElementSource"
+
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/AudioContext/createMediaStreamSource)
+    */
+  @send
+  external createMediaStreamSource: (audioContext, mediaStream) => mediaStreamAudioSourceNode =
+    "createMediaStreamSource"
+
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/AudioContext/createMediaStreamDestination)
+    */
+  @send
+  external createMediaStreamDestination: audioContext => mediaStreamAudioDestinationNode =
+    "createMediaStreamDestination"
+}
+
+module MediaStream = {
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/MediaStream/getAudioTracks)
+    */
+  @send
+  external getAudioTracks: mediaStream => array<mediaStreamTrack> = "getAudioTracks"
+
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/MediaStream/getVideoTracks)
+    */
+  @send
+  external getVideoTracks: mediaStream => array<mediaStreamTrack> = "getVideoTracks"
+
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/MediaStream/getTracks)
+    */
+  @send
+  external getTracks: mediaStream => array<mediaStreamTrack> = "getTracks"
+
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/MediaStream/getTrackById)
+    */
+  @send
+  external getTrackById: (mediaStream, string) => mediaStreamTrack = "getTrackById"
+
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/MediaStream/addTrack)
+    */
+  @send
+  external addTrack: (mediaStream, mediaStreamTrack) => unit = "addTrack"
+
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/MediaStream/removeTrack)
+    */
+  @send
+  external removeTrack: (mediaStream, mediaStreamTrack) => unit = "removeTrack"
+
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/MediaStream/clone)
+    */
+  @send
+  external clone: mediaStream => mediaStream = "clone"
+}
+
+module OfflineAudioContext = {
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/OfflineAudioContext/startRendering)
+    */
+  @send
+  external startRendering: offlineAudioContext => Promise.t<audioBuffer> = "startRendering"
+
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/OfflineAudioContext/resume)
+    */
+  @send
+  external resume: offlineAudioContext => Promise.t<unit> = "resume"
+
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/OfflineAudioContext/suspend)
+    */
+  @send
+  external suspend: (offlineAudioContext, float) => Promise.t<unit> = "suspend"
 }
