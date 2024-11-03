@@ -2243,6 +2243,7 @@ export async function emitRescriptBindings(
 
       case "unrestricted double":
       case "unsigned long":
+      case "record":
         return "any";
 
       case "Date":
@@ -2575,7 +2576,7 @@ export async function emitRescriptBindings(
     const signature = method.signature[0];
     if (typeof signature.type !== "string") return;
 
-    let ps = (signature.param || []).map((p) => transformTyped(p)).join(", ");
+    let ps = mapSignatureParameters(signature);
 
     printComment({
       mdnUrl: method.mdnUrl,
@@ -2598,13 +2599,45 @@ export async function emitRescriptBindings(
     printer.endLine();
   }
 
+  function mapSignatureParameters(
+    signature: Browser.Signature,
+    join: string = ", ",
+  ): string {
+    return signature.param?.length === 0
+      ? ""
+      : (signature.param || []).map((p) => transformTyped(p)).join(join);
+  }
+
+  function emitConstructor(i: Browser.Interface, c: Browser.Constructor) {
+    if (c.signature.length === 0) return;
+
+    const signature = c.signature[0];
+    const ps = mapSignatureParameters(signature);
+
+    printComment({
+      mdnUrl: i.mdnUrl,
+      comment: c.comment,
+    });
+
+    printer.printLine(`@new`);
+    printer.printLine(
+      `external make: (${ps}) => ${transformTyped(signature)} = "${i.name}"`,
+    );
+  }
+
   // TODO: add constructor fn and cast fn
 
   function emitInterfaceNestedModule(i: Browser.Interface) {
-    if (!i.methods || Object.keys(i.methods.method).length === 0) return;
+    const hasMethods = i.methods && Object.keys(i.methods.method).length > 0;
+    const hasConstructor = i.constructor || false;
+    if (!(hasMethods || hasConstructor)) return;
 
     printer.printLine(`module ${i.name} = {`);
     printer.increaseIndent();
+
+    if (i.constructor) {
+      emitConstructor(i, i.constructor);
+    }
 
     for (const method of Object.values(i.methods.method)) {
       if (method.name === "addEventListener") {
@@ -2635,11 +2668,8 @@ export async function emitRescriptBindings(
 
     const signature = c.signature[0];
 
-    const ps =
-      signature.param?.length === 0
-        ? ""
-        : (signature.param || []).map((p) => transformTyped(p)).join(", ") +
-          ", ";
+    let ps = mapSignatureParameters(signature, " => ");
+    ps = ps && `${ps} => `;
 
     printer.printLine(
       `type ${toCamelCase(c.name)} = (${ps}${transformTyped(signature)})`,
@@ -2910,7 +2940,11 @@ export async function emitRescriptBindings(
             "AddEventListenerOptions",
           ]),
           chain(["AbortController", "AbortSignal"]),
-          dictionaries(["EventListenerOptions", "AddEventListenerOptions"]),
+          dictionaries([
+            "EventListenerOptions",
+            "AddEventListenerOptions",
+            "EventInit",
+          ]),
         ],
         opens: ["Prelude"],
       },
@@ -2998,6 +3032,32 @@ export async function emitRescriptBindings(
             "MediaTrackConstraintSet",
             "MediaTrackConstraints",
             "MediaTrackSettings",
+            "AudioBufferOptions",
+            "AudioProcessingEventInit",
+            "OfflineAudioCompletionEventInit",
+            "AudioNodeOptions",
+            "BiquadFilterOptions",
+            "AudioBufferSourceOptions",
+            "ChannelMergerOptions",
+            "ChannelSplitterNode",
+            "ChannelSplitterOptions",
+            "ConstantSourceOptions",
+            "ConvolverOptions",
+            "DelayOptions",
+            "DynamicsCompressorOptions",
+            "GainOptions",
+            "IIRFilterOptions",
+            "OscillatorOptions",
+            "PannerOptions",
+            "AnalyserOptions",
+            "PeriodicWaveOptions",
+            "StereoPannerOptions",
+            "WaveShaperOptions",
+            "AudioContextOptions",
+            "MediaElementAudioSourceOptions",
+            "MediaStreamAudioSourceOptions",
+            "AudioWorkletNodeOptions",
+            "OfflineAudioContextOptions",
           ]),
           ...callbacks(["DecodeSuccessCallback", "DecodeErrorCallback"]),
         ],

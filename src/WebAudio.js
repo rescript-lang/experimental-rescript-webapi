@@ -3,7 +3,11 @@
 
 let AudioBuffer = {};
 
+let AudioProcessingEvent = {};
+
 let MediaStreamTrack = {};
+
+let OfflineAudioCompletionEvent = {};
 
 let AudioNode = {};
 
@@ -19,6 +23,20 @@ let AudioScheduledSourceNode = {};
 
 let AudioBufferSourceNode = {};
 
+let ChannelMergerNode = {};
+
+let ChannelSplitterNode = {};
+
+let ConstantSourceNode = {};
+
+let ConvolverNode = {};
+
+let DelayNode = {};
+
+let DynamicsCompressorNode = {};
+
+let GainNode = {};
+
 let IIRFilterNode = {};
 
 let OscillatorNode = {};
@@ -27,15 +45,31 @@ let PannerNode = {};
 
 let AnalyserNode = {};
 
+let PeriodicWave = {};
+
+let StereoPannerNode = {};
+
+let WaveShaperNode = {};
+
 let AudioContext = {};
 
+let MediaElementAudioSourceNode = {};
+
 let MediaStream = {};
+
+let MediaStreamAudioSourceNode = {};
+
+let MediaStreamAudioDestinationNode = {};
+
+let AudioWorkletNode = {};
 
 let OfflineAudioContext = {};
 
 export {
   AudioBuffer,
+  AudioProcessingEvent,
   MediaStreamTrack,
+  OfflineAudioCompletionEvent,
   AudioNode,
   BaseAudioContext,
   BiquadFilterNode,
@@ -43,12 +77,26 @@ export {
   AudioParam,
   AudioScheduledSourceNode,
   AudioBufferSourceNode,
+  ChannelMergerNode,
+  ChannelSplitterNode,
+  ConstantSourceNode,
+  ConvolverNode,
+  DelayNode,
+  DynamicsCompressorNode,
+  GainNode,
   IIRFilterNode,
   OscillatorNode,
   PannerNode,
   AnalyserNode,
+  PeriodicWave,
+  StereoPannerNode,
+  WaveShaperNode,
   AudioContext,
+  MediaElementAudioSourceNode,
   MediaStream,
+  MediaStreamAudioSourceNode,
+  MediaStreamAudioDestinationNode,
+  AudioWorkletNode,
   OfflineAudioContext,
 }
 /* No side effect */

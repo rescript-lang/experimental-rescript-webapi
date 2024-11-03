@@ -207,7 +207,18 @@ type addEventListenerOptions = {
   mutable signal: abortSignal,
 }
 
+type eventInit = {
+  mutable bubbles: bool,
+  mutable cancelable: bool,
+  mutable composed: bool,
+}
+
 module EventTarget = {
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/EventTarget)
+    */
+  @new
+  external make: unit => eventTarget = "EventTarget"
   /**
     Appends an event listener for events whose type attribute value is type. The callback argument sets the callback that will be invoked when the event is dispatched.
 
@@ -318,6 +329,11 @@ The event listener is appended to target's event listener list and is not append
 
 module Event = {
   /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Event)
+    */
+  @new
+  external make: (string, eventInit) => event = "Event"
+  /**
     Returns the invocation target objects of event's path (objects on which listeners will be invoked), except for any nodes in shadow trees of which the shadow root's mode is "closed" that are not reachable from event's currentTarget.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Event/composedPath)
     */
@@ -347,6 +363,11 @@ module Event = {
 }
 
 module AbortController = {
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/AbortController)
+    */
+  @new
+  external make: unit => abortController = "AbortController"
   /**
     Invoking this method will set this object's AbortSignal's aborted flag and signal to any observers that the associated activity is to be aborted.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/AbortController/abort)

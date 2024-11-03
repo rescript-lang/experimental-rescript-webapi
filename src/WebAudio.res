@@ -1144,11 +1144,177 @@ type mediaTrackSettings = {
   mutable displaySurface: string,
 }
 
-type decodeSuccessCallback = (audioBuffer, unit)
+type audioBufferOptions = {
+  mutable numberOfChannels: any,
+  mutable length: any,
+  mutable sampleRate: float,
+}
 
-type decodeErrorCallback = (domException, unit)
+type audioProcessingEventInit = {
+  ...eventInit,
+  mutable playbackTime: float,
+  mutable inputBuffer: audioBuffer,
+  mutable outputBuffer: audioBuffer,
+}
+
+type offlineAudioCompletionEventInit = {
+  ...eventInit,
+  mutable renderedBuffer: audioBuffer,
+}
+
+type audioNodeOptions = {
+  mutable channelCount: any,
+  mutable channelCountMode: channelCountMode,
+  mutable channelInterpretation: channelInterpretation,
+}
+
+type biquadFilterOptions = {
+  ...audioNodeOptions,
+  @as("type") mutable type_: biquadFilterType,
+  @as("Q") mutable q: float,
+  mutable detune: float,
+  mutable frequency: float,
+  mutable gain: float,
+}
+
+type audioBufferSourceOptions = {
+  mutable buffer: Null.t<audioBuffer>,
+  mutable detune: float,
+  mutable loop: bool,
+  mutable loopEnd: float,
+  mutable loopStart: float,
+  mutable playbackRate: float,
+}
+
+type channelMergerOptions = {
+  ...audioNodeOptions,
+  mutable numberOfInputs: any,
+}
+
+type channelSplitterOptions = {
+  ...audioNodeOptions,
+  mutable numberOfOutputs: any,
+}
+
+type constantSourceOptions = {mutable offset: float}
+
+type convolverOptions = {
+  ...audioNodeOptions,
+  mutable buffer: Null.t<audioBuffer>,
+  mutable disableNormalization: bool,
+}
+
+type delayOptions = {
+  ...audioNodeOptions,
+  mutable maxDelayTime: float,
+  mutable delayTime: float,
+}
+
+type dynamicsCompressorOptions = {
+  ...audioNodeOptions,
+  mutable attack: float,
+  mutable knee: float,
+  mutable ratio: float,
+  mutable release: float,
+  mutable threshold: float,
+}
+
+type gainOptions = {
+  ...audioNodeOptions,
+  mutable gain: float,
+}
+
+type iirFilterOptions = {
+  ...audioNodeOptions,
+  mutable feedforward: array<float>,
+  mutable feedback: array<float>,
+}
+
+type oscillatorOptions = {
+  ...audioNodeOptions,
+  @as("type") mutable type_: oscillatorType,
+  mutable frequency: float,
+  mutable detune: float,
+  mutable periodicWave: periodicWave,
+}
+
+type pannerOptions = {
+  ...audioNodeOptions,
+  mutable panningModel: panningModelType,
+  mutable distanceModel: distanceModelType,
+  mutable positionX: float,
+  mutable positionY: float,
+  mutable positionZ: float,
+  mutable orientationX: float,
+  mutable orientationY: float,
+  mutable orientationZ: float,
+  mutable refDistance: float,
+  mutable maxDistance: float,
+  mutable rolloffFactor: float,
+  mutable coneInnerAngle: float,
+  mutable coneOuterAngle: float,
+  mutable coneOuterGain: float,
+}
+
+type analyserOptions = {
+  ...audioNodeOptions,
+  mutable fftSize: any,
+  mutable maxDecibels: float,
+  mutable minDecibels: float,
+  mutable smoothingTimeConstant: float,
+}
+
+type periodicWaveOptions = {
+  ...periodicWaveConstraints,
+  mutable real: array<float>,
+  mutable imag: array<float>,
+}
+
+type stereoPannerOptions = {
+  ...audioNodeOptions,
+  mutable pan: float,
+}
+
+type waveShaperOptions = {
+  ...audioNodeOptions,
+  mutable curve: array<float>,
+  mutable oversample: overSampleType,
+}
+
+type audioContextOptions = {
+  mutable latencyHint: unknown,
+  mutable sampleRate: float,
+}
+
+type mediaElementAudioSourceOptions = {mutable mediaElement: htmlMediaElement}
+
+type mediaStreamAudioSourceOptions = {mutable mediaStream: mediaStream}
+
+type audioWorkletNodeOptions = {
+  ...audioNodeOptions,
+  mutable numberOfInputs: any,
+  mutable numberOfOutputs: any,
+  mutable outputChannelCount: array<any>,
+  mutable parameterData: any,
+  mutable processorOptions: Dict.t<string>,
+}
+
+type offlineAudioContextOptions = {
+  mutable numberOfChannels: any,
+  mutable length: any,
+  mutable sampleRate: float,
+}
+
+type decodeSuccessCallback = audioBuffer => unit
+
+type decodeErrorCallback = domException => unit
 
 module AudioBuffer = {
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/AudioBuffer)
+    */
+  @new
+  external make: audioBufferOptions => audioBuffer = "AudioBuffer"
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/AudioBuffer/getChannelData)
     */
@@ -1166,6 +1332,14 @@ module AudioBuffer = {
     */
   @send
   external copyToChannel: (audioBuffer, array<float>, any, any) => unit = "copyToChannel"
+}
+
+module AudioProcessingEvent = {
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/AudioProcessingEvent)
+    */
+  @new
+  external make: (string, audioProcessingEventInit) => audioProcessingEvent = "AudioProcessingEvent"
 }
 
 module MediaStreamTrack = {
@@ -1205,6 +1379,15 @@ module MediaStreamTrack = {
   @send
   external applyConstraints: (mediaStreamTrack, mediaTrackConstraints) => Promise.t<unit> =
     "applyConstraints"
+}
+
+module OfflineAudioCompletionEvent = {
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/OfflineAudioCompletionEvent)
+    */
+  @new
+  external make: (string, offlineAudioCompletionEventInit) => offlineAudioCompletionEvent =
+    "OfflineAudioCompletionEvent"
 }
 
 module AudioNode = {
@@ -1346,6 +1529,11 @@ module BaseAudioContext = {
 
 module BiquadFilterNode = {
   /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/BiquadFilterNode)
+    */
+  @new
+  external make: (baseAudioContext, biquadFilterOptions) => biquadFilterNode = "BiquadFilterNode"
+  /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/BiquadFilterNode/getFrequencyResponse)
     */
   @send
@@ -1422,13 +1610,83 @@ module AudioScheduledSourceNode = {
 
 module AudioBufferSourceNode = {
   /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/AudioBufferSourceNode)
+    */
+  @new
+  external make: (baseAudioContext, audioBufferSourceOptions) => audioBufferSourceNode =
+    "AudioBufferSourceNode"
+  /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/AudioBufferSourceNode/start)
     */
   @send
   external start: (audioBufferSourceNode, float, float, float) => unit = "start"
 }
 
+module ChannelMergerNode = {
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/ChannelMergerNode)
+    */
+  @new
+  external make: (baseAudioContext, channelMergerOptions) => channelMergerNode = "ChannelMergerNode"
+}
+
+module ChannelSplitterNode = {
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/ChannelSplitterNode)
+    */
+  @new
+  external make: (baseAudioContext, channelSplitterOptions) => channelSplitterNode =
+    "ChannelSplitterNode"
+}
+
+module ConstantSourceNode = {
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/ConstantSourceNode)
+    */
+  @new
+  external make: (baseAudioContext, constantSourceOptions) => constantSourceNode =
+    "ConstantSourceNode"
+}
+
+module ConvolverNode = {
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/ConvolverNode)
+    */
+  @new
+  external make: (baseAudioContext, convolverOptions) => convolverNode = "ConvolverNode"
+}
+
+module DelayNode = {
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/DelayNode)
+    */
+  @new
+  external make: (baseAudioContext, delayOptions) => delayNode = "DelayNode"
+}
+
+module DynamicsCompressorNode = {
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/DynamicsCompressorNode)
+    */
+  @new
+  external make: (baseAudioContext, dynamicsCompressorOptions) => dynamicsCompressorNode =
+    "DynamicsCompressorNode"
+}
+
+module GainNode = {
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/GainNode)
+    */
+  @new
+  external make: (baseAudioContext, gainOptions) => gainNode = "GainNode"
+}
+
 module IIRFilterNode = {
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/IIRFilterNode)
+    */
+  @new
+  external make: (baseAudioContext, iirFilterOptions) => iirFilterNode = "IIRFilterNode"
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/IIRFilterNode/getFrequencyResponse)
     */
@@ -1439,15 +1697,31 @@ module IIRFilterNode = {
 
 module OscillatorNode = {
   /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/OscillatorNode)
+    */
+  @new
+  external make: (baseAudioContext, oscillatorOptions) => oscillatorNode = "OscillatorNode"
+  /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/OscillatorNode/setPeriodicWave)
     */
   @send
   external setPeriodicWave: (oscillatorNode, periodicWave) => unit = "setPeriodicWave"
 }
 
-module PannerNode = {}
+module PannerNode = {
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/PannerNode)
+    */
+  @new
+  external make: (baseAudioContext, pannerOptions) => pannerNode = "PannerNode"
+}
 
 module AnalyserNode = {
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/AnalyserNode)
+    */
+  @new
+  external make: (baseAudioContext, analyserOptions) => analyserNode = "AnalyserNode"
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/AnalyserNode/getFloatFrequencyData)
     */
@@ -1473,7 +1747,36 @@ module AnalyserNode = {
   external getByteTimeDomainData: (analyserNode, array<int>) => unit = "getByteTimeDomainData"
 }
 
+module PeriodicWave = {
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/PeriodicWave)
+    */
+  @new
+  external make: (baseAudioContext, periodicWaveOptions) => periodicWave = "PeriodicWave"
+}
+
+module StereoPannerNode = {
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/StereoPannerNode)
+    */
+  @new
+  external make: (baseAudioContext, stereoPannerOptions) => stereoPannerNode = "StereoPannerNode"
+}
+
+module WaveShaperNode = {
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/WaveShaperNode)
+    */
+  @new
+  external make: (baseAudioContext, waveShaperOptions) => waveShaperNode = "WaveShaperNode"
+}
+
 module AudioContext = {
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/AudioContext)
+    */
+  @new
+  external make: audioContextOptions => audioContext = "AudioContext"
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/AudioContext/getOutputTimestamp)
     */
@@ -1522,7 +1825,21 @@ module AudioContext = {
     "createMediaStreamDestination"
 }
 
+module MediaElementAudioSourceNode = {
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/MediaElementAudioSourceNode)
+    */
+  @new
+  external make: (audioContext, mediaElementAudioSourceOptions) => mediaElementAudioSourceNode =
+    "MediaElementAudioSourceNode"
+}
+
 module MediaStream = {
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/MediaStream)
+    */
+  @new
+  external make: unit => mediaStream = "MediaStream"
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/MediaStream/getAudioTracks)
     */
@@ -1566,7 +1883,39 @@ module MediaStream = {
   external clone: mediaStream => mediaStream = "clone"
 }
 
+module MediaStreamAudioSourceNode = {
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/MediaStreamAudioSourceNode)
+    */
+  @new
+  external make: (audioContext, mediaStreamAudioSourceOptions) => mediaStreamAudioSourceNode =
+    "MediaStreamAudioSourceNode"
+}
+
+module MediaStreamAudioDestinationNode = {
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/MediaStreamAudioDestinationNode)
+    */
+  @new
+  external make: (audioContext, audioNodeOptions) => mediaStreamAudioDestinationNode =
+    "MediaStreamAudioDestinationNode"
+}
+
+module AudioWorkletNode = {
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/AudioWorkletNode)
+    */
+  @new
+  external make: (baseAudioContext, string, audioWorkletNodeOptions) => audioWorkletNode =
+    "AudioWorkletNode"
+}
+
 module OfflineAudioContext = {
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/OfflineAudioContext)
+    */
+  @new
+  external make: offlineAudioContextOptions => offlineAudioContext = "OfflineAudioContext"
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/OfflineAudioContext/startRendering)
     */
