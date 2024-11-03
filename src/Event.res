@@ -277,6 +277,38 @@ The event listener is appended to target's event listener list and is not append
   ) => unit = "addEventListener"
 
   /**
+    Removes the event listener in target's event listener list with the same type, callback, and options.
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/EventTarget/removeEventListener)
+    */
+  @send
+  external removeEventListener: (eventTarget, eventType, eventListener<eventType>) => unit =
+    "addEventListener"
+
+  /**
+    Removes the event listener in target's event listener list with the same type, callback, and options.
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/EventTarget/removeEventListener)
+    */
+  @send
+  external removeEventListenerWithOptions: (
+    eventTarget,
+    eventType,
+    eventListener<eventType>,
+    eventListenerOptions,
+  ) => unit = "addEventListener"
+
+  /**
+    Removes the event listener in target's event listener list with the same type, callback, and options.
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/EventTarget/removeEventListener)
+    */
+  @send
+  external removeEventListenerWithUseCapture: (
+    eventTarget,
+    eventType,
+    eventListener<eventType>,
+    bool,
+  ) => unit = "addEventListener"
+
+  /**
     Dispatches a synthetic event event to target and returns true if either event's cancelable attribute value is false or its preventDefault() method was not invoked, and false otherwise.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/EventTarget/dispatchEvent)
     */
@@ -324,6 +356,24 @@ module AbortController = {
 }
 
 module AbortSignal = {
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/AbortSignal/abort_static)
+    */
+  @scope("AbortSignal")
+  external abort: any => abortSignal = "abort"
+
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/AbortSignal/timeout_static)
+    */
+  @scope("AbortSignal")
+  external timeout: int => abortSignal = "timeout"
+
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/AbortSignal/any_static)
+    */
+  @scope("AbortSignal")
+  external any: array<abortSignal> => abortSignal = "any"
+
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/AbortSignal/throwIfAborted)
     */

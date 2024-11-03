@@ -2517,14 +2517,18 @@ export async function emitRescriptBindings(
 
   // I'm deviating quite heavily from what the typescript definition does here
   // It simplifies the event handling quite a bit for now.
-  function emitAddEventListener(i: Browser.Interface, method: Browser.Method) {
+  function emitAddOrRemoveEventListener(
+    prefix: "add" | "remove",
+    i: Browser.Interface,
+    method: Browser.Method,
+  ) {
     printComment({
       mdnUrl: method.mdnUrl,
       comment: method.comment,
     });
     printer.printLine("@send");
     printer.printLine(
-      `external addEventListener: (${toCamelCase(i.name)}, eventType, eventListener<eventType>) => unit = "addEventListener"`,
+      `external ${prefix}EventListener: (${toCamelCase(i.name)}, eventType, eventListener<eventType>) => unit = "addEventListener"`,
     );
     printer.endLine();
 
@@ -2534,7 +2538,7 @@ export async function emitRescriptBindings(
     });
     printer.printLine("@send");
     printer.printLine(
-      `external addEventListenerWithOptions: (${toCamelCase(i.name)}, eventType, eventListener<eventType>, addEventListenerOptions) => unit = "addEventListener"`,
+      `external ${prefix}EventListenerWithOptions: (${toCamelCase(i.name)}, eventType, eventListener<eventType>, ${prefix === "add" ? "addE" : "e"}ventListenerOptions) => unit = "addEventListener"`,
     );
     printer.endLine();
 
@@ -2544,7 +2548,7 @@ export async function emitRescriptBindings(
     });
     printer.printLine("@send");
     printer.printLine(
-      `external addEventListenerWithUseCapture: (${toCamelCase(i.name)}, eventType, eventListener<eventType>, bool) => unit = "addEventListener"`,
+      `external ${prefix}EventListenerWithUseCapture: (${toCamelCase(i.name)}, eventType, eventListener<eventType>, bool) => unit = "addEventListener"`,
     );
     printer.endLine();
   }
@@ -2552,23 +2556,31 @@ export async function emitRescriptBindings(
   // Todo: emit static methods
 
   function emitMethod(i: Browser.Interface, method: Browser.Method) {
-    if (method.signature.length === 0 || method.deprecated || method.static)
-      return;
+    if (method.signature.length === 0 || method.deprecated) return;
 
     const signature = method.signature[0];
     if (typeof signature.type !== "string") return;
 
     let ps = (signature.param || []).map((p) => transformTyped(p)).join(", ");
-    ps = ps.length > 0 ? ", " + ps : "";
 
     printComment({
       mdnUrl: method.mdnUrl,
       comment: method.comment,
     });
-    printer.printLine("@send");
-    printer.printLine(
-      `external ${method.name}: (${toCamelCase(i.name)}${ps}) => ${transformTyped(signature)} = "${method.name}"`,
-    );
+    if (method.static) {
+      printer.printLine(`@scope("${i.name}")`);
+      printer.printLine(
+        `external ${method.name}: (${ps}) => ${transformTyped(signature)} = "${method.name}"`,
+      );
+    } else {
+      ps = ps.length > 0 ? ", " + ps : "";
+
+      printer.printLine("@send");
+      printer.printLine(
+        `external ${method.name}: (${toCamelCase(i.name)}${ps}) => ${transformTyped(signature)} = "${method.name}"`,
+      );
+    }
+
     printer.endLine();
   }
 
@@ -2580,8 +2592,9 @@ export async function emitRescriptBindings(
 
     for (const method of Object.values(i.methods.method)) {
       if (method.name === "addEventListener") {
-        emitAddEventListener(i, method);
+        emitAddOrRemoveEventListener("add", i, method);
       } else if (method.name === "removeEventListener") {
+        emitAddOrRemoveEventListener("remove", i, method);
       } else {
         emitMethod(i, method);
       }
