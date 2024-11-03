@@ -1981,6 +1981,8 @@ export async function emitRescriptBindings(
 
   const allDictionaries = getElements(webidl.dictionaries, "dictionary");
 
+  const allEnums = getElements(webidl.enums, "enum");
+
   // const allLegacyWindowAliases = allInterfaces.flatMap(
   //   (i) => i.legacyWindowAlias,
   // );
@@ -2214,6 +2216,9 @@ export async function emitRescriptBindings(
 
       case "Promise":
         return "Promise.t";
+
+      case "ArrayBuffer":
+        return "ArrayBuffer.t";
 
       case "WindowProxy":
       case "WindowProxy & typeof globalThis":
@@ -2553,8 +2558,6 @@ export async function emitRescriptBindings(
     printer.endLine();
   }
 
-  // Todo: emit static methods
-
   function emitMethod(i: Browser.Interface, method: Browser.Method) {
     if (method.signature.length === 0 || method.deprecated) return;
 
@@ -2583,6 +2586,8 @@ export async function emitRescriptBindings(
 
     printer.endLine();
   }
+
+  // TODO: add constructor fn and cast fn
 
   function emitInterfaceNestedModule(i: Browser.Interface) {
     if (!i.methods || Object.keys(i.methods.method).length === 0) return;
@@ -2761,11 +2766,17 @@ export async function emitRescriptBindings(
       dictionaries: Browser.Dictionary[];
     };
 
+    type EnumEntries = {
+      kind: "enum";
+      enums: Browser.Enum[];
+    };
+
     type GenerationEntry =
       | IndividualInterfaces
       | ChainOfInterfaces
       | TypeByHand
-      | DictionaryEntries;
+      | DictionaryEntries
+      | EnumEntries;
 
     type RescriptFile = {
       name: string;
@@ -2823,6 +2834,20 @@ export async function emitRescriptBindings(
       };
     }
 
+    function enums(names: string[]): GenerationEntry {
+      const enums = names
+        .map((name) => {
+          const e = allEnums.find((e) => e.name === name);
+          return e;
+        })
+        .filter((i) => i !== undefined) as Browser.Enum[];
+
+      return {
+        kind: "enum",
+        enums,
+      };
+    }
+
     const interfaceHierarchy: RescriptFile[] = [
       {
         name: "Prelude",
@@ -2841,6 +2866,52 @@ export async function emitRescriptBindings(
           ]),
           chain(["AbortController", "AbortSignal"]),
           dictionaries(["EventListenerOptions", "AddEventListenerOptions"]),
+        ],
+        opens: ["Prelude"],
+      },
+      // https://developer.mozilla.org/en-US/docs/Web/API/Web_Audio_API
+      {
+        name: "WebAudio",
+        entries: [
+          enums([
+            "AudioContextState",
+            "BiquadFilterType",
+            "ChannelCountMode",
+            "ChannelInterpretation",
+            "OscillatorType",
+            "PanningModelType",
+            "DistanceModelType",
+            "OverSampleType",
+          ]),
+          individualInterfaces(["AudioBuffer"]),
+          chain([
+            "AudioNode",
+            "AudioDestinationNode",
+            "BaseAudioContext",
+            "BiquadFilterNode",
+            "AudioListener",
+            "AudioWorklet",
+            "AudioParam",
+            "AudioScheduledSourceNode",
+            "AudioBufferSourceNode",
+            "ChannelMergerNode",
+            "ChannelSplitterNode",
+            "ConstantSourceNode",
+            "ConvolverNode",
+            "DelayNode",
+            "DynamicsCompressorNode",
+            "GainNode",
+            "IIRFilterNode",
+            "OscillatorNode",
+            "PannerNode",
+          ]),
+          individualInterfaces([
+            "AnalyserNode",
+            "PeriodicWave",
+            "StereoPannerNode",
+            "WaveShaperNode",
+          ]),
+          dictionaries(["PeriodicWaveConstraints"]),
         ],
         opens: ["Prelude"],
       },
@@ -3027,11 +3098,18 @@ export async function emitRescriptBindings(
           case "dictionary":
             entry.dictionaries.forEach(emitDictionaryRecord);
             break;
+          case "enum":
+            entry.enums.forEach(emitEnum);
+            break;
         }
       }
 
       for (const entry of file.entries) {
-        if (entry.kind === "byHand" || entry.kind === "dictionary") {
+        if (
+          entry.kind === "byHand" ||
+          entry.kind === "dictionary" ||
+          entry.kind === "enum"
+        ) {
           continue;
         }
 
