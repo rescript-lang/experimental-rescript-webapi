@@ -49,11 +49,7 @@ async function emitFlavor(
   mergeNamesakes(exposed);
   exposed.events = webidl.events;
 
-  const rescript = emitRescriptBindings(exposed);
-  await fs.writeFile(
-    new URL(`${options.name}.res`, options.outputFolder),
-    rescript,
-  );
+  await emitRescriptBindings('/home/nojaf/projects/experimental-rescript-webapi/src', exposed);
 
   // const result = emitWebIdl(
   //   exposed,

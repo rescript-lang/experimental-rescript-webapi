@@ -11,6 +11,8 @@ import {
   assertUnique,
 } from "./helpers.js";
 import { collectLegacyNamespaceTypes } from "./legacy-namespace.js";
+import { promises as fs } from "fs";
+import { execSync } from "child_process";
 
 /// Decide which members of a function to emit
 enum EmitScope {
@@ -1956,7 +1958,10 @@ type interfaceSettings = {
   typeKeywords: "type" | "type rec" | "and";
 };
 
-export function emitRescriptBindings(webidl: Browser.WebIdl): string {
+export async function emitRescriptBindings(
+  outputFolder: string,
+  webidl: Browser.WebIdl,
+) {
   // Global print target
   const printer = createTextWriter("\n");
 
@@ -1973,6 +1978,8 @@ export function emitRescriptBindings(webidl: Browser.WebIdl): string {
     getElements(webidl.callbackInterfaces, "interface"),
     getElements(webidl.mixins, "mixin"),
   );
+
+  const allDictionaries = getElements(webidl.dictionaries, "dictionary");
 
   // const allLegacyWindowAliases = allInterfaces.flatMap(
   //   (i) => i.legacyWindowAlias,
@@ -2166,7 +2173,7 @@ export function emitRescriptBindings(webidl: Browser.WebIdl): string {
   function mapTypeToReScript(typeName: string): string {
     switch (typeName) {
       case "undefined":
-        return "undefined<unit>";
+        return "unit";
       case "boolean":
         return "bool";
 
@@ -2188,6 +2195,7 @@ export function emitRescriptBindings(webidl: Browser.WebIdl): string {
       case "CSSNumberish":
       case "GLint":
       case "GLsizei":
+      case "DOMHighResTimeStamp":
         return "float";
 
       // TODO: represent this as a variant type
@@ -2313,51 +2321,66 @@ export function emitRescriptBindings(webidl: Browser.WebIdl): string {
     };
   }
 
-  function transformPropertyValue(property: Browser.Member): string {
+  function transformTyped(property: Browser.Typed) {
+    if (typeof property.type !== "string") {
+      return "unknown";
+    }
+
+    if (property.overrideType === "T" && property.type === "any") {
+      return "'t";
+    }
+
+    if (
+      property.subtype &&
+      !Array.isArray(property.subtype) &&
+      typeof property.subtype.type === "string"
+    ) {
+      return `${mapTypeToReScript(property.type)}<${mapTypeToReScript(property.subtype.type)}>`;
+    }
+
+    let t = property.type;
+    if (typeof property.overrideType === "string") {
+      t = property.overrideType;
+    }
+
+    if (Array.isArray(property.overrideType)) {
+      t = property.overrideType[0];
+    }
+
+    if (t === "QueuingStrategySize<ArrayBufferView>") {
+      return "int";
+    }
+
+    if (alwaysGenericTypes.has(t)) {
+      return `${mapTypeToReScript(t)}<unit>`;
+    }
+
+    const genericType = parseGenericType(t);
+    if (genericType) {
+      const ps = genericType.genericParameters
+        .map((p) => {
+          if (p.length === 1) {
+            return `'${p.toLocaleLowerCase()}`;
+          }
+          return mapTypeToReScript(p);
+        })
+        .join(", ");
+      return `${mapTypeToReScript(genericType.typeName)}<${ps}>`;
+    }
+
+    return mapTypeToReScript(t);
+  }
+
+  function transformPropertyValue(
+    i: Browser.Interface | Browser.Dictionary,
+    property: Browser.Member,
+  ): string {
     if (typeof property.type === "string") {
-      if (property.overrideType === "T" && property.type === "any") {
-        return "'t";
+      if (i.name === "Event" && property.name === "type") {
+        return "eventType";
       }
 
-      if (
-        property.subtype &&
-        !Array.isArray(property.subtype) &&
-        typeof property.subtype.type === "string"
-      ) {
-        return `${mapTypeToReScript(property.type)}<${mapTypeToReScript(property.subtype.type)}>`;
-      }
-
-      let t = property.type;
-      if (typeof property.overrideType === "string") {
-        t = property.overrideType;
-      }
-
-      if (Array.isArray(property.overrideType)) {
-        t = property.overrideType[0];
-      }
-
-      if (t === "QueuingStrategySize<ArrayBufferView>") {
-        return "int";
-      }
-
-      if (alwaysGenericTypes.has(t)) {
-        return `${mapTypeToReScript(t)}<unit>`;
-      }
-
-      const genericType = parseGenericType(t);
-      if (genericType) {
-        const ps = genericType.genericParameters
-          .map((p) => {
-            if (p.length === 1) {
-              return `'${p.toLocaleLowerCase()}`;
-            }
-            return mapTypeToReScript(p);
-          })
-          .join(", ");
-        return `${mapTypeToReScript(genericType.typeName)}<${ps}>`;
-      }
-
-      return mapTypeToReScript(t);
+      return transformTyped(property);
     } else {
       console.log("non string property type", property.type);
     }
@@ -2365,14 +2388,14 @@ export function emitRescriptBindings(webidl: Browser.WebIdl): string {
     return "unknown";
   }
 
-  function emitProperty(property: Browser.Property) {
+  function emitProperty(i: Browser.Interface, property: Browser.Property) {
     if (!("mdnUrl" in property)) return;
 
     printComment({
       mdnUrl: property.mdnUrl,
       comment: property.comment,
     });
-    let propertyValue = transformPropertyValue(property);
+    let propertyValue = transformPropertyValue(i, property);
     printer.print(`${getFieldName(property)}`);
     if (property.optional) printer.print(`?`);
     printer.print(`: `);
@@ -2404,7 +2427,7 @@ export function emitRescriptBindings(webidl: Browser.WebIdl): string {
         if (fieldNamesFromExtended.includes(key)) continue;
         let property = i.members.member[key];
         printComment({ comment: property.comment });
-        let propertyValue = transformPropertyValue(property);
+        let propertyValue = transformPropertyValue(i, property);
         printer.print(`${getFieldName(property)}`);
         printer.print(`: `);
         if (property.nullable) printer.print(`Null.t<${propertyValue}>`);
@@ -2421,6 +2444,7 @@ export function emitRescriptBindings(webidl: Browser.WebIdl): string {
 
     printer.decreaseIndent();
     printer.printLine("}");
+    printer.endLine();
   }
 
   function emitInterfaceRecord(
@@ -2451,7 +2475,7 @@ export function emitRescriptBindings(webidl: Browser.WebIdl): string {
             properties
               .filter((p) => !p.eventHandler)
               .forEach((p) => {
-                emitProperty(p);
+                emitProperty(i, p);
               });
             printer.printLine(`// End base properties from ${name}`);
             printer.endLine();
@@ -2476,7 +2500,7 @@ export function emitRescriptBindings(webidl: Browser.WebIdl): string {
         )
           continue;
 
-        emitProperty(property);
+        emitProperty(i, property);
       }
     }
 
@@ -2485,6 +2509,83 @@ export function emitRescriptBindings(webidl: Browser.WebIdl): string {
       ...fieldNamesFromExtended,
     ]);
     typeFieldNames.set(i.name, fieldNames);
+
+    printer.decreaseIndent();
+    printer.printLine("}");
+    printer.endLine();
+  }
+
+  // I'm deviating quite heavily from what the typescript definition does here
+  // It simplifies the event handling quite a bit for now.
+  function emitAddEventListener(i: Browser.Interface, method: Browser.Method) {
+    printComment({
+      mdnUrl: method.mdnUrl,
+      comment: method.comment,
+    });
+    printer.printLine("@send");
+    printer.printLine(
+      `external addEventListener: (${toCamelCase(i.name)}, eventType, eventListener<eventType>) => unit = "addEventListener"`,
+    );
+    printer.endLine();
+
+    printComment({
+      mdnUrl: method.mdnUrl,
+      comment: method.comment,
+    });
+    printer.printLine("@send");
+    printer.printLine(
+      `external addEventListenerWithOptions: (${toCamelCase(i.name)}, eventType, eventListener<eventType>, addEventListenerOptions) => unit = "addEventListener"`,
+    );
+    printer.endLine();
+
+    printComment({
+      mdnUrl: method.mdnUrl,
+      comment: method.comment,
+    });
+    printer.printLine("@send");
+    printer.printLine(
+      `external addEventListenerWithUseCapture: (${toCamelCase(i.name)}, eventType, eventListener<eventType>, bool) => unit = "addEventListener"`,
+    );
+    printer.endLine();
+  }
+
+  // Todo: emit static methods
+
+  function emitMethod(i: Browser.Interface, method: Browser.Method) {
+    if (method.signature.length === 0 || method.deprecated || method.static)
+      return;
+
+    const signature = method.signature[0];
+    if (typeof signature.type !== "string") return;
+
+    let ps = (signature.param || []).map((p) => transformTyped(p)).join(", ");
+    ps = ps.length > 0 ? ", " + ps : "";
+
+    printComment({
+      mdnUrl: method.mdnUrl,
+      comment: method.comment,
+    });
+    printer.printLine("@send");
+    printer.printLine(
+      `external ${method.name}: (${toCamelCase(i.name)}${ps}) => ${transformTyped(signature)} = "${method.name}"`,
+    );
+    printer.endLine();
+  }
+
+  function emitInterfaceNestedModule(i: Browser.Interface) {
+    if (!i.methods || Object.keys(i.methods.method).length === 0) return;
+
+    printer.printLine(`module ${i.name} = {`);
+    printer.increaseIndent();
+
+    for (const method of Object.values(i.methods.method)) {
+      if (method.name === "addEventListener") {
+        emitAddEventListener(i, method);
+      } else if (method.name === "removeEventListener") {
+      } else {
+        emitMethod(i, method);
+      }
+    }
 
     printer.decreaseIndent();
     printer.printLine("}");
@@ -2517,13 +2618,14 @@ export function emitRescriptBindings(webidl: Browser.WebIdl): string {
     sortedDicts.forEach(emitDictionaryRecord);
   }
 
-  function emitDomString() {
+  function emitEventType() {
     let globalEventHandlers = webidl.mixins?.mixin["GlobalEventHandlers"];
     if (globalEventHandlers) {
       let properties = globalEventHandlers.properties?.property || {};
       const keys = Object.keys(properties);
       if (keys.length > 0) {
-        printer.printLine("type domString =");
+        printer.printLine("@unboxed");
+        printer.printLine("type eventType =");
         printer.increaseIndent();
         for (const key of Object.keys(properties)) {
           const property = properties[key];
@@ -2532,10 +2634,17 @@ export function emitRescriptBindings(webidl: Browser.WebIdl): string {
             printer.printLine(`| ${getVariantName(eventName)}`);
           }
         }
+        printer.printLine("| Custom(string)");
         printer.decreaseIndent();
         printer.endLine();
       }
     }
+  }
+
+  // Make event handlers just generic functions
+  function emitEventListener() {
+    printer.printLine("type eventListener<'event> = 'event => unit");
+    printer.endLine();
   }
 
   function emitEventPhase() {
@@ -2583,52 +2692,75 @@ export function emitRescriptBindings(webidl: Browser.WebIdl): string {
     printer.printLine("}");
   }
 
-  function emit() {
+  async function emit() {
     printer.reset();
-    printer.printLine('@@warning("-30")');
-    printer.printLine("/** Temporary, to be fixed */");
-    printer.printLine("type error = {}");
-    printer.printLine("type any");
-    printer.printLine("type arrayBufferView = {}");
-    printer.printLine("type domHighResTimeStamp");
-    printer.printLine("type usvString");
-    // TODO: "number | string | Date | BufferSource | IDBValidKey[]"
-    printer.printLine("type idbValidKey = unknown");
-    // TODO: https://developer.mozilla.org/en-US/docs/Web/API/CryptoKey/algorithm
-    printer.printLine("type keyAlgorithm = unknown");
-    printer.printLine("type cssPerspectiveValue = unknown");
-    printer.printLine("type arrayBuffer = unknown");
-    // "MediaProvider", // The object can be a MediaStream, a MediaSource, a Blob, or a File (which inherits from Blob).
-    printer.printLine("type mediaProvider = unknown");
-    // https://developer.mozilla.org/en-US/docs/Web/API/MessageEvent/source
-    printer.printLine("type messageEventSource = unknown");
-    // https://developer.mozilla.org/en-US/docs/Web/API/WebTransport/closed
-    printer.printLine("type webTransportCloseInfo = unknown");
-    printer.printLine("type lineAndPositionSetting = unknown");
-    printer.printLine("/* End temporary */");
-    printer.printLine("");
+    // printer.printLine('@@warning("-30")');
+    // printer.printLine("/** Temporary, to be fixed */");
+    // printer.printLine("type error = {}");
+    // printer.printLine("type any");
+    // printer.printLine("type arrayBufferView = {}");
+    // printer.printLine("type domHighResTimeStamp");
+    // printer.printLine("type usvString");
+    // // TODO: "number | string | Date | BufferSource | IDBValidKey[]"
+    // printer.printLine("type idbValidKey = unknown");
+    // // TODO: https://developer.mozilla.org/en-US/docs/Web/API/CryptoKey/algorithm
+    // printer.printLine("type keyAlgorithm = unknown");
+    // printer.printLine("type cssPerspectiveValue = unknown");
+    // printer.printLine("type arrayBuffer = unknown");
+    // // "MediaProvider", // The object can be a MediaStream, a MediaSource, a Blob, or a File (which inherits from Blob).
+    // printer.printLine("type mediaProvider = unknown");
+    // // https://developer.mozilla.org/en-US/docs/Web/API/MessageEvent/source
+    // printer.printLine("type messageEventSource = unknown");
+    // // https://developer.mozilla.org/en-US/docs/Web/API/WebTransport/closed
+    // printer.printLine("type webTransportCloseInfo = unknown");
+    // printer.printLine("type lineAndPositionSetting = unknown");
+    // printer.printLine("/* End temporary */");
+    // printer.printLine("");
 
     // emitDictionaries();
-    emitEnums();
 
-    emitDomString();
-    emitEventPhase();
-    emitQueuingStrategy();
-    emitMediaImage();
+    // prim-types-prelude.res => types that need to exist before anything else.
 
-    type Individuals = {
+    // emitEnums();
+
+    // emitEventPhase();
+    // emitQueuingStrategy();
+    // emitMediaImage();
+
+    type IndividualInterfaces = {
       kind: "individuals";
       interfaces: Browser.Interface[];
     };
 
-    type Chain = {
+    type ChainOfInterfaces = {
       kind: "chain";
       interfaces: Browser.Interface[];
     };
 
-    type InterfaceGeneration = Individuals | Chain;
+    type TypeByHand = {
+      kind: "byHand";
+      name: string;
+      emitInterface: () => void;
+    };
 
-    function individualInterfaces(names: string[]): InterfaceGeneration {
+    type DictionaryEntries = {
+      kind: "dictionary";
+      dictionaries: Browser.Dictionary[];
+    };
+
+    type GenerationEntry =
+      | IndividualInterfaces
+      | ChainOfInterfaces
+      | TypeByHand
+      | DictionaryEntries;
+
+    type RescriptFile = {
+      name: string;
+      entries: GenerationEntry[];
+      opens: string[];
+    };
+
+    function individualInterfaces(names: string[]): GenerationEntry {
       const interfaces = names
         .map((name) => {
           const i = allInterfaces.find((i) => i.name === name);
@@ -2642,7 +2774,7 @@ export function emitRescriptBindings(webidl: Browser.WebIdl): string {
       };
     }
 
-    function chain(names: string[]): InterfaceGeneration {
+    function chain(names: string[]): GenerationEntry {
       const interfaces = names
         .map((name) => {
           const i = allInterfaces.find((i) => i.name === name);
@@ -2656,185 +2788,266 @@ export function emitRescriptBindings(webidl: Browser.WebIdl): string {
       };
     }
 
-    const interfaceHierarchy: InterfaceGeneration[] = [
-      individualInterfaces(["EventTarget"]),
-      chain([
-        "AudioNode",
-        "AudioDestinationNode",
-        "BaseAudioContext",
-        "AudioListener",
-        "AudioWorklet",
-        "AudioParam",
-      ]),
-      individualInterfaces(["NavigationPreloadManager", "PushManager"]),
-      chain([
-        "ServiceWorkerRegistration",
-        "ServiceWorker",
-        "ServiceWorkerContainer",
-      ]),
-      chain(["FileSystemEntry", "FileSystemDirectoryEntry", "FileSystem"]),
-      individualInterfaces([
-        "DOMTokenList",
-        "NamedNodeMap",
-        "DOMStringList",
-        "Location",
-        "FragmentDirective",
-        "History",
-        "CustomElementRegistry",
-        // https://developer.mozilla.org/en-US/docs/Web/API/Window/locationbar
-        "BarProp",
-        "Clipboard",
-        "CredentialsContainer",
-        "Geolocation",
-        "MediaCapabilities",
-        "UserActivation",
-        "MediaDevices",
-        "MediaMetadata",
-        "MediaSession",
-        "Permissions",
-        "WakeLock",
-        "Navigator",
-        "ScreenOrientation",
-        "Screen",
-        "VisualViewport",
-        "SpeechSynthesis",
-        "DOMException",
-        "IDBValidKey",
-        "IDBDatabase",
-        "IDBTransaction",
-        "IDBRequest",
-        "IDBCursor",
-        "SubtleCrypto",
-        "KeyAlgorithm",
-        "CryptoKey",
-        "DataTransferItemList",
-        "FileList",
-        "DataTransfer",
-        "AnimationEffect",
-        "MediaList",
-        "CSSNumericArray",
-        "CSSTransformComponent",
-        "CSSStyleValue",
-        "CSSNumericValue",
-        "CSSPerspective",
-        "DOMMatrixReadOnly",
-        "DOMMatrix",
-        "CSSMatrixComponent",
-        "NodeFilter",
-        "MediaKeyStatusMap",
-        "MediaKeySession",
-        "ArrayBuffer",
-        "GamepadHapticActuator",
-        "GeolocationCoordinates",
-        "ValidityState",
-        "MediaError",
-        "TimeRanges", // https://developer.mozilla.org/en-US/docs/Web/API/TimeRanges#normalized_timeranges_objects
-        "TextTrackList",
-        "RemotePlayback",
-        "TextTrackCueList",
-        "FormData",
-        "CustomStateSet",
-        "MessageEventSource",
-        "MessagePort",
-        "SourceBufferList",
-        "SpeechSynthesisVoice",
-        "GamepadButton",
-        "PerformanceServerTiming",
-        "ResizeObserverSize",
-        "URLSearchParams",
-        "AudioBuffer",
-        "AuthenticatorResponse", // https://developer.mozilla.org/en-US/docs/Web/API/PublicKeyCredential/response
-        "VideoColorSpace",
-        "RTCSessionDescription",
-        "RTCIceTransport",
-        "RTCDtlsTransport",
-        "RTCSctpTransport",
-        "RTCRtpScriptTransform",
-        "RTCDTMFSender",
-        "WebTransportCloseInfo", // https://developer.mozilla.org/en-US/docs/Web/API/WebTransport/closed
-        "VTTRegion",
-        "LineAndPositionSetting", // https://developer.mozilla.org/en-US/docs/Web/API/VTTCue/line
-      ]),
-      chain(["AnimationTimeline", "DocumentTimeline"]),
-      chain([
-        "Node",
-        "NodeList",
-        "NodeListOf",
-        "Element",
-        "ShadowRoot",
-        "HTMLCollection",
-        "HTMLCollectionOf",
-        "HTMLFormControlsCollection",
-        "HTMLElement",
-        "HTMLHeadElement",
-        "HTMLFormElement",
-        "HTMLImageElement",
-        "HTMLEmbedElement",
-        "HTMLAnchorElement",
-        "HTMLAreaElement",
-        "HTMLScriptElement",
-        "DOMImplementation",
-        "DocumentType",
-        "Document",
-        "Window",
-        "Event",
-        "MutationRecord",
-      ]),
-      chain([
-        "StyleSheet",
-        "CSSStyleSheet",
-        "CSSRule",
-        "CSSRuleList",
-        "CSSStyleDeclaration",
-      ]),
-      chain(["AbortController", "AbortSignal"]),
-      chain([
-        "HTMLTableElement",
-        "HTMLTableCaptionElement",
-        "HTMLTableSectionElement",
-        "HTMLTableCellElement",
-        "HTMLTableRowElement",
-      ]),
-      chain([
-        "HTMLButtonElement",
-        "HTMLLabelElement",
-        "HTMLTextAreaElement",
-        "HTMLOutputElement",
-        "HTMLInputElement",
-        "HTMLDataListElement",
-        "HTMLSelectElement",
-        "HTMLOptionElement",
-        "HTMLOptionsCollection",
-      ]),
-      chain(["ReadableByteStreamController", "ReadableStreamBYOBRequest"]),
-      chain(["Animation"]),
-      chain(["FontFaceSet"]),
-      chain(["FontFace"]),
-    ];
-
-    for (const entry of interfaceHierarchy) {
-      if (entry.kind === "individuals") {
-        emitIndividualInterfaces(entry.interfaces);
-      } else {
-        emitInterfaceChain(entry.interfaces);
-      }
+    function byHand(name: string, emitter: () => void): GenerationEntry {
+      return {
+        name: name,
+        kind: "byHand",
+        emitInterface: emitter,
+      };
     }
 
-    let remainers = allInterfaces.filter((i) => {
-      return !interfaceHierarchy.some((h) => {
-        return h.interfaces.some((j) => {
-          return j.name === i.name;
-        });
-      });
-    });
-    remainers = topologicalSortDictionaries(remainers);
+    function dictionaries(names: string[]): GenerationEntry {
+      const dictionaries = names
+        .map((name) => {
+          const d = allDictionaries.find((d) => d.name === name);
+          return d;
+        })
+        .filter((i) => i !== undefined) as Browser.Dictionary[];
 
-    console.log(`Remainders: ${remainers.length}`);
+      return {
+        kind: "dictionary",
+        dictionaries,
+      };
+    }
 
-    emitIndividualInterfaces(remainers);
+    const interfaceHierarchy: RescriptFile[] = [
+      {
+        name: "Prelude",
+        entries: [byHand("any", () => printer.printLine("type any = {}"))],
+        opens: [],
+      },
+      {
+        name: "Event",
+        entries: [
+          byHand("EventType", emitEventType),
+          byHand("EventListener", emitEventListener),
+          individualInterfaces([
+            "EventTarget",
+            "Event",
+            "AddEventListenerOptions",
+          ]),
+          chain(["AbortController", "AbortSignal"]),
+          dictionaries(["EventListenerOptions", "AddEventListenerOptions"]),
+        ],
+        opens: ["Prelude"],
+      },
 
-    return printer.getResult();
+      // chain([
+      //   "AudioNode",
+      //   "AudioDestinationNode",
+      //   "BaseAudioContext",
+      //   "AudioListener",
+      //   "AudioWorklet",
+      //   "AudioParam",
+      // ]),
+      // individualInterfaces(["NavigationPreloadManager", "PushManager"]),
+      // chain([
+      //   "ServiceWorkerRegistration",
+      //   "ServiceWorker",
+      //   "ServiceWorkerContainer",
+      // ]),
+      // chain(["FileSystemEntry", "FileSystemDirectoryEntry", "FileSystem"]),
+      // individualInterfaces([
+      //   "DOMTokenList",
+      //   "NamedNodeMap",
+      //   "DOMStringList",
+      //   "Location",
+      //   "FragmentDirective",
+      //   "History",
+      //   "CustomElementRegistry",
+      //   // https://developer.mozilla.org/en-US/docs/Web/API/Window/locationbar
+      //   "BarProp",
+      //   "Clipboard",
+      //   "CredentialsContainer",
+      //   "Geolocation",
+      //   "MediaCapabilities",
+      //   "UserActivation",
+      //   "MediaDevices",
+      //   "MediaMetadata",
+      //   "MediaSession",
+      //   "Permissions",
+      //   "WakeLock",
+      //   "Navigator",
+      //   "ScreenOrientation",
+      //   "Screen",
+      //   "VisualViewport",
+      //   "SpeechSynthesis",
+      //   "DOMException",
+      //   "IDBValidKey",
+      //   "IDBDatabase",
+      //   "IDBTransaction",
+      //   "IDBRequest",
+      //   "IDBCursor",
+      //   "SubtleCrypto",
+      //   "KeyAlgorithm",
+      //   "CryptoKey",
+      //   "DataTransferItemList",
+      //   "FileList",
+      //   "DataTransfer",
+      //   "AnimationEffect",
+      //   "MediaList",
+      //   "CSSNumericArray",
+      //   "CSSTransformComponent",
+      //   "CSSStyleValue",
+      //   "CSSNumericValue",
+      //   "CSSPerspective",
+      //   "DOMMatrixReadOnly",
+      //   "DOMMatrix",
+      //   "CSSMatrixComponent",
+      //   "NodeFilter",
+      //   "MediaKeyStatusMap",
+      //   "MediaKeySession",
+      //   "ArrayBuffer",
+      //   "GamepadHapticActuator",
+      //   "GeolocationCoordinates",
+      //   "ValidityState",
+      //   "MediaError",
+      //   "TimeRanges", // https://developer.mozilla.org/en-US/docs/Web/API/TimeRanges#normalized_timeranges_objects
+      //   "TextTrackList",
+      //   "RemotePlayback",
+      //   "TextTrackCueList",
+      //   "FormData",
+      //   "CustomStateSet",
+      //   "MessageEventSource",
+      //   "MessagePort",
+      //   "SourceBufferList",
+      //   "SpeechSynthesisVoice",
+      //   "GamepadButton",
+      //   "PerformanceServerTiming",
+      //   "ResizeObserverSize",
+      //   "URLSearchParams",
+      //   "AudioBuffer",
+      //   "AuthenticatorResponse", // https://developer.mozilla.org/en-US/docs/Web/API/PublicKeyCredential/response
+      //   "VideoColorSpace",
+      //   "RTCSessionDescription",
+      //   "RTCIceTransport",
+      //   "RTCDtlsTransport",
+      //   "RTCSctpTransport",
+      //   "RTCRtpScriptTransform",
+      //   "RTCDTMFSender",
+      //   "WebTransportCloseInfo", // https://developer.mozilla.org/en-US/docs/Web/API/WebTransport/closed
+      //   "VTTRegion",
+      //   "LineAndPositionSetting", // https://developer.mozilla.org/en-US/docs/Web/API/VTTCue/line
+      // ]),
+      // chain(["AnimationTimeline", "DocumentTimeline"]),
+      // chain([
+      //   "Node",
+      //   "NodeList",
+      //   "NodeListOf",
+      //   "Element",
+      //   "ShadowRoot",
+      //   "HTMLCollection",
+      //   "HTMLCollectionOf",
+      //   "HTMLFormControlsCollection",
+      //   "HTMLElement",
+      //   "HTMLHeadElement",
+      //   "HTMLFormElement",
+      //   "HTMLImageElement",
+      //   "HTMLEmbedElement",
+      //   "HTMLAnchorElement",
+      //   "HTMLAreaElement",
+      //   "HTMLScriptElement",
+      //   "DOMImplementation",
+      //   "DocumentType",
+      //   "Document",
+      //   "Window",
+      //   "Event",
+      //   "MutationRecord",
+      // ]),
+      // chain([
+      //   "StyleSheet",
+      //   "CSSStyleSheet",
+      //   "CSSRule",
+      //   "CSSRuleList",
+      //   "CSSStyleDeclaration",
+      // ]),
+      // chain(["AbortController", "AbortSignal"]),
+      // chain([
+      //   "HTMLTableElement",
+      //   "HTMLTableCaptionElement",
+      //   "HTMLTableSectionElement",
+      //   "HTMLTableCellElement",
+      //   "HTMLTableRowElement",
+      // ]),
+      // chain([
+      //   "HTMLButtonElement",
+      //   "HTMLLabelElement",
+      //   "HTMLTextAreaElement",
+      //   "HTMLOutputElement",
+      //   "HTMLInputElement",
+      //   "HTMLDataListElement",
+      //   "HTMLSelectElement",
+      //   "HTMLOptionElement",
+      //   "HTMLOptionsCollection",
+      // ]),
+      // chain(["ReadableByteStreamController", "ReadableStreamBYOBRequest"]),
+      // chain(["Animation"]),
+      // chain(["FontFaceSet"]),
+      // chain(["FontFace"]),
+    ];
+
+    for (const file of interfaceHierarchy) {
+      printer.reset();
+      printer.printLine('@@warning("-30")');
+
+      if (file.opens.length > 0) {
+        printer.endLine();
+      }
+      for (const o of file.opens) {
+        printer.printLine(`open ${o}`);
+      }
+      if (file.opens.length > 0) {
+        printer.endLine();
+      }
+
+      for (const entry of file.entries) {
+        switch (entry.kind) {
+          case "individuals":
+            emitIndividualInterfaces(entry.interfaces);
+            break;
+          case "chain":
+            emitInterfaceChain(entry.interfaces);
+            break;
+          case "byHand":
+            entry.emitInterface();
+            break;
+          case "dictionary":
+            entry.dictionaries.forEach(emitDictionaryRecord);
+            break;
+        }
+      }
+
+      for (const entry of file.entries) {
+        if (entry.kind === "byHand" || entry.kind === "dictionary") {
+          continue;
+        }
+
+        for (const i of entry.interfaces) {
+          emitInterfaceNestedModule(i);
+        }
+      }
+
+      const contents = printer.getResult();
+      await fs.writeFile(`${outputFolder}/${file.name}.res`, contents);
+    }
+
+    const repoRoot = "/home/nojaf/projects/experimental-rescript-webapi";
+    execSync("npx rescript format -all", { cwd: repoRoot, stdio: "inherit" });
+    execSync("npx rescript", { cwd: repoRoot, stdio: "inherit" });
+
+    // let remainers = allInterfaces.filter((i) => {
+    //   return !interfaceHierarchy.some((h) => {
+    //     return h.interfaces.some((j) => {
+    //       return j.name === i.name;
+    //     });
+    //   });
+    // });
+    // remainers = topologicalSortDictionaries(remainers);
+
+    // console.log(`Remainders: ${remainers.length}`);
+
+    // emitIndividualInterfaces(remainers);
   }
 
-  return emit();
+  await emit();
 }
