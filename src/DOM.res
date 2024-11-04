@@ -1,6 +1,8 @@
 @@warning("-30")
 
 open Prelude
+open Clipboard
+open CredentialManagement
 
 /**
 An abnormal event (called an exception) which occurs as a result of calling a method or accessing a property of a web API.
@@ -102,6 +104,57 @@ Can be set, to navigate to the same URL with a changed fragment (ignores leading
   ancestorOrigins: domStringList,
 }
 
+/**
+The state and the identity of the user agent. It allows scripts to query it and to register themselves to carry on some activities.
+[See Navigator on MDN](https://developer.mozilla.org/docs/Web/API/Navigator)
+*/
+type navigator = {
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Navigator/clipboard)
+    */
+  clipboard: clipboard,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Navigator/credentials)
+    */
+  credentials: credentialsContainer,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Navigator/geolocation)
+    */
+  geolocation: geolocation,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Navigator/userActivation)
+    */
+  userActivation: userActivation,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Navigator/mediaCapabilities)
+    */
+  mediaCapabilities: mediaCapabilities,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Navigator/mediaDevices)
+    */
+  mediaDevices: mediaDevices,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Navigator/mediaSession)
+    */
+  mediaSession: mediaSession,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Navigator/permissions)
+    */
+  permissions: permissions,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Navigator/maxTouchPoints)
+    */
+  maxTouchPoints: int,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Navigator/wakeLock)
+    */
+  wakeLock: wakeLock,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Navigator/serviceWorker)
+    */
+  serviceWorker: serviceWorkerContainer,
+}
+
 type htmlMediaElement = any
 module DOMException = {
   /**
@@ -148,4 +201,53 @@ module Location = {
     */
   @send
   external reload: location => unit = "reload"
+}
+
+module Navigator = {
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Navigator/sendBeacon)
+    */
+  @send
+  external sendBeacon: (navigator, string, bodyInit) => bool = "sendBeacon"
+
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Navigator/requestMediaKeySystemAccess)
+    */
+  @send
+  external requestMediaKeySystemAccess: (
+    navigator,
+    string,
+    array<mediaKeySystemConfiguration>,
+  ) => Promise.t<mediaKeySystemAccess> = "requestMediaKeySystemAccess"
+
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Navigator/getGamepads)
+    */
+  @send
+  external getGamepads: navigator => array<gamepad> = "getGamepads"
+
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Navigator/vibrate)
+    */
+  @send
+  external vibrate: (navigator, vibratePattern) => bool = "vibrate"
+
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Navigator/share)
+    */
+  @send
+  external share: (navigator, shareData) => Promise.t<unit> = "share"
+
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Navigator/canShare)
+    */
+  @send
+  external canShare: (navigator, shareData) => bool = "canShare"
+
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Navigator/requestMIDIAccess)
+    */
+  @send
+  external requestMIDIAccess: (navigator, midiOptions) => Promise.t<midiAccess> =
+    "requestMIDIAccess"
 }

@@ -2198,6 +2198,7 @@ export async function emitRescriptBindings(
       // TODO: https://developer.mozilla.org/en-US/docs/Web/API/ByteLengthQueuingStrategy/size
       case "QueuingStrategySize":
       case "ConstrainULong":
+      case "COSEAlgorithmIdentifier":
         return "int";
 
       case "double":
@@ -2221,6 +2222,9 @@ export async function emitRescriptBindings(
 
       case "Uint8ClampedArray":
         return "array<int>";
+
+      case "ClipboardItems":
+        return "array<clipboardItem>";
 
       case "Promise":
         return "Promise.t";
@@ -2352,7 +2356,11 @@ export async function emitRescriptBindings(
       !Array.isArray(property.subtype) &&
       typeof property.subtype.type === "string"
     ) {
-      return `${mapTypeToReScript(property.type)}<${mapTypeToReScript(property.subtype.type)}>`;
+      let genericSubType = "";
+      if (alwaysGenericTypes.has(property.subtype.type)) {
+        genericSubType = `<'t>`;
+      }
+      return `${mapTypeToReScript(property.type)}<${mapTypeToReScript(property.subtype.type)}${genericSubType}>`;
     }
 
     let t = property.type;
@@ -2591,9 +2599,14 @@ export async function emitRescriptBindings(
     } else {
       ps = ps.length > 0 ? ", " + ps : "";
 
+      let senderName = toCamelCase(i.name);
+      if (alwaysGenericTypes.has(i.name)) {
+        senderName = `${senderName}<'t>`;
+      }
+
       printer.printLine("@send");
       printer.printLine(
-        `external ${method.name}: (${toCamelCase(i.name)}${ps}) => ${transformTyped(signature)} = "${method.name}"`,
+        `external ${method.name}: (${senderName}${ps}) => ${transformTyped(signature)} = "${method.name}"`,
       );
     }
 
@@ -2613,7 +2626,11 @@ export async function emitRescriptBindings(
     if (c.signature.length === 0) return;
 
     const signature = c.signature[0];
-    const ps = mapSignatureParameters(signature);
+    let ps = mapSignatureParameters(signature);
+
+    if (i.name === "ReadableStream") {
+      ps = "";
+    }
 
     printComment({
       mdnUrl: i.mdnUrl,
@@ -2767,6 +2784,22 @@ export async function emitRescriptBindings(
     printer.printLine('@as("type") type_?: string,');
     printer.decreaseIndent();
     printer.printLine("}");
+  }
+
+  function emitBlobPart() {
+    printer.printLine("@unboxed");
+    printer.printLine("type blobPart =");
+    printer.increaseIndent();
+    printer.printLine("| String(string)");
+    printer.printLine("| Blob(blob)");
+    printer.printLine("// | ArrayBuffer(ArrayBuffer.t)");
+    printer.printLine("// | TypedArray(TypedArray.t<int>)");
+    printer.decreaseIndent();
+    printer.endLine();
+  }
+
+  function emitAny(name: string) {
+    return () => printer.printLine(`type ${toCamelCase(name)} = any`);
   }
 
   async function emit() {
@@ -2926,7 +2959,10 @@ export async function emitRescriptBindings(
     const interfaceHierarchy: RescriptFile[] = [
       {
         name: "Prelude",
-        entries: [byHand("any", () => printer.printLine("type any = {}"))],
+        entries: [
+          byHand("any", () => printer.printLine("type any = {}")),
+          byHand("BufferSource", emitAny("BufferSource")),
+        ],
         opens: [],
       },
 
@@ -2964,17 +3000,92 @@ export async function emitRescriptBindings(
         ],
         opens: ["Prelude"],
       },
+      // https://developer.mozilla.org/en-US/docs/Web/API/File_API
+      {
+        name: "File",
+        entries: [
+          enums(["EndingType", "ReadableStreamReaderMode"]),
+          individualInterfaces([
+            "Blob",
+            "ReadableStream",
+            "WritableStream",
+            "WritableStreamDefaultController",
+          ]),
+          byHand("BlobPart", emitBlobPart),
+          byHand("QueuingStrategy", emitAny("QueuingStrategy<'t>")),
+          byHand("UnderlyingSink", emitAny("UnderlyingSink<'t>")),
+          byHand("ReadableStreamReader", emitAny("ReadableStreamReader<'t>")),
+          byHand(
+            "WritableStreamDefaultWriter",
+            emitAny("WritableStreamDefaultWriter<'t>"),
+          ),
+          ...callbacks(["UnderlyingSourceCancelCallback"]),
+          dictionaries([
+            "BlobPropertyBag",
+            "UnderlyingByteSource",
+            "ReadableStreamGetReaderOptions",
+            "ReadableWritablePair",
+            "StreamPipeOptions",
+          ]),
+        ],
+        opens: ["Prelude", "Event"],
+      },
+      // https://developer.mozilla.org/en-US/docs/Web/API/Clipboard
+      {
+        name: "Clipboard",
+        entries: [
+          enums(["PresentationStyle"]),
+          individualInterfaces(["ClipboardItem", "Clipboard"]),
+          dictionaries(["ClipboardItemOptions"]),
+        ],
+        opens: ["Prelude", "Event", "File"],
+      },
+      // https://developer.mozilla.org/en-US/docs/Web/API/Credential_Management_API
+      {
+        name: "CredentialManagement",
+        entries: [
+          enums([
+            "AuthenticatorTransport",
+            "CredentialMediationRequirement",
+            "PublicKeyCredentialType",
+            "UserVerificationRequirement",
+            "AuthenticatorAttachment",
+            "ResidentKeyRequirement",
+            "AttestationConveyancePreference",
+          ]),
+          individualInterfaces(["CredentialsContainer", "Credential"]),
+          dictionaries([
+            "PublicKeyCredentialDescriptor",
+            "AuthenticationExtensionsPRFValues",
+            "AuthenticationExtensionsPRFInputs",
+            "AuthenticationExtensionsClientInputs",
+            "PublicKeyCredentialRequestOptions",
+            "CredentialRequestOptions",
+            "PublicKeyCredentialEntity",
+            "PublicKeyCredentialRpEntity",
+            "PublicKeyCredentialUserEntity",
+            "PublicKeyCredentialParameters",
+            "AuthenticatorSelectionCriteria",
+            "PublicKeyCredentialCreationOptions",
+            "CredentialCreationOptions",
+          ]),
+        ],
+        opens: ["Prelude", "Event"],
+      },
       {
         name: "DOM",
         entries: [
           // Placing this in Event, might not be correct.
           // Reason is that WebAudio depends on this.
-          individualInterfaces(["DOMException", "DOMStringList", "Location"]),
-          byHand("HTMLMediaElement", () =>
-            printer.printLine("type htmlMediaElement = any"),
-          ),
+          individualInterfaces([
+            "DOMException",
+            "DOMStringList",
+            "Location",
+            "Navigator",
+          ]),
+          byHand("HTMLMediaElement", emitAny("HTMLMediaElement")),
         ],
-        opens: ["Prelude"],
+        opens: ["Prelude", "Clipboard", "CredentialManagement"],
       },
       // https://developer.mozilla.org/en-US/docs/Web/API/Web_Audio_API
       {
