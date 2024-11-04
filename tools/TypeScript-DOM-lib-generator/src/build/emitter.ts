@@ -2239,6 +2239,7 @@ export async function emitRescriptBindings(
       case "GLenum":
       case "DOMString":
       case "ConstrainDOMString":
+      case "USVString":
         return "string";
 
       case "unrestricted double":
@@ -2959,7 +2960,7 @@ export async function emitRescriptBindings(
         entries: [
           // Placing this in Event, might not be correct.
           // Reason is that WebAudio depends on this.
-          individualInterfaces(["DOMException"]),
+          individualInterfaces(["DOMException", "DOMStringList", "Location"]),
           byHand("HTMLMediaElement", () =>
             printer.printLine("type htmlMediaElement = any"),
           ),
