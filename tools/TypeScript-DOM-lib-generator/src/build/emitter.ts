@@ -2955,6 +2955,15 @@ export async function emitRescriptBindings(
         entries: [individualInterfaces(["MessagePort"])],
         opens: ["Prelude", "Event"],
       },
+      // https://developer.mozilla.org/en-US/docs/Web/API/History
+      {
+        name: "History",
+        entries: [
+          enums(["ScrollRestoration"]),
+          individualInterfaces(["History"]),
+        ],
+        opens: ["Prelude"],
+      },
       {
         name: "DOM",
         entries: [
