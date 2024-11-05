@@ -1,7 +1,7 @@
 import * as Browser from "./build/types.js";
 import { promises as fs } from "fs";
 import { merge, resolveExposure, arrayToMap } from "./build/helpers.js";
-import { emitRescriptBindings, emitWebIdl } from "./build/emitter.js";
+import { emitRescriptBindings } from "./build/emitter.js";
 import { convert } from "./build/widlprocess.js";
 import { getExposedTypes } from "./build/expose.js";
 import {
