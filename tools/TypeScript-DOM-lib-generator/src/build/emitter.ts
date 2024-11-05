@@ -3360,6 +3360,24 @@ export async function emitRescriptBindings(
         ],
         opens: ["Prelude"],
       },
+      //https://developer.mozilla.org/en-US/docs/Web/API/Visual_Viewport_API
+      {
+        name: "VisualViewport",
+        entries: [individualInterfaces(["VisualViewport"])],
+        opens: ["Event"],
+      },
+      //https://developer.mozilla.org/en-US/docs/Web/API/Web_Speech_API
+      {
+        name: "WebSpeech",
+        entries: [
+          individualInterfaces([
+            "SpeechSynthesis",
+            "SpeechSynthesisVoice",
+            "SpeechSynthesisUtterance",
+          ]),
+        ],
+        opens: ["Event"],
+      },
       // https://developer.mozilla.org/en-US/docs/Web/API/Document_Object_Model
       // https://developer.mozilla.org/en-US/docs/Web/API/HTML_DOM_API
       {
@@ -3371,6 +3389,7 @@ export async function emitRescriptBindings(
             "AutoFillBase",
             "DocumentReadyState",
             "DocumentVisibilityState",
+            "OrientationType",
           ]),
           // TODO: perhaps move to Web Share API?
           // See https://developer.mozilla.org/en-US/docs/Web/API/Web_Share_API
@@ -3387,6 +3406,8 @@ export async function emitRescriptBindings(
             "FragmentDirective",
             "CustomElementRegistry",
             "BarProp",
+            "ScreenOrientation",
+            "Screen",
           ]),
           byHand("VibratePattern", emitVibratePattern),
           byHand("HTMLMediaElement", emitAny("HTMLMediaElement")),
@@ -3413,10 +3434,18 @@ export async function emitRescriptBindings(
             "Document",
             "Window",
             "MutationRecord",
+            "Attr",
           ]),
+          dictionaries([
+            "ElementDefinitionOptions",
+            "DocumentTimelineOptions",
+            "GetRootNodeOptions",
+          ]),
+          ...callbacks(["CustomElementConstructor"]),
         ],
         opens: [
           "Prelude",
+          "Event",
           "Clipboard",
           "CredentialManagement",
           "Geolocation",
@@ -3431,6 +3460,8 @@ export async function emitRescriptBindings(
           "File",
           "WebMIDI",
           "History",
+          "VisualViewport",
+          "WebSpeech",
         ],
       },
       // https://developer.mozilla.org/en-US/docs/Web/API/Web_Audio_API

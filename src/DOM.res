@@ -1,6 +1,7 @@
 @@warning("-30")
 
 open Prelude
+open Event
 open Clipboard
 open CredentialManagement
 open Geolocation
@@ -15,6 +16,8 @@ open Gamepad
 open File
 open WebMIDI
 open History
+open VisualViewport
+open WebSpeech
 
 type shadowRootMode =
   | @as("closed") Closed
@@ -36,6 +39,12 @@ type documentReadyState =
 type documentVisibilityState =
   | @as("hidden") Hidden
   | @as("visible") Visible
+
+type orientationType =
+  | @as("landscape-primary") LandscapePrimary
+  | @as("landscape-secondary") LandscapeSecondary
+  | @as("portrait-primary") PortraitPrimary
+  | @as("portrait-secondary") PortraitSecondary
 
 type shareData = {
   mutable files: array<file>,
@@ -257,6 +266,57 @@ type barProp = {
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/BarProp/visible)
     */
   visible: bool,
+}
+
+/**
+[See ScreenOrientation on MDN](https://developer.mozilla.org/docs/Web/API/ScreenOrientation)
+*/
+type screenOrientation = {
+  ...eventTarget,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/ScreenOrientation/type)
+    */
+  @as("type")
+  type_: orientationType,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/ScreenOrientation/angle)
+    */
+  angle: int,
+}
+
+/**
+A screen, usually the one on which the current window is being rendered, and is obtained using window.screen.
+[See Screen on MDN](https://developer.mozilla.org/docs/Web/API/Screen)
+*/
+type screen = {
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Screen/availWidth)
+    */
+  availWidth: int,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Screen/availHeight)
+    */
+  availHeight: int,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Screen/width)
+    */
+  width: int,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Screen/height)
+    */
+  height: int,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Screen/colorDepth)
+    */
+  colorDepth: int,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Screen/pixelDepth)
+    */
+  pixelDepth: int,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Screen/orientation)
+    */
+  orientation: screenOrientation,
 }
 
 @unboxed
@@ -3565,6 +3625,116 @@ and mutationRecord = {
   oldValue: Null.t<string>,
 }
 
+/**
+A DOM element's attribute as an object. In most DOM methods, you will probably directly retrieve the attribute as a string (e.g., Element.getAttribute(), but certain functions (e.g., Element.getAttributeNode()) or means of iterating give Attr types.
+[See Attr on MDN](https://developer.mozilla.org/docs/Web/API/Attr)
+*/
+and attr = {
+  // Base properties from Node
+  /**
+    Returns the type of node.
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/nodeType)
+    */
+  nodeType: int,
+  /**
+    Returns a string appropriate for the type of node.
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/nodeName)
+    */
+  nodeName: string,
+  /**
+    Returns node's node document's document base URL.
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/baseURI)
+    */
+  baseURI: string,
+  /**
+    Returns true if node is connected and false otherwise.
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/isConnected)
+    */
+  isConnected: bool,
+  /**
+    Returns the node document. Returns null for documents.
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/ownerDocument)
+    */
+  ownerDocument: Null.t<document>,
+  /**
+    Returns the parent.
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/parentNode)
+    */
+  parentNode: Null.t<node>,
+  /**
+    Returns the parent element.
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/parentElement)
+    */
+  parentElement: Null.t<htmlElement>,
+  /**
+    Returns the children.
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/childNodes)
+    */
+  childNodes: nodeListOf<node>,
+  /**
+    Returns the first child.
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/firstChild)
+    */
+  firstChild: Null.t<node>,
+  /**
+    Returns the last child.
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/lastChild)
+    */
+  lastChild: Null.t<node>,
+  /**
+    Returns the previous sibling.
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/previousSibling)
+    */
+  previousSibling: Null.t<node>,
+  /**
+    Returns the next sibling.
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/nextSibling)
+    */
+  nextSibling: Null.t<node>,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/nodeValue)
+    */
+  mutable nodeValue: Null.t<string>,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/textContent)
+    */
+  mutable textContent: Null.t<string>,
+  // End base properties from Node
+
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Attr/namespaceURI)
+    */
+  namespaceURI: Null.t<string>,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Attr/prefix)
+    */
+  prefix: Null.t<string>,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Attr/localName)
+    */
+  localName: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Attr/name)
+    */
+  name: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Attr/value)
+    */
+  mutable value: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Attr/ownerElement)
+    */
+  ownerElement: Null.t<element>,
+}
+
+type elementDefinitionOptions = {mutable extends: string}
+
+type documentTimelineOptions = {mutable originTime: float}
+
+type getRootNodeOptions = {mutable composed: bool}
+
+type customElementConstructor = htmlElement
+
 module DOMException = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/DOMException)
@@ -3808,6 +3978,14 @@ module CustomElementRegistry = {
     */
   @send
   external upgrade: (customElementRegistry, node) => unit = "upgrade"
+}
+
+module ScreenOrientation = {
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/ScreenOrientation/unlock)
+    */
+  @send
+  external unlock: screenOrientation => unit = "unlock"
 }
 
 module DocumentTimeline = {
