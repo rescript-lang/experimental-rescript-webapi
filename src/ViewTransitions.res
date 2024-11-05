@@ -1,4 +1,7 @@
 @@warning("-30")
+
+open Prelude
+
 /**
 [See ViewTransition on MDN](https://developer.mozilla.org/docs/Web/API/ViewTransition)
 */
@@ -16,6 +19,8 @@ type viewTransition = {
     */
   finished: Promise.t<unit>,
 }
+
+type viewTransitionUpdateCallback = Promise.t<any>
 
 module ViewTransition = {
   /**

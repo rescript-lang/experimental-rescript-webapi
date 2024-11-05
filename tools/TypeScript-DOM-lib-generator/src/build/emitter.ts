@@ -2,7 +2,6 @@ import * as Browser from "./types.js";
 import { mapToArray } from "./helpers.js";
 import { promises as fs } from "fs";
 import { execSync } from "child_process";
-import { sign } from "crypto";
 
 /// Decide which members of a function to emit
 enum EmitScope {
@@ -905,11 +904,9 @@ export async function emitRescriptBindings(
   }
 
   function emitConstructor(i: Browser.Interface, c: Browser.Constructor) {
-    if (c.signature === undefined || c.signature.length === undefined) {
-      console.log("YOO C", i.name, c);
+    if (typeof c === "function") {
       return;
     }
-    if (c.signature.length === 0) return;
 
     const signature = c.signature[0];
     let ps = mapSignatureParameters(signature);
@@ -943,7 +940,9 @@ export async function emitRescriptBindings(
       emitConstructor(i, i.constructor);
     }
 
-    for (const [key, method] of Object.entries(i.methods.method)) {
+    const methodEntries =
+      i.methods && i.methods.method ? i.methods.method : ({} as Browser.Method);
+    for (const [key, method] of Object.entries(methodEntries)) {
       if (!method.name && key === "forEach") {
         emitForEachMethod(i, method);
         continue;
@@ -1059,11 +1058,12 @@ export async function emitRescriptBindings(
     }
   }
 
-  function emitInterfaceChain(chain: Browser.Interface[]) {
+  function emitInterfaceChain(names: Set<string>, chain: Browser.Interface[]) {
     for (const [idx, i] of chain.entries()) {
+      const e = i.extends?.split("<")[0] || "";
       emitInterfaceRecord(
         {
-          allowSpreading: false,
+          allowSpreading: !names.has(e),
           typeKeywords: idx === 0 ? "type rec" : "and",
         },
         i,
@@ -1161,6 +1161,7 @@ export async function emitRescriptBindings(
     type ChainOfInterfaces = {
       kind: "chain";
       interfaces: Browser.Interface[];
+      chain: Set<string>;
     };
 
     type TypeByHand = {
@@ -1217,6 +1218,7 @@ export async function emitRescriptBindings(
       return {
         kind: "chain",
         interfaces,
+        chain: new Set(names),
       };
     }
 
@@ -1617,8 +1619,11 @@ export async function emitRescriptBindings(
       // https://developer.mozilla.org/en-US/docs/Web/API/View_Transitions_API
       {
         name: "ViewTransitions",
-        entries: [individualInterfaces(["ViewTransition"])],
-        opens: [],
+        entries: [
+          individualInterfaces(["ViewTransition"]),
+          ...callbacks(["ViewTransitionUpdateCallback"]),
+        ],
+        opens: ["Prelude"],
       },
       // https://developer.mozilla.org/en-US/docs/Web/API/File_and_Directory_Entries_API
       {
@@ -1635,6 +1640,49 @@ export async function emitRescriptBindings(
         ],
         opens: ["Prelude"],
       },
+      // https://developer.mozilla.org/en-US/docs/Web/API/WebVTT_API
+      {
+        name: "WebVTT",
+        entries: [
+          enums(["TextTrackKind", "TextTrackMode"]),
+          individualInterfaces(["TextTrackCueList"]),
+          chain(["TextTrackCue", "TextTrack"]),
+        ],
+        opens: ["Prelude", "Event"],
+      },
+      // https://developer.mozilla.org/en-US/docs/Web/API/Remote_Playback_API
+      {
+        name: "RemotePlayback",
+        entries: [
+          enums(["RemotePlaybackState"]),
+          individualInterfaces(["RemotePlayback"]),
+          ...callbacks(["RemotePlaybackAvailabilityCallback"]),
+        ],
+        opens: ["Event"],
+      },
+      // https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API
+      {
+        name: "Canvas",
+        entries: [
+          enums(["OffscreenRenderingContextId"]),
+          individualInterfaces(["OffscreenCanvas", "ImageBitmap"]),
+          byHand(
+            "OffscreenRenderingContext",
+            emitAny("OffscreenRenderingContext"),
+          ),
+          dictionaries(["ImageEncodeOptions"]),
+        ],
+        opens: ["Prelude", "Event", "File"],
+      },
+      // https://developer.mozilla.org/en-US/docs/Web/API/Picture-in-Picture_API
+      {
+        name: "PictureInPicture",
+        entries: [
+          individualInterfaces(["PictureInPictureWindow"]),
+          // ...callbacks(["PictureInPictureWindowEventCallback"]),
+        ],
+        opens: ["Event"],
+      },
       // https://developer.mozilla.org/en-US/docs/Web/API/Document_Object_Model
       // https://developer.mozilla.org/en-US/docs/Web/API/HTML_DOM_API
       {
@@ -1650,6 +1698,9 @@ export async function emitRescriptBindings(
             "InsertPosition",
             "ScrollBehavior",
             "FullscreenNavigationUI",
+            "RemotePlaybackState",
+            "ReferrerPolicy",
+            "CanPlayTypeResult",
           ]),
           // TODO: perhaps move to Web Share API?
           // See https://developer.mozilla.org/en-US/docs/Web/API/Web_Share_API
@@ -1669,7 +1720,11 @@ export async function emitRescriptBindings(
             "Screen",
           ]),
           byHand("VibratePattern", emitVibratePattern),
-          byHand("HTMLMediaElement", emitAny("HTMLMediaElement")),
+          byHand("RenderingContext", emitAny("RenderingContext")),
+          byHand(
+            "OffscreenRenderingContext",
+            emitAny("OffscreenRenderingContext"),
+          ),
           chain(["AnimationTimeline", "DocumentTimeline"]),
           chain([
             "Node",
@@ -1695,6 +1750,7 @@ export async function emitRescriptBindings(
             "MutationRecord",
             "Attr",
             "CharacterData",
+            "DocumentFragment",
           ]),
           individualInterfaces([
             "StylePropertyMapReadOnly",
@@ -1705,7 +1761,7 @@ export async function emitRescriptBindings(
             "CustomStateSet",
             "ElementInternals",
             "XMLDocument",
-            "DocumentFragment",
+
             "Text",
             "CDATASection",
             "Comment",
@@ -1723,6 +1779,10 @@ export async function emitRescriptBindings(
             "CSSStyleValue",
             "FileList",
             "FileSystemDirectoryReader",
+            "MediaError",
+            "TimeRanges",
+            "TextTrackList",
+            "VideoPlaybackQuality",
           ]),
           chain([
             "StyleSheet",
@@ -1749,6 +1809,51 @@ export async function emitRescriptBindings(
             "HTMLOptionElement",
             "HTMLOptionsCollection",
           ]),
+          byHand("MediaProvider", emitAny("MediaProvider")),
+          individualInterfaces([
+            "HTMLMediaElement",
+            "HTMLAudioElement",
+            "HTMLBaseElement",
+            "HTMLBodyElement",
+            "HTMLBRElement",
+            "HTMLCanvasElement",
+            "HTMLDataElement",
+            "HTMLDialogElement",
+            "HTMLDivElement",
+            "HTMLDListElement",
+            "HTMLFieldSetElement",
+            "HTMLFrameSetElement",
+            "HTMLHeadingElement",
+            "HTMLHRElement",
+            "HTMLHtmlElement",
+            "HTMLIFrameElement",
+            "HTMLLegendElement",
+            "HTMLLIElement",
+            "HTMLLinkElement",
+            "HTMLMapElement",
+            "HTMLMenuElement",
+            "HTMLMetaElement",
+            "HTMLMeterElement",
+            "HTMLModElement",
+            "HTMLObjectElement",
+            "HTMLOListElement",
+            "HTMLOptGroupElement",
+            "HTMLParagraphElement",
+            "HTMLPictureElement",
+            "HTMLPreElement",
+            "HTMLProgressElement",
+            "HTMLQuoteElement",
+            "HTMLSourceElement",
+            "HTMLSpanElement",
+            "HTMLStyleElement",
+            "HTMLTemplateElement",
+            "HTMLTimeElement",
+            "HTMLTitleElement",
+            "HTMLTrackElement",
+            "HTMLUListElement",
+            "HTMLUnknownElement",
+            "HTMLVideoElement",
+          ]),
           dictionaries([
             "ElementDefinitionOptions",
             "DocumentTimelineOptions",
@@ -1765,13 +1870,14 @@ export async function emitRescriptBindings(
             "DOMRectInit",
             "ValidityStateFlags",
             "CSSStyleSheetInit",
+            "VideoFrameCallbackMetadata",
           ]),
           ...callbacks([
             "CustomElementConstructor",
-            "ViewTransitionUpdateCallback",
             "IdleRequestCallback",
-
             "FileSystemEntriesCallback",
+            "BlobCallback",
+            "VideoFrameRequestCallback",
           ]),
         ],
         opens: [
@@ -1795,6 +1901,10 @@ export async function emitRescriptBindings(
           "WebSpeech",
           "ViewTransitions",
           "FileAndDirectoryEntries",
+          "WebVTT",
+          "RemotePlayback",
+          "Canvas",
+          "PictureInPicture",
         ],
       },
       // https://developer.mozilla.org/en-US/docs/Web/API/Web_Audio_API
@@ -1811,6 +1921,7 @@ export async function emitRescriptBindings(
             "DistanceModelType",
             "OverSampleType",
             "MediaStreamTrackState",
+            "RequestCredentials",
           ]),
           individualInterfaces([
             "AudioBuffer",
@@ -1818,6 +1929,7 @@ export async function emitRescriptBindings(
             "MediaStreamTrack",
             "MediaTrackCapabilities",
             "OfflineAudioCompletionEvent",
+            "Worklet",
           ]),
           chain([
             "AudioNode",
@@ -1889,6 +2001,7 @@ export async function emitRescriptBindings(
             "MediaStreamAudioSourceOptions",
             "AudioWorkletNodeOptions",
             "OfflineAudioContextOptions",
+            "WorkletOptions",
           ]),
           ...callbacks(["DecodeSuccessCallback", "DecodeErrorCallback"]),
         ],
@@ -2069,7 +2182,7 @@ export async function emitRescriptBindings(
             emitIndividualInterfaces(entry.interfaces);
             break;
           case "chain":
-            emitInterfaceChain(entry.interfaces);
+            emitInterfaceChain(entry.chain, entry.interfaces);
             break;
           case "byHand":
             entry.emitInterface();

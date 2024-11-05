@@ -54,6 +54,11 @@ type mediaStreamTrackState =
   | @as("ended") Ended
   | @as("live") Live
 
+type requestCredentials =
+  | @as("include") Include
+  | @as("omit") Omit
+  | @as("same-origin") SameOrigin
+
 /**
 A short audio asset residing in memory, created from an audio file using the AudioContext.decodeAudioData() method, or from raw data using AudioContext.createBuffer(). Once put into an AudioBuffer, the audio can then be played by being passed into an AudioBufferSourceNode.
 [See AudioBuffer on MDN](https://developer.mozilla.org/docs/Web/API/AudioBuffer)
@@ -134,10 +139,16 @@ type offlineAudioCompletionEvent = {
 }
 
 /**
+[See Worklet on MDN](https://developer.mozilla.org/docs/Web/API/Worklet)
+*/
+type worklet = {}
+
+/**
 A generic interface for representing an audio processing module. Examples include:
 [See AudioNode on MDN](https://developer.mozilla.org/docs/Web/API/AudioNode)
 */
 type rec audioNode = {
+  ...eventTarget,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/AudioNode/context)
     */
@@ -206,6 +217,7 @@ and audioDestinationNode = {
 [See BaseAudioContext on MDN](https://developer.mozilla.org/docs/Web/API/BaseAudioContext)
 */
 and baseAudioContext = {
+  ...eventTarget,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/BaseAudioContext/destination)
     */
@@ -334,7 +346,9 @@ and audioListener = {
 /**
 [See AudioWorklet on MDN](https://developer.mozilla.org/docs/Web/API/AudioWorklet)
 */
-and audioWorklet = {}
+and audioWorklet = {
+  ...worklet,
+}
 
 /**
 The Web Audio API's AudioParam interface represents an audio-related parameter, usually a parameter of an AudioNode (such as GainNode.gain).
@@ -1305,6 +1319,8 @@ type offlineAudioContextOptions = {
   mutable sampleRate: float,
 }
 
+type workletOptions = {mutable credentials: requestCredentials}
+
 type decodeSuccessCallback = audioBuffer => unit
 
 type decodeErrorCallback = domException => unit
@@ -1388,6 +1404,19 @@ module OfflineAudioCompletionEvent = {
   @new
   external make: (string, offlineAudioCompletionEventInit) => offlineAudioCompletionEvent =
     "OfflineAudioCompletionEvent"
+}
+
+module Worklet = {
+  /**
+    Loads and executes the module script given by moduleURL into all of worklet's global scopes. It can also create additional global scopes as part of this process, depending on the worklet type. The returned promise will fulfill once the script has been successfully loaded and run in all global scopes.
+
+The credentials option can be set to a credentials mode to modify the script-fetching process. It defaults to "same-origin".
+
+Any failures in fetching the script or its dependencies will cause the returned promise to be rejected with an "AbortError" DOMException. Any errors in parsing the script or its dependencies will cause the returned promise to be rejected with the exception generated during parsing.
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Worklet/addModule)
+    */
+  @send
+  external addModule: (worklet, string, workletOptions) => Promise.t<unit> = "addModule"
 }
 
 module AudioNode = {

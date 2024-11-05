@@ -9,6 +9,8 @@ let MediaStreamTrack = {};
 
 let OfflineAudioCompletionEvent = {};
 
+let Worklet = {};
+
 let AudioNode = {};
 
 let BaseAudioContext = {};
@@ -70,6 +72,7 @@ export {
   AudioProcessingEvent,
   MediaStreamTrack,
   OfflineAudioCompletionEvent,
+  Worklet,
   AudioNode,
   BaseAudioContext,
   BiquadFilterNode,

@@ -57,6 +57,8 @@ let Window = {};
 
 let CharacterData = {};
 
+let DocumentFragment = {};
+
 let StylePropertyMapReadOnly = {};
 
 let DOMRectReadOnly = {};
@@ -66,8 +68,6 @@ let DOMRect = {};
 let DOMRectList = {};
 
 let ElementInternals = {};
-
-let DocumentFragment = {};
 
 let Text = {};
 
@@ -96,6 +96,10 @@ let CSSStyleValue = {};
 let FileList = {};
 
 let FileSystemDirectoryReader = {};
+
+let TimeRanges = {};
+
+let TextTrackList = {};
 
 let CSSStyleSheet = {};
 
@@ -131,6 +135,88 @@ let HTMLOptionElement = {};
 
 let HTMLOptionsCollection = {};
 
+let HTMLMediaElement = {};
+
+let HTMLAudioElement = {};
+
+let HTMLBaseElement = {};
+
+let HTMLBodyElement = {};
+
+let HTMLBRElement = {};
+
+let HTMLCanvasElement = {};
+
+let HTMLDataElement = {};
+
+let HTMLDialogElement = {};
+
+let HTMLDivElement = {};
+
+let HTMLDListElement = {};
+
+let HTMLFieldSetElement = {};
+
+let HTMLFrameSetElement = {};
+
+let HTMLHeadingElement = {};
+
+let HTMLHRElement = {};
+
+let HTMLHtmlElement = {};
+
+let HTMLIFrameElement = {};
+
+let HTMLLegendElement = {};
+
+let HTMLLIElement = {};
+
+let HTMLLinkElement = {};
+
+let HTMLMapElement = {};
+
+let HTMLMenuElement = {};
+
+let HTMLMetaElement = {};
+
+let HTMLMeterElement = {};
+
+let HTMLModElement = {};
+
+let HTMLObjectElement = {};
+
+let HTMLOListElement = {};
+
+let HTMLOptGroupElement = {};
+
+let HTMLParagraphElement = {};
+
+let HTMLPictureElement = {};
+
+let HTMLPreElement = {};
+
+let HTMLProgressElement = {};
+
+let HTMLQuoteElement = {};
+
+let HTMLSourceElement = {};
+
+let HTMLSpanElement = {};
+
+let HTMLStyleElement = {};
+
+let HTMLTemplateElement = {};
+
+let HTMLTimeElement = {};
+
+let HTMLTitleElement = {};
+
+let HTMLTrackElement = {};
+
+let HTMLUListElement = {};
+
+let HTMLVideoElement = {};
+
 export {
   DOMStringList,
   Location,
@@ -160,12 +246,12 @@ export {
   Document,
   Window,
   CharacterData,
+  DocumentFragment,
   StylePropertyMapReadOnly,
   DOMRectReadOnly,
   DOMRect,
   DOMRectList,
   ElementInternals,
-  DocumentFragment,
   Text,
   Comment,
   Range,
@@ -180,6 +266,8 @@ export {
   CSSStyleValue,
   FileList,
   FileSystemDirectoryReader,
+  TimeRanges,
+  TextTrackList,
   CSSStyleSheet,
   CSSRuleList,
   CSSStyleDeclaration,
@@ -197,5 +285,46 @@ export {
   HTMLSelectElement,
   HTMLOptionElement,
   HTMLOptionsCollection,
+  HTMLMediaElement,
+  HTMLAudioElement,
+  HTMLBaseElement,
+  HTMLBodyElement,
+  HTMLBRElement,
+  HTMLCanvasElement,
+  HTMLDataElement,
+  HTMLDialogElement,
+  HTMLDivElement,
+  HTMLDListElement,
+  HTMLFieldSetElement,
+  HTMLFrameSetElement,
+  HTMLHeadingElement,
+  HTMLHRElement,
+  HTMLHtmlElement,
+  HTMLIFrameElement,
+  HTMLLegendElement,
+  HTMLLIElement,
+  HTMLLinkElement,
+  HTMLMapElement,
+  HTMLMenuElement,
+  HTMLMetaElement,
+  HTMLMeterElement,
+  HTMLModElement,
+  HTMLObjectElement,
+  HTMLOListElement,
+  HTMLOptGroupElement,
+  HTMLParagraphElement,
+  HTMLPictureElement,
+  HTMLPreElement,
+  HTMLProgressElement,
+  HTMLQuoteElement,
+  HTMLSourceElement,
+  HTMLSpanElement,
+  HTMLStyleElement,
+  HTMLTemplateElement,
+  HTMLTimeElement,
+  HTMLTitleElement,
+  HTMLTrackElement,
+  HTMLUListElement,
+  HTMLVideoElement,
 }
 /* No side effect */
