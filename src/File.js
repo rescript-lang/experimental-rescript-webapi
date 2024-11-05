@@ -9,10 +9,13 @@ let WritableStream = {};
 
 let WritableStreamDefaultController = {};
 
+let File = {};
+
 export {
   Blob,
   ReadableStream,
   WritableStream,
   WritableStreamDefaultController,
+  File,
 }
 /* No side effect */

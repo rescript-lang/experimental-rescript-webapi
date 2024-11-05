@@ -58,6 +58,26 @@ type writableStreamDefaultController = {
   signal: abortSignal,
 }
 
+/**
+Provides information about files and allows JavaScript in a web page to access their content.
+[See File on MDN](https://developer.mozilla.org/docs/Web/API/File)
+*/
+type file = {
+  ...blob,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/File/name)
+    */
+  name: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/File/lastModified)
+    */
+  lastModified: int,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/File/webkitRelativePath)
+    */
+  webkitRelativePath: string,
+}
+
 @unboxed
 type blobPart =
   | String(string)
@@ -66,9 +86,13 @@ type blobPart =
 // | TypedArray(TypedArray.t<int>)
 
 type queuingStrategy<'t> = any
+
 type underlyingSink<'t> = any
+
 type readableStreamReader<'t> = any
+
 type writableStreamDefaultWriter<'t> = any
+
 type underlyingSourceCancelCallback = any => Promise.t<unit>
 
 type blobPropertyBag = {
@@ -125,6 +149,11 @@ The signal option can be set to an AbortSignal to allow aborting an ongoing pipe
   mutable preventAbort: bool,
   mutable preventCancel: bool,
   mutable signal: abortSignal,
+}
+
+type filePropertyBag = {
+  ...blobPropertyBag,
+  mutable lastModified: int,
 }
 
 module Blob = {
@@ -240,4 +269,12 @@ module WritableStreamDefaultController = {
     */
   @send
   external error: (writableStreamDefaultController, any) => unit = "error"
+}
+
+module File = {
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/File)
+    */
+  @new
+  external make: (array<blobPart>, string, filePropertyBag) => file = "File"
 }

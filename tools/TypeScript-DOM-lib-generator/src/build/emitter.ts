@@ -2806,8 +2806,27 @@ export async function emitRescriptBindings(
     printer.endLine();
   }
 
+  // TODO: this function is defined in typedefs
+  // we should try and parse this similar to callback functions
+  // and emit a unboxed type (if it has all primitves of course)
+
+  // the context here is https://developer.mozilla.org/en-US/docs/Web/API/Navigator/vibrate
+  // it might also make sense to just emit an overload for Navigator.vibrate
+  function emitVibratePattern() {
+    printer.printLine("@unboxed");
+    printer.printLine("type vibratePattern =");
+    printer.increaseIndent(); 
+    printer.printLine("| Int(int)")
+    printer.printLine("| IntArray(array<int>)");
+    printer.decreaseIndent();
+    printer.endLine();
+  }
+
   function emitAny(name: string) {
-    return () => printer.printLine(`type ${toCamelCase(name)} = any`);
+    return () => {
+      printer.printLine(`type ${toCamelCase(name)} = any`);
+      printer.endLine();
+    }
   }
 
   async function emit() {
@@ -3019,6 +3038,7 @@ export async function emitRescriptBindings(
             "ReadableStream",
             "WritableStream",
             "WritableStreamDefaultController",
+            "File",
           ]),
           byHand("BlobPart", emitBlobPart),
           byHand("QueuingStrategy", emitAny("QueuingStrategy<'t>")),
@@ -3035,6 +3055,7 @@ export async function emitRescriptBindings(
             "ReadableStreamGetReaderOptions",
             "ReadableWritablePair",
             "StreamPipeOptions",
+            "FilePropertyBag",
           ]),
         ],
         opens: ["Prelude", "Event"],
@@ -3249,12 +3270,37 @@ export async function emitRescriptBindings(
         ],
         opens: ["Prelude", "Event"],
       },
-
+      // https://developer.mozilla.org/en-US/docs/Web/API/Gamepad_API
+      {
+        name: "Gamepad",
+        entries: [
+          enums([ "GamepadMappingType", "GamepadHapticEffectType", "GamepadHapticsResult"]),
+          individualInterfaces([ "GamepadButton", "GamepadHapticActuator", "Gamepad", ]),
+          dictionaries(["GamepadEffectParameters"]),
+        ],
+        opens: [],
+      },
+      // https://developer.mozilla.org/en-US/docs/Web/API/Web_MIDI_API
+      {
+        name: "WebMIDI",
+        entries: [
+          individualInterfaces([
+            "MIDIInputMap",
+            "MIDIOutputMap",
+            "MIDIAccess"]),
+          dictionaries(["MIDIOptions"]),
+        ],
+        opens: [ "Event"],
+      },
       {
         name: "DOM",
         entries: [
-          // Placing this in Event, might not be correct.
-          // Reason is that WebAudio depends on this.
+          // TODO: perhaps move to Web Share API?
+          // See https://developer.mozilla.org/en-US/docs/Web/API/Web_Share_API
+          // It does not have interfaces and only extends the navigator object
+          dictionaries([
+            "ShareData"
+          ]),
           individualInterfaces([
             "DOMException",
             "DOMStringList",
@@ -3262,6 +3308,7 @@ export async function emitRescriptBindings(
             "UserActivation",
             "Navigator",
           ]),
+          byHand("VibratePattern", emitVibratePattern),
           byHand("HTMLMediaElement", emitAny("HTMLMediaElement")),
         ],
         opens: [
@@ -3276,6 +3323,9 @@ export async function emitRescriptBindings(
           "ScreenWakeLock",
           "ServiceWorker",
           "EncryptedMediaExtensions",
+          "Gamepad",
+          "File",
+          "WebMIDI"
         ],
       },
       // https://developer.mozilla.org/en-US/docs/Web/API/Web_Audio_API

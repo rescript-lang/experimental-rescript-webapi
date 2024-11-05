@@ -7,9 +7,12 @@ let DOMStringList = {};
 
 let Location = {};
 
+let Navigator = {};
+
 export {
   DOMException,
   DOMStringList,
   Location,
+  Navigator,
 }
 /* No side effect */

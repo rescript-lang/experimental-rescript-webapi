@@ -11,6 +11,16 @@ open Permissions
 open ScreenWakeLock
 open ServiceWorker
 open EncryptedMediaExtensions
+open Gamepad
+open File
+open WebMIDI
+
+type shareData = {
+  mutable files: array<file>,
+  mutable title: string,
+  mutable text: string,
+  mutable url: string,
+}
 
 /**
 An abnormal event (called an exception) which occurs as a result of calling a method or accessing a property of a web API.
@@ -177,7 +187,13 @@ type navigator = {
   serviceWorker: serviceWorkerContainer,
 }
 
+@unboxed
+type vibratePattern =
+  | Int(int)
+  | IntArray(array<int>)
+
 type htmlMediaElement = any
+
 module DOMException = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/DOMException)
