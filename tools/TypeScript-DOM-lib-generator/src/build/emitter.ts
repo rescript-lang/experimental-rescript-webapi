@@ -569,7 +569,12 @@ export async function emitRescriptBindings(
   }
 
   function transformTyped(typed: Browser.Typed): string {
+    if (Array.isArray(typed.type) && typed.type.length === 1) {
+      return transformTyped(typed.type[0]);
+    }
+
     if (typeof typed.type !== "string") {
+      console.log("Unknown type", typed.type);
       return "unknown";
     }
 
@@ -634,17 +639,15 @@ export async function emitRescriptBindings(
     i: Browser.Interface | Browser.Dictionary,
     property: Browser.Member,
   ): string {
-    if (typeof property.type === "string") {
-      if (i.name === "Event" && property.name === "type") {
-        return "eventType";
-      }
-
-      return transformTyped(property);
-    } else {
-      console.log("non string property type", property.type);
+    if (
+      typeof property.type === "string" &&
+      i.name === "Event" &&
+      property.name === "type"
+    ) {
+      return "eventType";
     }
 
-    return "unknown";
+    return transformTyped(property);
   }
 
   function emitProperty(i: Browser.Interface, property: Browser.Property) {

@@ -642,11 +642,11 @@ and element = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/innerHTML)
     */
-  mutable innerHTML: unknown,
+  mutable innerHTML: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/outerHTML)
     */
-  mutable outerHTML: unknown,
+  mutable outerHTML: string,
 }
 
 /**
@@ -754,7 +754,7 @@ and shadowRoot = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/ShadowRoot/innerHTML)
     */
-  mutable innerHTML: unknown,
+  mutable innerHTML: string,
 }
 
 /**
@@ -891,11 +891,11 @@ and htmlElement = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/innerHTML)
     */
-  mutable innerHTML: unknown,
+  mutable innerHTML: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/outerHTML)
     */
-  mutable outerHTML: unknown,
+  mutable outerHTML: string,
   // End base properties from Element
 
   // Base properties from Node
@@ -1224,11 +1224,11 @@ and htmlHeadElement = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/innerHTML)
     */
-  mutable innerHTML: unknown,
+  mutable innerHTML: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/outerHTML)
     */
-  mutable outerHTML: unknown,
+  mutable outerHTML: string,
   // End base properties from Element
 
   // Base properties from Node
@@ -1480,11 +1480,11 @@ and htmlFormElement = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/innerHTML)
     */
-  mutable innerHTML: unknown,
+  mutable innerHTML: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/outerHTML)
     */
-  mutable outerHTML: unknown,
+  mutable outerHTML: string,
   // End base properties from Element
 
   // Base properties from Node
@@ -1787,11 +1787,11 @@ and htmlImageElement = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/innerHTML)
     */
-  mutable innerHTML: unknown,
+  mutable innerHTML: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/outerHTML)
     */
-  mutable outerHTML: unknown,
+  mutable outerHTML: string,
   // End base properties from Element
 
   // Base properties from Node
@@ -2130,11 +2130,11 @@ and htmlEmbedElement = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/innerHTML)
     */
-  mutable innerHTML: unknown,
+  mutable innerHTML: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/outerHTML)
     */
-  mutable outerHTML: unknown,
+  mutable outerHTML: string,
   // End base properties from Element
 
   // Base properties from Node
@@ -2402,11 +2402,11 @@ and htmlAnchorElement = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/innerHTML)
     */
-  mutable innerHTML: unknown,
+  mutable innerHTML: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/outerHTML)
     */
-  mutable outerHTML: unknown,
+  mutable outerHTML: string,
   // End base properties from Element
 
   // Base properties from Node
@@ -2700,11 +2700,11 @@ and htmlAreaElement = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/innerHTML)
     */
-  mutable innerHTML: unknown,
+  mutable innerHTML: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/outerHTML)
     */
-  mutable outerHTML: unknown,
+  mutable outerHTML: string,
   // End base properties from Element
 
   // Base properties from Node
@@ -2978,11 +2978,11 @@ and htmlScriptElement = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/innerHTML)
     */
-  mutable innerHTML: unknown,
+  mutable innerHTML: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/outerHTML)
     */
-  mutable outerHTML: unknown,
+  mutable outerHTML: string,
   // End base properties from Element
 
   // Base properties from Node
@@ -7291,7 +7291,7 @@ type htmliFrameElement = {
     Sets or retrives the content of the page that is to contain.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLIFrameElement/srcdoc)
     */
-  mutable srcdoc: unknown,
+  mutable srcdoc: string,
   /**
     Sets or retrieves the frame name.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLIFrameElement/name)
