@@ -2342,30 +2342,42 @@ export async function emitRescriptBindings(
     };
   }
 
-  function transformTyped(property: Browser.Typed): string {
-    if (typeof property.type !== "string") {
+  function transformTyped(typed: Browser.Typed): string {
+    if (typeof typed.type !== "string") {
       return "unknown";
     }
 
-    if (property.overrideType === "T" && property.type === "any") {
+    if (typed.overrideType === "T" && typed.type === "any") {
       return "'t";
     }
 
     if (
-      property.subtype &&
-      !Array.isArray(property.subtype) &&
-      typeof property.subtype.type === "string"
+      typed.subtype &&
+      !Array.isArray(typed.subtype) &&
+      typeof typed.subtype.type === "string"
     ) {
-      return `${mapTypeToReScript(property.type)}<${transformTyped(property.subtype)}>`;
+      return `${mapTypeToReScript(typed.type)}<${transformTyped(typed.subtype)}>`;
     }
 
-    let t = property.type;
-    if (typeof property.overrideType === "string") {
-      t = property.overrideType;
+    // Model as Undefined.t<'other>
+    if (
+      typed.subtype &&
+      !Array.isArray(typed.subtype) &&
+      Array.isArray(typed.subtype.type) &&
+      typed.subtype.type.length === 2 &&
+      typed.subtype.type.some((t) => t.type === "undefined")
+    ) {
+      const otherType = typed.subtype.type.find((t) => t.type !== "undefined")!;
+      return `Nullable.t<${transformTyped(otherType)}>`;
     }
 
-    if (Array.isArray(property.overrideType)) {
-      t = property.overrideType[0];
+    let t = typed.type;
+    if (typeof typed.overrideType === "string") {
+      t = typed.overrideType;
+    }
+
+    if (Array.isArray(typed.overrideType)) {
+      t = typed.overrideType[0];
     }
 
     if (t === "QueuingStrategySize<ArrayBufferView>") {
@@ -2958,6 +2970,7 @@ export async function emitRescriptBindings(
         entries: [
           byHand("any", () => printer.printLine("type any = {}")),
           byHand("BufferSource", emitAny("BufferSource")),
+          byHand("BodyInit", emitAny("BodyInit")),
         ],
         opens: [],
       },
@@ -3168,6 +3181,50 @@ export async function emitRescriptBindings(
         ],
         opens: ["Event"],
       },
+      // https://developer.mozilla.org/en-US/docs/Web/API/Push_API
+      {
+        name: "PushManager",
+        entries: [
+          enums(["PermissionState", "PushEncryptionKeyName"]),
+          individualInterfaces([
+            "PushManager",
+            "PushSubscriptionOptions",
+            "PushSubscription",
+          ]),
+          dictionaries(["PushSubscriptionOptionsInit", "PushSubscriptionJSON"]),
+        ],
+        opens: ["Prelude"],
+      },
+      // https://developer.mozilla.org/en-US/docs/Web/API/Notifications_API
+      {
+        name: "Notification",
+        entries: [
+          enums(["NotificationDirection", "NotificationPermission"]),
+          individualInterfaces(["Notification"]),
+          dictionaries(["NotificationOptions", "GetNotificationOptions"]),
+          ...callbacks(["NotificationPermissionCallback"]),
+        ],
+        opens: ["Prelude", "Event"],
+      },
+      // https://developer.mozilla.org/en-US/docs/Web/API/Service_Worker_API
+      {
+        name: "ServiceWorker",
+        entries: [
+          enums([
+            "ServiceWorkerState",
+            "ServiceWorkerUpdateViaCache",
+            "WorkerType",
+          ]),
+          individualInterfaces([
+            "ServiceWorker",
+            "NavigationPreloadManager",
+            "ServiceWorkerRegistration",
+            "ServiceWorkerContainer",
+          ]),
+          dictionaries(["NavigationPreloadState", "RegistrationOptions"]),
+        ],
+        opens: ["Prelude", "Event", "PushManager", "Notification"],
+      },
       {
         name: "DOM",
         entries: [
@@ -3192,6 +3249,7 @@ export async function emitRescriptBindings(
           "MediaSession",
           "Permissions",
           "ScreenWakeLock",
+          "ServiceWorker",
         ],
       },
       // https://developer.mozilla.org/en-US/docs/Web/API/Web_Audio_API
