@@ -3149,6 +3149,16 @@ export async function emitRescriptBindings(
         ],
         opens: ["Prelude"],
       },
+      // https://developer.mozilla.org/en-US/docs/Web/API/Permissions_API
+      {
+        name: "Permissions",
+        entries: [
+          enums(["PermissionName", "PermissionState"]),
+          individualInterfaces(["Permissions", "PermissionStatus"]),
+          dictionaries(["PermissionDescriptor"]),
+        ],
+        opens: ["Event"],
+      },
       {
         name: "DOM",
         entries: [
@@ -3171,6 +3181,7 @@ export async function emitRescriptBindings(
           "MediaCapabilities",
           "MediaCaptureAndStreams",
           "MediaSession",
+          "Permissions",
         ],
       },
       // https://developer.mozilla.org/en-US/docs/Web/API/Web_Audio_API
