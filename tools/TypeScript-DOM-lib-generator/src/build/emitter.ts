@@ -1279,6 +1279,7 @@ export async function emitRescriptBindings(
           byHand("any", () => printer.printLine("type any = {}")),
           byHand("BufferSource", emitAny("BufferSource")),
           byHand("BodyInit", emitAny("BodyInit")),
+          individualInterfaces(["DOMException"]),
         ],
         opens: [],
       },
@@ -1619,6 +1620,21 @@ export async function emitRescriptBindings(
         entries: [individualInterfaces(["ViewTransition"])],
         opens: [],
       },
+      // https://developer.mozilla.org/en-US/docs/Web/API/File_and_Directory_Entries_API
+      {
+        name: "FileAndDirectoryEntries",
+        entries: [
+          chain(["FileSystemEntry", "FileSystemDirectoryEntry", "FileSystem"]),
+          individualInterfaces(["FileSystemDirectoryReader"]),
+          dictionaries(["FileSystemFlags"]),
+          ...callbacks([
+            "FileSystemEntryCallback",
+            "ErrorCallback",
+            "FileSystemEntriesCallback",
+          ]),
+        ],
+        opens: ["Prelude"],
+      },
       // https://developer.mozilla.org/en-US/docs/Web/API/Document_Object_Model
       // https://developer.mozilla.org/en-US/docs/Web/API/HTML_DOM_API
       {
@@ -1640,7 +1656,6 @@ export async function emitRescriptBindings(
           // It does not have interfaces and only extends the navigator object
           dictionaries(["ShareData"]),
           individualInterfaces([
-            "DOMException",
             "DOMStringList",
             "Location",
             "UserActivation",
@@ -1706,6 +1721,8 @@ export async function emitRescriptBindings(
             "MediaList",
             "IdleDeadline",
             "CSSStyleValue",
+            "FileList",
+            "FileSystemDirectoryReader",
           ]),
           chain([
             "StyleSheet",
@@ -1713,6 +1730,24 @@ export async function emitRescriptBindings(
             "CSSRule",
             "CSSRuleList",
             "CSSStyleDeclaration",
+          ]),
+          chain([
+            "HTMLTableElement",
+            "HTMLTableCaptionElement",
+            "HTMLTableSectionElement",
+            "HTMLTableCellElement",
+            "HTMLTableRowElement",
+          ]),
+          chain([
+            "HTMLButtonElement",
+            "HTMLLabelElement",
+            "HTMLTextAreaElement",
+            "HTMLOutputElement",
+            "HTMLInputElement",
+            "HTMLDataListElement",
+            "HTMLSelectElement",
+            "HTMLOptionElement",
+            "HTMLOptionsCollection",
           ]),
           dictionaries([
             "ElementDefinitionOptions",
@@ -1735,6 +1770,8 @@ export async function emitRescriptBindings(
             "CustomElementConstructor",
             "ViewTransitionUpdateCallback",
             "IdleRequestCallback",
+
+            "FileSystemEntriesCallback",
           ]),
         ],
         opens: [
@@ -1757,6 +1794,7 @@ export async function emitRescriptBindings(
           "VisualViewport",
           "WebSpeech",
           "ViewTransitions",
+          "FileAndDirectoryEntries",
         ],
       },
       // https://developer.mozilla.org/en-US/docs/Web/API/Web_Audio_API
