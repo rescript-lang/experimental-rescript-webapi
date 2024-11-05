@@ -40,7 +40,7 @@ function adjustParamName(name: string) {
 
 function getElements<K extends string, T>(
   a: Record<K, Record<string, T>> | undefined,
-  k: K,
+  k: K
 ): T[] {
   return a ? mapToArray(a[k]) : [];
 }
@@ -140,7 +140,7 @@ function toCamelCase(input: string) {
   } catch (ex) {
     console.error(
       `FAILED TO CAMELIZE: ${input}, typeof input = ${typeof input}`,
-      ex,
+      ex
     );
     return input;
   }
@@ -210,13 +210,13 @@ interface Dictionary {
 type DictionaryMap<T extends Dictionary> = { [name: string]: T };
 
 function topologicalSortDictionaries<T extends Dictionary>(
-  dictionaries: T[],
+  dictionaries: T[]
 ): T[] {
   const sorted: T[] = [];
   const visited: Set<string> = new Set();
   const tempMarked: Set<string> = new Set();
   const dictMap: DictionaryMap<T> = Object.fromEntries(
-    dictionaries.map((d) => [d.name, d]),
+    dictionaries.map((d) => [d.name, d])
   );
 
   function visit(dictName: string) {
@@ -256,14 +256,14 @@ type interfaceSettings = {
 
 export async function emitRescriptBindings(
   outputFolder: string,
-  webidl: Browser.WebIdl,
+  webidl: Browser.WebIdl
 ) {
   // Global print target
   const printer = createTextWriter("\n");
 
   const allInterfaces = getElements(webidl.interfaces, "interface").concat(
     getElements(webidl.callbackInterfaces, "interface"),
-    getElements(webidl.mixins, "mixin"),
+    getElements(webidl.mixins, "mixin")
   );
 
   const allDictionaries = getElements(webidl.dictionaries, "dictionary");
@@ -272,7 +272,7 @@ export async function emitRescriptBindings(
 
   const allCallbacks = getElements(
     webidl.callbackFunctions,
-    "callbackFunction",
+    "callbackFunction"
   );
 
   function compareName(c1: { name: string }, c2: { name: string }) {
@@ -333,16 +333,16 @@ export async function emitRescriptBindings(
   }
 
   function extractExtendsName(
-    i: Browser.Interface | Browser.Dictionary,
+    i: Browser.Interface | Browser.Dictionary
   ): string | null {
     return i.extends?.split("<")[0] || null;
   }
 
   function collectExtendsProperties(
-    current: Browser.Interface,
+    current: Browser.Interface
   ): Record<string, Browser.Property[]> {
     function collectExtendsPropertiesFrom(
-      entry: Browser.Interface,
+      entry: Browser.Interface
     ): Browser.Property[] {
       const props = (<any>entry).properties?.property || {};
       const currentProps = Object.keys(props).map((p) => props[p]);
@@ -363,12 +363,12 @@ export async function emitRescriptBindings(
 
     const interfaces = findBaseInterfaces(extendsName);
     return Object.fromEntries(
-      interfaces.map((i) => [i.name, collectExtendsPropertiesFrom(i)]),
+      interfaces.map((i) => [i.name, collectExtendsPropertiesFrom(i)])
     );
   }
 
   function mapTypeParams(
-    typeParameters: Browser.TypeParameter[] | undefined,
+    typeParameters: Browser.TypeParameter[] | undefined
   ): string {
     if (!typeParameters) return "";
     return (
@@ -383,7 +383,7 @@ export async function emitRescriptBindings(
   }
 
   function printTypeParams(
-    typeParameters: Browser.TypeParameter[] | undefined,
+    typeParameters: Browser.TypeParameter[] | undefined
   ) {
     let hasTypeParams = false;
     typeParameters?.forEach((t) => {
@@ -637,7 +637,7 @@ export async function emitRescriptBindings(
 
   function transformPropertyValue(
     i: Browser.Interface | Browser.Dictionary,
-    property: Browser.Member,
+    property: Browser.Member
   ): string {
     if (
       typeof property.type === "string" &&
@@ -674,7 +674,7 @@ export async function emitRescriptBindings(
       : [];
     const typename = toCamelCase(i.name);
     printer.print(
-      `type ${typename}${reservedRescriptWords.includes(typename) ? "_" : ""}`,
+      `type ${typename}${reservedRescriptWords.includes(typename) ? "_" : ""}`
     );
     printTypeParams(i.typeParameters);
     printer.printLine(` = {`);
@@ -709,9 +709,12 @@ export async function emitRescriptBindings(
     printer.endLine();
   }
 
+  // TODO: some interface seems to have an "implements" property.
+  // These properties and methods should also be included.
+
   function emitInterfaceRecord(
     options: interfaceSettings,
-    i: Browser.Interface,
+    i: Browser.Interface
   ) {
     seenItems.set(i.name, i);
     const fieldNamesFromExtended = i.extends
@@ -720,7 +723,7 @@ export async function emitRescriptBindings(
     const typename = toCamelCase(i.name);
     printComment({ name: i.name, mdnUrl: i.mdnUrl, comment: i.comment });
     printer.print(
-      `${options.typeKeywords} ${typename}${reservedRescriptWords.includes(typename) ? "_" : ""}`,
+      `${options.typeKeywords} ${typename}${reservedRescriptWords.includes(typename) ? "_" : ""}`
     );
     printTypeParams(i.typeParameters);
     printer.printLine(` = {`);
@@ -789,7 +792,7 @@ export async function emitRescriptBindings(
     });
     printer.printLine("@send");
     printer.printLine(
-      `external forEach: (${mapInterfaceName(i)}, (${itemType} => int => ${mapInterfaceName(i)} => unit)) => unit = "forEach"`,
+      `external forEach: (${mapInterfaceName(i)}, (${itemType} => int => ${mapInterfaceName(i)} => unit)) => unit = "forEach"`
     );
     printer.endLine();
   }
@@ -799,7 +802,7 @@ export async function emitRescriptBindings(
   function emitAddOrRemoveEventListener(
     prefix: "add" | "remove",
     i: Browser.Interface,
-    method: Browser.Method,
+    method: Browser.Method
   ) {
     printComment({
       mdnUrl: method.mdnUrl,
@@ -807,7 +810,7 @@ export async function emitRescriptBindings(
     });
     printer.printLine("@send");
     printer.printLine(
-      `external ${prefix}EventListener: (${toCamelCase(i.name)}, eventType, eventListener<eventType>) => unit = "addEventListener"`,
+      `external ${prefix}EventListener: (${toCamelCase(i.name)}, eventType, eventListener<eventType>) => unit = "addEventListener"`
     );
     printer.endLine();
 
@@ -817,7 +820,7 @@ export async function emitRescriptBindings(
     });
     printer.printLine("@send");
     printer.printLine(
-      `external ${prefix}EventListenerWithOptions: (${toCamelCase(i.name)}, eventType, eventListener<eventType>, ${prefix === "add" ? "addE" : "e"}ventListenerOptions) => unit = "addEventListener"`,
+      `external ${prefix}EventListenerWithOptions: (${toCamelCase(i.name)}, eventType, eventListener<eventType>, ${prefix === "add" ? "addE" : "e"}ventListenerOptions) => unit = "addEventListener"`
     );
     printer.endLine();
 
@@ -827,7 +830,7 @@ export async function emitRescriptBindings(
     });
     printer.printLine("@send");
     printer.printLine(
-      `external ${prefix}EventListenerWithUseCapture: (${toCamelCase(i.name)}, eventType, eventListener<eventType>, bool) => unit = "addEventListener"`,
+      `external ${prefix}EventListenerWithUseCapture: (${toCamelCase(i.name)}, eventType, eventListener<eventType>, bool) => unit = "addEventListener"`
     );
     printer.endLine();
   }
@@ -842,7 +845,7 @@ export async function emitRescriptBindings(
 
   function mapMethodReturnType(signature: Browser.Signature) {
     const genericTypeParams = new Set(
-      (signature.typeParameters || []).map((tp) => tp.name),
+      (signature.typeParameters || []).map((tp) => tp.name)
     );
 
     if (
@@ -871,14 +874,14 @@ export async function emitRescriptBindings(
     if (method.static) {
       printer.printLine(`@scope("${i.name}")`);
       printer.printLine(
-        `external ${mapMethodName(method)}: (${ps}) => ${mapMethodReturnType(signature)} = "${method.name}"`,
+        `external ${mapMethodName(method)}: (${ps}) => ${mapMethodReturnType(signature)} = "${method.name}"`
       );
     } else {
       ps = ps.length > 0 ? ", " + ps : "";
 
       printer.printLine("@send");
       printer.printLine(
-        `external ${mapMethodName(method)}: (${mapInterfaceName(i)}${ps}) => ${mapMethodReturnType(signature)} = "${method.name}"`,
+        `external ${mapMethodName(method)}: (${mapInterfaceName(i)}${ps}) => ${mapMethodReturnType(signature)} = "${method.name}"`
       );
     }
 
@@ -887,10 +890,10 @@ export async function emitRescriptBindings(
 
   function mapSignatureParameters(
     signature: Browser.Signature,
-    join: string = ", ",
+    join: string = ", "
   ): string {
     const genericTypeParams = new Set(
-      (signature.typeParameters || []).map((tp) => tp.name),
+      (signature.typeParameters || []).map((tp) => tp.name)
     );
 
     return signature.param?.length === 0
@@ -925,7 +928,7 @@ export async function emitRescriptBindings(
 
     printer.printLine(`@new`);
     printer.printLine(
-      `external make: (${ps}) => ${transformTyped(signature)} = "${i.name}"`,
+      `external make: (${ps}) => ${transformTyped(signature)} = "${i.name}"`
     );
   }
 
@@ -989,7 +992,7 @@ export async function emitRescriptBindings(
     ps = ps && `${ps} => `;
 
     printer.printLine(
-      `type ${toCamelCase(c.name)} = (${ps}${transformTyped(signature)})`,
+      `type ${toCamelCase(c.name)} = (${ps}${transformTyped(signature)})`
     );
     printer.endLine();
   }
@@ -1069,7 +1072,7 @@ export async function emitRescriptBindings(
           allowSpreading: !names.has(e),
           typeKeywords: idx === 0 ? "type rec" : "and",
         },
-        i,
+        i
       );
       // TODO: construct a %identity function to convert to the base interface?
       // Or perhaps this happens in a separate file/module?
@@ -1341,7 +1344,7 @@ export async function emitRescriptBindings(
           byHand("ReadableStreamReader", emitAny("ReadableStreamReader<'t>")),
           byHand(
             "WritableStreamDefaultWriter",
-            emitAny("WritableStreamDefaultWriter<'t>"),
+            emitAny("WritableStreamDefaultWriter<'t>")
           ),
           ...callbacks(["UnderlyingSourceCancelCallback"]),
           dictionaries([
@@ -1671,7 +1674,7 @@ export async function emitRescriptBindings(
           individualInterfaces(["OffscreenCanvas", "ImageBitmap"]),
           byHand(
             "OffscreenRenderingContext",
-            emitAny("OffscreenRenderingContext"),
+            emitAny("OffscreenRenderingContext")
           ),
           dictionaries(["ImageEncodeOptions"]),
         ],
@@ -1683,6 +1686,15 @@ export async function emitRescriptBindings(
         entries: [
           individualInterfaces(["PictureInPictureWindow"]),
           // ...callbacks(["PictureInPictureWindowEventCallback"]),
+        ],
+        opens: ["Event"],
+      },
+      // https://developer.mozilla.org/en-US/docs/Web/API/Web_Storage_API
+      {
+        name: "WebStorage",
+        entries: [
+          individualInterfaces(["Storage", "StorageEvent"]),
+          dictionaries(["StorageEventInit"]),
         ],
         opens: ["Event"],
       },
@@ -1726,7 +1738,7 @@ export async function emitRescriptBindings(
           byHand("RenderingContext", emitAny("RenderingContext")),
           byHand(
             "OffscreenRenderingContext",
-            emitAny("OffscreenRenderingContext"),
+            emitAny("OffscreenRenderingContext")
           ),
           chain(["AnimationTimeline", "DocumentTimeline"]),
           chain([
@@ -2024,6 +2036,26 @@ export async function emitRescriptBindings(
           ...callbacks(["ResizeObserverCallback"]),
         ],
         opens: ["Prelude", "DOM"],
+      },
+      // https://developer.mozilla.org/en-US/docs/Web/API/WebSockets_API
+      {
+        name: "WebSockets",
+        entries: [
+          enums(["BinaryType"]),
+          byHand(
+            "MessageEventSource",
+            emitAny("MessageEventSource")
+          ),
+          individualInterfaces([
+            "WebSocket",
+            "WebSocketStream",
+            "CloseEvent",
+            "MessagePort",
+            "MessageEvent",
+          ]),
+          dictionaries(["CloseEventInit", "MessageEventInit"]),
+        ],
+        opens: ["Prelude", "Event"],
       },
     ];
 
