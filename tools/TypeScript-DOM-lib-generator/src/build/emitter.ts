@@ -1,16 +1,5 @@
 import * as Browser from "./types.js";
-import {
-  mapToArray,
-  distinct,
-  mapValues,
-  toNameMap,
-  mapDefined,
-  arrayToMap,
-  integerTypes,
-  baseTypeConversionMap,
-  assertUnique,
-} from "./helpers.js";
-import { collectLegacyNamespaceTypes } from "./legacy-namespace.js";
+import { mapToArray } from "./helpers.js";
 import { promises as fs } from "fs";
 import { execSync } from "child_process";
 
@@ -294,82 +283,6 @@ export async function emitRescriptBindings(
     webidl.callbackFunctions,
     "callbackFunction",
   );
-
-  // const allLegacyWindowAliases = allInterfaces.flatMap(
-  //   (i) => i.legacyWindowAlias,
-  // );
-  // const allDictionariesMap = webidl.dictionaries?.dictionary ?? {};
-  // const allEnumsMap = webidl.enums ? webidl.enums.enum : {};
-  // const allCallbackFunctionsMap =
-  //   webidl.callbackFunctions?.callbackFunction ?? {};
-  // const allTypedefsMap = toNameMap(webidl.typedefs?.typedef ?? []);
-
-  // /// Tag name to element name map
-  // const tagNameToEleName = getTagNameToElementNameMap();
-  // const tagNameMapNames = [
-  //   "HTMLElementTagNameMap",
-  //   "SVGElementTagNameMap",
-  //   "MathMLElementTagNameMap",
-  // ];
-
-  // /// Interface name to all its implemented / inherited interfaces name list map
-  // /// e.g. If i1 depends on i2, i2 should be in dependencyMap.[i1.Name]
-  // const iNameToIDependList = arrayToMap(
-  //   allNonCallbackInterfaces,
-  //   (i) => i.name,
-  //   (i) => getExtendList(i.name).concat(getImplementList(i.name)),
-  // );
-
-  // /// Distinct event type list, used in the "createEvent" function
-  // const distinctETypeList = distinct(
-  //   allNonCallbackInterfaces
-  //     .flatMap((i) => (i.events ? i.events.event.map((e) => e.type) : []))
-  //     .concat(
-  //       allNonCallbackInterfaces
-  //         .filter(
-  //           (i) => i.extends?.endsWith("Event") && i.name.endsWith("Event"),
-  //         )
-  //         .map((i) => i.name),
-  //     ),
-  // ).sort();
-
-  // /// Interface name to its related eventhandler name list map
-  // /// Note:
-  // /// In the xml file, each event handler has
-  // /// 1. eventhandler name: "onready", "onabort" etc.
-  // /// 2. the event name that it handles: "ready", "SVGAbort" etc.
-  // /// And they don't just differ by an "on" prefix!
-  // const iNameToEhList = arrayToMap(
-  //   allInterfaces,
-  //   (i) => i.name,
-  //   (i) => {
-  //     const fromProperties = mapDefined(
-  //       mapToArray(i.properties?.property),
-  //       (p) => p.eventHandler,
-  //     );
-  //     const fromEvents = (i.events?.event ?? []).map((e) => e.name);
-  //     return distinct([...fromProperties, ...fromEvents]).sort();
-  //   },
-  // );
-
-  // const iNameToConstList = arrayToMap(
-  //   allInterfaces,
-  //   (i) => i.name,
-  //   (i) => (!i.constants ? [] : mapToArray(i.constants.constant)),
-  // );
-
-  // // Map of interface.Name -> List of base interfaces with event handlers
-  // const iNameToEhParents = arrayToMap(
-  //   allInterfaces,
-  //   (i) => i.name,
-  //   getParentsWithEventHandler,
-  // );
-
-  // const iNameToConstParents = arrayToMap(
-  //   allInterfaces,
-  //   (i) => i.name,
-  //   getParentsWithConstant,
-  // );
 
   function compareName(c1: { name: string }, c2: { name: string }) {
     return c1.name < c2.name ? -1 : c1.name > c2.name ? 1 : 0;
