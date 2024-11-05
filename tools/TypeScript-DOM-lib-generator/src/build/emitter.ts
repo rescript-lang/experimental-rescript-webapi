@@ -3072,6 +3072,21 @@ export async function emitRescriptBindings(
         ],
         opens: ["Prelude", "Event"],
       },
+      // https://developer.mozilla.org/en-US/docs/Web/API/Geolocation_API
+      {
+        name: "Geolocation",
+        entries: [
+          individualInterfaces([
+            "Geolocation",
+            "GeolocationCoordinates",
+            "GeolocationPosition",
+            "GeolocationPositionError",
+          ]),
+          dictionaries(["PositionOptions"]),
+          ...callbacks(["PositionCallback", "PositionErrorCallback"]),
+        ],
+        opens: ["Prelude"],
+      },
       {
         name: "DOM",
         entries: [
@@ -3081,11 +3096,12 @@ export async function emitRescriptBindings(
             "DOMException",
             "DOMStringList",
             "Location",
+            "UserActivation",
             "Navigator",
           ]),
           byHand("HTMLMediaElement", emitAny("HTMLMediaElement")),
         ],
-        opens: ["Prelude", "Clipboard", "CredentialManagement"],
+        opens: ["Prelude", "Clipboard", "CredentialManagement", "Geolocation"],
       },
       // https://developer.mozilla.org/en-US/docs/Web/API/Web_Audio_API
       {

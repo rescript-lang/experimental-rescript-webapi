@@ -3,6 +3,7 @@
 open Prelude
 open Clipboard
 open CredentialManagement
+open Geolocation
 
 /**
 An abnormal event (called an exception) which occurs as a result of calling a method or accessing a property of a web API.
@@ -102,6 +103,20 @@ Can be set, to navigate to the same URL with a changed fragment (ignores leading
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Location/ancestorOrigins)
     */
   ancestorOrigins: domStringList,
+}
+
+/**
+[See UserActivation on MDN](https://developer.mozilla.org/docs/Web/API/UserActivation)
+*/
+type userActivation = {
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/UserActivation/hasBeenActive)
+    */
+  hasBeenActive: bool,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/UserActivation/isActive)
+    */
+  isActive: bool,
 }
 
 /**
