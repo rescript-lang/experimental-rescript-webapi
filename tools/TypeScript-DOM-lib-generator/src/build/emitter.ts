@@ -3225,6 +3225,31 @@ export async function emitRescriptBindings(
         ],
         opens: ["Prelude", "Event", "PushManager", "Notification"],
       },
+      // https://developer.mozilla.org/en-US/docs/Web/API/Encrypted_Media_Extensions_API
+      {
+        name: "EncryptedMediaExtensions",
+        entries: [
+          enums([
+            "MediaKeysRequirement",
+            "MediaKeySessionType",
+            "MediaKeySessionClosedReason",
+            "MediaKeyStatus",
+          ]),
+          individualInterfaces([
+            "MediaKeySystemAccess",
+            "MediaKeys",
+            "MediaKeyStatusMap",
+            "MediaKeySession",
+          ]),
+          dictionaries([
+            "MediaKeySystemMediaCapability",
+            "MediaKeySystemConfiguration",
+            "MediaKeysPolicy",
+          ]),
+        ],
+        opens: ["Prelude", "Event"],
+      },
+
       {
         name: "DOM",
         entries: [
@@ -3250,6 +3275,7 @@ export async function emitRescriptBindings(
           "Permissions",
           "ScreenWakeLock",
           "ServiceWorker",
+          "EncryptedMediaExtensions",
         ],
       },
       // https://developer.mozilla.org/en-US/docs/Web/API/Web_Audio_API
