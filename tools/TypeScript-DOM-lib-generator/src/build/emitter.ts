@@ -3133,6 +3133,22 @@ export async function emitRescriptBindings(
         ],
         opens: ["Prelude", "Event"],
       },
+      // https://developer.mozilla.org/en-US/docs/Web/API/MediaSession
+      {
+        name: "MediaSession",
+        entries: [
+          enums(["MediaSessionPlaybackState", "MediaSessionAction"]),
+          dictionaries(["MediaImage"]),
+          individualInterfaces(["MediaMetadata", "MediaSession"]),
+          dictionaries([
+            "MediaMetadataInit",
+            "MediaSessionActionDetails",
+            "MediaPositionState",
+          ]),
+          ...callbacks(["MediaSessionActionHandler"]),
+        ],
+        opens: ["Prelude"],
+      },
       {
         name: "DOM",
         entries: [
@@ -3154,6 +3170,7 @@ export async function emitRescriptBindings(
           "Geolocation",
           "MediaCapabilities",
           "MediaCaptureAndStreams",
+          "MediaSession",
         ],
       },
       // https://developer.mozilla.org/en-US/docs/Web/API/Web_Audio_API

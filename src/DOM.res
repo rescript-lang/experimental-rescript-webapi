@@ -6,6 +6,7 @@ open CredentialManagement
 open Geolocation
 open MediaCapabilities
 open MediaCaptureAndStreams
+open MediaSession
 
 /**
 An abnormal event (called an exception) which occurs as a result of calling a method or accessing a property of a web API.
