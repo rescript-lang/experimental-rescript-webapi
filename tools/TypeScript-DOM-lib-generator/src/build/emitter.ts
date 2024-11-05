@@ -2342,7 +2342,7 @@ export async function emitRescriptBindings(
     };
   }
 
-  function transformTyped(property: Browser.Typed) {
+  function transformTyped(property: Browser.Typed): string {
     if (typeof property.type !== "string") {
       return "unknown";
     }
@@ -2356,11 +2356,7 @@ export async function emitRescriptBindings(
       !Array.isArray(property.subtype) &&
       typeof property.subtype.type === "string"
     ) {
-      let genericSubType = "";
-      if (alwaysGenericTypes.has(property.subtype.type)) {
-        genericSubType = `<'t>`;
-      }
-      return `${mapTypeToReScript(property.type)}<${mapTypeToReScript(property.subtype.type)}${genericSubType}>`;
+      return `${mapTypeToReScript(property.type)}<${transformTyped(property.subtype)}>`;
     }
 
     let t = property.type;
@@ -3087,6 +3083,56 @@ export async function emitRescriptBindings(
         ],
         opens: ["Prelude"],
       },
+      // https://developer.mozilla.org/en-US/docs/Web/API/Media_Capabilities_API
+      {
+        name: "MediaCapabilities",
+        entries: [
+          enums([
+            "HdrMetadataType",
+            "ColorGamut",
+            "TransferFunction",
+            "MediaDecodingType",
+            "MediaEncodingType",
+          ]),
+          individualInterfaces(["MediaCapabilities"]),
+          dictionaries([
+            "AudioConfiguration",
+            "VideoConfiguration",
+            "MediaConfiguration",
+            "MediaDecodingConfiguration",
+            "MediaCapabilitiesInfo",
+            "MediaCapabilitiesDecodingInfo",
+            "MediaEncodingConfiguration",
+            "MediaCapabilitiesEncodingInfo",
+          ]),
+        ],
+        opens: ["Prelude"],
+      },
+      // https://developer.mozilla.org/en-US/docs/Web/API/Media_Capture_and_Streams_API
+      {
+        name: "MediaCaptureAndStreams",
+        entries: [
+          enums(["MediaDeviceKind", "MediaStreamTrackState"]),
+          individualInterfaces([
+            "MediaDevices",
+            "MediaDeviceInfo",
+            "MediaStream",
+            "MediaStreamTrack",
+          ]),
+          dictionaries([
+            "MediaTrackSupportedConstraints",
+            "MediaStreamConstraints",
+            "DisplayMediaStreamOptions",
+            "ULongRange",
+            "DoubleRange",
+            "MediaTrackCapabilities",
+            "MediaTrackConstraintSet",
+            "MediaTrackConstraints",
+            "MediaTrackSettings",
+          ]),
+        ],
+        opens: ["Prelude", "Event"],
+      },
       {
         name: "DOM",
         entries: [
@@ -3101,7 +3147,14 @@ export async function emitRescriptBindings(
           ]),
           byHand("HTMLMediaElement", emitAny("HTMLMediaElement")),
         ],
-        opens: ["Prelude", "Clipboard", "CredentialManagement", "Geolocation"],
+        opens: [
+          "Prelude",
+          "Clipboard",
+          "CredentialManagement",
+          "Geolocation",
+          "MediaCapabilities",
+          "MediaCaptureAndStreams",
+        ],
       },
       // https://developer.mozilla.org/en-US/docs/Web/API/Web_Audio_API
       {

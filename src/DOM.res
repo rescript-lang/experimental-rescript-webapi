@@ -4,6 +4,8 @@ open Prelude
 open Clipboard
 open CredentialManagement
 open Geolocation
+open MediaCapabilities
+open MediaCaptureAndStreams
 
 /**
 An abnormal event (called an exception) which occurs as a result of calling a method or accessing a property of a web API.

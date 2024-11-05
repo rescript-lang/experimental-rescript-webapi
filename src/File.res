@@ -206,7 +206,7 @@ module ReadableStream = {
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/ReadableStream/tee)
     */
   @send
-  external tee: readableStream<'t> => array<readableStream<'t>> = "tee"
+  external tee: readableStream<'t> => array<readableStream<unit>> = "tee"
 }
 
 module WritableStream = {
