@@ -9,10 +9,148 @@ let Location = {};
 
 let Navigator = {};
 
+let DOMTokenList = {};
+
+let NamedNodeMap = {};
+
+let CustomElementRegistry = {};
+
+let ScreenOrientation = {};
+
+let DocumentTimeline = {};
+
+let Node = {};
+
+let NodeList = {};
+
+let NodeListOf = {};
+
+let Element = {};
+
+let ShadowRoot = {};
+
+let HTMLCollection = {};
+
+let HTMLCollectionOf = {};
+
+let HTMLFormControlsCollection = {};
+
+let HTMLElement = {};
+
+let HTMLHeadElement = {};
+
+let HTMLFormElement = {};
+
+let HTMLImageElement = {};
+
+let HTMLEmbedElement = {};
+
+let HTMLAnchorElement = {};
+
+let HTMLAreaElement = {};
+
+let HTMLScriptElement = {};
+
+let DOMImplementation = {};
+
+let Document = {};
+
+let Window = {};
+
+let CharacterData = {};
+
+let StylePropertyMapReadOnly = {};
+
+let DOMRectReadOnly = {};
+
+let DOMRect = {};
+
+let DOMRectList = {};
+
+let ElementInternals = {};
+
+let DocumentFragment = {};
+
+let Text = {};
+
+let Comment = {};
+
+let Range = {};
+
+let NodeFilter = {};
+
+let NodeIterator = {};
+
+let TreeWalker = {};
+
+let CaretPosition = {};
+
+let Selection = {};
+
+let MediaQueryList = {};
+
+let MediaList = {};
+
+let IdleDeadline = {};
+
+let CSSStyleValue = {};
+
+let CSSStyleSheet = {};
+
+let CSSRuleList = {};
+
+let CSSStyleDeclaration = {};
+
 export {
   DOMException,
   DOMStringList,
   Location,
   Navigator,
+  DOMTokenList,
+  NamedNodeMap,
+  CustomElementRegistry,
+  ScreenOrientation,
+  DocumentTimeline,
+  Node,
+  NodeList,
+  NodeListOf,
+  Element,
+  ShadowRoot,
+  HTMLCollection,
+  HTMLCollectionOf,
+  HTMLFormControlsCollection,
+  HTMLElement,
+  HTMLHeadElement,
+  HTMLFormElement,
+  HTMLImageElement,
+  HTMLEmbedElement,
+  HTMLAnchorElement,
+  HTMLAreaElement,
+  HTMLScriptElement,
+  DOMImplementation,
+  Document,
+  Window,
+  CharacterData,
+  StylePropertyMapReadOnly,
+  DOMRectReadOnly,
+  DOMRect,
+  DOMRectList,
+  ElementInternals,
+  DocumentFragment,
+  Text,
+  Comment,
+  Range,
+  NodeFilter,
+  NodeIterator,
+  TreeWalker,
+  CaretPosition,
+  Selection,
+  MediaQueryList,
+  MediaList,
+  IdleDeadline,
+  CSSStyleValue,
+  CSSStyleSheet,
+  CSSRuleList,
+  CSSStyleDeclaration,
 }
 /* No side effect */

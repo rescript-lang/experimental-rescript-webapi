@@ -2,6 +2,7 @@ import * as Browser from "./types.js";
 import { mapToArray } from "./helpers.js";
 import { promises as fs } from "fs";
 import { execSync } from "child_process";
+import { sign } from "crypto";
 
 /// Decide which members of a function to emit
 enum EmitScope {
@@ -260,15 +261,6 @@ export async function emitRescriptBindings(
 ) {
   // Global print target
   const printer = createTextWriter("\n");
-
-  // const polluter = getElements(webidl.interfaces, "interface").find(
-  //   (i) => !!i.global,
-  // );
-
-  // const allNonCallbackInterfaces = getElements(
-  //   webidl.interfaces,
-  //   "interface",
-  // ).concat(getElements(webidl.mixins, "mixin"));
 
   const allInterfaces = getElements(webidl.interfaces, "interface").concat(
     getElements(webidl.callbackInterfaces, "interface"),
@@ -846,6 +838,22 @@ export async function emitRescriptBindings(
     return method.name;
   }
 
+  function mapMethodReturnType(signature: Browser.Signature) {
+    const genericTypeParams = new Set(
+      (signature.typeParameters || []).map((tp) => tp.name),
+    );
+
+    if (
+      signature.overrideType &&
+      genericTypeParams.has(signature.overrideType)
+    ) {
+      return `'${transformTyped(signature)}`;
+    }
+
+    return transformTyped(signature);
+  }
+
+  // TODO: deal with overloads?
   function emitMethod(i: Browser.Interface, method: Browser.Method) {
     if (method.signature.length === 0 || method.deprecated) return;
 
@@ -861,19 +869,14 @@ export async function emitRescriptBindings(
     if (method.static) {
       printer.printLine(`@scope("${i.name}")`);
       printer.printLine(
-        `external ${mapMethodName(method)}: (${ps}) => ${transformTyped(signature)} = "${method.name}"`,
+        `external ${mapMethodName(method)}: (${ps}) => ${mapMethodReturnType(signature)} = "${method.name}"`,
       );
     } else {
       ps = ps.length > 0 ? ", " + ps : "";
 
-      // let senderName = toCamelCase(i.name);
-      // if (alwaysGenericTypes.has(i.name)) {
-      //   senderName = `${senderName}<'t>`;
-      // }
-
       printer.printLine("@send");
       printer.printLine(
-        `external ${mapMethodName(method)}: (${mapInterfaceName(i)}${ps}) => ${transformTyped(signature)} = "${method.name}"`,
+        `external ${mapMethodName(method)}: (${mapInterfaceName(i)}${ps}) => ${mapMethodReturnType(signature)} = "${method.name}"`,
       );
     }
 
@@ -884,9 +887,21 @@ export async function emitRescriptBindings(
     signature: Browser.Signature,
     join: string = ", ",
   ): string {
+    const genericTypeParams = new Set(
+      (signature.typeParameters || []).map((tp) => tp.name),
+    );
+
     return signature.param?.length === 0
       ? ""
-      : (signature.param || []).map((p) => transformTyped(p)).join(join);
+      : (signature.param || [])
+          .map((p) => {
+            if (p.overrideType && genericTypeParams.has(p.overrideType)) {
+              return `'${toCamelCase(p.overrideType)}`;
+            }
+
+            return transformTyped(p);
+          })
+          .join(join);
   }
 
   function emitConstructor(i: Browser.Interface, c: Browser.Constructor) {
@@ -1389,7 +1404,7 @@ export async function emitRescriptBindings(
           dictionaries(["PositionOptions"]),
           ...callbacks(["PositionCallback", "PositionErrorCallback"]),
         ],
-        opens: ["Prelude"],
+        opens: [],
       },
       // https://developer.mozilla.org/en-US/docs/Web/API/Media_Capabilities_API
       {
@@ -1414,7 +1429,7 @@ export async function emitRescriptBindings(
             "MediaCapabilitiesEncodingInfo",
           ]),
         ],
-        opens: ["Prelude"],
+        opens: [],
       },
       // https://developer.mozilla.org/en-US/docs/Web/API/Media_Capture_and_Streams_API
       {
@@ -1439,7 +1454,7 @@ export async function emitRescriptBindings(
             "MediaTrackSettings",
           ]),
         ],
-        opens: ["Prelude", "Event"],
+        opens: ["Event"],
       },
       // https://developer.mozilla.org/en-US/docs/Web/API/MediaSession
       {
@@ -1598,6 +1613,12 @@ export async function emitRescriptBindings(
         ],
         opens: ["Event"],
       },
+      // https://developer.mozilla.org/en-US/docs/Web/API/View_Transitions_API
+      {
+        name: "ViewTransitions",
+        entries: [individualInterfaces(["ViewTransition"])],
+        opens: [],
+      },
       // https://developer.mozilla.org/en-US/docs/Web/API/Document_Object_Model
       // https://developer.mozilla.org/en-US/docs/Web/API/HTML_DOM_API
       {
@@ -1610,6 +1631,9 @@ export async function emitRescriptBindings(
             "DocumentReadyState",
             "DocumentVisibilityState",
             "OrientationType",
+            "InsertPosition",
+            "ScrollBehavior",
+            "FullscreenNavigationUI",
           ]),
           // TODO: perhaps move to Web Share API?
           // See https://developer.mozilla.org/en-US/docs/Web/API/Web_Share_API
@@ -1655,13 +1679,63 @@ export async function emitRescriptBindings(
             "Window",
             "MutationRecord",
             "Attr",
+            "CharacterData",
+          ]),
+          individualInterfaces([
+            "StylePropertyMapReadOnly",
+            "DOMRectReadOnly",
+            "DOMRect",
+            "DOMRectList",
+            "ValidityState",
+            "CustomStateSet",
+            "ElementInternals",
+            "XMLDocument",
+            "DocumentFragment",
+            "Text",
+            "CDATASection",
+            "Comment",
+            "ProcessingInstruction",
+            "AbstractRange",
+            "Range",
+            "NodeFilter",
+            "NodeIterator",
+            "TreeWalker",
+            "CaretPosition",
+            "Selection",
+            "MediaQueryList",
+            "MediaList",
+            "IdleDeadline",
+            "CSSStyleValue",
+          ]),
+          chain([
+            "StyleSheet",
+            "CSSStyleSheet",
+            "CSSRule",
+            "CSSRuleList",
+            "CSSStyleDeclaration",
           ]),
           dictionaries([
             "ElementDefinitionOptions",
             "DocumentTimelineOptions",
             "GetRootNodeOptions",
+            "ShadowRootInit",
+            "CheckVisibilityOptions",
+            "ScrollOptions",
+            "ScrollToOptions",
+            "FullscreenOptions",
+            "GetHTMLOptions",
+            "PointerLockOptions",
+            "CaretPositionFromPointOptions",
+            "IdleRequestOptions",
+            "DOMRectInit",
+            "ValidityStateFlags",
+            "CSSStyleSheetInit",
           ]),
-          ...callbacks(["CustomElementConstructor"]),
+          ...callbacks([
+            "CustomElementConstructor",
+            "ViewTransitionUpdateCallback",
+            "IdleRequestCallback",
+          ]),
         ],
         opens: [
           "Prelude",
@@ -1682,6 +1756,7 @@ export async function emitRescriptBindings(
           "History",
           "VisualViewport",
           "WebSpeech",
+          "ViewTransitions",
         ],
       },
       // https://developer.mozilla.org/en-US/docs/Web/API/Web_Audio_API

@@ -18,6 +18,7 @@ open WebMIDI
 open History
 open VisualViewport
 open WebSpeech
+open ViewTransitions
 
 type shadowRootMode =
   | @as("closed") Closed
@@ -45,6 +46,22 @@ type orientationType =
   | @as("landscape-secondary") LandscapeSecondary
   | @as("portrait-primary") PortraitPrimary
   | @as("portrait-secondary") PortraitSecondary
+
+type insertPosition =
+  | @as("afterbegin") Afterbegin
+  | @as("afterend") Afterend
+  | @as("beforebegin") Beforebegin
+  | @as("beforeend") Beforeend
+
+type scrollBehavior =
+  | @as("auto") Auto
+  | @as("instant") Instant
+  | @as("smooth") Smooth
+
+type fullscreenNavigationUI =
+  | @as("auto") Auto
+  | @as("hide") Hide
+  | @as("show") Show
 
 type shareData = {
   mutable files: array<file>,
@@ -3727,13 +3744,2381 @@ and attr = {
   ownerElement: Null.t<element>,
 }
 
+/**
+The CharacterData abstract interface represents a Node object that contains characters. This is an abstract interface, meaning there aren't any object of type CharacterData: it is implemented by other interfaces, like Text, Comment, or ProcessingInstruction which aren't abstract.
+[See CharacterData on MDN](https://developer.mozilla.org/docs/Web/API/CharacterData)
+*/
+and characterData = {
+  // Base properties from Node
+  /**
+    Returns the type of node.
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/nodeType)
+    */
+  nodeType: int,
+  /**
+    Returns a string appropriate for the type of node.
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/nodeName)
+    */
+  nodeName: string,
+  /**
+    Returns node's node document's document base URL.
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/baseURI)
+    */
+  baseURI: string,
+  /**
+    Returns true if node is connected and false otherwise.
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/isConnected)
+    */
+  isConnected: bool,
+  /**
+    Returns the node document. Returns null for documents.
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/ownerDocument)
+    */
+  ownerDocument: Null.t<document>,
+  /**
+    Returns the parent.
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/parentNode)
+    */
+  parentNode: Null.t<node>,
+  /**
+    Returns the parent element.
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/parentElement)
+    */
+  parentElement: Null.t<htmlElement>,
+  /**
+    Returns the children.
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/childNodes)
+    */
+  childNodes: nodeListOf<node>,
+  /**
+    Returns the first child.
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/firstChild)
+    */
+  firstChild: Null.t<node>,
+  /**
+    Returns the last child.
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/lastChild)
+    */
+  lastChild: Null.t<node>,
+  /**
+    Returns the previous sibling.
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/previousSibling)
+    */
+  previousSibling: Null.t<node>,
+  /**
+    Returns the next sibling.
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/nextSibling)
+    */
+  nextSibling: Null.t<node>,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/nodeValue)
+    */
+  mutable nodeValue: Null.t<string>,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/textContent)
+    */
+  mutable textContent: Null.t<string>,
+  // End base properties from Node
+
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CharacterData/data)
+    */
+  mutable data: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CharacterData/length)
+    */
+  length: int,
+}
+
+/**
+[See StylePropertyMapReadOnly on MDN](https://developer.mozilla.org/docs/Web/API/StylePropertyMapReadOnly)
+*/
+type stylePropertyMapReadOnly = {
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/StylePropertyMapReadOnly/size)
+    */
+  size: int,
+}
+
+/**
+[See DOMRectReadOnly on MDN](https://developer.mozilla.org/docs/Web/API/DOMRectReadOnly)
+*/
+type domRectReadOnly = {
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/DOMRectReadOnly/x)
+    */
+  x: any,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/DOMRectReadOnly/y)
+    */
+  y: any,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/DOMRectReadOnly/width)
+    */
+  width: any,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/DOMRectReadOnly/height)
+    */
+  height: any,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/DOMRectReadOnly/top)
+    */
+  top: any,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/DOMRectReadOnly/right)
+    */
+  right: any,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/DOMRectReadOnly/bottom)
+    */
+  bottom: any,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/DOMRectReadOnly/left)
+    */
+  left: any,
+}
+
+/**
+[See DOMRect on MDN](https://developer.mozilla.org/docs/Web/API/DOMRect)
+*/
+type domRect = {
+  ...domRectReadOnly,
+}
+
+type domRectList = {}
+
+/**
+The validity states that an element can be in, with respect to constraint validation. Together, they help explain why an element's value fails to validate, if it's not valid.
+[See ValidityState on MDN](https://developer.mozilla.org/docs/Web/API/ValidityState)
+*/
+type validityState = {
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/ValidityState/valueMissing)
+    */
+  valueMissing: bool,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/ValidityState/typeMismatch)
+    */
+  typeMismatch: bool,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/ValidityState/patternMismatch)
+    */
+  patternMismatch: bool,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/ValidityState/tooLong)
+    */
+  tooLong: bool,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/ValidityState/tooShort)
+    */
+  tooShort: bool,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/ValidityState/rangeUnderflow)
+    */
+  rangeUnderflow: bool,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/ValidityState/rangeOverflow)
+    */
+  rangeOverflow: bool,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/ValidityState/stepMismatch)
+    */
+  stepMismatch: bool,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/ValidityState/badInput)
+    */
+  badInput: bool,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/ValidityState/customError)
+    */
+  customError: bool,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/ValidityState/valid)
+    */
+  valid: bool,
+}
+
+/**
+[See CustomStateSet on MDN](https://developer.mozilla.org/docs/Web/API/CustomStateSet)
+*/
+type customStateSet = {}
+
+/**
+[See ElementInternals on MDN](https://developer.mozilla.org/docs/Web/API/ElementInternals)
+*/
+type elementInternals = {
+  /**
+    Returns the ShadowRoot for internals's target element, if the target element is a shadow host, or null otherwise.
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/ElementInternals/shadowRoot)
+    */
+  shadowRoot: Null.t<shadowRoot>,
+  /**
+    Returns the form owner of internals's target element.
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/ElementInternals/form)
+    */
+  form: Null.t<htmlFormElement>,
+  /**
+    Returns true if internals's target element will be validated when the form is submitted; false otherwise.
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/ElementInternals/willValidate)
+    */
+  willValidate: bool,
+  /**
+    Returns the ValidityState object for internals's target element.
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/ElementInternals/validity)
+    */
+  validity: validityState,
+  /**
+    Returns the error message that would be shown to the user if internals's target element was to be checked for validity.
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/ElementInternals/validationMessage)
+    */
+  validationMessage: string,
+  /**
+    Returns a NodeList of all the label elements that internals's target element is associated with.
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/ElementInternals/labels)
+    */
+  labels: nodeList,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/ElementInternals/states)
+    */
+  states: customStateSet,
+}
+
+/**
+An XML document. It inherits from the generic Document and does not add any specific methods or properties to it: nevertheless, several algorithms behave differently with the two types of documents.
+[See XMLDocument on MDN](https://developer.mozilla.org/docs/Web/API/XMLDocument)
+*/
+type xmlDocument = {
+  ...document,
+}
+
+/**
+A minimal document object that has no parent. It is used as a lightweight version of Document that stores a segment of a document structure comprised of nodes just like a standard document. The key difference is that because the document fragment isn't part of the active document tree structure, changes made to the fragment don't affect the document, cause reflow, or incur any performance impact that can occur when changes are made.
+[See DocumentFragment on MDN](https://developer.mozilla.org/docs/Web/API/DocumentFragment)
+*/
+type documentFragment = {
+  ...node,
+}
+
+/**
+The textual content of Element or Attr. If an element has no markup within its content, it has a single child implementing Text that contains the element's text. However, if the element contains markup, it is parsed into information items and Text nodes that form its children.
+[See Text on MDN](https://developer.mozilla.org/docs/Web/API/Text)
+*/
+type text = {
+  ...characterData,
+  /**
+    Returns the combined data of all direct Text node siblings.
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Text/wholeText)
+    */
+  wholeText: string,
+}
+
+/**
+A CDATA section that can be used within XML to include extended portions of unescaped text. The symbols < and & don’t need escaping as they normally do when inside a CDATA section.
+[See CDATASection on MDN](https://developer.mozilla.org/docs/Web/API/CDATASection)
+*/
+type cdataSection = {
+  ...text,
+}
+
+/**
+Textual notations within markup; although it is generally not visually shown, such comments are available to be read in the source view.
+[See Comment on MDN](https://developer.mozilla.org/docs/Web/API/Comment)
+*/
+type comment = {
+  ...characterData,
+}
+
+/**
+A processing instruction embeds application-specific instructions in XML which can be ignored by other applications that don't recognize them.
+[See ProcessingInstruction on MDN](https://developer.mozilla.org/docs/Web/API/ProcessingInstruction)
+*/
+type processingInstruction = {
+  ...characterData,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/ProcessingInstruction/target)
+    */
+  target: string,
+}
+
+/**
+[See AbstractRange on MDN](https://developer.mozilla.org/docs/Web/API/AbstractRange)
+*/
+type abstractRange = {
+  /**
+    Returns range's start node.
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/AbstractRange/startContainer)
+    */
+  startContainer: node,
+  /**
+    Returns range's start offset.
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/AbstractRange/startOffset)
+    */
+  startOffset: int,
+  /**
+    Returns range's end node.
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/AbstractRange/endContainer)
+    */
+  endContainer: node,
+  /**
+    Returns range's end offset.
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/AbstractRange/endOffset)
+    */
+  endOffset: int,
+  /**
+    Returns true if range is collapsed, and false otherwise.
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/AbstractRange/collapsed)
+    */
+  collapsed: bool,
+}
+
+/**
+A fragment of a document that can contain nodes and parts of text nodes.
+[See Range on MDN](https://developer.mozilla.org/docs/Web/API/Range)
+*/
+type range = {
+  ...abstractRange,
+  /**
+    Returns the node, furthest away from the document, that is an ancestor of both range's start node and end node.
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Range/commonAncestorContainer)
+    */
+  commonAncestorContainer: node,
+}
+
+type nodeFilter = {}
+
+/**
+An iterator over the members of a list of the nodes in a subtree of the DOM. The nodes will be returned in document order.
+[See NodeIterator on MDN](https://developer.mozilla.org/docs/Web/API/NodeIterator)
+*/
+type nodeIterator = {
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/NodeIterator/root)
+    */
+  root: node,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/NodeIterator/referenceNode)
+    */
+  referenceNode: node,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/NodeIterator/pointerBeforeReferenceNode)
+    */
+  pointerBeforeReferenceNode: bool,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/NodeIterator/whatToShow)
+    */
+  whatToShow: int,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/NodeIterator/filter)
+    */
+  filter: Null.t<nodeFilter>,
+}
+
+/**
+The nodes of a document subtree and a position within them.
+[See TreeWalker on MDN](https://developer.mozilla.org/docs/Web/API/TreeWalker)
+*/
+type treeWalker = {
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/TreeWalker/root)
+    */
+  root: node,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/TreeWalker/whatToShow)
+    */
+  whatToShow: int,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/TreeWalker/filter)
+    */
+  filter: Null.t<nodeFilter>,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/TreeWalker/currentNode)
+    */
+  mutable currentNode: node,
+}
+
+/**
+[See CaretPosition on MDN](https://developer.mozilla.org/docs/Web/API/CaretPosition)
+*/
+type caretPosition = {}
+
+/**
+A Selection object represents the range of text selected by the user or the current position of the caret. To obtain a Selection object for examination or modification, call Window.getSelection().
+[See Selection on MDN](https://developer.mozilla.org/docs/Web/API/Selection)
+*/
+type selection = {
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Selection/anchorNode)
+    */
+  anchorNode: Null.t<node>,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Selection/anchorOffset)
+    */
+  anchorOffset: int,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Selection/focusNode)
+    */
+  focusNode: Null.t<node>,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Selection/focusOffset)
+    */
+  focusOffset: int,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Selection/isCollapsed)
+    */
+  isCollapsed: bool,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Selection/rangeCount)
+    */
+  rangeCount: int,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Selection/type)
+    */
+  @as("type")
+  type_: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Selection/direction)
+    */
+  direction: string,
+}
+
+/**
+Stores information on a media query applied to a document, and handles sending notifications to listeners when the media query state change (i.e. when the media query test starts or stops evaluating to true).
+[See MediaQueryList on MDN](https://developer.mozilla.org/docs/Web/API/MediaQueryList)
+*/
+type mediaQueryList = {
+  ...eventTarget,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/MediaQueryList/media)
+    */
+  media: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/MediaQueryList/matches)
+    */
+  matches: bool,
+}
+
+/**
+[See MediaList on MDN](https://developer.mozilla.org/docs/Web/API/MediaList)
+*/
+type mediaList = {
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/MediaList/mediaText)
+    */
+  mutable mediaText: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/MediaList/length)
+    */
+  length: int,
+}
+
+/**
+[See IdleDeadline on MDN](https://developer.mozilla.org/docs/Web/API/IdleDeadline)
+*/
+type idleDeadline = {
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/IdleDeadline/didTimeout)
+    */
+  didTimeout: bool,
+}
+
+/**
+[See CSSStyleValue on MDN](https://developer.mozilla.org/docs/Web/API/CSSStyleValue)
+*/
+type cssStyleValue = {}
+
+/**
+A single style sheet. CSS style sheets will further implement the more specialized CSSStyleSheet interface.
+[See StyleSheet on MDN](https://developer.mozilla.org/docs/Web/API/StyleSheet)
+*/
+type rec styleSheet = {
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/StyleSheet/type)
+    */
+  @as("type")
+  type_: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/StyleSheet/href)
+    */
+  href: Null.t<string>,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/StyleSheet/ownerNode)
+    */
+  ownerNode: Null.t<unknown>,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/StyleSheet/parentStyleSheet)
+    */
+  parentStyleSheet: Null.t<cssStyleSheet>,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/StyleSheet/title)
+    */
+  title: Null.t<string>,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/StyleSheet/media)
+    */
+  media: mediaList,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/StyleSheet/disabled)
+    */
+  mutable disabled: bool,
+}
+
+/**
+A single CSS style sheet. It inherits properties and methods from its parent, StyleSheet.
+[See CSSStyleSheet on MDN](https://developer.mozilla.org/docs/Web/API/CSSStyleSheet)
+*/
+and cssStyleSheet = {
+  // Base properties from StyleSheet
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/StyleSheet/type)
+    */
+  @as("type")
+  type_: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/StyleSheet/href)
+    */
+  href: Null.t<string>,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/StyleSheet/ownerNode)
+    */
+  ownerNode: Null.t<unknown>,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/StyleSheet/parentStyleSheet)
+    */
+  parentStyleSheet: Null.t<cssStyleSheet>,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/StyleSheet/title)
+    */
+  title: Null.t<string>,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/StyleSheet/media)
+    */
+  media: mediaList,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/StyleSheet/disabled)
+    */
+  mutable disabled: bool,
+  // End base properties from StyleSheet
+
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CSSStyleSheet/ownerRule)
+    */
+  ownerRule: Null.t<cssRule>,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CSSStyleSheet/cssRules)
+    */
+  cssRules: cssRuleList,
+}
+
+/**
+A single CSS rule. There are several types of rules, listed in the Type constants section below.
+[See CSSRule on MDN](https://developer.mozilla.org/docs/Web/API/CSSRule)
+*/
+and cssRule = {
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CSSRule/cssText)
+    */
+  mutable cssText: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CSSRule/parentRule)
+    */
+  parentRule: Null.t<cssRule>,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CSSRule/parentStyleSheet)
+    */
+  parentStyleSheet: Null.t<cssStyleSheet>,
+}
+
+/**
+A CSSRuleList is an (indirect-modify only) array-like object containing an ordered collection of CSSRule objects.
+[See CSSRuleList on MDN](https://developer.mozilla.org/docs/Web/API/CSSRuleList)
+*/
+and cssRuleList = {
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CSSRuleList/length)
+    */
+  length: int,
+}
+
+/**
+An object that is a CSS declaration block, and exposes style information and various style-related methods and properties.
+[See CSSStyleDeclaration on MDN](https://developer.mozilla.org/docs/Web/API/CSSStyleDeclaration)
+*/
+and cssStyleDeclaration = {
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CSSStyleDeclaration/cssText)
+    */
+  mutable cssText: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CSSStyleDeclaration/length)
+    */
+  length: int,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CSSStyleDeclaration/parentRule)
+    */
+  parentRule: Null.t<cssRule>,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/cx)
+    */
+  mutable cx: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/cy)
+    */
+  mutable cy: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/r)
+    */
+  mutable r: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/rx)
+    */
+  mutable rx: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/ry)
+    */
+  mutable ry: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/x)
+    */
+  mutable x: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/y)
+    */
+  mutable y: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/vector-effect)
+    */
+  mutable vectorEffect: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/d)
+    */
+  mutable d: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/text-anchor)
+    */
+  mutable textAnchor: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/fill)
+    */
+  mutable fill: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/stroke)
+    */
+  mutable stroke: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/marker-start)
+    */
+  mutable markerStart: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/marker-mid)
+    */
+  mutable markerMid: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/marker-end)
+    */
+  mutable markerEnd: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/marker)
+    */
+  mutable marker: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/paint-order)
+    */
+  mutable paintOrder: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/color-interpolation)
+    */
+  mutable colorInterpolation: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/shape-rendering)
+    */
+  mutable shapeRendering: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/text-rendering)
+    */
+  mutable textRendering: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/pointer-events)
+    */
+  mutable pointerEvents: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/stop-color)
+    */
+  mutable stopColor: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/stop-opacity)
+    */
+  mutable stopOpacity: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/-webkit-text-fill-color)
+    */
+  mutable webkitTextFillColor: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/-webkit-text-stroke-color)
+    */
+  mutable webkitTextStrokeColor: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/-webkit-text-stroke-width)
+    */
+  mutable webkitTextStrokeWidth: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/-webkit-text-stroke)
+    */
+  mutable webkitTextStroke: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/touch-action)
+    */
+  mutable touchAction: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/position-area)
+    */
+  mutable positionArea: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/top)
+    */
+  mutable top: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/left)
+    */
+  mutable left: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/right)
+    */
+  mutable right: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/bottom)
+    */
+  mutable bottom: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/justify-self)
+    */
+  mutable justifySelf: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/align-self)
+    */
+  mutable alignSelf: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/justify-items)
+    */
+  mutable justifyItems: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/align-items)
+    */
+  mutable alignItems: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/width)
+    */
+  mutable width: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/height)
+    */
+  mutable height: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/min-width)
+    */
+  mutable minWidth: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/min-height)
+    */
+  mutable minHeight: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/max-width)
+    */
+  mutable maxWidth: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/max-height)
+    */
+  mutable maxHeight: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/margin-top)
+    */
+  mutable marginTop: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/margin-left)
+    */
+  mutable marginLeft: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/margin-right)
+    */
+  mutable marginRight: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/margin-bottom)
+    */
+  mutable marginBottom: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/animation-duration)
+    */
+  mutable animationDuration: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/animation-composition)
+    */
+  mutable animationComposition: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/animation-name)
+    */
+  mutable animationName: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/animation-timing-function)
+    */
+  mutable animationTimingFunction: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/animation-iteration-count)
+    */
+  mutable animationIterationCount: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/animation-direction)
+    */
+  mutable animationDirection: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/animation-play-state)
+    */
+  mutable animationPlayState: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/animation-delay)
+    */
+  mutable animationDelay: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/animation-fill-mode)
+    */
+  mutable animationFillMode: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/animation)
+    */
+  mutable animation: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/all)
+    */
+  mutable all: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/container-type)
+    */
+  mutable containerType: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/container-name)
+    */
+  mutable containerName: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/container)
+    */
+  mutable container: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/contain)
+    */
+  mutable contain: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/content-visibility)
+    */
+  mutable contentVisibility: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/font-family)
+    */
+  mutable fontFamily: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/font-weight)
+    */
+  mutable fontWeight: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/font-style)
+    */
+  mutable fontStyle: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/font-size)
+    */
+  mutable fontSize: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/font-size-adjust)
+    */
+  mutable fontSizeAdjust: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/font)
+    */
+  mutable font: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/font-synthesis-weight)
+    */
+  mutable fontSynthesisWeight: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/font-synthesis-style)
+    */
+  mutable fontSynthesisStyle: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/font-synthesis-small-caps)
+    */
+  mutable fontSynthesisSmallCaps: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/font-synthesis)
+    */
+  mutable fontSynthesis: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/font-kerning)
+    */
+  mutable fontKerning: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/font-variant-ligatures)
+    */
+  mutable fontVariantLigatures: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/font-variant-position)
+    */
+  mutable fontVariantPosition: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/font-variant-caps)
+    */
+  mutable fontVariantCaps: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/font-variant-numeric)
+    */
+  mutable fontVariantNumeric: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/font-variant-alternates)
+    */
+  mutable fontVariantAlternates: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/font-variant-east-asian)
+    */
+  mutable fontVariantEastAsian: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/font-variant)
+    */
+  mutable fontVariant: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/font-feature-settings)
+    */
+  mutable fontFeatureSettings: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/font-optical-sizing)
+    */
+  mutable fontOpticalSizing: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/font-variation-settings)
+    */
+  mutable fontVariationSettings: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/font-palette)
+    */
+  mutable fontPalette: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/font-stretch)
+    */
+  mutable fontStretch: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/object-fit)
+    */
+  mutable objectFit: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/clip-path)
+    */
+  mutable clipPath: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/clip-rule)
+    */
+  mutable clipRule: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/mask-image)
+    */
+  mutable maskImage: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/mask-mode)
+    */
+  mutable maskMode: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/mask-repeat)
+    */
+  mutable maskRepeat: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/mask-position)
+    */
+  mutable maskPosition: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/mask-clip)
+    */
+  mutable maskClip: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/mask-origin)
+    */
+  mutable maskOrigin: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/mask-size)
+    */
+  mutable maskSize: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/mask-composite)
+    */
+  mutable maskComposite: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/mask)
+    */
+  mutable mask: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/mask-type)
+    */
+  mutable maskType: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/transition-behavior)
+    */
+  mutable transitionBehavior: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/transition-property)
+    */
+  mutable transitionProperty: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/transition-duration)
+    */
+  mutable transitionDuration: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/transition-timing-function)
+    */
+  mutable transitionTimingFunction: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/transition-delay)
+    */
+  mutable transitionDelay: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/transition)
+    */
+  mutable transition: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/view-transition-name)
+    */
+  mutable viewTransitionName: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/zoom)
+    */
+  mutable zoom: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/filter)
+    */
+  mutable filter: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/color-interpolation-filters)
+    */
+  mutable colorInterpolationFilters: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/display)
+    */
+  mutable display: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/text-transform)
+    */
+  mutable textTransform: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/math-style)
+    */
+  mutable mathStyle: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/math-depth)
+    */
+  mutable mathDepth: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/z-index)
+    */
+  mutable zIndex: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/page-break-before)
+    */
+  mutable pageBreakBefore: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/page-break-after)
+    */
+  mutable pageBreakAfter: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/page-break-inside)
+    */
+  mutable pageBreakInside: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/mix-blend-mode)
+    */
+  mutable mixBlendMode: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/isolation)
+    */
+  mutable isolation: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/background-blend-mode)
+    */
+  mutable backgroundBlendMode: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/align-content)
+    */
+  mutable alignContent: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/justify-content)
+    */
+  mutable justifyContent: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/place-content)
+    */
+  mutable placeContent: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/place-self)
+    */
+  mutable placeSelf: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/place-items)
+    */
+  mutable placeItems: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/row-gap)
+    */
+  mutable rowGap: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/column-gap)
+    */
+  mutable columnGap: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/gap)
+    */
+  mutable gap: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/background-repeat)
+    */
+  mutable backgroundRepeat: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/background-position)
+    */
+  mutable backgroundPosition: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/background-position-x)
+    */
+  mutable backgroundPositionX: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/background-position-y)
+    */
+  mutable backgroundPositionY: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/background-clip)
+    */
+  mutable backgroundClip: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/background-color)
+    */
+  mutable backgroundColor: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/background-image)
+    */
+  mutable backgroundImage: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/background-attachment)
+    */
+  mutable backgroundAttachment: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/background-origin)
+    */
+  mutable backgroundOrigin: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/background-size)
+    */
+  mutable backgroundSize: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/background)
+    */
+  mutable background: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/border-style)
+    */
+  mutable borderStyle: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/border-width)
+    */
+  mutable borderWidth: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/border)
+    */
+  mutable border: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/border-image-source)
+    */
+  mutable borderImageSource: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/border-image-slice)
+    */
+  mutable borderImageSlice: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/border-image-width)
+    */
+  mutable borderImageWidth: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/border-image-outset)
+    */
+  mutable borderImageOutset: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/border-image-repeat)
+    */
+  mutable borderImageRepeat: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/border-image)
+    */
+  mutable borderImage: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/border-top-color)
+    */
+  mutable borderTopColor: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/border-right-color)
+    */
+  mutable borderRightColor: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/border-bottom-color)
+    */
+  mutable borderBottomColor: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/border-left-color)
+    */
+  mutable borderLeftColor: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/border-block-start-color)
+    */
+  mutable borderBlockStartColor: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/border-block-end-color)
+    */
+  mutable borderBlockEndColor: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/border-inline-start-color)
+    */
+  mutable borderInlineStartColor: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/border-inline-end-color)
+    */
+  mutable borderInlineEndColor: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/border-color)
+    */
+  mutable borderColor: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/border-block-color)
+    */
+  mutable borderBlockColor: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/border-inline-color)
+    */
+  mutable borderInlineColor: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/border-top-style)
+    */
+  mutable borderTopStyle: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/border-right-style)
+    */
+  mutable borderRightStyle: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/border-bottom-style)
+    */
+  mutable borderBottomStyle: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/border-left-style)
+    */
+  mutable borderLeftStyle: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/border-block-start-style)
+    */
+  mutable borderBlockStartStyle: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/border-block-end-style)
+    */
+  mutable borderBlockEndStyle: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/border-inline-start-style)
+    */
+  mutable borderInlineStartStyle: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/border-inline-end-style)
+    */
+  mutable borderInlineEndStyle: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/border-block-style)
+    */
+  mutable borderBlockStyle: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/border-inline-style)
+    */
+  mutable borderInlineStyle: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/border-top-width)
+    */
+  mutable borderTopWidth: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/border-right-width)
+    */
+  mutable borderRightWidth: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/border-bottom-width)
+    */
+  mutable borderBottomWidth: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/border-left-width)
+    */
+  mutable borderLeftWidth: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/border-block-start-width)
+    */
+  mutable borderBlockStartWidth: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/border-block-end-width)
+    */
+  mutable borderBlockEndWidth: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/border-inline-start-width)
+    */
+  mutable borderInlineStartWidth: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/border-inline-end-width)
+    */
+  mutable borderInlineEndWidth: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/border-block-width)
+    */
+  mutable borderBlockWidth: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/border-inline-width)
+    */
+  mutable borderInlineWidth: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/border-top)
+    */
+  mutable borderTop: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/border-right)
+    */
+  mutable borderRight: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/border-bottom)
+    */
+  mutable borderBottom: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/border-left)
+    */
+  mutable borderLeft: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/border-block-start)
+    */
+  mutable borderBlockStart: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/border-block-end)
+    */
+  mutable borderBlockEnd: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/border-inline-start)
+    */
+  mutable borderInlineStart: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/border-inline-end)
+    */
+  mutable borderInlineEnd: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/border-block)
+    */
+  mutable borderBlock: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/border-inline)
+    */
+  mutable borderInline: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/border-top-left-radius)
+    */
+  mutable borderTopLeftRadius: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/border-top-right-radius)
+    */
+  mutable borderTopRightRadius: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/border-bottom-right-radius)
+    */
+  mutable borderBottomRightRadius: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/border-bottom-left-radius)
+    */
+  mutable borderBottomLeftRadius: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/border-start-start-radius)
+    */
+  mutable borderStartStartRadius: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/border-start-end-radius)
+    */
+  mutable borderStartEndRadius: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/border-end-start-radius)
+    */
+  mutable borderEndStartRadius: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/border-end-end-radius)
+    */
+  mutable borderEndEndRadius: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/border-radius)
+    */
+  mutable borderRadius: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/box-shadow)
+    */
+  mutable boxShadow: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/margin)
+    */
+  mutable margin: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/padding-top)
+    */
+  mutable paddingTop: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/padding-right)
+    */
+  mutable paddingRight: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/padding-bottom)
+    */
+  mutable paddingBottom: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/padding-left)
+    */
+  mutable paddingLeft: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/padding)
+    */
+  mutable padding: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/break-before)
+    */
+  mutable breakBefore: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/break-after)
+    */
+  mutable breakAfter: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/break-inside)
+    */
+  mutable breakInside: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/orphans)
+    */
+  mutable orphans: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/widows)
+    */
+  mutable widows: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/box-decoration-break)
+    */
+  mutable boxDecorationBreak: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/color-scheme)
+    */
+  mutable colorScheme: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/forced-color-adjust)
+    */
+  mutable forcedColorAdjust: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/print-color-adjust)
+    */
+  mutable printColorAdjust: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/color)
+    */
+  mutable color: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/opacity)
+    */
+  mutable opacity: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/content)
+    */
+  mutable content: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/quotes)
+    */
+  mutable quotes: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/order)
+    */
+  mutable order: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/visibility)
+    */
+  mutable visibility: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/flex-direction)
+    */
+  mutable flexDirection: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/flex-wrap)
+    */
+  mutable flexWrap: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/flex-flow)
+    */
+  mutable flexFlow: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/flex)
+    */
+  mutable flex: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/flex-grow)
+    */
+  mutable flexGrow: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/flex-shrink)
+    */
+  mutable flexShrink: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/flex-basis)
+    */
+  mutable flexBasis: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/position)
+    */
+  mutable position: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/float)
+    */
+  mutable float: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/grid-template-columns)
+    */
+  mutable gridTemplateColumns: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/grid-template-rows)
+    */
+  mutable gridTemplateRows: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/grid-auto-flow)
+    */
+  mutable gridAutoFlow: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/grid-template-areas)
+    */
+  mutable gridTemplateAreas: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/grid-template)
+    */
+  mutable gridTemplate: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/grid-auto-columns)
+    */
+  mutable gridAutoColumns: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/grid-auto-rows)
+    */
+  mutable gridAutoRows: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/grid)
+    */
+  mutable grid: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/grid-row-start)
+    */
+  mutable gridRowStart: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/grid-column-start)
+    */
+  mutable gridColumnStart: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/grid-row-end)
+    */
+  mutable gridRowEnd: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/grid-column-end)
+    */
+  mutable gridColumnEnd: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/grid-row)
+    */
+  mutable gridRow: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/grid-column)
+    */
+  mutable gridColumn: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/grid-area)
+    */
+  mutable gridArea: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/object-position)
+    */
+  mutable objectPosition: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/image-rendering)
+    */
+  mutable imageRendering: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/dominant-baseline)
+    */
+  mutable dominantBaseline: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/vertical-align)
+    */
+  mutable verticalAlign: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/line-height)
+    */
+  mutable lineHeight: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/list-style-image)
+    */
+  mutable listStyleImage: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/list-style-type)
+    */
+  mutable listStyleType: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/list-style-position)
+    */
+  mutable listStylePosition: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/list-style)
+    */
+  mutable listStyle: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/counter-reset)
+    */
+  mutable counterReset: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/counter-increment)
+    */
+  mutable counterIncrement: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/counter-set)
+    */
+  mutable counterSet: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/block-size)
+    */
+  mutable blockSize: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/inline-size)
+    */
+  mutable inlineSize: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/min-block-size)
+    */
+  mutable minBlockSize: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/min-inline-size)
+    */
+  mutable minInlineSize: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/max-block-size)
+    */
+  mutable maxBlockSize: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/max-inline-size)
+    */
+  mutable maxInlineSize: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/margin-block-start)
+    */
+  mutable marginBlockStart: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/margin-block-end)
+    */
+  mutable marginBlockEnd: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/margin-inline-start)
+    */
+  mutable marginInlineStart: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/margin-inline-end)
+    */
+  mutable marginInlineEnd: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/margin-block)
+    */
+  mutable marginBlock: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/margin-inline)
+    */
+  mutable marginInline: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/padding-block-start)
+    */
+  mutable paddingBlockStart: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/padding-block-end)
+    */
+  mutable paddingBlockEnd: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/padding-inline-start)
+    */
+  mutable paddingInlineStart: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/padding-inline-end)
+    */
+  mutable paddingInlineEnd: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/padding-block)
+    */
+  mutable paddingBlock: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/padding-inline)
+    */
+  mutable paddingInline: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/column-span)
+    */
+  mutable columnSpan: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/column-width)
+    */
+  mutable columnWidth: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/column-count)
+    */
+  mutable columnCount: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/columns)
+    */
+  mutable columns: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/column-rule-color)
+    */
+  mutable columnRuleColor: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/column-rule-style)
+    */
+  mutable columnRuleStyle: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/column-rule-width)
+    */
+  mutable columnRuleWidth: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/column-rule)
+    */
+  mutable columnRule: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/column-fill)
+    */
+  mutable columnFill: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/overflow-clip-margin)
+    */
+  mutable overflowClipMargin: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/text-overflow)
+    */
+  mutable textOverflow: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/overflow-x)
+    */
+  mutable overflowX: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/overflow-y)
+    */
+  mutable overflowY: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/overflow)
+    */
+  mutable overflow: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/scroll-behavior)
+    */
+  mutable scrollBehavior: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/scrollbar-gutter)
+    */
+  mutable scrollbarGutter: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/overscroll-behavior)
+    */
+  mutable overscrollBehavior: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/overscroll-behavior-x)
+    */
+  mutable overscrollBehaviorX: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/overscroll-behavior-y)
+    */
+  mutable overscrollBehaviorY: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/overscroll-behavior-inline)
+    */
+  mutable overscrollBehaviorInline: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/overscroll-behavior-block)
+    */
+  mutable overscrollBehaviorBlock: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/clear)
+    */
+  mutable clear: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/page)
+    */
+  mutable page: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/inset-block-start)
+    */
+  mutable insetBlockStart: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/inset-inline-start)
+    */
+  mutable insetInlineStart: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/inset-block-end)
+    */
+  mutable insetBlockEnd: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/inset-inline-end)
+    */
+  mutable insetInlineEnd: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/inset-block)
+    */
+  mutable insetBlock: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/inset-inline)
+    */
+  mutable insetInline: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/inset)
+    */
+  mutable inset: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/ruby-position)
+    */
+  mutable rubyPosition: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/ruby-align)
+    */
+  mutable rubyAlign: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/overflow-anchor)
+    */
+  mutable overflowAnchor: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/scroll-snap-type)
+    */
+  mutable scrollSnapType: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/scroll-padding)
+    */
+  mutable scrollPadding: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/scroll-margin)
+    */
+  mutable scrollMargin: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/scroll-snap-align)
+    */
+  mutable scrollSnapAlign: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/scroll-snap-stop)
+    */
+  mutable scrollSnapStop: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/scroll-padding-top)
+    */
+  mutable scrollPaddingTop: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/scroll-padding-right)
+    */
+  mutable scrollPaddingRight: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/scroll-padding-bottom)
+    */
+  mutable scrollPaddingBottom: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/scroll-padding-left)
+    */
+  mutable scrollPaddingLeft: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/scroll-padding-inline-start)
+    */
+  mutable scrollPaddingInlineStart: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/scroll-padding-block-start)
+    */
+  mutable scrollPaddingBlockStart: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/scroll-padding-inline-end)
+    */
+  mutable scrollPaddingInlineEnd: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/scroll-padding-block-end)
+    */
+  mutable scrollPaddingBlockEnd: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/scroll-padding-block)
+    */
+  mutable scrollPaddingBlock: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/scroll-padding-inline)
+    */
+  mutable scrollPaddingInline: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/scroll-margin-top)
+    */
+  mutable scrollMarginTop: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/scroll-margin-right)
+    */
+  mutable scrollMarginRight: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/scroll-margin-bottom)
+    */
+  mutable scrollMarginBottom: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/scroll-margin-left)
+    */
+  mutable scrollMarginLeft: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/scroll-margin-block-start)
+    */
+  mutable scrollMarginBlockStart: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/scroll-margin-inline-start)
+    */
+  mutable scrollMarginInlineStart: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/scroll-margin-block-end)
+    */
+  mutable scrollMarginBlockEnd: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/scroll-margin-inline-end)
+    */
+  mutable scrollMarginInlineEnd: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/scroll-margin-block)
+    */
+  mutable scrollMarginBlock: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/scroll-margin-inline)
+    */
+  mutable scrollMarginInline: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/scrollbar-color)
+    */
+  mutable scrollbarColor: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/scrollbar-width)
+    */
+  mutable scrollbarWidth: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/shape-outside)
+    */
+  mutable shapeOutside: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/shape-image-threshold)
+    */
+  mutable shapeImageThreshold: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/shape-margin)
+    */
+  mutable shapeMargin: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/aspect-ratio)
+    */
+  mutable aspectRatio: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/contain-intrinsic-width)
+    */
+  mutable containIntrinsicWidth: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/contain-intrinsic-height)
+    */
+  mutable containIntrinsicHeight: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/contain-intrinsic-block-size)
+    */
+  mutable containIntrinsicBlockSize: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/contain-intrinsic-inline-size)
+    */
+  mutable containIntrinsicInlineSize: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/contain-intrinsic-size)
+    */
+  mutable containIntrinsicSize: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/box-sizing)
+    */
+  mutable boxSizing: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/table-layout)
+    */
+  mutable tableLayout: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/border-collapse)
+    */
+  mutable borderCollapse: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/border-spacing)
+    */
+  mutable borderSpacing: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/caption-side)
+    */
+  mutable captionSide: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/empty-cells)
+    */
+  mutable emptyCells: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/white-space)
+    */
+  mutable whiteSpace: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/white-space-collapse)
+    */
+  mutable whiteSpaceCollapse: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/tab-size)
+    */
+  mutable tabSize: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/text-wrap-mode)
+    */
+  mutable textWrapMode: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/text-wrap-style)
+    */
+  mutable textWrapStyle: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/text-wrap)
+    */
+  mutable textWrap: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/word-break)
+    */
+  mutable wordBreak: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/line-break)
+    */
+  mutable lineBreak: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/hyphens)
+    */
+  mutable hyphens: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/hyphenate-character)
+    */
+  mutable hyphenateCharacter: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/overflow-wrap)
+    */
+  mutable overflowWrap: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/text-align)
+    */
+  mutable textAlign: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/text-align-last)
+    */
+  mutable textAlignLast: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/word-spacing)
+    */
+  mutable wordSpacing: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/letter-spacing)
+    */
+  mutable letterSpacing: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/text-indent)
+    */
+  mutable textIndent: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/text-decoration-line)
+    */
+  mutable textDecorationLine: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/text-decoration-style)
+    */
+  mutable textDecorationStyle: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/text-decoration-color)
+    */
+  mutable textDecorationColor: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/text-decoration-thickness)
+    */
+  mutable textDecorationThickness: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/text-decoration)
+    */
+  mutable textDecoration: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/text-underline-position)
+    */
+  mutable textUnderlinePosition: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/text-underline-offset)
+    */
+  mutable textUnderlineOffset: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/text-decoration-skip-ink)
+    */
+  mutable textDecorationSkipInk: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/text-emphasis-style)
+    */
+  mutable textEmphasisStyle: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/text-emphasis-color)
+    */
+  mutable textEmphasisColor: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/text-emphasis)
+    */
+  mutable textEmphasis: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/text-emphasis-position)
+    */
+  mutable textEmphasisPosition: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/text-shadow)
+    */
+  mutable textShadow: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/translate)
+    */
+  mutable translate: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/rotate)
+    */
+  mutable rotate: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/scale)
+    */
+  mutable scale: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/transform-style)
+    */
+  mutable transformStyle: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/perspective)
+    */
+  mutable perspective: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/perspective-origin)
+    */
+  mutable perspectiveOrigin: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/backface-visibility)
+    */
+  mutable backfaceVisibility: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/transform)
+    */
+  mutable transform: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/transform-origin)
+    */
+  mutable transformOrigin: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/transform-box)
+    */
+  mutable transformBox: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/outline)
+    */
+  mutable outline: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/outline-width)
+    */
+  mutable outlineWidth: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/outline-style)
+    */
+  mutable outlineStyle: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/outline-color)
+    */
+  mutable outlineColor: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/outline-offset)
+    */
+  mutable outlineOffset: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/resize)
+    */
+  mutable resize: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/cursor)
+    */
+  mutable cursor: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/caret-color)
+    */
+  mutable caretColor: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/user-select)
+    */
+  mutable userSelect: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/accent-color)
+    */
+  mutable accentColor: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/appearance)
+    */
+  mutable appearance: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/will-change)
+    */
+  mutable willChange: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/direction)
+    */
+  mutable direction: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/unicode-bidi)
+    */
+  mutable unicodeBidi: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/writing-mode)
+    */
+  mutable writingMode: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/text-orientation)
+    */
+  mutable textOrientation: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/text-combine-upright)
+    */
+  mutable textCombineUpright: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/fill-rule)
+    */
+  mutable fillRule: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/fill-opacity)
+    */
+  mutable fillOpacity: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/stroke-width)
+    */
+  mutable strokeWidth: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/stroke-linecap)
+    */
+  mutable strokeLinecap: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/stroke-linejoin)
+    */
+  mutable strokeLinejoin: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/stroke-miterlimit)
+    */
+  mutable strokeMiterlimit: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/stroke-dasharray)
+    */
+  mutable strokeDasharray: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/stroke-dashoffset)
+    */
+  mutable strokeDashoffset: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/stroke-opacity)
+    */
+  mutable strokeOpacity: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/backdrop-filter)
+    */
+  mutable backdropFilter: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/offset-path)
+    */
+  mutable offsetPath: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/offset-distance)
+    */
+  mutable offsetDistance: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/offset-position)
+    */
+  mutable offsetPosition: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/offset-anchor)
+    */
+  mutable offsetAnchor: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/offset-rotate)
+    */
+  mutable offsetRotate: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/offset)
+    */
+  mutable offset: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CSSStyleDeclaration/cssFloat)
+    */
+  mutable cssFloat: string,
+}
+
 type elementDefinitionOptions = {mutable extends: string}
 
 type documentTimelineOptions = {mutable originTime: float}
 
 type getRootNodeOptions = {mutable composed: bool}
 
+type shadowRootInit = {
+  mutable mode: shadowRootMode,
+  mutable delegatesFocus: bool,
+  mutable slotAssignment: slotAssignmentMode,
+  mutable serializable: bool,
+}
+
+type checkVisibilityOptions = {
+  mutable checkOpacity: bool,
+  mutable checkVisibilityCSS: bool,
+  mutable contentVisibilityAuto: bool,
+  mutable opacityProperty: bool,
+  mutable visibilityProperty: bool,
+}
+
+type scrollOptions = {mutable behavior: scrollBehavior}
+
+type scrollToOptions = {
+  ...scrollOptions,
+  mutable left: any,
+  mutable top: any,
+}
+
+type fullscreenOptions = {mutable navigationUI: fullscreenNavigationUI}
+
+type getHTMLOptions = {
+  mutable serializableShadowRoots: bool,
+  mutable shadowRoots: array<shadowRoot>,
+}
+
+type pointerLockOptions = {mutable unadjustedMovement: bool}
+
+type caretPositionFromPointOptions = {mutable shadowRoots: array<shadowRoot>}
+
+type idleRequestOptions = {mutable timeout: int}
+
+type domRectInit = {
+  mutable x: any,
+  mutable y: any,
+  mutable width: any,
+  mutable height: any,
+}
+
+type validityStateFlags = {
+  mutable valueMissing: bool,
+  mutable typeMismatch: bool,
+  mutable patternMismatch: bool,
+  mutable tooLong: bool,
+  mutable tooShort: bool,
+  mutable rangeUnderflow: bool,
+  mutable rangeOverflow: bool,
+  mutable stepMismatch: bool,
+  mutable badInput: bool,
+  mutable customError: bool,
+}
+
+type cssStyleSheetInit = {
+  mutable baseURL: string,
+  mutable media: unknown,
+  mutable disabled: bool,
+}
+
 type customElementConstructor = htmlElement
+
+type viewTransitionUpdateCallback = Promise.t<any>
+
+type idleRequestCallback = idleDeadline => unit
 
 module DOMException = {
   /**
@@ -4074,25 +6459,25 @@ module Node = {
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/insertBefore)
     */
   @send
-  external insertBefore: (node, t, node) => t = "insertBefore"
+  external insertBefore: (node, 't, node) => 't = "insertBefore"
 
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/appendChild)
     */
   @send
-  external appendChild: (node, t) => t = "appendChild"
+  external appendChild: (node, 't) => 't = "appendChild"
 
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/replaceChild)
     */
   @send
-  external replaceChild: (node, node, t) => t = "replaceChild"
+  external replaceChild: (node, node, 't) => 't = "replaceChild"
 
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/removeChild)
     */
   @send
-  external removeChild: (node, t) => t = "removeChild"
+  external removeChild: (node, 't) => 't = "removeChild"
 }
 
 module NodeList = {
@@ -4245,7 +6630,7 @@ Returns true if qualifiedName is now present, and false otherwise.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/closest)
     */
   @send
-  external closest: (element, string) => e = "closest"
+  external closest: (element, string) => 'e = "closest"
 
   /**
     Returns true if matching selectors against element's root yields element, and false otherwise.
@@ -4690,7 +7075,7 @@ If node is a document or a shadow root, throws a "NotSupportedError" DOMExceptio
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Document/importNode)
     */
   @send
-  external importNode: (document, t, bool) => t = "importNode"
+  external importNode: (document, 't, bool) => 't = "importNode"
 
   /**
     Moves node from another document and returns it.
@@ -4699,7 +7084,7 @@ If node is a document, throws a "NotSupportedError" DOMException or, if node is 
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Document/adoptNode)
     */
   @send
-  external adoptNode: (document, t) => t = "adoptNode"
+  external adoptNode: (document, 't) => 't = "adoptNode"
 
   /**
     Creates an attribute object with a specified name.
@@ -5000,4 +7385,570 @@ Throws a "DataCloneError" DOMException if transfer array contains duplicate obje
     */
   @send
   external getSelection: window => selection = "getSelection"
+}
+
+module CharacterData = {
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CharacterData/substringData)
+    */
+  @send
+  external substringData: (characterData, int, int) => string = "substringData"
+
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CharacterData/appendData)
+    */
+  @send
+  external appendData: (characterData, string) => unit = "appendData"
+
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CharacterData/insertData)
+    */
+  @send
+  external insertData: (characterData, int, string) => unit = "insertData"
+
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CharacterData/deleteData)
+    */
+  @send
+  external deleteData: (characterData, int, int) => unit = "deleteData"
+
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CharacterData/replaceData)
+    */
+  @send
+  external replaceData: (characterData, int, int, string) => unit = "replaceData"
+}
+
+module StylePropertyMapReadOnly = {
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/StylePropertyMapReadOnly/getAll)
+    */
+  @send
+  external getAll: (stylePropertyMapReadOnly, string) => array<cssStyleValue> = "getAll"
+
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/StylePropertyMapReadOnly/has)
+    */
+  @send
+  external has: (stylePropertyMapReadOnly, string) => bool = "has"
+}
+
+module DOMRectReadOnly = {
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/DOMRectReadOnly)
+    */
+  @new
+  external make: (any, any, any, any) => domRectReadOnly = "DOMRectReadOnly"
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/DOMRectReadOnly/fromRect_static)
+    */
+  @scope("DOMRectReadOnly")
+  external fromRect: domRectInit => domRectReadOnly = "fromRect"
+
+  @send
+  external toJSON: domRectReadOnly => Dict.t<string> = "toJSON"
+}
+
+module DOMRect = {
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/DOMRect)
+    */
+  @new
+  external make: (any, any, any, any) => domRect = "DOMRect"
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/DOMRect/fromRect_static)
+    */
+  @scope("DOMRect")
+  external fromRect: domRectInit => domRect = "fromRect"
+}
+
+module DOMRectList = {
+  @send
+  external item: (domRectList, int) => domRect = "item"
+}
+
+module ElementInternals = {
+  /**
+    Sets both the state and submission value of internals's target element to value.
+
+If value is null, the element won't participate in form submission.
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/ElementInternals/setFormValue)
+    */
+  @send
+  external setFormValue: (elementInternals, unknown, unknown) => unit = "setFormValue"
+
+  /**
+    Marks internals's target element as suffering from the constraints indicated by the flags argument, and sets the element's validation message to message. If anchor is specified, the user agent might use it to indicate problems with the constraints of internals's target element when the form owner is validated interactively or reportValidity() is called.
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/ElementInternals/setValidity)
+    */
+  @send
+  external setValidity: (elementInternals, validityStateFlags, string, htmlElement) => unit =
+    "setValidity"
+
+  /**
+    Returns true if internals's target element has no validity problems; false otherwise. Fires an invalid event at the element in the latter case.
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/ElementInternals/checkValidity)
+    */
+  @send
+  external checkValidity: elementInternals => bool = "checkValidity"
+
+  /**
+    Returns true if internals's target element has no validity problems; otherwise, returns false, fires an invalid event at the element, and (if the event isn't canceled) reports the problem to the user.
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/ElementInternals/reportValidity)
+    */
+  @send
+  external reportValidity: elementInternals => bool = "reportValidity"
+}
+
+module DocumentFragment = {
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/DocumentFragment)
+    */
+  @new
+  external make: unit => documentFragment = "DocumentFragment"
+}
+
+module Text = {
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Text)
+    */
+  @new
+  external make: string => text = "Text"
+  /**
+    Splits data at the given offset and returns the remainder as Text node.
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Text/splitText)
+    */
+  @send
+  external splitText: (text, int) => text = "splitText"
+}
+
+module Comment = {
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Comment)
+    */
+  @new
+  external make: string => comment = "Comment"
+}
+
+module Range = {
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Range)
+    */
+  @new
+  external make: unit => range = "Range"
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Range/setStart)
+    */
+  @send
+  external setStart: (range, node, int) => unit = "setStart"
+
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Range/setEnd)
+    */
+  @send
+  external setEnd: (range, node, int) => unit = "setEnd"
+
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Range/setStartBefore)
+    */
+  @send
+  external setStartBefore: (range, node) => unit = "setStartBefore"
+
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Range/setStartAfter)
+    */
+  @send
+  external setStartAfter: (range, node) => unit = "setStartAfter"
+
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Range/setEndBefore)
+    */
+  @send
+  external setEndBefore: (range, node) => unit = "setEndBefore"
+
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Range/setEndAfter)
+    */
+  @send
+  external setEndAfter: (range, node) => unit = "setEndAfter"
+
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Range/collapse)
+    */
+  @send
+  external collapse: (range, bool) => unit = "collapse"
+
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Range/selectNode)
+    */
+  @send
+  external selectNode: (range, node) => unit = "selectNode"
+
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Range/selectNodeContents)
+    */
+  @send
+  external selectNodeContents: (range, node) => unit = "selectNodeContents"
+
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Range/compareBoundaryPoints)
+    */
+  @send
+  external compareBoundaryPoints: (range, int, range) => int = "compareBoundaryPoints"
+
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Range/deleteContents)
+    */
+  @send
+  external deleteContents: range => unit = "deleteContents"
+
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Range/extractContents)
+    */
+  @send
+  external extractContents: range => documentFragment = "extractContents"
+
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Range/cloneContents)
+    */
+  @send
+  external cloneContents: range => documentFragment = "cloneContents"
+
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Range/insertNode)
+    */
+  @send
+  external insertNode: (range, node) => unit = "insertNode"
+
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Range/surroundContents)
+    */
+  @send
+  external surroundContents: (range, node) => unit = "surroundContents"
+
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Range/cloneRange)
+    */
+  @send
+  external cloneRange: range => range = "cloneRange"
+
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Range/detach)
+    */
+  @send
+  external detach: range => unit = "detach"
+
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Range/isPointInRange)
+    */
+  @send
+  external isPointInRange: (range, node, int) => bool = "isPointInRange"
+
+  /**
+    Returns −1 if the point is before the range, 0 if the point is in the range, and 1 if the point is after the range.
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Range/comparePoint)
+    */
+  @send
+  external comparePoint: (range, node, int) => int = "comparePoint"
+
+  /**
+    Returns whether range intersects node.
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Range/intersectsNode)
+    */
+  @send
+  external intersectsNode: (range, node) => bool = "intersectsNode"
+
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Range/getClientRects)
+    */
+  @send
+  external getClientRects: range => domRectList = "getClientRects"
+
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Range/getBoundingClientRect)
+    */
+  @send
+  external getBoundingClientRect: range => domRect = "getBoundingClientRect"
+
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Range/createContextualFragment)
+    */
+  @send
+  external createContextualFragment: (range, string) => documentFragment =
+    "createContextualFragment"
+}
+
+module NodeFilter = {
+  @send
+  external acceptNode: (nodeFilter, node) => int = "acceptNode"
+}
+
+module NodeIterator = {
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/NodeIterator/nextNode)
+    */
+  @send
+  external nextNode: nodeIterator => node = "nextNode"
+
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/NodeIterator/previousNode)
+    */
+  @send
+  external previousNode: nodeIterator => node = "previousNode"
+}
+
+module TreeWalker = {
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/TreeWalker/parentNode)
+    */
+  @send
+  external parentNode: treeWalker => node = "parentNode"
+
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/TreeWalker/firstChild)
+    */
+  @send
+  external firstChild: treeWalker => node = "firstChild"
+
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/TreeWalker/lastChild)
+    */
+  @send
+  external lastChild: treeWalker => node = "lastChild"
+
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/TreeWalker/previousSibling)
+    */
+  @send
+  external previousSibling: treeWalker => node = "previousSibling"
+
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/TreeWalker/nextSibling)
+    */
+  @send
+  external nextSibling: treeWalker => node = "nextSibling"
+
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/TreeWalker/previousNode)
+    */
+  @send
+  external previousNode: treeWalker => node = "previousNode"
+
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/TreeWalker/nextNode)
+    */
+  @send
+  external nextNode: treeWalker => node = "nextNode"
+}
+
+module CaretPosition = {
+  @send
+  external getClientRect: caretPosition => domRect = "getClientRect"
+}
+
+module Selection = {
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Selection/getRangeAt)
+    */
+  @send
+  external getRangeAt: (selection, int) => range = "getRangeAt"
+
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Selection/addRange)
+    */
+  @send
+  external addRange: (selection, range) => unit = "addRange"
+
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Selection/removeRange)
+    */
+  @send
+  external removeRange: (selection, range) => unit = "removeRange"
+
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Selection/removeAllRanges)
+    */
+  @send
+  external removeAllRanges: selection => unit = "removeAllRanges"
+
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Selection/removeAllRanges)
+    */
+  @send
+  external empty: selection => unit = "empty"
+
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Selection/collapse)
+    */
+  @send
+  external collapse: (selection, node, int) => unit = "collapse"
+
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Selection/collapse)
+    */
+  @send
+  external setPosition: (selection, node, int) => unit = "setPosition"
+
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Selection/collapseToStart)
+    */
+  @send
+  external collapseToStart: selection => unit = "collapseToStart"
+
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Selection/collapseToEnd)
+    */
+  @send
+  external collapseToEnd: selection => unit = "collapseToEnd"
+
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Selection/extend)
+    */
+  @send
+  external extend: (selection, node, int) => unit = "extend"
+
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Selection/setBaseAndExtent)
+    */
+  @send
+  external setBaseAndExtent: (selection, node, int, node, int) => unit = "setBaseAndExtent"
+
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Selection/selectAllChildren)
+    */
+  @send
+  external selectAllChildren: (selection, node) => unit = "selectAllChildren"
+
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Selection/modify)
+    */
+  @send
+  external modify: (selection, string, string, string) => unit = "modify"
+
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Selection/deleteFromDocument)
+    */
+  @send
+  external deleteFromDocument: selection => unit = "deleteFromDocument"
+
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Selection/containsNode)
+    */
+  @send
+  external containsNode: (selection, node, bool) => bool = "containsNode"
+}
+
+module MediaQueryList = {}
+
+module MediaList = {
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/MediaList/item)
+    */
+  @send
+  external item: (mediaList, int) => string = "item"
+
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/MediaList/appendMedium)
+    */
+  @send
+  external appendMedium: (mediaList, string) => unit = "appendMedium"
+
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/MediaList/deleteMedium)
+    */
+  @send
+  external deleteMedium: (mediaList, string) => unit = "deleteMedium"
+}
+
+module IdleDeadline = {
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/IdleDeadline/timeRemaining)
+    */
+  @send
+  external timeRemaining: idleDeadline => float = "timeRemaining"
+}
+
+module CSSStyleValue = {
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CSSStyleValue/parse_static)
+    */
+  @scope("CSSStyleValue")
+  external parse: (string, string) => cssStyleValue = "parse"
+
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CSSStyleValue/parseAll_static)
+    */
+  @scope("CSSStyleValue")
+  external parseAll: (string, string) => array<cssStyleValue> = "parseAll"
+}
+
+module CSSStyleSheet = {
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CSSStyleSheet)
+    */
+  @new
+  external make: cssStyleSheetInit => cssStyleSheet = "CSSStyleSheet"
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CSSStyleSheet/insertRule)
+    */
+  @send
+  external insertRule: (cssStyleSheet, string, int) => int = "insertRule"
+
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CSSStyleSheet/deleteRule)
+    */
+  @send
+  external deleteRule: (cssStyleSheet, int) => unit = "deleteRule"
+
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CSSStyleSheet/replace)
+    */
+  @send
+  external replace: (cssStyleSheet, string) => Promise.t<cssStyleSheet> = "replace"
+
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CSSStyleSheet/replaceSync)
+    */
+  @send
+  external replaceSync: (cssStyleSheet, string) => unit = "replaceSync"
+}
+
+module CSSRuleList = {
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CSSRuleList/item)
+    */
+  @send
+  external item: (cssRuleList, int) => cssRule = "item"
+}
+
+module CSSStyleDeclaration = {
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CSSStyleDeclaration/item)
+    */
+  @send
+  external item: (cssStyleDeclaration, int) => string = "item"
+
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CSSStyleDeclaration/getPropertyValue)
+    */
+  @send
+  external getPropertyValue: (cssStyleDeclaration, string) => string = "getPropertyValue"
+
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CSSStyleDeclaration/getPropertyPriority)
+    */
+  @send
+  external getPropertyPriority: (cssStyleDeclaration, string) => string = "getPropertyPriority"
+
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CSSStyleDeclaration/setProperty)
+    */
+  @send
+  external setProperty: (cssStyleDeclaration, string, string, string) => unit = "setProperty"
+
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CSSStyleDeclaration/removeProperty)
+    */
+  @send
+  external removeProperty: (cssStyleDeclaration, string) => string = "removeProperty"
 }
