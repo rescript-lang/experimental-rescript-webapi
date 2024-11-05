@@ -3159,6 +3159,15 @@ export async function emitRescriptBindings(
         ],
         opens: ["Event"],
       },
+      // https://developer.mozilla.org/en-US/docs/Web/API/Screen_Wake_Lock_API
+      {
+        name: "ScreenWakeLock",
+        entries: [
+          enums(["WakeLockType"]),
+          individualInterfaces(["WakeLock", "WakeLockSentinel"]),
+        ],
+        opens: ["Event"],
+      },
       {
         name: "DOM",
         entries: [
@@ -3182,6 +3191,7 @@ export async function emitRescriptBindings(
           "MediaCaptureAndStreams",
           "MediaSession",
           "Permissions",
+          "ScreenWakeLock",
         ],
       },
       // https://developer.mozilla.org/en-US/docs/Web/API/Web_Audio_API
