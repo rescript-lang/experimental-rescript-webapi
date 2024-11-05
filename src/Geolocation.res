@@ -72,8 +72,8 @@ type geolocationPositionError = {
 
 type positionOptions = {
   mutable enableHighAccuracy: bool,
-  mutable timeout: any,
-  mutable maximumAge: any,
+  mutable timeout: int,
+  mutable maximumAge: int,
 }
 
 type positionCallback = geolocationPosition => unit

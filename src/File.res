@@ -203,14 +203,14 @@ module ReadableStream = {
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/ReadableStream/cancel)
     */
   @send
-  external cancel: (readableStream<'t>, any) => Promise.t<unit> = "cancel"
+  external cancel: (readableStream<'r>, any) => Promise.t<unit> = "cancel"
 
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/ReadableStream/getReader)
     */
   @send
   external getReader: (
-    readableStream<'t>,
+    readableStream<'r>,
     readableStreamGetReaderOptions,
   ) => readableStreamReader<'r> = "getReader"
 
@@ -219,7 +219,7 @@ module ReadableStream = {
     */
   @send
   external pipeThrough: (
-    readableStream<'t>,
+    readableStream<'r>,
     readableWritablePair<'t, 'r>,
     streamPipeOptions,
   ) => readableStream<'t> = "pipeThrough"
@@ -228,14 +228,14 @@ module ReadableStream = {
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/ReadableStream/pipeTo)
     */
   @send
-  external pipeTo: (readableStream<'t>, writableStream<'r>, streamPipeOptions) => Promise.t<unit> =
+  external pipeTo: (readableStream<'r>, writableStream<'r>, streamPipeOptions) => Promise.t<unit> =
     "pipeTo"
 
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/ReadableStream/tee)
     */
   @send
-  external tee: readableStream<'t> => array<readableStream<unit>> = "tee"
+  external tee: readableStream<'r> => array<readableStream<unit>> = "tee"
 }
 
 module WritableStream = {
@@ -248,19 +248,19 @@ module WritableStream = {
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/WritableStream/abort)
     */
   @send
-  external abort: (writableStream<'t>, any) => Promise.t<unit> = "abort"
+  external abort: (writableStream<'w>, any) => Promise.t<unit> = "abort"
 
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/WritableStream/close)
     */
   @send
-  external close: writableStream<'t> => Promise.t<unit> = "close"
+  external close: writableStream<'w> => Promise.t<unit> = "close"
 
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/WritableStream/getWriter)
     */
   @send
-  external getWriter: writableStream<'t> => writableStreamDefaultWriter<'w> = "getWriter"
+  external getWriter: writableStream<'w> => writableStreamDefaultWriter<'w> = "getWriter"
 }
 
 module WritableStreamDefaultController = {

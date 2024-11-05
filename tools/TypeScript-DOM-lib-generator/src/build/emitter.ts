@@ -2156,6 +2156,21 @@ export async function emitRescriptBindings(
     );
   }
 
+  function mapTypeParams(
+    typeParameters: Browser.TypeParameter[] | undefined,
+  ): string {
+    if (!typeParameters) return "";
+    return (
+      "<" +
+      typeParameters.map((tp) => `'${toCamelCase(tp.name)}`).join(", ") +
+      ">"
+    );
+  }
+
+  function mapInterfaceName(i: Browser.Interface) {
+    return toCamelCase(i.name) + mapTypeParams(i.typeParameters);
+  }
+
   function printTypeParams(
     typeParameters: Browser.TypeParameter[] | undefined,
   ) {
@@ -2189,6 +2204,7 @@ export async function emitRescriptBindings(
       case "unsigned short":
       case "long":
       case "unsigned long long":
+      case "unsigned long":
       case "long long":
       case "SVGAnimatedNumber":
       case "EpochTimeStamp":
@@ -2247,7 +2263,6 @@ export async function emitRescriptBindings(
         return "string";
 
       case "unrestricted double":
-      case "unsigned long":
       case "record":
         return "any";
 
@@ -2549,6 +2564,22 @@ export async function emitRescriptBindings(
     printer.endLine();
   }
 
+  // method is quite empty for the forEach method.
+  // This occurs for NodeList and NodeListOf
+  function emitForEachMethod(i: Browser.Interface, method: Browser.Method) {
+    const itemType = i.typeParameters ? "'tNode" : "node";
+
+    printComment({
+      mdnUrl: method.mdnUrl,
+      comment: method.comment,
+    });
+    printer.printLine("@send");
+    printer.printLine(
+      `external forEach: (${mapInterfaceName(i)}, (${itemType} => int => ${mapInterfaceName(i)} => unit)) => unit = "forEach"`,
+    );
+    printer.endLine();
+  }
+
   // I'm deviating quite heavily from what the typescript definition does here
   // It simplifies the event handling quite a bit for now.
   function emitAddOrRemoveEventListener(
@@ -2587,6 +2618,14 @@ export async function emitRescriptBindings(
     printer.endLine();
   }
 
+  function mapMethodName(method: Browser.Method) {
+    if (reservedRescriptWords.includes(method.name)) {
+      return `${method.name}_`;
+    }
+
+    return method.name;
+  }
+
   function emitMethod(i: Browser.Interface, method: Browser.Method) {
     if (method.signature.length === 0 || method.deprecated) return;
 
@@ -2602,19 +2641,19 @@ export async function emitRescriptBindings(
     if (method.static) {
       printer.printLine(`@scope("${i.name}")`);
       printer.printLine(
-        `external ${method.name}: (${ps}) => ${transformTyped(signature)} = "${method.name}"`,
+        `external ${mapMethodName(method)}: (${ps}) => ${transformTyped(signature)} = "${method.name}"`,
       );
     } else {
       ps = ps.length > 0 ? ", " + ps : "";
 
-      let senderName = toCamelCase(i.name);
-      if (alwaysGenericTypes.has(i.name)) {
-        senderName = `${senderName}<'t>`;
-      }
+      // let senderName = toCamelCase(i.name);
+      // if (alwaysGenericTypes.has(i.name)) {
+      //   senderName = `${senderName}<'t>`;
+      // }
 
       printer.printLine("@send");
       printer.printLine(
-        `external ${method.name}: (${senderName}${ps}) => ${transformTyped(signature)} = "${method.name}"`,
+        `external ${mapMethodName(method)}: (${mapInterfaceName(i)}${ps}) => ${transformTyped(signature)} = "${method.name}"`,
       );
     }
 
@@ -2631,6 +2670,10 @@ export async function emitRescriptBindings(
   }
 
   function emitConstructor(i: Browser.Interface, c: Browser.Constructor) {
+    if (c.signature === undefined || c.signature.length === undefined) {
+      console.log("YOO C", i.name, c);
+      return;
+    }
     if (c.signature.length === 0) return;
 
     const signature = c.signature[0];
@@ -2665,12 +2708,23 @@ export async function emitRescriptBindings(
       emitConstructor(i, i.constructor);
     }
 
-    for (const method of Object.values(i.methods.method)) {
+    for (const [key, method] of Object.entries(i.methods.method)) {
+      if (!method.name && key === "forEach") {
+        emitForEachMethod(i, method);
+        continue;
+      }
+
       if (method.name === "addEventListener") {
         emitAddOrRemoveEventListener("add", i, method);
-      } else if (method.name === "removeEventListener") {
+        continue;
+      }
+
+      if (method.name === "removeEventListener") {
         emitAddOrRemoveEventListener("remove", i, method);
-      } else {
+        continue;
+      }
+
+      if (method.signature) {
         emitMethod(i, method);
       }
     }
@@ -2815,8 +2869,8 @@ export async function emitRescriptBindings(
   function emitVibratePattern() {
     printer.printLine("@unboxed");
     printer.printLine("type vibratePattern =");
-    printer.increaseIndent(); 
-    printer.printLine("| Int(int)")
+    printer.increaseIndent();
+    printer.printLine("| Int(int)");
     printer.printLine("| IntArray(array<int>)");
     printer.decreaseIndent();
     printer.endLine();
@@ -2826,7 +2880,7 @@ export async function emitRescriptBindings(
     return () => {
       printer.printLine(`type ${toCamelCase(name)} = any`);
       printer.endLine();
-    }
+    };
   }
 
   async function emit() {
@@ -3274,8 +3328,16 @@ export async function emitRescriptBindings(
       {
         name: "Gamepad",
         entries: [
-          enums([ "GamepadMappingType", "GamepadHapticEffectType", "GamepadHapticsResult"]),
-          individualInterfaces([ "GamepadButton", "GamepadHapticActuator", "Gamepad", ]),
+          enums([
+            "GamepadMappingType",
+            "GamepadHapticEffectType",
+            "GamepadHapticsResult",
+          ]),
+          individualInterfaces([
+            "GamepadButton",
+            "GamepadHapticActuator",
+            "Gamepad",
+          ]),
           dictionaries(["GamepadEffectParameters"]),
         ],
         opens: [],
@@ -3284,32 +3346,74 @@ export async function emitRescriptBindings(
       {
         name: "WebMIDI",
         entries: [
-          individualInterfaces([
-            "MIDIInputMap",
-            "MIDIOutputMap",
-            "MIDIAccess"]),
+          individualInterfaces(["MIDIInputMap", "MIDIOutputMap", "MIDIAccess"]),
           dictionaries(["MIDIOptions"]),
         ],
-        opens: [ "Event"],
+        opens: ["Event"],
       },
+      // https://developer.mozilla.org/en-US/docs/Web/API/History
+      {
+        name: "History",
+        entries: [
+          enums(["ScrollRestoration"]),
+          individualInterfaces(["History"]),
+        ],
+        opens: ["Prelude"],
+      },
+      // https://developer.mozilla.org/en-US/docs/Web/API/Document_Object_Model
+      // https://developer.mozilla.org/en-US/docs/Web/API/HTML_DOM_API
       {
         name: "DOM",
         entries: [
+          enums([
+            "ShadowRootMode",
+            "SlotAssignmentMode",
+            "AutoFillBase",
+            "DocumentReadyState",
+            "DocumentVisibilityState",
+          ]),
           // TODO: perhaps move to Web Share API?
           // See https://developer.mozilla.org/en-US/docs/Web/API/Web_Share_API
           // It does not have interfaces and only extends the navigator object
-          dictionaries([
-            "ShareData"
-          ]),
+          dictionaries(["ShareData"]),
           individualInterfaces([
             "DOMException",
             "DOMStringList",
             "Location",
             "UserActivation",
             "Navigator",
+            "DOMTokenList",
+            "NamedNodeMap",
+            "FragmentDirective",
+            "CustomElementRegistry",
+            "BarProp",
           ]),
           byHand("VibratePattern", emitVibratePattern),
           byHand("HTMLMediaElement", emitAny("HTMLMediaElement")),
+          chain(["AnimationTimeline", "DocumentTimeline"]),
+          chain([
+            "Node",
+            "NodeList",
+            "NodeListOf",
+            "Element",
+            "ShadowRoot",
+            "HTMLCollection",
+            "HTMLCollectionOf",
+            "HTMLFormControlsCollection",
+            "HTMLElement",
+            "HTMLHeadElement",
+            "HTMLFormElement",
+            "HTMLImageElement",
+            "HTMLEmbedElement",
+            "HTMLAnchorElement",
+            "HTMLAreaElement",
+            "HTMLScriptElement",
+            "DOMImplementation",
+            "DocumentType",
+            "Document",
+            "Window",
+            "MutationRecord",
+          ]),
         ],
         opens: [
           "Prelude",
@@ -3325,7 +3429,8 @@ export async function emitRescriptBindings(
           "EncryptedMediaExtensions",
           "Gamepad",
           "File",
-          "WebMIDI"
+          "WebMIDI",
+          "History",
         ],
       },
       // https://developer.mozilla.org/en-US/docs/Web/API/Web_Audio_API

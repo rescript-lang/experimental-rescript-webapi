@@ -14,7 +14,7 @@ type history = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/History/length)
     */
-  length: any,
+  length: int,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/History/scrollRestoration)
     */

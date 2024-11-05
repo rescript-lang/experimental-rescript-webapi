@@ -126,8 +126,8 @@ type displayMediaStreamOptions = {
 }
 
 type uLongRange = {
-  mutable max: any,
-  mutable min: any,
+  mutable max: int,
+  mutable min: int,
 }
 
 type doubleRange = {
@@ -177,17 +177,17 @@ type mediaTrackConstraints = {
 }
 
 type mediaTrackSettings = {
-  mutable width: any,
-  mutable height: any,
+  mutable width: int,
+  mutable height: int,
   mutable aspectRatio: float,
   mutable frameRate: float,
   mutable facingMode: string,
-  mutable sampleRate: any,
-  mutable sampleSize: any,
+  mutable sampleRate: int,
+  mutable sampleSize: int,
   mutable echoCancellation: bool,
   mutable autoGainControl: bool,
   mutable noiseSuppression: bool,
-  mutable channelCount: any,
+  mutable channelCount: int,
   mutable deviceId: string,
   mutable groupId: string,
   mutable backgroundBlur: bool,

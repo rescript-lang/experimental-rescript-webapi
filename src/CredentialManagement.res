@@ -84,7 +84,7 @@ type authenticationExtensionsClientInputs = {
 
 type publicKeyCredentialRequestOptions = {
   mutable challenge: bufferSource,
-  mutable timeout: any,
+  mutable timeout: int,
   mutable rpId: string,
   mutable allowCredentials: array<publicKeyCredentialDescriptor>,
   mutable userVerification: userVerificationRequirement,
@@ -127,7 +127,7 @@ type publicKeyCredentialCreationOptions = {
   mutable user: publicKeyCredentialUserEntity,
   mutable challenge: bufferSource,
   mutable pubKeyCredParams: array<publicKeyCredentialParameters>,
-  mutable timeout: any,
+  mutable timeout: int,
   mutable excludeCredentials: array<publicKeyCredentialDescriptor>,
   mutable authenticatorSelection: authenticatorSelectionCriteria,
   mutable attestation: attestationConveyancePreference,

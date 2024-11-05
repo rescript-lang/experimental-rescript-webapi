@@ -35,14 +35,14 @@ type audioConfiguration = {
   mutable contentType: string,
   mutable channels: string,
   mutable bitrate: int,
-  mutable samplerate: any,
+  mutable samplerate: int,
   mutable spatialRendering: bool,
 }
 
 type videoConfiguration = {
   mutable contentType: string,
-  mutable width: any,
-  mutable height: any,
+  mutable width: int,
+  mutable height: int,
   mutable bitrate: int,
   mutable framerate: float,
   mutable hasAlphaChannel: bool,

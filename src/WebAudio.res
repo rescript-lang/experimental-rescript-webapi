@@ -66,7 +66,7 @@ type audioBuffer = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/AudioBuffer/length)
     */
-  length: any,
+  length: int,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/AudioBuffer/duration)
     */
@@ -74,7 +74,7 @@ type audioBuffer = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/AudioBuffer/numberOfChannels)
     */
-  numberOfChannels: any,
+  numberOfChannels: int,
 }
 
 /**
@@ -145,15 +145,15 @@ type rec audioNode = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/AudioNode/numberOfInputs)
     */
-  numberOfInputs: any,
+  numberOfInputs: int,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/AudioNode/numberOfOutputs)
     */
-  numberOfOutputs: any,
+  numberOfOutputs: int,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/AudioNode/channelCount)
     */
-  mutable channelCount: any,
+  mutable channelCount: int,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/AudioNode/channelCountMode)
     */
@@ -177,15 +177,15 @@ and audioDestinationNode = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/AudioNode/numberOfInputs)
     */
-  numberOfInputs: any,
+  numberOfInputs: int,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/AudioNode/numberOfOutputs)
     */
-  numberOfOutputs: any,
+  numberOfOutputs: int,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/AudioNode/channelCount)
     */
-  mutable channelCount: any,
+  mutable channelCount: int,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/AudioNode/channelCountMode)
     */
@@ -199,7 +199,7 @@ and audioDestinationNode = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/AudioDestinationNode/maxChannelCount)
     */
-  maxChannelCount: any,
+  maxChannelCount: int,
 }
 
 /**
@@ -245,15 +245,15 @@ and biquadFilterNode = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/AudioNode/numberOfInputs)
     */
-  numberOfInputs: any,
+  numberOfInputs: int,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/AudioNode/numberOfOutputs)
     */
-  numberOfOutputs: any,
+  numberOfOutputs: int,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/AudioNode/channelCount)
     */
-  mutable channelCount: any,
+  mutable channelCount: int,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/AudioNode/channelCountMode)
     */
@@ -371,15 +371,15 @@ and audioScheduledSourceNode = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/AudioNode/numberOfInputs)
     */
-  numberOfInputs: any,
+  numberOfInputs: int,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/AudioNode/numberOfOutputs)
     */
-  numberOfOutputs: any,
+  numberOfOutputs: int,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/AudioNode/channelCount)
     */
-  mutable channelCount: any,
+  mutable channelCount: int,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/AudioNode/channelCountMode)
     */
@@ -407,15 +407,15 @@ and audioBufferSourceNode = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/AudioNode/numberOfInputs)
     */
-  numberOfInputs: any,
+  numberOfInputs: int,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/AudioNode/numberOfOutputs)
     */
-  numberOfOutputs: any,
+  numberOfOutputs: int,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/AudioNode/channelCount)
     */
-  mutable channelCount: any,
+  mutable channelCount: int,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/AudioNode/channelCountMode)
     */
@@ -465,15 +465,15 @@ and channelMergerNode = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/AudioNode/numberOfInputs)
     */
-  numberOfInputs: any,
+  numberOfInputs: int,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/AudioNode/numberOfOutputs)
     */
-  numberOfOutputs: any,
+  numberOfOutputs: int,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/AudioNode/channelCount)
     */
-  mutable channelCount: any,
+  mutable channelCount: int,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/AudioNode/channelCountMode)
     */
@@ -498,15 +498,15 @@ and channelSplitterNode = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/AudioNode/numberOfInputs)
     */
-  numberOfInputs: any,
+  numberOfInputs: int,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/AudioNode/numberOfOutputs)
     */
-  numberOfOutputs: any,
+  numberOfOutputs: int,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/AudioNode/channelCount)
     */
-  mutable channelCount: any,
+  mutable channelCount: int,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/AudioNode/channelCountMode)
     */
@@ -533,15 +533,15 @@ and constantSourceNode = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/AudioNode/numberOfInputs)
     */
-  numberOfInputs: any,
+  numberOfInputs: int,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/AudioNode/numberOfOutputs)
     */
-  numberOfOutputs: any,
+  numberOfOutputs: int,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/AudioNode/channelCount)
     */
-  mutable channelCount: any,
+  mutable channelCount: int,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/AudioNode/channelCountMode)
     */
@@ -571,15 +571,15 @@ and convolverNode = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/AudioNode/numberOfInputs)
     */
-  numberOfInputs: any,
+  numberOfInputs: int,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/AudioNode/numberOfOutputs)
     */
-  numberOfOutputs: any,
+  numberOfOutputs: int,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/AudioNode/channelCount)
     */
-  mutable channelCount: any,
+  mutable channelCount: int,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/AudioNode/channelCountMode)
     */
@@ -613,15 +613,15 @@ and delayNode = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/AudioNode/numberOfInputs)
     */
-  numberOfInputs: any,
+  numberOfInputs: int,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/AudioNode/numberOfOutputs)
     */
-  numberOfOutputs: any,
+  numberOfOutputs: int,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/AudioNode/channelCount)
     */
-  mutable channelCount: any,
+  mutable channelCount: int,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/AudioNode/channelCountMode)
     */
@@ -651,15 +651,15 @@ and dynamicsCompressorNode = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/AudioNode/numberOfInputs)
     */
-  numberOfInputs: any,
+  numberOfInputs: int,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/AudioNode/numberOfOutputs)
     */
-  numberOfOutputs: any,
+  numberOfOutputs: int,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/AudioNode/channelCount)
     */
-  mutable channelCount: any,
+  mutable channelCount: int,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/AudioNode/channelCountMode)
     */
@@ -709,15 +709,15 @@ and gainNode = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/AudioNode/numberOfInputs)
     */
-  numberOfInputs: any,
+  numberOfInputs: int,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/AudioNode/numberOfOutputs)
     */
-  numberOfOutputs: any,
+  numberOfOutputs: int,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/AudioNode/channelCount)
     */
-  mutable channelCount: any,
+  mutable channelCount: int,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/AudioNode/channelCountMode)
     */
@@ -747,15 +747,15 @@ and iirFilterNode = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/AudioNode/numberOfInputs)
     */
-  numberOfInputs: any,
+  numberOfInputs: int,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/AudioNode/numberOfOutputs)
     */
-  numberOfOutputs: any,
+  numberOfOutputs: int,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/AudioNode/channelCount)
     */
-  mutable channelCount: any,
+  mutable channelCount: int,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/AudioNode/channelCountMode)
     */
@@ -783,15 +783,15 @@ and oscillatorNode = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/AudioNode/numberOfInputs)
     */
-  numberOfInputs: any,
+  numberOfInputs: int,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/AudioNode/numberOfOutputs)
     */
-  numberOfOutputs: any,
+  numberOfOutputs: int,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/AudioNode/channelCount)
     */
-  mutable channelCount: any,
+  mutable channelCount: int,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/AudioNode/channelCountMode)
     */
@@ -830,15 +830,15 @@ and pannerNode = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/AudioNode/numberOfInputs)
     */
-  numberOfInputs: any,
+  numberOfInputs: int,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/AudioNode/numberOfOutputs)
     */
-  numberOfOutputs: any,
+  numberOfOutputs: int,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/AudioNode/channelCount)
     */
-  mutable channelCount: any,
+  mutable channelCount: int,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/AudioNode/channelCountMode)
     */
@@ -916,11 +916,11 @@ type analyserNode = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/AnalyserNode/fftSize)
     */
-  mutable fftSize: any,
+  mutable fftSize: int,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/AnalyserNode/frequencyBinCount)
     */
-  frequencyBinCount: any,
+  frequencyBinCount: int,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/AnalyserNode/minDecibels)
     */
@@ -1065,7 +1065,7 @@ type offlineAudioContext = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/OfflineAudioContext/length)
     */
-  length: any,
+  length: int,
 }
 
 type periodicWaveConstraints = {mutable disableNormalization: bool}
@@ -1076,8 +1076,8 @@ type audioTimestamp = {
 }
 
 type uLongRange = {
-  mutable max: any,
-  mutable min: any,
+  mutable max: int,
+  mutable min: int,
 }
 
 type doubleRange = {
@@ -1127,17 +1127,17 @@ type mediaTrackConstraints = {
 }
 
 type mediaTrackSettings = {
-  mutable width: any,
-  mutable height: any,
+  mutable width: int,
+  mutable height: int,
   mutable aspectRatio: float,
   mutable frameRate: float,
   mutable facingMode: string,
-  mutable sampleRate: any,
-  mutable sampleSize: any,
+  mutable sampleRate: int,
+  mutable sampleSize: int,
   mutable echoCancellation: bool,
   mutable autoGainControl: bool,
   mutable noiseSuppression: bool,
-  mutable channelCount: any,
+  mutable channelCount: int,
   mutable deviceId: string,
   mutable groupId: string,
   mutable backgroundBlur: bool,
@@ -1145,8 +1145,8 @@ type mediaTrackSettings = {
 }
 
 type audioBufferOptions = {
-  mutable numberOfChannels: any,
-  mutable length: any,
+  mutable numberOfChannels: int,
+  mutable length: int,
   mutable sampleRate: float,
 }
 
@@ -1163,7 +1163,7 @@ type offlineAudioCompletionEventInit = {
 }
 
 type audioNodeOptions = {
-  mutable channelCount: any,
+  mutable channelCount: int,
   mutable channelCountMode: channelCountMode,
   mutable channelInterpretation: channelInterpretation,
 }
@@ -1188,12 +1188,12 @@ type audioBufferSourceOptions = {
 
 type channelMergerOptions = {
   ...audioNodeOptions,
-  mutable numberOfInputs: any,
+  mutable numberOfInputs: int,
 }
 
 type channelSplitterOptions = {
   ...audioNodeOptions,
-  mutable numberOfOutputs: any,
+  mutable numberOfOutputs: int,
 }
 
 type constantSourceOptions = {mutable offset: float}
@@ -1258,7 +1258,7 @@ type pannerOptions = {
 
 type analyserOptions = {
   ...audioNodeOptions,
-  mutable fftSize: any,
+  mutable fftSize: int,
   mutable maxDecibels: float,
   mutable minDecibels: float,
   mutable smoothingTimeConstant: float,
@@ -1292,16 +1292,16 @@ type mediaStreamAudioSourceOptions = {mutable mediaStream: mediaStream}
 
 type audioWorkletNodeOptions = {
   ...audioNodeOptions,
-  mutable numberOfInputs: any,
-  mutable numberOfOutputs: any,
-  mutable outputChannelCount: array<any>,
+  mutable numberOfInputs: int,
+  mutable numberOfOutputs: int,
+  mutable outputChannelCount: array<int>,
   mutable parameterData: any,
   mutable processorOptions: Dict.t<string>,
 }
 
 type offlineAudioContextOptions = {
-  mutable numberOfChannels: any,
-  mutable length: any,
+  mutable numberOfChannels: int,
+  mutable length: int,
   mutable sampleRate: float,
 }
 
@@ -1319,19 +1319,19 @@ module AudioBuffer = {
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/AudioBuffer/getChannelData)
     */
   @send
-  external getChannelData: (audioBuffer, any) => array<float> = "getChannelData"
+  external getChannelData: (audioBuffer, int) => array<float> = "getChannelData"
 
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/AudioBuffer/copyFromChannel)
     */
   @send
-  external copyFromChannel: (audioBuffer, array<float>, any, any) => unit = "copyFromChannel"
+  external copyFromChannel: (audioBuffer, array<float>, int, int) => unit = "copyFromChannel"
 
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/AudioBuffer/copyToChannel)
     */
   @send
-  external copyToChannel: (audioBuffer, array<float>, any, any) => unit = "copyToChannel"
+  external copyToChannel: (audioBuffer, array<float>, int, int) => unit = "copyToChannel"
 }
 
 module AudioProcessingEvent = {
@@ -1395,7 +1395,7 @@ module AudioNode = {
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/AudioNode/connect)
     */
   @send
-  external connect: (audioNode, audioNode, any, any) => audioNode = "connect"
+  external connect: (audioNode, audioNode, int, int) => audioNode = "connect"
 
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/AudioNode/disconnect)
@@ -1421,7 +1421,7 @@ module BaseAudioContext = {
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/BaseAudioContext/createBuffer)
     */
   @send
-  external createBuffer: (baseAudioContext, any, any, float) => audioBuffer = "createBuffer"
+  external createBuffer: (baseAudioContext, int, int, float) => audioBuffer = "createBuffer"
 
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/BaseAudioContext/createBufferSource)
@@ -1433,13 +1433,13 @@ module BaseAudioContext = {
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/BaseAudioContext/createChannelMerger)
     */
   @send
-  external createChannelMerger: (baseAudioContext, any) => channelMergerNode = "createChannelMerger"
+  external createChannelMerger: (baseAudioContext, int) => channelMergerNode = "createChannelMerger"
 
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/BaseAudioContext/createChannelSplitter)
     */
   @send
-  external createChannelSplitter: (baseAudioContext, any) => channelSplitterNode =
+  external createChannelSplitter: (baseAudioContext, int) => channelSplitterNode =
     "createChannelSplitter"
 
   /**
