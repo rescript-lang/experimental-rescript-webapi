@@ -11,11 +11,23 @@ let WritableStreamDefaultController = {};
 
 let File = {};
 
+let FileSystemHandle = {};
+
+let FileSystemDirectoryHandle = {};
+
+let FileSystemFileHandle = {};
+
+let FileSystemWritableFileStream = {};
+
 export {
   Blob,
   ReadableStream,
   WritableStream,
   WritableStreamDefaultController,
   File,
+  FileSystemHandle,
+  FileSystemDirectoryHandle,
+  FileSystemFileHandle,
+  FileSystemWritableFileStream,
 }
 /* No side effect */

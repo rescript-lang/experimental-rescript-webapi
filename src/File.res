@@ -9,6 +9,10 @@ type endingType =
 
 type readableStreamReaderMode = | @as("byob") Byob
 
+type fileSystemHandleKind =
+  | @as("directory") Directory
+  | @as("file") File
+
 /**
 A file-like object of immutable, raw data. Blobs represent data that isn't necessarily in a JavaScript-native format. The File interface is based on Blob, inheriting blob functionality and expanding it to support files on the user's system.
 [See Blob on MDN](https://developer.mozilla.org/docs/Web/API/Blob)
@@ -78,6 +82,41 @@ type file = {
   webkitRelativePath: string,
 }
 
+/**
+[See FileSystemHandle on MDN](https://developer.mozilla.org/docs/Web/API/FileSystemHandle)
+*/
+type fileSystemHandle = {
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/FileSystemHandle/kind)
+    */
+  kind: fileSystemHandleKind,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/FileSystemHandle/name)
+    */
+  name: string,
+}
+
+/**
+[See FileSystemDirectoryHandle on MDN](https://developer.mozilla.org/docs/Web/API/FileSystemDirectoryHandle)
+*/
+type fileSystemDirectoryHandle = {
+  ...fileSystemHandle,
+}
+
+/**
+[See FileSystemFileHandle on MDN](https://developer.mozilla.org/docs/Web/API/FileSystemFileHandle)
+*/
+type fileSystemFileHandle = {
+  ...fileSystemHandle,
+}
+
+/**
+[See FileSystemWritableFileStream on MDN](https://developer.mozilla.org/docs/Web/API/FileSystemWritableFileStream)
+*/
+type fileSystemWritableFileStream = {
+  ...writableStream<any>,
+}
+
 @unboxed
 type blobPart =
   | String(string)
@@ -92,6 +131,8 @@ type underlyingSink<'t> = any
 type readableStreamReader<'t> = any
 
 type writableStreamDefaultWriter<'t> = any
+
+type fileSystemWriteChunkType = any
 
 type underlyingSourceCancelCallback = any => Promise.t<unit>
 
@@ -155,6 +196,14 @@ type filePropertyBag = {
   ...blobPropertyBag,
   mutable lastModified: int,
 }
+
+type fileSystemGetFileOptions = {mutable create: bool}
+
+type fileSystemGetDirectoryOptions = {mutable create: bool}
+
+type fileSystemRemoveOptions = {mutable recursive: bool}
+
+type fileSystemCreateWritableOptions = {mutable keepExistingData: bool}
 
 module Blob = {
   /**
@@ -277,4 +326,89 @@ module File = {
     */
   @new
   external make: (array<blobPart>, string, filePropertyBag) => file = "File"
+}
+
+module FileSystemHandle = {
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/FileSystemHandle/isSameEntry)
+    */
+  @send
+  external isSameEntry: (fileSystemHandle, fileSystemHandle) => Promise.t<bool> = "isSameEntry"
+}
+
+module FileSystemDirectoryHandle = {
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/FileSystemDirectoryHandle/getFileHandle)
+    */
+  @send
+  external getFileHandle: (
+    fileSystemDirectoryHandle,
+    string,
+    fileSystemGetFileOptions,
+  ) => Promise.t<fileSystemFileHandle> = "getFileHandle"
+
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/FileSystemDirectoryHandle/getDirectoryHandle)
+    */
+  @send
+  external getDirectoryHandle: (
+    fileSystemDirectoryHandle,
+    string,
+    fileSystemGetDirectoryOptions,
+  ) => Promise.t<fileSystemDirectoryHandle> = "getDirectoryHandle"
+
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/FileSystemDirectoryHandle/removeEntry)
+    */
+  @send
+  external removeEntry: (
+    fileSystemDirectoryHandle,
+    string,
+    fileSystemRemoveOptions,
+  ) => Promise.t<unit> = "removeEntry"
+
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/FileSystemDirectoryHandle/resolve)
+    */
+  @send
+  external resolve: (fileSystemDirectoryHandle, fileSystemHandle) => Promise.t<array<string>> =
+    "resolve"
+}
+
+module FileSystemFileHandle = {
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/FileSystemFileHandle/getFile)
+    */
+  @send
+  external getFile: fileSystemFileHandle => Promise.t<file> = "getFile"
+
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/FileSystemFileHandle/createWritable)
+    */
+  @send
+  external createWritable: (
+    fileSystemFileHandle,
+    fileSystemCreateWritableOptions,
+  ) => Promise.t<fileSystemWritableFileStream> = "createWritable"
+}
+
+module FileSystemWritableFileStream = {
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/FileSystemWritableFileStream/write)
+    */
+  @send
+  external write: (fileSystemWritableFileStream, fileSystemWriteChunkType) => Promise.t<unit> =
+    "write"
+
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/FileSystemWritableFileStream/seek)
+    */
+  @send
+  external seek: (fileSystemWritableFileStream, int) => Promise.t<unit> = "seek"
+
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/FileSystemWritableFileStream/truncate)
+    */
+  @send
+  external truncate: (fileSystemWritableFileStream, int) => Promise.t<unit> = "truncate"
 }
