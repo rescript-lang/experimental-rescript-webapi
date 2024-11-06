@@ -4,6 +4,7 @@ open Prelude
 open Event
 open PushManager
 open Notification
+open Fetch
 
 type serviceWorkerState =
   | @as("activated") Activated
@@ -95,6 +96,18 @@ type serviceWorkerContainer = {
   ready: Promise.t<serviceWorkerRegistration>,
 }
 
+/**
+The storage for Cache objects.
+[See CacheStorage on MDN](https://developer.mozilla.org/docs/Web/API/CacheStorage)
+*/
+type cacheStorage = {}
+
+/**
+Provides a storage mechanism for Request / Response object pairs that are cached, for example as part of the ServiceWorker life cycle. Note that the Cache interface is exposed to windowed scopes as well as workers. You don't have to use it in conjunction with service workers, even though it is defined in the service worker spec.
+[See Cache on MDN](https://developer.mozilla.org/docs/Web/API/Cache)
+*/
+type cache = {}
+
 type navigationPreloadState = {
   mutable enabled: bool,
   mutable headerValue: string,
@@ -105,6 +118,19 @@ type registrationOptions = {
   @as("type") mutable type_: workerType,
   mutable updateViaCache: serviceWorkerUpdateViaCache,
 }
+
+type cacheQueryOptions = {
+  mutable ignoreSearch: bool,
+  mutable ignoreMethod: bool,
+  mutable ignoreVary: bool,
+}
+
+type multiCacheQueryOptions = {
+  ...cacheQueryOptions,
+  mutable cacheName: string,
+}
+
+type requestInfo = any
 
 module ServiceWorker = {
   /**
@@ -205,4 +231,82 @@ module ServiceWorkerContainer = {
     */
   @send
   external startMessages: serviceWorkerContainer => unit = "startMessages"
+}
+
+module CacheStorage = {
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CacheStorage/match)
+    */
+  @send
+  external match: (cacheStorage, requestInfo, multiCacheQueryOptions) => Nullable.t<response> =
+    "match"
+
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CacheStorage/has)
+    */
+  @send
+  external has: (cacheStorage, string) => Promise.t<bool> = "has"
+
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CacheStorage/open)
+    */
+  @send
+  external open_: (cacheStorage, string) => Promise.t<cache> = "open"
+
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CacheStorage/delete)
+    */
+  @send
+  external delete: (cacheStorage, string) => Promise.t<bool> = "delete"
+
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CacheStorage/keys)
+    */
+  @send
+  external keys: cacheStorage => Promise.t<array<string>> = "keys"
+}
+
+module Cache = {
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Cache/match)
+    */
+  @send
+  external match: (cache, requestInfo, cacheQueryOptions) => Nullable.t<response> = "match"
+
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Cache/matchAll)
+    */
+  @send
+  external matchAll: (cache, requestInfo, cacheQueryOptions) => Promise.t<array<response>> =
+    "matchAll"
+
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Cache/add)
+    */
+  @send
+  external add: (cache, requestInfo) => Promise.t<unit> = "add"
+
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Cache/addAll)
+    */
+  @send
+  external addAll: (cache, array<requestInfo>) => Promise.t<unit> = "addAll"
+
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Cache/put)
+    */
+  @send
+  external put: (cache, requestInfo, response) => Promise.t<unit> = "put"
+
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Cache/delete)
+    */
+  @send
+  external delete: (cache, requestInfo, cacheQueryOptions) => Promise.t<bool> = "delete"
+
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Cache/keys)
+    */
+  @send
+  external keys: (cache, requestInfo, cacheQueryOptions) => Promise.t<array<request>> = "keys"
 }

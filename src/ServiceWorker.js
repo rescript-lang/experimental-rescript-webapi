@@ -9,10 +9,16 @@ let ServiceWorkerRegistration = {};
 
 let ServiceWorkerContainer = {};
 
+let CacheStorage = {};
+
+let Cache = {};
+
 export {
   ServiceWorker,
   NavigationPreloadManager,
   ServiceWorkerRegistration,
   ServiceWorkerContainer,
+  CacheStorage,
+  Cache,
 }
 /* No side effect */

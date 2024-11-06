@@ -552,6 +552,9 @@ export async function emitRescriptBindings(
       case "RTCRtpTransform":
         return "rtcRtpScriptTransform";
 
+      case "null":
+        return "Null.t<unit>";
+
       default:
         // TODO: some types are a inline variant type
         // Example: "IDBValidKey | IDBKeyRange"
@@ -1568,6 +1571,34 @@ export async function emitRescriptBindings(
         ],
         opens: ["Prelude", "Event"],
       },
+      // https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API
+      {
+        name: "Fetch",
+        entries: [
+          enums([
+            "ResponseType",
+            "RequestDestination",
+            "ReferrerPolicy",
+            "RequestMode",
+            "RequestCredentials",
+            "RequestCache",
+            "RequestRedirect",
+            "RequestPriority"
+          ]),
+          individualInterfaces([
+            "Headers",
+            "Request",
+            "Response"
+          ]),
+          byHand("HeadersInit", emitAny("HeadersInit")),
+          byHand("RequestInfo", emitAny("RequestInfo")),
+          dictionaries([
+            "RequestInit",
+            "ResponseInit"
+          ]),
+        ],
+        opens: ["Prelude", "Event",  "File"],
+      },
       // https://developer.mozilla.org/en-US/docs/Web/API/Service_Worker_API
       {
         name: "ServiceWorker",
@@ -1582,10 +1613,15 @@ export async function emitRescriptBindings(
             "NavigationPreloadManager",
             "ServiceWorkerRegistration",
             "ServiceWorkerContainer",
+            "CacheStorage",
+            "Cache"
           ]),
-          dictionaries(["NavigationPreloadState", "RegistrationOptions"]),
+          dictionaries(["NavigationPreloadState", "RegistrationOptions", 
+            "CacheQueryOptions",
+            "MultiCacheQueryOptions"]),
+          byHand("RequestInfo", emitAny("RequestInfo")),
         ],
-        opens: ["Prelude", "Event", "PushManager", "Notification"],
+        opens: ["Prelude", "Event", "PushManager", "Notification", "Fetch"],
       },
       // https://developer.mozilla.org/en-US/docs/Web/API/Encrypted_Media_Extensions_API
       {
@@ -1748,7 +1784,7 @@ export async function emitRescriptBindings(
           individualInterfaces(["StorageManager"]),
           dictionaries(["StorageEstimate"]),
         ],
-        opens: ["Prelude", "File"],
+        opens: [ "File"],
       },
       // https://developer.mozilla.org/en-US/docs/Web/API/Web_Locks_API
       {
@@ -2025,6 +2061,7 @@ export async function emitRescriptBindings(
             "ValidityStateFlags",
             "CSSStyleSheetInit",
             "VideoFrameCallbackMetadata",
+            "AssignedNodesOptions",
           ]),
           ...callbacks([
             "CustomElementConstructor",
@@ -2065,6 +2102,7 @@ export async function emitRescriptBindings(
           "IndexedDB",
           "WebCrypto",
           "Performance",
+          "WebStorage",
         ],
       },
       // https://developer.mozilla.org/en-US/docs/Web/API/Web_Audio_API

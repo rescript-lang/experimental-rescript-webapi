@@ -30,6 +30,7 @@ open CSSFontLoading
 open IndexedDB
 open WebCrypto
 open Performance
+open WebStorage
 
 type shadowRootMode =
   | @as("closed") Closed
@@ -8973,6 +8974,8 @@ type videoFrameCallbackMetadata = {
   mutable receiveTime: float,
   mutable rtpTimestamp: int,
 }
+
+type assignedNodesOptions = {mutable flatten: bool}
 
 type customElementConstructor = htmlElement
 
