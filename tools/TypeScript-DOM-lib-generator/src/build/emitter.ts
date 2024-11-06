@@ -414,6 +414,7 @@ export async function emitRescriptBindings(
         return "bool";
 
       // Not sure if this is correct
+      case "number":
       case "unsigned short":
       case "long":
       case "unsigned long long":
@@ -551,12 +552,22 @@ export async function emitRescriptBindings(
         return "rtcRtpScriptTransform";
 
       default:
+        // TODO: some types are a inline variant type
+        // Example: "IDBValidKey | IDBKeyRange"
+        if (typeName.includes(" | ")) {
+          return "any";
+        }
+
+        if (typeName.endsWith("[]")) {
+          return `array<${mapTypeToReScript(typeName.slice(0, -2))}>`;
+        }
+
         return toCamelCase(typeName);
     }
   }
 
   function parseGenericType(input: string) {
-    const regex = /^(\w+)<(\w+(?:,\s*\w+)*)>$/;
+    const regex = /^(\w+)<(.+)>$/;
     const match = input.match(regex);
 
     if (!match) return null; // Return null if input doesn't match the expected pattern with < and >
@@ -576,7 +587,7 @@ export async function emitRescriptBindings(
     }
 
     if (typeof typed.type !== "string") {
-      console.log("Unknown type", typed.type);
+      // console.log("Unknown type", typed.type);
       return "unknown";
     }
 
@@ -623,6 +634,7 @@ export async function emitRescriptBindings(
 
     const genericType = parseGenericType(t);
     if (genericType) {
+      console.log("GENERIC TYPE", genericType);
       const ps = genericType.genericParameters
         .map((p) => {
           if (p.length === 1) {
@@ -1297,7 +1309,7 @@ export async function emitRescriptBindings(
           byHand("any", () => printer.printLine("type any = {}")),
           byHand("BufferSource", emitAny("BufferSource")),
           byHand("BodyInit", emitAny("BodyInit")),
-          individualInterfaces(["DOMException"]),
+          individualInterfaces(["DOMException", "DOMStringList"]),
         ],
         opens: [],
       },
@@ -1755,6 +1767,39 @@ export async function emitRescriptBindings(
         ],
         opens: ["Event"],
       },
+      // https://developer.mozilla.org/en-US/docs/Web/API/IndexedDB_API
+      {
+        name: "IndexedDB",
+        entries: [
+          enums([
+            "IDBTransactionMode",
+            "IDBTransactionDurability",
+            "IDBRequestReadyState",
+            "IDBCursorDirection",
+          ]),
+          individualInterfaces([
+            "IDBFactory",
+            "IDBDatabase",
+            "IDBTransaction",
+            "IDBRequest",
+            "IDBOpenDBRequest",
+            "IDBObjectStore",
+            "IDBIndex",
+          ]),
+          byHand("IDBValidKey", emitAny("IDBValidKey")),
+          dictionaries([
+            "IDBDatabaseInfo",
+            "IDBTransactionOptions",
+            "IDBObjectStoreParameters",
+            "IDBIndexParameters",
+          ]),
+          // ...callbacks([
+          //   "IDBOpenDBRequestEventCallback",
+          //   "IDBVersionChangeEventCallback",
+          // ]),
+        ],
+        opens: ["Prelude", "Event"],
+      },
       // https://developer.mozilla.org/en-US/docs/Web/API/Document_Object_Model
       // https://developer.mozilla.org/en-US/docs/Web/API/HTML_DOM_API
       {
@@ -1779,7 +1824,6 @@ export async function emitRescriptBindings(
           // It does not have interfaces and only extends the navigator object
           dictionaries(["ShareData"]),
           individualInterfaces([
-            "DOMStringList",
             "Location",
             "UserActivation",
             "Navigator",
@@ -1985,6 +2029,7 @@ export async function emitRescriptBindings(
           "Storage",
           "WebLocks",
           "CSSFontLoading",
+          "IndexedDB",
         ],
       },
       // https://developer.mozilla.org/en-US/docs/Web/API/Web_Audio_API

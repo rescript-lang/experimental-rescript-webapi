@@ -27,6 +27,7 @@ open PictureInPicture
 open Storage
 open WebLocks
 open CSSFontLoading
+open IndexedDB
 
 type shadowRootMode =
   | @as("closed") Closed
@@ -95,18 +96,6 @@ type shareData = {
   mutable title: string,
   mutable text: string,
   mutable url: string,
-}
-
-/**
-A type returned by some APIs which contains a list of DOMString (strings).
-[See DOMStringList on MDN](https://developer.mozilla.org/docs/Web/API/DOMStringList)
-*/
-type domStringList = {
-  /**
-    Returns the number of strings in strings.
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/DOMStringList/length)
-    */
-  length: int,
 }
 
 /**
@@ -5722,7 +5711,7 @@ If the contents are sandboxed into a unique origin (e.g. in an iframe with the s
     Retrieves a collection of all a objects that specify the href property and all area objects in the document.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Document/links)
     */
-  links: htmlCollectionOf<htmlElement>,
+  links: htmlCollectionOf<any>,
   /**
     Retrieves a collection, in source order, of all form objects in the document.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Document/forms)
@@ -8992,22 +8981,6 @@ type fileSystemEntriesCallback = array<fileSystemEntry> => unit
 type blobCallback = blob => unit
 
 type videoFrameRequestCallback = float => videoFrameCallbackMetadata => unit
-
-module DOMStringList = {
-  /**
-    Returns the string with index index from strings.
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/DOMStringList/item)
-    */
-  @send
-  external item: (domStringList, int) => string = "item"
-
-  /**
-    Returns true if strings contains string, and false otherwise.
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/DOMStringList/contains)
-    */
-  @send
-  external contains: (domStringList, string) => bool = "contains"
-}
 
 module Location = {
   /**

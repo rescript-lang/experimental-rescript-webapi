@@ -19,10 +19,38 @@ type domException = {
   message: string,
 }
 
+/**
+A type returned by some APIs which contains a list of DOMString (strings).
+[See DOMStringList on MDN](https://developer.mozilla.org/docs/Web/API/DOMStringList)
+*/
+type domStringList = {
+  /**
+    Returns the number of strings in strings.
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/DOMStringList/length)
+    */
+  length: int,
+}
+
 module DOMException = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/DOMException)
     */
   @new
   external make: (string, string) => domException = "DOMException"
+}
+
+module DOMStringList = {
+  /**
+    Returns the string with index index from strings.
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/DOMStringList/item)
+    */
+  @send
+  external item: (domStringList, int) => string = "item"
+
+  /**
+    Returns true if strings contains string, and false otherwise.
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/DOMStringList/contains)
+    */
+  @send
+  external contains: (domStringList, string) => bool = "contains"
 }

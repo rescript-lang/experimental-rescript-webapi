@@ -3,7 +3,10 @@
 
 let DOMException = {};
 
+let DOMStringList = {};
+
 export {
   DOMException,
+  DOMStringList,
 }
 /* No side effect */
