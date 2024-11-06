@@ -1816,6 +1816,23 @@ export async function emitRescriptBindings(
         ],
         opens: ["Prelude"],
       },
+      // https://developer.mozilla.org/en-US/docs/Web/API/Performance_API
+      {
+        name: "Performance",
+        entries: [
+          individualInterfaces([
+            "EventCounts",
+            "Performance",
+            "PerformanceEntry",
+            "PerformanceMark",
+            "PerformanceMeasure",
+          ]),
+          byHand("PerformanceEntryList", emitAny("PerformanceEntryList")),
+          dictionaries(["PerformanceMarkOptions"]),
+          // ...callbacks(["PerformanceObserverCallback"]),
+        ],
+        opens: ["Prelude", "Event"],
+      },
       // https://developer.mozilla.org/en-US/docs/Web/API/Document_Object_Model
       // https://developer.mozilla.org/en-US/docs/Web/API/HTML_DOM_API
       {
@@ -2047,6 +2064,7 @@ export async function emitRescriptBindings(
           "CSSFontLoading",
           "IndexedDB",
           "WebCrypto",
+          "Performance",
         ],
       },
       // https://developer.mozilla.org/en-US/docs/Web/API/Web_Audio_API

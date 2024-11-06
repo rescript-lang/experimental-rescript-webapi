@@ -29,6 +29,7 @@ open WebLocks
 open CSSFontLoading
 open IndexedDB
 open WebCrypto
+open Performance
 
 type shadowRootMode =
   | @as("closed") Closed
