@@ -474,6 +474,7 @@ export async function emitRescriptBindings(
       case "DOMString":
       case "ConstrainDOMString":
       case "USVString":
+      case "`${string}-${string}-${string}-${string}-${string}`":
         return "string";
 
       case "unrestricted double":
@@ -634,7 +635,11 @@ export async function emitRescriptBindings(
 
     const genericType = parseGenericType(t);
     if (genericType) {
-      console.log("GENERIC TYPE", genericType);
+      // TODO: exclude is one of those weird TypeScript things were they subtract properties from types.
+      if (genericType.typeName === "Exclude") {
+        return "any";
+      }
+
       const ps = genericType.genericParameters
         .map((p) => {
           if (p.length === 1) {
@@ -1800,6 +1805,17 @@ export async function emitRescriptBindings(
         ],
         opens: ["Prelude", "Event"],
       },
+      // https://developer.mozilla.org/en-US/docs/Web/API/Web_Crypto_API
+      {
+        name: "WebCrypto",
+        entries: [
+          enums(["KeyType", "KeyUsage", "KeyFormat"]),
+          dictionaries(["KeyAlgorithm"]),
+          individualInterfaces(["SubtleCrypto", "Crypto", "CryptoKey"]),
+          byHand("AlgorithmIdentifier", emitAny("AlgorithmIdentifier")),
+        ],
+        opens: ["Prelude"],
+      },
       // https://developer.mozilla.org/en-US/docs/Web/API/Document_Object_Model
       // https://developer.mozilla.org/en-US/docs/Web/API/HTML_DOM_API
       {
@@ -2030,6 +2046,7 @@ export async function emitRescriptBindings(
           "WebLocks",
           "CSSFontLoading",
           "IndexedDB",
+          "WebCrypto",
         ],
       },
       // https://developer.mozilla.org/en-US/docs/Web/API/Web_Audio_API
