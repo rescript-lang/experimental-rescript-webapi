@@ -1,4 +1,5 @@
-open Event
+@@warning("-44")
+@@warning("-33")
 open CSSFontLoading
 
 module FontFaceSet = {

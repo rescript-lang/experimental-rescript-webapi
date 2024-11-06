@@ -1,6 +1,5 @@
-open Prelude
-open Event
-open ChannelMessaging
+@@warning("-44")
+@@warning("-33")
 open WebSockets
 
 module CloseEvent = {

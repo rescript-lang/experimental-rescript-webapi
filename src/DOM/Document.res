@@ -1,35 +1,8 @@
-open Prelude
-open Event
-open Clipboard
-open CredentialManagement
-open Geolocation
-open MediaCapabilities
-open MediaCaptureAndStreams
-open MediaSession
-open Permissions
-open ScreenWakeLock
-open ServiceWorker
-open EncryptedMediaExtensions
-open Gamepad
-open File
-open WebMIDI
-open History
-open VisualViewport
-open WebSpeech
-open ViewTransitions
-open FileAndDirectoryEntries
-open WebVTT
-open RemotePlayback
-open Canvas
-open PictureInPicture
-open Storage
-open WebLocks
-open CSSFontLoading
-open IndexedDB
-open WebCrypto
-open Performance
-open WebStorage
+@@warning("-44")
+@@warning("-33")
 open DOM
+open Event
+open ViewTransitions
 
 module Document = {
   /**
@@ -37,6 +10,67 @@ module Document = {
     */
   @new
   external make: unit => document = "Document"
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Document/getAnimations)
+    */
+  @send
+  external getAnimations: document => array<animation> = "getAnimations"
+
+  /**
+    Inserts nodes before the first child of node, while replacing strings in nodes with equivalent Text nodes.
+
+Throws a "HierarchyRequestError" DOMException if the constraints of the node tree are violated.
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Document/prepend)
+    */
+  @send
+  external prepend: (document, unknown) => unit = "prepend"
+
+  /**
+    Inserts nodes after the last child of node, while replacing strings in nodes with equivalent Text nodes.
+
+Throws a "HierarchyRequestError" DOMException if the constraints of the node tree are violated.
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Document/append)
+    */
+  @send
+  external append: (document, unknown) => unit = "append"
+
+  /**
+    Replace all children of node with nodes, while replacing strings in nodes with equivalent Text nodes.
+
+Throws a "HierarchyRequestError" DOMException if the constraints of the node tree are violated.
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Document/replaceChildren)
+    */
+  @send
+  external replaceChildren: (document, unknown) => unit = "replaceChildren"
+
+  /**
+    Returns the first element that is a descendant of node that matches selectors.
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Document/querySelector)
+    */
+  @send
+  external querySelector: (document, string) => element = "querySelector"
+
+  /**
+    Returns all element descendants of node that match selectors.
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Document/querySelectorAll)
+    */
+  @send
+  external querySelectorAll: (document, string) => nodeList = "querySelectorAll"
+
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Document/createExpression)
+    */
+  @send
+  external createExpression: (document, string, xPathNSResolver) => xPathExpression =
+    "createExpression"
+
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Document/evaluate)
+    */
+  @send
+  external evaluate: (document, string, node, xPathNSResolver, int, xPathResult) => xPathResult =
+    "evaluate"
+
   /**
     Retrieves a collection of objects based on the specified element name.
 @param name Specifies the name of an element.

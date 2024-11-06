@@ -885,7 +885,8 @@ export async function emitRescriptBindings(webidl: Browser.WebIdl) {
       signature.overrideType &&
       genericTypeParams.has(signature.overrideType)
     ) {
-      return `'${transformTyped(signature)}`;
+      const t = transformTyped(signature);
+      return t.startsWith("'") ? t : `'${t}`;
     }
 
     return transformTyped(signature);
@@ -965,13 +966,125 @@ export async function emitRescriptBindings(webidl: Browser.WebIdl) {
     );
   }
 
+  function extractMethodEntries(
+    i: Browser.Interface,
+  ): Record<string, Browser.Method> {
+    let methodEntries: Record<string, Browser.Method> =
+      i.methods && i.methods.method ? i.methods.method : {};
+    let mixinMethods = (i.implements || []).map(
+      (i) => allMixins.find((m) => m.name === i)?.methods?.method || {},
+    );
+    methodEntries = Object.assign({}, ...mixinMethods, methodEntries);
+    return methodEntries;
+  }
+
+  // We try and detect which open statements are required for the functions of a nested module.
+  function findOpensForNestedModules(
+    i: Browser.Interface,
+    typesToModule: Map<string, string>,
+  ): Set<string> {
+    const opens = new Set<string>();
+
+    function addModuleForType(typed: Browser.Typed) {
+      function addIfFound(typeName: string) {
+        const moduleName = typesToModule.get(typeName);
+        if (moduleName) {
+          opens.add(moduleName);
+        }
+      }
+
+      if (typeof typed.type === "string") {
+        addIfFound(typed.type);
+      } else {
+        typed.type.forEach(addModuleForType);
+      }
+
+      if (typed.subtype) {
+        if (Array.isArray(typed.subtype)) {
+          typed.subtype.forEach(addModuleForType);
+        } else {
+          addModuleForType(typed.subtype);
+        }
+      }
+
+      // In case of "any"
+      addIfFound(transformTyped(typed));
+    }
+
+    function verifyTypesFromSignature(
+      functionName: string,
+      isStatic: boolean,
+      signature: Browser.Signature,
+    ) {
+      if (typeof signature.type !== "string") return;
+
+      addModuleForType(signature);
+
+      (signature.param || []).forEach(addModuleForType);
+
+      if (!isStatic) {
+        const moduleName = typesToModule.get(i.name);
+        if (moduleName) {
+          opens.add(moduleName);
+        } else {
+          console.log(
+            `No module found for sender ${i.name} in ${functionName}`,
+          );
+        }
+      }
+    }
+
+    const methodEntries = extractMethodEntries(i);
+    for (const method of Object.values(methodEntries)) {
+      if (
+        !method.signature ||
+        method.signature.length === 0 ||
+        method.deprecated
+      )
+        continue;
+
+      const signature = method.signature[0];
+      verifyTypesFromSignature(method.name, method.static || false, signature);
+    }
+
+    if (
+      i.constructor &&
+      typeof i.constructor !== "function" &&
+      i.constructor.signature.length > 0
+    ) {
+      verifyTypesFromSignature(
+        "constructor",
+        false,
+        i.constructor.signature[0],
+      );
+    }
+
+    // forEach edge case
+    if (i.name === "NodeListOf") {
+      opens.add("DOM");
+    }
+
+    return opens;
+  }
+
   // TODO: add constructor fn and cast fn
   // TODO: include methods of "implements" mixins
 
-  function emitInterfaceNestedModule(i: Browser.Interface) {
+  function emitInterfaceNestedModule(opens: Set<string>, i: Browser.Interface) {
     const hasMethods = i.methods && Object.keys(i.methods.method).length > 0;
     const hasConstructor = i.constructor || false;
     if (!(hasMethods || hasConstructor)) return;
+
+    // TODO: consider prefixing each type?
+    printer.printLine(`@@warning("-44")`);
+    printer.printLine(`@@warning("-33")`);
+
+    if (opens.size > 0) {
+      for (const open of opens) {
+        printer.printLine(`open ${open}`);
+      }
+      printer.endLine();
+    }
 
     printer.printLine(`module ${i.name} = {`);
     printer.increaseIndent();
@@ -980,8 +1093,8 @@ export async function emitRescriptBindings(webidl: Browser.WebIdl) {
       emitConstructor(i, i.constructor);
     }
 
-    const methodEntries =
-      i.methods && i.methods.method ? i.methods.method : ({} as Browser.Method);
+    let methodEntries: Record<string, Browser.Method> = extractMethodEntries(i);
+
     for (const [key, method] of Object.entries(methodEntries)) {
       if (!method.name && key === "forEach") {
         emitForEachMethod(i, method);
@@ -1601,9 +1714,10 @@ export async function emitRescriptBindings(webidl: Browser.WebIdl) {
             "RequestRedirect",
             "RequestPriority",
           ]),
-          individualInterfaces(["Headers", "Request", "Response"]),
+          individualInterfaces(["Headers", "Request", "Response", "FormData"]),
           byHand("HeadersInit", emitAny("HeadersInit")),
           byHand("RequestInfo", emitAny("RequestInfo")),
+          byHand("FormDataEntryValue", emitAny("FormDataEntryValue")),
           dictionaries(["RequestInit", "ResponseInit"]),
         ],
         opens: ["Prelude", "Event", "File"],
@@ -1895,6 +2009,14 @@ export async function emitRescriptBindings(webidl: Browser.WebIdl) {
             "RemotePlaybackState",
             "ReferrerPolicy",
             "CanPlayTypeResult",
+            "AnimationPlayState",
+            "AnimationReplaceState",
+            "FillMode",
+            "PlaybackDirection",
+            "ImageOrientation",
+            "PremultiplyAlpha",
+            "ColorSpaceConversion",
+            "ResizeQuality",
           ]),
           // TODO: perhaps move to Web Share API?
           // See https://developer.mozilla.org/en-US/docs/Web/API/Web_Share_API
@@ -2050,7 +2172,11 @@ export async function emitRescriptBindings(webidl: Browser.WebIdl) {
             "HTMLUListElement",
             "HTMLUnknownElement",
             "HTMLVideoElement",
+            "AnimationEffect",
+            "XPathExpression",
+            "XPathResult",
           ]),
+          chain(["Animation"]),
           dictionaries([
             "ElementDefinitionOptions",
             "DocumentTimelineOptions",
@@ -2069,13 +2195,27 @@ export async function emitRescriptBindings(webidl: Browser.WebIdl) {
             "CSSStyleSheetInit",
             "VideoFrameCallbackMetadata",
             "AssignedNodesOptions",
+            "FocusOptions",
+            "EffectTiming",
+            "GetAnimationsOptions",
+            "ComputedEffectTiming",
+            "OptionalEffectTiming",
+            "ImageBitmapOptions",
+            "StructuredSerializeOptions",
           ]),
+          byHand("XPathNSResolver", emitAny("XPathNSResolver")),
+          byHand("TimerHandler", emitAny("TimerHandler")),
+          byHand("VoidFunction", () =>
+            printer.printLine("type voidFunction = unit => unit"),
+          ),
+          byHand("ImageBitmapSource", emitAny("ImageBitmapSource")),
           ...callbacks([
             "CustomElementConstructor",
             "IdleRequestCallback",
             "FileSystemEntriesCallback",
             "BlobCallback",
             "VideoFrameRequestCallback",
+            "FrameRequestCallback",
           ]),
         ],
         opens: [
@@ -2248,8 +2388,13 @@ export async function emitRescriptBindings(webidl: Browser.WebIdl) {
       },
     ];
 
+    // Ensure the output folder exists.
     await fs.mkdir(outputFolder, { recursive: true });
 
+    // Keep track of each type present in each module.
+    const typesInModuleMap = new Map<string, string>();
+
+    // Write all interfaces (in order) to top level src folder.
     for (const file of interfaceHierarchy) {
       printer.reset();
       printer.printLine('@@warning("-30")');
@@ -2273,11 +2418,34 @@ export async function emitRescriptBindings(webidl: Browser.WebIdl) {
             entry.enums.forEach(emitEnum);
             break;
         }
+
+        file.entries
+          .flatMap((entry) => {
+            switch (entry.kind) {
+              case "individuals":
+              case "chain":
+                return entry.interfaces.map((i) => i.name);
+              case "dictionary":
+                return entry.dictionaries.map((d) => d.name);
+              case "enum":
+                return entry.enums.map((e) => e.name);
+              case "byHand":
+                return [entry.name];
+              default:
+                return [];
+            }
+          })
+          .forEach((typeName: string) => {
+            typesInModuleMap.set(typeName, file.name);
+          });
       }
 
       const contents = printer.getResult();
       await fs.writeFile(path.join(outputFolder, `${file.name}.res`), contents);
+    }
 
+    // Loop all files again to emit the nested modules.
+    for (const file of interfaceHierarchy) {
       const moduleFolder = path.join(outputFolder, path.basename(file.name));
       await fs.mkdir(moduleFolder, { recursive: true });
 
@@ -2293,9 +2461,9 @@ export async function emitRescriptBindings(webidl: Browser.WebIdl) {
         for (const i of entry.interfaces) {
           printer.reset();
 
-          emitOpens([...file.opens, file.name]);
+          const opens = findOpensForNestedModules(i, typesInModuleMap);
 
-          emitInterfaceNestedModule(i);
+          emitInterfaceNestedModule(opens, i);
           const contents = printer.getResult();
           if (contents) {
             let fileName = i.name;

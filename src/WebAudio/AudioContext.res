@@ -1,9 +1,8 @@
-open Prelude
-open ChannelMessaging
-open Event
+@@warning("-44")
+@@warning("-33")
+open WebAudio
 open DOM
 open MediaCaptureAndStreams
-open WebAudio
 
 module AudioContext = {
   /**

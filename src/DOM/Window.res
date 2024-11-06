@@ -1,37 +1,94 @@
+@@warning("-44")
+@@warning("-33")
 open Prelude
-open Event
-open Clipboard
-open CredentialManagement
-open Geolocation
-open MediaCapabilities
-open MediaCaptureAndStreams
-open MediaSession
-open Permissions
-open ScreenWakeLock
-open ServiceWorker
-open EncryptedMediaExtensions
-open Gamepad
-open File
-open WebMIDI
-open History
-open VisualViewport
-open WebSpeech
-open ViewTransitions
-open FileAndDirectoryEntries
-open WebVTT
-open RemotePlayback
-open Canvas
-open PictureInPicture
-open Storage
-open WebLocks
-open CSSFontLoading
-open IndexedDB
-open WebCrypto
-open Performance
-open WebStorage
 open DOM
+open Canvas
+open Fetch
+open ServiceWorker
 
 module Window = {
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/reportError)
+    */
+  @send
+  external reportError: (window, any) => unit = "reportError"
+
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/btoa)
+    */
+  @send
+  external btoa: (window, string) => string = "btoa"
+
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/atob)
+    */
+  @send
+  external atob: (window, string) => string = "atob"
+
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/setTimeout)
+    */
+  @send
+  external setTimeout: (window, timerHandler, int, any) => int = "setTimeout"
+
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/clearTimeout)
+    */
+  @send
+  external clearTimeout: (window, int) => unit = "clearTimeout"
+
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/setInterval)
+    */
+  @send
+  external setInterval: (window, timerHandler, int, any) => int = "setInterval"
+
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/clearInterval)
+    */
+  @send
+  external clearInterval: (window, int) => unit = "clearInterval"
+
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/queueMicrotask)
+    */
+  @send
+  external queueMicrotask: (window, voidFunction) => unit = "queueMicrotask"
+
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/createImageBitmap)
+    */
+  @send
+  external createImageBitmap: (
+    window,
+    imageBitmapSource,
+    imageBitmapOptions,
+  ) => Promise.t<imageBitmap> = "createImageBitmap"
+
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/structuredClone)
+    */
+  @send
+  external structuredClone: (window, 't, structuredSerializeOptions) => 't = "structuredClone"
+
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/fetch)
+    */
+  @send
+  external fetch: (window, requestInfo, requestInit) => Promise.t<response> = "fetch"
+
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/DedicatedWorkerGlobalScope/requestAnimationFrame)
+    */
+  @send
+  external requestAnimationFrame: (window, frameRequestCallback) => int = "requestAnimationFrame"
+
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/DedicatedWorkerGlobalScope/cancelAnimationFrame)
+    */
+  @send
+  external cancelAnimationFrame: (window, int) => unit = "cancelAnimationFrame"
+
   /**
     Closes the window.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/close)

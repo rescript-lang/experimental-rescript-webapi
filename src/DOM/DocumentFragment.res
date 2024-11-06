@@ -1,34 +1,5 @@
-open Prelude
-open Event
-open Clipboard
-open CredentialManagement
-open Geolocation
-open MediaCapabilities
-open MediaCaptureAndStreams
-open MediaSession
-open Permissions
-open ScreenWakeLock
-open ServiceWorker
-open EncryptedMediaExtensions
-open Gamepad
-open File
-open WebMIDI
-open History
-open VisualViewport
-open WebSpeech
-open ViewTransitions
-open FileAndDirectoryEntries
-open WebVTT
-open RemotePlayback
-open Canvas
-open PictureInPicture
-open Storage
-open WebLocks
-open CSSFontLoading
-open IndexedDB
-open WebCrypto
-open Performance
-open WebStorage
+@@warning("-44")
+@@warning("-33")
 open DOM
 
 module DocumentFragment = {
@@ -37,4 +8,44 @@ module DocumentFragment = {
     */
   @new
   external make: unit => documentFragment = "DocumentFragment"
+  /**
+    Inserts nodes before the first child of node, while replacing strings in nodes with equivalent Text nodes.
+
+Throws a "HierarchyRequestError" DOMException if the constraints of the node tree are violated.
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Document/prepend)
+    */
+  @send
+  external prepend: (documentFragment, unknown) => unit = "prepend"
+
+  /**
+    Inserts nodes after the last child of node, while replacing strings in nodes with equivalent Text nodes.
+
+Throws a "HierarchyRequestError" DOMException if the constraints of the node tree are violated.
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Document/append)
+    */
+  @send
+  external append: (documentFragment, unknown) => unit = "append"
+
+  /**
+    Replace all children of node with nodes, while replacing strings in nodes with equivalent Text nodes.
+
+Throws a "HierarchyRequestError" DOMException if the constraints of the node tree are violated.
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Document/replaceChildren)
+    */
+  @send
+  external replaceChildren: (documentFragment, unknown) => unit = "replaceChildren"
+
+  /**
+    Returns the first element that is a descendant of node that matches selectors.
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Document/querySelector)
+    */
+  @send
+  external querySelector: (documentFragment, string) => element = "querySelector"
+
+  /**
+    Returns all element descendants of node that match selectors.
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Document/querySelectorAll)
+    */
+  @send
+  external querySelectorAll: (documentFragment, string) => nodeList = "querySelectorAll"
 }

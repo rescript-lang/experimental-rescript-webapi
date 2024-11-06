@@ -1,37 +1,30 @@
+@@warning("-44")
+@@warning("-33")
+open DOM
 open Prelude
-open Event
-open Clipboard
-open CredentialManagement
-open Geolocation
-open MediaCapabilities
-open MediaCaptureAndStreams
-open MediaSession
-open Permissions
-open ScreenWakeLock
-open ServiceWorker
 open EncryptedMediaExtensions
 open Gamepad
-open File
 open WebMIDI
-open History
-open VisualViewport
-open WebSpeech
-open ViewTransitions
-open FileAndDirectoryEntries
-open WebVTT
-open RemotePlayback
-open Canvas
-open PictureInPicture
-open Storage
-open WebLocks
-open CSSFontLoading
-open IndexedDB
-open WebCrypto
-open Performance
-open WebStorage
-open DOM
 
 module Navigator = {
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Navigator/setAppBadge)
+    */
+  @send
+  external setAppBadge: (navigator, int) => Promise.t<unit> = "setAppBadge"
+
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Navigator/clearAppBadge)
+    */
+  @send
+  external clearAppBadge: navigator => Promise.t<unit> = "clearAppBadge"
+
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Navigator/registerProtocolHandler)
+    */
+  @send
+  external registerProtocolHandler: (navigator, string, string) => unit = "registerProtocolHandler"
+
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Navigator/sendBeacon)
     */

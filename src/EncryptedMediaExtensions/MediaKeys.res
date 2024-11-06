@@ -1,6 +1,7 @@
-open Prelude
-open Event
+@@warning("-44")
+@@warning("-33")
 open EncryptedMediaExtensions
+open Prelude
 
 module MediaKeys = {
   /**

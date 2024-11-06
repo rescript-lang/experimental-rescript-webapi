@@ -1,2 +1,0 @@
-open Event
-open PictureInPicture

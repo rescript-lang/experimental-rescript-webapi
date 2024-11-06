@@ -1,5 +1,7 @@
-open Event
+@@warning("-44")
+@@warning("-33")
 open MediaCaptureAndStreams
+open WebAudio
 
 module MediaStreamTrack = {
   /**

@@ -1,4 +1,6 @@
-open Prelude
+@@warning("-44")
+@@warning("-33")
+open DOM
 open FileAndDirectoryEntries
 
 module FileSystemDirectoryReader = {

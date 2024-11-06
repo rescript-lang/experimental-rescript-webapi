@@ -1,5 +1,6 @@
+@@warning("-44")
+@@warning("-33")
 open Prelude
-open Event
 open EncryptedMediaExtensions
 
 module MediaKeyStatusMap = {

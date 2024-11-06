@@ -1,9 +1,7 @@
-open Prelude
-open Event
-open PushManager
-open Notification
-open Fetch
+@@warning("-44")
+@@warning("-33")
 open ServiceWorker
+open Notification
 
 module ServiceWorkerRegistration = {
   /**

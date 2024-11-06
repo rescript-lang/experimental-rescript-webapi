@@ -1,6 +1,5 @@
-open Prelude
-open Event
-open File
+@@warning("-44")
+@@warning("-33")
 open Clipboard
 
 module Clipboard = {

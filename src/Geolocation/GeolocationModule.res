@@ -1,3 +1,5 @@
+@@warning("-44")
+@@warning("-33")
 open Geolocation
 
 module Geolocation = {

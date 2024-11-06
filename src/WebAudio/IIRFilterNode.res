@@ -1,8 +1,5 @@
-open Prelude
-open ChannelMessaging
-open Event
-open DOM
-open MediaCaptureAndStreams
+@@warning("-44")
+@@warning("-33")
 open WebAudio
 
 module IIRFilterNode = {

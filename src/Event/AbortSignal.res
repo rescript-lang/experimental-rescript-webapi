@@ -1,5 +1,7 @@
-open Prelude
+@@warning("-44")
+@@warning("-33")
 open Event
+open Prelude
 
 module AbortSignal = {
   /**

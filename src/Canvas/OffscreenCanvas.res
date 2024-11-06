@@ -1,7 +1,9 @@
-open Prelude
-open Event
-open File
+@@warning("-44")
+@@warning("-33")
+open DOM
 open Canvas
+open Prelude
+open File
 
 module OffscreenCanvas = {
   /**

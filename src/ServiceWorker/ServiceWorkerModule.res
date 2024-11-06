@@ -1,8 +1,6 @@
+@@warning("-44")
+@@warning("-33")
 open Prelude
-open Event
-open PushManager
-open Notification
-open Fetch
 open ServiceWorker
 
 module ServiceWorker = {

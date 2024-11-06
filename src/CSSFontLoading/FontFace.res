@@ -1,5 +1,7 @@
-open Event
+@@warning("-44")
+@@warning("-33")
 open CSSFontLoading
+open Prelude
 
 module FontFace = {
   /**
