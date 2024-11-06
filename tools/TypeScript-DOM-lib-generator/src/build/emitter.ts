@@ -1059,9 +1059,9 @@ export async function emitRescriptBindings(webidl: Browser.WebIdl) {
       );
     }
 
-    // forEach edge case
+    // "forEach" edge case
     if (i.name === "NodeListOf") {
-      opens.add("DOM");
+      opens.add("DOMAPI");
     }
 
     return opens;
@@ -1452,7 +1452,7 @@ export async function emitRescriptBindings(webidl: Browser.WebIdl) {
       },
 
       {
-        name: "Event",
+        name: "EventAPI",
         entries: [
           byHand("EventType", emitEventType),
           byHand("EventListener", emitEventListener),
@@ -1472,13 +1472,13 @@ export async function emitRescriptBindings(webidl: Browser.WebIdl) {
       },
       // https://developer.mozilla.org/en-US/docs/Web/API/Channel_Messaging_API
       {
-        name: "ChannelMessaging",
+        name: "ChannelMessagingAPI",
         entries: [individualInterfaces(["MessagePort"])],
-        opens: ["Prelude", "Event"],
+        opens: ["Prelude", "EventAPI"],
       },
       // https://developer.mozilla.org/en-US/docs/Web/API/History
       {
-        name: "History",
+        name: "HistoryAPI",
         entries: [
           enums(["ScrollRestoration"]),
           individualInterfaces(["History"]),
@@ -1487,7 +1487,7 @@ export async function emitRescriptBindings(webidl: Browser.WebIdl) {
       },
       // https://developer.mozilla.org/en-US/docs/Web/API/File_API
       {
-        name: "File",
+        name: "FileAPI",
         entries: [
           enums([
             "EndingType",
@@ -1531,21 +1531,21 @@ export async function emitRescriptBindings(webidl: Browser.WebIdl) {
             "FileSystemCreateWritableOptions",
           ]),
         ],
-        opens: ["Prelude", "Event"],
+        opens: ["Prelude", "EventAPI"],
       },
       // https://developer.mozilla.org/en-US/docs/Web/API/Clipboard
       {
-        name: "Clipboard",
+        name: "ClipboardAPI",
         entries: [
           enums(["PresentationStyle"]),
           individualInterfaces(["ClipboardItem", "Clipboard"]),
           dictionaries(["ClipboardItemOptions"]),
         ],
-        opens: ["Prelude", "Event", "File"],
+        opens: ["Prelude", "EventAPI", "FileAPI"],
       },
       // https://developer.mozilla.org/en-US/docs/Web/API/Credential_Management_API
       {
-        name: "CredentialManagement",
+        name: "CredentialManagementAPI",
         entries: [
           enums([
             "AuthenticatorTransport",
@@ -1573,11 +1573,11 @@ export async function emitRescriptBindings(webidl: Browser.WebIdl) {
             "CredentialCreationOptions",
           ]),
         ],
-        opens: ["Prelude", "Event"],
+        opens: ["Prelude", "EventAPI"],
       },
       // https://developer.mozilla.org/en-US/docs/Web/API/Geolocation_API
       {
-        name: "Geolocation",
+        name: "GeolocationAPI",
         entries: [
           individualInterfaces([
             "Geolocation",
@@ -1592,7 +1592,7 @@ export async function emitRescriptBindings(webidl: Browser.WebIdl) {
       },
       // https://developer.mozilla.org/en-US/docs/Web/API/Media_Capabilities_API
       {
-        name: "MediaCapabilities",
+        name: "MediaCapabilitiesAPI",
         entries: [
           enums([
             "HdrMetadataType",
@@ -1617,7 +1617,7 @@ export async function emitRescriptBindings(webidl: Browser.WebIdl) {
       },
       // https://developer.mozilla.org/en-US/docs/Web/API/Media_Capture_and_Streams_API
       {
-        name: "MediaCaptureAndStreams",
+        name: "MediaCaptureAndStreamsAPI",
         entries: [
           enums(["MediaDeviceKind", "MediaStreamTrackState"]),
           individualInterfaces([
@@ -1638,11 +1638,11 @@ export async function emitRescriptBindings(webidl: Browser.WebIdl) {
             "MediaTrackSettings",
           ]),
         ],
-        opens: ["Event"],
+        opens: ["EventAPI"],
       },
       // https://developer.mozilla.org/en-US/docs/Web/API/MediaSession
       {
-        name: "MediaSession",
+        name: "MediaSessionAPI",
         entries: [
           enums(["MediaSessionPlaybackState", "MediaSessionAction"]),
           dictionaries(["MediaImage"]),
@@ -1658,26 +1658,26 @@ export async function emitRescriptBindings(webidl: Browser.WebIdl) {
       },
       // https://developer.mozilla.org/en-US/docs/Web/API/Permissions_API
       {
-        name: "Permissions",
+        name: "PermissionsAPI",
         entries: [
           enums(["PermissionName", "PermissionState"]),
           individualInterfaces(["Permissions", "PermissionStatus"]),
           dictionaries(["PermissionDescriptor"]),
         ],
-        opens: ["Event"],
+        opens: ["EventAPI"],
       },
       // https://developer.mozilla.org/en-US/docs/Web/API/Screen_Wake_Lock_API
       {
-        name: "ScreenWakeLock",
+        name: "ScreenWakeLockAPI",
         entries: [
           enums(["WakeLockType"]),
           individualInterfaces(["WakeLock", "WakeLockSentinel"]),
         ],
-        opens: ["Event"],
+        opens: ["EventAPI"],
       },
       // https://developer.mozilla.org/en-US/docs/Web/API/Push_API
       {
-        name: "PushManager",
+        name: "PushManagerAPI",
         entries: [
           enums(["PermissionState", "PushEncryptionKeyName"]),
           individualInterfaces([
@@ -1691,18 +1691,18 @@ export async function emitRescriptBindings(webidl: Browser.WebIdl) {
       },
       // https://developer.mozilla.org/en-US/docs/Web/API/Notifications_API
       {
-        name: "Notification",
+        name: "NotificationAPI",
         entries: [
           enums(["NotificationDirection", "NotificationPermission"]),
           individualInterfaces(["Notification"]),
           dictionaries(["NotificationOptions", "GetNotificationOptions"]),
           ...callbacks(["NotificationPermissionCallback"]),
         ],
-        opens: ["Prelude", "Event"],
+        opens: ["Prelude", "EventAPI"],
       },
       // https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API
       {
-        name: "Fetch",
+        name: "FetchAPI",
         entries: [
           enums([
             "ResponseType",
@@ -1720,11 +1720,11 @@ export async function emitRescriptBindings(webidl: Browser.WebIdl) {
           byHand("FormDataEntryValue", emitAny("FormDataEntryValue")),
           dictionaries(["RequestInit", "ResponseInit"]),
         ],
-        opens: ["Prelude", "Event", "File"],
+        opens: ["Prelude", "EventAPI", "FileAPI"],
       },
       // https://developer.mozilla.org/en-US/docs/Web/API/Service_Worker_API
       {
-        name: "ServiceWorker",
+        name: "ServiceWorkerAPI",
         entries: [
           enums([
             "ServiceWorkerState",
@@ -1747,11 +1747,17 @@ export async function emitRescriptBindings(webidl: Browser.WebIdl) {
           ]),
           byHand("RequestInfo", emitAny("RequestInfo")),
         ],
-        opens: ["Prelude", "Event", "PushManager", "Notification", "Fetch"],
+        opens: [
+          "Prelude",
+          "EventAPI",
+          "PushManagerAPI",
+          "NotificationAPI",
+          "FetchAPI",
+        ],
       },
       // https://developer.mozilla.org/en-US/docs/Web/API/Encrypted_Media_Extensions_API
       {
-        name: "EncryptedMediaExtensions",
+        name: "EncryptedMediaExtensionsAPI",
         entries: [
           enums([
             "MediaKeysRequirement",
@@ -1771,11 +1777,11 @@ export async function emitRescriptBindings(webidl: Browser.WebIdl) {
             "MediaKeysPolicy",
           ]),
         ],
-        opens: ["Prelude", "Event"],
+        opens: ["Prelude", "EventAPI"],
       },
       // https://developer.mozilla.org/en-US/docs/Web/API/Gamepad_API
       {
-        name: "Gamepad",
+        name: "GamepadAPI",
         entries: [
           enums([
             "GamepadMappingType",
@@ -1793,16 +1799,16 @@ export async function emitRescriptBindings(webidl: Browser.WebIdl) {
       },
       // https://developer.mozilla.org/en-US/docs/Web/API/Web_MIDI_API
       {
-        name: "WebMIDI",
+        name: "WebMIDIAPI",
         entries: [
           individualInterfaces(["MIDIInputMap", "MIDIOutputMap", "MIDIAccess"]),
           dictionaries(["MIDIOptions"]),
         ],
-        opens: ["Event"],
+        opens: ["EventAPI"],
       },
       // https://developer.mozilla.org/en-US/docs/Web/API/History
       {
-        name: "History",
+        name: "HistoryAPI",
         entries: [
           enums(["ScrollRestoration"]),
           individualInterfaces(["History"]),
@@ -1811,13 +1817,13 @@ export async function emitRescriptBindings(webidl: Browser.WebIdl) {
       },
       //https://developer.mozilla.org/en-US/docs/Web/API/Visual_Viewport_API
       {
-        name: "VisualViewport",
+        name: "VisualViewportAPI",
         entries: [individualInterfaces(["VisualViewport"])],
-        opens: ["Event"],
+        opens: ["EventAPI"],
       },
       //https://developer.mozilla.org/en-US/docs/Web/API/Web_Speech_API
       {
-        name: "WebSpeech",
+        name: "WebSpeechAPI",
         entries: [
           individualInterfaces([
             "SpeechSynthesis",
@@ -1825,11 +1831,11 @@ export async function emitRescriptBindings(webidl: Browser.WebIdl) {
             "SpeechSynthesisUtterance",
           ]),
         ],
-        opens: ["Event"],
+        opens: ["EventAPI"],
       },
       // https://developer.mozilla.org/en-US/docs/Web/API/View_Transitions_API
       {
-        name: "ViewTransitions",
+        name: "ViewTransitionsAPI",
         entries: [
           individualInterfaces(["ViewTransition"]),
           ...callbacks(["ViewTransitionUpdateCallback"]),
@@ -1838,7 +1844,7 @@ export async function emitRescriptBindings(webidl: Browser.WebIdl) {
       },
       // https://developer.mozilla.org/en-US/docs/Web/API/File_and_Directory_Entries_API
       {
-        name: "FileAndDirectoryEntries",
+        name: "FileAndDirectoryEntriesAPI",
         entries: [
           chain(["FileSystemEntry", "FileSystemDirectoryEntry", "FileSystem"]),
           individualInterfaces(["FileSystemDirectoryReader"]),
@@ -1853,27 +1859,27 @@ export async function emitRescriptBindings(webidl: Browser.WebIdl) {
       },
       // https://developer.mozilla.org/en-US/docs/Web/API/WebVTT_API
       {
-        name: "WebVTT",
+        name: "WebVTTAPI",
         entries: [
           enums(["TextTrackKind", "TextTrackMode"]),
           individualInterfaces(["TextTrackCueList"]),
           chain(["TextTrackCue", "TextTrack"]),
         ],
-        opens: ["Prelude", "Event"],
+        opens: ["Prelude", "EventAPI"],
       },
       // https://developer.mozilla.org/en-US/docs/Web/API/Remote_Playback_API
       {
-        name: "RemotePlayback",
+        name: "RemotePlaybackAPI",
         entries: [
           enums(["RemotePlaybackState"]),
           individualInterfaces(["RemotePlayback"]),
           ...callbacks(["RemotePlaybackAvailabilityCallback"]),
         ],
-        opens: ["Event"],
+        opens: ["EventAPI"],
       },
       // https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API
       {
-        name: "Canvas",
+        name: "CanvasAPI",
         entries: [
           enums(["OffscreenRenderingContextId"]),
           individualInterfaces(["OffscreenCanvas", "ImageBitmap"]),
@@ -1883,38 +1889,35 @@ export async function emitRescriptBindings(webidl: Browser.WebIdl) {
           ),
           dictionaries(["ImageEncodeOptions"]),
         ],
-        opens: ["Prelude", "Event", "File"],
+        opens: ["Prelude", "EventAPI", "FileAPI"],
       },
       // https://developer.mozilla.org/en-US/docs/Web/API/Picture-in-Picture_API
       {
-        name: "PictureInPicture",
-        entries: [
-          individualInterfaces(["PictureInPictureWindow"]),
-          // ...callbacks(["PictureInPictureWindowEventCallback"]),
-        ],
-        opens: ["Event"],
+        name: "PictureInPictureAPI",
+        entries: [individualInterfaces(["PictureInPictureWindow"])],
+        opens: ["EventAPI"],
       },
       // https://developer.mozilla.org/en-US/docs/Web/API/Web_Storage_API
       {
-        name: "WebStorage",
+        name: "WebStorageAPI",
         entries: [
           individualInterfaces(["Storage", "StorageEvent"]),
           dictionaries(["StorageEventInit"]),
         ],
-        opens: ["Event"],
+        opens: ["EventAPI"],
       },
       // https://developer.mozilla.org/en-US/docs/Web/API/Storage_API
       {
-        name: "Storage",
+        name: "StorageAPI",
         entries: [
           individualInterfaces(["StorageManager"]),
           dictionaries(["StorageEstimate"]),
         ],
-        opens: ["File"],
+        opens: ["FileAPI"],
       },
       // https://developer.mozilla.org/en-US/docs/Web/API/Web_Locks_API
       {
-        name: "WebLocks",
+        name: "WebLocksAPI",
         entries: [
           enums(["LockMode"]),
           individualInterfaces(["LockManager", "Lock"]),
@@ -1925,18 +1928,18 @@ export async function emitRescriptBindings(webidl: Browser.WebIdl) {
       },
       // https://developer.mozilla.org/en-US/docs/Web/API/CSS_Font_Loading_API
       {
-        name: "CSSFontLoading",
+        name: "CSSFontLoadingAPI",
         entries: [
           enums(["FontDisplay", "FontFaceLoadStatus", "FontFaceSetLoadStatus"]),
           chain(["FontFace"]),
           chain(["FontFaceSet"]),
           dictionaries(["FontFaceDescriptors"]),
         ],
-        opens: ["Event"],
+        opens: ["EventAPI"],
       },
       // https://developer.mozilla.org/en-US/docs/Web/API/IndexedDB_API
       {
-        name: "IndexedDB",
+        name: "IndexedDBAPI",
         entries: [
           enums([
             "IDBTransactionMode",
@@ -1961,11 +1964,11 @@ export async function emitRescriptBindings(webidl: Browser.WebIdl) {
             "IDBIndexParameters",
           ]),
         ],
-        opens: ["Prelude", "Event"],
+        opens: ["Prelude", "EventAPI"],
       },
       // https://developer.mozilla.org/en-US/docs/Web/API/Web_Crypto_API
       {
-        name: "WebCrypto",
+        name: "WebCryptoAPI",
         entries: [
           enums(["KeyType", "KeyUsage", "KeyFormat"]),
           dictionaries(["KeyAlgorithm"]),
@@ -1976,7 +1979,7 @@ export async function emitRescriptBindings(webidl: Browser.WebIdl) {
       },
       // https://developer.mozilla.org/en-US/docs/Web/API/Performance_API
       {
-        name: "Performance",
+        name: "PerformanceAPI",
         entries: [
           individualInterfaces([
             "EventCounts",
@@ -1989,12 +1992,12 @@ export async function emitRescriptBindings(webidl: Browser.WebIdl) {
           dictionaries(["PerformanceMarkOptions"]),
           // ...callbacks(["PerformanceObserverCallback"]),
         ],
-        opens: ["Prelude", "Event"],
+        opens: ["Prelude", "EventAPI"],
       },
       // https://developer.mozilla.org/en-US/docs/Web/API/Document_Object_Model
       // https://developer.mozilla.org/en-US/docs/Web/API/HTML_DOM_API
       {
-        name: "DOM",
+        name: "DOMAPI",
         entries: [
           enums([
             "ShadowRootMode",
@@ -2220,41 +2223,41 @@ export async function emitRescriptBindings(webidl: Browser.WebIdl) {
         ],
         opens: [
           "Prelude",
-          "Event",
-          "Clipboard",
-          "CredentialManagement",
-          "Geolocation",
-          "MediaCapabilities",
-          "MediaCaptureAndStreams",
-          "MediaSession",
-          "Permissions",
-          "ScreenWakeLock",
-          "ServiceWorker",
-          "EncryptedMediaExtensions",
-          "Gamepad",
-          "File",
-          "WebMIDI",
-          "History",
-          "VisualViewport",
-          "WebSpeech",
-          "ViewTransitions",
-          "FileAndDirectoryEntries",
-          "WebVTT",
-          "RemotePlayback",
-          "Canvas",
-          "PictureInPicture",
-          "Storage",
-          "WebLocks",
-          "CSSFontLoading",
-          "IndexedDB",
-          "WebCrypto",
-          "Performance",
-          "WebStorage",
+          "EventAPI",
+          "ClipboardAPI",
+          "CredentialManagementAPI",
+          "GeolocationAPI",
+          "MediaCapabilitiesAPI",
+          "MediaCaptureAndStreamsAPI",
+          "MediaSessionAPI",
+          "PermissionsAPI",
+          "ScreenWakeLockAPI",
+          "ServiceWorkerAPI",
+          "EncryptedMediaExtensionsAPI",
+          "GamepadAPI",
+          "FileAPI",
+          "WebMIDIAPI",
+          "HistoryAPI",
+          "VisualViewportAPI",
+          "WebSpeechAPI",
+          "ViewTransitionsAPI",
+          "FileAndDirectoryEntriesAPI",
+          "WebVTTAPI",
+          "RemotePlaybackAPI",
+          "CanvasAPI",
+          "PictureInPictureAPI",
+          "StorageAPI",
+          "WebLocksAPI",
+          "CSSFontLoadingAPI",
+          "IndexedDBAPI",
+          "WebCryptoAPI",
+          "PerformanceAPI",
+          "WebStorageAPI",
         ],
       },
       // https://developer.mozilla.org/en-US/docs/Web/API/Web_Audio_API
       {
-        name: "WebAudio",
+        name: "WebAudioAPI",
         entries: [
           enums([
             "AudioContextState",
@@ -2349,15 +2352,15 @@ export async function emitRescriptBindings(webidl: Browser.WebIdl) {
         ],
         opens: [
           "Prelude",
-          "ChannelMessaging",
-          "Event",
-          "DOM",
-          "MediaCaptureAndStreams",
+          "ChannelMessagingAPI",
+          "EventAPI",
+          "DOMAPI",
+          "MediaCaptureAndStreamsAPI",
         ],
       },
       // https://developer.mozilla.org/en-US/docs/Web/API/Resize_Observer_API
       {
-        name: "ResizeObserver",
+        name: "ResizeObserverAPI",
         entries: [
           enums(["ResizeObserverBoxOptions"]),
           individualInterfaces([
@@ -2368,11 +2371,11 @@ export async function emitRescriptBindings(webidl: Browser.WebIdl) {
           dictionaries(["ResizeObserverOptions"]),
           ...callbacks(["ResizeObserverCallback"]),
         ],
-        opens: ["Prelude", "DOM"],
+        opens: ["Prelude", "DOMAPI"],
       },
       // https://developer.mozilla.org/en-US/docs/Web/API/WebSockets_API
       {
-        name: "WebSockets",
+        name: "WebSocketsAPI",
         entries: [
           enums(["BinaryType"]),
           byHand("MessageEventSource", emitAny("MessageEventSource")),
@@ -2384,7 +2387,7 @@ export async function emitRescriptBindings(webidl: Browser.WebIdl) {
           ]),
           dictionaries(["CloseEventInit", "MessageEventInit"]),
         ],
-        opens: ["Prelude", "Event", "ChannelMessaging"],
+        opens: ["Prelude", "EventAPI", "ChannelMessagingAPI"],
       },
     ];
 
@@ -2467,10 +2470,6 @@ export async function emitRescriptBindings(webidl: Browser.WebIdl) {
           const contents = printer.getResult();
           if (contents) {
             let fileName = i.name;
-            // FileName needs to be unique for ReScript
-            if (interfaceHierarchy.some((h) => h.name === fileName)) {
-              fileName = `${file.name}Module`;
-            }
 
             await fs.writeFile(
               path.join(moduleFolder, `${fileName}.res`),
