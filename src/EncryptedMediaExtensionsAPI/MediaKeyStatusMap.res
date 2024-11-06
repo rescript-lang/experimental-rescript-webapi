@@ -1,11 +1,8 @@
-@@warning("-33")
 open Prelude
 open EncryptedMediaExtensionsAPI
 
-module MediaKeyStatusMap = {
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/MediaKeyStatusMap/has)
-    */
-  @send
-  external has: (mediaKeyStatusMap, bufferSource) => bool = "has"
-}
+/**
+[Read more on MDN](https://developer.mozilla.org/docs/Web/API/MediaKeyStatusMap/has)
+*/
+@send
+external has: (mediaKeyStatusMap, bufferSource) => bool = "has"

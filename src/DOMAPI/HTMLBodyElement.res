@@ -1,10 +1,7 @@
-@@warning("-33")
 open DOMAPI
 
-module HTMLBodyElement = {
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLBodyElement)
-    */
-  @new
-  external make: unit => htmlBodyElement = "HTMLBodyElement"
-}
+/**
+[Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLBodyElement)
+*/
+@new
+external make: unit => htmlBodyElement = "HTMLBodyElement"

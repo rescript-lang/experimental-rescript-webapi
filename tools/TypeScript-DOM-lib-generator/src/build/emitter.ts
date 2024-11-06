@@ -1070,14 +1070,13 @@ export async function emitRescriptBindings(webidl: Browser.WebIdl) {
   // TODO: add constructor fn and cast fn
   // TODO: include methods of "implements" mixins
 
-  function emitInterfaceNestedModule(opens: Set<string>, i: Browser.Interface) {
+  function emitInterfaceFunctionsModule(
+    opens: Set<string>,
+    i: Browser.Interface,
+  ) {
     const hasMethods = i.methods && Object.keys(i.methods.method).length > 0;
     const hasConstructor = i.constructor || false;
     if (!(hasMethods || hasConstructor)) return;
-
-    // TODO: consider prefixing each type?
-    // printer.printLine(`@@warning("-44")`);
-    printer.printLine(`@@warning("-33")`);
 
     if (opens.size > 0) {
       for (const open of opens) {
@@ -1085,9 +1084,6 @@ export async function emitRescriptBindings(webidl: Browser.WebIdl) {
       }
       printer.endLine();
     }
-
-    printer.printLine(`module ${i.name} = {`);
-    printer.increaseIndent();
 
     if (i.constructor) {
       emitConstructor(i, i.constructor);
@@ -1115,10 +1111,6 @@ export async function emitRescriptBindings(webidl: Browser.WebIdl) {
         emitMethod(i, method);
       }
     }
-
-    printer.decreaseIndent();
-    printer.printLine("}");
-    printer.endLine();
   }
 
   function emitEnum(e: Browser.Enum) {
@@ -2466,7 +2458,7 @@ export async function emitRescriptBindings(webidl: Browser.WebIdl) {
 
           const opens = findOpensForNestedModules(i, typesInModuleMap);
 
-          emitInterfaceNestedModule(opens, i);
+          emitInterfaceFunctionsModule(opens, i);
           const contents = printer.getResult();
           if (contents) {
             let fileName = i.name;

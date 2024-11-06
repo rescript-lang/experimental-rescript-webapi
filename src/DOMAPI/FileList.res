@@ -1,11 +1,8 @@
-@@warning("-33")
 open FileAPI
 open DOMAPI
 
-module FileList = {
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/FileList/item)
-    */
-  @send
-  external item: (fileList, int) => file = "item"
-}
+/**
+[Read more on MDN](https://developer.mozilla.org/docs/Web/API/FileList/item)
+*/
+@send
+external item: (fileList, int) => file = "item"

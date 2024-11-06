@@ -1,10 +1,7 @@
-@@warning("-33")
 open DOMAPI
 
-module XPathExpression = {
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/XPathExpression/evaluate)
-    */
-  @send
-  external evaluate: (xPathExpression, node, int, xPathResult) => xPathResult = "evaluate"
-}
+/**
+[Read more on MDN](https://developer.mozilla.org/docs/Web/API/XPathExpression/evaluate)
+*/
+@send
+external evaluate: (xPathExpression, node, int, xPathResult) => xPathResult = "evaluate"

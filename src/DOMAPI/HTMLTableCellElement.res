@@ -1,10 +1,7 @@
-@@warning("-33")
 open DOMAPI
 
-module HTMLTableCellElement = {
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLTableCellElement)
-    */
-  @new
-  external make: unit => htmlTableCellElement = "HTMLTableCellElement"
-}
+/**
+[Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLTableCellElement)
+*/
+@new
+external make: unit => htmlTableCellElement = "HTMLTableCellElement"
