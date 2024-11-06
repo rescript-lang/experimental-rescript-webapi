@@ -3,7 +3,8 @@
   "name": "rescript-dom-generator",
   "sources": [
     {
-      "dir": "src"
+      "dir": "src",
+      "subdirs": true
     }
   ],
   "package-specs": {

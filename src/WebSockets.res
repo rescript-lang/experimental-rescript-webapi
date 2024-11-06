@@ -2,6 +2,7 @@
 
 open Prelude
 open Event
+open ChannelMessaging
 
 type binaryType =
   | @as("arraybuffer") Arraybuffer
@@ -75,14 +76,6 @@ type closeEvent = {
 }
 
 /**
-This Channel Messaging API interface represents one of the two ports of a MessageChannel, allowing messages to be sent from one port and listening out for them arriving at the other.
-[See MessagePort on MDN](https://developer.mozilla.org/docs/Web/API/MessagePort)
-*/
-type messagePort = {
-  ...eventTarget,
-}
-
-/**
 A message received by a target object.
 [See MessageEvent on MDN](https://developer.mozilla.org/docs/Web/API/MessageEvent)
 */
@@ -129,66 +122,4 @@ type messageEventInit<'t> = {
   mutable lastEventId: string,
   mutable source: Null.t<messageEventSource>,
   mutable ports: array<messagePort>,
-}
-
-module WebSocket = {
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/WebSocket)
-    */
-  @new
-  external make: (string, unknown) => webSocket = "WebSocket"
-  /**
-    Closes the WebSocket connection, optionally using code as the the WebSocket connection close code and reason as the the WebSocket connection close reason.
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/WebSocket/close)
-    */
-  @send
-  external close: (webSocket, int, string) => unit = "close"
-
-  /**
-    Transmits data using the WebSocket connection. data can be a string, a Blob, an ArrayBuffer, or an ArrayBufferView.
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/WebSocket/send)
-    */
-  @send
-  external send: (webSocket, unknown) => unit = "send"
-}
-
-module CloseEvent = {
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CloseEvent)
-    */
-  @new
-  external make: (string, closeEventInit) => closeEvent = "CloseEvent"
-}
-
-module MessagePort = {
-  /**
-    Posts a message through the channel. Objects listed in transfer are transferred, not just cloned, meaning that they are no longer usable on the sending side.
-
-Throws a "DataCloneError" DOMException if transfer contains duplicate objects or port, or if message could not be cloned.
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/MessagePort/postMessage)
-    */
-  @send
-  external postMessage: (messagePort, any, array<Dict.t<string>>) => unit = "postMessage"
-
-  /**
-    Begins dispatching messages received on the port.
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/MessagePort/start)
-    */
-  @send
-  external start: messagePort => unit = "start"
-
-  /**
-    Disconnects the port, so that it is no longer active.
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/MessagePort/close)
-    */
-  @send
-  external close: messagePort => unit = "close"
-}
-
-module MessageEvent = {
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/MessageEvent)
-    */
-  @new
-  external make: (string, messageEventInit<'t>) => messageEvent<'t> = "MessageEvent"
 }

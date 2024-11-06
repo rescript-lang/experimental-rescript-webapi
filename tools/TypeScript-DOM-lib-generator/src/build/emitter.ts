@@ -2,6 +2,8 @@ import * as Browser from "./types.js";
 import { mapToArray } from "./helpers.js";
 import { promises as fs } from "fs";
 import { execSync } from "child_process";
+import { fileURLToPath } from "url";
+import * as path from "path";
 
 /// Decide which members of a function to emit
 enum EmitScope {
@@ -254,10 +256,12 @@ type interfaceSettings = {
   typeKeywords: "type" | "type rec" | "and";
 };
 
-export async function emitRescriptBindings(
-  outputFolder: string,
-  webidl: Browser.WebIdl,
-) {
+const currentFileName = fileURLToPath(import.meta.url);
+const currentDir = path.dirname(currentFileName);
+const repoRoot = path.resolve(currentDir, "..", "..", "..", "..");
+const outputFolder = path.join(repoRoot, "src");
+
+export async function emitRescriptBindings(webidl: Browser.WebIdl) {
   // Global print target
   const printer = createTextWriter("\n");
 
@@ -1154,6 +1158,18 @@ export async function emitRescriptBindings(
     };
   }
 
+  function emitOpens(opens: string[]) {
+    if (opens.length > 0) {
+      printer.endLine();
+    }
+    for (const o of opens) {
+      printer.printLine(`open ${o}`);
+    }
+    if (opens.length > 0) {
+      printer.endLine();
+    }
+  }
+
   async function emit() {
     printer.reset();
     // printer.printLine('@@warning("-30")');
@@ -1583,21 +1599,14 @@ export async function emitRescriptBindings(
             "RequestCredentials",
             "RequestCache",
             "RequestRedirect",
-            "RequestPriority"
+            "RequestPriority",
           ]),
-          individualInterfaces([
-            "Headers",
-            "Request",
-            "Response"
-          ]),
+          individualInterfaces(["Headers", "Request", "Response"]),
           byHand("HeadersInit", emitAny("HeadersInit")),
           byHand("RequestInfo", emitAny("RequestInfo")),
-          dictionaries([
-            "RequestInit",
-            "ResponseInit"
-          ]),
+          dictionaries(["RequestInit", "ResponseInit"]),
         ],
-        opens: ["Prelude", "Event",  "File"],
+        opens: ["Prelude", "Event", "File"],
       },
       // https://developer.mozilla.org/en-US/docs/Web/API/Service_Worker_API
       {
@@ -1614,11 +1623,14 @@ export async function emitRescriptBindings(
             "ServiceWorkerRegistration",
             "ServiceWorkerContainer",
             "CacheStorage",
-            "Cache"
+            "Cache",
           ]),
-          dictionaries(["NavigationPreloadState", "RegistrationOptions", 
+          dictionaries([
+            "NavigationPreloadState",
+            "RegistrationOptions",
             "CacheQueryOptions",
-            "MultiCacheQueryOptions"]),
+            "MultiCacheQueryOptions",
+          ]),
           byHand("RequestInfo", emitAny("RequestInfo")),
         ],
         opens: ["Prelude", "Event", "PushManager", "Notification", "Fetch"],
@@ -1784,7 +1796,7 @@ export async function emitRescriptBindings(
           individualInterfaces(["StorageManager"]),
           dictionaries(["StorageEstimate"]),
         ],
-        opens: [ "File"],
+        opens: ["File"],
       },
       // https://developer.mozilla.org/en-US/docs/Web/API/Web_Locks_API
       {
@@ -1834,10 +1846,6 @@ export async function emitRescriptBindings(
             "IDBObjectStoreParameters",
             "IDBIndexParameters",
           ]),
-          // ...callbacks([
-          //   "IDBOpenDBRequestEventCallback",
-          //   "IDBVersionChangeEventCallback",
-          // ]),
         ],
         opens: ["Prelude", "Event"],
       },
@@ -1975,7 +1983,6 @@ export async function emitRescriptBindings(
             "IdleDeadline",
             "CSSStyleValue",
             "FileList",
-            "FileSystemDirectoryReader",
             "MediaError",
             "TimeRanges",
             "TextTrackList",
@@ -2118,13 +2125,11 @@ export async function emitRescriptBindings(
             "PanningModelType",
             "DistanceModelType",
             "OverSampleType",
-            "MediaStreamTrackState",
             "RequestCredentials",
           ]),
           individualInterfaces([
             "AudioBuffer",
             "AudioProcessingEvent",
-            "MediaStreamTrack",
             "MediaTrackCapabilities",
             "OfflineAudioCompletionEvent",
             "Worklet",
@@ -2157,7 +2162,6 @@ export async function emitRescriptBindings(
             "WaveShaperNode",
             "AudioContext",
             "MediaElementAudioSourceNode",
-            "MediaStream",
             "MediaStreamAudioSourceNode",
             "MediaStreamAudioDestinationNode",
             "AudioParamMap",
@@ -2203,7 +2207,13 @@ export async function emitRescriptBindings(
           ]),
           ...callbacks(["DecodeSuccessCallback", "DecodeErrorCallback"]),
         ],
-        opens: ["Prelude", "ChannelMessaging", "Event", "DOM"],
+        opens: [
+          "Prelude",
+          "ChannelMessaging",
+          "Event",
+          "DOM",
+          "MediaCaptureAndStreams",
+        ],
       },
       // https://developer.mozilla.org/en-US/docs/Web/API/Resize_Observer_API
       {
@@ -2230,28 +2240,20 @@ export async function emitRescriptBindings(
             "WebSocket",
             "WebSocketStream",
             "CloseEvent",
-            "MessagePort",
             "MessageEvent",
           ]),
           dictionaries(["CloseEventInit", "MessageEventInit"]),
         ],
-        opens: ["Prelude", "Event"],
+        opens: ["Prelude", "Event", "ChannelMessaging"],
       },
     ];
+
+    await fs.mkdir(outputFolder, { recursive: true });
 
     for (const file of interfaceHierarchy) {
       printer.reset();
       printer.printLine('@@warning("-30")');
-
-      if (file.opens.length > 0) {
-        printer.endLine();
-      }
-      for (const o of file.opens) {
-        printer.printLine(`open ${o}`);
-      }
-      if (file.opens.length > 0) {
-        printer.endLine();
-      }
+      emitOpens(file.opens);
 
       for (const entry of file.entries) {
         switch (entry.kind) {
@@ -2273,6 +2275,12 @@ export async function emitRescriptBindings(
         }
       }
 
+      const contents = printer.getResult();
+      await fs.writeFile(path.join(outputFolder, `${file.name}.res`), contents);
+
+      const moduleFolder = path.join(outputFolder, path.basename(file.name));
+      await fs.mkdir(moduleFolder, { recursive: true });
+
       for (const entry of file.entries) {
         if (
           entry.kind === "byHand" ||
@@ -2283,17 +2291,30 @@ export async function emitRescriptBindings(
         }
 
         for (const i of entry.interfaces) {
+          printer.reset();
+
+          emitOpens([...file.opens, file.name]);
+
           emitInterfaceNestedModule(i);
+          const contents = printer.getResult();
+          if (contents) {
+            let fileName = i.name;
+            // FileName needs to be unique for ReScript
+            if (interfaceHierarchy.some((h) => h.name === fileName)) {
+              fileName = `${file.name}Module`;
+            }
+
+            await fs.writeFile(
+              path.join(moduleFolder, `${fileName}.res`),
+              contents,
+            );
+          }
         }
       }
-
-      const contents = printer.getResult();
-      await fs.writeFile(`${outputFolder}/${file.name}.res`, contents);
     }
 
-    const repoRoot = "/home/nojaf/projects/experimental-rescript-webapi";
     execSync("npx rescript format -all", { cwd: repoRoot, stdio: "inherit" });
-    execSync("npx rescript", { cwd: repoRoot, stdio: "inherit" });
+    execSync("npx rewatch", { cwd: repoRoot, stdio: "inherit" });
 
     // let remainers = allInterfaces.filter((i) => {
     //   return !interfaceHierarchy.some((h) => {

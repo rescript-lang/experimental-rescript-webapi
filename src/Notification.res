@@ -80,23 +80,3 @@ type notificationOptions = {
 type getNotificationOptions = {mutable tag: string}
 
 type notificationPermissionCallback = notificationPermission => unit
-
-module Notification = {
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Notification)
-    */
-  @new
-  external make: (string, notificationOptions) => notification = "Notification"
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Notification/requestPermission_static)
-    */
-  @scope("Notification")
-  external requestPermission: notificationPermissionCallback => Promise.t<notificationPermission> =
-    "requestPermission"
-
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Notification/close)
-    */
-  @send
-  external close: notification => unit = "close"
-}
