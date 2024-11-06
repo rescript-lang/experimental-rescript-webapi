@@ -1076,7 +1076,7 @@ export async function emitRescriptBindings(webidl: Browser.WebIdl) {
     if (!(hasMethods || hasConstructor)) return;
 
     // TODO: consider prefixing each type?
-    printer.printLine(`@@warning("-44")`);
+    // printer.printLine(`@@warning("-44")`);
     printer.printLine(`@@warning("-33")`);
 
     if (opens.size > 0) {
