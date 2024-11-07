@@ -26,7 +26,16 @@ Throws a "HierarchyRequestError" DOMException if the constraints of the node tre
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Document/prepend)
 */
 @send
-external prepend: (htmloListElement, unknown) => unit = "prepend"
+external prepend: (htmloListElement, node) => unit = "prepend"
+
+/**
+Inserts nodes before the first child of node, while replacing strings in nodes with equivalent Text nodes.
+
+Throws a "HierarchyRequestError" DOMException if the constraints of the node tree are violated.
+[Read more on MDN](https://developer.mozilla.org/docs/Web/API/Document/prepend)
+*/
+@send
+external prepend2: (htmloListElement, string) => unit = "prepend"
 
 /**
 Inserts nodes after the last child of node, while replacing strings in nodes with equivalent Text nodes.
@@ -35,7 +44,16 @@ Throws a "HierarchyRequestError" DOMException if the constraints of the node tre
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Document/append)
 */
 @send
-external append: (htmloListElement, unknown) => unit = "append"
+external append: (htmloListElement, node) => unit = "append"
+
+/**
+Inserts nodes after the last child of node, while replacing strings in nodes with equivalent Text nodes.
+
+Throws a "HierarchyRequestError" DOMException if the constraints of the node tree are violated.
+[Read more on MDN](https://developer.mozilla.org/docs/Web/API/Document/append)
+*/
+@send
+external append2: (htmloListElement, string) => unit = "append"
 
 /**
 Replace all children of node with nodes, while replacing strings in nodes with equivalent Text nodes.
@@ -44,7 +62,16 @@ Throws a "HierarchyRequestError" DOMException if the constraints of the node tre
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Document/replaceChildren)
 */
 @send
-external replaceChildren: (htmloListElement, unknown) => unit = "replaceChildren"
+external replaceChildren: (htmloListElement, node) => unit = "replaceChildren"
+
+/**
+Replace all children of node with nodes, while replacing strings in nodes with equivalent Text nodes.
+
+Throws a "HierarchyRequestError" DOMException if the constraints of the node tree are violated.
+[Read more on MDN](https://developer.mozilla.org/docs/Web/API/Document/replaceChildren)
+*/
+@send
+external replaceChildren2: (htmloListElement, string) => unit = "replaceChildren"
 
 /**
 Returns the first element that is a descendant of node that matches selectors.
@@ -67,7 +94,16 @@ Throws a "HierarchyRequestError" DOMException if the constraints of the node tre
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CharacterData/before)
 */
 @send
-external before: (htmloListElement, unknown) => unit = "before"
+external before: (htmloListElement, node) => unit = "before"
+
+/**
+Inserts nodes just before node, while replacing strings in nodes with equivalent Text nodes.
+
+Throws a "HierarchyRequestError" DOMException if the constraints of the node tree are violated.
+[Read more on MDN](https://developer.mozilla.org/docs/Web/API/CharacterData/before)
+*/
+@send
+external before2: (htmloListElement, string) => unit = "before"
 
 /**
 Inserts nodes just after node, while replacing strings in nodes with equivalent Text nodes.
@@ -76,7 +112,16 @@ Throws a "HierarchyRequestError" DOMException if the constraints of the node tre
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CharacterData/after)
 */
 @send
-external after: (htmloListElement, unknown) => unit = "after"
+external after: (htmloListElement, node) => unit = "after"
+
+/**
+Inserts nodes just after node, while replacing strings in nodes with equivalent Text nodes.
+
+Throws a "HierarchyRequestError" DOMException if the constraints of the node tree are violated.
+[Read more on MDN](https://developer.mozilla.org/docs/Web/API/CharacterData/after)
+*/
+@send
+external after2: (htmloListElement, string) => unit = "after"
 
 /**
 Replaces node with nodes, while replacing strings in nodes with equivalent Text nodes.
@@ -85,7 +130,16 @@ Throws a "HierarchyRequestError" DOMException if the constraints of the node tre
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CharacterData/replaceWith)
 */
 @send
-external replaceWith: (htmloListElement, unknown) => unit = "replaceWith"
+external replaceWith: (htmloListElement, node) => unit = "replaceWith"
+
+/**
+Replaces node with nodes, while replacing strings in nodes with equivalent Text nodes.
+
+Throws a "HierarchyRequestError" DOMException if the constraints of the node tree are violated.
+[Read more on MDN](https://developer.mozilla.org/docs/Web/API/CharacterData/replaceWith)
+*/
+@send
+external replaceWith2: (htmloListElement, string) => unit = "replaceWith"
 
 /**
 Removes node.
@@ -504,7 +558,13 @@ external checkVisibility: (htmloListElement, checkVisibilityOptions) => bool = "
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/scrollIntoView)
 */
 @send
-external scrollIntoView: (htmloListElement, unknown) => unit = "scrollIntoView"
+external scrollIntoView: (htmloListElement, bool) => unit = "scrollIntoView"
+
+/**
+[Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/scrollIntoView)
+*/
+@send
+external scrollIntoView2: (htmloListElement, scrollIntoViewOptions) => unit = "scrollIntoView"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/scroll)

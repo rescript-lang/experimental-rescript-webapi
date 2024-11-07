@@ -20,7 +20,16 @@ Throws a "HierarchyRequestError" DOMException if the constraints of the node tre
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Document/prepend)
 */
 @send
-external prepend: (document, unknown) => unit = "prepend"
+external prepend: (document, node) => unit = "prepend"
+
+/**
+Inserts nodes before the first child of node, while replacing strings in nodes with equivalent Text nodes.
+
+Throws a "HierarchyRequestError" DOMException if the constraints of the node tree are violated.
+[Read more on MDN](https://developer.mozilla.org/docs/Web/API/Document/prepend)
+*/
+@send
+external prepend2: (document, string) => unit = "prepend"
 
 /**
 Inserts nodes after the last child of node, while replacing strings in nodes with equivalent Text nodes.
@@ -29,7 +38,16 @@ Throws a "HierarchyRequestError" DOMException if the constraints of the node tre
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Document/append)
 */
 @send
-external append: (document, unknown) => unit = "append"
+external append: (document, node) => unit = "append"
+
+/**
+Inserts nodes after the last child of node, while replacing strings in nodes with equivalent Text nodes.
+
+Throws a "HierarchyRequestError" DOMException if the constraints of the node tree are violated.
+[Read more on MDN](https://developer.mozilla.org/docs/Web/API/Document/append)
+*/
+@send
+external append2: (document, string) => unit = "append"
 
 /**
 Replace all children of node with nodes, while replacing strings in nodes with equivalent Text nodes.
@@ -38,7 +56,16 @@ Throws a "HierarchyRequestError" DOMException if the constraints of the node tre
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Document/replaceChildren)
 */
 @send
-external replaceChildren: (document, unknown) => unit = "replaceChildren"
+external replaceChildren: (document, node) => unit = "replaceChildren"
+
+/**
+Replace all children of node with nodes, while replacing strings in nodes with equivalent Text nodes.
+
+Throws a "HierarchyRequestError" DOMException if the constraints of the node tree are violated.
+[Read more on MDN](https://developer.mozilla.org/docs/Web/API/Document/replaceChildren)
+*/
+@send
+external replaceChildren2: (document, string) => unit = "replaceChildren"
 
 /**
 Returns the first element that is a descendant of node that matches selectors.

@@ -26,7 +26,16 @@ Throws a "HierarchyRequestError" DOMException if the constraints of the node tre
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Document/prepend)
 */
 @send
-external prepend: (htmlOptionElement, unknown) => unit = "prepend"
+external prepend: (htmlOptionElement, node) => unit = "prepend"
+
+/**
+Inserts nodes before the first child of node, while replacing strings in nodes with equivalent Text nodes.
+
+Throws a "HierarchyRequestError" DOMException if the constraints of the node tree are violated.
+[Read more on MDN](https://developer.mozilla.org/docs/Web/API/Document/prepend)
+*/
+@send
+external prepend2: (htmlOptionElement, string) => unit = "prepend"
 
 /**
 Inserts nodes after the last child of node, while replacing strings in nodes with equivalent Text nodes.
@@ -35,7 +44,16 @@ Throws a "HierarchyRequestError" DOMException if the constraints of the node tre
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Document/append)
 */
 @send
-external append: (htmlOptionElement, unknown) => unit = "append"
+external append: (htmlOptionElement, node) => unit = "append"
+
+/**
+Inserts nodes after the last child of node, while replacing strings in nodes with equivalent Text nodes.
+
+Throws a "HierarchyRequestError" DOMException if the constraints of the node tree are violated.
+[Read more on MDN](https://developer.mozilla.org/docs/Web/API/Document/append)
+*/
+@send
+external append2: (htmlOptionElement, string) => unit = "append"
 
 /**
 Replace all children of node with nodes, while replacing strings in nodes with equivalent Text nodes.
@@ -44,7 +62,16 @@ Throws a "HierarchyRequestError" DOMException if the constraints of the node tre
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Document/replaceChildren)
 */
 @send
-external replaceChildren: (htmlOptionElement, unknown) => unit = "replaceChildren"
+external replaceChildren: (htmlOptionElement, node) => unit = "replaceChildren"
+
+/**
+Replace all children of node with nodes, while replacing strings in nodes with equivalent Text nodes.
+
+Throws a "HierarchyRequestError" DOMException if the constraints of the node tree are violated.
+[Read more on MDN](https://developer.mozilla.org/docs/Web/API/Document/replaceChildren)
+*/
+@send
+external replaceChildren2: (htmlOptionElement, string) => unit = "replaceChildren"
 
 /**
 Returns the first element that is a descendant of node that matches selectors.
@@ -67,7 +94,16 @@ Throws a "HierarchyRequestError" DOMException if the constraints of the node tre
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CharacterData/before)
 */
 @send
-external before: (htmlOptionElement, unknown) => unit = "before"
+external before: (htmlOptionElement, node) => unit = "before"
+
+/**
+Inserts nodes just before node, while replacing strings in nodes with equivalent Text nodes.
+
+Throws a "HierarchyRequestError" DOMException if the constraints of the node tree are violated.
+[Read more on MDN](https://developer.mozilla.org/docs/Web/API/CharacterData/before)
+*/
+@send
+external before2: (htmlOptionElement, string) => unit = "before"
 
 /**
 Inserts nodes just after node, while replacing strings in nodes with equivalent Text nodes.
@@ -76,7 +112,16 @@ Throws a "HierarchyRequestError" DOMException if the constraints of the node tre
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CharacterData/after)
 */
 @send
-external after: (htmlOptionElement, unknown) => unit = "after"
+external after: (htmlOptionElement, node) => unit = "after"
+
+/**
+Inserts nodes just after node, while replacing strings in nodes with equivalent Text nodes.
+
+Throws a "HierarchyRequestError" DOMException if the constraints of the node tree are violated.
+[Read more on MDN](https://developer.mozilla.org/docs/Web/API/CharacterData/after)
+*/
+@send
+external after2: (htmlOptionElement, string) => unit = "after"
 
 /**
 Replaces node with nodes, while replacing strings in nodes with equivalent Text nodes.
@@ -85,7 +130,16 @@ Throws a "HierarchyRequestError" DOMException if the constraints of the node tre
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CharacterData/replaceWith)
 */
 @send
-external replaceWith: (htmlOptionElement, unknown) => unit = "replaceWith"
+external replaceWith: (htmlOptionElement, node) => unit = "replaceWith"
+
+/**
+Replaces node with nodes, while replacing strings in nodes with equivalent Text nodes.
+
+Throws a "HierarchyRequestError" DOMException if the constraints of the node tree are violated.
+[Read more on MDN](https://developer.mozilla.org/docs/Web/API/CharacterData/replaceWith)
+*/
+@send
+external replaceWith2: (htmlOptionElement, string) => unit = "replaceWith"
 
 /**
 Removes node.
@@ -505,7 +559,13 @@ external checkVisibility: (htmlOptionElement, checkVisibilityOptions) => bool = 
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/scrollIntoView)
 */
 @send
-external scrollIntoView: (htmlOptionElement, unknown) => unit = "scrollIntoView"
+external scrollIntoView: (htmlOptionElement, bool) => unit = "scrollIntoView"
+
+/**
+[Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/scrollIntoView)
+*/
+@send
+external scrollIntoView2: (htmlOptionElement, scrollIntoViewOptions) => unit = "scrollIntoView"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/scroll)

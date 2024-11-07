@@ -13,7 +13,16 @@ Throws a "HierarchyRequestError" DOMException if the constraints of the node tre
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CharacterData/before)
 */
 @send
-external before: (text, unknown) => unit = "before"
+external before: (text, node) => unit = "before"
+
+/**
+Inserts nodes just before node, while replacing strings in nodes with equivalent Text nodes.
+
+Throws a "HierarchyRequestError" DOMException if the constraints of the node tree are violated.
+[Read more on MDN](https://developer.mozilla.org/docs/Web/API/CharacterData/before)
+*/
+@send
+external before2: (text, string) => unit = "before"
 
 /**
 Inserts nodes just after node, while replacing strings in nodes with equivalent Text nodes.
@@ -22,7 +31,16 @@ Throws a "HierarchyRequestError" DOMException if the constraints of the node tre
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CharacterData/after)
 */
 @send
-external after: (text, unknown) => unit = "after"
+external after: (text, node) => unit = "after"
+
+/**
+Inserts nodes just after node, while replacing strings in nodes with equivalent Text nodes.
+
+Throws a "HierarchyRequestError" DOMException if the constraints of the node tree are violated.
+[Read more on MDN](https://developer.mozilla.org/docs/Web/API/CharacterData/after)
+*/
+@send
+external after2: (text, string) => unit = "after"
 
 /**
 Replaces node with nodes, while replacing strings in nodes with equivalent Text nodes.
@@ -31,7 +49,16 @@ Throws a "HierarchyRequestError" DOMException if the constraints of the node tre
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CharacterData/replaceWith)
 */
 @send
-external replaceWith: (text, unknown) => unit = "replaceWith"
+external replaceWith: (text, node) => unit = "replaceWith"
+
+/**
+Replaces node with nodes, while replacing strings in nodes with equivalent Text nodes.
+
+Throws a "HierarchyRequestError" DOMException if the constraints of the node tree are violated.
+[Read more on MDN](https://developer.mozilla.org/docs/Web/API/CharacterData/replaceWith)
+*/
+@send
+external replaceWith2: (text, string) => unit = "replaceWith"
 
 /**
 Removes node.

@@ -26,7 +26,16 @@ Throws a "HierarchyRequestError" DOMException if the constraints of the node tre
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Document/prepend)
 */
 @send
-external prepend: (htmlDataListElement, unknown) => unit = "prepend"
+external prepend: (htmlDataListElement, node) => unit = "prepend"
+
+/**
+Inserts nodes before the first child of node, while replacing strings in nodes with equivalent Text nodes.
+
+Throws a "HierarchyRequestError" DOMException if the constraints of the node tree are violated.
+[Read more on MDN](https://developer.mozilla.org/docs/Web/API/Document/prepend)
+*/
+@send
+external prepend2: (htmlDataListElement, string) => unit = "prepend"
 
 /**
 Inserts nodes after the last child of node, while replacing strings in nodes with equivalent Text nodes.
@@ -35,7 +44,16 @@ Throws a "HierarchyRequestError" DOMException if the constraints of the node tre
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Document/append)
 */
 @send
-external append: (htmlDataListElement, unknown) => unit = "append"
+external append: (htmlDataListElement, node) => unit = "append"
+
+/**
+Inserts nodes after the last child of node, while replacing strings in nodes with equivalent Text nodes.
+
+Throws a "HierarchyRequestError" DOMException if the constraints of the node tree are violated.
+[Read more on MDN](https://developer.mozilla.org/docs/Web/API/Document/append)
+*/
+@send
+external append2: (htmlDataListElement, string) => unit = "append"
 
 /**
 Replace all children of node with nodes, while replacing strings in nodes with equivalent Text nodes.
@@ -44,7 +62,16 @@ Throws a "HierarchyRequestError" DOMException if the constraints of the node tre
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Document/replaceChildren)
 */
 @send
-external replaceChildren: (htmlDataListElement, unknown) => unit = "replaceChildren"
+external replaceChildren: (htmlDataListElement, node) => unit = "replaceChildren"
+
+/**
+Replace all children of node with nodes, while replacing strings in nodes with equivalent Text nodes.
+
+Throws a "HierarchyRequestError" DOMException if the constraints of the node tree are violated.
+[Read more on MDN](https://developer.mozilla.org/docs/Web/API/Document/replaceChildren)
+*/
+@send
+external replaceChildren2: (htmlDataListElement, string) => unit = "replaceChildren"
 
 /**
 Returns the first element that is a descendant of node that matches selectors.
@@ -67,7 +94,16 @@ Throws a "HierarchyRequestError" DOMException if the constraints of the node tre
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CharacterData/before)
 */
 @send
-external before: (htmlDataListElement, unknown) => unit = "before"
+external before: (htmlDataListElement, node) => unit = "before"
+
+/**
+Inserts nodes just before node, while replacing strings in nodes with equivalent Text nodes.
+
+Throws a "HierarchyRequestError" DOMException if the constraints of the node tree are violated.
+[Read more on MDN](https://developer.mozilla.org/docs/Web/API/CharacterData/before)
+*/
+@send
+external before2: (htmlDataListElement, string) => unit = "before"
 
 /**
 Inserts nodes just after node, while replacing strings in nodes with equivalent Text nodes.
@@ -76,7 +112,16 @@ Throws a "HierarchyRequestError" DOMException if the constraints of the node tre
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CharacterData/after)
 */
 @send
-external after: (htmlDataListElement, unknown) => unit = "after"
+external after: (htmlDataListElement, node) => unit = "after"
+
+/**
+Inserts nodes just after node, while replacing strings in nodes with equivalent Text nodes.
+
+Throws a "HierarchyRequestError" DOMException if the constraints of the node tree are violated.
+[Read more on MDN](https://developer.mozilla.org/docs/Web/API/CharacterData/after)
+*/
+@send
+external after2: (htmlDataListElement, string) => unit = "after"
 
 /**
 Replaces node with nodes, while replacing strings in nodes with equivalent Text nodes.
@@ -85,7 +130,16 @@ Throws a "HierarchyRequestError" DOMException if the constraints of the node tre
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CharacterData/replaceWith)
 */
 @send
-external replaceWith: (htmlDataListElement, unknown) => unit = "replaceWith"
+external replaceWith: (htmlDataListElement, node) => unit = "replaceWith"
+
+/**
+Replaces node with nodes, while replacing strings in nodes with equivalent Text nodes.
+
+Throws a "HierarchyRequestError" DOMException if the constraints of the node tree are violated.
+[Read more on MDN](https://developer.mozilla.org/docs/Web/API/CharacterData/replaceWith)
+*/
+@send
+external replaceWith2: (htmlDataListElement, string) => unit = "replaceWith"
 
 /**
 Removes node.
@@ -508,7 +562,13 @@ external checkVisibility: (htmlDataListElement, checkVisibilityOptions) => bool 
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/scrollIntoView)
 */
 @send
-external scrollIntoView: (htmlDataListElement, unknown) => unit = "scrollIntoView"
+external scrollIntoView: (htmlDataListElement, bool) => unit = "scrollIntoView"
+
+/**
+[Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/scrollIntoView)
+*/
+@send
+external scrollIntoView2: (htmlDataListElement, scrollIntoViewOptions) => unit = "scrollIntoView"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/scroll)

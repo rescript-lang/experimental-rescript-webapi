@@ -137,6 +137,12 @@ type resizeQuality =
   | @as("medium") Medium
   | @as("pixelated") Pixelated
 
+type scrollLogicalPosition =
+  | @as("center") Center
+  | @as("end") End
+  | @as("nearest") Nearest
+  | @as("start") Start
+
 type shareData = {
   mutable files: array<file>,
   mutable title: string,
@@ -9160,6 +9166,12 @@ type imageBitmapOptions = {
 }
 
 type structuredSerializeOptions = {mutable transfer: array<Dict.t<string>>}
+
+type scrollIntoViewOptions = {
+  ...scrollOptions,
+  mutable block: scrollLogicalPosition,
+  mutable inline: scrollLogicalPosition,
+}
 
 type xPathNSResolver = any
 

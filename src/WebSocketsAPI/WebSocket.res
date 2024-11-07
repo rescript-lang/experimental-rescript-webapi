@@ -127,4 +127,18 @@ Transmits data using the WebSocket connection. data can be a string, a Blob, an 
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/WebSocket/send)
 */
 @send
-external send: (webSocket, unknown) => unit = "send"
+external send: (webSocket, bufferSource) => unit = "send"
+
+/**
+Transmits data using the WebSocket connection. data can be a string, a Blob, an ArrayBuffer, or an ArrayBufferView.
+[Read more on MDN](https://developer.mozilla.org/docs/Web/API/WebSocket/send)
+*/
+@send
+external send2: (webSocket, blob) => unit = "send"
+
+/**
+Transmits data using the WebSocket connection. data can be a string, a Blob, an ArrayBuffer, or an ArrayBufferView.
+[Read more on MDN](https://developer.mozilla.org/docs/Web/API/WebSocket/send)
+*/
+@send
+external send3: (webSocket, string) => unit = "send"

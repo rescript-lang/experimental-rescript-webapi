@@ -892,13 +892,83 @@ export async function emitRescriptBindings(webidl: Browser.WebIdl) {
     return transformTyped(signature);
   }
 
-  // TODO: deal with overloads?
-  function emitMethod(i: Browser.Interface, method: Browser.Method) {
-    if (method.signature.length === 0 || method.deprecated) return;
+  function isInvalidMethod(method: Browser.Method): boolean {
+    if (method.signature.length === 0 || method.deprecated) return true;
 
     const signature = method.signature[0];
-    if (typeof signature.type !== "string") return;
+    if (typeof signature.type !== "string") return true;
 
+    return false;
+  }
+
+  // Some methods like https://developer.mozilla.org/en-US/docs/Web/API/Element/scrollIntoView have multiple overloads
+  // This is defined as an parameter with multiple type
+  /*
+      "scrollIntoView": {
+              "name": "scrollIntoView",
+              "signature": [
+                {
+                  "type": "undefined",
+                  "nullable": false,
+                  "param": [
+                    {
+                      "name": "arg",
+                      "type": [
+                        {
+                          "type": "boolean",
+                          "nullable": false
+                        },
+                        {
+                          "type": "ScrollIntoViewOptions",
+                          "nullable": false
+                        }
+                      ],
+                      "nullable": false,
+                      "optional": true,
+                      "variadic": false
+                    }
+                  ]
+                }
+              ],
+  */
+  function dedupeMethod(method: Browser.Method): Browser.Method[] {
+    if (isInvalidMethod(method)) return [];
+
+    if (method.static) {
+      return [method];
+    }
+
+    const signature = method.signature[0];
+    if (
+      signature.param &&
+      signature.param.length === 1 &&
+      Array.isArray(signature.param[0].type)
+    ) {
+      const param = signature.param[0];
+      return signature.param[0].type.map((t) => {
+        const updatedSignature: Browser.Signature = {
+          ...signature,
+          param: [{ ...param, type: [t] }],
+        };
+        return {
+          ...method,
+          signature: [updatedSignature],
+        };
+      });
+    }
+
+    return [method];
+  }
+
+  // TODO: deal with overloads?
+  function emitMethod(
+    i: Browser.Interface,
+    method: Browser.Method,
+    suffix: string = "",
+  ) {
+    if (isInvalidMethod(method)) return;
+
+    const signature = method.signature[0];
     let ps = mapSignatureParameters(signature);
 
     printComment({
@@ -908,14 +978,14 @@ export async function emitRescriptBindings(webidl: Browser.WebIdl) {
     if (method.static) {
       printer.printLine(`@scope("${i.name}")`);
       printer.printLine(
-        `external ${mapMethodName(method)}: (${ps}) => ${mapMethodReturnType(signature)} = "${method.name}"`,
+        `external ${mapMethodName(method)}${suffix}: (${ps}) => ${mapMethodReturnType(signature)} = "${method.name}"`,
       );
     } else {
       ps = ps.length > 0 ? ", " + ps : "";
 
       printer.printLine("@send");
       printer.printLine(
-        `external ${mapMethodName(method)}: (${mapInterfaceName(i)}${ps}) => ${mapMethodReturnType(signature)} = "${method.name}"`,
+        `external ${mapMethodName(method)}${suffix}: (${mapInterfaceName(i)}${ps}) => ${mapMethodReturnType(signature)} = "${method.name}"`,
       );
     }
 
@@ -1121,7 +1191,10 @@ export async function emitRescriptBindings(webidl: Browser.WebIdl) {
       }
 
       if (method.signature) {
-        emitMethod(i, method);
+        const dedupedMethods = dedupeMethod(method);
+        for (const [idx, dedupedMethod] of dedupedMethods.entries()) {
+          emitMethod(i, dedupedMethod, idx > 0 ? `${idx + 1}` : "");
+        }
       }
     }
   }
@@ -2025,6 +2098,7 @@ export async function emitRescriptBindings(webidl: Browser.WebIdl) {
             "PremultiplyAlpha",
             "ColorSpaceConversion",
             "ResizeQuality",
+            "ScrollLogicalPosition",
           ]),
           // TODO: perhaps move to Web Share API?
           // See https://developer.mozilla.org/en-US/docs/Web/API/Web_Share_API
@@ -2210,6 +2284,7 @@ export async function emitRescriptBindings(webidl: Browser.WebIdl) {
             "OptionalEffectTiming",
             "ImageBitmapOptions",
             "StructuredSerializeOptions",
+            "ScrollIntoViewOptions",
           ]),
           byHand("XPathNSResolver", emitAny("XPathNSResolver")),
           byHand("TimerHandler", emitAny("TimerHandler")),
