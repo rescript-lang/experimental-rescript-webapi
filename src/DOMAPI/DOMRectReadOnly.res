@@ -6,6 +6,7 @@ open DOMAPI
 @new
 external make: (~x: float, ~y: float, ~width: float, ~height: float) => domRectReadOnly =
   "DOMRectReadOnly"
+
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/DOMRectReadOnly/fromRect_static)
 */

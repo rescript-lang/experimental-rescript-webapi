@@ -8,6 +8,7 @@ open ServiceWorkerAPI
 */
 @new
 external make: (~input: requestInfo, ~init: requestInit) => request = "Request"
+
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Request/arrayBuffer)
 */

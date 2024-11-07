@@ -7,6 +7,7 @@ open DOMAPI
 */
 @new
 external make: (~form: htmlFormElement, ~submitter: htmlElement) => formData = "FormData"
+
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/FormData/append)
 */

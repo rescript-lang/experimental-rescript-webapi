@@ -6,6 +6,7 @@ open PerformanceAPI
 @new
 external make: (~markName: string, ~markOptions: performanceMarkOptions) => performanceMark =
   "PerformanceMark"
+
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/PerformanceEntry/toJSON)
 */

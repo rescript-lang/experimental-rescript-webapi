@@ -6,6 +6,7 @@ open EventAPI
 */
 @new
 external make: unit => documentFragment = "DocumentFragment"
+
 /**
 Inserts nodes before the first child of node, while replacing strings in nodes with equivalent Text nodes.
 

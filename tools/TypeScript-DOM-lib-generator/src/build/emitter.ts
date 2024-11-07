@@ -966,6 +966,18 @@ export async function emitRescriptBindings(webidl: Browser.WebIdl) {
     });
   }
 
+  function dedupeConstructor(
+    constructor: Browser.Constructor,
+  ): Browser.Constructor[] {
+    if (!constructor.signature || !Array.isArray(constructor.signature)) {
+      return [];
+    }
+
+    return constructor.signature.flatMap((signature) => {
+      return { ...constructor, signature: [signature] };
+    });
+  }
+
   // TODO: deal with overloads?
   function emitMethod(
     i: Browser.Interface,
@@ -1078,7 +1090,11 @@ export async function emitRescriptBindings(webidl: Browser.WebIdl) {
         },
   */
 
-  function emitConstructor(i: Browser.Interface, c: Browser.Constructor) {
+  function emitConstructor(
+    i: Browser.Interface,
+    c: Browser.Constructor,
+    suffix: string = "",
+  ) {
     if (typeof c === "function") {
       return;
     }
@@ -1097,8 +1113,9 @@ export async function emitRescriptBindings(webidl: Browser.WebIdl) {
 
     printer.printLine(`@new`);
     printer.printLine(
-      `external make: (${ps}) => ${transformTyped(signature)} = "${i.name}"`,
+      `external make${suffix}: (${ps}) => ${transformTyped(signature)} = "${i.name}"`,
     );
+    printer.endLine();
   }
 
   function extractMethodEntries(
@@ -1235,7 +1252,11 @@ export async function emitRescriptBindings(webidl: Browser.WebIdl) {
     }
 
     if (i.constructor) {
-      emitConstructor(i, i.constructor);
+      const dedupedConstructors = dedupeConstructor(i.constructor);
+      for (const [idx, dedupedConstructor] of dedupedConstructors.entries()) {
+        const suffix = idx > 0 ? `${idx + 1}` : "";
+        emitConstructor(i, dedupedConstructor, suffix);
+      }
     }
 
     let methodEntries: Record<string, Browser.Method> = extractMethodEntries(i);
@@ -1259,7 +1280,8 @@ export async function emitRescriptBindings(webidl: Browser.WebIdl) {
       if (method.signature) {
         const dedupedMethods = dedupeMethod(method);
         for (const [idx, dedupedMethod] of dedupedMethods.entries()) {
-          emitMethod(i, dedupedMethod, idx > 0 ? `${idx + 1}` : "");
+          const suffix = idx > 0 ? `${idx + 1}` : "";
+          emitMethod(i, dedupedMethod, suffix);
         }
       }
     }

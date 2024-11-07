@@ -5,6 +5,7 @@ open FetchAPI
 */
 @new
 external make: headersInit => headers = "Headers"
+
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Headers/append)
 */

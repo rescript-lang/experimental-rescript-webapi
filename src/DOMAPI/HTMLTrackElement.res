@@ -7,6 +7,7 @@ open EventAPI
 */
 @new
 external make: unit => htmlTrackElement = "HTMLTrackElement"
+
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/focus)
 */

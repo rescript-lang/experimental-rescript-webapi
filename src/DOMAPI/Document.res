@@ -7,6 +7,7 @@ open ViewTransitionsAPI
 */
 @new
 external make: unit => document = "Document"
+
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Document/getAnimations)
 */

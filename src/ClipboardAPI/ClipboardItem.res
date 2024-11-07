@@ -7,6 +7,7 @@ open Prelude
 */
 @new
 external make: (~items: any, ~options: clipboardItemOptions) => clipboardItem = "ClipboardItem"
+
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/ClipboardItem/getType)
 */

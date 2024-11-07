@@ -10,6 +10,7 @@ open PictureInPictureAPI
 */
 @new
 external make: unit => htmlVideoElement = "HTMLVideoElement"
+
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/focus)
 */

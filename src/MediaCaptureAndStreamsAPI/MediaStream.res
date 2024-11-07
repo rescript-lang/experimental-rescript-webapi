@@ -6,6 +6,19 @@ open MediaCaptureAndStreamsAPI
 */
 @new
 external make: unit => mediaStream = "MediaStream"
+
+/**
+[Read more on MDN](https://developer.mozilla.org/docs/Web/API/MediaStream)
+*/
+@new
+external make2: mediaStream => mediaStream = "MediaStream"
+
+/**
+[Read more on MDN](https://developer.mozilla.org/docs/Web/API/MediaStream)
+*/
+@new
+external make3: array<mediaStreamTrack> => mediaStream = "MediaStream"
+
 /**
 Appends an event listener for events whose type attribute value is type. The callback argument sets the callback that will be invoked when the event is dispatched.
 

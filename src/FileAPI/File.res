@@ -6,6 +6,7 @@ open FileAPI
 @new
 external make: (~fileBits: array<blobPart>, ~fileName: string, ~options: filePropertyBag) => file =
   "File"
+
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Blob/slice)
 */

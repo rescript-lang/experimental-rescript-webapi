@@ -6,6 +6,7 @@ open EventAPI
 */
 @new
 external make: string => comment = "Comment"
+
 /**
 Inserts nodes just before node, while replacing strings in nodes with equivalent Text nodes.
 

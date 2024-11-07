@@ -7,6 +7,7 @@ open EventAPI
 */
 @new
 external make: unit => htmlDataElement = "HTMLDataElement"
+
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/focus)
 */

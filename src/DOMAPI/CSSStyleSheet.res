@@ -5,6 +5,7 @@ open DOMAPI
 */
 @new
 external make: cssStyleSheetInit => cssStyleSheet = "CSSStyleSheet"
+
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CSSStyleSheet/insertRule)
 */

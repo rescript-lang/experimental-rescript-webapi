@@ -6,6 +6,14 @@ open WebAudioAPI
 */
 @new
 external make: offlineAudioContextOptions => offlineAudioContext = "OfflineAudioContext"
+
+/**
+[Read more on MDN](https://developer.mozilla.org/docs/Web/API/OfflineAudioContext)
+*/
+@new
+external make2: (~numberOfChannels: int, ~length: int, ~sampleRate: float) => offlineAudioContext =
+  "OfflineAudioContext"
+
 /**
 Appends an event listener for events whose type attribute value is type. The callback argument sets the callback that will be invoked when the event is dispatched.
 

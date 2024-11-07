@@ -7,6 +7,7 @@ open Prelude
 */
 @new
 external make: (~body: bodyInit, ~init: responseInit) => response = "Response"
+
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Request/arrayBuffer)
 */

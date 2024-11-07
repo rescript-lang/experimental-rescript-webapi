@@ -5,6 +5,7 @@ open WebAudioAPI
 */
 @new
 external make: audioBufferOptions => audioBuffer = "AudioBuffer"
+
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/AudioBuffer/getChannelData)
 */

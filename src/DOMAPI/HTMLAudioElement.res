@@ -9,6 +9,7 @@ open EncryptedMediaExtensionsAPI
 */
 @new
 external make: unit => htmlAudioElement = "HTMLAudioElement"
+
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/focus)
 */

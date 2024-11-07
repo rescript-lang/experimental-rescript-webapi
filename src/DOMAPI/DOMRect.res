@@ -5,6 +5,7 @@ open DOMAPI
 */
 @new
 external make: (~x: float, ~y: float, ~width: float, ~height: float) => domRect = "DOMRect"
+
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/DOMRect/fromRect_static)
 */

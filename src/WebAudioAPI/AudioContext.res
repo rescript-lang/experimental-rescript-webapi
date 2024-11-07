@@ -8,6 +8,7 @@ open MediaCaptureAndStreamsAPI
 */
 @new
 external make: audioContextOptions => audioContext = "AudioContext"
+
 /**
 Appends an event listener for events whose type attribute value is type. The callback argument sets the callback that will be invoked when the event is dispatched.
 
