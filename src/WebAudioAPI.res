@@ -1027,84 +1027,84 @@ type offlineAudioContext = {
   length: int,
 }
 
-type periodicWaveConstraints = {mutable disableNormalization: bool}
+type periodicWaveConstraints = {mutable disableNormalization?: bool}
 
 type audioTimestamp = {
-  mutable contextTime: float,
-  mutable performanceTime: float,
+  mutable contextTime?: float,
+  mutable performanceTime?: float,
 }
 
 type uLongRange = {
-  mutable max: int,
-  mutable min: int,
+  mutable max?: int,
+  mutable min?: int,
 }
 
 type doubleRange = {
-  mutable max: float,
-  mutable min: float,
+  mutable max?: float,
+  mutable min?: float,
 }
 
 type mediaTrackCapabilities = {
-  mutable width: uLongRange,
-  mutable height: uLongRange,
-  mutable aspectRatio: doubleRange,
-  mutable frameRate: doubleRange,
-  mutable facingMode: array<string>,
-  mutable sampleRate: uLongRange,
-  mutable sampleSize: uLongRange,
-  mutable echoCancellation: array<bool>,
-  mutable autoGainControl: array<bool>,
-  mutable noiseSuppression: array<bool>,
-  mutable channelCount: uLongRange,
-  mutable deviceId: string,
-  mutable groupId: string,
-  mutable backgroundBlur: array<bool>,
-  mutable displaySurface: string,
+  mutable width?: uLongRange,
+  mutable height?: uLongRange,
+  mutable aspectRatio?: doubleRange,
+  mutable frameRate?: doubleRange,
+  mutable facingMode?: array<string>,
+  mutable sampleRate?: uLongRange,
+  mutable sampleSize?: uLongRange,
+  mutable echoCancellation?: array<bool>,
+  mutable autoGainControl?: array<bool>,
+  mutable noiseSuppression?: array<bool>,
+  mutable channelCount?: uLongRange,
+  mutable deviceId?: string,
+  mutable groupId?: string,
+  mutable backgroundBlur?: array<bool>,
+  mutable displaySurface?: string,
 }
 
 type mediaTrackConstraintSet = {
-  mutable width: int,
-  mutable height: int,
-  mutable aspectRatio: float,
-  mutable frameRate: float,
-  mutable facingMode: string,
-  mutable sampleRate: int,
-  mutable sampleSize: int,
-  mutable echoCancellation: bool,
-  mutable autoGainControl: bool,
-  mutable noiseSuppression: bool,
-  mutable channelCount: int,
-  mutable deviceId: string,
-  mutable groupId: string,
-  mutable backgroundBlur: bool,
-  mutable displaySurface: string,
+  mutable width?: int,
+  mutable height?: int,
+  mutable aspectRatio?: float,
+  mutable frameRate?: float,
+  mutable facingMode?: string,
+  mutable sampleRate?: int,
+  mutable sampleSize?: int,
+  mutable echoCancellation?: bool,
+  mutable autoGainControl?: bool,
+  mutable noiseSuppression?: bool,
+  mutable channelCount?: int,
+  mutable deviceId?: string,
+  mutable groupId?: string,
+  mutable backgroundBlur?: bool,
+  mutable displaySurface?: string,
 }
 
 type mediaTrackConstraints = {
   ...mediaTrackConstraintSet,
-  mutable advanced: array<mediaTrackConstraintSet>,
+  mutable advanced?: array<mediaTrackConstraintSet>,
 }
 
 type mediaTrackSettings = {
-  mutable width: int,
-  mutable height: int,
-  mutable aspectRatio: float,
-  mutable frameRate: float,
-  mutable facingMode: string,
-  mutable sampleRate: int,
-  mutable sampleSize: int,
-  mutable echoCancellation: bool,
-  mutable autoGainControl: bool,
-  mutable noiseSuppression: bool,
-  mutable channelCount: int,
-  mutable deviceId: string,
-  mutable groupId: string,
-  mutable backgroundBlur: bool,
-  mutable displaySurface: string,
+  mutable width?: int,
+  mutable height?: int,
+  mutable aspectRatio?: float,
+  mutable frameRate?: float,
+  mutable facingMode?: string,
+  mutable sampleRate?: int,
+  mutable sampleSize?: int,
+  mutable echoCancellation?: bool,
+  mutable autoGainControl?: bool,
+  mutable noiseSuppression?: bool,
+  mutable channelCount?: int,
+  mutable deviceId?: string,
+  mutable groupId?: string,
+  mutable backgroundBlur?: bool,
+  mutable displaySurface?: string,
 }
 
 type audioBufferOptions = {
-  mutable numberOfChannels: int,
+  mutable numberOfChannels?: int,
   mutable length: int,
   mutable sampleRate: float,
 }
@@ -1122,65 +1122,65 @@ type offlineAudioCompletionEventInit = {
 }
 
 type audioNodeOptions = {
-  mutable channelCount: int,
-  mutable channelCountMode: channelCountMode,
-  mutable channelInterpretation: channelInterpretation,
+  mutable channelCount?: int,
+  mutable channelCountMode?: channelCountMode,
+  mutable channelInterpretation?: channelInterpretation,
 }
 
 type biquadFilterOptions = {
   ...audioNodeOptions,
-  @as("type") mutable type_: biquadFilterType,
-  @as("Q") mutable q: float,
-  mutable detune: float,
-  mutable frequency: float,
-  mutable gain: float,
+  @as("type") mutable type_?: biquadFilterType,
+  @as("Q") mutable q?: float,
+  mutable detune?: float,
+  mutable frequency?: float,
+  mutable gain?: float,
 }
 
 type audioBufferSourceOptions = {
-  mutable buffer: Null.t<audioBuffer>,
-  mutable detune: float,
-  mutable loop: bool,
-  mutable loopEnd: float,
-  mutable loopStart: float,
-  mutable playbackRate: float,
+  mutable buffer?: Null.t<audioBuffer>,
+  mutable detune?: float,
+  mutable loop?: bool,
+  mutable loopEnd?: float,
+  mutable loopStart?: float,
+  mutable playbackRate?: float,
 }
 
 type channelMergerOptions = {
   ...audioNodeOptions,
-  mutable numberOfInputs: int,
+  mutable numberOfInputs?: int,
 }
 
 type channelSplitterOptions = {
   ...audioNodeOptions,
-  mutable numberOfOutputs: int,
+  mutable numberOfOutputs?: int,
 }
 
-type constantSourceOptions = {mutable offset: float}
+type constantSourceOptions = {mutable offset?: float}
 
 type convolverOptions = {
   ...audioNodeOptions,
-  mutable buffer: Null.t<audioBuffer>,
-  mutable disableNormalization: bool,
+  mutable buffer?: Null.t<audioBuffer>,
+  mutable disableNormalization?: bool,
 }
 
 type delayOptions = {
   ...audioNodeOptions,
-  mutable maxDelayTime: float,
-  mutable delayTime: float,
+  mutable maxDelayTime?: float,
+  mutable delayTime?: float,
 }
 
 type dynamicsCompressorOptions = {
   ...audioNodeOptions,
-  mutable attack: float,
-  mutable knee: float,
-  mutable ratio: float,
-  mutable release: float,
-  mutable threshold: float,
+  mutable attack?: float,
+  mutable knee?: float,
+  mutable ratio?: float,
+  mutable release?: float,
+  mutable threshold?: float,
 }
 
 type gainOptions = {
   ...audioNodeOptions,
-  mutable gain: float,
+  mutable gain?: float,
 }
 
 type iirFilterOptions = {
@@ -1191,58 +1191,58 @@ type iirFilterOptions = {
 
 type oscillatorOptions = {
   ...audioNodeOptions,
-  @as("type") mutable type_: oscillatorType,
-  mutable frequency: float,
-  mutable detune: float,
-  mutable periodicWave: periodicWave,
+  @as("type") mutable type_?: oscillatorType,
+  mutable frequency?: float,
+  mutable detune?: float,
+  mutable periodicWave?: periodicWave,
 }
 
 type pannerOptions = {
   ...audioNodeOptions,
-  mutable panningModel: panningModelType,
-  mutable distanceModel: distanceModelType,
-  mutable positionX: float,
-  mutable positionY: float,
-  mutable positionZ: float,
-  mutable orientationX: float,
-  mutable orientationY: float,
-  mutable orientationZ: float,
-  mutable refDistance: float,
-  mutable maxDistance: float,
-  mutable rolloffFactor: float,
-  mutable coneInnerAngle: float,
-  mutable coneOuterAngle: float,
-  mutable coneOuterGain: float,
+  mutable panningModel?: panningModelType,
+  mutable distanceModel?: distanceModelType,
+  mutable positionX?: float,
+  mutable positionY?: float,
+  mutable positionZ?: float,
+  mutable orientationX?: float,
+  mutable orientationY?: float,
+  mutable orientationZ?: float,
+  mutable refDistance?: float,
+  mutable maxDistance?: float,
+  mutable rolloffFactor?: float,
+  mutable coneInnerAngle?: float,
+  mutable coneOuterAngle?: float,
+  mutable coneOuterGain?: float,
 }
 
 type analyserOptions = {
   ...audioNodeOptions,
-  mutable fftSize: int,
-  mutable maxDecibels: float,
-  mutable minDecibels: float,
-  mutable smoothingTimeConstant: float,
+  mutable fftSize?: int,
+  mutable maxDecibels?: float,
+  mutable minDecibels?: float,
+  mutable smoothingTimeConstant?: float,
 }
 
 type periodicWaveOptions = {
   ...periodicWaveConstraints,
-  mutable real: array<float>,
-  mutable imag: array<float>,
+  mutable real?: array<float>,
+  mutable imag?: array<float>,
 }
 
 type stereoPannerOptions = {
   ...audioNodeOptions,
-  mutable pan: float,
+  mutable pan?: float,
 }
 
 type waveShaperOptions = {
   ...audioNodeOptions,
-  mutable curve: array<float>,
-  mutable oversample: overSampleType,
+  mutable curve?: array<float>,
+  mutable oversample?: overSampleType,
 }
 
 type audioContextOptions = {
-  mutable latencyHint: unknown,
-  mutable sampleRate: float,
+  mutable latencyHint?: unknown,
+  mutable sampleRate?: float,
 }
 
 type mediaElementAudioSourceOptions = {mutable mediaElement: htmlMediaElement}
@@ -1251,20 +1251,20 @@ type mediaStreamAudioSourceOptions = {mutable mediaStream: mediaStream}
 
 type audioWorkletNodeOptions = {
   ...audioNodeOptions,
-  mutable numberOfInputs: int,
-  mutable numberOfOutputs: int,
-  mutable outputChannelCount: array<int>,
-  mutable parameterData: any,
-  mutable processorOptions: Dict.t<string>,
+  mutable numberOfInputs?: int,
+  mutable numberOfOutputs?: int,
+  mutable outputChannelCount?: array<int>,
+  mutable parameterData?: any,
+  mutable processorOptions?: Dict.t<string>,
 }
 
 type offlineAudioContextOptions = {
-  mutable numberOfChannels: int,
+  mutable numberOfChannels?: int,
   mutable length: int,
   mutable sampleRate: float,
 }
 
-type workletOptions = {mutable credentials: requestCredentials}
+type workletOptions = {mutable credentials?: requestCredentials}
 
 type decodeSuccessCallback = audioBuffer => unit
 

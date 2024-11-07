@@ -53,6 +53,6 @@ type resizeObserverEntry = {
 */
 type resizeObserver = {}
 
-type resizeObserverOptions = {mutable box: resizeObserverBoxOptions}
+type resizeObserverOptions = {mutable box?: resizeObserverBoxOptions}
 
 type resizeObserverCallback = array<resizeObserverEntry> => resizeObserver => unit

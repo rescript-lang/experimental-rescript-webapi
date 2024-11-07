@@ -28,4 +28,4 @@ type clipboard = {
   ...eventTarget,
 }
 
-type clipboardItemOptions = {mutable presentationStyle: presentationStyle}
+type clipboardItemOptions = {mutable presentationStyle?: presentationStyle}

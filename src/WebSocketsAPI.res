@@ -110,16 +110,16 @@ type messageEvent<'t> = {
 
 type closeEventInit = {
   ...eventInit,
-  mutable wasClean: bool,
-  mutable code: int,
-  mutable reason: string,
+  mutable wasClean?: bool,
+  mutable code?: int,
+  mutable reason?: string,
 }
 
 type messageEventInit<'t> = {
   ...eventInit,
-  mutable data: 't,
-  mutable origin: string,
-  mutable lastEventId: string,
-  mutable source: Null.t<messageEventSource>,
-  mutable ports: array<messagePort>,
+  mutable data?: 't,
+  mutable origin?: string,
+  mutable lastEventId?: string,
+  mutable source?: Null.t<messageEventSource>,
+  mutable ports?: array<messagePort>,
 }

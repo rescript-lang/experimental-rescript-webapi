@@ -26,14 +26,14 @@ type lock = {
 }
 
 type lockInfo = {
-  mutable name: string,
-  mutable mode: lockMode,
-  mutable clientId: string,
+  mutable name?: string,
+  mutable mode?: lockMode,
+  mutable clientId?: string,
 }
 
 type lockManagerSnapshot = {
-  mutable held: array<lockInfo>,
-  mutable pending: array<lockInfo>,
+  mutable held?: array<lockInfo>,
+  mutable pending?: array<lockInfo>,
 }
 
 type lockGrantedCallback = lock => Promise.t<any>

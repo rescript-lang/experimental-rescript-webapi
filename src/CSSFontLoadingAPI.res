@@ -89,13 +89,13 @@ type rec fontFaceSet = {
 }
 
 type fontFaceDescriptors = {
-  mutable style: string,
-  mutable weight: string,
-  mutable stretch: string,
-  mutable unicodeRange: string,
-  mutable featureSettings: string,
-  mutable display: fontDisplay,
-  mutable ascentOverride: string,
-  mutable descentOverride: string,
-  mutable lineGapOverride: string,
+  mutable style?: string,
+  mutable weight?: string,
+  mutable stretch?: string,
+  mutable unicodeRange?: string,
+  mutable featureSettings?: string,
+  mutable display?: fontDisplay,
+  mutable ascentOverride?: string,
+  mutable descentOverride?: string,
+  mutable lineGapOverride?: string,
 }

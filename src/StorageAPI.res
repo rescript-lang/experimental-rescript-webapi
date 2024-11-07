@@ -5,6 +5,6 @@
 type storageManager = {}
 
 type storageEstimate = {
-  mutable usage: int,
-  mutable quota: int,
+  mutable usage?: int,
+  mutable quota?: int,
 }

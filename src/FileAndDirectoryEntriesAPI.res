@@ -76,8 +76,8 @@ and fileSystem = {
 type fileSystemDirectoryReader = {}
 
 type fileSystemFlags = {
-  mutable create: bool,
-  mutable exclusive: bool,
+  mutable create?: bool,
+  mutable exclusive?: bool,
 }
 
 type fileSystemEntryCallback = fileSystemEntry => unit

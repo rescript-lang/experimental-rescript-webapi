@@ -23,7 +23,7 @@ The event listener is appended to target's event listener list and is not append
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/EventTarget/addEventListener)
 */
 @send
-external addEventListener: (stereoPannerNode, eventType, eventListener<eventType>) => unit =
+external addEventListener: (stereoPannerNode, eventType, eventListener<'event>) => unit =
   "addEventListener"
 
 /**
@@ -46,7 +46,7 @@ The event listener is appended to target's event listener list and is not append
 external addEventListenerWithOptions: (
   stereoPannerNode,
   eventType,
-  eventListener<eventType>,
+  eventListener<'event>,
   addEventListenerOptions,
 ) => unit = "addEventListener"
 
@@ -70,7 +70,7 @@ The event listener is appended to target's event listener list and is not append
 external addEventListenerWithUseCapture: (
   stereoPannerNode,
   eventType,
-  eventListener<eventType>,
+  eventListener<'event>,
   bool,
 ) => unit = "addEventListener"
 
@@ -79,7 +79,7 @@ Removes the event listener in target's event listener list with the same type, c
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/EventTarget/removeEventListener)
 */
 @send
-external removeEventListener: (stereoPannerNode, eventType, eventListener<eventType>) => unit =
+external removeEventListener: (stereoPannerNode, eventType, eventListener<'event>) => unit =
   "addEventListener"
 
 /**
@@ -90,7 +90,7 @@ Removes the event listener in target's event listener list with the same type, c
 external removeEventListenerWithOptions: (
   stereoPannerNode,
   eventType,
-  eventListener<eventType>,
+  eventListener<'event>,
   eventListenerOptions,
 ) => unit = "addEventListener"
 
@@ -102,7 +102,7 @@ Removes the event listener in target's event listener list with the same type, c
 external removeEventListenerWithUseCapture: (
   stereoPannerNode,
   eventType,
-  eventListener<eventType>,
+  eventListener<'event>,
   bool,
 ) => unit = "addEventListener"
 

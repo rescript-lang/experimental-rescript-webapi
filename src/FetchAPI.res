@@ -218,60 +218,60 @@ type requestInit = {
   /**
     A string to set request's method.
     */
-  mutable method: string,
+  mutable method?: string,
   /**
     A Headers object, an object literal, or an array of two-item arrays to set request's headers.
     */
-  mutable headers: headersInit,
+  mutable headers?: headersInit,
   /**
     A BodyInit object or null to set request's body.
     */
-  mutable body: Null.t<bodyInit>,
+  mutable body?: Null.t<bodyInit>,
   /**
     A string whose value is a same-origin URL, "about:client", or the empty string, to set request's referrer.
     */
-  mutable referrer: string,
+  mutable referrer?: string,
   /**
     A referrer policy to set request's referrerPolicy.
     */
-  mutable referrerPolicy: referrerPolicy,
+  mutable referrerPolicy?: referrerPolicy,
   /**
     A string to indicate whether the request will use CORS, or will be restricted to same-origin URLs. Sets request's mode.
     */
-  mutable mode: requestMode,
+  mutable mode?: requestMode,
   /**
     A string indicating whether credentials will be sent with the request always, never, or only when sent to a same-origin URL. Sets request's credentials.
     */
-  mutable credentials: requestCredentials,
+  mutable credentials?: requestCredentials,
   /**
     A string indicating how the request will interact with the browser's cache to set request's cache.
     */
-  mutable cache: requestCache,
+  mutable cache?: requestCache,
   /**
     A string indicating whether request follows redirects, results in an error upon encountering a redirect, or returns the redirect (in an opaque fashion). Sets request's redirect.
     */
-  mutable redirect: requestRedirect,
+  mutable redirect?: requestRedirect,
   /**
     A cryptographic hash of the resource to be fetched by request. Sets request's integrity.
     */
-  mutable integrity: string,
+  mutable integrity?: string,
   /**
     A boolean to set request's keepalive.
     */
-  mutable keepalive: bool,
+  mutable keepalive?: bool,
   /**
     An AbortSignal to set request's signal.
     */
-  mutable signal: Null.t<abortSignal>,
-  mutable priority: requestPriority,
+  mutable signal?: Null.t<abortSignal>,
+  mutable priority?: requestPriority,
   /**
     Can only be null. Used to disassociate request from any Window.
     */
-  mutable window: Null.t<unit>,
+  mutable window?: Null.t<unit>,
 }
 
 type responseInit = {
-  mutable status: int,
-  mutable statusText: string,
-  mutable headers: headersInit,
+  mutable status?: int,
+  mutable statusText?: string,
+  mutable headers?: headersInit,
 }

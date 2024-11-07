@@ -24,11 +24,8 @@ The event listener is appended to target's event listener list and is not append
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/EventTarget/addEventListener)
 */
 @send
-external addEventListener: (
-  mediaStreamAudioSourceNode,
-  eventType,
-  eventListener<eventType>,
-) => unit = "addEventListener"
+external addEventListener: (mediaStreamAudioSourceNode, eventType, eventListener<'event>) => unit =
+  "addEventListener"
 
 /**
 Appends an event listener for events whose type attribute value is type. The callback argument sets the callback that will be invoked when the event is dispatched.
@@ -50,7 +47,7 @@ The event listener is appended to target's event listener list and is not append
 external addEventListenerWithOptions: (
   mediaStreamAudioSourceNode,
   eventType,
-  eventListener<eventType>,
+  eventListener<'event>,
   addEventListenerOptions,
 ) => unit = "addEventListener"
 
@@ -74,7 +71,7 @@ The event listener is appended to target's event listener list and is not append
 external addEventListenerWithUseCapture: (
   mediaStreamAudioSourceNode,
   eventType,
-  eventListener<eventType>,
+  eventListener<'event>,
   bool,
 ) => unit = "addEventListener"
 
@@ -86,7 +83,7 @@ Removes the event listener in target's event listener list with the same type, c
 external removeEventListener: (
   mediaStreamAudioSourceNode,
   eventType,
-  eventListener<eventType>,
+  eventListener<'event>,
 ) => unit = "addEventListener"
 
 /**
@@ -97,7 +94,7 @@ Removes the event listener in target's event listener list with the same type, c
 external removeEventListenerWithOptions: (
   mediaStreamAudioSourceNode,
   eventType,
-  eventListener<eventType>,
+  eventListener<'event>,
   eventListenerOptions,
 ) => unit = "addEventListener"
 
@@ -109,7 +106,7 @@ Removes the event listener in target's event listener list with the same type, c
 external removeEventListenerWithUseCapture: (
   mediaStreamAudioSourceNode,
   eventType,
-  eventListener<eventType>,
+  eventListener<'event>,
   bool,
 ) => unit = "addEventListener"
 

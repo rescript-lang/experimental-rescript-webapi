@@ -50,6 +50,6 @@ type imageBitmap = {
 type offscreenRenderingContext = any
 
 type imageEncodeOptions = {
-  @as("type") mutable type_: string,
-  mutable quality: any,
+  @as("type") mutable type_?: string,
+  mutable quality?: any,
 }

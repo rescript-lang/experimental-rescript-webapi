@@ -19,7 +19,7 @@ The event listener is appended to target's event listener list and is not append
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/EventTarget/addEventListener)
 */
 @send
-external addEventListener: (textTrackList, eventType, eventListener<eventType>) => unit =
+external addEventListener: (textTrackList, eventType, eventListener<'event>) => unit =
   "addEventListener"
 
 /**
@@ -42,7 +42,7 @@ The event listener is appended to target's event listener list and is not append
 external addEventListenerWithOptions: (
   textTrackList,
   eventType,
-  eventListener<eventType>,
+  eventListener<'event>,
   addEventListenerOptions,
 ) => unit = "addEventListener"
 
@@ -66,7 +66,7 @@ The event listener is appended to target's event listener list and is not append
 external addEventListenerWithUseCapture: (
   textTrackList,
   eventType,
-  eventListener<eventType>,
+  eventListener<'event>,
   bool,
 ) => unit = "addEventListener"
 
@@ -75,7 +75,7 @@ Removes the event listener in target's event listener list with the same type, c
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/EventTarget/removeEventListener)
 */
 @send
-external removeEventListener: (textTrackList, eventType, eventListener<eventType>) => unit =
+external removeEventListener: (textTrackList, eventType, eventListener<'event>) => unit =
   "addEventListener"
 
 /**
@@ -86,7 +86,7 @@ Removes the event listener in target's event listener list with the same type, c
 external removeEventListenerWithOptions: (
   textTrackList,
   eventType,
-  eventListener<eventType>,
+  eventListener<'event>,
   eventListenerOptions,
 ) => unit = "addEventListener"
 
@@ -98,7 +98,7 @@ Removes the event listener in target's event listener list with the same type, c
 external removeEventListenerWithUseCapture: (
   textTrackList,
   eventType,
-  eventListener<eventType>,
+  eventListener<'event>,
   bool,
 ) => unit = "addEventListener"
 

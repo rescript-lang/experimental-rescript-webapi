@@ -160,8 +160,7 @@ The event listener is appended to target's event listener list and is not append
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/EventTarget/addEventListener)
 */
 @send
-external addEventListener: (element, eventType, eventListener<eventType>) => unit =
-  "addEventListener"
+external addEventListener: (element, eventType, eventListener<'event>) => unit = "addEventListener"
 
 /**
 Appends an event listener for events whose type attribute value is type. The callback argument sets the callback that will be invoked when the event is dispatched.
@@ -183,7 +182,7 @@ The event listener is appended to target's event listener list and is not append
 external addEventListenerWithOptions: (
   element,
   eventType,
-  eventListener<eventType>,
+  eventListener<'event>,
   addEventListenerOptions,
 ) => unit = "addEventListener"
 
@@ -204,19 +203,15 @@ The event listener is appended to target's event listener list and is not append
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/EventTarget/addEventListener)
 */
 @send
-external addEventListenerWithUseCapture: (
-  element,
-  eventType,
-  eventListener<eventType>,
-  bool,
-) => unit = "addEventListener"
+external addEventListenerWithUseCapture: (element, eventType, eventListener<'event>, bool) => unit =
+  "addEventListener"
 
 /**
 Removes the event listener in target's event listener list with the same type, callback, and options.
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/EventTarget/removeEventListener)
 */
 @send
-external removeEventListener: (element, eventType, eventListener<eventType>) => unit =
+external removeEventListener: (element, eventType, eventListener<'event>) => unit =
   "addEventListener"
 
 /**
@@ -227,7 +222,7 @@ Removes the event listener in target's event listener list with the same type, c
 external removeEventListenerWithOptions: (
   element,
   eventType,
-  eventListener<eventType>,
+  eventListener<'event>,
   eventListenerOptions,
 ) => unit = "addEventListener"
 
@@ -239,7 +234,7 @@ Removes the event listener in target's event listener list with the same type, c
 external removeEventListenerWithUseCapture: (
   element,
   eventType,
-  eventListener<eventType>,
+  eventListener<'event>,
   bool,
 ) => unit = "addEventListener"
 

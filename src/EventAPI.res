@@ -199,17 +199,17 @@ and abortSignal = {
   reason: any,
 }
 
-type eventListenerOptions = {mutable capture: bool}
+type eventListenerOptions = {mutable capture?: bool}
 
 type addEventListenerOptions = {
   ...eventListenerOptions,
-  mutable passive: bool,
-  mutable once: bool,
-  mutable signal: abortSignal,
+  mutable passive?: bool,
+  mutable once?: bool,
+  mutable signal?: abortSignal,
 }
 
 type eventInit = {
-  mutable bubbles: bool,
-  mutable cancelable: bool,
-  mutable composed: bool,
+  mutable bubbles?: bool,
+  mutable cancelable?: bool,
+  mutable composed?: bool,
 }

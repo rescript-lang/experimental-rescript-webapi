@@ -66,17 +66,17 @@ type notification = {
 }
 
 type notificationOptions = {
-  mutable dir: notificationDirection,
-  mutable lang: string,
-  mutable body: string,
-  mutable tag: string,
-  mutable icon: string,
-  mutable badge: string,
-  mutable silent: Null.t<bool>,
-  mutable requireInteraction: bool,
-  mutable data: any,
+  mutable dir?: notificationDirection,
+  mutable lang?: string,
+  mutable body?: string,
+  mutable tag?: string,
+  mutable icon?: string,
+  mutable badge?: string,
+  mutable silent?: Null.t<bool>,
+  mutable requireInteraction?: bool,
+  mutable data?: any,
 }
 
-type getNotificationOptions = {mutable tag: string}
+type getNotificationOptions = {mutable tag?: string}
 
 type notificationPermissionCallback = notificationPermission => unit

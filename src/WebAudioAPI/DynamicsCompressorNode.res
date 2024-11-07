@@ -24,7 +24,7 @@ The event listener is appended to target's event listener list and is not append
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/EventTarget/addEventListener)
 */
 @send
-external addEventListener: (dynamicsCompressorNode, eventType, eventListener<eventType>) => unit =
+external addEventListener: (dynamicsCompressorNode, eventType, eventListener<'event>) => unit =
   "addEventListener"
 
 /**
@@ -47,7 +47,7 @@ The event listener is appended to target's event listener list and is not append
 external addEventListenerWithOptions: (
   dynamicsCompressorNode,
   eventType,
-  eventListener<eventType>,
+  eventListener<'event>,
   addEventListenerOptions,
 ) => unit = "addEventListener"
 
@@ -71,7 +71,7 @@ The event listener is appended to target's event listener list and is not append
 external addEventListenerWithUseCapture: (
   dynamicsCompressorNode,
   eventType,
-  eventListener<eventType>,
+  eventListener<'event>,
   bool,
 ) => unit = "addEventListener"
 
@@ -80,11 +80,8 @@ Removes the event listener in target's event listener list with the same type, c
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/EventTarget/removeEventListener)
 */
 @send
-external removeEventListener: (
-  dynamicsCompressorNode,
-  eventType,
-  eventListener<eventType>,
-) => unit = "addEventListener"
+external removeEventListener: (dynamicsCompressorNode, eventType, eventListener<'event>) => unit =
+  "addEventListener"
 
 /**
 Removes the event listener in target's event listener list with the same type, callback, and options.
@@ -94,7 +91,7 @@ Removes the event listener in target's event listener list with the same type, c
 external removeEventListenerWithOptions: (
   dynamicsCompressorNode,
   eventType,
-  eventListener<eventType>,
+  eventListener<'event>,
   eventListenerOptions,
 ) => unit = "addEventListener"
 
@@ -106,7 +103,7 @@ Removes the event listener in target's event listener list with the same type, c
 external removeEventListenerWithUseCapture: (
   dynamicsCompressorNode,
   eventType,
-  eventListener<eventType>,
+  eventListener<'event>,
   bool,
 ) => unit = "addEventListener"
 

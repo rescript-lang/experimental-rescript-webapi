@@ -56,12 +56,12 @@ type pushSubscription = {
 }
 
 type pushSubscriptionOptionsInit = {
-  mutable userVisibleOnly: bool,
-  mutable applicationServerKey: Null.t<unknown>,
+  mutable userVisibleOnly?: bool,
+  mutable applicationServerKey?: Null.t<unknown>,
 }
 
 type pushSubscriptionJSON = {
-  mutable endpoint: string,
-  mutable expirationTime: Null.t<int>,
-  mutable keys: any,
+  mutable endpoint?: string,
+  mutable expirationTime?: Null.t<int>,
+  mutable keys?: any,
 }

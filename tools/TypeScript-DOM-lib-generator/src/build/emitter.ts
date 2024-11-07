@@ -717,6 +717,9 @@ export async function emitRescriptBindings(webidl: Browser.WebIdl) {
         printComment({ comment: property.comment });
         let propertyValue = transformPropertyValue(i, property);
         printer.print(`${getFieldName(property)}`);
+        if (!property.required) {
+          printer.print(`?`);
+        }
         printer.print(`: `);
         if (property.nullable) printer.print(`Null.t<${propertyValue}>`);
         else printer.print(propertyValue);
@@ -843,7 +846,7 @@ export async function emitRescriptBindings(webidl: Browser.WebIdl) {
     });
     printer.printLine("@send");
     printer.printLine(
-      `external ${prefix}EventListener: (${toCamelCase(i.name)}, eventType, eventListener<eventType>) => unit = "addEventListener"`,
+      `external ${prefix}EventListener: (${toCamelCase(i.name)}, eventType, eventListener<'event>) => unit = "addEventListener"`,
     );
     printer.endLine();
 
@@ -853,7 +856,7 @@ export async function emitRescriptBindings(webidl: Browser.WebIdl) {
     });
     printer.printLine("@send");
     printer.printLine(
-      `external ${prefix}EventListenerWithOptions: (${toCamelCase(i.name)}, eventType, eventListener<eventType>, ${prefix === "add" ? "addE" : "e"}ventListenerOptions) => unit = "addEventListener"`,
+      `external ${prefix}EventListenerWithOptions: (${toCamelCase(i.name)}, eventType, eventListener<'event>, ${prefix === "add" ? "addE" : "e"}ventListenerOptions) => unit = "addEventListener"`,
     );
     printer.endLine();
 
@@ -863,7 +866,7 @@ export async function emitRescriptBindings(webidl: Browser.WebIdl) {
     });
     printer.printLine("@send");
     printer.printLine(
-      `external ${prefix}EventListenerWithUseCapture: (${toCamelCase(i.name)}, eventType, eventListener<eventType>, bool) => unit = "addEventListener"`,
+      `external ${prefix}EventListenerWithUseCapture: (${toCamelCase(i.name)}, eventType, eventListener<'event>, bool) => unit = "addEventListener"`,
     );
     printer.endLine();
   }

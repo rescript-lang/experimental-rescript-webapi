@@ -24,7 +24,7 @@ The event listener is appended to target's event listener list and is not append
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/EventTarget/addEventListener)
 */
 @send
-external addEventListener: (audioBufferSourceNode, eventType, eventListener<eventType>) => unit =
+external addEventListener: (audioBufferSourceNode, eventType, eventListener<'event>) => unit =
   "addEventListener"
 
 /**
@@ -47,7 +47,7 @@ The event listener is appended to target's event listener list and is not append
 external addEventListenerWithOptions: (
   audioBufferSourceNode,
   eventType,
-  eventListener<eventType>,
+  eventListener<'event>,
   addEventListenerOptions,
 ) => unit = "addEventListener"
 
@@ -71,7 +71,7 @@ The event listener is appended to target's event listener list and is not append
 external addEventListenerWithUseCapture: (
   audioBufferSourceNode,
   eventType,
-  eventListener<eventType>,
+  eventListener<'event>,
   bool,
 ) => unit = "addEventListener"
 
@@ -80,7 +80,7 @@ Removes the event listener in target's event listener list with the same type, c
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/EventTarget/removeEventListener)
 */
 @send
-external removeEventListener: (audioBufferSourceNode, eventType, eventListener<eventType>) => unit =
+external removeEventListener: (audioBufferSourceNode, eventType, eventListener<'event>) => unit =
   "addEventListener"
 
 /**
@@ -91,7 +91,7 @@ Removes the event listener in target's event listener list with the same type, c
 external removeEventListenerWithOptions: (
   audioBufferSourceNode,
   eventType,
-  eventListener<eventType>,
+  eventListener<'event>,
   eventListenerOptions,
 ) => unit = "addEventListener"
 
@@ -103,7 +103,7 @@ Removes the event listener in target's event listener list with the same type, c
 external removeEventListenerWithUseCapture: (
   audioBufferSourceNode,
   eventType,
-  eventListener<eventType>,
+  eventListener<'event>,
   bool,
 ) => unit = "addEventListener"
 

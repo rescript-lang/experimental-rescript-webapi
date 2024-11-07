@@ -27,7 +27,7 @@ The event listener is appended to target's event listener list and is not append
 external addEventListener: (
   mediaStreamAudioDestinationNode,
   eventType,
-  eventListener<eventType>,
+  eventListener<'event>,
 ) => unit = "addEventListener"
 
 /**
@@ -50,7 +50,7 @@ The event listener is appended to target's event listener list and is not append
 external addEventListenerWithOptions: (
   mediaStreamAudioDestinationNode,
   eventType,
-  eventListener<eventType>,
+  eventListener<'event>,
   addEventListenerOptions,
 ) => unit = "addEventListener"
 
@@ -74,7 +74,7 @@ The event listener is appended to target's event listener list and is not append
 external addEventListenerWithUseCapture: (
   mediaStreamAudioDestinationNode,
   eventType,
-  eventListener<eventType>,
+  eventListener<'event>,
   bool,
 ) => unit = "addEventListener"
 
@@ -86,7 +86,7 @@ Removes the event listener in target's event listener list with the same type, c
 external removeEventListener: (
   mediaStreamAudioDestinationNode,
   eventType,
-  eventListener<eventType>,
+  eventListener<'event>,
 ) => unit = "addEventListener"
 
 /**
@@ -97,7 +97,7 @@ Removes the event listener in target's event listener list with the same type, c
 external removeEventListenerWithOptions: (
   mediaStreamAudioDestinationNode,
   eventType,
-  eventListener<eventType>,
+  eventListener<'event>,
   eventListenerOptions,
 ) => unit = "addEventListener"
 
@@ -109,7 +109,7 @@ Removes the event listener in target's event listener list with the same type, c
 external removeEventListenerWithUseCapture: (
   mediaStreamAudioDestinationNode,
   eventType,
-  eventListener<eventType>,
+  eventListener<'event>,
   bool,
 ) => unit = "addEventListener"
 

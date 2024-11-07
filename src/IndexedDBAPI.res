@@ -188,18 +188,18 @@ type idbIndex = {
 type idbValidKey = any
 
 type idbDatabaseInfo = {
-  mutable name: string,
-  mutable version: int,
+  mutable name?: string,
+  mutable version?: int,
 }
 
-type idbTransactionOptions = {mutable durability: idbTransactionDurability}
+type idbTransactionOptions = {mutable durability?: idbTransactionDurability}
 
 type idbObjectStoreParameters = {
-  mutable keyPath: Null.t<unknown>,
-  mutable autoIncrement: bool,
+  mutable keyPath?: Null.t<unknown>,
+  mutable autoIncrement?: bool,
 }
 
 type idbIndexParameters = {
-  mutable unique: bool,
-  mutable multiEntry: bool,
+  mutable unique?: bool,
+  mutable multiEntry?: bool,
 }

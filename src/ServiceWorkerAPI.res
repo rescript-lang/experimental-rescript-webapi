@@ -109,25 +109,25 @@ Provides a storage mechanism for Request / Response object pairs that are cached
 type cache = {}
 
 type navigationPreloadState = {
-  mutable enabled: bool,
-  mutable headerValue: string,
+  mutable enabled?: bool,
+  mutable headerValue?: string,
 }
 
 type registrationOptions = {
-  mutable scope: string,
-  @as("type") mutable type_: workerType,
-  mutable updateViaCache: serviceWorkerUpdateViaCache,
+  mutable scope?: string,
+  @as("type") mutable type_?: workerType,
+  mutable updateViaCache?: serviceWorkerUpdateViaCache,
 }
 
 type cacheQueryOptions = {
-  mutable ignoreSearch: bool,
-  mutable ignoreMethod: bool,
-  mutable ignoreVary: bool,
+  mutable ignoreSearch?: bool,
+  mutable ignoreMethod?: bool,
+  mutable ignoreVary?: bool,
 }
 
 type multiCacheQueryOptions = {
   ...cacheQueryOptions,
-  mutable cacheName: string,
+  mutable cacheName?: string,
 }
 
 type requestInfo = any

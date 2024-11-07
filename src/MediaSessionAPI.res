@@ -20,8 +20,8 @@ type mediaSessionAction =
 
 type mediaImage = {
   mutable src: string,
-  mutable sizes: string,
-  @as("type") mutable type_: string,
+  mutable sizes?: string,
+  @as("type") mutable type_?: string,
 }
 
 /**
@@ -61,23 +61,23 @@ type mediaSession = {
 }
 
 type mediaMetadataInit = {
-  mutable title: string,
-  mutable artist: string,
-  mutable album: string,
-  mutable artwork: array<mediaImage>,
+  mutable title?: string,
+  mutable artist?: string,
+  mutable album?: string,
+  mutable artwork?: array<mediaImage>,
 }
 
 type mediaSessionActionDetails = {
   mutable action: mediaSessionAction,
-  mutable seekOffset: float,
-  mutable seekTime: float,
-  mutable fastSeek: bool,
+  mutable seekOffset?: float,
+  mutable seekTime?: float,
+  mutable fastSeek?: bool,
 }
 
 type mediaPositionState = {
-  mutable duration: any,
-  mutable playbackRate: float,
-  mutable position: float,
+  mutable duration?: any,
+  mutable playbackRate?: float,
+  mutable position?: float,
 }
 
 type mediaSessionActionHandler = mediaSessionActionDetails => unit

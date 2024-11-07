@@ -82,19 +82,19 @@ type mediaKeySession = {
 }
 
 type mediaKeySystemMediaCapability = {
-  mutable contentType: string,
-  mutable encryptionScheme: Null.t<string>,
-  mutable robustness: string,
+  mutable contentType?: string,
+  mutable encryptionScheme?: Null.t<string>,
+  mutable robustness?: string,
 }
 
 type mediaKeySystemConfiguration = {
-  mutable label: string,
-  mutable initDataTypes: array<string>,
-  mutable audioCapabilities: array<mediaKeySystemMediaCapability>,
-  mutable videoCapabilities: array<mediaKeySystemMediaCapability>,
-  mutable distinctiveIdentifier: mediaKeysRequirement,
-  mutable persistentState: mediaKeysRequirement,
-  mutable sessionTypes: array<string>,
+  mutable label?: string,
+  mutable initDataTypes?: array<string>,
+  mutable audioCapabilities?: array<mediaKeySystemMediaCapability>,
+  mutable videoCapabilities?: array<mediaKeySystemMediaCapability>,
+  mutable distinctiveIdentifier?: mediaKeysRequirement,
+  mutable persistentState?: mediaKeysRequirement,
+  mutable sessionTypes?: array<string>,
 }
 
-type mediaKeysPolicy = {mutable minHdcpVersion: string}
+type mediaKeysPolicy = {mutable minHdcpVersion?: string}

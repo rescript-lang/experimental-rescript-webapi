@@ -61,47 +61,47 @@ type credential = {
 type publicKeyCredentialDescriptor = {
   @as("type") mutable type_: publicKeyCredentialType,
   mutable id: bufferSource,
-  mutable transports: array<authenticatorTransport>,
+  mutable transports?: array<authenticatorTransport>,
 }
 
 type authenticationExtensionsPRFValues = {
   mutable first: bufferSource,
-  mutable second: bufferSource,
+  mutable second?: bufferSource,
 }
 
 type authenticationExtensionsPRFInputs = {
-  mutable eval: authenticationExtensionsPRFValues,
-  mutable evalByCredential: any,
+  mutable eval?: authenticationExtensionsPRFValues,
+  mutable evalByCredential?: any,
 }
 
 type authenticationExtensionsClientInputs = {
-  mutable minPinLength: bool,
-  mutable hmacCreateSecret: bool,
-  mutable appid: string,
-  mutable credProps: bool,
-  mutable prf: authenticationExtensionsPRFInputs,
+  mutable minPinLength?: bool,
+  mutable hmacCreateSecret?: bool,
+  mutable appid?: string,
+  mutable credProps?: bool,
+  mutable prf?: authenticationExtensionsPRFInputs,
 }
 
 type publicKeyCredentialRequestOptions = {
   mutable challenge: bufferSource,
-  mutable timeout: int,
-  mutable rpId: string,
-  mutable allowCredentials: array<publicKeyCredentialDescriptor>,
-  mutable userVerification: userVerificationRequirement,
-  mutable extensions: authenticationExtensionsClientInputs,
+  mutable timeout?: int,
+  mutable rpId?: string,
+  mutable allowCredentials?: array<publicKeyCredentialDescriptor>,
+  mutable userVerification?: userVerificationRequirement,
+  mutable extensions?: authenticationExtensionsClientInputs,
 }
 
 type credentialRequestOptions = {
-  mutable mediation: credentialMediationRequirement,
-  mutable signal: abortSignal,
-  mutable publicKey: publicKeyCredentialRequestOptions,
+  mutable mediation?: credentialMediationRequirement,
+  mutable signal?: abortSignal,
+  mutable publicKey?: publicKeyCredentialRequestOptions,
 }
 
 type publicKeyCredentialEntity = {mutable name: string}
 
 type publicKeyCredentialRpEntity = {
   ...publicKeyCredentialEntity,
-  mutable id: string,
+  mutable id?: string,
 }
 
 type publicKeyCredentialUserEntity = {
@@ -116,10 +116,10 @@ type publicKeyCredentialParameters = {
 }
 
 type authenticatorSelectionCriteria = {
-  mutable authenticatorAttachment: authenticatorAttachment,
-  mutable residentKey: residentKeyRequirement,
-  mutable requireResidentKey: bool,
-  mutable userVerification: userVerificationRequirement,
+  mutable authenticatorAttachment?: authenticatorAttachment,
+  mutable residentKey?: residentKeyRequirement,
+  mutable requireResidentKey?: bool,
+  mutable userVerification?: userVerificationRequirement,
 }
 
 type publicKeyCredentialCreationOptions = {
@@ -127,14 +127,14 @@ type publicKeyCredentialCreationOptions = {
   mutable user: publicKeyCredentialUserEntity,
   mutable challenge: bufferSource,
   mutable pubKeyCredParams: array<publicKeyCredentialParameters>,
-  mutable timeout: int,
-  mutable excludeCredentials: array<publicKeyCredentialDescriptor>,
-  mutable authenticatorSelection: authenticatorSelectionCriteria,
-  mutable attestation: attestationConveyancePreference,
-  mutable extensions: authenticationExtensionsClientInputs,
+  mutable timeout?: int,
+  mutable excludeCredentials?: array<publicKeyCredentialDescriptor>,
+  mutable authenticatorSelection?: authenticatorSelectionCriteria,
+  mutable attestation?: attestationConveyancePreference,
+  mutable extensions?: authenticationExtensionsClientInputs,
 }
 
 type credentialCreationOptions = {
-  mutable signal: abortSignal,
-  mutable publicKey: publicKeyCredentialCreationOptions,
+  mutable signal?: abortSignal,
+  mutable publicKey?: publicKeyCredentialCreationOptions,
 }

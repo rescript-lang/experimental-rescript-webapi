@@ -179,7 +179,7 @@ The event listener is appended to target's event listener list and is not append
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/EventTarget/addEventListener)
 */
 @send
-external addEventListener: (htmlSelectElement, eventType, eventListener<eventType>) => unit =
+external addEventListener: (htmlSelectElement, eventType, eventListener<'event>) => unit =
   "addEventListener"
 
 /**
@@ -202,7 +202,7 @@ The event listener is appended to target's event listener list and is not append
 external addEventListenerWithOptions: (
   htmlSelectElement,
   eventType,
-  eventListener<eventType>,
+  eventListener<'event>,
   addEventListenerOptions,
 ) => unit = "addEventListener"
 
@@ -226,7 +226,7 @@ The event listener is appended to target's event listener list and is not append
 external addEventListenerWithUseCapture: (
   htmlSelectElement,
   eventType,
-  eventListener<eventType>,
+  eventListener<'event>,
   bool,
 ) => unit = "addEventListener"
 
@@ -235,7 +235,7 @@ Removes the event listener in target's event listener list with the same type, c
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/EventTarget/removeEventListener)
 */
 @send
-external removeEventListener: (htmlSelectElement, eventType, eventListener<eventType>) => unit =
+external removeEventListener: (htmlSelectElement, eventType, eventListener<'event>) => unit =
   "addEventListener"
 
 /**
@@ -246,7 +246,7 @@ Removes the event listener in target's event listener list with the same type, c
 external removeEventListenerWithOptions: (
   htmlSelectElement,
   eventType,
-  eventListener<eventType>,
+  eventListener<'event>,
   eventListenerOptions,
 ) => unit = "addEventListener"
 
@@ -258,7 +258,7 @@ Removes the event listener in target's event listener list with the same type, c
 external removeEventListenerWithUseCapture: (
   htmlSelectElement,
   eventType,
-  eventListener<eventType>,
+  eventListener<'event>,
   bool,
 ) => unit = "addEventListener"
 

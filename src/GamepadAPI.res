@@ -76,10 +76,10 @@ type gamepad = {
 }
 
 type gamepadEffectParameters = {
-  mutable duration: int,
-  mutable startDelay: int,
-  mutable strongMagnitude: float,
-  mutable weakMagnitude: float,
-  mutable leftTrigger: float,
-  mutable rightTrigger: float,
+  mutable duration?: int,
+  mutable startDelay?: int,
+  mutable strongMagnitude?: float,
+  mutable weakMagnitude?: float,
+  mutable leftTrigger?: float,
+  mutable rightTrigger?: float,
 }

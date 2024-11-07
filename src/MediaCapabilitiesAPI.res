@@ -30,10 +30,10 @@ type mediaCapabilities = {}
 
 type audioConfiguration = {
   mutable contentType: string,
-  mutable channels: string,
-  mutable bitrate: int,
-  mutable samplerate: int,
-  mutable spatialRendering: bool,
+  mutable channels?: string,
+  mutable bitrate?: int,
+  mutable samplerate?: int,
+  mutable spatialRendering?: bool,
 }
 
 type videoConfiguration = {
@@ -42,16 +42,16 @@ type videoConfiguration = {
   mutable height: int,
   mutable bitrate: int,
   mutable framerate: float,
-  mutable hasAlphaChannel: bool,
-  mutable hdrMetadataType: hdrMetadataType,
-  mutable colorGamut: colorGamut,
-  mutable transferFunction: transferFunction,
-  mutable scalabilityMode: string,
+  mutable hasAlphaChannel?: bool,
+  mutable hdrMetadataType?: hdrMetadataType,
+  mutable colorGamut?: colorGamut,
+  mutable transferFunction?: transferFunction,
+  mutable scalabilityMode?: string,
 }
 
 type mediaConfiguration = {
-  mutable video: videoConfiguration,
-  mutable audio: audioConfiguration,
+  mutable video?: videoConfiguration,
+  mutable audio?: audioConfiguration,
 }
 
 type mediaDecodingConfiguration = {
@@ -67,7 +67,7 @@ type mediaCapabilitiesInfo = {
 
 type mediaCapabilitiesDecodingInfo = {
   ...mediaCapabilitiesInfo,
-  mutable configuration: mediaDecodingConfiguration,
+  mutable configuration?: mediaDecodingConfiguration,
 }
 
 type mediaEncodingConfiguration = {
@@ -77,5 +77,5 @@ type mediaEncodingConfiguration = {
 
 type mediaCapabilitiesEncodingInfo = {
   ...mediaCapabilitiesInfo,
-  mutable configuration: mediaEncodingConfiguration,
+  mutable configuration?: mediaEncodingConfiguration,
 }

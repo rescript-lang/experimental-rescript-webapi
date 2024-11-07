@@ -18,7 +18,7 @@ The event listener is appended to target's event listener list and is not append
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/EventTarget/addEventListener)
 */
 @send
-external addEventListener: (idbTransaction, eventType, eventListener<eventType>) => unit =
+external addEventListener: (idbTransaction, eventType, eventListener<'event>) => unit =
   "addEventListener"
 
 /**
@@ -41,7 +41,7 @@ The event listener is appended to target's event listener list and is not append
 external addEventListenerWithOptions: (
   idbTransaction,
   eventType,
-  eventListener<eventType>,
+  eventListener<'event>,
   addEventListenerOptions,
 ) => unit = "addEventListener"
 
@@ -65,7 +65,7 @@ The event listener is appended to target's event listener list and is not append
 external addEventListenerWithUseCapture: (
   idbTransaction,
   eventType,
-  eventListener<eventType>,
+  eventListener<'event>,
   bool,
 ) => unit = "addEventListener"
 
@@ -74,7 +74,7 @@ Removes the event listener in target's event listener list with the same type, c
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/EventTarget/removeEventListener)
 */
 @send
-external removeEventListener: (idbTransaction, eventType, eventListener<eventType>) => unit =
+external removeEventListener: (idbTransaction, eventType, eventListener<'event>) => unit =
   "addEventListener"
 
 /**
@@ -85,7 +85,7 @@ Removes the event listener in target's event listener list with the same type, c
 external removeEventListenerWithOptions: (
   idbTransaction,
   eventType,
-  eventListener<eventType>,
+  eventListener<'event>,
   eventListenerOptions,
 ) => unit = "addEventListener"
 
@@ -97,7 +97,7 @@ Removes the event listener in target's event listener list with the same type, c
 external removeEventListenerWithUseCapture: (
   idbTransaction,
   eventType,
-  eventListener<eventType>,
+  eventListener<'event>,
   bool,
 ) => unit = "addEventListener"
 

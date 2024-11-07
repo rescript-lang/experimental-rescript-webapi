@@ -74,6 +74,6 @@ type performanceMeasure = {
 type performanceEntryList = any
 
 type performanceMarkOptions = {
-  mutable detail: any,
-  mutable startTime: float,
+  mutable detail?: any,
+  mutable startTime?: float,
 }

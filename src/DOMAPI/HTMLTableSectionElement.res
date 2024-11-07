@@ -178,7 +178,7 @@ The event listener is appended to target's event listener list and is not append
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/EventTarget/addEventListener)
 */
 @send
-external addEventListener: (htmlTableSectionElement, eventType, eventListener<eventType>) => unit =
+external addEventListener: (htmlTableSectionElement, eventType, eventListener<'event>) => unit =
   "addEventListener"
 
 /**
@@ -201,7 +201,7 @@ The event listener is appended to target's event listener list and is not append
 external addEventListenerWithOptions: (
   htmlTableSectionElement,
   eventType,
-  eventListener<eventType>,
+  eventListener<'event>,
   addEventListenerOptions,
 ) => unit = "addEventListener"
 
@@ -225,7 +225,7 @@ The event listener is appended to target's event listener list and is not append
 external addEventListenerWithUseCapture: (
   htmlTableSectionElement,
   eventType,
-  eventListener<eventType>,
+  eventListener<'event>,
   bool,
 ) => unit = "addEventListener"
 
@@ -234,11 +234,8 @@ Removes the event listener in target's event listener list with the same type, c
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/EventTarget/removeEventListener)
 */
 @send
-external removeEventListener: (
-  htmlTableSectionElement,
-  eventType,
-  eventListener<eventType>,
-) => unit = "addEventListener"
+external removeEventListener: (htmlTableSectionElement, eventType, eventListener<'event>) => unit =
+  "addEventListener"
 
 /**
 Removes the event listener in target's event listener list with the same type, callback, and options.
@@ -248,7 +245,7 @@ Removes the event listener in target's event listener list with the same type, c
 external removeEventListenerWithOptions: (
   htmlTableSectionElement,
   eventType,
-  eventListener<eventType>,
+  eventListener<'event>,
   eventListenerOptions,
 ) => unit = "addEventListener"
 
@@ -260,7 +257,7 @@ Removes the event listener in target's event listener list with the same type, c
 external removeEventListenerWithUseCapture: (
   htmlTableSectionElement,
   eventType,
-  eventListener<eventType>,
+  eventListener<'event>,
   bool,
 ) => unit = "addEventListener"
 

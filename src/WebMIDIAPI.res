@@ -32,6 +32,6 @@ type midiAccess = {
 }
 
 type midiOptions = {
-  mutable sysex: bool,
-  mutable software: bool,
+  mutable sysex?: bool,
+  mutable software?: bool,
 }

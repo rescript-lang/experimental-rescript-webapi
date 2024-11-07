@@ -137,16 +137,16 @@ type fileSystemWriteChunkType = any
 type underlyingSourceCancelCallback = any => Promise.t<unit>
 
 type blobPropertyBag = {
-  @as("type") mutable type_: string,
-  mutable endings: endingType,
+  @as("type") mutable type_?: string,
+  mutable endings?: endingType,
 }
 
 type underlyingByteSource = {
   @as("type") mutable type_: unknown,
-  mutable autoAllocateChunkSize: int,
-  mutable start: unknown,
-  mutable pull: unknown,
-  mutable cancel: underlyingSourceCancelCallback,
+  mutable autoAllocateChunkSize?: int,
+  mutable start?: unknown,
+  mutable pull?: unknown,
+  mutable cancel?: underlyingSourceCancelCallback,
 }
 
 type readableStreamGetReaderOptions = {
@@ -155,7 +155,7 @@ type readableStreamGetReaderOptions = {
 
 This call behaves the same way as the no-argument variant, except that it only works on readable byte streams, i.e. streams which were constructed specifically with the ability to handle "bring your own buffer" reading. The returned BYOB reader provides the ability to directly read individual chunks from the stream via its read() method, into developer-supplied buffers, allowing more precise control over allocation.
     */
-  mutable mode: readableStreamReaderMode,
+  mutable mode?: readableStreamReaderMode,
 }
 
 type readableWritablePair<'r, 'w> = {
@@ -186,21 +186,21 @@ If destination starts out closed or closing, this source readable stream will be
 
 The signal option can be set to an AbortSignal to allow aborting an ongoing pipe operation via the corresponding AbortController. In this case, this source readable stream will be canceled, and destination aborted, unless the respective options preventCancel or preventAbort are set.
     */
-  mutable preventClose: bool,
-  mutable preventAbort: bool,
-  mutable preventCancel: bool,
-  mutable signal: abortSignal,
+  mutable preventClose?: bool,
+  mutable preventAbort?: bool,
+  mutable preventCancel?: bool,
+  mutable signal?: abortSignal,
 }
 
 type filePropertyBag = {
   ...blobPropertyBag,
-  mutable lastModified: int,
+  mutable lastModified?: int,
 }
 
-type fileSystemGetFileOptions = {mutable create: bool}
+type fileSystemGetFileOptions = {mutable create?: bool}
 
-type fileSystemGetDirectoryOptions = {mutable create: bool}
+type fileSystemGetDirectoryOptions = {mutable create?: bool}
 
-type fileSystemRemoveOptions = {mutable recursive: bool}
+type fileSystemRemoveOptions = {mutable recursive?: bool}
 
-type fileSystemCreateWritableOptions = {mutable keepExistingData: bool}
+type fileSystemCreateWritableOptions = {mutable keepExistingData?: bool}

@@ -144,10 +144,10 @@ type scrollLogicalPosition =
   | @as("start") Start
 
 type shareData = {
-  mutable files: array<file>,
-  mutable title: string,
-  mutable text: string,
-  mutable url: string,
+  mutable files?: array<file>,
+  mutable title?: string,
+  mutable text?: string,
+  mutable url?: string,
 }
 
 /**
@@ -9035,72 +9035,72 @@ type rec animation = {
   mutable currentTime: Null.t<float>,
 }
 
-type elementDefinitionOptions = {mutable extends: string}
+type elementDefinitionOptions = {mutable extends?: string}
 
-type documentTimelineOptions = {mutable originTime: float}
+type documentTimelineOptions = {mutable originTime?: float}
 
-type getRootNodeOptions = {mutable composed: bool}
+type getRootNodeOptions = {mutable composed?: bool}
 
 type shadowRootInit = {
   mutable mode: shadowRootMode,
-  mutable delegatesFocus: bool,
-  mutable slotAssignment: slotAssignmentMode,
-  mutable serializable: bool,
+  mutable delegatesFocus?: bool,
+  mutable slotAssignment?: slotAssignmentMode,
+  mutable serializable?: bool,
 }
 
 type checkVisibilityOptions = {
-  mutable checkOpacity: bool,
-  mutable checkVisibilityCSS: bool,
-  mutable contentVisibilityAuto: bool,
-  mutable opacityProperty: bool,
-  mutable visibilityProperty: bool,
+  mutable checkOpacity?: bool,
+  mutable checkVisibilityCSS?: bool,
+  mutable contentVisibilityAuto?: bool,
+  mutable opacityProperty?: bool,
+  mutable visibilityProperty?: bool,
 }
 
-type scrollOptions = {mutable behavior: scrollBehavior}
+type scrollOptions = {mutable behavior?: scrollBehavior}
 
 type scrollToOptions = {
   ...scrollOptions,
-  mutable left: any,
-  mutable top: any,
+  mutable left?: any,
+  mutable top?: any,
 }
 
-type fullscreenOptions = {mutable navigationUI: fullscreenNavigationUI}
+type fullscreenOptions = {mutable navigationUI?: fullscreenNavigationUI}
 
 type getHTMLOptions = {
-  mutable serializableShadowRoots: bool,
-  mutable shadowRoots: array<shadowRoot>,
+  mutable serializableShadowRoots?: bool,
+  mutable shadowRoots?: array<shadowRoot>,
 }
 
-type pointerLockOptions = {mutable unadjustedMovement: bool}
+type pointerLockOptions = {mutable unadjustedMovement?: bool}
 
-type caretPositionFromPointOptions = {mutable shadowRoots: array<shadowRoot>}
+type caretPositionFromPointOptions = {mutable shadowRoots?: array<shadowRoot>}
 
-type idleRequestOptions = {mutable timeout: int}
+type idleRequestOptions = {mutable timeout?: int}
 
 type domRectInit = {
-  mutable x: any,
-  mutable y: any,
-  mutable width: any,
-  mutable height: any,
+  mutable x?: any,
+  mutable y?: any,
+  mutable width?: any,
+  mutable height?: any,
 }
 
 type validityStateFlags = {
-  mutable valueMissing: bool,
-  mutable typeMismatch: bool,
-  mutable patternMismatch: bool,
-  mutable tooLong: bool,
-  mutable tooShort: bool,
-  mutable rangeUnderflow: bool,
-  mutable rangeOverflow: bool,
-  mutable stepMismatch: bool,
-  mutable badInput: bool,
-  mutable customError: bool,
+  mutable valueMissing?: bool,
+  mutable typeMismatch?: bool,
+  mutable patternMismatch?: bool,
+  mutable tooLong?: bool,
+  mutable tooShort?: bool,
+  mutable rangeUnderflow?: bool,
+  mutable rangeOverflow?: bool,
+  mutable stepMismatch?: bool,
+  mutable badInput?: bool,
+  mutable customError?: bool,
 }
 
 type cssStyleSheetInit = {
-  mutable baseURL: string,
-  mutable media: unknown,
-  mutable disabled: bool,
+  mutable baseURL?: string,
+  mutable media?: unknown,
+  mutable disabled?: bool,
 }
 
 type videoFrameCallbackMetadata = {
@@ -9110,67 +9110,67 @@ type videoFrameCallbackMetadata = {
   mutable height: int,
   mutable mediaTime: float,
   mutable presentedFrames: int,
-  mutable processingDuration: float,
-  mutable captureTime: float,
-  mutable receiveTime: float,
-  mutable rtpTimestamp: int,
+  mutable processingDuration?: float,
+  mutable captureTime?: float,
+  mutable receiveTime?: float,
+  mutable rtpTimestamp?: int,
 }
 
-type assignedNodesOptions = {mutable flatten: bool}
+type assignedNodesOptions = {mutable flatten?: bool}
 
-type focusOptions = {mutable preventScroll: bool}
+type focusOptions = {mutable preventScroll?: bool}
 
 type effectTiming = {
-  mutable fill: fillMode,
-  mutable iterationStart: float,
-  mutable iterations: any,
-  mutable direction: playbackDirection,
-  mutable easing: string,
-  mutable delay: float,
-  mutable endDelay: float,
-  mutable playbackRate: float,
-  mutable duration: unknown,
+  mutable fill?: fillMode,
+  mutable iterationStart?: float,
+  mutable iterations?: any,
+  mutable direction?: playbackDirection,
+  mutable easing?: string,
+  mutable delay?: float,
+  mutable endDelay?: float,
+  mutable playbackRate?: float,
+  mutable duration?: unknown,
 }
 
-type getAnimationsOptions = {mutable subtree: bool}
+type getAnimationsOptions = {mutable subtree?: bool}
 
 type computedEffectTiming = {
   ...effectTiming,
-  mutable progress: Null.t<float>,
-  mutable currentIteration: Null.t<any>,
-  mutable startTime: float,
-  mutable endTime: float,
-  mutable activeDuration: float,
-  mutable localTime: Null.t<float>,
+  mutable progress?: Null.t<float>,
+  mutable currentIteration?: Null.t<any>,
+  mutable startTime?: float,
+  mutable endTime?: float,
+  mutable activeDuration?: float,
+  mutable localTime?: Null.t<float>,
 }
 
 type optionalEffectTiming = {
-  mutable delay: float,
-  mutable endDelay: float,
-  mutable fill: fillMode,
-  mutable iterationStart: float,
-  mutable iterations: any,
-  mutable duration: unknown,
-  mutable direction: playbackDirection,
-  mutable easing: string,
-  mutable playbackRate: float,
+  mutable delay?: float,
+  mutable endDelay?: float,
+  mutable fill?: fillMode,
+  mutable iterationStart?: float,
+  mutable iterations?: any,
+  mutable duration?: unknown,
+  mutable direction?: playbackDirection,
+  mutable easing?: string,
+  mutable playbackRate?: float,
 }
 
 type imageBitmapOptions = {
-  mutable imageOrientation: imageOrientation,
-  mutable premultiplyAlpha: premultiplyAlpha,
-  mutable colorSpaceConversion: colorSpaceConversion,
-  mutable resizeWidth: int,
-  mutable resizeHeight: int,
-  mutable resizeQuality: resizeQuality,
+  mutable imageOrientation?: imageOrientation,
+  mutable premultiplyAlpha?: premultiplyAlpha,
+  mutable colorSpaceConversion?: colorSpaceConversion,
+  mutable resizeWidth?: int,
+  mutable resizeHeight?: int,
+  mutable resizeQuality?: resizeQuality,
 }
 
-type structuredSerializeOptions = {mutable transfer: array<Dict.t<string>>}
+type structuredSerializeOptions = {mutable transfer?: array<Dict.t<string>>}
 
 type scrollIntoViewOptions = {
   ...scrollOptions,
-  mutable block: scrollLogicalPosition,
-  mutable inline: scrollLogicalPosition,
+  mutable block?: scrollLogicalPosition,
+  mutable inline?: scrollLogicalPosition,
 }
 
 type xPathNSResolver = any
