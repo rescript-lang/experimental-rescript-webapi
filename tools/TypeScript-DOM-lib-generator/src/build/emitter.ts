@@ -936,6 +936,25 @@ export async function emitRescriptBindings(webidl: Browser.WebIdl) {
                 }
               ],
   */
+
+  function dedupeSignature(signature: Browser.Signature): Browser.Signature[] {
+    if (
+      signature.param &&
+      signature.param.length === 1 &&
+      Array.isArray(signature.param[0].type)
+    ) {
+      const param = signature.param[0];
+      return signature.param[0].type.map((t) => {
+        return {
+          ...signature,
+          param: [{ ...param, type: [t] }],
+        };
+      });
+    }
+
+    return [signature];
+  }
+
   function dedupeMethod(method: Browser.Method): Browser.Method[] {
     if (isInvalidMethod(method)) return [];
 
@@ -944,25 +963,9 @@ export async function emitRescriptBindings(webidl: Browser.WebIdl) {
     }
 
     return method.signature.flatMap((signature) => {
-      if (
-        signature.param &&
-        signature.param.length === 1 &&
-        Array.isArray(signature.param[0].type)
-      ) {
-        const param = signature.param[0];
-        return signature.param[0].type.map((t) => {
-          const updatedSignature: Browser.Signature = {
-            ...signature,
-            param: [{ ...param, type: [t] }],
-          };
-          return {
-            ...method,
-            signature: [updatedSignature],
-          };
-        });
-      }
-
-      return [{ ...method, signature: [signature] }];
+      return dedupeSignature(signature).map((s) => {
+        return { ...method, signature: [s] };
+      });
     });
   }
 
@@ -974,7 +977,10 @@ export async function emitRescriptBindings(webidl: Browser.WebIdl) {
     }
 
     return constructor.signature.flatMap((signature) => {
-      return { ...constructor, signature: [signature] };
+      const dedupeSignatures = dedupeSignature(signature);
+      return dedupeSignatures.map((signature) => {
+        return { ...constructor, signature: [signature] };
+      });
     });
   }
 
@@ -1218,11 +1224,13 @@ export async function emitRescriptBindings(webidl: Browser.WebIdl) {
       typeof i.constructor !== "function" &&
       i.constructor.signature.length > 0
     ) {
-      verifyTypesFromSignature(
-        "constructor",
-        false,
-        i.constructor.signature[0],
-      );
+      for (const dedupedConstructor of dedupeConstructor(i.constructor)) {
+        verifyTypesFromSignature(
+          "constructor",
+          false,
+          dedupedConstructor.signature[0],
+        );
+      }
     }
 
     // "forEach" edge case
