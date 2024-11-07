@@ -1,4 +1,23 @@
+open Prelude
 open FileAPI
+
+/**
+[Read more on MDN](https://developer.mozilla.org/docs/Web/API/WritableStream/abort)
+*/
+@send
+external abort: (fileSystemWritableFileStream, any) => Promise.t<unit> = "abort"
+
+/**
+[Read more on MDN](https://developer.mozilla.org/docs/Web/API/WritableStream/close)
+*/
+@send
+external close: fileSystemWritableFileStream => Promise.t<unit> = "close"
+
+/**
+[Read more on MDN](https://developer.mozilla.org/docs/Web/API/WritableStream/getWriter)
+*/
+@send
+external getWriter: fileSystemWritableFileStream => writableStreamDefaultWriter<'w> = "getWriter"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/FileSystemWritableFileStream/write)

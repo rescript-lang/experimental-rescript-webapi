@@ -1,6 +1,13 @@
 open FileAPI
 
 /**
+[Read more on MDN](https://developer.mozilla.org/docs/Web/API/FileSystemHandle/isSameEntry)
+*/
+@send
+external isSameEntry: (fileSystemDirectoryHandle, fileSystemHandle) => Promise.t<bool> =
+  "isSameEntry"
+
+/**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/FileSystemDirectoryHandle/getFileHandle)
 */
 @send

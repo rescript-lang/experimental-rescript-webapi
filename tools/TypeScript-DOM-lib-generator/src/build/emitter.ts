@@ -969,13 +969,26 @@ export async function emitRescriptBindings(webidl: Browser.WebIdl) {
   function extractMethodEntries(
     i: Browser.Interface,
   ): Record<string, Browser.Method> {
+    // Own methods
     let methodEntries: Record<string, Browser.Method> =
       i.methods && i.methods.method ? i.methods.method : {};
+
+    // Mixin methods
     let mixinMethods = (i.implements || []).map(
       (i) => allMixins.find((m) => m.name === i)?.methods?.method || {},
     );
-    methodEntries = Object.assign({}, ...mixinMethods, methodEntries);
-    return methodEntries;
+
+    // Inherit methods from extended interfaces
+    let extendedMethods: Record<string, Browser.Method> = {};
+    if (i.extends && typeof i.extends === "string") {
+      let entry = allInterfaces.find((j) => j.name === i.extends);
+      if (entry) {
+        extendedMethods = extractMethodEntries(entry);
+      }
+    }
+
+    // Combine all methods
+    return Object.assign({}, ...mixinMethods, extendedMethods, methodEntries);
   }
 
   // We try and detect which open statements are required for the functions of a nested module.

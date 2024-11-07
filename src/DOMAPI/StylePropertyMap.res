@@ -1,6 +1,18 @@
 open DOMAPI
 
 /**
+[Read more on MDN](https://developer.mozilla.org/docs/Web/API/StylePropertyMapReadOnly/getAll)
+*/
+@send
+external getAll: (stylePropertyMap, string) => array<cssStyleValue> = "getAll"
+
+/**
+[Read more on MDN](https://developer.mozilla.org/docs/Web/API/StylePropertyMapReadOnly/has)
+*/
+@send
+external has: (stylePropertyMap, string) => bool = "has"
+
+/**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/StylePropertyMap/set)
 */
 @send

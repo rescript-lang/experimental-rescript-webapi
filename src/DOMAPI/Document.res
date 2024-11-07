@@ -69,6 +69,210 @@ external evaluate: (document, string, node, xPathNSResolver, int, xPathResult) =
   "evaluate"
 
 /**
+Appends an event listener for events whose type attribute value is type. The callback argument sets the callback that will be invoked when the event is dispatched.
+
+The options argument sets listener-specific options. For compatibility this can be a boolean, in which case the method behaves exactly as if the value was specified as options's capture.
+
+When set to true, options's capture prevents callback from being invoked when the event's eventPhase attribute value is BUBBLING_PHASE. When false (or not present), callback will not be invoked when event's eventPhase attribute value is CAPTURING_PHASE. Either way, callback will be invoked if event's eventPhase attribute value is AT_TARGET.
+
+When set to true, options's passive indicates that the callback will not cancel the event by invoking preventDefault(). This is used to enable performance optimizations described in § 2.8 Observing event listeners.
+
+When set to true, options's once indicates that the callback will only be invoked once after which the event listener will be removed.
+
+If an AbortSignal is passed for options's signal, then the event listener will be removed when signal is aborted.
+
+The event listener is appended to target's event listener list and is not appended if it has the same type, callback, and capture.
+[Read more on MDN](https://developer.mozilla.org/docs/Web/API/EventTarget/addEventListener)
+*/
+@send
+external addEventListener: (document, eventType, eventListener<eventType>) => unit =
+  "addEventListener"
+
+/**
+Appends an event listener for events whose type attribute value is type. The callback argument sets the callback that will be invoked when the event is dispatched.
+
+The options argument sets listener-specific options. For compatibility this can be a boolean, in which case the method behaves exactly as if the value was specified as options's capture.
+
+When set to true, options's capture prevents callback from being invoked when the event's eventPhase attribute value is BUBBLING_PHASE. When false (or not present), callback will not be invoked when event's eventPhase attribute value is CAPTURING_PHASE. Either way, callback will be invoked if event's eventPhase attribute value is AT_TARGET.
+
+When set to true, options's passive indicates that the callback will not cancel the event by invoking preventDefault(). This is used to enable performance optimizations described in § 2.8 Observing event listeners.
+
+When set to true, options's once indicates that the callback will only be invoked once after which the event listener will be removed.
+
+If an AbortSignal is passed for options's signal, then the event listener will be removed when signal is aborted.
+
+The event listener is appended to target's event listener list and is not appended if it has the same type, callback, and capture.
+[Read more on MDN](https://developer.mozilla.org/docs/Web/API/EventTarget/addEventListener)
+*/
+@send
+external addEventListenerWithOptions: (
+  document,
+  eventType,
+  eventListener<eventType>,
+  addEventListenerOptions,
+) => unit = "addEventListener"
+
+/**
+Appends an event listener for events whose type attribute value is type. The callback argument sets the callback that will be invoked when the event is dispatched.
+
+The options argument sets listener-specific options. For compatibility this can be a boolean, in which case the method behaves exactly as if the value was specified as options's capture.
+
+When set to true, options's capture prevents callback from being invoked when the event's eventPhase attribute value is BUBBLING_PHASE. When false (or not present), callback will not be invoked when event's eventPhase attribute value is CAPTURING_PHASE. Either way, callback will be invoked if event's eventPhase attribute value is AT_TARGET.
+
+When set to true, options's passive indicates that the callback will not cancel the event by invoking preventDefault(). This is used to enable performance optimizations described in § 2.8 Observing event listeners.
+
+When set to true, options's once indicates that the callback will only be invoked once after which the event listener will be removed.
+
+If an AbortSignal is passed for options's signal, then the event listener will be removed when signal is aborted.
+
+The event listener is appended to target's event listener list and is not appended if it has the same type, callback, and capture.
+[Read more on MDN](https://developer.mozilla.org/docs/Web/API/EventTarget/addEventListener)
+*/
+@send
+external addEventListenerWithUseCapture: (
+  document,
+  eventType,
+  eventListener<eventType>,
+  bool,
+) => unit = "addEventListener"
+
+/**
+Removes the event listener in target's event listener list with the same type, callback, and options.
+[Read more on MDN](https://developer.mozilla.org/docs/Web/API/EventTarget/removeEventListener)
+*/
+@send
+external removeEventListener: (document, eventType, eventListener<eventType>) => unit =
+  "addEventListener"
+
+/**
+Removes the event listener in target's event listener list with the same type, callback, and options.
+[Read more on MDN](https://developer.mozilla.org/docs/Web/API/EventTarget/removeEventListener)
+*/
+@send
+external removeEventListenerWithOptions: (
+  document,
+  eventType,
+  eventListener<eventType>,
+  eventListenerOptions,
+) => unit = "addEventListener"
+
+/**
+Removes the event listener in target's event listener list with the same type, callback, and options.
+[Read more on MDN](https://developer.mozilla.org/docs/Web/API/EventTarget/removeEventListener)
+*/
+@send
+external removeEventListenerWithUseCapture: (
+  document,
+  eventType,
+  eventListener<eventType>,
+  bool,
+) => unit = "addEventListener"
+
+/**
+Dispatches a synthetic event event to target and returns true if either event's cancelable attribute value is false or its preventDefault() method was not invoked, and false otherwise.
+[Read more on MDN](https://developer.mozilla.org/docs/Web/API/EventTarget/dispatchEvent)
+*/
+@send
+external dispatchEvent: (document, event) => bool = "dispatchEvent"
+
+/**
+Returns node's root.
+[Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/getRootNode)
+*/
+@send
+external getRootNode: (document, getRootNodeOptions) => node = "getRootNode"
+
+/**
+Returns whether node has children.
+[Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/hasChildNodes)
+*/
+@send
+external hasChildNodes: document => bool = "hasChildNodes"
+
+/**
+Removes empty exclusive Text nodes and concatenates the data of remaining contiguous exclusive Text nodes into the first of their nodes.
+[Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/normalize)
+*/
+@send
+external normalize: document => unit = "normalize"
+
+/**
+Returns a copy of node. If deep is true, the copy also includes the node's descendants.
+[Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/cloneNode)
+*/
+@send
+external cloneNode: (document, bool) => node = "cloneNode"
+
+/**
+Returns whether node and otherNode have the same properties.
+[Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/isEqualNode)
+*/
+@send
+external isEqualNode: (document, node) => bool = "isEqualNode"
+
+/**
+[Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/isSameNode)
+*/
+@send
+external isSameNode: (document, node) => bool = "isSameNode"
+
+/**
+Returns a bitmask indicating the position of other relative to node.
+[Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/compareDocumentPosition)
+*/
+@send
+external compareDocumentPosition: (document, node) => int = "compareDocumentPosition"
+
+/**
+Returns true if other is an inclusive descendant of node, and false otherwise.
+[Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/contains)
+*/
+@send
+external contains: (document, node) => bool = "contains"
+
+/**
+[Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/lookupPrefix)
+*/
+@send
+external lookupPrefix: (document, string) => string = "lookupPrefix"
+
+/**
+[Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/lookupNamespaceURI)
+*/
+@send
+external lookupNamespaceURI: (document, string) => string = "lookupNamespaceURI"
+
+/**
+[Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/isDefaultNamespace)
+*/
+@send
+external isDefaultNamespace: (document, string) => bool = "isDefaultNamespace"
+
+/**
+[Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/insertBefore)
+*/
+@send
+external insertBefore: (document, 't, node) => 't = "insertBefore"
+
+/**
+[Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/appendChild)
+*/
+@send
+external appendChild: (document, 't) => 't = "appendChild"
+
+/**
+[Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/replaceChild)
+*/
+@send
+external replaceChild: (document, node, 't) => 't = "replaceChild"
+
+/**
+[Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/removeChild)
+*/
+@send
+external removeChild: (document, 't) => 't = "removeChild"
+
+/**
 Retrieves a collection of objects based on the specified element name.
 @param name Specifies the name of an element.
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Document/getElementsByTagName)

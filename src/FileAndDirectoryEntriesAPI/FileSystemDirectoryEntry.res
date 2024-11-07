@@ -1,6 +1,13 @@
 open FileAndDirectoryEntriesAPI
 
 /**
+[Read more on MDN](https://developer.mozilla.org/docs/Web/API/FileSystemEntry/getParent)
+*/
+@send
+external getParent: (fileSystemDirectoryEntry, fileSystemEntryCallback, errorCallback) => unit =
+  "getParent"
+
+/**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/FileSystemDirectoryEntry/createReader)
 */
 @send

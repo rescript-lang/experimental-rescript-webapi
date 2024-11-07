@@ -11,3 +11,6 @@ external make: (any, any, any, any) => domRect = "DOMRect"
 */
 @scope("DOMRect")
 external fromRect: domRectInit => domRect = "fromRect"
+
+@send
+external toJSON: domRect => Dict.t<string> = "toJSON"
