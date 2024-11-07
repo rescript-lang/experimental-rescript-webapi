@@ -120,10 +120,52 @@ external dispatchEvent: (iirFilterNode, event) => bool = "dispatchEvent"
 external connect: (iirFilterNode, audioNode, int, int) => audioNode = "connect"
 
 /**
+[Read more on MDN](https://developer.mozilla.org/docs/Web/API/AudioNode/connect)
+*/
+@send
+external connect2: (iirFilterNode, audioParam, int) => unit = "connect"
+
+/**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/AudioNode/disconnect)
 */
 @send
 external disconnect: iirFilterNode => unit = "disconnect"
+
+/**
+[Read more on MDN](https://developer.mozilla.org/docs/Web/API/AudioNode/disconnect)
+*/
+@send
+external disconnect2: (iirFilterNode, int) => unit = "disconnect"
+
+/**
+[Read more on MDN](https://developer.mozilla.org/docs/Web/API/AudioNode/disconnect)
+*/
+@send
+external disconnect3: (iirFilterNode, audioNode) => unit = "disconnect"
+
+/**
+[Read more on MDN](https://developer.mozilla.org/docs/Web/API/AudioNode/disconnect)
+*/
+@send
+external disconnect4: (iirFilterNode, audioNode, int) => unit = "disconnect"
+
+/**
+[Read more on MDN](https://developer.mozilla.org/docs/Web/API/AudioNode/disconnect)
+*/
+@send
+external disconnect5: (iirFilterNode, audioNode, int, int) => unit = "disconnect"
+
+/**
+[Read more on MDN](https://developer.mozilla.org/docs/Web/API/AudioNode/disconnect)
+*/
+@send
+external disconnect6: (iirFilterNode, audioParam) => unit = "disconnect"
+
+/**
+[Read more on MDN](https://developer.mozilla.org/docs/Web/API/AudioNode/disconnect)
+*/
+@send
+external disconnect7: (iirFilterNode, audioParam, int) => unit = "disconnect"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/IIRFilterNode/getFrequencyResponse)

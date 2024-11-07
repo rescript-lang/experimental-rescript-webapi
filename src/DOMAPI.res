@@ -30,6 +30,7 @@ open IndexedDBAPI
 open WebCryptoAPI
 open PerformanceAPI
 open WebStorageAPI
+open ChannelMessagingAPI
 
 type shadowRootMode =
   | @as("closed") Closed
@@ -141,6 +142,12 @@ type scrollLogicalPosition =
   | @as("center") Center
   | @as("end") End
   | @as("nearest") Nearest
+  | @as("start") Start
+
+type selectionMode =
+  | @as("end") End
+  | @as("preserve") Preserve
+  | @as("select") Select
   | @as("start") Start
 
 type shareData = {
@@ -2558,11 +2565,11 @@ and element = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/scrollTop)
     */
-  mutable scrollTop: any,
+  mutable scrollTop: float,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/scrollLeft)
     */
-  mutable scrollLeft: any,
+  mutable scrollLeft: float,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/scrollWidth)
     */
@@ -3035,11 +3042,11 @@ and htmlElement = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/scrollTop)
     */
-  mutable scrollTop: any,
+  mutable scrollTop: float,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/scrollLeft)
     */
-  mutable scrollLeft: any,
+  mutable scrollLeft: float,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/scrollWidth)
     */
@@ -3408,11 +3415,11 @@ and htmlHeadElement = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/scrollTop)
     */
-  mutable scrollTop: any,
+  mutable scrollTop: float,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/scrollLeft)
     */
-  mutable scrollLeft: any,
+  mutable scrollLeft: float,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/scrollWidth)
     */
@@ -3664,11 +3671,11 @@ and htmlFormElement = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/scrollTop)
     */
-  mutable scrollTop: any,
+  mutable scrollTop: float,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/scrollLeft)
     */
-  mutable scrollLeft: any,
+  mutable scrollLeft: float,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/scrollWidth)
     */
@@ -3971,11 +3978,11 @@ and htmlImageElement = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/scrollTop)
     */
-  mutable scrollTop: any,
+  mutable scrollTop: float,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/scrollLeft)
     */
-  mutable scrollLeft: any,
+  mutable scrollLeft: float,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/scrollWidth)
     */
@@ -4314,11 +4321,11 @@ and htmlEmbedElement = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/scrollTop)
     */
-  mutable scrollTop: any,
+  mutable scrollTop: float,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/scrollLeft)
     */
-  mutable scrollLeft: any,
+  mutable scrollLeft: float,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/scrollWidth)
     */
@@ -4586,11 +4593,11 @@ and htmlAnchorElement = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/scrollTop)
     */
-  mutable scrollTop: any,
+  mutable scrollTop: float,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/scrollLeft)
     */
-  mutable scrollLeft: any,
+  mutable scrollLeft: float,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/scrollWidth)
     */
@@ -4959,11 +4966,11 @@ and htmlAreaElement = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/scrollTop)
     */
-  mutable scrollTop: any,
+  mutable scrollTop: float,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/scrollLeft)
     */
-  mutable scrollLeft: any,
+  mutable scrollLeft: float,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/scrollWidth)
     */
@@ -5312,11 +5319,11 @@ and htmlScriptElement = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/scrollTop)
     */
-  mutable scrollTop: any,
+  mutable scrollTop: float,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/scrollLeft)
     */
-  mutable scrollLeft: any,
+  mutable scrollLeft: float,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/scrollWidth)
     */
@@ -6550,11 +6557,11 @@ and htmlSlotElement = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/scrollTop)
     */
-  mutable scrollTop: any,
+  mutable scrollTop: float,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/scrollLeft)
     */
-  mutable scrollLeft: any,
+  mutable scrollLeft: float,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/scrollWidth)
     */
@@ -6677,35 +6684,35 @@ type domRectReadOnly = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/DOMRectReadOnly/x)
     */
-  x: any,
+  x: float,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/DOMRectReadOnly/y)
     */
-  y: any,
+  y: float,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/DOMRectReadOnly/width)
     */
-  width: any,
+  width: float,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/DOMRectReadOnly/height)
     */
-  height: any,
+  height: float,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/DOMRectReadOnly/top)
     */
-  top: any,
+  top: float,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/DOMRectReadOnly/right)
     */
-  right: any,
+  right: float,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/DOMRectReadOnly/bottom)
     */
-  bottom: any,
+  bottom: float,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/DOMRectReadOnly/left)
     */
-  left: any,
+  left: float,
 }
 
 /**
@@ -7820,7 +7827,7 @@ and htmlInputElement = {
     Returns the input field value as a number.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLInputElement/valueAsNumber)
     */
-  mutable valueAsNumber: any,
+  mutable valueAsNumber: float,
   /**
     Sets or retrieves the width of the object.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLInputElement/width)
@@ -8101,7 +8108,7 @@ type htmlMediaElement = {
     Returns the duration in seconds of the current media resource. A NaN value is returned if duration is not available, or Infinity if the media resource is streaming.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLMediaElement/duration)
     */
-  duration: any,
+  duration: float,
   /**
     Gets a flag that specifies whether playback is paused.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLMediaElement/paused)
@@ -8961,7 +8968,7 @@ type xPathResult = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/XPathResult/numberValue)
     */
-  numberValue: any,
+  numberValue: float,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/XPathResult/stringValue)
     */
@@ -9060,8 +9067,8 @@ type scrollOptions = {mutable behavior?: scrollBehavior}
 
 type scrollToOptions = {
   ...scrollOptions,
-  mutable left?: any,
-  mutable top?: any,
+  mutable left?: float,
+  mutable top?: float,
 }
 
 type fullscreenOptions = {mutable navigationUI?: fullscreenNavigationUI}
@@ -9078,10 +9085,10 @@ type caretPositionFromPointOptions = {mutable shadowRoots?: array<shadowRoot>}
 type idleRequestOptions = {mutable timeout?: int}
 
 type domRectInit = {
-  mutable x?: any,
-  mutable y?: any,
-  mutable width?: any,
-  mutable height?: any,
+  mutable x?: float,
+  mutable y?: float,
+  mutable width?: float,
+  mutable height?: float,
 }
 
 type validityStateFlags = {
@@ -9123,7 +9130,7 @@ type focusOptions = {mutable preventScroll?: bool}
 type effectTiming = {
   mutable fill?: fillMode,
   mutable iterationStart?: float,
-  mutable iterations?: any,
+  mutable iterations?: float,
   mutable direction?: playbackDirection,
   mutable easing?: string,
   mutable delay?: float,
@@ -9137,7 +9144,7 @@ type getAnimationsOptions = {mutable subtree?: bool}
 type computedEffectTiming = {
   ...effectTiming,
   mutable progress?: Null.t<float>,
-  mutable currentIteration?: Null.t<any>,
+  mutable currentIteration?: Null.t<float>,
   mutable startTime?: float,
   mutable endTime?: float,
   mutable activeDuration?: float,
@@ -9149,7 +9156,7 @@ type optionalEffectTiming = {
   mutable endDelay?: float,
   mutable fill?: fillMode,
   mutable iterationStart?: float,
-  mutable iterations?: any,
+  mutable iterations?: float,
   mutable duration?: unknown,
   mutable direction?: playbackDirection,
   mutable easing?: string,
@@ -9165,12 +9172,15 @@ type imageBitmapOptions = {
   mutable resizeQuality?: resizeQuality,
 }
 
-type structuredSerializeOptions = {mutable transfer?: array<Dict.t<string>>}
-
 type scrollIntoViewOptions = {
   ...scrollOptions,
   mutable block?: scrollLogicalPosition,
   mutable inline?: scrollLogicalPosition,
+}
+
+type windowPostMessageOptions = {
+  ...structuredSerializeOptions,
+  mutable targetOrigin?: string,
 }
 
 type xPathNSResolver = any

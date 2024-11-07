@@ -115,7 +115,49 @@ external dispatchEvent: (audioNode, event) => bool = "dispatchEvent"
 external connect: (audioNode, audioNode, int, int) => audioNode = "connect"
 
 /**
+[Read more on MDN](https://developer.mozilla.org/docs/Web/API/AudioNode/connect)
+*/
+@send
+external connect2: (audioNode, audioParam, int) => unit = "connect"
+
+/**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/AudioNode/disconnect)
 */
 @send
 external disconnect: audioNode => unit = "disconnect"
+
+/**
+[Read more on MDN](https://developer.mozilla.org/docs/Web/API/AudioNode/disconnect)
+*/
+@send
+external disconnect2: (audioNode, int) => unit = "disconnect"
+
+/**
+[Read more on MDN](https://developer.mozilla.org/docs/Web/API/AudioNode/disconnect)
+*/
+@send
+external disconnect3: (audioNode, audioNode) => unit = "disconnect"
+
+/**
+[Read more on MDN](https://developer.mozilla.org/docs/Web/API/AudioNode/disconnect)
+*/
+@send
+external disconnect4: (audioNode, audioNode, int) => unit = "disconnect"
+
+/**
+[Read more on MDN](https://developer.mozilla.org/docs/Web/API/AudioNode/disconnect)
+*/
+@send
+external disconnect5: (audioNode, audioNode, int, int) => unit = "disconnect"
+
+/**
+[Read more on MDN](https://developer.mozilla.org/docs/Web/API/AudioNode/disconnect)
+*/
+@send
+external disconnect6: (audioNode, audioParam) => unit = "disconnect"
+
+/**
+[Read more on MDN](https://developer.mozilla.org/docs/Web/API/AudioNode/disconnect)
+*/
+@send
+external disconnect7: (audioNode, audioParam, int) => unit = "disconnect"

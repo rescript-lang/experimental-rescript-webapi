@@ -75,7 +75,7 @@ type mediaSessionActionDetails = {
 }
 
 type mediaPositionState = {
-  mutable duration?: any,
+  mutable duration?: float,
   mutable playbackRate?: float,
   mutable position?: float,
 }

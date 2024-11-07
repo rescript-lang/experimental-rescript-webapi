@@ -573,16 +573,34 @@ external scrollIntoView2: (htmlStyleElement, scrollIntoViewOptions) => unit = "s
 external scroll: (htmlStyleElement, scrollToOptions) => unit = "scroll"
 
 /**
+[Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/scroll)
+*/
+@send
+external scroll2: (htmlStyleElement, float, float) => unit = "scroll"
+
+/**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/scrollTo)
 */
 @send
 external scrollTo: (htmlStyleElement, scrollToOptions) => unit = "scrollTo"
 
 /**
+[Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/scrollTo)
+*/
+@send
+external scrollTo2: (htmlStyleElement, float, float) => unit = "scrollTo"
+
+/**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/scrollBy)
 */
 @send
 external scrollBy: (htmlStyleElement, scrollToOptions) => unit = "scrollBy"
+
+/**
+[Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/scrollBy)
+*/
+@send
+external scrollBy2: (htmlStyleElement, float, float) => unit = "scrollBy"
 
 /**
 Displays element fullscreen and resolves promise when done.

@@ -1,11 +1,10 @@
 open DOMAPI
-open Prelude
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/DOMRect)
 */
 @new
-external make: (any, any, any, any) => domRect = "DOMRect"
+external make: (float, float, float, float) => domRect = "DOMRect"
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/DOMRect/fromRect_static)
 */

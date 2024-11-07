@@ -573,16 +573,34 @@ external scrollIntoView2: (htmlInputElement, scrollIntoViewOptions) => unit = "s
 external scroll: (htmlInputElement, scrollToOptions) => unit = "scroll"
 
 /**
+[Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/scroll)
+*/
+@send
+external scroll2: (htmlInputElement, float, float) => unit = "scroll"
+
+/**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/scrollTo)
 */
 @send
 external scrollTo: (htmlInputElement, scrollToOptions) => unit = "scrollTo"
 
 /**
+[Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/scrollTo)
+*/
+@send
+external scrollTo2: (htmlInputElement, float, float) => unit = "scrollTo"
+
+/**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/scrollBy)
 */
 @send
 external scrollBy: (htmlInputElement, scrollToOptions) => unit = "scrollBy"
+
+/**
+[Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/scrollBy)
+*/
+@send
+external scrollBy2: (htmlInputElement, float, float) => unit = "scrollBy"
 
 /**
 Displays element fullscreen and resolves promise when done.
@@ -717,6 +735,12 @@ external select: htmlInputElement => unit = "select"
 */
 @send
 external setRangeText: (htmlInputElement, string) => unit = "setRangeText"
+
+/**
+[Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLInputElement/setRangeText)
+*/
+@send
+external setRangeText2: (htmlInputElement, string, int, int, selectionMode) => unit = "setRangeText"
 
 /**
 Sets the start and end positions of a selection in a text field.

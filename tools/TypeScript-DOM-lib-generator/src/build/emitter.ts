@@ -441,6 +441,7 @@ export async function emitRescriptBindings(webidl: Browser.WebIdl) {
       case "GLsizei":
       case "DOMHighResTimeStamp":
       case "ConstrainDouble":
+      case "unrestricted double":
         return "float";
 
       // TODO: represent this as a variant type
@@ -481,7 +482,6 @@ export async function emitRescriptBindings(webidl: Browser.WebIdl) {
       case "`${string}-${string}-${string}-${string}-${string}`":
         return "string";
 
-      case "unrestricted double":
       case "record":
         return "any";
 
@@ -871,12 +871,12 @@ export async function emitRescriptBindings(webidl: Browser.WebIdl) {
     printer.endLine();
   }
 
-  function mapMethodName(method: Browser.Method) {
-    if (reservedRescriptWords.includes(method.name)) {
+  function mapMethodName(method: Browser.Method, suffix: string = "") {
+    if (reservedRescriptWords.includes(method.name) && !suffix) {
       return `${method.name}_`;
     }
 
-    return method.name;
+    return `${method.name}${suffix}`;
   }
 
   function mapMethodReturnType(signature: Browser.Signature) {
@@ -896,7 +896,8 @@ export async function emitRescriptBindings(webidl: Browser.WebIdl) {
   }
 
   function isInvalidMethod(method: Browser.Method): boolean {
-    if (method.signature.length === 0 || method.deprecated) return true;
+    if (!method.signature || method.signature.length === 0 || method.deprecated)
+      return true;
 
     const signature = method.signature[0];
     if (typeof signature.type !== "string") return true;
@@ -941,26 +942,27 @@ export async function emitRescriptBindings(webidl: Browser.WebIdl) {
       return [method];
     }
 
-    const signature = method.signature[0];
-    if (
-      signature.param &&
-      signature.param.length === 1 &&
-      Array.isArray(signature.param[0].type)
-    ) {
-      const param = signature.param[0];
-      return signature.param[0].type.map((t) => {
-        const updatedSignature: Browser.Signature = {
-          ...signature,
-          param: [{ ...param, type: [t] }],
-        };
-        return {
-          ...method,
-          signature: [updatedSignature],
-        };
-      });
-    }
+    return method.signature.flatMap((signature) => {
+      if (
+        signature.param &&
+        signature.param.length === 1 &&
+        Array.isArray(signature.param[0].type)
+      ) {
+        const param = signature.param[0];
+        return signature.param[0].type.map((t) => {
+          const updatedSignature: Browser.Signature = {
+            ...signature,
+            param: [{ ...param, type: [t] }],
+          };
+          return {
+            ...method,
+            signature: [updatedSignature],
+          };
+        });
+      }
 
-    return [method];
+      return [{ ...method, signature: [signature] }];
+    });
   }
 
   // TODO: deal with overloads?
@@ -972,6 +974,7 @@ export async function emitRescriptBindings(webidl: Browser.WebIdl) {
     if (isInvalidMethod(method)) return;
 
     const signature = method.signature[0];
+
     let ps = mapSignatureParameters(signature);
 
     printComment({
@@ -981,14 +984,14 @@ export async function emitRescriptBindings(webidl: Browser.WebIdl) {
     if (method.static) {
       printer.printLine(`@scope("${i.name}")`);
       printer.printLine(
-        `external ${mapMethodName(method)}${suffix}: (${ps}) => ${mapMethodReturnType(signature)} = "${method.name}"`,
+        `external ${mapMethodName(method, suffix)}: (${ps}) => ${mapMethodReturnType(signature)} = "${method.name}"`,
       );
     } else {
       ps = ps.length > 0 ? ", " + ps : "";
 
       printer.printLine("@send");
       printer.printLine(
-        `external ${mapMethodName(method)}${suffix}: (${mapInterfaceName(i)}${ps}) => ${mapMethodReturnType(signature)} = "${method.name}"`,
+        `external ${mapMethodName(method, suffix)}: (${mapInterfaceName(i)}${ps}) => ${mapMethodReturnType(signature)} = "${method.name}"`,
       );
     }
 
@@ -1015,6 +1018,46 @@ export async function emitRescriptBindings(webidl: Browser.WebIdl) {
           })
           .join(join);
   }
+
+  // TODO: add support for multiple constructors
+  /*
+        "constructor": {
+          "signature": [
+            {
+              "type": "MediaStream",
+              "param": []
+            },
+            {
+              "type": "MediaStream",
+              "param": [
+                {
+                  "name": "stream",
+                  "type": "MediaStream",
+                  "nullable": false,
+                  "optional": false,
+                  "variadic": false
+                }
+              ]
+            },
+            {
+              "type": "MediaStream",
+              "param": [
+                {
+                  "name": "tracks",
+                  "type": "sequence",
+                  "subtype": {
+                    "type": "MediaStreamTrack",
+                    "nullable": false
+                  },
+                  "nullable": false,
+                  "optional": false,
+                  "variadic": false
+                }
+              ]
+            }
+          ]
+        },
+  */
 
   function emitConstructor(i: Browser.Interface, c: Browser.Constructor) {
     if (typeof c === "function") {
@@ -1122,15 +1165,16 @@ export async function emitRescriptBindings(webidl: Browser.WebIdl) {
 
     const methodEntries = extractMethodEntries(i);
     for (const method of Object.values(methodEntries)) {
-      if (
-        !method.signature ||
-        method.signature.length === 0 ||
-        method.deprecated
-      )
-        continue;
+      if (isInvalidMethod(method)) continue;
 
-      const signature = method.signature[0];
-      verifyTypesFromSignature(method.name, method.static || false, signature);
+      for (const dedupedMethod of dedupeMethod(method)) {
+        const signature = dedupedMethod.signature[0];
+        verifyTypesFromSignature(
+          dedupedMethod.name,
+          dedupedMethod.static || false,
+          signature,
+        );
+      }
     }
 
     if (
@@ -1554,7 +1598,10 @@ export async function emitRescriptBindings(webidl: Browser.WebIdl) {
       // https://developer.mozilla.org/en-US/docs/Web/API/Channel_Messaging_API
       {
         name: "ChannelMessagingAPI",
-        entries: [individualInterfaces(["MessagePort"])],
+        entries: [
+          individualInterfaces(["MessagePort"]),
+          dictionaries(["StructuredSerializeOptions"]),
+        ],
         opens: ["EventAPI"],
       },
       // https://developer.mozilla.org/en-US/docs/Web/API/History
@@ -1834,6 +1881,7 @@ export async function emitRescriptBindings(webidl: Browser.WebIdl) {
           "PushManagerAPI",
           "NotificationAPI",
           "FetchAPI",
+          "ChannelMessagingAPI",
         ],
       },
       // https://developer.mozilla.org/en-US/docs/Web/API/Encrypted_Media_Extensions_API
@@ -2002,10 +2050,10 @@ export async function emitRescriptBindings(webidl: Browser.WebIdl) {
         entries: [
           enums(["LockMode"]),
           individualInterfaces(["LockManager", "Lock"]),
-          dictionaries(["LockInfo", "LockManagerSnapshot"]),
+          dictionaries(["LockInfo", "LockManagerSnapshot", "LockOptions"]),
           ...callbacks(["LockGrantedCallback"]),
         ],
-        opens: ["Prelude"],
+        opens: ["Prelude", "EventAPI"],
       },
       // https://developer.mozilla.org/en-US/docs/Web/API/CSS_Font_Loading_API
       {
@@ -2102,6 +2150,7 @@ export async function emitRescriptBindings(webidl: Browser.WebIdl) {
             "ColorSpaceConversion",
             "ResizeQuality",
             "ScrollLogicalPosition",
+            "SelectionMode",
           ]),
           // TODO: perhaps move to Web Share API?
           // See https://developer.mozilla.org/en-US/docs/Web/API/Web_Share_API
@@ -2286,8 +2335,8 @@ export async function emitRescriptBindings(webidl: Browser.WebIdl) {
             "ComputedEffectTiming",
             "OptionalEffectTiming",
             "ImageBitmapOptions",
-            "StructuredSerializeOptions",
             "ScrollIntoViewOptions",
+            "WindowPostMessageOptions",
           ]),
           byHand("XPathNSResolver", emitAny("XPathNSResolver")),
           byHand("TimerHandler", emitAny("TimerHandler")),
@@ -2335,6 +2384,7 @@ export async function emitRescriptBindings(webidl: Browser.WebIdl) {
           "WebCryptoAPI",
           "PerformanceAPI",
           "WebStorageAPI",
+          "ChannelMessagingAPI",
         ],
       },
       // https://developer.mozilla.org/en-US/docs/Web/API/Web_Audio_API

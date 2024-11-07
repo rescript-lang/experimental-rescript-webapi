@@ -1,11 +1,10 @@
 open DOMAPI
-open Prelude
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/DOMRectReadOnly)
 */
 @new
-external make: (any, any, any, any) => domRectReadOnly = "DOMRectReadOnly"
+external make: (float, float, float, float) => domRectReadOnly = "DOMRectReadOnly"
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/DOMRectReadOnly/fromRect_static)
 */

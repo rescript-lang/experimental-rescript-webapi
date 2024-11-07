@@ -1,6 +1,7 @@
 @@warning("-30")
 
 open Prelude
+open EventAPI
 
 type lockMode =
   | @as("exclusive") Exclusive
@@ -34,6 +35,13 @@ type lockInfo = {
 type lockManagerSnapshot = {
   mutable held?: array<lockInfo>,
   mutable pending?: array<lockInfo>,
+}
+
+type lockOptions = {
+  mutable mode?: lockMode,
+  mutable ifAvailable?: bool,
+  mutable steal?: bool,
+  mutable signal?: abortSignal,
 }
 
 type lockGrantedCallback = lock => Promise.t<any>

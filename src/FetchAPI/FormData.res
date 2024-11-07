@@ -1,4 +1,5 @@
 open FetchAPI
+open FileAPI
 open DOMAPI
 
 /**
@@ -11,6 +12,12 @@ external make: (htmlFormElement, htmlElement) => formData = "FormData"
 */
 @send
 external append: (formData, string, string) => unit = "append"
+
+/**
+[Read more on MDN](https://developer.mozilla.org/docs/Web/API/FormData/append)
+*/
+@send
+external append2: (formData, string, blob, string) => unit = "append"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/FormData/delete)
@@ -41,3 +48,9 @@ external has: (formData, string) => bool = "has"
 */
 @send
 external set: (formData, string, string) => unit = "set"
+
+/**
+[Read more on MDN](https://developer.mozilla.org/docs/Web/API/FormData/set)
+*/
+@send
+external set2: (formData, string, blob, string) => unit = "set"

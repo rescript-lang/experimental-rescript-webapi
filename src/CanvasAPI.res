@@ -51,5 +51,5 @@ type offscreenRenderingContext = any
 
 type imageEncodeOptions = {
   @as("type") mutable type_?: string,
-  mutable quality?: any,
+  mutable quality?: float,
 }

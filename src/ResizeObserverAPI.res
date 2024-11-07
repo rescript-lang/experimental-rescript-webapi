@@ -15,11 +15,11 @@ type resizeObserverSize = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/ResizeObserverSize/inlineSize)
     */
-  inlineSize: any,
+  inlineSize: float,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/ResizeObserverSize/blockSize)
     */
-  blockSize: any,
+  blockSize: float,
 }
 
 /**

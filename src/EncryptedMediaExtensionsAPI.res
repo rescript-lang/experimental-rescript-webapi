@@ -70,7 +70,7 @@ type mediaKeySession = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/MediaKeySession/expiration)
     */
-  expiration: any,
+  expiration: float,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/MediaKeySession/closed)
     */

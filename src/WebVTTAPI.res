@@ -57,7 +57,7 @@ Can be set.
 Can be set.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/TextTrackCue/endTime)
     */
-  mutable endTime: any,
+  mutable endTime: float,
   /**
     Returns true if the text track cue pause-on-exit flag is set, false otherwise.
 

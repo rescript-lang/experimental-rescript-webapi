@@ -510,6 +510,17 @@ Opens a new window and loads a document specified by a given URL. Also, opens a 
 external open_: (document, string, string) => document = "open"
 
 /**
+Opens a new window and loads a document specified by a given URL. Also, opens a new window that uses the url parameter and the name parameter to collect the output of the write method and the writeln method.
+@param url Specifies a MIME type for the document.
+@param name Specifies the name of the window. This name is used as the value for the TARGET attribute on a form or an anchor element.
+@param features Contains a list of items separated by commas. Each item consists of an option and a value, separated by an equals sign (for example, "fullscreen=yes, toolbar=yes"). The following values are supported.
+@param replace Specifies whether the existing entry for the document is replaced in the history list.
+[Read more on MDN](https://developer.mozilla.org/docs/Web/API/Document/open)
+*/
+@send
+external open2: (document, string, string, string) => window = "open"
+
+/**
 Closes an output stream and forces the sent data to display.
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Document/close)
 */

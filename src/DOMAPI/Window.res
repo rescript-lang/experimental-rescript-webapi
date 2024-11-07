@@ -1,6 +1,7 @@
 open Prelude
 open DOMAPI
 open CanvasAPI
+open ChannelMessagingAPI
 open FetchAPI
 open ServiceWorkerAPI
 open EventAPI
@@ -60,6 +61,20 @@ external queueMicrotask: (window, voidFunction) => unit = "queueMicrotask"
 external createImageBitmap: (
   window,
   imageBitmapSource,
+  imageBitmapOptions,
+) => Promise.t<imageBitmap> = "createImageBitmap"
+
+/**
+[Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/createImageBitmap)
+*/
+@send
+external createImageBitmap2: (
+  window,
+  imageBitmapSource,
+  int,
+  int,
+  int,
+  int,
   imageBitmapOptions,
 ) => Promise.t<imageBitmap> = "createImageBitmap"
 
@@ -223,6 +238,12 @@ external open_: (window, string, string, string) => window = "open"
 external alert: window => unit = "alert"
 
 /**
+[Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/alert)
+*/
+@send
+external alert2: (window, string) => unit = "alert"
+
+/**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/confirm)
 */
 @send
@@ -254,6 +275,21 @@ Throws a "DataCloneError" DOMException if transfer array contains duplicate obje
 */
 @send
 external postMessage: (window, any, string, array<Dict.t<string>>) => unit = "postMessage"
+
+/**
+Posts a message to the given window. Messages can be structured objects, e.g. nested objects and arrays, can contain JavaScript values (strings, numbers, Date objects, etc), and can contain certain data objects such as File Blob, FileList, and ArrayBuffer objects.
+
+Objects listed in the transfer member of options are transferred, not just cloned, meaning that they are no longer usable on the sending side.
+
+A target origin can be specified using the targetOrigin member of options. If not provided, it defaults to "/". This default restricts the message to same-origin targets only.
+
+If the origin of the target window doesn't match the given target origin, the message is discarded, to avoid information leakage. To send the message to the target regardless of origin, set the target origin to "*".
+
+Throws a "DataCloneError" DOMException if transfer array contains duplicate objects or if message could not be cloned.
+[Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/postMessage)
+*/
+@send
+external postMessage2: (window, any, windowPostMessageOptions) => unit = "postMessage"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/matchMedia)
@@ -292,16 +328,34 @@ external resizeBy: (window, int, int) => unit = "resizeBy"
 external scroll: (window, scrollToOptions) => unit = "scroll"
 
 /**
+[Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/scroll)
+*/
+@send
+external scroll2: (window, float, float) => unit = "scroll"
+
+/**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/scrollTo)
 */
 @send
 external scrollTo: (window, scrollToOptions) => unit = "scrollTo"
 
 /**
+[Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/scrollTo)
+*/
+@send
+external scrollTo2: (window, float, float) => unit = "scrollTo"
+
+/**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/scrollBy)
 */
 @send
 external scrollBy: (window, scrollToOptions) => unit = "scrollBy"
+
+/**
+[Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/scrollBy)
+*/
+@send
+external scrollBy2: (window, float, float) => unit = "scrollBy"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/getComputedStyle)

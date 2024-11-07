@@ -5,6 +5,7 @@ open EventAPI
 open PushManagerAPI
 open NotificationAPI
 open FetchAPI
+open ChannelMessagingAPI
 
 type serviceWorkerState =
   | @as("activated") Activated

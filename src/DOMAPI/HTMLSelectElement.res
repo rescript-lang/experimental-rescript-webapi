@@ -150,6 +150,14 @@ Removes an element from the collection.
 external remove: htmlSelectElement => unit = "remove"
 
 /**
+Removes an element from the collection.
+@param index Number that specifies the zero-based index of the element to remove from the collection.
+[Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLSelectElement/remove)
+*/
+@send
+external remove2: (htmlSelectElement, int) => unit = "remove"
+
+/**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/animate)
 */
 @send
@@ -575,16 +583,34 @@ external scrollIntoView2: (htmlSelectElement, scrollIntoViewOptions) => unit = "
 external scroll: (htmlSelectElement, scrollToOptions) => unit = "scroll"
 
 /**
+[Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/scroll)
+*/
+@send
+external scroll2: (htmlSelectElement, float, float) => unit = "scroll"
+
+/**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/scrollTo)
 */
 @send
 external scrollTo: (htmlSelectElement, scrollToOptions) => unit = "scrollTo"
 
 /**
+[Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/scrollTo)
+*/
+@send
+external scrollTo2: (htmlSelectElement, float, float) => unit = "scrollTo"
+
+/**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/scrollBy)
 */
 @send
 external scrollBy: (htmlSelectElement, scrollToOptions) => unit = "scrollBy"
+
+/**
+[Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/scrollBy)
+*/
+@send
+external scrollBy2: (htmlSelectElement, float, float) => unit = "scrollBy"
 
 /**
 Displays element fullscreen and resolves promise when done.
