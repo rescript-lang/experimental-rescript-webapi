@@ -4,10 +4,10 @@ open DOMAPI
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CSSStyleValue/parse_static)
 */
 @scope("CSSStyleValue")
-external parse: (string, string) => cssStyleValue = "parse"
+external parse: (~property: string, ~cssText: string) => cssStyleValue = "parse"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CSSStyleValue/parseAll_static)
 */
 @scope("CSSStyleValue")
-external parseAll: (string, string) => array<cssStyleValue> = "parseAll"
+external parseAll: (~property: string, ~cssText: string) => array<cssStyleValue> = "parseAll"

@@ -113,8 +113,11 @@ external dispatchEvent: (mediaKeySession, event) => bool = "dispatchEvent"
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/MediaKeySession/generateRequest)
 */
 @send
-external generateRequest: (mediaKeySession, string, bufferSource) => Promise.t<unit> =
-  "generateRequest"
+external generateRequest: (
+  mediaKeySession,
+  ~initDataType: string,
+  ~initData: bufferSource,
+) => Promise.t<unit> = "generateRequest"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/MediaKeySession/load)

@@ -115,9 +115,9 @@ Returns a new transaction with the given mode ("readonly" or "readwrite") and sc
 @send
 external transaction: (
   idbDatabase,
-  unknown,
-  idbTransactionMode,
-  idbTransactionOptions,
+  ~storeNames: unknown,
+  ~mode: idbTransactionMode,
+  ~options: idbTransactionOptions,
 ) => idbTransaction = "transaction"
 
 /**
@@ -134,8 +134,11 @@ Throws a "InvalidStateError" DOMException if not called within an upgrade transa
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/IDBDatabase/createObjectStore)
 */
 @send
-external createObjectStore: (idbDatabase, string, idbObjectStoreParameters) => idbObjectStore =
-  "createObjectStore"
+external createObjectStore: (
+  idbDatabase,
+  ~name: string,
+  ~options: idbObjectStoreParameters,
+) => idbObjectStore = "createObjectStore"
 
 /**
 Deletes the object store with the given name.

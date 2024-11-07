@@ -258,7 +258,7 @@ external isDefaultNamespace: (documentFragment, string) => bool = "isDefaultName
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/insertBefore)
 */
 @send
-external insertBefore: (documentFragment, 't, node) => 't = "insertBefore"
+external insertBefore: (documentFragment, 't, ~child: node) => 't = "insertBefore"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/appendChild)
@@ -270,7 +270,7 @@ external appendChild: (documentFragment, 't) => 't = "appendChild"
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/replaceChild)
 */
 @send
-external replaceChild: (documentFragment, node, 't) => 't = "replaceChild"
+external replaceChild: (documentFragment, ~node: node, 't) => 't = "replaceChild"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/removeChild)

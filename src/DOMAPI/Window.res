@@ -28,7 +28,8 @@ external atob: (window, string) => string = "atob"
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/setTimeout)
 */
 @send
-external setTimeout: (window, timerHandler, int, any) => int = "setTimeout"
+external setTimeout: (window, ~handler: timerHandler, ~timeout: int, ~arguments: any) => int =
+  "setTimeout"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/clearTimeout)
@@ -40,7 +41,8 @@ external clearTimeout: (window, int) => unit = "clearTimeout"
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/setInterval)
 */
 @send
-external setInterval: (window, timerHandler, int, any) => int = "setInterval"
+external setInterval: (window, ~handler: timerHandler, ~timeout: int, ~arguments: any) => int =
+  "setInterval"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/clearInterval)
@@ -60,8 +62,8 @@ external queueMicrotask: (window, voidFunction) => unit = "queueMicrotask"
 @send
 external createImageBitmap: (
   window,
-  imageBitmapSource,
-  imageBitmapOptions,
+  ~image: imageBitmapSource,
+  ~options: imageBitmapOptions,
 ) => Promise.t<imageBitmap> = "createImageBitmap"
 
 /**
@@ -70,25 +72,26 @@ external createImageBitmap: (
 @send
 external createImageBitmap2: (
   window,
-  imageBitmapSource,
-  int,
-  int,
-  int,
-  int,
-  imageBitmapOptions,
+  ~image: imageBitmapSource,
+  ~sx: int,
+  ~sy: int,
+  ~sw: int,
+  ~sh: int,
+  ~options: imageBitmapOptions,
 ) => Promise.t<imageBitmap> = "createImageBitmap"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/structuredClone)
 */
 @send
-external structuredClone: (window, 't, structuredSerializeOptions) => 't = "structuredClone"
+external structuredClone: (window, 't, ~options: structuredSerializeOptions) => 't =
+  "structuredClone"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/fetch)
 */
 @send
-external fetch: (window, requestInfo, requestInit) => Promise.t<response> = "fetch"
+external fetch: (window, ~input: requestInfo, ~init: requestInit) => Promise.t<response> = "fetch"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/DedicatedWorkerGlobalScope/requestAnimationFrame)
@@ -229,7 +232,7 @@ external focus: window => unit = "focus"
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/open)
 */
 @send
-external open_: (window, string, string, string) => window = "open"
+external open_: (window, ~url: string, ~target: string, ~features: string) => window = "open"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/alert)
@@ -253,7 +256,7 @@ external confirm: (window, string) => bool = "confirm"
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/prompt)
 */
 @send
-external prompt: (window, string, string) => string = "prompt"
+external prompt: (window, ~message: string, ~default: string) => string = "prompt"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/print)
@@ -274,7 +277,12 @@ Throws a "DataCloneError" DOMException if transfer array contains duplicate obje
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/postMessage)
 */
 @send
-external postMessage: (window, any, string, array<Dict.t<string>>) => unit = "postMessage"
+external postMessage: (
+  window,
+  ~message: any,
+  ~targetOrigin: string,
+  ~transfer: array<Dict.t<string>>,
+) => unit = "postMessage"
 
 /**
 Posts a message to the given window. Messages can be structured objects, e.g. nested objects and arrays, can contain JavaScript values (strings, numbers, Date objects, etc), and can contain certain data objects such as File Blob, FileList, and ArrayBuffer objects.
@@ -289,7 +297,8 @@ Throws a "DataCloneError" DOMException if transfer array contains duplicate obje
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/postMessage)
 */
 @send
-external postMessage2: (window, any, windowPostMessageOptions) => unit = "postMessage"
+external postMessage2: (window, ~message: any, ~options: windowPostMessageOptions) => unit =
+  "postMessage"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/matchMedia)
@@ -301,25 +310,25 @@ external matchMedia: (window, string) => mediaQueryList = "matchMedia"
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/moveTo)
 */
 @send
-external moveTo: (window, int, int) => unit = "moveTo"
+external moveTo: (window, ~x: int, ~y: int) => unit = "moveTo"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/moveBy)
 */
 @send
-external moveBy: (window, int, int) => unit = "moveBy"
+external moveBy: (window, ~x: int, ~y: int) => unit = "moveBy"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/resizeTo)
 */
 @send
-external resizeTo: (window, int, int) => unit = "resizeTo"
+external resizeTo: (window, ~width: int, ~height: int) => unit = "resizeTo"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/resizeBy)
 */
 @send
-external resizeBy: (window, int, int) => unit = "resizeBy"
+external resizeBy: (window, ~x: int, ~y: int) => unit = "resizeBy"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/scroll)
@@ -331,7 +340,7 @@ external scroll: (window, scrollToOptions) => unit = "scroll"
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/scroll)
 */
 @send
-external scroll2: (window, float, float) => unit = "scroll"
+external scroll2: (window, ~x: float, ~y: float) => unit = "scroll"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/scrollTo)
@@ -343,7 +352,7 @@ external scrollTo: (window, scrollToOptions) => unit = "scrollTo"
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/scrollTo)
 */
 @send
-external scrollTo2: (window, float, float) => unit = "scrollTo"
+external scrollTo2: (window, ~x: float, ~y: float) => unit = "scrollTo"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/scrollBy)
@@ -355,20 +364,24 @@ external scrollBy: (window, scrollToOptions) => unit = "scrollBy"
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/scrollBy)
 */
 @send
-external scrollBy2: (window, float, float) => unit = "scrollBy"
+external scrollBy2: (window, ~x: float, ~y: float) => unit = "scrollBy"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/getComputedStyle)
 */
 @send
-external getComputedStyle: (window, element, string) => cssStyleDeclaration = "getComputedStyle"
+external getComputedStyle: (window, ~elt: element, ~pseudoElt: string) => cssStyleDeclaration =
+  "getComputedStyle"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/requestIdleCallback)
 */
 @send
-external requestIdleCallback: (window, idleRequestCallback, idleRequestOptions) => int =
-  "requestIdleCallback"
+external requestIdleCallback: (
+  window,
+  ~callback: idleRequestCallback,
+  ~options: idleRequestOptions,
+) => int = "requestIdleCallback"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/cancelIdleCallback)

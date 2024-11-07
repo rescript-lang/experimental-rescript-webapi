@@ -10,7 +10,8 @@ external make: resizeObserverCallback => resizeObserver = "ResizeObserver"
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/ResizeObserver/observe)
 */
 @send
-external observe: (resizeObserver, element, resizeObserverOptions) => unit = "observe"
+external observe: (resizeObserver, ~target: element, ~options: resizeObserverOptions) => unit =
+  "observe"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/ResizeObserver/unobserve)

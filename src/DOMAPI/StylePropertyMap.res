@@ -16,13 +16,13 @@ external has: (stylePropertyMap, string) => bool = "has"
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/StylePropertyMap/set)
 */
 @send
-external set: (stylePropertyMap, string, unknown) => unit = "set"
+external set: (stylePropertyMap, ~property: string, ~values: unknown) => unit = "set"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/StylePropertyMap/append)
 */
 @send
-external append: (stylePropertyMap, string, unknown) => unit = "append"
+external append: (stylePropertyMap, ~property: string, ~values: unknown) => unit = "append"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/StylePropertyMap/delete)

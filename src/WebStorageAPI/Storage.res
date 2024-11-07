@@ -23,7 +23,7 @@ Dispatches a storage event on Window objects holding an equivalent Storage objec
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Storage/setItem)
 */
 @send
-external setItem: (storage, string, string) => unit = "setItem"
+external setItem: (storage, ~key: string, ~value: string) => unit = "setItem"
 
 /**
 Removes the key/value pair with the given key, if a key/value pair with the given key exists.

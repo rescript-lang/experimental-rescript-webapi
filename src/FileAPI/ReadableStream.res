@@ -27,16 +27,19 @@ external getReader: (
 @send
 external pipeThrough: (
   readableStream<'r>,
-  readableWritablePair<'t, 'r>,
-  streamPipeOptions,
+  ~transform: readableWritablePair<'t, 'r>,
+  ~options: streamPipeOptions,
 ) => readableStream<'t> = "pipeThrough"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/ReadableStream/pipeTo)
 */
 @send
-external pipeTo: (readableStream<'r>, writableStream<'r>, streamPipeOptions) => Promise.t<unit> =
-  "pipeTo"
+external pipeTo: (
+  readableStream<'r>,
+  ~destination: writableStream<'r>,
+  ~options: streamPipeOptions,
+) => Promise.t<unit> = "pipeTo"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/ReadableStream/tee)

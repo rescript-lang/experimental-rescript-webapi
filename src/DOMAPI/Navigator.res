@@ -20,13 +20,14 @@ external clearAppBadge: navigator => Promise.t<unit> = "clearAppBadge"
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Navigator/registerProtocolHandler)
 */
 @send
-external registerProtocolHandler: (navigator, string, string) => unit = "registerProtocolHandler"
+external registerProtocolHandler: (navigator, ~scheme: string, ~url: string) => unit =
+  "registerProtocolHandler"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Navigator/sendBeacon)
 */
 @send
-external sendBeacon: (navigator, string, bodyInit) => bool = "sendBeacon"
+external sendBeacon: (navigator, ~url: string, ~data: bodyInit) => bool = "sendBeacon"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Navigator/requestMediaKeySystemAccess)
@@ -34,8 +35,8 @@ external sendBeacon: (navigator, string, bodyInit) => bool = "sendBeacon"
 @send
 external requestMediaKeySystemAccess: (
   navigator,
-  string,
-  array<mediaKeySystemConfiguration>,
+  ~keySystem: string,
+  ~supportedConfigurations: array<mediaKeySystemConfiguration>,
 ) => Promise.t<mediaKeySystemAccess> = "requestMediaKeySystemAccess"
 
 /**

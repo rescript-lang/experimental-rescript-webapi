@@ -6,7 +6,7 @@ open Prelude
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Response)
 */
 @new
-external make: (bodyInit, responseInit) => response = "Response"
+external make: (~body: bodyInit, ~init: responseInit) => response = "Response"
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Request/arrayBuffer)
 */
@@ -35,7 +35,7 @@ external formData: response => Promise.t<formData> = "formData"
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Response/json_static)
 */
 @scope("Response")
-external json: (any, responseInit) => response = "json"
+external json: (~data: any, ~init: responseInit) => response = "json"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Request/text)
@@ -53,7 +53,7 @@ external error: unit => response = "error"
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Response/redirect_static)
 */
 @scope("Response")
-external redirect: (string, int) => response = "redirect"
+external redirect: (~url: string, ~status: int) => response = "redirect"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Response/clone)

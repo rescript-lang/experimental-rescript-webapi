@@ -16,7 +16,8 @@ external getNamedItem: (namedNodeMap, string) => attr = "getNamedItem"
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/NamedNodeMap/getNamedItemNS)
 */
 @send
-external getNamedItemNS: (namedNodeMap, string, string) => attr = "getNamedItemNS"
+external getNamedItemNS: (namedNodeMap, ~namespace: string, ~localName: string) => attr =
+  "getNamedItemNS"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/NamedNodeMap/setNamedItem)
@@ -40,4 +41,5 @@ external removeNamedItem: (namedNodeMap, string) => attr = "removeNamedItem"
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/NamedNodeMap/removeNamedItemNS)
 */
 @send
-external removeNamedItemNS: (namedNodeMap, string, string) => attr = "removeNamedItemNS"
+external removeNamedItemNS: (namedNodeMap, ~namespace: string, ~localName: string) => attr =
+  "removeNamedItemNS"

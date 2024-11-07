@@ -154,7 +154,7 @@ external remove: htmlAudioElement => unit = "remove"
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/animate)
 */
 @send
-external animate: (htmlAudioElement, any, unknown) => animation = "animate"
+external animate: (htmlAudioElement, ~keyframes: any, ~options: unknown) => animation = "animate"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/getAnimations)
@@ -347,7 +347,7 @@ external isDefaultNamespace: (htmlAudioElement, string) => bool = "isDefaultName
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/insertBefore)
 */
 @send
-external insertBefore: (htmlAudioElement, 't, node) => 't = "insertBefore"
+external insertBefore: (htmlAudioElement, 't, ~child: node) => 't = "insertBefore"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/appendChild)
@@ -359,7 +359,7 @@ external appendChild: (htmlAudioElement, 't) => 't = "appendChild"
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/replaceChild)
 */
 @send
-external replaceChild: (htmlAudioElement, node, 't) => 't = "replaceChild"
+external replaceChild: (htmlAudioElement, ~node: node, 't) => 't = "replaceChild"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/removeChild)
@@ -393,21 +393,28 @@ Returns element's attribute whose namespace is namespace and local name is local
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/getAttributeNS)
 */
 @send
-external getAttributeNS: (htmlAudioElement, string, string) => string = "getAttributeNS"
+external getAttributeNS: (htmlAudioElement, ~namespace: string, ~localName: string) => string =
+  "getAttributeNS"
 
 /**
 Sets the value of element's first attribute whose qualified name is qualifiedName to value.
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/setAttribute)
 */
 @send
-external setAttribute: (htmlAudioElement, string, string) => unit = "setAttribute"
+external setAttribute: (htmlAudioElement, ~qualifiedName: string, ~value: string) => unit =
+  "setAttribute"
 
 /**
 Sets the value of element's attribute whose namespace is namespace and local name is localName to value.
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/setAttributeNS)
 */
 @send
-external setAttributeNS: (htmlAudioElement, string, string, string) => unit = "setAttributeNS"
+external setAttributeNS: (
+  htmlAudioElement,
+  ~namespace: string,
+  ~qualifiedName: string,
+  ~value: string,
+) => unit = "setAttributeNS"
 
 /**
 Removes element's first attribute whose qualified name is qualifiedName.
@@ -421,7 +428,8 @@ Removes element's attribute whose namespace is namespace and local name is local
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/removeAttributeNS)
 */
 @send
-external removeAttributeNS: (htmlAudioElement, string, string) => unit = "removeAttributeNS"
+external removeAttributeNS: (htmlAudioElement, ~namespace: string, ~localName: string) => unit =
+  "removeAttributeNS"
 
 /**
 If force is not given, "toggles" qualifiedName, removing it if it is present and adding it if it is not present. If force is true, adds qualifiedName. If force is false, removes qualifiedName.
@@ -430,7 +438,8 @@ Returns true if qualifiedName is now present, and false otherwise.
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/toggleAttribute)
 */
 @send
-external toggleAttribute: (htmlAudioElement, string, bool) => bool = "toggleAttribute"
+external toggleAttribute: (htmlAudioElement, ~qualifiedName: string, ~force: bool) => bool =
+  "toggleAttribute"
 
 /**
 Returns true if element has an attribute whose qualified name is qualifiedName, and false otherwise.
@@ -444,7 +453,8 @@ Returns true if element has an attribute whose namespace is namespace and local 
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/hasAttributeNS)
 */
 @send
-external hasAttributeNS: (htmlAudioElement, string, string) => bool = "hasAttributeNS"
+external hasAttributeNS: (htmlAudioElement, ~namespace: string, ~localName: string) => bool =
+  "hasAttributeNS"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/getAttributeNode)
@@ -456,7 +466,8 @@ external getAttributeNode: (htmlAudioElement, string) => attr = "getAttributeNod
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/getAttributeNodeNS)
 */
 @send
-external getAttributeNodeNS: (htmlAudioElement, string, string) => attr = "getAttributeNodeNS"
+external getAttributeNodeNS: (htmlAudioElement, ~namespace: string, ~localName: string) => attr =
+  "getAttributeNodeNS"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/setAttributeNode)
@@ -507,8 +518,11 @@ external getElementsByTagName: (htmlAudioElement, string) => htmlCollection = "g
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/getElementsByTagNameNS)
 */
 @send
-external getElementsByTagNameNS: (htmlAudioElement, string, string) => htmlCollectionOf<element> =
-  "getElementsByTagNameNS"
+external getElementsByTagNameNS: (
+  htmlAudioElement,
+  ~namespace: string,
+  ~localName: string,
+) => htmlCollectionOf<element> = "getElementsByTagNameNS"
 
 /**
 Returns a HTMLCollection of the elements in the object on which the method was invoked (a document or an element) that have all the classes given by classNames. The classNames argument is interpreted as a space-separated list of classes.
@@ -522,14 +536,17 @@ external getElementsByClassName: (htmlAudioElement, string) => htmlCollectionOf<
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/insertAdjacentElement)
 */
 @send
-external insertAdjacentElement: (htmlAudioElement, insertPosition, element) => element =
-  "insertAdjacentElement"
+external insertAdjacentElement: (
+  htmlAudioElement,
+  ~where: insertPosition,
+  ~element: element,
+) => element = "insertAdjacentElement"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/insertAdjacentText)
 */
 @send
-external insertAdjacentText: (htmlAudioElement, insertPosition, string) => unit =
+external insertAdjacentText: (htmlAudioElement, ~where: insertPosition, ~data: string) => unit =
   "insertAdjacentText"
 
 /**
@@ -578,7 +595,7 @@ external scroll: (htmlAudioElement, scrollToOptions) => unit = "scroll"
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/scroll)
 */
 @send
-external scroll2: (htmlAudioElement, float, float) => unit = "scroll"
+external scroll2: (htmlAudioElement, ~x: float, ~y: float) => unit = "scroll"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/scrollTo)
@@ -590,7 +607,7 @@ external scrollTo: (htmlAudioElement, scrollToOptions) => unit = "scrollTo"
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/scrollTo)
 */
 @send
-external scrollTo2: (htmlAudioElement, float, float) => unit = "scrollTo"
+external scrollTo2: (htmlAudioElement, ~x: float, ~y: float) => unit = "scrollTo"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/scrollBy)
@@ -602,7 +619,7 @@ external scrollBy: (htmlAudioElement, scrollToOptions) => unit = "scrollBy"
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/scrollBy)
 */
 @send
-external scrollBy2: (htmlAudioElement, float, float) => unit = "scrollBy"
+external scrollBy2: (htmlAudioElement, ~x: float, ~y: float) => unit = "scrollBy"
 
 /**
 Displays element fullscreen and resolves promise when done.
@@ -630,8 +647,11 @@ external getHTML: (htmlAudioElement, getHTMLOptions) => string = "getHTML"
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/insertAdjacentHTML)
 */
 @send
-external insertAdjacentHTML: (htmlAudioElement, insertPosition, string) => unit =
-  "insertAdjacentHTML"
+external insertAdjacentHTML: (
+  htmlAudioElement,
+  ~position: insertPosition,
+  ~string: string,
+) => unit = "insertAdjacentHTML"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/setPointerCapture)
@@ -726,8 +746,12 @@ external pause: htmlAudioElement => unit = "pause"
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLMediaElement/addTextTrack)
 */
 @send
-external addTextTrack: (htmlAudioElement, textTrackKind, string, string) => textTrack =
-  "addTextTrack"
+external addTextTrack: (
+  htmlAudioElement,
+  ~kind: textTrackKind,
+  ~label: string,
+  ~language: string,
+) => textTrack = "addTextTrack"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLMediaElement/setSinkId)

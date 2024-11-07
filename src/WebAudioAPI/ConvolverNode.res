@@ -5,7 +5,8 @@ open WebAudioAPI
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/ConvolverNode)
 */
 @new
-external make: (baseAudioContext, convolverOptions) => convolverNode = "ConvolverNode"
+external make: (~context: baseAudioContext, ~options: convolverOptions) => convolverNode =
+  "ConvolverNode"
 /**
 Appends an event listener for events whose type attribute value is type. The callback argument sets the callback that will be invoked when the event is dispatched.
 
@@ -117,13 +118,18 @@ external dispatchEvent: (convolverNode, event) => bool = "dispatchEvent"
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/AudioNode/connect)
 */
 @send
-external connect: (convolverNode, audioNode, int, int) => audioNode = "connect"
+external connect: (
+  convolverNode,
+  ~destinationNode: audioNode,
+  ~output: int,
+  ~input: int,
+) => audioNode = "connect"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/AudioNode/connect)
 */
 @send
-external connect2: (convolverNode, audioParam, int) => unit = "connect"
+external connect2: (convolverNode, ~destinationParam: audioParam, ~output: int) => unit = "connect"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/AudioNode/disconnect)
@@ -147,13 +153,19 @@ external disconnect3: (convolverNode, audioNode) => unit = "disconnect"
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/AudioNode/disconnect)
 */
 @send
-external disconnect4: (convolverNode, audioNode, int) => unit = "disconnect"
+external disconnect4: (convolverNode, ~destinationNode: audioNode, ~output: int) => unit =
+  "disconnect"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/AudioNode/disconnect)
 */
 @send
-external disconnect5: (convolverNode, audioNode, int, int) => unit = "disconnect"
+external disconnect5: (
+  convolverNode,
+  ~destinationNode: audioNode,
+  ~output: int,
+  ~input: int,
+) => unit = "disconnect"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/AudioNode/disconnect)
@@ -165,4 +177,5 @@ external disconnect6: (convolverNode, audioParam) => unit = "disconnect"
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/AudioNode/disconnect)
 */
 @send
-external disconnect7: (convolverNode, audioParam, int) => unit = "disconnect"
+external disconnect7: (convolverNode, ~destinationParam: audioParam, ~output: int) => unit =
+  "disconnect"

@@ -5,8 +5,10 @@ open WebAudioAPI
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/MediaStreamAudioSourceNode)
 */
 @new
-external make: (audioContext, mediaStreamAudioSourceOptions) => mediaStreamAudioSourceNode =
-  "MediaStreamAudioSourceNode"
+external make: (
+  ~context: audioContext,
+  ~options: mediaStreamAudioSourceOptions,
+) => mediaStreamAudioSourceNode = "MediaStreamAudioSourceNode"
 /**
 Appends an event listener for events whose type attribute value is type. The callback argument sets the callback that will be invoked when the event is dispatched.
 
@@ -121,13 +123,22 @@ external dispatchEvent: (mediaStreamAudioSourceNode, event) => bool = "dispatchE
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/AudioNode/connect)
 */
 @send
-external connect: (mediaStreamAudioSourceNode, audioNode, int, int) => audioNode = "connect"
+external connect: (
+  mediaStreamAudioSourceNode,
+  ~destinationNode: audioNode,
+  ~output: int,
+  ~input: int,
+) => audioNode = "connect"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/AudioNode/connect)
 */
 @send
-external connect2: (mediaStreamAudioSourceNode, audioParam, int) => unit = "connect"
+external connect2: (
+  mediaStreamAudioSourceNode,
+  ~destinationParam: audioParam,
+  ~output: int,
+) => unit = "connect"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/AudioNode/disconnect)
@@ -151,13 +162,22 @@ external disconnect3: (mediaStreamAudioSourceNode, audioNode) => unit = "disconn
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/AudioNode/disconnect)
 */
 @send
-external disconnect4: (mediaStreamAudioSourceNode, audioNode, int) => unit = "disconnect"
+external disconnect4: (
+  mediaStreamAudioSourceNode,
+  ~destinationNode: audioNode,
+  ~output: int,
+) => unit = "disconnect"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/AudioNode/disconnect)
 */
 @send
-external disconnect5: (mediaStreamAudioSourceNode, audioNode, int, int) => unit = "disconnect"
+external disconnect5: (
+  mediaStreamAudioSourceNode,
+  ~destinationNode: audioNode,
+  ~output: int,
+  ~input: int,
+) => unit = "disconnect"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/AudioNode/disconnect)
@@ -169,4 +189,8 @@ external disconnect6: (mediaStreamAudioSourceNode, audioParam) => unit = "discon
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/AudioNode/disconnect)
 */
 @send
-external disconnect7: (mediaStreamAudioSourceNode, audioParam, int) => unit = "disconnect"
+external disconnect7: (
+  mediaStreamAudioSourceNode,
+  ~destinationParam: audioParam,
+  ~output: int,
+) => unit = "disconnect"

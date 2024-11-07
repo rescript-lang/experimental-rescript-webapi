@@ -5,7 +5,8 @@ open WebAudioAPI
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/OscillatorNode)
 */
 @new
-external make: (baseAudioContext, oscillatorOptions) => oscillatorNode = "OscillatorNode"
+external make: (~context: baseAudioContext, ~options: oscillatorOptions) => oscillatorNode =
+  "OscillatorNode"
 /**
 Appends an event listener for events whose type attribute value is type. The callback argument sets the callback that will be invoked when the event is dispatched.
 
@@ -117,13 +118,18 @@ external dispatchEvent: (oscillatorNode, event) => bool = "dispatchEvent"
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/AudioNode/connect)
 */
 @send
-external connect: (oscillatorNode, audioNode, int, int) => audioNode = "connect"
+external connect: (
+  oscillatorNode,
+  ~destinationNode: audioNode,
+  ~output: int,
+  ~input: int,
+) => audioNode = "connect"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/AudioNode/connect)
 */
 @send
-external connect2: (oscillatorNode, audioParam, int) => unit = "connect"
+external connect2: (oscillatorNode, ~destinationParam: audioParam, ~output: int) => unit = "connect"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/AudioNode/disconnect)
@@ -147,13 +153,19 @@ external disconnect3: (oscillatorNode, audioNode) => unit = "disconnect"
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/AudioNode/disconnect)
 */
 @send
-external disconnect4: (oscillatorNode, audioNode, int) => unit = "disconnect"
+external disconnect4: (oscillatorNode, ~destinationNode: audioNode, ~output: int) => unit =
+  "disconnect"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/AudioNode/disconnect)
 */
 @send
-external disconnect5: (oscillatorNode, audioNode, int, int) => unit = "disconnect"
+external disconnect5: (
+  oscillatorNode,
+  ~destinationNode: audioNode,
+  ~output: int,
+  ~input: int,
+) => unit = "disconnect"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/AudioNode/disconnect)
@@ -165,7 +177,8 @@ external disconnect6: (oscillatorNode, audioParam) => unit = "disconnect"
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/AudioNode/disconnect)
 */
 @send
-external disconnect7: (oscillatorNode, audioParam, int) => unit = "disconnect"
+external disconnect7: (oscillatorNode, ~destinationParam: audioParam, ~output: int) => unit =
+  "disconnect"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/AudioScheduledSourceNode/start)

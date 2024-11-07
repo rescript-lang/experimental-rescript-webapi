@@ -152,7 +152,8 @@ external remove: htmlTableCaptionElement => unit = "remove"
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/animate)
 */
 @send
-external animate: (htmlTableCaptionElement, any, unknown) => animation = "animate"
+external animate: (htmlTableCaptionElement, ~keyframes: any, ~options: unknown) => animation =
+  "animate"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/getAnimations)
@@ -345,7 +346,7 @@ external isDefaultNamespace: (htmlTableCaptionElement, string) => bool = "isDefa
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/insertBefore)
 */
 @send
-external insertBefore: (htmlTableCaptionElement, 't, node) => 't = "insertBefore"
+external insertBefore: (htmlTableCaptionElement, 't, ~child: node) => 't = "insertBefore"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/appendChild)
@@ -357,7 +358,7 @@ external appendChild: (htmlTableCaptionElement, 't) => 't = "appendChild"
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/replaceChild)
 */
 @send
-external replaceChild: (htmlTableCaptionElement, node, 't) => 't = "replaceChild"
+external replaceChild: (htmlTableCaptionElement, ~node: node, 't) => 't = "replaceChild"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/removeChild)
@@ -391,22 +392,31 @@ Returns element's attribute whose namespace is namespace and local name is local
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/getAttributeNS)
 */
 @send
-external getAttributeNS: (htmlTableCaptionElement, string, string) => string = "getAttributeNS"
+external getAttributeNS: (
+  htmlTableCaptionElement,
+  ~namespace: string,
+  ~localName: string,
+) => string = "getAttributeNS"
 
 /**
 Sets the value of element's first attribute whose qualified name is qualifiedName to value.
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/setAttribute)
 */
 @send
-external setAttribute: (htmlTableCaptionElement, string, string) => unit = "setAttribute"
+external setAttribute: (htmlTableCaptionElement, ~qualifiedName: string, ~value: string) => unit =
+  "setAttribute"
 
 /**
 Sets the value of element's attribute whose namespace is namespace and local name is localName to value.
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/setAttributeNS)
 */
 @send
-external setAttributeNS: (htmlTableCaptionElement, string, string, string) => unit =
-  "setAttributeNS"
+external setAttributeNS: (
+  htmlTableCaptionElement,
+  ~namespace: string,
+  ~qualifiedName: string,
+  ~value: string,
+) => unit = "setAttributeNS"
 
 /**
 Removes element's first attribute whose qualified name is qualifiedName.
@@ -420,7 +430,11 @@ Removes element's attribute whose namespace is namespace and local name is local
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/removeAttributeNS)
 */
 @send
-external removeAttributeNS: (htmlTableCaptionElement, string, string) => unit = "removeAttributeNS"
+external removeAttributeNS: (
+  htmlTableCaptionElement,
+  ~namespace: string,
+  ~localName: string,
+) => unit = "removeAttributeNS"
 
 /**
 If force is not given, "toggles" qualifiedName, removing it if it is present and adding it if it is not present. If force is true, adds qualifiedName. If force is false, removes qualifiedName.
@@ -429,7 +443,8 @@ Returns true if qualifiedName is now present, and false otherwise.
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/toggleAttribute)
 */
 @send
-external toggleAttribute: (htmlTableCaptionElement, string, bool) => bool = "toggleAttribute"
+external toggleAttribute: (htmlTableCaptionElement, ~qualifiedName: string, ~force: bool) => bool =
+  "toggleAttribute"
 
 /**
 Returns true if element has an attribute whose qualified name is qualifiedName, and false otherwise.
@@ -443,7 +458,8 @@ Returns true if element has an attribute whose namespace is namespace and local 
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/hasAttributeNS)
 */
 @send
-external hasAttributeNS: (htmlTableCaptionElement, string, string) => bool = "hasAttributeNS"
+external hasAttributeNS: (htmlTableCaptionElement, ~namespace: string, ~localName: string) => bool =
+  "hasAttributeNS"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/getAttributeNode)
@@ -455,8 +471,11 @@ external getAttributeNode: (htmlTableCaptionElement, string) => attr = "getAttri
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/getAttributeNodeNS)
 */
 @send
-external getAttributeNodeNS: (htmlTableCaptionElement, string, string) => attr =
-  "getAttributeNodeNS"
+external getAttributeNodeNS: (
+  htmlTableCaptionElement,
+  ~namespace: string,
+  ~localName: string,
+) => attr = "getAttributeNodeNS"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/setAttributeNode)
@@ -510,8 +529,8 @@ external getElementsByTagName: (htmlTableCaptionElement, string) => htmlCollecti
 @send
 external getElementsByTagNameNS: (
   htmlTableCaptionElement,
-  string,
-  string,
+  ~namespace: string,
+  ~localName: string,
 ) => htmlCollectionOf<element> = "getElementsByTagNameNS"
 
 /**
@@ -526,15 +545,21 @@ external getElementsByClassName: (htmlTableCaptionElement, string) => htmlCollec
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/insertAdjacentElement)
 */
 @send
-external insertAdjacentElement: (htmlTableCaptionElement, insertPosition, element) => element =
-  "insertAdjacentElement"
+external insertAdjacentElement: (
+  htmlTableCaptionElement,
+  ~where: insertPosition,
+  ~element: element,
+) => element = "insertAdjacentElement"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/insertAdjacentText)
 */
 @send
-external insertAdjacentText: (htmlTableCaptionElement, insertPosition, string) => unit =
-  "insertAdjacentText"
+external insertAdjacentText: (
+  htmlTableCaptionElement,
+  ~where: insertPosition,
+  ~data: string,
+) => unit = "insertAdjacentText"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/computedStyleMap)
@@ -584,7 +609,7 @@ external scroll: (htmlTableCaptionElement, scrollToOptions) => unit = "scroll"
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/scroll)
 */
 @send
-external scroll2: (htmlTableCaptionElement, float, float) => unit = "scroll"
+external scroll2: (htmlTableCaptionElement, ~x: float, ~y: float) => unit = "scroll"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/scrollTo)
@@ -596,7 +621,7 @@ external scrollTo: (htmlTableCaptionElement, scrollToOptions) => unit = "scrollT
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/scrollTo)
 */
 @send
-external scrollTo2: (htmlTableCaptionElement, float, float) => unit = "scrollTo"
+external scrollTo2: (htmlTableCaptionElement, ~x: float, ~y: float) => unit = "scrollTo"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/scrollBy)
@@ -608,7 +633,7 @@ external scrollBy: (htmlTableCaptionElement, scrollToOptions) => unit = "scrollB
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/scrollBy)
 */
 @send
-external scrollBy2: (htmlTableCaptionElement, float, float) => unit = "scrollBy"
+external scrollBy2: (htmlTableCaptionElement, ~x: float, ~y: float) => unit = "scrollBy"
 
 /**
 Displays element fullscreen and resolves promise when done.
@@ -636,8 +661,11 @@ external getHTML: (htmlTableCaptionElement, getHTMLOptions) => string = "getHTML
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/insertAdjacentHTML)
 */
 @send
-external insertAdjacentHTML: (htmlTableCaptionElement, insertPosition, string) => unit =
-  "insertAdjacentHTML"
+external insertAdjacentHTML: (
+  htmlTableCaptionElement,
+  ~position: insertPosition,
+  ~string: string,
+) => unit = "insertAdjacentHTML"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/setPointerCapture)

@@ -4,8 +4,11 @@ open FileAndDirectoryEntriesAPI
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/FileSystemEntry/getParent)
 */
 @send
-external getParent: (fileSystemDirectoryEntry, fileSystemEntryCallback, errorCallback) => unit =
-  "getParent"
+external getParent: (
+  fileSystemDirectoryEntry,
+  ~successCallback: fileSystemEntryCallback,
+  ~errorCallback: errorCallback,
+) => unit = "getParent"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/FileSystemDirectoryEntry/createReader)
@@ -19,10 +22,10 @@ external createReader: fileSystemDirectoryEntry => fileSystemDirectoryReader = "
 @send
 external getFile: (
   fileSystemDirectoryEntry,
-  string,
-  fileSystemFlags,
-  fileSystemEntryCallback,
-  errorCallback,
+  ~path: string,
+  ~options: fileSystemFlags,
+  ~successCallback: fileSystemEntryCallback,
+  ~errorCallback: errorCallback,
 ) => unit = "getFile"
 
 /**
@@ -31,8 +34,8 @@ external getFile: (
 @send
 external getDirectory: (
   fileSystemDirectoryEntry,
-  string,
-  fileSystemFlags,
-  fileSystemEntryCallback,
-  errorCallback,
+  ~path: string,
+  ~options: fileSystemFlags,
+  ~successCallback: fileSystemEntryCallback,
+  ~errorCallback: errorCallback,
 ) => unit = "getDirectory"

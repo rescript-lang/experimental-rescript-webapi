@@ -6,8 +6,8 @@ open GamepadAPI
 @send
 external playEffect: (
   gamepadHapticActuator,
-  gamepadHapticEffectType,
-  gamepadEffectParameters,
+  ~type_: gamepadHapticEffectType,
+  ~params: gamepadEffectParameters,
 ) => Promise.t<gamepadHapticsResult> = "playEffect"
 
 /**

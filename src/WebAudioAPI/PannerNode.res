@@ -5,7 +5,7 @@ open WebAudioAPI
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/PannerNode)
 */
 @new
-external make: (baseAudioContext, pannerOptions) => pannerNode = "PannerNode"
+external make: (~context: baseAudioContext, ~options: pannerOptions) => pannerNode = "PannerNode"
 /**
 Appends an event listener for events whose type attribute value is type. The callback argument sets the callback that will be invoked when the event is dispatched.
 
@@ -117,13 +117,18 @@ external dispatchEvent: (pannerNode, event) => bool = "dispatchEvent"
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/AudioNode/connect)
 */
 @send
-external connect: (pannerNode, audioNode, int, int) => audioNode = "connect"
+external connect: (
+  pannerNode,
+  ~destinationNode: audioNode,
+  ~output: int,
+  ~input: int,
+) => audioNode = "connect"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/AudioNode/connect)
 */
 @send
-external connect2: (pannerNode, audioParam, int) => unit = "connect"
+external connect2: (pannerNode, ~destinationParam: audioParam, ~output: int) => unit = "connect"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/AudioNode/disconnect)
@@ -147,13 +152,14 @@ external disconnect3: (pannerNode, audioNode) => unit = "disconnect"
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/AudioNode/disconnect)
 */
 @send
-external disconnect4: (pannerNode, audioNode, int) => unit = "disconnect"
+external disconnect4: (pannerNode, ~destinationNode: audioNode, ~output: int) => unit = "disconnect"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/AudioNode/disconnect)
 */
 @send
-external disconnect5: (pannerNode, audioNode, int, int) => unit = "disconnect"
+external disconnect5: (pannerNode, ~destinationNode: audioNode, ~output: int, ~input: int) => unit =
+  "disconnect"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/AudioNode/disconnect)
@@ -165,4 +171,5 @@ external disconnect6: (pannerNode, audioParam) => unit = "disconnect"
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/AudioNode/disconnect)
 */
 @send
-external disconnect7: (pannerNode, audioParam, int) => unit = "disconnect"
+external disconnect7: (pannerNode, ~destinationParam: audioParam, ~output: int) => unit =
+  "disconnect"

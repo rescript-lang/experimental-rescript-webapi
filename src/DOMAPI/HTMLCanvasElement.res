@@ -154,7 +154,7 @@ external remove: htmlCanvasElement => unit = "remove"
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/animate)
 */
 @send
-external animate: (htmlCanvasElement, any, unknown) => animation = "animate"
+external animate: (htmlCanvasElement, ~keyframes: any, ~options: unknown) => animation = "animate"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/getAnimations)
@@ -347,7 +347,7 @@ external isDefaultNamespace: (htmlCanvasElement, string) => bool = "isDefaultNam
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/insertBefore)
 */
 @send
-external insertBefore: (htmlCanvasElement, 't, node) => 't = "insertBefore"
+external insertBefore: (htmlCanvasElement, 't, ~child: node) => 't = "insertBefore"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/appendChild)
@@ -359,7 +359,7 @@ external appendChild: (htmlCanvasElement, 't) => 't = "appendChild"
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/replaceChild)
 */
 @send
-external replaceChild: (htmlCanvasElement, node, 't) => 't = "replaceChild"
+external replaceChild: (htmlCanvasElement, ~node: node, 't) => 't = "replaceChild"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/removeChild)
@@ -393,21 +393,28 @@ Returns element's attribute whose namespace is namespace and local name is local
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/getAttributeNS)
 */
 @send
-external getAttributeNS: (htmlCanvasElement, string, string) => string = "getAttributeNS"
+external getAttributeNS: (htmlCanvasElement, ~namespace: string, ~localName: string) => string =
+  "getAttributeNS"
 
 /**
 Sets the value of element's first attribute whose qualified name is qualifiedName to value.
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/setAttribute)
 */
 @send
-external setAttribute: (htmlCanvasElement, string, string) => unit = "setAttribute"
+external setAttribute: (htmlCanvasElement, ~qualifiedName: string, ~value: string) => unit =
+  "setAttribute"
 
 /**
 Sets the value of element's attribute whose namespace is namespace and local name is localName to value.
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/setAttributeNS)
 */
 @send
-external setAttributeNS: (htmlCanvasElement, string, string, string) => unit = "setAttributeNS"
+external setAttributeNS: (
+  htmlCanvasElement,
+  ~namespace: string,
+  ~qualifiedName: string,
+  ~value: string,
+) => unit = "setAttributeNS"
 
 /**
 Removes element's first attribute whose qualified name is qualifiedName.
@@ -421,7 +428,8 @@ Removes element's attribute whose namespace is namespace and local name is local
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/removeAttributeNS)
 */
 @send
-external removeAttributeNS: (htmlCanvasElement, string, string) => unit = "removeAttributeNS"
+external removeAttributeNS: (htmlCanvasElement, ~namespace: string, ~localName: string) => unit =
+  "removeAttributeNS"
 
 /**
 If force is not given, "toggles" qualifiedName, removing it if it is present and adding it if it is not present. If force is true, adds qualifiedName. If force is false, removes qualifiedName.
@@ -430,7 +438,8 @@ Returns true if qualifiedName is now present, and false otherwise.
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/toggleAttribute)
 */
 @send
-external toggleAttribute: (htmlCanvasElement, string, bool) => bool = "toggleAttribute"
+external toggleAttribute: (htmlCanvasElement, ~qualifiedName: string, ~force: bool) => bool =
+  "toggleAttribute"
 
 /**
 Returns true if element has an attribute whose qualified name is qualifiedName, and false otherwise.
@@ -444,7 +453,8 @@ Returns true if element has an attribute whose namespace is namespace and local 
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/hasAttributeNS)
 */
 @send
-external hasAttributeNS: (htmlCanvasElement, string, string) => bool = "hasAttributeNS"
+external hasAttributeNS: (htmlCanvasElement, ~namespace: string, ~localName: string) => bool =
+  "hasAttributeNS"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/getAttributeNode)
@@ -456,7 +466,8 @@ external getAttributeNode: (htmlCanvasElement, string) => attr = "getAttributeNo
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/getAttributeNodeNS)
 */
 @send
-external getAttributeNodeNS: (htmlCanvasElement, string, string) => attr = "getAttributeNodeNS"
+external getAttributeNodeNS: (htmlCanvasElement, ~namespace: string, ~localName: string) => attr =
+  "getAttributeNodeNS"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/setAttributeNode)
@@ -508,8 +519,11 @@ external getElementsByTagName: (htmlCanvasElement, string) => htmlCollection =
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/getElementsByTagNameNS)
 */
 @send
-external getElementsByTagNameNS: (htmlCanvasElement, string, string) => htmlCollectionOf<element> =
-  "getElementsByTagNameNS"
+external getElementsByTagNameNS: (
+  htmlCanvasElement,
+  ~namespace: string,
+  ~localName: string,
+) => htmlCollectionOf<element> = "getElementsByTagNameNS"
 
 /**
 Returns a HTMLCollection of the elements in the object on which the method was invoked (a document or an element) that have all the classes given by classNames. The classNames argument is interpreted as a space-separated list of classes.
@@ -523,14 +537,17 @@ external getElementsByClassName: (htmlCanvasElement, string) => htmlCollectionOf
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/insertAdjacentElement)
 */
 @send
-external insertAdjacentElement: (htmlCanvasElement, insertPosition, element) => element =
-  "insertAdjacentElement"
+external insertAdjacentElement: (
+  htmlCanvasElement,
+  ~where: insertPosition,
+  ~element: element,
+) => element = "insertAdjacentElement"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/insertAdjacentText)
 */
 @send
-external insertAdjacentText: (htmlCanvasElement, insertPosition, string) => unit =
+external insertAdjacentText: (htmlCanvasElement, ~where: insertPosition, ~data: string) => unit =
   "insertAdjacentText"
 
 /**
@@ -579,7 +596,7 @@ external scroll: (htmlCanvasElement, scrollToOptions) => unit = "scroll"
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/scroll)
 */
 @send
-external scroll2: (htmlCanvasElement, float, float) => unit = "scroll"
+external scroll2: (htmlCanvasElement, ~x: float, ~y: float) => unit = "scroll"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/scrollTo)
@@ -591,7 +608,7 @@ external scrollTo: (htmlCanvasElement, scrollToOptions) => unit = "scrollTo"
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/scrollTo)
 */
 @send
-external scrollTo2: (htmlCanvasElement, float, float) => unit = "scrollTo"
+external scrollTo2: (htmlCanvasElement, ~x: float, ~y: float) => unit = "scrollTo"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/scrollBy)
@@ -603,7 +620,7 @@ external scrollBy: (htmlCanvasElement, scrollToOptions) => unit = "scrollBy"
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/scrollBy)
 */
 @send
-external scrollBy2: (htmlCanvasElement, float, float) => unit = "scrollBy"
+external scrollBy2: (htmlCanvasElement, ~x: float, ~y: float) => unit = "scrollBy"
 
 /**
 Displays element fullscreen and resolves promise when done.
@@ -631,8 +648,11 @@ external getHTML: (htmlCanvasElement, getHTMLOptions) => string = "getHTML"
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/insertAdjacentHTML)
 */
 @send
-external insertAdjacentHTML: (htmlCanvasElement, insertPosition, string) => unit =
-  "insertAdjacentHTML"
+external insertAdjacentHTML: (
+  htmlCanvasElement,
+  ~position: insertPosition,
+  ~string: string,
+) => unit = "insertAdjacentHTML"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/setPointerCapture)
@@ -695,7 +715,8 @@ Returns an object that provides methods and properties for drawing and manipulat
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLCanvasElement/getContext)
 */
 @send
-external getContext: (htmlCanvasElement, string, any) => renderingContext = "getContext"
+external getContext: (htmlCanvasElement, ~contextId: string, ~options: any) => renderingContext =
+  "getContext"
 
 /**
 Returns the content of the current canvas as an image that you can use as a source for another canvas or an HTML element.
@@ -703,13 +724,18 @@ Returns the content of the current canvas as an image that you can use as a sour
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLCanvasElement/toDataURL)
 */
 @send
-external toDataURL: (htmlCanvasElement, string, any) => string = "toDataURL"
+external toDataURL: (htmlCanvasElement, ~type_: string, ~quality: any) => string = "toDataURL"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLCanvasElement/toBlob)
 */
 @send
-external toBlob: (htmlCanvasElement, blobCallback, string, any) => unit = "toBlob"
+external toBlob: (
+  htmlCanvasElement,
+  ~callback: blobCallback,
+  ~type_: string,
+  ~quality: any,
+) => unit = "toBlob"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLCanvasElement/transferControlToOffscreen)

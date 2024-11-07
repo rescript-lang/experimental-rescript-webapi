@@ -9,13 +9,13 @@ external make: unit => range = "Range"
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Range/setStart)
 */
 @send
-external setStart: (range, node, int) => unit = "setStart"
+external setStart: (range, ~node: node, ~offset: int) => unit = "setStart"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Range/setEnd)
 */
 @send
-external setEnd: (range, node, int) => unit = "setEnd"
+external setEnd: (range, ~node: node, ~offset: int) => unit = "setEnd"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Range/setStartBefore)
@@ -63,7 +63,8 @@ external selectNodeContents: (range, node) => unit = "selectNodeContents"
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Range/compareBoundaryPoints)
 */
 @send
-external compareBoundaryPoints: (range, int, range) => int = "compareBoundaryPoints"
+external compareBoundaryPoints: (range, ~how: int, ~sourceRange: range) => int =
+  "compareBoundaryPoints"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Range/deleteContents)
@@ -111,14 +112,14 @@ external detach: range => unit = "detach"
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Range/isPointInRange)
 */
 @send
-external isPointInRange: (range, node, int) => bool = "isPointInRange"
+external isPointInRange: (range, ~node: node, ~offset: int) => bool = "isPointInRange"
 
 /**
 Returns −1 if the point is before the range, 0 if the point is in the range, and 1 if the point is after the range.
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Range/comparePoint)
 */
 @send
-external comparePoint: (range, node, int) => int = "comparePoint"
+external comparePoint: (range, ~node: node, ~offset: int) => int = "comparePoint"
 
 /**
 Returns whether range intersects node.

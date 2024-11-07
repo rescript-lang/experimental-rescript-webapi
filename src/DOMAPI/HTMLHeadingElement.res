@@ -152,7 +152,7 @@ external remove: htmlHeadingElement => unit = "remove"
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/animate)
 */
 @send
-external animate: (htmlHeadingElement, any, unknown) => animation = "animate"
+external animate: (htmlHeadingElement, ~keyframes: any, ~options: unknown) => animation = "animate"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/getAnimations)
@@ -345,7 +345,7 @@ external isDefaultNamespace: (htmlHeadingElement, string) => bool = "isDefaultNa
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/insertBefore)
 */
 @send
-external insertBefore: (htmlHeadingElement, 't, node) => 't = "insertBefore"
+external insertBefore: (htmlHeadingElement, 't, ~child: node) => 't = "insertBefore"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/appendChild)
@@ -357,7 +357,7 @@ external appendChild: (htmlHeadingElement, 't) => 't = "appendChild"
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/replaceChild)
 */
 @send
-external replaceChild: (htmlHeadingElement, node, 't) => 't = "replaceChild"
+external replaceChild: (htmlHeadingElement, ~node: node, 't) => 't = "replaceChild"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/removeChild)
@@ -391,21 +391,28 @@ Returns element's attribute whose namespace is namespace and local name is local
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/getAttributeNS)
 */
 @send
-external getAttributeNS: (htmlHeadingElement, string, string) => string = "getAttributeNS"
+external getAttributeNS: (htmlHeadingElement, ~namespace: string, ~localName: string) => string =
+  "getAttributeNS"
 
 /**
 Sets the value of element's first attribute whose qualified name is qualifiedName to value.
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/setAttribute)
 */
 @send
-external setAttribute: (htmlHeadingElement, string, string) => unit = "setAttribute"
+external setAttribute: (htmlHeadingElement, ~qualifiedName: string, ~value: string) => unit =
+  "setAttribute"
 
 /**
 Sets the value of element's attribute whose namespace is namespace and local name is localName to value.
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/setAttributeNS)
 */
 @send
-external setAttributeNS: (htmlHeadingElement, string, string, string) => unit = "setAttributeNS"
+external setAttributeNS: (
+  htmlHeadingElement,
+  ~namespace: string,
+  ~qualifiedName: string,
+  ~value: string,
+) => unit = "setAttributeNS"
 
 /**
 Removes element's first attribute whose qualified name is qualifiedName.
@@ -419,7 +426,8 @@ Removes element's attribute whose namespace is namespace and local name is local
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/removeAttributeNS)
 */
 @send
-external removeAttributeNS: (htmlHeadingElement, string, string) => unit = "removeAttributeNS"
+external removeAttributeNS: (htmlHeadingElement, ~namespace: string, ~localName: string) => unit =
+  "removeAttributeNS"
 
 /**
 If force is not given, "toggles" qualifiedName, removing it if it is present and adding it if it is not present. If force is true, adds qualifiedName. If force is false, removes qualifiedName.
@@ -428,7 +436,8 @@ Returns true if qualifiedName is now present, and false otherwise.
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/toggleAttribute)
 */
 @send
-external toggleAttribute: (htmlHeadingElement, string, bool) => bool = "toggleAttribute"
+external toggleAttribute: (htmlHeadingElement, ~qualifiedName: string, ~force: bool) => bool =
+  "toggleAttribute"
 
 /**
 Returns true if element has an attribute whose qualified name is qualifiedName, and false otherwise.
@@ -442,7 +451,8 @@ Returns true if element has an attribute whose namespace is namespace and local 
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/hasAttributeNS)
 */
 @send
-external hasAttributeNS: (htmlHeadingElement, string, string) => bool = "hasAttributeNS"
+external hasAttributeNS: (htmlHeadingElement, ~namespace: string, ~localName: string) => bool =
+  "hasAttributeNS"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/getAttributeNode)
@@ -454,7 +464,8 @@ external getAttributeNode: (htmlHeadingElement, string) => attr = "getAttributeN
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/getAttributeNodeNS)
 */
 @send
-external getAttributeNodeNS: (htmlHeadingElement, string, string) => attr = "getAttributeNodeNS"
+external getAttributeNodeNS: (htmlHeadingElement, ~namespace: string, ~localName: string) => attr =
+  "getAttributeNodeNS"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/setAttributeNode)
@@ -506,8 +517,11 @@ external getElementsByTagName: (htmlHeadingElement, string) => htmlCollection =
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/getElementsByTagNameNS)
 */
 @send
-external getElementsByTagNameNS: (htmlHeadingElement, string, string) => htmlCollectionOf<element> =
-  "getElementsByTagNameNS"
+external getElementsByTagNameNS: (
+  htmlHeadingElement,
+  ~namespace: string,
+  ~localName: string,
+) => htmlCollectionOf<element> = "getElementsByTagNameNS"
 
 /**
 Returns a HTMLCollection of the elements in the object on which the method was invoked (a document or an element) that have all the classes given by classNames. The classNames argument is interpreted as a space-separated list of classes.
@@ -521,14 +535,17 @@ external getElementsByClassName: (htmlHeadingElement, string) => htmlCollectionO
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/insertAdjacentElement)
 */
 @send
-external insertAdjacentElement: (htmlHeadingElement, insertPosition, element) => element =
-  "insertAdjacentElement"
+external insertAdjacentElement: (
+  htmlHeadingElement,
+  ~where: insertPosition,
+  ~element: element,
+) => element = "insertAdjacentElement"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/insertAdjacentText)
 */
 @send
-external insertAdjacentText: (htmlHeadingElement, insertPosition, string) => unit =
+external insertAdjacentText: (htmlHeadingElement, ~where: insertPosition, ~data: string) => unit =
   "insertAdjacentText"
 
 /**
@@ -577,7 +594,7 @@ external scroll: (htmlHeadingElement, scrollToOptions) => unit = "scroll"
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/scroll)
 */
 @send
-external scroll2: (htmlHeadingElement, float, float) => unit = "scroll"
+external scroll2: (htmlHeadingElement, ~x: float, ~y: float) => unit = "scroll"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/scrollTo)
@@ -589,7 +606,7 @@ external scrollTo: (htmlHeadingElement, scrollToOptions) => unit = "scrollTo"
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/scrollTo)
 */
 @send
-external scrollTo2: (htmlHeadingElement, float, float) => unit = "scrollTo"
+external scrollTo2: (htmlHeadingElement, ~x: float, ~y: float) => unit = "scrollTo"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/scrollBy)
@@ -601,7 +618,7 @@ external scrollBy: (htmlHeadingElement, scrollToOptions) => unit = "scrollBy"
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/scrollBy)
 */
 @send
-external scrollBy2: (htmlHeadingElement, float, float) => unit = "scrollBy"
+external scrollBy2: (htmlHeadingElement, ~x: float, ~y: float) => unit = "scrollBy"
 
 /**
 Displays element fullscreen and resolves promise when done.
@@ -629,8 +646,11 @@ external getHTML: (htmlHeadingElement, getHTMLOptions) => string = "getHTML"
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/insertAdjacentHTML)
 */
 @send
-external insertAdjacentHTML: (htmlHeadingElement, insertPosition, string) => unit =
-  "insertAdjacentHTML"
+external insertAdjacentHTML: (
+  htmlHeadingElement,
+  ~position: insertPosition,
+  ~string: string,
+) => unit = "insertAdjacentHTML"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/setPointerCapture)

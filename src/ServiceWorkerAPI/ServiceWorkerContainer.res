@@ -114,8 +114,8 @@ external dispatchEvent: (serviceWorkerContainer, event) => bool = "dispatchEvent
 @send
 external register: (
   serviceWorkerContainer,
-  string,
-  registrationOptions,
+  ~scriptURL: string,
+  ~options: registrationOptions,
 ) => Promise.t<serviceWorkerRegistration> = "register"
 
 /**

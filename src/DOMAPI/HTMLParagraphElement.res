@@ -152,7 +152,8 @@ external remove: htmlParagraphElement => unit = "remove"
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/animate)
 */
 @send
-external animate: (htmlParagraphElement, any, unknown) => animation = "animate"
+external animate: (htmlParagraphElement, ~keyframes: any, ~options: unknown) => animation =
+  "animate"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/getAnimations)
@@ -345,7 +346,7 @@ external isDefaultNamespace: (htmlParagraphElement, string) => bool = "isDefault
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/insertBefore)
 */
 @send
-external insertBefore: (htmlParagraphElement, 't, node) => 't = "insertBefore"
+external insertBefore: (htmlParagraphElement, 't, ~child: node) => 't = "insertBefore"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/appendChild)
@@ -357,7 +358,7 @@ external appendChild: (htmlParagraphElement, 't) => 't = "appendChild"
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/replaceChild)
 */
 @send
-external replaceChild: (htmlParagraphElement, node, 't) => 't = "replaceChild"
+external replaceChild: (htmlParagraphElement, ~node: node, 't) => 't = "replaceChild"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/removeChild)
@@ -391,21 +392,28 @@ Returns element's attribute whose namespace is namespace and local name is local
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/getAttributeNS)
 */
 @send
-external getAttributeNS: (htmlParagraphElement, string, string) => string = "getAttributeNS"
+external getAttributeNS: (htmlParagraphElement, ~namespace: string, ~localName: string) => string =
+  "getAttributeNS"
 
 /**
 Sets the value of element's first attribute whose qualified name is qualifiedName to value.
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/setAttribute)
 */
 @send
-external setAttribute: (htmlParagraphElement, string, string) => unit = "setAttribute"
+external setAttribute: (htmlParagraphElement, ~qualifiedName: string, ~value: string) => unit =
+  "setAttribute"
 
 /**
 Sets the value of element's attribute whose namespace is namespace and local name is localName to value.
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/setAttributeNS)
 */
 @send
-external setAttributeNS: (htmlParagraphElement, string, string, string) => unit = "setAttributeNS"
+external setAttributeNS: (
+  htmlParagraphElement,
+  ~namespace: string,
+  ~qualifiedName: string,
+  ~value: string,
+) => unit = "setAttributeNS"
 
 /**
 Removes element's first attribute whose qualified name is qualifiedName.
@@ -419,7 +427,8 @@ Removes element's attribute whose namespace is namespace and local name is local
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/removeAttributeNS)
 */
 @send
-external removeAttributeNS: (htmlParagraphElement, string, string) => unit = "removeAttributeNS"
+external removeAttributeNS: (htmlParagraphElement, ~namespace: string, ~localName: string) => unit =
+  "removeAttributeNS"
 
 /**
 If force is not given, "toggles" qualifiedName, removing it if it is present and adding it if it is not present. If force is true, adds qualifiedName. If force is false, removes qualifiedName.
@@ -428,7 +437,8 @@ Returns true if qualifiedName is now present, and false otherwise.
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/toggleAttribute)
 */
 @send
-external toggleAttribute: (htmlParagraphElement, string, bool) => bool = "toggleAttribute"
+external toggleAttribute: (htmlParagraphElement, ~qualifiedName: string, ~force: bool) => bool =
+  "toggleAttribute"
 
 /**
 Returns true if element has an attribute whose qualified name is qualifiedName, and false otherwise.
@@ -442,7 +452,8 @@ Returns true if element has an attribute whose namespace is namespace and local 
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/hasAttributeNS)
 */
 @send
-external hasAttributeNS: (htmlParagraphElement, string, string) => bool = "hasAttributeNS"
+external hasAttributeNS: (htmlParagraphElement, ~namespace: string, ~localName: string) => bool =
+  "hasAttributeNS"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/getAttributeNode)
@@ -454,7 +465,11 @@ external getAttributeNode: (htmlParagraphElement, string) => attr = "getAttribut
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/getAttributeNodeNS)
 */
 @send
-external getAttributeNodeNS: (htmlParagraphElement, string, string) => attr = "getAttributeNodeNS"
+external getAttributeNodeNS: (
+  htmlParagraphElement,
+  ~namespace: string,
+  ~localName: string,
+) => attr = "getAttributeNodeNS"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/setAttributeNode)
@@ -508,8 +523,8 @@ external getElementsByTagName: (htmlParagraphElement, string) => htmlCollection 
 @send
 external getElementsByTagNameNS: (
   htmlParagraphElement,
-  string,
-  string,
+  ~namespace: string,
+  ~localName: string,
 ) => htmlCollectionOf<element> = "getElementsByTagNameNS"
 
 /**
@@ -524,14 +539,17 @@ external getElementsByClassName: (htmlParagraphElement, string) => htmlCollectio
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/insertAdjacentElement)
 */
 @send
-external insertAdjacentElement: (htmlParagraphElement, insertPosition, element) => element =
-  "insertAdjacentElement"
+external insertAdjacentElement: (
+  htmlParagraphElement,
+  ~where: insertPosition,
+  ~element: element,
+) => element = "insertAdjacentElement"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/insertAdjacentText)
 */
 @send
-external insertAdjacentText: (htmlParagraphElement, insertPosition, string) => unit =
+external insertAdjacentText: (htmlParagraphElement, ~where: insertPosition, ~data: string) => unit =
   "insertAdjacentText"
 
 /**
@@ -580,7 +598,7 @@ external scroll: (htmlParagraphElement, scrollToOptions) => unit = "scroll"
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/scroll)
 */
 @send
-external scroll2: (htmlParagraphElement, float, float) => unit = "scroll"
+external scroll2: (htmlParagraphElement, ~x: float, ~y: float) => unit = "scroll"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/scrollTo)
@@ -592,7 +610,7 @@ external scrollTo: (htmlParagraphElement, scrollToOptions) => unit = "scrollTo"
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/scrollTo)
 */
 @send
-external scrollTo2: (htmlParagraphElement, float, float) => unit = "scrollTo"
+external scrollTo2: (htmlParagraphElement, ~x: float, ~y: float) => unit = "scrollTo"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/scrollBy)
@@ -604,7 +622,7 @@ external scrollBy: (htmlParagraphElement, scrollToOptions) => unit = "scrollBy"
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/scrollBy)
 */
 @send
-external scrollBy2: (htmlParagraphElement, float, float) => unit = "scrollBy"
+external scrollBy2: (htmlParagraphElement, ~x: float, ~y: float) => unit = "scrollBy"
 
 /**
 Displays element fullscreen and resolves promise when done.
@@ -632,8 +650,11 @@ external getHTML: (htmlParagraphElement, getHTMLOptions) => string = "getHTML"
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/insertAdjacentHTML)
 */
 @send
-external insertAdjacentHTML: (htmlParagraphElement, insertPosition, string) => unit =
-  "insertAdjacentHTML"
+external insertAdjacentHTML: (
+  htmlParagraphElement,
+  ~position: insertPosition,
+  ~string: string,
+) => unit = "insertAdjacentHTML"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/setPointerCapture)

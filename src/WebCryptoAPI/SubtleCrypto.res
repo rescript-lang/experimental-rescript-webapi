@@ -7,9 +7,9 @@ open Prelude
 @send
 external encrypt: (
   subtleCrypto,
-  algorithmIdentifier,
-  cryptoKey,
-  bufferSource,
+  ~algorithm: algorithmIdentifier,
+  ~key: cryptoKey,
+  ~data: bufferSource,
 ) => Promise.t<ArrayBuffer.t> = "encrypt"
 
 /**
@@ -18,17 +18,21 @@ external encrypt: (
 @send
 external decrypt: (
   subtleCrypto,
-  algorithmIdentifier,
-  cryptoKey,
-  bufferSource,
+  ~algorithm: algorithmIdentifier,
+  ~key: cryptoKey,
+  ~data: bufferSource,
 ) => Promise.t<ArrayBuffer.t> = "decrypt"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/SubtleCrypto/sign)
 */
 @send
-external sign: (subtleCrypto, algorithmIdentifier, cryptoKey, bufferSource) => Promise.t<any> =
-  "sign"
+external sign: (
+  subtleCrypto,
+  ~algorithm: algorithmIdentifier,
+  ~key: cryptoKey,
+  ~data: bufferSource,
+) => Promise.t<any> = "sign"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/SubtleCrypto/verify)
@@ -36,24 +40,32 @@ external sign: (subtleCrypto, algorithmIdentifier, cryptoKey, bufferSource) => P
 @send
 external verify: (
   subtleCrypto,
-  algorithmIdentifier,
-  cryptoKey,
-  bufferSource,
-  bufferSource,
+  ~algorithm: algorithmIdentifier,
+  ~key: cryptoKey,
+  ~signature: bufferSource,
+  ~data: bufferSource,
 ) => Promise.t<any> = "verify"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/SubtleCrypto/digest)
 */
 @send
-external digest: (subtleCrypto, algorithmIdentifier, bufferSource) => Promise.t<any> = "digest"
+external digest: (
+  subtleCrypto,
+  ~algorithm: algorithmIdentifier,
+  ~data: bufferSource,
+) => Promise.t<any> = "digest"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/SubtleCrypto/generateKey)
 */
 @send
-external generateKey: (subtleCrypto, algorithmIdentifier, bool, array<keyUsage>) => Promise.t<any> =
-  "generateKey"
+external generateKey: (
+  subtleCrypto,
+  ~algorithm: algorithmIdentifier,
+  ~extractable: bool,
+  ~keyUsages: array<keyUsage>,
+) => Promise.t<any> = "generateKey"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/SubtleCrypto/deriveKey)
@@ -61,11 +73,11 @@ external generateKey: (subtleCrypto, algorithmIdentifier, bool, array<keyUsage>)
 @send
 external deriveKey: (
   subtleCrypto,
-  algorithmIdentifier,
-  cryptoKey,
-  algorithmIdentifier,
-  bool,
-  array<keyUsage>,
+  ~algorithm: algorithmIdentifier,
+  ~baseKey: cryptoKey,
+  ~derivedKeyType: algorithmIdentifier,
+  ~extractable: bool,
+  ~keyUsages: array<keyUsage>,
 ) => Promise.t<any> = "deriveKey"
 
 /**
@@ -74,9 +86,9 @@ external deriveKey: (
 @send
 external deriveBits: (
   subtleCrypto,
-  algorithmIdentifier,
-  cryptoKey,
-  int,
+  ~algorithm: algorithmIdentifier,
+  ~baseKey: cryptoKey,
+  ~length: int,
 ) => Promise.t<ArrayBuffer.t> = "deriveBits"
 
 /**
@@ -85,18 +97,19 @@ external deriveBits: (
 @send
 external importKey: (
   subtleCrypto,
-  any,
-  bufferSource,
-  algorithmIdentifier,
-  bool,
-  array<keyUsage>,
+  ~format: any,
+  ~keyData: bufferSource,
+  ~algorithm: algorithmIdentifier,
+  ~extractable: bool,
+  ~keyUsages: array<keyUsage>,
 ) => Promise.t<cryptoKey> = "importKey"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/SubtleCrypto/exportKey)
 */
 @send
-external exportKey: (subtleCrypto, keyFormat, cryptoKey) => Promise.t<any> = "exportKey"
+external exportKey: (subtleCrypto, ~format: keyFormat, ~key: cryptoKey) => Promise.t<any> =
+  "exportKey"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/SubtleCrypto/wrapKey)
@@ -104,10 +117,10 @@ external exportKey: (subtleCrypto, keyFormat, cryptoKey) => Promise.t<any> = "ex
 @send
 external wrapKey: (
   subtleCrypto,
-  keyFormat,
-  cryptoKey,
-  cryptoKey,
-  algorithmIdentifier,
+  ~format: keyFormat,
+  ~key: cryptoKey,
+  ~wrappingKey: cryptoKey,
+  ~wrapAlgorithm: algorithmIdentifier,
 ) => Promise.t<any> = "wrapKey"
 
 /**
@@ -116,11 +129,11 @@ external wrapKey: (
 @send
 external unwrapKey: (
   subtleCrypto,
-  keyFormat,
-  bufferSource,
-  cryptoKey,
-  algorithmIdentifier,
-  algorithmIdentifier,
-  bool,
-  array<keyUsage>,
+  ~format: keyFormat,
+  ~wrappedKey: bufferSource,
+  ~unwrappingKey: cryptoKey,
+  ~unwrapAlgorithm: algorithmIdentifier,
+  ~unwrappedKeyAlgorithm: algorithmIdentifier,
+  ~extractable: bool,
+  ~keyUsages: array<keyUsage>,
 ) => Promise.t<cryptoKey> = "unwrapKey"

@@ -131,7 +131,12 @@ external createBiquadFilter: audioContext => biquadFilterNode = "createBiquadFil
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/BaseAudioContext/createBuffer)
 */
 @send
-external createBuffer: (audioContext, int, int, float) => audioBuffer = "createBuffer"
+external createBuffer: (
+  audioContext,
+  ~numberOfChannels: int,
+  ~length: int,
+  ~sampleRate: float,
+) => audioBuffer = "createBuffer"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/BaseAudioContext/createBufferSource)
@@ -186,8 +191,11 @@ external createGain: audioContext => gainNode = "createGain"
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/BaseAudioContext/createIIRFilter)
 */
 @send
-external createIIRFilter: (audioContext, array<float>, array<float>) => iirFilterNode =
-  "createIIRFilter"
+external createIIRFilter: (
+  audioContext,
+  ~feedforward: array<float>,
+  ~feedback: array<float>,
+) => iirFilterNode = "createIIRFilter"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/BaseAudioContext/createOscillator)
@@ -207,9 +215,9 @@ external createPanner: audioContext => pannerNode = "createPanner"
 @send
 external createPeriodicWave: (
   audioContext,
-  array<float>,
-  array<float>,
-  periodicWaveConstraints,
+  ~real: array<float>,
+  ~imag: array<float>,
+  ~constraints: periodicWaveConstraints,
 ) => periodicWave = "createPeriodicWave"
 
 /**
@@ -230,9 +238,9 @@ external createWaveShaper: audioContext => waveShaperNode = "createWaveShaper"
 @send
 external decodeAudioData: (
   audioContext,
-  ArrayBuffer.t,
-  decodeSuccessCallback,
-  decodeErrorCallback,
+  ~audioData: ArrayBuffer.t,
+  ~successCallback: decodeSuccessCallback,
+  ~errorCallback: decodeErrorCallback,
 ) => Promise.t<audioBuffer> = "decodeAudioData"
 
 /**

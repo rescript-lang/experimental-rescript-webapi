@@ -5,8 +5,11 @@ open WebAudioAPI
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/AudioWorkletNode)
 */
 @new
-external make: (baseAudioContext, string, audioWorkletNodeOptions) => audioWorkletNode =
-  "AudioWorkletNode"
+external make: (
+  ~context: baseAudioContext,
+  ~name: string,
+  ~options: audioWorkletNodeOptions,
+) => audioWorkletNode = "AudioWorkletNode"
 /**
 Appends an event listener for events whose type attribute value is type. The callback argument sets the callback that will be invoked when the event is dispatched.
 
@@ -118,13 +121,19 @@ external dispatchEvent: (audioWorkletNode, event) => bool = "dispatchEvent"
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/AudioNode/connect)
 */
 @send
-external connect: (audioWorkletNode, audioNode, int, int) => audioNode = "connect"
+external connect: (
+  audioWorkletNode,
+  ~destinationNode: audioNode,
+  ~output: int,
+  ~input: int,
+) => audioNode = "connect"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/AudioNode/connect)
 */
 @send
-external connect2: (audioWorkletNode, audioParam, int) => unit = "connect"
+external connect2: (audioWorkletNode, ~destinationParam: audioParam, ~output: int) => unit =
+  "connect"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/AudioNode/disconnect)
@@ -148,13 +157,19 @@ external disconnect3: (audioWorkletNode, audioNode) => unit = "disconnect"
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/AudioNode/disconnect)
 */
 @send
-external disconnect4: (audioWorkletNode, audioNode, int) => unit = "disconnect"
+external disconnect4: (audioWorkletNode, ~destinationNode: audioNode, ~output: int) => unit =
+  "disconnect"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/AudioNode/disconnect)
 */
 @send
-external disconnect5: (audioWorkletNode, audioNode, int, int) => unit = "disconnect"
+external disconnect5: (
+  audioWorkletNode,
+  ~destinationNode: audioNode,
+  ~output: int,
+  ~input: int,
+) => unit = "disconnect"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/AudioNode/disconnect)
@@ -166,4 +181,5 @@ external disconnect6: (audioWorkletNode, audioParam) => unit = "disconnect"
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/AudioNode/disconnect)
 */
 @send
-external disconnect7: (audioWorkletNode, audioParam, int) => unit = "disconnect"
+external disconnect7: (audioWorkletNode, ~destinationParam: audioParam, ~output: int) => unit =
+  "disconnect"

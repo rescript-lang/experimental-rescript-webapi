@@ -152,7 +152,8 @@ external remove: htmlTableSectionElement => unit = "remove"
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/animate)
 */
 @send
-external animate: (htmlTableSectionElement, any, unknown) => animation = "animate"
+external animate: (htmlTableSectionElement, ~keyframes: any, ~options: unknown) => animation =
+  "animate"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/getAnimations)
@@ -345,7 +346,7 @@ external isDefaultNamespace: (htmlTableSectionElement, string) => bool = "isDefa
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/insertBefore)
 */
 @send
-external insertBefore: (htmlTableSectionElement, 't, node) => 't = "insertBefore"
+external insertBefore: (htmlTableSectionElement, 't, ~child: node) => 't = "insertBefore"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/appendChild)
@@ -357,7 +358,7 @@ external appendChild: (htmlTableSectionElement, 't) => 't = "appendChild"
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/replaceChild)
 */
 @send
-external replaceChild: (htmlTableSectionElement, node, 't) => 't = "replaceChild"
+external replaceChild: (htmlTableSectionElement, ~node: node, 't) => 't = "replaceChild"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/removeChild)
@@ -391,22 +392,31 @@ Returns element's attribute whose namespace is namespace and local name is local
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/getAttributeNS)
 */
 @send
-external getAttributeNS: (htmlTableSectionElement, string, string) => string = "getAttributeNS"
+external getAttributeNS: (
+  htmlTableSectionElement,
+  ~namespace: string,
+  ~localName: string,
+) => string = "getAttributeNS"
 
 /**
 Sets the value of element's first attribute whose qualified name is qualifiedName to value.
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/setAttribute)
 */
 @send
-external setAttribute: (htmlTableSectionElement, string, string) => unit = "setAttribute"
+external setAttribute: (htmlTableSectionElement, ~qualifiedName: string, ~value: string) => unit =
+  "setAttribute"
 
 /**
 Sets the value of element's attribute whose namespace is namespace and local name is localName to value.
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/setAttributeNS)
 */
 @send
-external setAttributeNS: (htmlTableSectionElement, string, string, string) => unit =
-  "setAttributeNS"
+external setAttributeNS: (
+  htmlTableSectionElement,
+  ~namespace: string,
+  ~qualifiedName: string,
+  ~value: string,
+) => unit = "setAttributeNS"
 
 /**
 Removes element's first attribute whose qualified name is qualifiedName.
@@ -420,7 +430,11 @@ Removes element's attribute whose namespace is namespace and local name is local
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/removeAttributeNS)
 */
 @send
-external removeAttributeNS: (htmlTableSectionElement, string, string) => unit = "removeAttributeNS"
+external removeAttributeNS: (
+  htmlTableSectionElement,
+  ~namespace: string,
+  ~localName: string,
+) => unit = "removeAttributeNS"
 
 /**
 If force is not given, "toggles" qualifiedName, removing it if it is present and adding it if it is not present. If force is true, adds qualifiedName. If force is false, removes qualifiedName.
@@ -429,7 +443,8 @@ Returns true if qualifiedName is now present, and false otherwise.
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/toggleAttribute)
 */
 @send
-external toggleAttribute: (htmlTableSectionElement, string, bool) => bool = "toggleAttribute"
+external toggleAttribute: (htmlTableSectionElement, ~qualifiedName: string, ~force: bool) => bool =
+  "toggleAttribute"
 
 /**
 Returns true if element has an attribute whose qualified name is qualifiedName, and false otherwise.
@@ -443,7 +458,8 @@ Returns true if element has an attribute whose namespace is namespace and local 
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/hasAttributeNS)
 */
 @send
-external hasAttributeNS: (htmlTableSectionElement, string, string) => bool = "hasAttributeNS"
+external hasAttributeNS: (htmlTableSectionElement, ~namespace: string, ~localName: string) => bool =
+  "hasAttributeNS"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/getAttributeNode)
@@ -455,8 +471,11 @@ external getAttributeNode: (htmlTableSectionElement, string) => attr = "getAttri
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/getAttributeNodeNS)
 */
 @send
-external getAttributeNodeNS: (htmlTableSectionElement, string, string) => attr =
-  "getAttributeNodeNS"
+external getAttributeNodeNS: (
+  htmlTableSectionElement,
+  ~namespace: string,
+  ~localName: string,
+) => attr = "getAttributeNodeNS"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/setAttributeNode)
@@ -510,8 +529,8 @@ external getElementsByTagName: (htmlTableSectionElement, string) => htmlCollecti
 @send
 external getElementsByTagNameNS: (
   htmlTableSectionElement,
-  string,
-  string,
+  ~namespace: string,
+  ~localName: string,
 ) => htmlCollectionOf<element> = "getElementsByTagNameNS"
 
 /**
@@ -526,15 +545,21 @@ external getElementsByClassName: (htmlTableSectionElement, string) => htmlCollec
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/insertAdjacentElement)
 */
 @send
-external insertAdjacentElement: (htmlTableSectionElement, insertPosition, element) => element =
-  "insertAdjacentElement"
+external insertAdjacentElement: (
+  htmlTableSectionElement,
+  ~where: insertPosition,
+  ~element: element,
+) => element = "insertAdjacentElement"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/insertAdjacentText)
 */
 @send
-external insertAdjacentText: (htmlTableSectionElement, insertPosition, string) => unit =
-  "insertAdjacentText"
+external insertAdjacentText: (
+  htmlTableSectionElement,
+  ~where: insertPosition,
+  ~data: string,
+) => unit = "insertAdjacentText"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/computedStyleMap)
@@ -584,7 +609,7 @@ external scroll: (htmlTableSectionElement, scrollToOptions) => unit = "scroll"
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/scroll)
 */
 @send
-external scroll2: (htmlTableSectionElement, float, float) => unit = "scroll"
+external scroll2: (htmlTableSectionElement, ~x: float, ~y: float) => unit = "scroll"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/scrollTo)
@@ -596,7 +621,7 @@ external scrollTo: (htmlTableSectionElement, scrollToOptions) => unit = "scrollT
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/scrollTo)
 */
 @send
-external scrollTo2: (htmlTableSectionElement, float, float) => unit = "scrollTo"
+external scrollTo2: (htmlTableSectionElement, ~x: float, ~y: float) => unit = "scrollTo"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/scrollBy)
@@ -608,7 +633,7 @@ external scrollBy: (htmlTableSectionElement, scrollToOptions) => unit = "scrollB
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/scrollBy)
 */
 @send
-external scrollBy2: (htmlTableSectionElement, float, float) => unit = "scrollBy"
+external scrollBy2: (htmlTableSectionElement, ~x: float, ~y: float) => unit = "scrollBy"
 
 /**
 Displays element fullscreen and resolves promise when done.
@@ -636,8 +661,11 @@ external getHTML: (htmlTableSectionElement, getHTMLOptions) => string = "getHTML
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/insertAdjacentHTML)
 */
 @send
-external insertAdjacentHTML: (htmlTableSectionElement, insertPosition, string) => unit =
-  "insertAdjacentHTML"
+external insertAdjacentHTML: (
+  htmlTableSectionElement,
+  ~position: insertPosition,
+  ~string: string,
+) => unit = "insertAdjacentHTML"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/setPointerCapture)

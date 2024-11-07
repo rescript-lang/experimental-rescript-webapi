@@ -85,15 +85,24 @@ external querySelectorAll: (document, string) => nodeList = "querySelectorAll"
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Document/createExpression)
 */
 @send
-external createExpression: (document, string, xPathNSResolver) => xPathExpression =
-  "createExpression"
+external createExpression: (
+  document,
+  ~expression: string,
+  ~resolver: xPathNSResolver,
+) => xPathExpression = "createExpression"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Document/evaluate)
 */
 @send
-external evaluate: (document, string, node, xPathNSResolver, int, xPathResult) => xPathResult =
-  "evaluate"
+external evaluate: (
+  document,
+  ~expression: string,
+  ~contextNode: node,
+  ~resolver: xPathNSResolver,
+  ~type_: int,
+  ~result: xPathResult,
+) => xPathResult = "evaluate"
 
 /**
 Appends an event listener for events whose type attribute value is type. The callback argument sets the callback that will be invoked when the event is dispatched.
@@ -278,7 +287,7 @@ external isDefaultNamespace: (document, string) => bool = "isDefaultNamespace"
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/insertBefore)
 */
 @send
-external insertBefore: (document, 't, node) => 't = "insertBefore"
+external insertBefore: (document, 't, ~child: node) => 't = "insertBefore"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/appendChild)
@@ -290,7 +299,7 @@ external appendChild: (document, 't) => 't = "appendChild"
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/replaceChild)
 */
 @send
-external replaceChild: (document, node, 't) => 't = "replaceChild"
+external replaceChild: (document, ~node: node, 't) => 't = "replaceChild"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/removeChild)
@@ -317,8 +326,11 @@ Otherwise, returns a HTMLCollection of all descendant elements whose namespace i
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Document/getElementsByTagNameNS)
 */
 @send
-external getElementsByTagNameNS: (document, string, string) => htmlCollectionOf<element> =
-  "getElementsByTagNameNS"
+external getElementsByTagNameNS: (
+  document,
+  ~namespace: string,
+  ~localName: string,
+) => htmlCollectionOf<element> = "getElementsByTagNameNS"
 
 /**
 Returns a HTMLCollection of the elements in the object on which the method was invoked (a document or an element) that have all the classes given by classNames. The classNames argument is interpreted as a space-separated list of classes.
@@ -334,7 +346,8 @@ Creates an instance of the element for the specified tag.
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Document/createElement)
 */
 @send
-external createElement: (document, string, unknown) => element = "createElement"
+external createElement: (document, ~localName: string, ~options: unknown) => element =
+  "createElement"
 
 /**
 Returns an element with namespace namespace. Its namespace prefix will be everything before ":" (U+003E) in qualifiedName or null. Its local name will be everything after ":" (U+003E) in qualifiedName or qualifiedName.
@@ -353,7 +366,12 @@ When supplied, options's is can be used to create a customized built-in element.
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Document/createElementNS)
 */
 @send
-external createElementNS: (document, string, string, unknown) => element = "createElementNS"
+external createElementNS: (
+  document,
+  ~namespace: string,
+  ~qualifiedName: string,
+  ~options: unknown,
+) => element = "createElementNS"
 
 /**
 Creates a new document.
@@ -390,8 +408,11 @@ Returns a ProcessingInstruction node whose target is target and data is data. If
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Document/createProcessingInstruction)
 */
 @send
-external createProcessingInstruction: (document, string, string) => processingInstruction =
-  "createProcessingInstruction"
+external createProcessingInstruction: (
+  document,
+  ~target: string,
+  ~data: string,
+) => processingInstruction = "createProcessingInstruction"
 
 /**
 Returns a copy of node. If deep is true, the copy also includes the node's descendants.
@@ -400,7 +421,7 @@ If node is a document or a shadow root, throws a "NotSupportedError" DOMExceptio
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Document/importNode)
 */
 @send
-external importNode: (document, 't, bool) => 't = "importNode"
+external importNode: (document, 't, ~deep: bool) => 't = "importNode"
 
 /**
 Moves node from another document and returns it.
@@ -423,7 +444,8 @@ external createAttribute: (document, string) => attr = "createAttribute"
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Document/createAttributeNS)
 */
 @send
-external createAttributeNS: (document, string, string) => attr = "createAttributeNS"
+external createAttributeNS: (document, ~namespace: string, ~qualifiedName: string) => attr =
+  "createAttributeNS"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Document/createEvent)
@@ -446,8 +468,12 @@ Creates a NodeIterator object that you can use to traverse filtered lists of nod
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Document/createNodeIterator)
 */
 @send
-external createNodeIterator: (document, node, int, nodeFilter) => nodeIterator =
-  "createNodeIterator"
+external createNodeIterator: (
+  document,
+  ~root: node,
+  ~whatToShow: int,
+  ~filter: nodeFilter,
+) => nodeIterator = "createNodeIterator"
 
 /**
 Creates a TreeWalker object that you can use to traverse filtered lists of nodes or elements in a document.
@@ -457,7 +483,12 @@ Creates a TreeWalker object that you can use to traverse filtered lists of nodes
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Document/createTreeWalker)
 */
 @send
-external createTreeWalker: (document, node, int, nodeFilter) => treeWalker = "createTreeWalker"
+external createTreeWalker: (
+  document,
+  ~root: node,
+  ~whatToShow: int,
+  ~filter: nodeFilter,
+) => treeWalker = "createTreeWalker"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Document/startViewTransition)
@@ -472,9 +503,9 @@ external startViewTransition: (document, viewTransitionUpdateCallback) => viewTr
 @send
 external caretPositionFromPoint: (
   document,
-  float,
-  float,
-  caretPositionFromPointOptions,
+  ~x: float,
+  ~y: float,
+  ~options: caretPositionFromPointOptions,
 ) => caretPosition = "caretPositionFromPoint"
 
 /**
@@ -507,7 +538,7 @@ Opens a new window and loads a document specified by a given URL. Also, opens a 
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Document/open)
 */
 @send
-external open_: (document, string, string) => document = "open"
+external open_: (document, ~unused1: string, ~unused2: string) => document = "open"
 
 /**
 Opens a new window and loads a document specified by a given URL. Also, opens a new window that uses the url parameter and the name parameter to collect the output of the write method and the writeln method.
@@ -518,7 +549,7 @@ Opens a new window and loads a document specified by a given URL. Also, opens a 
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Document/open)
 */
 @send
-external open2: (document, string, string, string) => window = "open"
+external open2: (document, ~url: string, ~name: string, ~features: string) => window = "open"
 
 /**
 Closes an output stream and forces the sent data to display.

@@ -5,7 +5,8 @@ open WebAudioAPI
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/BiquadFilterNode)
 */
 @new
-external make: (baseAudioContext, biquadFilterOptions) => biquadFilterNode = "BiquadFilterNode"
+external make: (~context: baseAudioContext, ~options: biquadFilterOptions) => biquadFilterNode =
+  "BiquadFilterNode"
 /**
 Appends an event listener for events whose type attribute value is type. The callback argument sets the callback that will be invoked when the event is dispatched.
 
@@ -117,13 +118,19 @@ external dispatchEvent: (biquadFilterNode, event) => bool = "dispatchEvent"
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/AudioNode/connect)
 */
 @send
-external connect: (biquadFilterNode, audioNode, int, int) => audioNode = "connect"
+external connect: (
+  biquadFilterNode,
+  ~destinationNode: audioNode,
+  ~output: int,
+  ~input: int,
+) => audioNode = "connect"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/AudioNode/connect)
 */
 @send
-external connect2: (biquadFilterNode, audioParam, int) => unit = "connect"
+external connect2: (biquadFilterNode, ~destinationParam: audioParam, ~output: int) => unit =
+  "connect"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/AudioNode/disconnect)
@@ -147,13 +154,19 @@ external disconnect3: (biquadFilterNode, audioNode) => unit = "disconnect"
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/AudioNode/disconnect)
 */
 @send
-external disconnect4: (biquadFilterNode, audioNode, int) => unit = "disconnect"
+external disconnect4: (biquadFilterNode, ~destinationNode: audioNode, ~output: int) => unit =
+  "disconnect"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/AudioNode/disconnect)
 */
 @send
-external disconnect5: (biquadFilterNode, audioNode, int, int) => unit = "disconnect"
+external disconnect5: (
+  biquadFilterNode,
+  ~destinationNode: audioNode,
+  ~output: int,
+  ~input: int,
+) => unit = "disconnect"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/AudioNode/disconnect)
@@ -165,7 +178,8 @@ external disconnect6: (biquadFilterNode, audioParam) => unit = "disconnect"
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/AudioNode/disconnect)
 */
 @send
-external disconnect7: (biquadFilterNode, audioParam, int) => unit = "disconnect"
+external disconnect7: (biquadFilterNode, ~destinationParam: audioParam, ~output: int) => unit =
+  "disconnect"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/BiquadFilterNode/getFrequencyResponse)
@@ -173,7 +187,7 @@ external disconnect7: (biquadFilterNode, audioParam, int) => unit = "disconnect"
 @send
 external getFrequencyResponse: (
   biquadFilterNode,
-  array<float>,
-  array<float>,
-  array<float>,
+  ~frequencyHz: array<float>,
+  ~magResponse: array<float>,
+  ~phaseResponse: array<float>,
 ) => unit = "getFrequencyResponse"

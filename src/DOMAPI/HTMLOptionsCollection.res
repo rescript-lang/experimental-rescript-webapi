@@ -11,7 +11,7 @@ This method will throw a "HierarchyRequestError" DOMException if element is an a
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLOptionsCollection/add)
 */
 @send
-external add: (htmlOptionsCollection, unknown, unknown) => unit = "add"
+external add: (htmlOptionsCollection, ~element: unknown, ~before: unknown) => unit = "add"
 
 /**
 Removes the item with index index from the collection.

@@ -5,7 +5,8 @@ open WebAudioAPI
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/StereoPannerNode)
 */
 @new
-external make: (baseAudioContext, stereoPannerOptions) => stereoPannerNode = "StereoPannerNode"
+external make: (~context: baseAudioContext, ~options: stereoPannerOptions) => stereoPannerNode =
+  "StereoPannerNode"
 /**
 Appends an event listener for events whose type attribute value is type. The callback argument sets the callback that will be invoked when the event is dispatched.
 
@@ -117,13 +118,19 @@ external dispatchEvent: (stereoPannerNode, event) => bool = "dispatchEvent"
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/AudioNode/connect)
 */
 @send
-external connect: (stereoPannerNode, audioNode, int, int) => audioNode = "connect"
+external connect: (
+  stereoPannerNode,
+  ~destinationNode: audioNode,
+  ~output: int,
+  ~input: int,
+) => audioNode = "connect"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/AudioNode/connect)
 */
 @send
-external connect2: (stereoPannerNode, audioParam, int) => unit = "connect"
+external connect2: (stereoPannerNode, ~destinationParam: audioParam, ~output: int) => unit =
+  "connect"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/AudioNode/disconnect)
@@ -147,13 +154,19 @@ external disconnect3: (stereoPannerNode, audioNode) => unit = "disconnect"
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/AudioNode/disconnect)
 */
 @send
-external disconnect4: (stereoPannerNode, audioNode, int) => unit = "disconnect"
+external disconnect4: (stereoPannerNode, ~destinationNode: audioNode, ~output: int) => unit =
+  "disconnect"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/AudioNode/disconnect)
 */
 @send
-external disconnect5: (stereoPannerNode, audioNode, int, int) => unit = "disconnect"
+external disconnect5: (
+  stereoPannerNode,
+  ~destinationNode: audioNode,
+  ~output: int,
+  ~input: int,
+) => unit = "disconnect"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/AudioNode/disconnect)
@@ -165,4 +178,5 @@ external disconnect6: (stereoPannerNode, audioParam) => unit = "disconnect"
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/AudioNode/disconnect)
 */
 @send
-external disconnect7: (stereoPannerNode, audioParam, int) => unit = "disconnect"
+external disconnect7: (stereoPannerNode, ~destinationParam: audioParam, ~output: int) => unit =
+  "disconnect"

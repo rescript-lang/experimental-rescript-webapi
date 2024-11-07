@@ -8,7 +8,7 @@ open FileAPI
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/OffscreenCanvas)
 */
 @new
-external make: (int, int) => offscreenCanvas = "OffscreenCanvas"
+external make: (~width: int, ~height: int) => offscreenCanvas = "OffscreenCanvas"
 /**
 Appends an event listener for events whose type attribute value is type. The callback argument sets the callback that will be invoked when the event is dispatched.
 
@@ -127,8 +127,8 @@ Returns null if the canvas has already been initialized with another context typ
 @send
 external getContext: (
   offscreenCanvas,
-  offscreenRenderingContextId,
-  any,
+  ~contextId: offscreenRenderingContextId,
+  ~options: any,
 ) => offscreenRenderingContext = "getContext"
 
 /**

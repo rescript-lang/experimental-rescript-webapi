@@ -22,7 +22,12 @@ external getPropertyPriority: (cssStyleDeclaration, string) => string = "getProp
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CSSStyleDeclaration/setProperty)
 */
 @send
-external setProperty: (cssStyleDeclaration, string, string, string) => unit = "setProperty"
+external setProperty: (
+  cssStyleDeclaration,
+  ~property: string,
+  ~value: string,
+  ~priority: string,
+) => unit = "setProperty"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CSSStyleDeclaration/removeProperty)

@@ -241,7 +241,7 @@ external isDefaultNamespace: (text, string) => bool = "isDefaultNamespace"
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/insertBefore)
 */
 @send
-external insertBefore: (text, 't, node) => 't = "insertBefore"
+external insertBefore: (text, 't, ~child: node) => 't = "insertBefore"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/appendChild)
@@ -253,7 +253,7 @@ external appendChild: (text, 't) => 't = "appendChild"
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/replaceChild)
 */
 @send
-external replaceChild: (text, node, 't) => 't = "replaceChild"
+external replaceChild: (text, ~node: node, 't) => 't = "replaceChild"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/removeChild)
@@ -265,7 +265,7 @@ external removeChild: (text, 't) => 't = "removeChild"
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CharacterData/substringData)
 */
 @send
-external substringData: (text, int, int) => string = "substringData"
+external substringData: (text, ~offset: int, ~count: int) => string = "substringData"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CharacterData/appendData)
@@ -277,19 +277,19 @@ external appendData: (text, string) => unit = "appendData"
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CharacterData/insertData)
 */
 @send
-external insertData: (text, int, string) => unit = "insertData"
+external insertData: (text, ~offset: int, ~data: string) => unit = "insertData"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CharacterData/deleteData)
 */
 @send
-external deleteData: (text, int, int) => unit = "deleteData"
+external deleteData: (text, ~offset: int, ~count: int) => unit = "deleteData"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CharacterData/replaceData)
 */
 @send
-external replaceData: (text, int, int, string) => unit = "replaceData"
+external replaceData: (text, ~offset: int, ~count: int, ~data: string) => unit = "replaceData"
 
 /**
 Splits data at the given offset and returns the remainder as Text node.

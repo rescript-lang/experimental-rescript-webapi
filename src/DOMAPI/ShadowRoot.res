@@ -252,7 +252,7 @@ external isDefaultNamespace: (shadowRoot, string) => bool = "isDefaultNamespace"
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/insertBefore)
 */
 @send
-external insertBefore: (shadowRoot, 't, node) => 't = "insertBefore"
+external insertBefore: (shadowRoot, 't, ~child: node) => 't = "insertBefore"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/appendChild)
@@ -264,7 +264,7 @@ external appendChild: (shadowRoot, 't) => 't = "appendChild"
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/replaceChild)
 */
 @send
-external replaceChild: (shadowRoot, node, 't) => 't = "replaceChild"
+external replaceChild: (shadowRoot, ~node: node, 't) => 't = "replaceChild"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/removeChild)

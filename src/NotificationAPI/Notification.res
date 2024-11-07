@@ -5,7 +5,7 @@ open NotificationAPI
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Notification)
 */
 @new
-external make: (string, notificationOptions) => notification = "Notification"
+external make: (~title: string, ~options: notificationOptions) => notification = "Notification"
 /**
 Appends an event listener for events whose type attribute value is type. The callback argument sets the callback that will be invoked when the event is dispatched.
 

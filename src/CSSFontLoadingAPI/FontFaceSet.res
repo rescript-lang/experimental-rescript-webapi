@@ -130,10 +130,10 @@ external clear: fontFaceSet => unit = "clear"
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/FontFaceSet/load)
 */
 @send
-external load: (fontFaceSet, string, string) => Promise.t<array<fontFace>> = "load"
+external load: (fontFaceSet, ~font: string, ~text: string) => Promise.t<array<fontFace>> = "load"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/FontFaceSet/check)
 */
 @send
-external check: (fontFaceSet, string, string) => bool = "check"
+external check: (fontFaceSet, ~font: string, ~text: string) => bool = "check"

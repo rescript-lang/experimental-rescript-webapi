@@ -5,7 +5,10 @@ open FileAPI
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/WritableStream)
 */
 @new
-external make: (underlyingSink<'w>, queuingStrategy<'w>) => writableStream<'w> = "WritableStream"
+external make: (
+  ~underlyingSink: underlyingSink<'w>,
+  ~strategy: queuingStrategy<'w>,
+) => writableStream<'w> = "WritableStream"
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/WritableStream/abort)
 */

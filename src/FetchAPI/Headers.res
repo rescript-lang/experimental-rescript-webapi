@@ -9,7 +9,7 @@ external make: headersInit => headers = "Headers"
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Headers/append)
 */
 @send
-external append: (headers, string, string) => unit = "append"
+external append: (headers, ~name: string, ~value: string) => unit = "append"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Headers/delete)
@@ -39,4 +39,4 @@ external has: (headers, string) => bool = "has"
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Headers/set)
 */
 @send
-external set: (headers, string, string) => unit = "set"
+external set: (headers, ~name: string, ~value: string) => unit = "set"

@@ -7,6 +7,6 @@ open FileAndDirectoryEntriesAPI
 @send
 external readEntries: (
   fileSystemDirectoryReader,
-  fileSystemEntriesCallback,
-  errorCallback,
+  ~successCallback: fileSystemEntriesCallback,
+  ~errorCallback: errorCallback,
 ) => unit = "readEntries"

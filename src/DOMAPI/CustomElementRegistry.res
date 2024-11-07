@@ -6,9 +6,9 @@ open DOMAPI
 @send
 external define: (
   customElementRegistry,
-  string,
-  customElementConstructor,
-  elementDefinitionOptions,
+  ~name: string,
+  ~constructor: customElementConstructor,
+  ~options: elementDefinitionOptions,
 ) => unit = "define"
 
 /**

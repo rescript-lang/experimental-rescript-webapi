@@ -155,6 +155,7 @@ const reservedRescriptWords = [
   "constraint",
   "external",
   "module",
+  "when",
 ];
 const validVariantConstructorNameRegexp = /[^a-zA-Z0-9_]/g;
 
@@ -1001,20 +1002,38 @@ export async function emitRescriptBindings(webidl: Browser.WebIdl) {
   function mapSignatureParameters(
     signature: Browser.Signature,
     join: string = ", ",
+    includeParameterNames: boolean = true,
   ): string {
     const genericTypeParams = new Set(
       (signature.typeParameters || []).map((tp) => tp.name),
     );
 
-    return signature.param?.length === 0
+    const parameters = signature.param || [];
+
+    return parameters.length === 0
       ? ""
-      : (signature.param || [])
+      : parameters
           .map((p) => {
             if (p.overrideType && genericTypeParams.has(p.overrideType)) {
               return `'${toCamelCase(p.overrideType)}`;
             }
 
-            return transformTyped(p);
+            const t = transformTyped(p);
+            let name = "";
+            if (
+              includeParameterNames &&
+              p.name &&
+              p.name !== "arg" &&
+              parameters.length > 1
+            ) {
+              name = p.name.endsWith("Arg")
+                ? p.name.replace("Arg", "")
+                : p.name;
+              name = reservedRescriptWords.includes(name)
+                ? `~${name}_: `
+                : `~${name}: `;
+            }
+            return `${name}${t}`;
           })
           .join(join);
   }
@@ -1260,7 +1279,7 @@ export async function emitRescriptBindings(webidl: Browser.WebIdl) {
 
     const signature = c.signature[0];
 
-    let ps = mapSignatureParameters(signature, " => ");
+    let ps = mapSignatureParameters(signature, " => ", false);
     ps = ps && `${ps} => `;
 
     printer.printLine(

@@ -6,7 +6,7 @@ Attempts to open a connection to the named database with the current version, or
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/IDBFactory/open)
 */
 @send
-external open_: (idbFactory, string, int) => idbOpenDBRequest = "open"
+external open_: (idbFactory, ~name: string, ~version: int) => idbOpenDBRequest = "open"
 
 /**
 Attempts to delete the named database. If the database already exists and there are open connections that don't close in response to a versionchange event, the request will be blocked until all they close. If the request is successful request's result will be null.
@@ -28,4 +28,4 @@ Throws a "DataError" DOMException if either input is not a valid key.
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/IDBFactory/cmp)
 */
 @send
-external cmp: (idbFactory, any, any) => int = "cmp"
+external cmp: (idbFactory, ~first: any, ~second: any) => int = "cmp"

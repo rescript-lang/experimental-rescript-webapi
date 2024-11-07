@@ -5,8 +5,10 @@ open WebAudioAPI
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/ChannelSplitterNode)
 */
 @new
-external make: (baseAudioContext, channelSplitterOptions) => channelSplitterNode =
-  "ChannelSplitterNode"
+external make: (
+  ~context: baseAudioContext,
+  ~options: channelSplitterOptions,
+) => channelSplitterNode = "ChannelSplitterNode"
 /**
 Appends an event listener for events whose type attribute value is type. The callback argument sets the callback that will be invoked when the event is dispatched.
 
@@ -118,13 +120,19 @@ external dispatchEvent: (channelSplitterNode, event) => bool = "dispatchEvent"
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/AudioNode/connect)
 */
 @send
-external connect: (channelSplitterNode, audioNode, int, int) => audioNode = "connect"
+external connect: (
+  channelSplitterNode,
+  ~destinationNode: audioNode,
+  ~output: int,
+  ~input: int,
+) => audioNode = "connect"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/AudioNode/connect)
 */
 @send
-external connect2: (channelSplitterNode, audioParam, int) => unit = "connect"
+external connect2: (channelSplitterNode, ~destinationParam: audioParam, ~output: int) => unit =
+  "connect"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/AudioNode/disconnect)
@@ -148,13 +156,19 @@ external disconnect3: (channelSplitterNode, audioNode) => unit = "disconnect"
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/AudioNode/disconnect)
 */
 @send
-external disconnect4: (channelSplitterNode, audioNode, int) => unit = "disconnect"
+external disconnect4: (channelSplitterNode, ~destinationNode: audioNode, ~output: int) => unit =
+  "disconnect"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/AudioNode/disconnect)
 */
 @send
-external disconnect5: (channelSplitterNode, audioNode, int, int) => unit = "disconnect"
+external disconnect5: (
+  channelSplitterNode,
+  ~destinationNode: audioNode,
+  ~output: int,
+  ~input: int,
+) => unit = "disconnect"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/AudioNode/disconnect)
@@ -166,4 +180,5 @@ external disconnect6: (channelSplitterNode, audioParam) => unit = "disconnect"
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/AudioNode/disconnect)
 */
 @send
-external disconnect7: (channelSplitterNode, audioParam, int) => unit = "disconnect"
+external disconnect7: (channelSplitterNode, ~destinationParam: audioParam, ~output: int) => unit =
+  "disconnect"
