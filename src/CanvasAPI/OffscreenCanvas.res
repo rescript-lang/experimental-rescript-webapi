@@ -129,7 +129,7 @@ Returns null if the canvas has already been initialized with another context typ
 external getContext: (
   offscreenCanvas,
   ~contextId: offscreenRenderingContextId,
-  ~options: any,
+  ~options: any=?,
 ) => offscreenRenderingContext = "getContext"
 
 /**
@@ -146,4 +146,5 @@ The argument, if provided, is a dictionary that controls the encoding options of
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/OffscreenCanvas/convertToBlob)
 */
 @send
-external convertToBlob: (offscreenCanvas, imageEncodeOptions) => Promise.t<blob> = "convertToBlob"
+external convertToBlob: (offscreenCanvas, ~options: imageEncodeOptions=?) => Promise.t<blob> =
+  "convertToBlob"

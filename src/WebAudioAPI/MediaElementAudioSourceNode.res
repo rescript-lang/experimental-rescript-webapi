@@ -127,8 +127,8 @@ external dispatchEvent: (mediaElementAudioSourceNode, event) => bool = "dispatch
 external connect: (
   mediaElementAudioSourceNode,
   ~destinationNode: audioNode,
-  ~output: int,
-  ~input: int,
+  ~output: int=?,
+  ~input: int=?,
 ) => audioNode = "connect"
 
 /**
@@ -138,7 +138,7 @@ external connect: (
 external connect2: (
   mediaElementAudioSourceNode,
   ~destinationParam: audioParam,
-  ~output: int,
+  ~output: int=?,
 ) => unit = "connect"
 
 /**

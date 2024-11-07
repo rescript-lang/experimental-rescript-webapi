@@ -6,7 +6,7 @@ open DOMAPI
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/FormData)
 */
 @new
-external make: (~form: htmlFormElement, ~submitter: htmlElement) => formData = "FormData"
+external make: (~form: htmlFormElement=?, ~submitter: htmlElement=?) => formData = "FormData"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/FormData/append)
@@ -18,7 +18,8 @@ external append: (formData, ~name: string, ~value: string) => unit = "append"
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/FormData/append)
 */
 @send
-external append2: (formData, ~name: string, ~blobValue: blob, ~filename: string) => unit = "append"
+external append2: (formData, ~name: string, ~blobValue: blob, ~filename: string=?) => unit =
+  "append"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/FormData/delete)
@@ -54,4 +55,4 @@ external set: (formData, ~name: string, ~value: string) => unit = "set"
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/FormData/set)
 */
 @send
-external set2: (formData, ~name: string, ~blobValue: blob, ~filename: string) => unit = "set"
+external set2: (formData, ~name: string, ~blobValue: blob, ~filename: string=?) => unit = "set"

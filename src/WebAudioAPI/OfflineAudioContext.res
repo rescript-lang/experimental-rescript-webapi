@@ -154,15 +154,17 @@ external createBufferSource: offlineAudioContext => audioBufferSourceNode = "cre
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/BaseAudioContext/createChannelMerger)
 */
 @send
-external createChannelMerger: (offlineAudioContext, int) => channelMergerNode =
+external createChannelMerger: (offlineAudioContext, ~numberOfInputs: int=?) => channelMergerNode =
   "createChannelMerger"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/BaseAudioContext/createChannelSplitter)
 */
 @send
-external createChannelSplitter: (offlineAudioContext, int) => channelSplitterNode =
-  "createChannelSplitter"
+external createChannelSplitter: (
+  offlineAudioContext,
+  ~numberOfOutputs: int=?,
+) => channelSplitterNode = "createChannelSplitter"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/BaseAudioContext/createConstantSource)
@@ -180,7 +182,7 @@ external createConvolver: offlineAudioContext => convolverNode = "createConvolve
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/BaseAudioContext/createDelay)
 */
 @send
-external createDelay: (offlineAudioContext, float) => delayNode = "createDelay"
+external createDelay: (offlineAudioContext, ~maxDelayTime: float=?) => delayNode = "createDelay"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/BaseAudioContext/createDynamicsCompressor)
@@ -225,7 +227,7 @@ external createPeriodicWave: (
   offlineAudioContext,
   ~real: array<float>,
   ~imag: array<float>,
-  ~constraints: periodicWaveConstraints,
+  ~constraints: periodicWaveConstraints=?,
 ) => periodicWave = "createPeriodicWave"
 
 /**
@@ -247,8 +249,8 @@ external createWaveShaper: offlineAudioContext => waveShaperNode = "createWaveSh
 external decodeAudioData: (
   offlineAudioContext,
   ~audioData: ArrayBuffer.t,
-  ~successCallback: decodeSuccessCallback,
-  ~errorCallback: decodeErrorCallback,
+  ~successCallback: decodeSuccessCallback=?,
+  ~errorCallback: decodeErrorCallback=?,
 ) => Promise.t<audioBuffer> = "decodeAudioData"
 
 /**

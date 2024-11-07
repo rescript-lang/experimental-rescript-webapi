@@ -12,7 +12,7 @@ external make: unit => htmloListElement = "HTMLOListElement"
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/focus)
 */
 @send
-external focus: (htmloListElement, focusOptions) => unit = "focus"
+external focus: (htmloListElement, ~options: focusOptions=?) => unit = "focus"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/blur)
@@ -153,13 +153,13 @@ external remove: htmloListElement => unit = "remove"
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/animate)
 */
 @send
-external animate: (htmloListElement, ~keyframes: any, ~options: unknown) => animation = "animate"
+external animate: (htmloListElement, ~keyframes: any, ~options: unknown=?) => animation = "animate"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/getAnimations)
 */
 @send
-external getAnimations: (htmloListElement, getAnimationsOptions) => array<animation> =
+external getAnimations: (htmloListElement, ~options: getAnimationsOptions=?) => array<animation> =
   "getAnimations"
 
 /**
@@ -274,7 +274,7 @@ Returns node's root.
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/getRootNode)
 */
 @send
-external getRootNode: (htmloListElement, getRootNodeOptions) => node = "getRootNode"
+external getRootNode: (htmloListElement, ~options: getRootNodeOptions=?) => node = "getRootNode"
 
 /**
 Returns whether node has children.
@@ -295,7 +295,7 @@ Returns a copy of node. If deep is true, the copy also includes the node's desce
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/cloneNode)
 */
 @send
-external cloneNode: (htmloListElement, bool) => node = "cloneNode"
+external cloneNode: (htmloListElement, ~deep: bool=?) => node = "cloneNode"
 
 /**
 Returns whether node and otherNode have the same properties.
@@ -437,7 +437,7 @@ Returns true if qualifiedName is now present, and false otherwise.
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/toggleAttribute)
 */
 @send
-external toggleAttribute: (htmloListElement, ~qualifiedName: string, ~force: bool) => bool =
+external toggleAttribute: (htmloListElement, ~qualifiedName: string, ~force: bool=?) => bool =
   "toggleAttribute"
 
 /**
@@ -570,25 +570,27 @@ external getBoundingClientRect: htmloListElement => domRect = "getBoundingClient
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/checkVisibility)
 */
 @send
-external checkVisibility: (htmloListElement, checkVisibilityOptions) => bool = "checkVisibility"
+external checkVisibility: (htmloListElement, ~options: checkVisibilityOptions=?) => bool =
+  "checkVisibility"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/scrollIntoView)
 */
 @send
-external scrollIntoView: (htmloListElement, bool) => unit = "scrollIntoView"
+external scrollIntoView: (htmloListElement, ~arg: bool=?) => unit = "scrollIntoView"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/scrollIntoView)
 */
 @send
-external scrollIntoView2: (htmloListElement, scrollIntoViewOptions) => unit = "scrollIntoView"
+external scrollIntoView2: (htmloListElement, ~arg: scrollIntoViewOptions=?) => unit =
+  "scrollIntoView"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/scroll)
 */
 @send
-external scroll: (htmloListElement, scrollToOptions) => unit = "scroll"
+external scroll: (htmloListElement, ~options: scrollToOptions=?) => unit = "scroll"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/scroll)
@@ -600,7 +602,7 @@ external scroll2: (htmloListElement, ~x: float, ~y: float) => unit = "scroll"
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/scrollTo)
 */
 @send
-external scrollTo: (htmloListElement, scrollToOptions) => unit = "scrollTo"
+external scrollTo: (htmloListElement, ~options: scrollToOptions=?) => unit = "scrollTo"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/scrollTo)
@@ -612,7 +614,7 @@ external scrollTo2: (htmloListElement, ~x: float, ~y: float) => unit = "scrollTo
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/scrollBy)
 */
 @send
-external scrollBy: (htmloListElement, scrollToOptions) => unit = "scrollBy"
+external scrollBy: (htmloListElement, ~options: scrollToOptions=?) => unit = "scrollBy"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/scrollBy)
@@ -627,7 +629,7 @@ When supplied, options's navigationUI member indicates whether showing navigatio
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/requestFullscreen)
 */
 @send
-external requestFullscreen: (htmloListElement, fullscreenOptions) => Promise.t<unit> =
+external requestFullscreen: (htmloListElement, ~options: fullscreenOptions=?) => Promise.t<unit> =
   "requestFullscreen"
 
 /**
@@ -640,7 +642,7 @@ external setHTMLUnsafe: (htmloListElement, string) => unit = "setHTMLUnsafe"
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/getHTML)
 */
 @send
-external getHTML: (htmloListElement, getHTMLOptions) => string = "getHTML"
+external getHTML: (htmloListElement, ~options: getHTMLOptions=?) => string = "getHTML"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/insertAdjacentHTML)
@@ -674,7 +676,7 @@ external hasPointerCapture: (htmloListElement, int) => bool = "hasPointerCapture
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/requestPointerLock)
 */
 @send
-external requestPointerLock: (htmloListElement, pointerLockOptions) => Promise.t<unit> =
+external requestPointerLock: (htmloListElement, ~options: pointerLockOptions=?) => Promise.t<unit> =
   "requestPointerLock"
 
 /**
@@ -705,4 +707,4 @@ external hidePopover: htmloListElement => unit = "hidePopover"
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/togglePopover)
 */
 @send
-external togglePopover: (htmloListElement, bool) => bool = "togglePopover"
+external togglePopover: (htmloListElement, ~force: bool=?) => bool = "togglePopover"

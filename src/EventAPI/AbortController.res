@@ -12,4 +12,4 @@ Invoking this method will set this object's AbortSignal's aborted flag and signa
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/AbortController/abort)
 */
 @send
-external abort: (abortController, any) => unit = "abort"
+external abort: (abortController, ~reason: any=?) => unit = "abort"

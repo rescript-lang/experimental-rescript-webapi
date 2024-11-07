@@ -7,7 +7,7 @@ open FileAPI
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/WebSocket)
 */
 @new
-external make: (~url: string, ~protocols: unknown) => webSocket = "WebSocket"
+external make: (~url: string, ~protocols: unknown=?) => webSocket = "WebSocket"
 
 /**
 Appends an event listener for events whose type attribute value is type. The callback argument sets the callback that will be invoked when the event is dispatched.
@@ -121,7 +121,7 @@ Closes the WebSocket connection, optionally using code as the the WebSocket conn
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/WebSocket/close)
 */
 @send
-external close: (webSocket, ~code: int, ~reason: string) => unit = "close"
+external close: (webSocket, ~code: int=?, ~reason: string=?) => unit = "close"
 
 /**
 Transmits data using the WebSocket connection. data can be a string, a Blob, an ArrayBuffer, or an ArrayBufferView.

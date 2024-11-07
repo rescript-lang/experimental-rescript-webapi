@@ -14,7 +14,7 @@ external make: unit => htmlCanvasElement = "HTMLCanvasElement"
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/focus)
 */
 @send
-external focus: (htmlCanvasElement, focusOptions) => unit = "focus"
+external focus: (htmlCanvasElement, ~options: focusOptions=?) => unit = "focus"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/blur)
@@ -155,13 +155,13 @@ external remove: htmlCanvasElement => unit = "remove"
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/animate)
 */
 @send
-external animate: (htmlCanvasElement, ~keyframes: any, ~options: unknown) => animation = "animate"
+external animate: (htmlCanvasElement, ~keyframes: any, ~options: unknown=?) => animation = "animate"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/getAnimations)
 */
 @send
-external getAnimations: (htmlCanvasElement, getAnimationsOptions) => array<animation> =
+external getAnimations: (htmlCanvasElement, ~options: getAnimationsOptions=?) => array<animation> =
   "getAnimations"
 
 /**
@@ -276,7 +276,7 @@ Returns node's root.
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/getRootNode)
 */
 @send
-external getRootNode: (htmlCanvasElement, getRootNodeOptions) => node = "getRootNode"
+external getRootNode: (htmlCanvasElement, ~options: getRootNodeOptions=?) => node = "getRootNode"
 
 /**
 Returns whether node has children.
@@ -297,7 +297,7 @@ Returns a copy of node. If deep is true, the copy also includes the node's desce
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/cloneNode)
 */
 @send
-external cloneNode: (htmlCanvasElement, bool) => node = "cloneNode"
+external cloneNode: (htmlCanvasElement, ~deep: bool=?) => node = "cloneNode"
 
 /**
 Returns whether node and otherNode have the same properties.
@@ -439,7 +439,7 @@ Returns true if qualifiedName is now present, and false otherwise.
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/toggleAttribute)
 */
 @send
-external toggleAttribute: (htmlCanvasElement, ~qualifiedName: string, ~force: bool) => bool =
+external toggleAttribute: (htmlCanvasElement, ~qualifiedName: string, ~force: bool=?) => bool =
   "toggleAttribute"
 
 /**
@@ -573,25 +573,27 @@ external getBoundingClientRect: htmlCanvasElement => domRect = "getBoundingClien
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/checkVisibility)
 */
 @send
-external checkVisibility: (htmlCanvasElement, checkVisibilityOptions) => bool = "checkVisibility"
+external checkVisibility: (htmlCanvasElement, ~options: checkVisibilityOptions=?) => bool =
+  "checkVisibility"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/scrollIntoView)
 */
 @send
-external scrollIntoView: (htmlCanvasElement, bool) => unit = "scrollIntoView"
+external scrollIntoView: (htmlCanvasElement, ~arg: bool=?) => unit = "scrollIntoView"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/scrollIntoView)
 */
 @send
-external scrollIntoView2: (htmlCanvasElement, scrollIntoViewOptions) => unit = "scrollIntoView"
+external scrollIntoView2: (htmlCanvasElement, ~arg: scrollIntoViewOptions=?) => unit =
+  "scrollIntoView"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/scroll)
 */
 @send
-external scroll: (htmlCanvasElement, scrollToOptions) => unit = "scroll"
+external scroll: (htmlCanvasElement, ~options: scrollToOptions=?) => unit = "scroll"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/scroll)
@@ -603,7 +605,7 @@ external scroll2: (htmlCanvasElement, ~x: float, ~y: float) => unit = "scroll"
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/scrollTo)
 */
 @send
-external scrollTo: (htmlCanvasElement, scrollToOptions) => unit = "scrollTo"
+external scrollTo: (htmlCanvasElement, ~options: scrollToOptions=?) => unit = "scrollTo"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/scrollTo)
@@ -615,7 +617,7 @@ external scrollTo2: (htmlCanvasElement, ~x: float, ~y: float) => unit = "scrollT
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/scrollBy)
 */
 @send
-external scrollBy: (htmlCanvasElement, scrollToOptions) => unit = "scrollBy"
+external scrollBy: (htmlCanvasElement, ~options: scrollToOptions=?) => unit = "scrollBy"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/scrollBy)
@@ -630,7 +632,7 @@ When supplied, options's navigationUI member indicates whether showing navigatio
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/requestFullscreen)
 */
 @send
-external requestFullscreen: (htmlCanvasElement, fullscreenOptions) => Promise.t<unit> =
+external requestFullscreen: (htmlCanvasElement, ~options: fullscreenOptions=?) => Promise.t<unit> =
   "requestFullscreen"
 
 /**
@@ -643,7 +645,7 @@ external setHTMLUnsafe: (htmlCanvasElement, string) => unit = "setHTMLUnsafe"
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/getHTML)
 */
 @send
-external getHTML: (htmlCanvasElement, getHTMLOptions) => string = "getHTML"
+external getHTML: (htmlCanvasElement, ~options: getHTMLOptions=?) => string = "getHTML"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/insertAdjacentHTML)
@@ -677,8 +679,10 @@ external hasPointerCapture: (htmlCanvasElement, int) => bool = "hasPointerCaptur
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/requestPointerLock)
 */
 @send
-external requestPointerLock: (htmlCanvasElement, pointerLockOptions) => Promise.t<unit> =
-  "requestPointerLock"
+external requestPointerLock: (
+  htmlCanvasElement,
+  ~options: pointerLockOptions=?,
+) => Promise.t<unit> = "requestPointerLock"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/click)
@@ -708,7 +712,7 @@ external hidePopover: htmlCanvasElement => unit = "hidePopover"
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/togglePopover)
 */
 @send
-external togglePopover: (htmlCanvasElement, bool) => bool = "togglePopover"
+external togglePopover: (htmlCanvasElement, ~force: bool=?) => bool = "togglePopover"
 
 /**
 Returns an object that provides methods and properties for drawing and manipulating images and graphics on a canvas element in a document. A context object includes information about colors, line widths, fonts, and other graphic parameters that can be drawn on a canvas.
@@ -716,7 +720,7 @@ Returns an object that provides methods and properties for drawing and manipulat
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLCanvasElement/getContext)
 */
 @send
-external getContext: (htmlCanvasElement, ~contextId: string, ~options: any) => renderingContext =
+external getContext: (htmlCanvasElement, ~contextId: string, ~options: any=?) => renderingContext =
   "getContext"
 
 /**
@@ -725,7 +729,7 @@ Returns the content of the current canvas as an image that you can use as a sour
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLCanvasElement/toDataURL)
 */
 @send
-external toDataURL: (htmlCanvasElement, ~type_: string, ~quality: any) => string = "toDataURL"
+external toDataURL: (htmlCanvasElement, ~type_: string=?, ~quality: any=?) => string = "toDataURL"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLCanvasElement/toBlob)
@@ -734,8 +738,8 @@ external toDataURL: (htmlCanvasElement, ~type_: string, ~quality: any) => string
 external toBlob: (
   htmlCanvasElement,
   ~callback: blobCallback,
-  ~type_: string,
-  ~quality: any,
+  ~type_: string=?,
+  ~quality: any=?,
 ) => unit = "toBlob"
 
 /**
@@ -749,4 +753,5 @@ external transferControlToOffscreen: htmlCanvasElement => offscreenCanvas =
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLCanvasElement/captureStream)
 */
 @send
-external captureStream: (htmlCanvasElement, float) => mediaStream = "captureStream"
+external captureStream: (htmlCanvasElement, ~frameRequestRate: float=?) => mediaStream =
+  "captureStream"

@@ -174,7 +174,7 @@ Returns node's root.
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/getRootNode)
 */
 @send
-external getRootNode: (characterData, getRootNodeOptions) => node = "getRootNode"
+external getRootNode: (characterData, ~options: getRootNodeOptions=?) => node = "getRootNode"
 
 /**
 Returns whether node has children.
@@ -195,7 +195,7 @@ Returns a copy of node. If deep is true, the copy also includes the node's desce
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/cloneNode)
 */
 @send
-external cloneNode: (characterData, bool) => node = "cloneNode"
+external cloneNode: (characterData, ~deep: bool=?) => node = "cloneNode"
 
 /**
 Returns whether node and otherNode have the same properties.

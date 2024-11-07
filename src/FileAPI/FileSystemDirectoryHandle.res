@@ -14,7 +14,7 @@ external isSameEntry: (fileSystemDirectoryHandle, fileSystemHandle) => Promise.t
 external getFileHandle: (
   fileSystemDirectoryHandle,
   ~name: string,
-  ~options: fileSystemGetFileOptions,
+  ~options: fileSystemGetFileOptions=?,
 ) => Promise.t<fileSystemFileHandle> = "getFileHandle"
 
 /**
@@ -24,7 +24,7 @@ external getFileHandle: (
 external getDirectoryHandle: (
   fileSystemDirectoryHandle,
   ~name: string,
-  ~options: fileSystemGetDirectoryOptions,
+  ~options: fileSystemGetDirectoryOptions=?,
 ) => Promise.t<fileSystemDirectoryHandle> = "getDirectoryHandle"
 
 /**
@@ -34,7 +34,7 @@ external getDirectoryHandle: (
 external removeEntry: (
   fileSystemDirectoryHandle,
   ~name: string,
-  ~options: fileSystemRemoveOptions,
+  ~options: fileSystemRemoveOptions=?,
 ) => Promise.t<unit> = "removeEntry"
 
 /**

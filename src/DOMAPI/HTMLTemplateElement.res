@@ -12,7 +12,7 @@ external make: unit => htmlTemplateElement = "HTMLTemplateElement"
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/focus)
 */
 @send
-external focus: (htmlTemplateElement, focusOptions) => unit = "focus"
+external focus: (htmlTemplateElement, ~options: focusOptions=?) => unit = "focus"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/blur)
@@ -153,14 +153,17 @@ external remove: htmlTemplateElement => unit = "remove"
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/animate)
 */
 @send
-external animate: (htmlTemplateElement, ~keyframes: any, ~options: unknown) => animation = "animate"
+external animate: (htmlTemplateElement, ~keyframes: any, ~options: unknown=?) => animation =
+  "animate"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/getAnimations)
 */
 @send
-external getAnimations: (htmlTemplateElement, getAnimationsOptions) => array<animation> =
-  "getAnimations"
+external getAnimations: (
+  htmlTemplateElement,
+  ~options: getAnimationsOptions=?,
+) => array<animation> = "getAnimations"
 
 /**
 Appends an event listener for events whose type attribute value is type. The callback argument sets the callback that will be invoked when the event is dispatched.
@@ -274,7 +277,7 @@ Returns node's root.
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/getRootNode)
 */
 @send
-external getRootNode: (htmlTemplateElement, getRootNodeOptions) => node = "getRootNode"
+external getRootNode: (htmlTemplateElement, ~options: getRootNodeOptions=?) => node = "getRootNode"
 
 /**
 Returns whether node has children.
@@ -295,7 +298,7 @@ Returns a copy of node. If deep is true, the copy also includes the node's desce
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/cloneNode)
 */
 @send
-external cloneNode: (htmlTemplateElement, bool) => node = "cloneNode"
+external cloneNode: (htmlTemplateElement, ~deep: bool=?) => node = "cloneNode"
 
 /**
 Returns whether node and otherNode have the same properties.
@@ -437,7 +440,7 @@ Returns true if qualifiedName is now present, and false otherwise.
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/toggleAttribute)
 */
 @send
-external toggleAttribute: (htmlTemplateElement, ~qualifiedName: string, ~force: bool) => bool =
+external toggleAttribute: (htmlTemplateElement, ~qualifiedName: string, ~force: bool=?) => bool =
   "toggleAttribute"
 
 /**
@@ -571,25 +574,27 @@ external getBoundingClientRect: htmlTemplateElement => domRect = "getBoundingCli
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/checkVisibility)
 */
 @send
-external checkVisibility: (htmlTemplateElement, checkVisibilityOptions) => bool = "checkVisibility"
+external checkVisibility: (htmlTemplateElement, ~options: checkVisibilityOptions=?) => bool =
+  "checkVisibility"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/scrollIntoView)
 */
 @send
-external scrollIntoView: (htmlTemplateElement, bool) => unit = "scrollIntoView"
+external scrollIntoView: (htmlTemplateElement, ~arg: bool=?) => unit = "scrollIntoView"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/scrollIntoView)
 */
 @send
-external scrollIntoView2: (htmlTemplateElement, scrollIntoViewOptions) => unit = "scrollIntoView"
+external scrollIntoView2: (htmlTemplateElement, ~arg: scrollIntoViewOptions=?) => unit =
+  "scrollIntoView"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/scroll)
 */
 @send
-external scroll: (htmlTemplateElement, scrollToOptions) => unit = "scroll"
+external scroll: (htmlTemplateElement, ~options: scrollToOptions=?) => unit = "scroll"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/scroll)
@@ -601,7 +606,7 @@ external scroll2: (htmlTemplateElement, ~x: float, ~y: float) => unit = "scroll"
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/scrollTo)
 */
 @send
-external scrollTo: (htmlTemplateElement, scrollToOptions) => unit = "scrollTo"
+external scrollTo: (htmlTemplateElement, ~options: scrollToOptions=?) => unit = "scrollTo"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/scrollTo)
@@ -613,7 +618,7 @@ external scrollTo2: (htmlTemplateElement, ~x: float, ~y: float) => unit = "scrol
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/scrollBy)
 */
 @send
-external scrollBy: (htmlTemplateElement, scrollToOptions) => unit = "scrollBy"
+external scrollBy: (htmlTemplateElement, ~options: scrollToOptions=?) => unit = "scrollBy"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/scrollBy)
@@ -628,8 +633,10 @@ When supplied, options's navigationUI member indicates whether showing navigatio
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/requestFullscreen)
 */
 @send
-external requestFullscreen: (htmlTemplateElement, fullscreenOptions) => Promise.t<unit> =
-  "requestFullscreen"
+external requestFullscreen: (
+  htmlTemplateElement,
+  ~options: fullscreenOptions=?,
+) => Promise.t<unit> = "requestFullscreen"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/setHTMLUnsafe)
@@ -641,7 +648,7 @@ external setHTMLUnsafe: (htmlTemplateElement, string) => unit = "setHTMLUnsafe"
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/getHTML)
 */
 @send
-external getHTML: (htmlTemplateElement, getHTMLOptions) => string = "getHTML"
+external getHTML: (htmlTemplateElement, ~options: getHTMLOptions=?) => string = "getHTML"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/insertAdjacentHTML)
@@ -675,8 +682,10 @@ external hasPointerCapture: (htmlTemplateElement, int) => bool = "hasPointerCapt
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/requestPointerLock)
 */
 @send
-external requestPointerLock: (htmlTemplateElement, pointerLockOptions) => Promise.t<unit> =
-  "requestPointerLock"
+external requestPointerLock: (
+  htmlTemplateElement,
+  ~options: pointerLockOptions=?,
+) => Promise.t<unit> = "requestPointerLock"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/click)
@@ -706,4 +715,4 @@ external hidePopover: htmlTemplateElement => unit = "hidePopover"
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/togglePopover)
 */
 @send
-external togglePopover: (htmlTemplateElement, bool) => bool = "togglePopover"
+external togglePopover: (htmlTemplateElement, ~force: bool=?) => bool = "togglePopover"

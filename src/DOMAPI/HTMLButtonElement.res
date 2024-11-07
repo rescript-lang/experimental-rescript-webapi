@@ -12,7 +12,7 @@ external make: unit => htmlButtonElement = "HTMLButtonElement"
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/focus)
 */
 @send
-external focus: (htmlButtonElement, focusOptions) => unit = "focus"
+external focus: (htmlButtonElement, ~options: focusOptions=?) => unit = "focus"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/blur)
@@ -153,13 +153,13 @@ external remove: htmlButtonElement => unit = "remove"
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/animate)
 */
 @send
-external animate: (htmlButtonElement, ~keyframes: any, ~options: unknown) => animation = "animate"
+external animate: (htmlButtonElement, ~keyframes: any, ~options: unknown=?) => animation = "animate"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/getAnimations)
 */
 @send
-external getAnimations: (htmlButtonElement, getAnimationsOptions) => array<animation> =
+external getAnimations: (htmlButtonElement, ~options: getAnimationsOptions=?) => array<animation> =
   "getAnimations"
 
 /**
@@ -274,7 +274,7 @@ Returns node's root.
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/getRootNode)
 */
 @send
-external getRootNode: (htmlButtonElement, getRootNodeOptions) => node = "getRootNode"
+external getRootNode: (htmlButtonElement, ~options: getRootNodeOptions=?) => node = "getRootNode"
 
 /**
 Returns whether node has children.
@@ -295,7 +295,7 @@ Returns a copy of node. If deep is true, the copy also includes the node's desce
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/cloneNode)
 */
 @send
-external cloneNode: (htmlButtonElement, bool) => node = "cloneNode"
+external cloneNode: (htmlButtonElement, ~deep: bool=?) => node = "cloneNode"
 
 /**
 Returns whether node and otherNode have the same properties.
@@ -437,7 +437,7 @@ Returns true if qualifiedName is now present, and false otherwise.
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/toggleAttribute)
 */
 @send
-external toggleAttribute: (htmlButtonElement, ~qualifiedName: string, ~force: bool) => bool =
+external toggleAttribute: (htmlButtonElement, ~qualifiedName: string, ~force: bool=?) => bool =
   "toggleAttribute"
 
 /**
@@ -571,25 +571,27 @@ external getBoundingClientRect: htmlButtonElement => domRect = "getBoundingClien
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/checkVisibility)
 */
 @send
-external checkVisibility: (htmlButtonElement, checkVisibilityOptions) => bool = "checkVisibility"
+external checkVisibility: (htmlButtonElement, ~options: checkVisibilityOptions=?) => bool =
+  "checkVisibility"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/scrollIntoView)
 */
 @send
-external scrollIntoView: (htmlButtonElement, bool) => unit = "scrollIntoView"
+external scrollIntoView: (htmlButtonElement, ~arg: bool=?) => unit = "scrollIntoView"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/scrollIntoView)
 */
 @send
-external scrollIntoView2: (htmlButtonElement, scrollIntoViewOptions) => unit = "scrollIntoView"
+external scrollIntoView2: (htmlButtonElement, ~arg: scrollIntoViewOptions=?) => unit =
+  "scrollIntoView"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/scroll)
 */
 @send
-external scroll: (htmlButtonElement, scrollToOptions) => unit = "scroll"
+external scroll: (htmlButtonElement, ~options: scrollToOptions=?) => unit = "scroll"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/scroll)
@@ -601,7 +603,7 @@ external scroll2: (htmlButtonElement, ~x: float, ~y: float) => unit = "scroll"
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/scrollTo)
 */
 @send
-external scrollTo: (htmlButtonElement, scrollToOptions) => unit = "scrollTo"
+external scrollTo: (htmlButtonElement, ~options: scrollToOptions=?) => unit = "scrollTo"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/scrollTo)
@@ -613,7 +615,7 @@ external scrollTo2: (htmlButtonElement, ~x: float, ~y: float) => unit = "scrollT
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/scrollBy)
 */
 @send
-external scrollBy: (htmlButtonElement, scrollToOptions) => unit = "scrollBy"
+external scrollBy: (htmlButtonElement, ~options: scrollToOptions=?) => unit = "scrollBy"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/scrollBy)
@@ -628,7 +630,7 @@ When supplied, options's navigationUI member indicates whether showing navigatio
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/requestFullscreen)
 */
 @send
-external requestFullscreen: (htmlButtonElement, fullscreenOptions) => Promise.t<unit> =
+external requestFullscreen: (htmlButtonElement, ~options: fullscreenOptions=?) => Promise.t<unit> =
   "requestFullscreen"
 
 /**
@@ -641,7 +643,7 @@ external setHTMLUnsafe: (htmlButtonElement, string) => unit = "setHTMLUnsafe"
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/getHTML)
 */
 @send
-external getHTML: (htmlButtonElement, getHTMLOptions) => string = "getHTML"
+external getHTML: (htmlButtonElement, ~options: getHTMLOptions=?) => string = "getHTML"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/insertAdjacentHTML)
@@ -675,8 +677,10 @@ external hasPointerCapture: (htmlButtonElement, int) => bool = "hasPointerCaptur
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/requestPointerLock)
 */
 @send
-external requestPointerLock: (htmlButtonElement, pointerLockOptions) => Promise.t<unit> =
-  "requestPointerLock"
+external requestPointerLock: (
+  htmlButtonElement,
+  ~options: pointerLockOptions=?,
+) => Promise.t<unit> = "requestPointerLock"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/click)
@@ -706,7 +710,7 @@ external hidePopover: htmlButtonElement => unit = "hidePopover"
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/togglePopover)
 */
 @send
-external togglePopover: (htmlButtonElement, bool) => bool = "togglePopover"
+external togglePopover: (htmlButtonElement, ~force: bool=?) => bool = "togglePopover"
 
 /**
 Returns whether a form will validate when it is submitted, without having to submit it.

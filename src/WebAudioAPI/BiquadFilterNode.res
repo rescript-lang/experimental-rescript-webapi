@@ -5,7 +5,7 @@ open WebAudioAPI
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/BiquadFilterNode)
 */
 @new
-external make: (~context: baseAudioContext, ~options: biquadFilterOptions) => biquadFilterNode =
+external make: (~context: baseAudioContext, ~options: biquadFilterOptions=?) => biquadFilterNode =
   "BiquadFilterNode"
 
 /**
@@ -122,15 +122,15 @@ external dispatchEvent: (biquadFilterNode, event) => bool = "dispatchEvent"
 external connect: (
   biquadFilterNode,
   ~destinationNode: audioNode,
-  ~output: int,
-  ~input: int,
+  ~output: int=?,
+  ~input: int=?,
 ) => audioNode = "connect"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/AudioNode/connect)
 */
 @send
-external connect2: (biquadFilterNode, ~destinationParam: audioParam, ~output: int) => unit =
+external connect2: (biquadFilterNode, ~destinationParam: audioParam, ~output: int=?) => unit =
   "connect"
 
 /**

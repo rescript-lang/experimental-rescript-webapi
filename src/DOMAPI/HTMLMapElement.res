@@ -12,7 +12,7 @@ external make: unit => htmlMapElement = "HTMLMapElement"
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/focus)
 */
 @send
-external focus: (htmlMapElement, focusOptions) => unit = "focus"
+external focus: (htmlMapElement, ~options: focusOptions=?) => unit = "focus"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/blur)
@@ -153,13 +153,14 @@ external remove: htmlMapElement => unit = "remove"
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/animate)
 */
 @send
-external animate: (htmlMapElement, ~keyframes: any, ~options: unknown) => animation = "animate"
+external animate: (htmlMapElement, ~keyframes: any, ~options: unknown=?) => animation = "animate"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/getAnimations)
 */
 @send
-external getAnimations: (htmlMapElement, getAnimationsOptions) => array<animation> = "getAnimations"
+external getAnimations: (htmlMapElement, ~options: getAnimationsOptions=?) => array<animation> =
+  "getAnimations"
 
 /**
 Appends an event listener for events whose type attribute value is type. The callback argument sets the callback that will be invoked when the event is dispatched.
@@ -273,7 +274,7 @@ Returns node's root.
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/getRootNode)
 */
 @send
-external getRootNode: (htmlMapElement, getRootNodeOptions) => node = "getRootNode"
+external getRootNode: (htmlMapElement, ~options: getRootNodeOptions=?) => node = "getRootNode"
 
 /**
 Returns whether node has children.
@@ -294,7 +295,7 @@ Returns a copy of node. If deep is true, the copy also includes the node's desce
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/cloneNode)
 */
 @send
-external cloneNode: (htmlMapElement, bool) => node = "cloneNode"
+external cloneNode: (htmlMapElement, ~deep: bool=?) => node = "cloneNode"
 
 /**
 Returns whether node and otherNode have the same properties.
@@ -436,7 +437,7 @@ Returns true if qualifiedName is now present, and false otherwise.
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/toggleAttribute)
 */
 @send
-external toggleAttribute: (htmlMapElement, ~qualifiedName: string, ~force: bool) => bool =
+external toggleAttribute: (htmlMapElement, ~qualifiedName: string, ~force: bool=?) => bool =
   "toggleAttribute"
 
 /**
@@ -569,25 +570,26 @@ external getBoundingClientRect: htmlMapElement => domRect = "getBoundingClientRe
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/checkVisibility)
 */
 @send
-external checkVisibility: (htmlMapElement, checkVisibilityOptions) => bool = "checkVisibility"
+external checkVisibility: (htmlMapElement, ~options: checkVisibilityOptions=?) => bool =
+  "checkVisibility"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/scrollIntoView)
 */
 @send
-external scrollIntoView: (htmlMapElement, bool) => unit = "scrollIntoView"
+external scrollIntoView: (htmlMapElement, ~arg: bool=?) => unit = "scrollIntoView"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/scrollIntoView)
 */
 @send
-external scrollIntoView2: (htmlMapElement, scrollIntoViewOptions) => unit = "scrollIntoView"
+external scrollIntoView2: (htmlMapElement, ~arg: scrollIntoViewOptions=?) => unit = "scrollIntoView"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/scroll)
 */
 @send
-external scroll: (htmlMapElement, scrollToOptions) => unit = "scroll"
+external scroll: (htmlMapElement, ~options: scrollToOptions=?) => unit = "scroll"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/scroll)
@@ -599,7 +601,7 @@ external scroll2: (htmlMapElement, ~x: float, ~y: float) => unit = "scroll"
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/scrollTo)
 */
 @send
-external scrollTo: (htmlMapElement, scrollToOptions) => unit = "scrollTo"
+external scrollTo: (htmlMapElement, ~options: scrollToOptions=?) => unit = "scrollTo"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/scrollTo)
@@ -611,7 +613,7 @@ external scrollTo2: (htmlMapElement, ~x: float, ~y: float) => unit = "scrollTo"
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/scrollBy)
 */
 @send
-external scrollBy: (htmlMapElement, scrollToOptions) => unit = "scrollBy"
+external scrollBy: (htmlMapElement, ~options: scrollToOptions=?) => unit = "scrollBy"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/scrollBy)
@@ -626,7 +628,7 @@ When supplied, options's navigationUI member indicates whether showing navigatio
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/requestFullscreen)
 */
 @send
-external requestFullscreen: (htmlMapElement, fullscreenOptions) => Promise.t<unit> =
+external requestFullscreen: (htmlMapElement, ~options: fullscreenOptions=?) => Promise.t<unit> =
   "requestFullscreen"
 
 /**
@@ -639,7 +641,7 @@ external setHTMLUnsafe: (htmlMapElement, string) => unit = "setHTMLUnsafe"
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/getHTML)
 */
 @send
-external getHTML: (htmlMapElement, getHTMLOptions) => string = "getHTML"
+external getHTML: (htmlMapElement, ~options: getHTMLOptions=?) => string = "getHTML"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/insertAdjacentHTML)
@@ -670,7 +672,7 @@ external hasPointerCapture: (htmlMapElement, int) => bool = "hasPointerCapture"
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/requestPointerLock)
 */
 @send
-external requestPointerLock: (htmlMapElement, pointerLockOptions) => Promise.t<unit> =
+external requestPointerLock: (htmlMapElement, ~options: pointerLockOptions=?) => Promise.t<unit> =
   "requestPointerLock"
 
 /**
@@ -701,4 +703,4 @@ external hidePopover: htmlMapElement => unit = "hidePopover"
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/togglePopover)
 */
 @send
-external togglePopover: (htmlMapElement, bool) => bool = "togglePopover"
+external togglePopover: (htmlMapElement, ~force: bool=?) => bool = "togglePopover"

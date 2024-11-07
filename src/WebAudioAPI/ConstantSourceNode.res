@@ -5,8 +5,10 @@ open WebAudioAPI
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/ConstantSourceNode)
 */
 @new
-external make: (~context: baseAudioContext, ~options: constantSourceOptions) => constantSourceNode =
-  "ConstantSourceNode"
+external make: (
+  ~context: baseAudioContext,
+  ~options: constantSourceOptions=?,
+) => constantSourceNode = "ConstantSourceNode"
 
 /**
 Appends an event listener for events whose type attribute value is type. The callback argument sets the callback that will be invoked when the event is dispatched.
@@ -122,15 +124,15 @@ external dispatchEvent: (constantSourceNode, event) => bool = "dispatchEvent"
 external connect: (
   constantSourceNode,
   ~destinationNode: audioNode,
-  ~output: int,
-  ~input: int,
+  ~output: int=?,
+  ~input: int=?,
 ) => audioNode = "connect"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/AudioNode/connect)
 */
 @send
-external connect2: (constantSourceNode, ~destinationParam: audioParam, ~output: int) => unit =
+external connect2: (constantSourceNode, ~destinationParam: audioParam, ~output: int=?) => unit =
   "connect"
 
 /**
@@ -186,10 +188,10 @@ external disconnect7: (constantSourceNode, ~destinationParam: audioParam, ~outpu
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/AudioScheduledSourceNode/start)
 */
 @send
-external start: (constantSourceNode, float) => unit = "start"
+external start: (constantSourceNode, ~when_: float=?) => unit = "start"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/AudioScheduledSourceNode/stop)
 */
 @send
-external stop: (constantSourceNode, float) => unit = "stop"
+external stop: (constantSourceNode, ~when_: float=?) => unit = "stop"

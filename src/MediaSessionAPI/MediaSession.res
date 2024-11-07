@@ -14,4 +14,4 @@ external setActionHandler: (
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/MediaSession/setPositionState)
 */
 @send
-external setPositionState: (mediaSession, mediaPositionState) => unit = "setPositionState"
+external setPositionState: (mediaSession, ~state: mediaPositionState=?) => unit = "setPositionState"

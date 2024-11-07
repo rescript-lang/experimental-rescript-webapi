@@ -8,7 +8,7 @@ open WebMIDIAPI
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Navigator/setAppBadge)
 */
 @send
-external setAppBadge: (navigator, int) => Promise.t<unit> = "setAppBadge"
+external setAppBadge: (navigator, ~contents: int=?) => Promise.t<unit> = "setAppBadge"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Navigator/clearAppBadge)
@@ -27,7 +27,7 @@ external registerProtocolHandler: (navigator, ~scheme: string, ~url: string) => 
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Navigator/sendBeacon)
 */
 @send
-external sendBeacon: (navigator, ~url: string, ~data: bodyInit) => bool = "sendBeacon"
+external sendBeacon: (navigator, ~url: string, ~data: bodyInit=?) => bool = "sendBeacon"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Navigator/requestMediaKeySystemAccess)
@@ -55,16 +55,17 @@ external vibrate: (navigator, vibratePattern) => bool = "vibrate"
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Navigator/share)
 */
 @send
-external share: (navigator, shareData) => Promise.t<unit> = "share"
+external share: (navigator, ~data: shareData=?) => Promise.t<unit> = "share"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Navigator/canShare)
 */
 @send
-external canShare: (navigator, shareData) => bool = "canShare"
+external canShare: (navigator, ~data: shareData=?) => bool = "canShare"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Navigator/requestMIDIAccess)
 */
 @send
-external requestMIDIAccess: (navigator, midiOptions) => Promise.t<midiAccess> = "requestMIDIAccess"
+external requestMIDIAccess: (navigator, ~options: midiOptions=?) => Promise.t<midiAccess> =
+  "requestMIDIAccess"

@@ -7,7 +7,7 @@ open GamepadAPI
 external playEffect: (
   gamepadHapticActuator,
   ~type_: gamepadHapticEffectType,
-  ~params: gamepadEffectParameters,
+  ~params: gamepadEffectParameters=?,
 ) => Promise.t<gamepadHapticsResult> = "playEffect"
 
 /**

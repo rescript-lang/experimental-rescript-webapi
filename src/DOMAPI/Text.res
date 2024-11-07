@@ -5,7 +5,7 @@ open EventAPI
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Text)
 */
 @new
-external make: string => text = "Text"
+external make: (~data: string=?) => text = "Text"
 
 /**
 Inserts nodes just before node, while replacing strings in nodes with equivalent Text nodes.
@@ -170,7 +170,7 @@ Returns node's root.
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/getRootNode)
 */
 @send
-external getRootNode: (text, getRootNodeOptions) => node = "getRootNode"
+external getRootNode: (text, ~options: getRootNodeOptions=?) => node = "getRootNode"
 
 /**
 Returns whether node has children.
@@ -191,7 +191,7 @@ Returns a copy of node. If deep is true, the copy also includes the node's desce
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/cloneNode)
 */
 @send
-external cloneNode: (text, bool) => node = "cloneNode"
+external cloneNode: (text, ~deep: bool=?) => node = "cloneNode"
 
 /**
 Returns whether node and otherNode have the same properties.

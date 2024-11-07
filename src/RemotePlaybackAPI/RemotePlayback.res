@@ -119,7 +119,7 @@ external watchAvailability: (remotePlayback, remotePlaybackAvailabilityCallback)
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/RemotePlayback/cancelWatchAvailability)
 */
 @send
-external cancelWatchAvailability: (remotePlayback, int) => Promise.t<unit> =
+external cancelWatchAvailability: (remotePlayback, ~id: int=?) => Promise.t<unit> =
   "cancelWatchAvailability"
 
 /**

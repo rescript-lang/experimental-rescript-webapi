@@ -12,7 +12,7 @@ external make: unit => htmlOutputElement = "HTMLOutputElement"
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/focus)
 */
 @send
-external focus: (htmlOutputElement, focusOptions) => unit = "focus"
+external focus: (htmlOutputElement, ~options: focusOptions=?) => unit = "focus"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/blur)
@@ -153,13 +153,13 @@ external remove: htmlOutputElement => unit = "remove"
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/animate)
 */
 @send
-external animate: (htmlOutputElement, ~keyframes: any, ~options: unknown) => animation = "animate"
+external animate: (htmlOutputElement, ~keyframes: any, ~options: unknown=?) => animation = "animate"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/getAnimations)
 */
 @send
-external getAnimations: (htmlOutputElement, getAnimationsOptions) => array<animation> =
+external getAnimations: (htmlOutputElement, ~options: getAnimationsOptions=?) => array<animation> =
   "getAnimations"
 
 /**
@@ -274,7 +274,7 @@ Returns node's root.
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/getRootNode)
 */
 @send
-external getRootNode: (htmlOutputElement, getRootNodeOptions) => node = "getRootNode"
+external getRootNode: (htmlOutputElement, ~options: getRootNodeOptions=?) => node = "getRootNode"
 
 /**
 Returns whether node has children.
@@ -295,7 +295,7 @@ Returns a copy of node. If deep is true, the copy also includes the node's desce
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/cloneNode)
 */
 @send
-external cloneNode: (htmlOutputElement, bool) => node = "cloneNode"
+external cloneNode: (htmlOutputElement, ~deep: bool=?) => node = "cloneNode"
 
 /**
 Returns whether node and otherNode have the same properties.
@@ -437,7 +437,7 @@ Returns true if qualifiedName is now present, and false otherwise.
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/toggleAttribute)
 */
 @send
-external toggleAttribute: (htmlOutputElement, ~qualifiedName: string, ~force: bool) => bool =
+external toggleAttribute: (htmlOutputElement, ~qualifiedName: string, ~force: bool=?) => bool =
   "toggleAttribute"
 
 /**
@@ -571,25 +571,27 @@ external getBoundingClientRect: htmlOutputElement => domRect = "getBoundingClien
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/checkVisibility)
 */
 @send
-external checkVisibility: (htmlOutputElement, checkVisibilityOptions) => bool = "checkVisibility"
+external checkVisibility: (htmlOutputElement, ~options: checkVisibilityOptions=?) => bool =
+  "checkVisibility"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/scrollIntoView)
 */
 @send
-external scrollIntoView: (htmlOutputElement, bool) => unit = "scrollIntoView"
+external scrollIntoView: (htmlOutputElement, ~arg: bool=?) => unit = "scrollIntoView"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/scrollIntoView)
 */
 @send
-external scrollIntoView2: (htmlOutputElement, scrollIntoViewOptions) => unit = "scrollIntoView"
+external scrollIntoView2: (htmlOutputElement, ~arg: scrollIntoViewOptions=?) => unit =
+  "scrollIntoView"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/scroll)
 */
 @send
-external scroll: (htmlOutputElement, scrollToOptions) => unit = "scroll"
+external scroll: (htmlOutputElement, ~options: scrollToOptions=?) => unit = "scroll"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/scroll)
@@ -601,7 +603,7 @@ external scroll2: (htmlOutputElement, ~x: float, ~y: float) => unit = "scroll"
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/scrollTo)
 */
 @send
-external scrollTo: (htmlOutputElement, scrollToOptions) => unit = "scrollTo"
+external scrollTo: (htmlOutputElement, ~options: scrollToOptions=?) => unit = "scrollTo"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/scrollTo)
@@ -613,7 +615,7 @@ external scrollTo2: (htmlOutputElement, ~x: float, ~y: float) => unit = "scrollT
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/scrollBy)
 */
 @send
-external scrollBy: (htmlOutputElement, scrollToOptions) => unit = "scrollBy"
+external scrollBy: (htmlOutputElement, ~options: scrollToOptions=?) => unit = "scrollBy"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/scrollBy)
@@ -628,7 +630,7 @@ When supplied, options's navigationUI member indicates whether showing navigatio
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/requestFullscreen)
 */
 @send
-external requestFullscreen: (htmlOutputElement, fullscreenOptions) => Promise.t<unit> =
+external requestFullscreen: (htmlOutputElement, ~options: fullscreenOptions=?) => Promise.t<unit> =
   "requestFullscreen"
 
 /**
@@ -641,7 +643,7 @@ external setHTMLUnsafe: (htmlOutputElement, string) => unit = "setHTMLUnsafe"
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/getHTML)
 */
 @send
-external getHTML: (htmlOutputElement, getHTMLOptions) => string = "getHTML"
+external getHTML: (htmlOutputElement, ~options: getHTMLOptions=?) => string = "getHTML"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/insertAdjacentHTML)
@@ -675,8 +677,10 @@ external hasPointerCapture: (htmlOutputElement, int) => bool = "hasPointerCaptur
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/requestPointerLock)
 */
 @send
-external requestPointerLock: (htmlOutputElement, pointerLockOptions) => Promise.t<unit> =
-  "requestPointerLock"
+external requestPointerLock: (
+  htmlOutputElement,
+  ~options: pointerLockOptions=?,
+) => Promise.t<unit> = "requestPointerLock"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/click)
@@ -706,7 +710,7 @@ external hidePopover: htmlOutputElement => unit = "hidePopover"
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/togglePopover)
 */
 @send
-external togglePopover: (htmlOutputElement, bool) => bool = "togglePopover"
+external togglePopover: (htmlOutputElement, ~force: bool=?) => bool = "togglePopover"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLOutputElement/checkValidity)

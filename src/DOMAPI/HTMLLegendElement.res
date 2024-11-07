@@ -12,7 +12,7 @@ external make: unit => htmlLegendElement = "HTMLLegendElement"
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/focus)
 */
 @send
-external focus: (htmlLegendElement, focusOptions) => unit = "focus"
+external focus: (htmlLegendElement, ~options: focusOptions=?) => unit = "focus"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/blur)
@@ -153,13 +153,13 @@ external remove: htmlLegendElement => unit = "remove"
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/animate)
 */
 @send
-external animate: (htmlLegendElement, ~keyframes: any, ~options: unknown) => animation = "animate"
+external animate: (htmlLegendElement, ~keyframes: any, ~options: unknown=?) => animation = "animate"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/getAnimations)
 */
 @send
-external getAnimations: (htmlLegendElement, getAnimationsOptions) => array<animation> =
+external getAnimations: (htmlLegendElement, ~options: getAnimationsOptions=?) => array<animation> =
   "getAnimations"
 
 /**
@@ -274,7 +274,7 @@ Returns node's root.
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/getRootNode)
 */
 @send
-external getRootNode: (htmlLegendElement, getRootNodeOptions) => node = "getRootNode"
+external getRootNode: (htmlLegendElement, ~options: getRootNodeOptions=?) => node = "getRootNode"
 
 /**
 Returns whether node has children.
@@ -295,7 +295,7 @@ Returns a copy of node. If deep is true, the copy also includes the node's desce
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/cloneNode)
 */
 @send
-external cloneNode: (htmlLegendElement, bool) => node = "cloneNode"
+external cloneNode: (htmlLegendElement, ~deep: bool=?) => node = "cloneNode"
 
 /**
 Returns whether node and otherNode have the same properties.
@@ -437,7 +437,7 @@ Returns true if qualifiedName is now present, and false otherwise.
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/toggleAttribute)
 */
 @send
-external toggleAttribute: (htmlLegendElement, ~qualifiedName: string, ~force: bool) => bool =
+external toggleAttribute: (htmlLegendElement, ~qualifiedName: string, ~force: bool=?) => bool =
   "toggleAttribute"
 
 /**
@@ -571,25 +571,27 @@ external getBoundingClientRect: htmlLegendElement => domRect = "getBoundingClien
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/checkVisibility)
 */
 @send
-external checkVisibility: (htmlLegendElement, checkVisibilityOptions) => bool = "checkVisibility"
+external checkVisibility: (htmlLegendElement, ~options: checkVisibilityOptions=?) => bool =
+  "checkVisibility"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/scrollIntoView)
 */
 @send
-external scrollIntoView: (htmlLegendElement, bool) => unit = "scrollIntoView"
+external scrollIntoView: (htmlLegendElement, ~arg: bool=?) => unit = "scrollIntoView"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/scrollIntoView)
 */
 @send
-external scrollIntoView2: (htmlLegendElement, scrollIntoViewOptions) => unit = "scrollIntoView"
+external scrollIntoView2: (htmlLegendElement, ~arg: scrollIntoViewOptions=?) => unit =
+  "scrollIntoView"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/scroll)
 */
 @send
-external scroll: (htmlLegendElement, scrollToOptions) => unit = "scroll"
+external scroll: (htmlLegendElement, ~options: scrollToOptions=?) => unit = "scroll"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/scroll)
@@ -601,7 +603,7 @@ external scroll2: (htmlLegendElement, ~x: float, ~y: float) => unit = "scroll"
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/scrollTo)
 */
 @send
-external scrollTo: (htmlLegendElement, scrollToOptions) => unit = "scrollTo"
+external scrollTo: (htmlLegendElement, ~options: scrollToOptions=?) => unit = "scrollTo"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/scrollTo)
@@ -613,7 +615,7 @@ external scrollTo2: (htmlLegendElement, ~x: float, ~y: float) => unit = "scrollT
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/scrollBy)
 */
 @send
-external scrollBy: (htmlLegendElement, scrollToOptions) => unit = "scrollBy"
+external scrollBy: (htmlLegendElement, ~options: scrollToOptions=?) => unit = "scrollBy"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/scrollBy)
@@ -628,7 +630,7 @@ When supplied, options's navigationUI member indicates whether showing navigatio
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/requestFullscreen)
 */
 @send
-external requestFullscreen: (htmlLegendElement, fullscreenOptions) => Promise.t<unit> =
+external requestFullscreen: (htmlLegendElement, ~options: fullscreenOptions=?) => Promise.t<unit> =
   "requestFullscreen"
 
 /**
@@ -641,7 +643,7 @@ external setHTMLUnsafe: (htmlLegendElement, string) => unit = "setHTMLUnsafe"
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/getHTML)
 */
 @send
-external getHTML: (htmlLegendElement, getHTMLOptions) => string = "getHTML"
+external getHTML: (htmlLegendElement, ~options: getHTMLOptions=?) => string = "getHTML"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/insertAdjacentHTML)
@@ -675,8 +677,10 @@ external hasPointerCapture: (htmlLegendElement, int) => bool = "hasPointerCaptur
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/requestPointerLock)
 */
 @send
-external requestPointerLock: (htmlLegendElement, pointerLockOptions) => Promise.t<unit> =
-  "requestPointerLock"
+external requestPointerLock: (
+  htmlLegendElement,
+  ~options: pointerLockOptions=?,
+) => Promise.t<unit> = "requestPointerLock"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/click)
@@ -706,4 +710,4 @@ external hidePopover: htmlLegendElement => unit = "hidePopover"
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/togglePopover)
 */
 @send
-external togglePopover: (htmlLegendElement, bool) => bool = "togglePopover"
+external togglePopover: (htmlLegendElement, ~force: bool=?) => bool = "togglePopover"

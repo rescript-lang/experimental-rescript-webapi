@@ -12,7 +12,7 @@ external make: unit => htmlTrackElement = "HTMLTrackElement"
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/focus)
 */
 @send
-external focus: (htmlTrackElement, focusOptions) => unit = "focus"
+external focus: (htmlTrackElement, ~options: focusOptions=?) => unit = "focus"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/blur)
@@ -153,13 +153,13 @@ external remove: htmlTrackElement => unit = "remove"
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/animate)
 */
 @send
-external animate: (htmlTrackElement, ~keyframes: any, ~options: unknown) => animation = "animate"
+external animate: (htmlTrackElement, ~keyframes: any, ~options: unknown=?) => animation = "animate"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/getAnimations)
 */
 @send
-external getAnimations: (htmlTrackElement, getAnimationsOptions) => array<animation> =
+external getAnimations: (htmlTrackElement, ~options: getAnimationsOptions=?) => array<animation> =
   "getAnimations"
 
 /**
@@ -274,7 +274,7 @@ Returns node's root.
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/getRootNode)
 */
 @send
-external getRootNode: (htmlTrackElement, getRootNodeOptions) => node = "getRootNode"
+external getRootNode: (htmlTrackElement, ~options: getRootNodeOptions=?) => node = "getRootNode"
 
 /**
 Returns whether node has children.
@@ -295,7 +295,7 @@ Returns a copy of node. If deep is true, the copy also includes the node's desce
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/cloneNode)
 */
 @send
-external cloneNode: (htmlTrackElement, bool) => node = "cloneNode"
+external cloneNode: (htmlTrackElement, ~deep: bool=?) => node = "cloneNode"
 
 /**
 Returns whether node and otherNode have the same properties.
@@ -437,7 +437,7 @@ Returns true if qualifiedName is now present, and false otherwise.
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/toggleAttribute)
 */
 @send
-external toggleAttribute: (htmlTrackElement, ~qualifiedName: string, ~force: bool) => bool =
+external toggleAttribute: (htmlTrackElement, ~qualifiedName: string, ~force: bool=?) => bool =
   "toggleAttribute"
 
 /**
@@ -570,25 +570,27 @@ external getBoundingClientRect: htmlTrackElement => domRect = "getBoundingClient
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/checkVisibility)
 */
 @send
-external checkVisibility: (htmlTrackElement, checkVisibilityOptions) => bool = "checkVisibility"
+external checkVisibility: (htmlTrackElement, ~options: checkVisibilityOptions=?) => bool =
+  "checkVisibility"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/scrollIntoView)
 */
 @send
-external scrollIntoView: (htmlTrackElement, bool) => unit = "scrollIntoView"
+external scrollIntoView: (htmlTrackElement, ~arg: bool=?) => unit = "scrollIntoView"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/scrollIntoView)
 */
 @send
-external scrollIntoView2: (htmlTrackElement, scrollIntoViewOptions) => unit = "scrollIntoView"
+external scrollIntoView2: (htmlTrackElement, ~arg: scrollIntoViewOptions=?) => unit =
+  "scrollIntoView"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/scroll)
 */
 @send
-external scroll: (htmlTrackElement, scrollToOptions) => unit = "scroll"
+external scroll: (htmlTrackElement, ~options: scrollToOptions=?) => unit = "scroll"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/scroll)
@@ -600,7 +602,7 @@ external scroll2: (htmlTrackElement, ~x: float, ~y: float) => unit = "scroll"
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/scrollTo)
 */
 @send
-external scrollTo: (htmlTrackElement, scrollToOptions) => unit = "scrollTo"
+external scrollTo: (htmlTrackElement, ~options: scrollToOptions=?) => unit = "scrollTo"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/scrollTo)
@@ -612,7 +614,7 @@ external scrollTo2: (htmlTrackElement, ~x: float, ~y: float) => unit = "scrollTo
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/scrollBy)
 */
 @send
-external scrollBy: (htmlTrackElement, scrollToOptions) => unit = "scrollBy"
+external scrollBy: (htmlTrackElement, ~options: scrollToOptions=?) => unit = "scrollBy"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/scrollBy)
@@ -627,7 +629,7 @@ When supplied, options's navigationUI member indicates whether showing navigatio
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/requestFullscreen)
 */
 @send
-external requestFullscreen: (htmlTrackElement, fullscreenOptions) => Promise.t<unit> =
+external requestFullscreen: (htmlTrackElement, ~options: fullscreenOptions=?) => Promise.t<unit> =
   "requestFullscreen"
 
 /**
@@ -640,7 +642,7 @@ external setHTMLUnsafe: (htmlTrackElement, string) => unit = "setHTMLUnsafe"
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/getHTML)
 */
 @send
-external getHTML: (htmlTrackElement, getHTMLOptions) => string = "getHTML"
+external getHTML: (htmlTrackElement, ~options: getHTMLOptions=?) => string = "getHTML"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/insertAdjacentHTML)
@@ -674,7 +676,7 @@ external hasPointerCapture: (htmlTrackElement, int) => bool = "hasPointerCapture
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/requestPointerLock)
 */
 @send
-external requestPointerLock: (htmlTrackElement, pointerLockOptions) => Promise.t<unit> =
+external requestPointerLock: (htmlTrackElement, ~options: pointerLockOptions=?) => Promise.t<unit> =
   "requestPointerLock"
 
 /**
@@ -705,4 +707,4 @@ external hidePopover: htmlTrackElement => unit = "hidePopover"
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/togglePopover)
 */
 @send
-external togglePopover: (htmlTrackElement, bool) => bool = "togglePopover"
+external togglePopover: (htmlTrackElement, ~force: bool=?) => bool = "togglePopover"

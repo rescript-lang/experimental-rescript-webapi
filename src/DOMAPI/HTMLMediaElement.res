@@ -8,7 +8,7 @@ open EncryptedMediaExtensionsAPI
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/focus)
 */
 @send
-external focus: (htmlMediaElement, focusOptions) => unit = "focus"
+external focus: (htmlMediaElement, ~options: focusOptions=?) => unit = "focus"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/blur)
@@ -149,13 +149,13 @@ external remove: htmlMediaElement => unit = "remove"
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/animate)
 */
 @send
-external animate: (htmlMediaElement, ~keyframes: any, ~options: unknown) => animation = "animate"
+external animate: (htmlMediaElement, ~keyframes: any, ~options: unknown=?) => animation = "animate"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/getAnimations)
 */
 @send
-external getAnimations: (htmlMediaElement, getAnimationsOptions) => array<animation> =
+external getAnimations: (htmlMediaElement, ~options: getAnimationsOptions=?) => array<animation> =
   "getAnimations"
 
 /**
@@ -270,7 +270,7 @@ Returns node's root.
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/getRootNode)
 */
 @send
-external getRootNode: (htmlMediaElement, getRootNodeOptions) => node = "getRootNode"
+external getRootNode: (htmlMediaElement, ~options: getRootNodeOptions=?) => node = "getRootNode"
 
 /**
 Returns whether node has children.
@@ -291,7 +291,7 @@ Returns a copy of node. If deep is true, the copy also includes the node's desce
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/cloneNode)
 */
 @send
-external cloneNode: (htmlMediaElement, bool) => node = "cloneNode"
+external cloneNode: (htmlMediaElement, ~deep: bool=?) => node = "cloneNode"
 
 /**
 Returns whether node and otherNode have the same properties.
@@ -433,7 +433,7 @@ Returns true if qualifiedName is now present, and false otherwise.
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/toggleAttribute)
 */
 @send
-external toggleAttribute: (htmlMediaElement, ~qualifiedName: string, ~force: bool) => bool =
+external toggleAttribute: (htmlMediaElement, ~qualifiedName: string, ~force: bool=?) => bool =
   "toggleAttribute"
 
 /**
@@ -566,25 +566,27 @@ external getBoundingClientRect: htmlMediaElement => domRect = "getBoundingClient
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/checkVisibility)
 */
 @send
-external checkVisibility: (htmlMediaElement, checkVisibilityOptions) => bool = "checkVisibility"
+external checkVisibility: (htmlMediaElement, ~options: checkVisibilityOptions=?) => bool =
+  "checkVisibility"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/scrollIntoView)
 */
 @send
-external scrollIntoView: (htmlMediaElement, bool) => unit = "scrollIntoView"
+external scrollIntoView: (htmlMediaElement, ~arg: bool=?) => unit = "scrollIntoView"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/scrollIntoView)
 */
 @send
-external scrollIntoView2: (htmlMediaElement, scrollIntoViewOptions) => unit = "scrollIntoView"
+external scrollIntoView2: (htmlMediaElement, ~arg: scrollIntoViewOptions=?) => unit =
+  "scrollIntoView"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/scroll)
 */
 @send
-external scroll: (htmlMediaElement, scrollToOptions) => unit = "scroll"
+external scroll: (htmlMediaElement, ~options: scrollToOptions=?) => unit = "scroll"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/scroll)
@@ -596,7 +598,7 @@ external scroll2: (htmlMediaElement, ~x: float, ~y: float) => unit = "scroll"
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/scrollTo)
 */
 @send
-external scrollTo: (htmlMediaElement, scrollToOptions) => unit = "scrollTo"
+external scrollTo: (htmlMediaElement, ~options: scrollToOptions=?) => unit = "scrollTo"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/scrollTo)
@@ -608,7 +610,7 @@ external scrollTo2: (htmlMediaElement, ~x: float, ~y: float) => unit = "scrollTo
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/scrollBy)
 */
 @send
-external scrollBy: (htmlMediaElement, scrollToOptions) => unit = "scrollBy"
+external scrollBy: (htmlMediaElement, ~options: scrollToOptions=?) => unit = "scrollBy"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/scrollBy)
@@ -623,7 +625,7 @@ When supplied, options's navigationUI member indicates whether showing navigatio
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/requestFullscreen)
 */
 @send
-external requestFullscreen: (htmlMediaElement, fullscreenOptions) => Promise.t<unit> =
+external requestFullscreen: (htmlMediaElement, ~options: fullscreenOptions=?) => Promise.t<unit> =
   "requestFullscreen"
 
 /**
@@ -636,7 +638,7 @@ external setHTMLUnsafe: (htmlMediaElement, string) => unit = "setHTMLUnsafe"
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/getHTML)
 */
 @send
-external getHTML: (htmlMediaElement, getHTMLOptions) => string = "getHTML"
+external getHTML: (htmlMediaElement, ~options: getHTMLOptions=?) => string = "getHTML"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/insertAdjacentHTML)
@@ -670,7 +672,7 @@ external hasPointerCapture: (htmlMediaElement, int) => bool = "hasPointerCapture
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/requestPointerLock)
 */
 @send
-external requestPointerLock: (htmlMediaElement, pointerLockOptions) => Promise.t<unit> =
+external requestPointerLock: (htmlMediaElement, ~options: pointerLockOptions=?) => Promise.t<unit> =
   "requestPointerLock"
 
 /**
@@ -701,7 +703,7 @@ external hidePopover: htmlMediaElement => unit = "hidePopover"
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/togglePopover)
 */
 @send
-external togglePopover: (htmlMediaElement, bool) => bool = "togglePopover"
+external togglePopover: (htmlMediaElement, ~force: bool=?) => bool = "togglePopover"
 
 /**
 Resets the audio or video object and loads a new media resource.
@@ -744,8 +746,8 @@ external pause: htmlMediaElement => unit = "pause"
 external addTextTrack: (
   htmlMediaElement,
   ~kind: textTrackKind,
-  ~label: string,
-  ~language: string,
+  ~label: string=?,
+  ~language: string=?,
 ) => textTrack = "addTextTrack"
 
 /**

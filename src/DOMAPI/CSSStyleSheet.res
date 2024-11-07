@@ -4,13 +4,13 @@ open DOMAPI
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CSSStyleSheet)
 */
 @new
-external make: cssStyleSheetInit => cssStyleSheet = "CSSStyleSheet"
+external make: (~options: cssStyleSheetInit=?) => cssStyleSheet = "CSSStyleSheet"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CSSStyleSheet/insertRule)
 */
 @send
-external insertRule: (cssStyleSheet, ~rule: string, ~index: int) => int = "insertRule"
+external insertRule: (cssStyleSheet, ~rule: string, ~index: int=?) => int = "insertRule"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CSSStyleSheet/deleteRule)

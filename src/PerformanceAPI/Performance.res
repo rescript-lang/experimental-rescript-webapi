@@ -136,7 +136,7 @@ external getEntriesByType: (performance, string) => performanceEntryList = "getE
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Performance/getEntriesByName)
 */
 @send
-external getEntriesByName: (performance, ~name: string, ~type_: string) => performanceEntryList =
+external getEntriesByName: (performance, ~name: string, ~type_: string=?) => performanceEntryList =
   "getEntriesByName"
 
 /**
@@ -158,14 +158,14 @@ external setResourceTimingBufferSize: (performance, int) => unit = "setResourceT
 external mark: (
   performance,
   ~markName: string,
-  ~markOptions: performanceMarkOptions,
+  ~markOptions: performanceMarkOptions=?,
 ) => performanceMark = "mark"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Performance/clearMarks)
 */
 @send
-external clearMarks: (performance, string) => unit = "clearMarks"
+external clearMarks: (performance, ~markName: string=?) => unit = "clearMarks"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Performance/measure)
@@ -174,12 +174,12 @@ external clearMarks: (performance, string) => unit = "clearMarks"
 external measure: (
   performance,
   ~measureName: string,
-  ~startOrMeasureOptions: unknown,
-  ~endMark: string,
+  ~startOrMeasureOptions: unknown=?,
+  ~endMark: string=?,
 ) => performanceMeasure = "measure"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Performance/clearMeasures)
 */
 @send
-external clearMeasures: (performance, string) => unit = "clearMeasures"
+external clearMeasures: (performance, ~measureName: string=?) => unit = "clearMeasures"

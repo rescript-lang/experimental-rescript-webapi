@@ -12,7 +12,7 @@ external make: unit => htmlDataElement = "HTMLDataElement"
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/focus)
 */
 @send
-external focus: (htmlDataElement, focusOptions) => unit = "focus"
+external focus: (htmlDataElement, ~options: focusOptions=?) => unit = "focus"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/blur)
@@ -153,13 +153,13 @@ external remove: htmlDataElement => unit = "remove"
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/animate)
 */
 @send
-external animate: (htmlDataElement, ~keyframes: any, ~options: unknown) => animation = "animate"
+external animate: (htmlDataElement, ~keyframes: any, ~options: unknown=?) => animation = "animate"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/getAnimations)
 */
 @send
-external getAnimations: (htmlDataElement, getAnimationsOptions) => array<animation> =
+external getAnimations: (htmlDataElement, ~options: getAnimationsOptions=?) => array<animation> =
   "getAnimations"
 
 /**
@@ -274,7 +274,7 @@ Returns node's root.
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/getRootNode)
 */
 @send
-external getRootNode: (htmlDataElement, getRootNodeOptions) => node = "getRootNode"
+external getRootNode: (htmlDataElement, ~options: getRootNodeOptions=?) => node = "getRootNode"
 
 /**
 Returns whether node has children.
@@ -295,7 +295,7 @@ Returns a copy of node. If deep is true, the copy also includes the node's desce
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/cloneNode)
 */
 @send
-external cloneNode: (htmlDataElement, bool) => node = "cloneNode"
+external cloneNode: (htmlDataElement, ~deep: bool=?) => node = "cloneNode"
 
 /**
 Returns whether node and otherNode have the same properties.
@@ -437,7 +437,7 @@ Returns true if qualifiedName is now present, and false otherwise.
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/toggleAttribute)
 */
 @send
-external toggleAttribute: (htmlDataElement, ~qualifiedName: string, ~force: bool) => bool =
+external toggleAttribute: (htmlDataElement, ~qualifiedName: string, ~force: bool=?) => bool =
   "toggleAttribute"
 
 /**
@@ -570,25 +570,27 @@ external getBoundingClientRect: htmlDataElement => domRect = "getBoundingClientR
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/checkVisibility)
 */
 @send
-external checkVisibility: (htmlDataElement, checkVisibilityOptions) => bool = "checkVisibility"
+external checkVisibility: (htmlDataElement, ~options: checkVisibilityOptions=?) => bool =
+  "checkVisibility"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/scrollIntoView)
 */
 @send
-external scrollIntoView: (htmlDataElement, bool) => unit = "scrollIntoView"
+external scrollIntoView: (htmlDataElement, ~arg: bool=?) => unit = "scrollIntoView"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/scrollIntoView)
 */
 @send
-external scrollIntoView2: (htmlDataElement, scrollIntoViewOptions) => unit = "scrollIntoView"
+external scrollIntoView2: (htmlDataElement, ~arg: scrollIntoViewOptions=?) => unit =
+  "scrollIntoView"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/scroll)
 */
 @send
-external scroll: (htmlDataElement, scrollToOptions) => unit = "scroll"
+external scroll: (htmlDataElement, ~options: scrollToOptions=?) => unit = "scroll"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/scroll)
@@ -600,7 +602,7 @@ external scroll2: (htmlDataElement, ~x: float, ~y: float) => unit = "scroll"
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/scrollTo)
 */
 @send
-external scrollTo: (htmlDataElement, scrollToOptions) => unit = "scrollTo"
+external scrollTo: (htmlDataElement, ~options: scrollToOptions=?) => unit = "scrollTo"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/scrollTo)
@@ -612,7 +614,7 @@ external scrollTo2: (htmlDataElement, ~x: float, ~y: float) => unit = "scrollTo"
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/scrollBy)
 */
 @send
-external scrollBy: (htmlDataElement, scrollToOptions) => unit = "scrollBy"
+external scrollBy: (htmlDataElement, ~options: scrollToOptions=?) => unit = "scrollBy"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/scrollBy)
@@ -627,7 +629,7 @@ When supplied, options's navigationUI member indicates whether showing navigatio
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/requestFullscreen)
 */
 @send
-external requestFullscreen: (htmlDataElement, fullscreenOptions) => Promise.t<unit> =
+external requestFullscreen: (htmlDataElement, ~options: fullscreenOptions=?) => Promise.t<unit> =
   "requestFullscreen"
 
 /**
@@ -640,7 +642,7 @@ external setHTMLUnsafe: (htmlDataElement, string) => unit = "setHTMLUnsafe"
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/getHTML)
 */
 @send
-external getHTML: (htmlDataElement, getHTMLOptions) => string = "getHTML"
+external getHTML: (htmlDataElement, ~options: getHTMLOptions=?) => string = "getHTML"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/insertAdjacentHTML)
@@ -671,7 +673,7 @@ external hasPointerCapture: (htmlDataElement, int) => bool = "hasPointerCapture"
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/requestPointerLock)
 */
 @send
-external requestPointerLock: (htmlDataElement, pointerLockOptions) => Promise.t<unit> =
+external requestPointerLock: (htmlDataElement, ~options: pointerLockOptions=?) => Promise.t<unit> =
   "requestPointerLock"
 
 /**
@@ -702,4 +704,4 @@ external hidePopover: htmlDataElement => unit = "hidePopover"
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/togglePopover)
 */
 @send
-external togglePopover: (htmlDataElement, bool) => bool = "togglePopover"
+external togglePopover: (htmlDataElement, ~force: bool=?) => bool = "togglePopover"

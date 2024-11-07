@@ -12,7 +12,7 @@ external make: unit => htmlEmbedElement = "HTMLEmbedElement"
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/focus)
 */
 @send
-external focus: (htmlEmbedElement, focusOptions) => unit = "focus"
+external focus: (htmlEmbedElement, ~options: focusOptions=?) => unit = "focus"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/blur)
@@ -153,13 +153,13 @@ external remove: htmlEmbedElement => unit = "remove"
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/animate)
 */
 @send
-external animate: (htmlEmbedElement, ~keyframes: any, ~options: unknown) => animation = "animate"
+external animate: (htmlEmbedElement, ~keyframes: any, ~options: unknown=?) => animation = "animate"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/getAnimations)
 */
 @send
-external getAnimations: (htmlEmbedElement, getAnimationsOptions) => array<animation> =
+external getAnimations: (htmlEmbedElement, ~options: getAnimationsOptions=?) => array<animation> =
   "getAnimations"
 
 /**
@@ -274,7 +274,7 @@ Returns node's root.
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/getRootNode)
 */
 @send
-external getRootNode: (htmlEmbedElement, getRootNodeOptions) => node = "getRootNode"
+external getRootNode: (htmlEmbedElement, ~options: getRootNodeOptions=?) => node = "getRootNode"
 
 /**
 Returns whether node has children.
@@ -295,7 +295,7 @@ Returns a copy of node. If deep is true, the copy also includes the node's desce
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/cloneNode)
 */
 @send
-external cloneNode: (htmlEmbedElement, bool) => node = "cloneNode"
+external cloneNode: (htmlEmbedElement, ~deep: bool=?) => node = "cloneNode"
 
 /**
 Returns whether node and otherNode have the same properties.
@@ -437,7 +437,7 @@ Returns true if qualifiedName is now present, and false otherwise.
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/toggleAttribute)
 */
 @send
-external toggleAttribute: (htmlEmbedElement, ~qualifiedName: string, ~force: bool) => bool =
+external toggleAttribute: (htmlEmbedElement, ~qualifiedName: string, ~force: bool=?) => bool =
   "toggleAttribute"
 
 /**
@@ -570,25 +570,27 @@ external getBoundingClientRect: htmlEmbedElement => domRect = "getBoundingClient
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/checkVisibility)
 */
 @send
-external checkVisibility: (htmlEmbedElement, checkVisibilityOptions) => bool = "checkVisibility"
+external checkVisibility: (htmlEmbedElement, ~options: checkVisibilityOptions=?) => bool =
+  "checkVisibility"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/scrollIntoView)
 */
 @send
-external scrollIntoView: (htmlEmbedElement, bool) => unit = "scrollIntoView"
+external scrollIntoView: (htmlEmbedElement, ~arg: bool=?) => unit = "scrollIntoView"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/scrollIntoView)
 */
 @send
-external scrollIntoView2: (htmlEmbedElement, scrollIntoViewOptions) => unit = "scrollIntoView"
+external scrollIntoView2: (htmlEmbedElement, ~arg: scrollIntoViewOptions=?) => unit =
+  "scrollIntoView"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/scroll)
 */
 @send
-external scroll: (htmlEmbedElement, scrollToOptions) => unit = "scroll"
+external scroll: (htmlEmbedElement, ~options: scrollToOptions=?) => unit = "scroll"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/scroll)
@@ -600,7 +602,7 @@ external scroll2: (htmlEmbedElement, ~x: float, ~y: float) => unit = "scroll"
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/scrollTo)
 */
 @send
-external scrollTo: (htmlEmbedElement, scrollToOptions) => unit = "scrollTo"
+external scrollTo: (htmlEmbedElement, ~options: scrollToOptions=?) => unit = "scrollTo"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/scrollTo)
@@ -612,7 +614,7 @@ external scrollTo2: (htmlEmbedElement, ~x: float, ~y: float) => unit = "scrollTo
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/scrollBy)
 */
 @send
-external scrollBy: (htmlEmbedElement, scrollToOptions) => unit = "scrollBy"
+external scrollBy: (htmlEmbedElement, ~options: scrollToOptions=?) => unit = "scrollBy"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/scrollBy)
@@ -627,7 +629,7 @@ When supplied, options's navigationUI member indicates whether showing navigatio
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/requestFullscreen)
 */
 @send
-external requestFullscreen: (htmlEmbedElement, fullscreenOptions) => Promise.t<unit> =
+external requestFullscreen: (htmlEmbedElement, ~options: fullscreenOptions=?) => Promise.t<unit> =
   "requestFullscreen"
 
 /**
@@ -640,7 +642,7 @@ external setHTMLUnsafe: (htmlEmbedElement, string) => unit = "setHTMLUnsafe"
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/getHTML)
 */
 @send
-external getHTML: (htmlEmbedElement, getHTMLOptions) => string = "getHTML"
+external getHTML: (htmlEmbedElement, ~options: getHTMLOptions=?) => string = "getHTML"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/insertAdjacentHTML)
@@ -674,7 +676,7 @@ external hasPointerCapture: (htmlEmbedElement, int) => bool = "hasPointerCapture
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/requestPointerLock)
 */
 @send
-external requestPointerLock: (htmlEmbedElement, pointerLockOptions) => Promise.t<unit> =
+external requestPointerLock: (htmlEmbedElement, ~options: pointerLockOptions=?) => Promise.t<unit> =
   "requestPointerLock"
 
 /**
@@ -705,7 +707,7 @@ external hidePopover: htmlEmbedElement => unit = "hidePopover"
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/togglePopover)
 */
 @send
-external togglePopover: (htmlEmbedElement, bool) => bool = "togglePopover"
+external togglePopover: (htmlEmbedElement, ~force: bool=?) => bool = "togglePopover"
 
 @send
 external getSVGDocument: htmlEmbedElement => document = "getSVGDocument"

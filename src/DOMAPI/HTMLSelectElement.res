@@ -12,7 +12,7 @@ external make: unit => htmlSelectElement = "HTMLSelectElement"
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/focus)
 */
 @send
-external focus: (htmlSelectElement, focusOptions) => unit = "focus"
+external focus: (htmlSelectElement, ~options: focusOptions=?) => unit = "focus"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/blur)
@@ -162,13 +162,13 @@ external remove2: (htmlSelectElement, int) => unit = "remove"
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/animate)
 */
 @send
-external animate: (htmlSelectElement, ~keyframes: any, ~options: unknown) => animation = "animate"
+external animate: (htmlSelectElement, ~keyframes: any, ~options: unknown=?) => animation = "animate"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/getAnimations)
 */
 @send
-external getAnimations: (htmlSelectElement, getAnimationsOptions) => array<animation> =
+external getAnimations: (htmlSelectElement, ~options: getAnimationsOptions=?) => array<animation> =
   "getAnimations"
 
 /**
@@ -283,7 +283,7 @@ Returns node's root.
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/getRootNode)
 */
 @send
-external getRootNode: (htmlSelectElement, getRootNodeOptions) => node = "getRootNode"
+external getRootNode: (htmlSelectElement, ~options: getRootNodeOptions=?) => node = "getRootNode"
 
 /**
 Returns whether node has children.
@@ -304,7 +304,7 @@ Returns a copy of node. If deep is true, the copy also includes the node's desce
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/cloneNode)
 */
 @send
-external cloneNode: (htmlSelectElement, bool) => node = "cloneNode"
+external cloneNode: (htmlSelectElement, ~deep: bool=?) => node = "cloneNode"
 
 /**
 Returns whether node and otherNode have the same properties.
@@ -446,7 +446,7 @@ Returns true if qualifiedName is now present, and false otherwise.
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/toggleAttribute)
 */
 @send
-external toggleAttribute: (htmlSelectElement, ~qualifiedName: string, ~force: bool) => bool =
+external toggleAttribute: (htmlSelectElement, ~qualifiedName: string, ~force: bool=?) => bool =
   "toggleAttribute"
 
 /**
@@ -580,25 +580,27 @@ external getBoundingClientRect: htmlSelectElement => domRect = "getBoundingClien
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/checkVisibility)
 */
 @send
-external checkVisibility: (htmlSelectElement, checkVisibilityOptions) => bool = "checkVisibility"
+external checkVisibility: (htmlSelectElement, ~options: checkVisibilityOptions=?) => bool =
+  "checkVisibility"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/scrollIntoView)
 */
 @send
-external scrollIntoView: (htmlSelectElement, bool) => unit = "scrollIntoView"
+external scrollIntoView: (htmlSelectElement, ~arg: bool=?) => unit = "scrollIntoView"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/scrollIntoView)
 */
 @send
-external scrollIntoView2: (htmlSelectElement, scrollIntoViewOptions) => unit = "scrollIntoView"
+external scrollIntoView2: (htmlSelectElement, ~arg: scrollIntoViewOptions=?) => unit =
+  "scrollIntoView"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/scroll)
 */
 @send
-external scroll: (htmlSelectElement, scrollToOptions) => unit = "scroll"
+external scroll: (htmlSelectElement, ~options: scrollToOptions=?) => unit = "scroll"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/scroll)
@@ -610,7 +612,7 @@ external scroll2: (htmlSelectElement, ~x: float, ~y: float) => unit = "scroll"
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/scrollTo)
 */
 @send
-external scrollTo: (htmlSelectElement, scrollToOptions) => unit = "scrollTo"
+external scrollTo: (htmlSelectElement, ~options: scrollToOptions=?) => unit = "scrollTo"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/scrollTo)
@@ -622,7 +624,7 @@ external scrollTo2: (htmlSelectElement, ~x: float, ~y: float) => unit = "scrollT
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/scrollBy)
 */
 @send
-external scrollBy: (htmlSelectElement, scrollToOptions) => unit = "scrollBy"
+external scrollBy: (htmlSelectElement, ~options: scrollToOptions=?) => unit = "scrollBy"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/scrollBy)
@@ -637,7 +639,7 @@ When supplied, options's navigationUI member indicates whether showing navigatio
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/requestFullscreen)
 */
 @send
-external requestFullscreen: (htmlSelectElement, fullscreenOptions) => Promise.t<unit> =
+external requestFullscreen: (htmlSelectElement, ~options: fullscreenOptions=?) => Promise.t<unit> =
   "requestFullscreen"
 
 /**
@@ -650,7 +652,7 @@ external setHTMLUnsafe: (htmlSelectElement, string) => unit = "setHTMLUnsafe"
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/getHTML)
 */
 @send
-external getHTML: (htmlSelectElement, getHTMLOptions) => string = "getHTML"
+external getHTML: (htmlSelectElement, ~options: getHTMLOptions=?) => string = "getHTML"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/insertAdjacentHTML)
@@ -684,8 +686,10 @@ external hasPointerCapture: (htmlSelectElement, int) => bool = "hasPointerCaptur
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/requestPointerLock)
 */
 @send
-external requestPointerLock: (htmlSelectElement, pointerLockOptions) => Promise.t<unit> =
-  "requestPointerLock"
+external requestPointerLock: (
+  htmlSelectElement,
+  ~options: pointerLockOptions=?,
+) => Promise.t<unit> = "requestPointerLock"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/click)
@@ -715,7 +719,7 @@ external hidePopover: htmlSelectElement => unit = "hidePopover"
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/togglePopover)
 */
 @send
-external togglePopover: (htmlSelectElement, bool) => bool = "togglePopover"
+external togglePopover: (htmlSelectElement, ~force: bool=?) => bool = "togglePopover"
 
 /**
 Retrieves a select object or an object from an options collection.
@@ -741,7 +745,7 @@ Adds an element to the areas, controlRange, or options collection.
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLSelectElement/add)
 */
 @send
-external add: (htmlSelectElement, ~element: unknown, ~before: unknown) => unit = "add"
+external add: (htmlSelectElement, ~element: unknown, ~before: unknown=?) => unit = "add"
 
 /**
 Returns whether a form will validate when it is submitted, without having to submit it.

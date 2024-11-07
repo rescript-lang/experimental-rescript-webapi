@@ -116,8 +116,8 @@ Returns a new transaction with the given mode ("readonly" or "readwrite") and sc
 external transaction: (
   idbDatabase,
   ~storeNames: unknown,
-  ~mode: idbTransactionMode,
-  ~options: idbTransactionOptions,
+  ~mode: idbTransactionMode=?,
+  ~options: idbTransactionOptions=?,
 ) => idbTransaction = "transaction"
 
 /**
@@ -137,7 +137,7 @@ Throws a "InvalidStateError" DOMException if not called within an upgrade transa
 external createObjectStore: (
   idbDatabase,
   ~name: string,
-  ~options: idbObjectStoreParameters,
+  ~options: idbObjectStoreParameters=?,
 ) => idbObjectStore = "createObjectStore"
 
 /**

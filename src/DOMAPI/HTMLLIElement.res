@@ -12,7 +12,7 @@ external make: unit => htmlliElement = "HTMLLIElement"
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/focus)
 */
 @send
-external focus: (htmlliElement, focusOptions) => unit = "focus"
+external focus: (htmlliElement, ~options: focusOptions=?) => unit = "focus"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/blur)
@@ -153,13 +153,14 @@ external remove: htmlliElement => unit = "remove"
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/animate)
 */
 @send
-external animate: (htmlliElement, ~keyframes: any, ~options: unknown) => animation = "animate"
+external animate: (htmlliElement, ~keyframes: any, ~options: unknown=?) => animation = "animate"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/getAnimations)
 */
 @send
-external getAnimations: (htmlliElement, getAnimationsOptions) => array<animation> = "getAnimations"
+external getAnimations: (htmlliElement, ~options: getAnimationsOptions=?) => array<animation> =
+  "getAnimations"
 
 /**
 Appends an event listener for events whose type attribute value is type. The callback argument sets the callback that will be invoked when the event is dispatched.
@@ -273,7 +274,7 @@ Returns node's root.
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/getRootNode)
 */
 @send
-external getRootNode: (htmlliElement, getRootNodeOptions) => node = "getRootNode"
+external getRootNode: (htmlliElement, ~options: getRootNodeOptions=?) => node = "getRootNode"
 
 /**
 Returns whether node has children.
@@ -294,7 +295,7 @@ Returns a copy of node. If deep is true, the copy also includes the node's desce
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/cloneNode)
 */
 @send
-external cloneNode: (htmlliElement, bool) => node = "cloneNode"
+external cloneNode: (htmlliElement, ~deep: bool=?) => node = "cloneNode"
 
 /**
 Returns whether node and otherNode have the same properties.
@@ -436,7 +437,7 @@ Returns true if qualifiedName is now present, and false otherwise.
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/toggleAttribute)
 */
 @send
-external toggleAttribute: (htmlliElement, ~qualifiedName: string, ~force: bool) => bool =
+external toggleAttribute: (htmlliElement, ~qualifiedName: string, ~force: bool=?) => bool =
   "toggleAttribute"
 
 /**
@@ -569,25 +570,26 @@ external getBoundingClientRect: htmlliElement => domRect = "getBoundingClientRec
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/checkVisibility)
 */
 @send
-external checkVisibility: (htmlliElement, checkVisibilityOptions) => bool = "checkVisibility"
+external checkVisibility: (htmlliElement, ~options: checkVisibilityOptions=?) => bool =
+  "checkVisibility"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/scrollIntoView)
 */
 @send
-external scrollIntoView: (htmlliElement, bool) => unit = "scrollIntoView"
+external scrollIntoView: (htmlliElement, ~arg: bool=?) => unit = "scrollIntoView"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/scrollIntoView)
 */
 @send
-external scrollIntoView2: (htmlliElement, scrollIntoViewOptions) => unit = "scrollIntoView"
+external scrollIntoView2: (htmlliElement, ~arg: scrollIntoViewOptions=?) => unit = "scrollIntoView"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/scroll)
 */
 @send
-external scroll: (htmlliElement, scrollToOptions) => unit = "scroll"
+external scroll: (htmlliElement, ~options: scrollToOptions=?) => unit = "scroll"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/scroll)
@@ -599,7 +601,7 @@ external scroll2: (htmlliElement, ~x: float, ~y: float) => unit = "scroll"
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/scrollTo)
 */
 @send
-external scrollTo: (htmlliElement, scrollToOptions) => unit = "scrollTo"
+external scrollTo: (htmlliElement, ~options: scrollToOptions=?) => unit = "scrollTo"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/scrollTo)
@@ -611,7 +613,7 @@ external scrollTo2: (htmlliElement, ~x: float, ~y: float) => unit = "scrollTo"
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/scrollBy)
 */
 @send
-external scrollBy: (htmlliElement, scrollToOptions) => unit = "scrollBy"
+external scrollBy: (htmlliElement, ~options: scrollToOptions=?) => unit = "scrollBy"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/scrollBy)
@@ -626,7 +628,7 @@ When supplied, options's navigationUI member indicates whether showing navigatio
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/requestFullscreen)
 */
 @send
-external requestFullscreen: (htmlliElement, fullscreenOptions) => Promise.t<unit> =
+external requestFullscreen: (htmlliElement, ~options: fullscreenOptions=?) => Promise.t<unit> =
   "requestFullscreen"
 
 /**
@@ -639,7 +641,7 @@ external setHTMLUnsafe: (htmlliElement, string) => unit = "setHTMLUnsafe"
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/getHTML)
 */
 @send
-external getHTML: (htmlliElement, getHTMLOptions) => string = "getHTML"
+external getHTML: (htmlliElement, ~options: getHTMLOptions=?) => string = "getHTML"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/insertAdjacentHTML)
@@ -670,7 +672,7 @@ external hasPointerCapture: (htmlliElement, int) => bool = "hasPointerCapture"
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/requestPointerLock)
 */
 @send
-external requestPointerLock: (htmlliElement, pointerLockOptions) => Promise.t<unit> =
+external requestPointerLock: (htmlliElement, ~options: pointerLockOptions=?) => Promise.t<unit> =
   "requestPointerLock"
 
 /**
@@ -701,4 +703,4 @@ external hidePopover: htmlliElement => unit = "hidePopover"
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/togglePopover)
 */
 @send
-external togglePopover: (htmlliElement, bool) => bool = "togglePopover"
+external togglePopover: (htmlliElement, ~force: bool=?) => bool = "togglePopover"

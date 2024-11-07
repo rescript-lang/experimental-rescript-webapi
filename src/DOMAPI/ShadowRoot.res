@@ -187,7 +187,7 @@ Returns node's root.
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/getRootNode)
 */
 @send
-external getRootNode: (shadowRoot, getRootNodeOptions) => node = "getRootNode"
+external getRootNode: (shadowRoot, ~options: getRootNodeOptions=?) => node = "getRootNode"
 
 /**
 Returns whether node has children.
@@ -282,4 +282,4 @@ external setHTMLUnsafe: (shadowRoot, string) => unit = "setHTMLUnsafe"
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/ShadowRoot/getHTML)
 */
 @send
-external getHTML: (shadowRoot, getHTMLOptions) => string = "getHTML"
+external getHTML: (shadowRoot, ~options: getHTMLOptions=?) => string = "getHTML"

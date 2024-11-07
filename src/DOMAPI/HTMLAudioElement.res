@@ -14,7 +14,7 @@ external make: unit => htmlAudioElement = "HTMLAudioElement"
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/focus)
 */
 @send
-external focus: (htmlAudioElement, focusOptions) => unit = "focus"
+external focus: (htmlAudioElement, ~options: focusOptions=?) => unit = "focus"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/blur)
@@ -155,13 +155,13 @@ external remove: htmlAudioElement => unit = "remove"
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/animate)
 */
 @send
-external animate: (htmlAudioElement, ~keyframes: any, ~options: unknown) => animation = "animate"
+external animate: (htmlAudioElement, ~keyframes: any, ~options: unknown=?) => animation = "animate"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/getAnimations)
 */
 @send
-external getAnimations: (htmlAudioElement, getAnimationsOptions) => array<animation> =
+external getAnimations: (htmlAudioElement, ~options: getAnimationsOptions=?) => array<animation> =
   "getAnimations"
 
 /**
@@ -276,7 +276,7 @@ Returns node's root.
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/getRootNode)
 */
 @send
-external getRootNode: (htmlAudioElement, getRootNodeOptions) => node = "getRootNode"
+external getRootNode: (htmlAudioElement, ~options: getRootNodeOptions=?) => node = "getRootNode"
 
 /**
 Returns whether node has children.
@@ -297,7 +297,7 @@ Returns a copy of node. If deep is true, the copy also includes the node's desce
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/cloneNode)
 */
 @send
-external cloneNode: (htmlAudioElement, bool) => node = "cloneNode"
+external cloneNode: (htmlAudioElement, ~deep: bool=?) => node = "cloneNode"
 
 /**
 Returns whether node and otherNode have the same properties.
@@ -439,7 +439,7 @@ Returns true if qualifiedName is now present, and false otherwise.
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/toggleAttribute)
 */
 @send
-external toggleAttribute: (htmlAudioElement, ~qualifiedName: string, ~force: bool) => bool =
+external toggleAttribute: (htmlAudioElement, ~qualifiedName: string, ~force: bool=?) => bool =
   "toggleAttribute"
 
 /**
@@ -572,25 +572,27 @@ external getBoundingClientRect: htmlAudioElement => domRect = "getBoundingClient
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/checkVisibility)
 */
 @send
-external checkVisibility: (htmlAudioElement, checkVisibilityOptions) => bool = "checkVisibility"
+external checkVisibility: (htmlAudioElement, ~options: checkVisibilityOptions=?) => bool =
+  "checkVisibility"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/scrollIntoView)
 */
 @send
-external scrollIntoView: (htmlAudioElement, bool) => unit = "scrollIntoView"
+external scrollIntoView: (htmlAudioElement, ~arg: bool=?) => unit = "scrollIntoView"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/scrollIntoView)
 */
 @send
-external scrollIntoView2: (htmlAudioElement, scrollIntoViewOptions) => unit = "scrollIntoView"
+external scrollIntoView2: (htmlAudioElement, ~arg: scrollIntoViewOptions=?) => unit =
+  "scrollIntoView"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/scroll)
 */
 @send
-external scroll: (htmlAudioElement, scrollToOptions) => unit = "scroll"
+external scroll: (htmlAudioElement, ~options: scrollToOptions=?) => unit = "scroll"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/scroll)
@@ -602,7 +604,7 @@ external scroll2: (htmlAudioElement, ~x: float, ~y: float) => unit = "scroll"
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/scrollTo)
 */
 @send
-external scrollTo: (htmlAudioElement, scrollToOptions) => unit = "scrollTo"
+external scrollTo: (htmlAudioElement, ~options: scrollToOptions=?) => unit = "scrollTo"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/scrollTo)
@@ -614,7 +616,7 @@ external scrollTo2: (htmlAudioElement, ~x: float, ~y: float) => unit = "scrollTo
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/scrollBy)
 */
 @send
-external scrollBy: (htmlAudioElement, scrollToOptions) => unit = "scrollBy"
+external scrollBy: (htmlAudioElement, ~options: scrollToOptions=?) => unit = "scrollBy"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/scrollBy)
@@ -629,7 +631,7 @@ When supplied, options's navigationUI member indicates whether showing navigatio
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/requestFullscreen)
 */
 @send
-external requestFullscreen: (htmlAudioElement, fullscreenOptions) => Promise.t<unit> =
+external requestFullscreen: (htmlAudioElement, ~options: fullscreenOptions=?) => Promise.t<unit> =
   "requestFullscreen"
 
 /**
@@ -642,7 +644,7 @@ external setHTMLUnsafe: (htmlAudioElement, string) => unit = "setHTMLUnsafe"
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/getHTML)
 */
 @send
-external getHTML: (htmlAudioElement, getHTMLOptions) => string = "getHTML"
+external getHTML: (htmlAudioElement, ~options: getHTMLOptions=?) => string = "getHTML"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/insertAdjacentHTML)
@@ -676,7 +678,7 @@ external hasPointerCapture: (htmlAudioElement, int) => bool = "hasPointerCapture
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/requestPointerLock)
 */
 @send
-external requestPointerLock: (htmlAudioElement, pointerLockOptions) => Promise.t<unit> =
+external requestPointerLock: (htmlAudioElement, ~options: pointerLockOptions=?) => Promise.t<unit> =
   "requestPointerLock"
 
 /**
@@ -707,7 +709,7 @@ external hidePopover: htmlAudioElement => unit = "hidePopover"
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/togglePopover)
 */
 @send
-external togglePopover: (htmlAudioElement, bool) => bool = "togglePopover"
+external togglePopover: (htmlAudioElement, ~force: bool=?) => bool = "togglePopover"
 
 /**
 Resets the audio or video object and loads a new media resource.
@@ -750,8 +752,8 @@ external pause: htmlAudioElement => unit = "pause"
 external addTextTrack: (
   htmlAudioElement,
   ~kind: textTrackKind,
-  ~label: string,
-  ~language: string,
+  ~label: string=?,
+  ~language: string=?,
 ) => textTrack = "addTextTrack"
 
 /**

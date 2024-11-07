@@ -20,7 +20,7 @@ external copyFromChannel: (
   audioBuffer,
   ~destination: array<float>,
   ~channelNumber: int,
-  ~bufferOffset: int,
+  ~bufferOffset: int=?,
 ) => unit = "copyFromChannel"
 
 /**
@@ -31,5 +31,5 @@ external copyToChannel: (
   audioBuffer,
   ~source: array<float>,
   ~channelNumber: int,
-  ~bufferOffset: int,
+  ~bufferOffset: int=?,
 ) => unit = "copyToChannel"

@@ -18,5 +18,5 @@ external getFile: fileSystemFileHandle => Promise.t<file> = "getFile"
 @send
 external createWritable: (
   fileSystemFileHandle,
-  fileSystemCreateWritableOptions,
+  ~options: fileSystemCreateWritableOptions=?,
 ) => Promise.t<fileSystemWritableFileStream> = "createWritable"

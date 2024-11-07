@@ -7,7 +7,7 @@ open ServiceWorkerAPI
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Request)
 */
 @new
-external make: (~input: requestInfo, ~init: requestInit) => request = "Request"
+external make: (~input: requestInfo, ~init: requestInit=?) => request = "Request"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Request/arrayBuffer)

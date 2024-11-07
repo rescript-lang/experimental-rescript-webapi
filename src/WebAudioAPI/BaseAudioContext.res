@@ -141,13 +141,14 @@ external createBufferSource: baseAudioContext => audioBufferSourceNode = "create
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/BaseAudioContext/createChannelMerger)
 */
 @send
-external createChannelMerger: (baseAudioContext, int) => channelMergerNode = "createChannelMerger"
+external createChannelMerger: (baseAudioContext, ~numberOfInputs: int=?) => channelMergerNode =
+  "createChannelMerger"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/BaseAudioContext/createChannelSplitter)
 */
 @send
-external createChannelSplitter: (baseAudioContext, int) => channelSplitterNode =
+external createChannelSplitter: (baseAudioContext, ~numberOfOutputs: int=?) => channelSplitterNode =
   "createChannelSplitter"
 
 /**
@@ -166,7 +167,7 @@ external createConvolver: baseAudioContext => convolverNode = "createConvolver"
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/BaseAudioContext/createDelay)
 */
 @send
-external createDelay: (baseAudioContext, float) => delayNode = "createDelay"
+external createDelay: (baseAudioContext, ~maxDelayTime: float=?) => delayNode = "createDelay"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/BaseAudioContext/createDynamicsCompressor)
@@ -211,7 +212,7 @@ external createPeriodicWave: (
   baseAudioContext,
   ~real: array<float>,
   ~imag: array<float>,
-  ~constraints: periodicWaveConstraints,
+  ~constraints: periodicWaveConstraints=?,
 ) => periodicWave = "createPeriodicWave"
 
 /**
@@ -233,6 +234,6 @@ external createWaveShaper: baseAudioContext => waveShaperNode = "createWaveShape
 external decodeAudioData: (
   baseAudioContext,
   ~audioData: ArrayBuffer.t,
-  ~successCallback: decodeSuccessCallback,
-  ~errorCallback: decodeErrorCallback,
+  ~successCallback: decodeSuccessCallback=?,
+  ~errorCallback: decodeErrorCallback=?,
 ) => Promise.t<audioBuffer> = "decodeAudioData"

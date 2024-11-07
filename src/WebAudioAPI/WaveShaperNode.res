@@ -5,7 +5,7 @@ open WebAudioAPI
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/WaveShaperNode)
 */
 @new
-external make: (~context: baseAudioContext, ~options: waveShaperOptions) => waveShaperNode =
+external make: (~context: baseAudioContext, ~options: waveShaperOptions=?) => waveShaperNode =
   "WaveShaperNode"
 
 /**
@@ -122,15 +122,16 @@ external dispatchEvent: (waveShaperNode, event) => bool = "dispatchEvent"
 external connect: (
   waveShaperNode,
   ~destinationNode: audioNode,
-  ~output: int,
-  ~input: int,
+  ~output: int=?,
+  ~input: int=?,
 ) => audioNode = "connect"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/AudioNode/connect)
 */
 @send
-external connect2: (waveShaperNode, ~destinationParam: audioParam, ~output: int) => unit = "connect"
+external connect2: (waveShaperNode, ~destinationParam: audioParam, ~output: int=?) => unit =
+  "connect"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/AudioNode/disconnect)

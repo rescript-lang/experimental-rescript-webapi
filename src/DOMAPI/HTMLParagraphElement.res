@@ -12,7 +12,7 @@ external make: unit => htmlParagraphElement = "HTMLParagraphElement"
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/focus)
 */
 @send
-external focus: (htmlParagraphElement, focusOptions) => unit = "focus"
+external focus: (htmlParagraphElement, ~options: focusOptions=?) => unit = "focus"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/blur)
@@ -153,15 +153,17 @@ external remove: htmlParagraphElement => unit = "remove"
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/animate)
 */
 @send
-external animate: (htmlParagraphElement, ~keyframes: any, ~options: unknown) => animation =
+external animate: (htmlParagraphElement, ~keyframes: any, ~options: unknown=?) => animation =
   "animate"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/getAnimations)
 */
 @send
-external getAnimations: (htmlParagraphElement, getAnimationsOptions) => array<animation> =
-  "getAnimations"
+external getAnimations: (
+  htmlParagraphElement,
+  ~options: getAnimationsOptions=?,
+) => array<animation> = "getAnimations"
 
 /**
 Appends an event listener for events whose type attribute value is type. The callback argument sets the callback that will be invoked when the event is dispatched.
@@ -275,7 +277,7 @@ Returns node's root.
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/getRootNode)
 */
 @send
-external getRootNode: (htmlParagraphElement, getRootNodeOptions) => node = "getRootNode"
+external getRootNode: (htmlParagraphElement, ~options: getRootNodeOptions=?) => node = "getRootNode"
 
 /**
 Returns whether node has children.
@@ -296,7 +298,7 @@ Returns a copy of node. If deep is true, the copy also includes the node's desce
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/cloneNode)
 */
 @send
-external cloneNode: (htmlParagraphElement, bool) => node = "cloneNode"
+external cloneNode: (htmlParagraphElement, ~deep: bool=?) => node = "cloneNode"
 
 /**
 Returns whether node and otherNode have the same properties.
@@ -438,7 +440,7 @@ Returns true if qualifiedName is now present, and false otherwise.
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/toggleAttribute)
 */
 @send
-external toggleAttribute: (htmlParagraphElement, ~qualifiedName: string, ~force: bool) => bool =
+external toggleAttribute: (htmlParagraphElement, ~qualifiedName: string, ~force: bool=?) => bool =
   "toggleAttribute"
 
 /**
@@ -575,25 +577,27 @@ external getBoundingClientRect: htmlParagraphElement => domRect = "getBoundingCl
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/checkVisibility)
 */
 @send
-external checkVisibility: (htmlParagraphElement, checkVisibilityOptions) => bool = "checkVisibility"
+external checkVisibility: (htmlParagraphElement, ~options: checkVisibilityOptions=?) => bool =
+  "checkVisibility"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/scrollIntoView)
 */
 @send
-external scrollIntoView: (htmlParagraphElement, bool) => unit = "scrollIntoView"
+external scrollIntoView: (htmlParagraphElement, ~arg: bool=?) => unit = "scrollIntoView"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/scrollIntoView)
 */
 @send
-external scrollIntoView2: (htmlParagraphElement, scrollIntoViewOptions) => unit = "scrollIntoView"
+external scrollIntoView2: (htmlParagraphElement, ~arg: scrollIntoViewOptions=?) => unit =
+  "scrollIntoView"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/scroll)
 */
 @send
-external scroll: (htmlParagraphElement, scrollToOptions) => unit = "scroll"
+external scroll: (htmlParagraphElement, ~options: scrollToOptions=?) => unit = "scroll"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/scroll)
@@ -605,7 +609,7 @@ external scroll2: (htmlParagraphElement, ~x: float, ~y: float) => unit = "scroll
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/scrollTo)
 */
 @send
-external scrollTo: (htmlParagraphElement, scrollToOptions) => unit = "scrollTo"
+external scrollTo: (htmlParagraphElement, ~options: scrollToOptions=?) => unit = "scrollTo"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/scrollTo)
@@ -617,7 +621,7 @@ external scrollTo2: (htmlParagraphElement, ~x: float, ~y: float) => unit = "scro
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/scrollBy)
 */
 @send
-external scrollBy: (htmlParagraphElement, scrollToOptions) => unit = "scrollBy"
+external scrollBy: (htmlParagraphElement, ~options: scrollToOptions=?) => unit = "scrollBy"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/scrollBy)
@@ -632,8 +636,10 @@ When supplied, options's navigationUI member indicates whether showing navigatio
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/requestFullscreen)
 */
 @send
-external requestFullscreen: (htmlParagraphElement, fullscreenOptions) => Promise.t<unit> =
-  "requestFullscreen"
+external requestFullscreen: (
+  htmlParagraphElement,
+  ~options: fullscreenOptions=?,
+) => Promise.t<unit> = "requestFullscreen"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/setHTMLUnsafe)
@@ -645,7 +651,7 @@ external setHTMLUnsafe: (htmlParagraphElement, string) => unit = "setHTMLUnsafe"
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/getHTML)
 */
 @send
-external getHTML: (htmlParagraphElement, getHTMLOptions) => string = "getHTML"
+external getHTML: (htmlParagraphElement, ~options: getHTMLOptions=?) => string = "getHTML"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/insertAdjacentHTML)
@@ -679,8 +685,10 @@ external hasPointerCapture: (htmlParagraphElement, int) => bool = "hasPointerCap
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/requestPointerLock)
 */
 @send
-external requestPointerLock: (htmlParagraphElement, pointerLockOptions) => Promise.t<unit> =
-  "requestPointerLock"
+external requestPointerLock: (
+  htmlParagraphElement,
+  ~options: pointerLockOptions=?,
+) => Promise.t<unit> = "requestPointerLock"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/click)
@@ -710,4 +718,4 @@ external hidePopover: htmlParagraphElement => unit = "hidePopover"
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/togglePopover)
 */
 @send
-external togglePopover: (htmlParagraphElement, bool) => bool = "togglePopover"
+external togglePopover: (htmlParagraphElement, ~force: bool=?) => bool = "togglePopover"

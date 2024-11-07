@@ -88,7 +88,7 @@ external deriveBits: (
   subtleCrypto,
   ~algorithm: algorithmIdentifier,
   ~baseKey: cryptoKey,
-  ~length: int,
+  ~length: int=?,
 ) => Promise.t<ArrayBuffer.t> = "deriveBits"
 
 /**

@@ -8,7 +8,7 @@ open WebAudioAPI
 external make: (
   ~context: baseAudioContext,
   ~name: string,
-  ~options: audioWorkletNodeOptions,
+  ~options: audioWorkletNodeOptions=?,
 ) => audioWorkletNode = "AudioWorkletNode"
 
 /**
@@ -125,15 +125,15 @@ external dispatchEvent: (audioWorkletNode, event) => bool = "dispatchEvent"
 external connect: (
   audioWorkletNode,
   ~destinationNode: audioNode,
-  ~output: int,
-  ~input: int,
+  ~output: int=?,
+  ~input: int=?,
 ) => audioNode = "connect"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/AudioNode/connect)
 */
 @send
-external connect2: (audioWorkletNode, ~destinationParam: audioParam, ~output: int) => unit =
+external connect2: (audioWorkletNode, ~destinationParam: audioParam, ~output: int=?) => unit =
   "connect"
 
 /**

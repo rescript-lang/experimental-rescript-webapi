@@ -5,7 +5,7 @@ open WebAudioAPI
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/ConvolverNode)
 */
 @new
-external make: (~context: baseAudioContext, ~options: convolverOptions) => convolverNode =
+external make: (~context: baseAudioContext, ~options: convolverOptions=?) => convolverNode =
   "ConvolverNode"
 
 /**
@@ -122,15 +122,16 @@ external dispatchEvent: (convolverNode, event) => bool = "dispatchEvent"
 external connect: (
   convolverNode,
   ~destinationNode: audioNode,
-  ~output: int,
-  ~input: int,
+  ~output: int=?,
+  ~input: int=?,
 ) => audioNode = "connect"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/AudioNode/connect)
 */
 @send
-external connect2: (convolverNode, ~destinationParam: audioParam, ~output: int) => unit = "connect"
+external connect2: (convolverNode, ~destinationParam: audioParam, ~output: int=?) => unit =
+  "connect"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/AudioNode/disconnect)

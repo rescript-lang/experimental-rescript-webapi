@@ -28,7 +28,7 @@ external atob: (window, string) => string = "atob"
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/setTimeout)
 */
 @send
-external setTimeout: (window, ~handler: timerHandler, ~timeout: int, ~arguments: any) => int =
+external setTimeout: (window, ~handler: timerHandler, ~timeout: int=?, ~arguments: any) => int =
   "setTimeout"
 
 /**
@@ -41,7 +41,7 @@ external clearTimeout: (window, int) => unit = "clearTimeout"
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/setInterval)
 */
 @send
-external setInterval: (window, ~handler: timerHandler, ~timeout: int, ~arguments: any) => int =
+external setInterval: (window, ~handler: timerHandler, ~timeout: int=?, ~arguments: any) => int =
   "setInterval"
 
 /**
@@ -63,7 +63,7 @@ external queueMicrotask: (window, voidFunction) => unit = "queueMicrotask"
 external createImageBitmap: (
   window,
   ~image: imageBitmapSource,
-  ~options: imageBitmapOptions,
+  ~options: imageBitmapOptions=?,
 ) => Promise.t<imageBitmap> = "createImageBitmap"
 
 /**
@@ -77,21 +77,21 @@ external createImageBitmap2: (
   ~sy: int,
   ~sw: int,
   ~sh: int,
-  ~options: imageBitmapOptions,
+  ~options: imageBitmapOptions=?,
 ) => Promise.t<imageBitmap> = "createImageBitmap"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/structuredClone)
 */
 @send
-external structuredClone: (window, 't, ~options: structuredSerializeOptions) => 't =
+external structuredClone: (window, 't, ~options: structuredSerializeOptions=?) => 't =
   "structuredClone"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/fetch)
 */
 @send
-external fetch: (window, ~input: requestInfo, ~init: requestInit) => Promise.t<response> = "fetch"
+external fetch: (window, ~input: requestInfo, ~init: requestInit=?) => Promise.t<response> = "fetch"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/DedicatedWorkerGlobalScope/requestAnimationFrame)
@@ -232,7 +232,7 @@ external focus: window => unit = "focus"
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/open)
 */
 @send
-external open_: (window, ~url: string, ~target: string, ~features: string) => window = "open"
+external open_: (window, ~url: string=?, ~target: string=?, ~features: string=?) => window = "open"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/alert)
@@ -250,13 +250,13 @@ external alert2: (window, string) => unit = "alert"
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/confirm)
 */
 @send
-external confirm: (window, string) => bool = "confirm"
+external confirm: (window, ~message: string=?) => bool = "confirm"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/prompt)
 */
 @send
-external prompt: (window, ~message: string, ~default: string) => string = "prompt"
+external prompt: (window, ~message: string=?, ~default: string=?) => string = "prompt"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/print)
@@ -281,7 +281,7 @@ external postMessage: (
   window,
   ~message: any,
   ~targetOrigin: string,
-  ~transfer: array<Dict.t<string>>,
+  ~transfer: array<Dict.t<string>>=?,
 ) => unit = "postMessage"
 
 /**
@@ -297,7 +297,7 @@ Throws a "DataCloneError" DOMException if transfer array contains duplicate obje
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/postMessage)
 */
 @send
-external postMessage2: (window, ~message: any, ~options: windowPostMessageOptions) => unit =
+external postMessage2: (window, ~message: any, ~options: windowPostMessageOptions=?) => unit =
   "postMessage"
 
 /**
@@ -334,7 +334,7 @@ external resizeBy: (window, ~x: int, ~y: int) => unit = "resizeBy"
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/scroll)
 */
 @send
-external scroll: (window, scrollToOptions) => unit = "scroll"
+external scroll: (window, ~options: scrollToOptions=?) => unit = "scroll"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/scroll)
@@ -346,7 +346,7 @@ external scroll2: (window, ~x: float, ~y: float) => unit = "scroll"
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/scrollTo)
 */
 @send
-external scrollTo: (window, scrollToOptions) => unit = "scrollTo"
+external scrollTo: (window, ~options: scrollToOptions=?) => unit = "scrollTo"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/scrollTo)
@@ -358,7 +358,7 @@ external scrollTo2: (window, ~x: float, ~y: float) => unit = "scrollTo"
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/scrollBy)
 */
 @send
-external scrollBy: (window, scrollToOptions) => unit = "scrollBy"
+external scrollBy: (window, ~options: scrollToOptions=?) => unit = "scrollBy"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/scrollBy)
@@ -370,7 +370,7 @@ external scrollBy2: (window, ~x: float, ~y: float) => unit = "scrollBy"
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/getComputedStyle)
 */
 @send
-external getComputedStyle: (window, ~elt: element, ~pseudoElt: string) => cssStyleDeclaration =
+external getComputedStyle: (window, ~elt: element, ~pseudoElt: string=?) => cssStyleDeclaration =
   "getComputedStyle"
 
 /**
@@ -380,7 +380,7 @@ external getComputedStyle: (window, ~elt: element, ~pseudoElt: string) => cssSty
 external requestIdleCallback: (
   window,
   ~callback: idleRequestCallback,
-  ~options: idleRequestOptions,
+  ~options: idleRequestOptions=?,
 ) => int = "requestIdleCallback"
 
 /**

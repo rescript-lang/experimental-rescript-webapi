@@ -23,7 +23,7 @@ external make3: unit => unknown = "ReadableStream"
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/ReadableStream/cancel)
 */
 @send
-external cancel: (readableStream<'r>, any) => Promise.t<unit> = "cancel"
+external cancel: (readableStream<'r>, ~reason: any=?) => Promise.t<unit> = "cancel"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/ReadableStream/getReader)
@@ -31,7 +31,7 @@ external cancel: (readableStream<'r>, any) => Promise.t<unit> = "cancel"
 @send
 external getReader: (
   readableStream<'r>,
-  readableStreamGetReaderOptions,
+  ~options: readableStreamGetReaderOptions=?,
 ) => readableStreamReader<'r> = "getReader"
 
 /**
@@ -41,7 +41,7 @@ external getReader: (
 external pipeThrough: (
   readableStream<'r>,
   ~transform: readableWritablePair<'t, 'r>,
-  ~options: streamPipeOptions,
+  ~options: streamPipeOptions=?,
 ) => readableStream<'t> = "pipeThrough"
 
 /**
@@ -51,7 +51,7 @@ external pipeThrough: (
 external pipeTo: (
   readableStream<'r>,
   ~destination: writableStream<'r>,
-  ~options: streamPipeOptions,
+  ~options: streamPipeOptions=?,
 ) => Promise.t<unit> = "pipeTo"
 
 /**

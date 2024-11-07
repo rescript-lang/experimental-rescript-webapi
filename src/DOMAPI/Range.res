@@ -46,7 +46,7 @@ external setEndAfter: (range, node) => unit = "setEndAfter"
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Range/collapse)
 */
 @send
-external collapse: (range, bool) => unit = "collapse"
+external collapse: (range, ~toStart: bool=?) => unit = "collapse"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Range/selectNode)

@@ -5,7 +5,7 @@ open WebAudioAPI
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/ChannelMergerNode)
 */
 @new
-external make: (~context: baseAudioContext, ~options: channelMergerOptions) => channelMergerNode =
+external make: (~context: baseAudioContext, ~options: channelMergerOptions=?) => channelMergerNode =
   "ChannelMergerNode"
 
 /**
@@ -122,15 +122,15 @@ external dispatchEvent: (channelMergerNode, event) => bool = "dispatchEvent"
 external connect: (
   channelMergerNode,
   ~destinationNode: audioNode,
-  ~output: int,
-  ~input: int,
+  ~output: int=?,
+  ~input: int=?,
 ) => audioNode = "connect"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/AudioNode/connect)
 */
 @send
-external connect2: (channelMergerNode, ~destinationParam: audioParam, ~output: int) => unit =
+external connect2: (channelMergerNode, ~destinationParam: audioParam, ~output: int=?) => unit =
   "connect"
 
 /**

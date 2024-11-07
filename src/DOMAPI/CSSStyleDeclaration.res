@@ -26,7 +26,7 @@ external setProperty: (
   cssStyleDeclaration,
   ~property: string,
   ~value: string,
-  ~priority: string,
+  ~priority: string=?,
 ) => unit = "setProperty"
 
 /**

@@ -131,7 +131,7 @@ external unregister: serviceWorkerRegistration => Promise.t<bool> = "unregister"
 external showNotification: (
   serviceWorkerRegistration,
   ~title: string,
-  ~options: notificationOptions,
+  ~options: notificationOptions=?,
 ) => Promise.t<unit> = "showNotification"
 
 /**
@@ -140,5 +140,5 @@ external showNotification: (
 @send
 external getNotifications: (
   serviceWorkerRegistration,
-  getNotificationOptions,
+  ~filter: getNotificationOptions=?,
 ) => Promise.t<array<notification>> = "getNotifications"

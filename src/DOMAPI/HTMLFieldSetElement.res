@@ -12,7 +12,7 @@ external make: unit => htmlFieldSetElement = "HTMLFieldSetElement"
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/focus)
 */
 @send
-external focus: (htmlFieldSetElement, focusOptions) => unit = "focus"
+external focus: (htmlFieldSetElement, ~options: focusOptions=?) => unit = "focus"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/blur)
@@ -153,14 +153,17 @@ external remove: htmlFieldSetElement => unit = "remove"
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/animate)
 */
 @send
-external animate: (htmlFieldSetElement, ~keyframes: any, ~options: unknown) => animation = "animate"
+external animate: (htmlFieldSetElement, ~keyframes: any, ~options: unknown=?) => animation =
+  "animate"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/getAnimations)
 */
 @send
-external getAnimations: (htmlFieldSetElement, getAnimationsOptions) => array<animation> =
-  "getAnimations"
+external getAnimations: (
+  htmlFieldSetElement,
+  ~options: getAnimationsOptions=?,
+) => array<animation> = "getAnimations"
 
 /**
 Appends an event listener for events whose type attribute value is type. The callback argument sets the callback that will be invoked when the event is dispatched.
@@ -274,7 +277,7 @@ Returns node's root.
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/getRootNode)
 */
 @send
-external getRootNode: (htmlFieldSetElement, getRootNodeOptions) => node = "getRootNode"
+external getRootNode: (htmlFieldSetElement, ~options: getRootNodeOptions=?) => node = "getRootNode"
 
 /**
 Returns whether node has children.
@@ -295,7 +298,7 @@ Returns a copy of node. If deep is true, the copy also includes the node's desce
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/cloneNode)
 */
 @send
-external cloneNode: (htmlFieldSetElement, bool) => node = "cloneNode"
+external cloneNode: (htmlFieldSetElement, ~deep: bool=?) => node = "cloneNode"
 
 /**
 Returns whether node and otherNode have the same properties.
@@ -437,7 +440,7 @@ Returns true if qualifiedName is now present, and false otherwise.
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/toggleAttribute)
 */
 @send
-external toggleAttribute: (htmlFieldSetElement, ~qualifiedName: string, ~force: bool) => bool =
+external toggleAttribute: (htmlFieldSetElement, ~qualifiedName: string, ~force: bool=?) => bool =
   "toggleAttribute"
 
 /**
@@ -571,25 +574,27 @@ external getBoundingClientRect: htmlFieldSetElement => domRect = "getBoundingCli
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/checkVisibility)
 */
 @send
-external checkVisibility: (htmlFieldSetElement, checkVisibilityOptions) => bool = "checkVisibility"
+external checkVisibility: (htmlFieldSetElement, ~options: checkVisibilityOptions=?) => bool =
+  "checkVisibility"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/scrollIntoView)
 */
 @send
-external scrollIntoView: (htmlFieldSetElement, bool) => unit = "scrollIntoView"
+external scrollIntoView: (htmlFieldSetElement, ~arg: bool=?) => unit = "scrollIntoView"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/scrollIntoView)
 */
 @send
-external scrollIntoView2: (htmlFieldSetElement, scrollIntoViewOptions) => unit = "scrollIntoView"
+external scrollIntoView2: (htmlFieldSetElement, ~arg: scrollIntoViewOptions=?) => unit =
+  "scrollIntoView"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/scroll)
 */
 @send
-external scroll: (htmlFieldSetElement, scrollToOptions) => unit = "scroll"
+external scroll: (htmlFieldSetElement, ~options: scrollToOptions=?) => unit = "scroll"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/scroll)
@@ -601,7 +606,7 @@ external scroll2: (htmlFieldSetElement, ~x: float, ~y: float) => unit = "scroll"
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/scrollTo)
 */
 @send
-external scrollTo: (htmlFieldSetElement, scrollToOptions) => unit = "scrollTo"
+external scrollTo: (htmlFieldSetElement, ~options: scrollToOptions=?) => unit = "scrollTo"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/scrollTo)
@@ -613,7 +618,7 @@ external scrollTo2: (htmlFieldSetElement, ~x: float, ~y: float) => unit = "scrol
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/scrollBy)
 */
 @send
-external scrollBy: (htmlFieldSetElement, scrollToOptions) => unit = "scrollBy"
+external scrollBy: (htmlFieldSetElement, ~options: scrollToOptions=?) => unit = "scrollBy"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/scrollBy)
@@ -628,8 +633,10 @@ When supplied, options's navigationUI member indicates whether showing navigatio
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/requestFullscreen)
 */
 @send
-external requestFullscreen: (htmlFieldSetElement, fullscreenOptions) => Promise.t<unit> =
-  "requestFullscreen"
+external requestFullscreen: (
+  htmlFieldSetElement,
+  ~options: fullscreenOptions=?,
+) => Promise.t<unit> = "requestFullscreen"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/setHTMLUnsafe)
@@ -641,7 +648,7 @@ external setHTMLUnsafe: (htmlFieldSetElement, string) => unit = "setHTMLUnsafe"
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/getHTML)
 */
 @send
-external getHTML: (htmlFieldSetElement, getHTMLOptions) => string = "getHTML"
+external getHTML: (htmlFieldSetElement, ~options: getHTMLOptions=?) => string = "getHTML"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/insertAdjacentHTML)
@@ -675,8 +682,10 @@ external hasPointerCapture: (htmlFieldSetElement, int) => bool = "hasPointerCapt
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/requestPointerLock)
 */
 @send
-external requestPointerLock: (htmlFieldSetElement, pointerLockOptions) => Promise.t<unit> =
-  "requestPointerLock"
+external requestPointerLock: (
+  htmlFieldSetElement,
+  ~options: pointerLockOptions=?,
+) => Promise.t<unit> = "requestPointerLock"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/click)
@@ -706,7 +715,7 @@ external hidePopover: htmlFieldSetElement => unit = "hidePopover"
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/togglePopover)
 */
 @send
-external togglePopover: (htmlFieldSetElement, bool) => bool = "togglePopover"
+external togglePopover: (htmlFieldSetElement, ~force: bool=?) => bool = "togglePopover"
 
 /**
 Returns whether a form will validate when it is submitted, without having to submit it.

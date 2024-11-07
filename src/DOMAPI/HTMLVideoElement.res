@@ -15,7 +15,7 @@ external make: unit => htmlVideoElement = "HTMLVideoElement"
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/focus)
 */
 @send
-external focus: (htmlVideoElement, focusOptions) => unit = "focus"
+external focus: (htmlVideoElement, ~options: focusOptions=?) => unit = "focus"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/blur)
@@ -156,13 +156,13 @@ external remove: htmlVideoElement => unit = "remove"
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/animate)
 */
 @send
-external animate: (htmlVideoElement, ~keyframes: any, ~options: unknown) => animation = "animate"
+external animate: (htmlVideoElement, ~keyframes: any, ~options: unknown=?) => animation = "animate"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/getAnimations)
 */
 @send
-external getAnimations: (htmlVideoElement, getAnimationsOptions) => array<animation> =
+external getAnimations: (htmlVideoElement, ~options: getAnimationsOptions=?) => array<animation> =
   "getAnimations"
 
 /**
@@ -277,7 +277,7 @@ Returns node's root.
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/getRootNode)
 */
 @send
-external getRootNode: (htmlVideoElement, getRootNodeOptions) => node = "getRootNode"
+external getRootNode: (htmlVideoElement, ~options: getRootNodeOptions=?) => node = "getRootNode"
 
 /**
 Returns whether node has children.
@@ -298,7 +298,7 @@ Returns a copy of node. If deep is true, the copy also includes the node's desce
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/cloneNode)
 */
 @send
-external cloneNode: (htmlVideoElement, bool) => node = "cloneNode"
+external cloneNode: (htmlVideoElement, ~deep: bool=?) => node = "cloneNode"
 
 /**
 Returns whether node and otherNode have the same properties.
@@ -440,7 +440,7 @@ Returns true if qualifiedName is now present, and false otherwise.
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/toggleAttribute)
 */
 @send
-external toggleAttribute: (htmlVideoElement, ~qualifiedName: string, ~force: bool) => bool =
+external toggleAttribute: (htmlVideoElement, ~qualifiedName: string, ~force: bool=?) => bool =
   "toggleAttribute"
 
 /**
@@ -573,25 +573,27 @@ external getBoundingClientRect: htmlVideoElement => domRect = "getBoundingClient
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/checkVisibility)
 */
 @send
-external checkVisibility: (htmlVideoElement, checkVisibilityOptions) => bool = "checkVisibility"
+external checkVisibility: (htmlVideoElement, ~options: checkVisibilityOptions=?) => bool =
+  "checkVisibility"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/scrollIntoView)
 */
 @send
-external scrollIntoView: (htmlVideoElement, bool) => unit = "scrollIntoView"
+external scrollIntoView: (htmlVideoElement, ~arg: bool=?) => unit = "scrollIntoView"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/scrollIntoView)
 */
 @send
-external scrollIntoView2: (htmlVideoElement, scrollIntoViewOptions) => unit = "scrollIntoView"
+external scrollIntoView2: (htmlVideoElement, ~arg: scrollIntoViewOptions=?) => unit =
+  "scrollIntoView"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/scroll)
 */
 @send
-external scroll: (htmlVideoElement, scrollToOptions) => unit = "scroll"
+external scroll: (htmlVideoElement, ~options: scrollToOptions=?) => unit = "scroll"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/scroll)
@@ -603,7 +605,7 @@ external scroll2: (htmlVideoElement, ~x: float, ~y: float) => unit = "scroll"
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/scrollTo)
 */
 @send
-external scrollTo: (htmlVideoElement, scrollToOptions) => unit = "scrollTo"
+external scrollTo: (htmlVideoElement, ~options: scrollToOptions=?) => unit = "scrollTo"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/scrollTo)
@@ -615,7 +617,7 @@ external scrollTo2: (htmlVideoElement, ~x: float, ~y: float) => unit = "scrollTo
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/scrollBy)
 */
 @send
-external scrollBy: (htmlVideoElement, scrollToOptions) => unit = "scrollBy"
+external scrollBy: (htmlVideoElement, ~options: scrollToOptions=?) => unit = "scrollBy"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/scrollBy)
@@ -630,7 +632,7 @@ When supplied, options's navigationUI member indicates whether showing navigatio
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/requestFullscreen)
 */
 @send
-external requestFullscreen: (htmlVideoElement, fullscreenOptions) => Promise.t<unit> =
+external requestFullscreen: (htmlVideoElement, ~options: fullscreenOptions=?) => Promise.t<unit> =
   "requestFullscreen"
 
 /**
@@ -643,7 +645,7 @@ external setHTMLUnsafe: (htmlVideoElement, string) => unit = "setHTMLUnsafe"
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/getHTML)
 */
 @send
-external getHTML: (htmlVideoElement, getHTMLOptions) => string = "getHTML"
+external getHTML: (htmlVideoElement, ~options: getHTMLOptions=?) => string = "getHTML"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/insertAdjacentHTML)
@@ -677,7 +679,7 @@ external hasPointerCapture: (htmlVideoElement, int) => bool = "hasPointerCapture
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/requestPointerLock)
 */
 @send
-external requestPointerLock: (htmlVideoElement, pointerLockOptions) => Promise.t<unit> =
+external requestPointerLock: (htmlVideoElement, ~options: pointerLockOptions=?) => Promise.t<unit> =
   "requestPointerLock"
 
 /**
@@ -708,7 +710,7 @@ external hidePopover: htmlVideoElement => unit = "hidePopover"
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/togglePopover)
 */
 @send
-external togglePopover: (htmlVideoElement, bool) => bool = "togglePopover"
+external togglePopover: (htmlVideoElement, ~force: bool=?) => bool = "togglePopover"
 
 /**
 Resets the audio or video object and loads a new media resource.
@@ -751,8 +753,8 @@ external pause: htmlVideoElement => unit = "pause"
 external addTextTrack: (
   htmlVideoElement,
   ~kind: textTrackKind,
-  ~label: string,
-  ~language: string,
+  ~label: string=?,
+  ~language: string=?,
 ) => textTrack = "addTextTrack"
 
 /**

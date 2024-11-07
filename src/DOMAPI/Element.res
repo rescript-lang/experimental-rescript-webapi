@@ -135,13 +135,14 @@ external remove: element => unit = "remove"
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/animate)
 */
 @send
-external animate: (element, ~keyframes: any, ~options: unknown) => animation = "animate"
+external animate: (element, ~keyframes: any, ~options: unknown=?) => animation = "animate"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/getAnimations)
 */
 @send
-external getAnimations: (element, getAnimationsOptions) => array<animation> = "getAnimations"
+external getAnimations: (element, ~options: getAnimationsOptions=?) => array<animation> =
+  "getAnimations"
 
 /**
 Appends an event listener for events whose type attribute value is type. The callback argument sets the callback that will be invoked when the event is dispatched.
@@ -250,7 +251,7 @@ Returns node's root.
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/getRootNode)
 */
 @send
-external getRootNode: (element, getRootNodeOptions) => node = "getRootNode"
+external getRootNode: (element, ~options: getRootNodeOptions=?) => node = "getRootNode"
 
 /**
 Returns whether node has children.
@@ -271,7 +272,7 @@ Returns a copy of node. If deep is true, the copy also includes the node's desce
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/cloneNode)
 */
 @send
-external cloneNode: (element, bool) => node = "cloneNode"
+external cloneNode: (element, ~deep: bool=?) => node = "cloneNode"
 
 /**
 Returns whether node and otherNode have the same properties.
@@ -412,7 +413,7 @@ Returns true if qualifiedName is now present, and false otherwise.
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/toggleAttribute)
 */
 @send
-external toggleAttribute: (element, ~qualifiedName: string, ~force: bool) => bool =
+external toggleAttribute: (element, ~qualifiedName: string, ~force: bool=?) => bool =
   "toggleAttribute"
 
 /**
@@ -542,25 +543,25 @@ external getBoundingClientRect: element => domRect = "getBoundingClientRect"
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/checkVisibility)
 */
 @send
-external checkVisibility: (element, checkVisibilityOptions) => bool = "checkVisibility"
+external checkVisibility: (element, ~options: checkVisibilityOptions=?) => bool = "checkVisibility"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/scrollIntoView)
 */
 @send
-external scrollIntoView: (element, bool) => unit = "scrollIntoView"
+external scrollIntoView: (element, ~arg: bool=?) => unit = "scrollIntoView"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/scrollIntoView)
 */
 @send
-external scrollIntoView2: (element, scrollIntoViewOptions) => unit = "scrollIntoView"
+external scrollIntoView2: (element, ~arg: scrollIntoViewOptions=?) => unit = "scrollIntoView"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/scroll)
 */
 @send
-external scroll: (element, scrollToOptions) => unit = "scroll"
+external scroll: (element, ~options: scrollToOptions=?) => unit = "scroll"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/scroll)
@@ -572,7 +573,7 @@ external scroll2: (element, ~x: float, ~y: float) => unit = "scroll"
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/scrollTo)
 */
 @send
-external scrollTo: (element, scrollToOptions) => unit = "scrollTo"
+external scrollTo: (element, ~options: scrollToOptions=?) => unit = "scrollTo"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/scrollTo)
@@ -584,7 +585,7 @@ external scrollTo2: (element, ~x: float, ~y: float) => unit = "scrollTo"
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/scrollBy)
 */
 @send
-external scrollBy: (element, scrollToOptions) => unit = "scrollBy"
+external scrollBy: (element, ~options: scrollToOptions=?) => unit = "scrollBy"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/scrollBy)
@@ -599,7 +600,8 @@ When supplied, options's navigationUI member indicates whether showing navigatio
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/requestFullscreen)
 */
 @send
-external requestFullscreen: (element, fullscreenOptions) => Promise.t<unit> = "requestFullscreen"
+external requestFullscreen: (element, ~options: fullscreenOptions=?) => Promise.t<unit> =
+  "requestFullscreen"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/setHTMLUnsafe)
@@ -611,7 +613,7 @@ external setHTMLUnsafe: (element, string) => unit = "setHTMLUnsafe"
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/getHTML)
 */
 @send
-external getHTML: (element, getHTMLOptions) => string = "getHTML"
+external getHTML: (element, ~options: getHTMLOptions=?) => string = "getHTML"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/insertAdjacentHTML)
@@ -642,4 +644,5 @@ external hasPointerCapture: (element, int) => bool = "hasPointerCapture"
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/requestPointerLock)
 */
 @send
-external requestPointerLock: (element, pointerLockOptions) => Promise.t<unit> = "requestPointerLock"
+external requestPointerLock: (element, ~options: pointerLockOptions=?) => Promise.t<unit> =
+  "requestPointerLock"

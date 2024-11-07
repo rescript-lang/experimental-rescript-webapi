@@ -7,7 +7,7 @@ open WebAudioAPI
 @new
 external make: (
   ~context: audioContext,
-  ~options: audioNodeOptions,
+  ~options: audioNodeOptions=?,
 ) => mediaStreamAudioDestinationNode = "MediaStreamAudioDestinationNode"
 
 /**
@@ -130,8 +130,8 @@ external dispatchEvent: (mediaStreamAudioDestinationNode, event) => bool = "disp
 external connect: (
   mediaStreamAudioDestinationNode,
   ~destinationNode: audioNode,
-  ~output: int,
-  ~input: int,
+  ~output: int=?,
+  ~input: int=?,
 ) => audioNode = "connect"
 
 /**
@@ -141,7 +141,7 @@ external connect: (
 external connect2: (
   mediaStreamAudioDestinationNode,
   ~destinationParam: audioParam,
-  ~output: int,
+  ~output: int=?,
 ) => unit = "connect"
 
 /**

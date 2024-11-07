@@ -7,7 +7,7 @@ open MediaCaptureAndStreamsAPI
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/AudioContext)
 */
 @new
-external make: audioContextOptions => audioContext = "AudioContext"
+external make: (~contextOptions: audioContextOptions=?) => audioContext = "AudioContext"
 
 /**
 Appends an event listener for events whose type attribute value is type. The callback argument sets the callback that will be invoked when the event is dispatched.
@@ -149,13 +149,15 @@ external createBufferSource: audioContext => audioBufferSourceNode = "createBuff
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/BaseAudioContext/createChannelMerger)
 */
 @send
-external createChannelMerger: (audioContext, int) => channelMergerNode = "createChannelMerger"
+external createChannelMerger: (audioContext, ~numberOfInputs: int=?) => channelMergerNode =
+  "createChannelMerger"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/BaseAudioContext/createChannelSplitter)
 */
 @send
-external createChannelSplitter: (audioContext, int) => channelSplitterNode = "createChannelSplitter"
+external createChannelSplitter: (audioContext, ~numberOfOutputs: int=?) => channelSplitterNode =
+  "createChannelSplitter"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/BaseAudioContext/createConstantSource)
@@ -173,7 +175,7 @@ external createConvolver: audioContext => convolverNode = "createConvolver"
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/BaseAudioContext/createDelay)
 */
 @send
-external createDelay: (audioContext, float) => delayNode = "createDelay"
+external createDelay: (audioContext, ~maxDelayTime: float=?) => delayNode = "createDelay"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/BaseAudioContext/createDynamicsCompressor)
@@ -218,7 +220,7 @@ external createPeriodicWave: (
   audioContext,
   ~real: array<float>,
   ~imag: array<float>,
-  ~constraints: periodicWaveConstraints,
+  ~constraints: periodicWaveConstraints=?,
 ) => periodicWave = "createPeriodicWave"
 
 /**
@@ -240,8 +242,8 @@ external createWaveShaper: audioContext => waveShaperNode = "createWaveShaper"
 external decodeAudioData: (
   audioContext,
   ~audioData: ArrayBuffer.t,
-  ~successCallback: decodeSuccessCallback,
-  ~errorCallback: decodeErrorCallback,
+  ~successCallback: decodeSuccessCallback=?,
+  ~errorCallback: decodeErrorCallback=?,
 ) => Promise.t<audioBuffer> = "decodeAudioData"
 
 /**

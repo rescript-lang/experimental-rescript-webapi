@@ -282,6 +282,8 @@ export async function emitRescriptBindings(webidl: Browser.WebIdl) {
 
   const allMixins = getElements(webidl.mixins, "mixin");
 
+  const allTypeDefs = webidl.typedefs?.typedef || [];
+
   function compareName(c1: { name: string }, c2: { name: string }) {
     return c1.name < c2.name ? -1 : c1.name > c2.name ? 1 : 0;
   }
@@ -1037,12 +1039,14 @@ export async function emitRescriptBindings(webidl: Browser.WebIdl) {
             }
 
             const t = transformTyped(p);
+            if (!includeParameterNames) {
+              return t;
+            }
+
             let name = "";
             if (
-              includeParameterNames &&
-              p.name &&
-              p.name !== "arg" &&
-              parameters.length > 1
+              (p.name && p.optional) ||
+              (p.name !== "arg" && parameters.length > 1)
             ) {
               name = p.name.endsWith("Arg")
                 ? p.name.replace("Arg", "")
@@ -1051,7 +1055,9 @@ export async function emitRescriptBindings(webidl: Browser.WebIdl) {
                 ? `~${name}_: `
                 : `~${name}: `;
             }
-            return `${name}${t}`;
+
+            const isOptional = p.optional ? "=?" : "";
+            return `${name}${t}${isOptional}`;
           })
           .join(join);
   }

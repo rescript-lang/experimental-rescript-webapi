@@ -7,8 +7,8 @@ open GeolocationAPI
 external getCurrentPosition: (
   geolocation,
   ~successCallback: positionCallback,
-  ~errorCallback: positionErrorCallback,
-  ~options: positionOptions,
+  ~errorCallback: positionErrorCallback=?,
+  ~options: positionOptions=?,
 ) => unit = "getCurrentPosition"
 
 /**
@@ -18,8 +18,8 @@ external getCurrentPosition: (
 external watchPosition: (
   geolocation,
   ~successCallback: positionCallback,
-  ~errorCallback: positionErrorCallback,
-  ~options: positionOptions,
+  ~errorCallback: positionErrorCallback=?,
+  ~options: positionOptions=?,
 ) => int = "watchPosition"
 
 /**

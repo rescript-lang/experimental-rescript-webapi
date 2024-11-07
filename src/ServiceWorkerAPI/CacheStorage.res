@@ -8,7 +8,7 @@ open ServiceWorkerAPI
 external match: (
   cacheStorage,
   ~request: requestInfo,
-  ~options: multiCacheQueryOptions,
+  ~options: multiCacheQueryOptions=?,
 ) => Nullable.t<response> = "match"
 
 /**

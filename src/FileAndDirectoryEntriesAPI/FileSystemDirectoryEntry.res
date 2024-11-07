@@ -6,8 +6,8 @@ open FileAndDirectoryEntriesAPI
 @send
 external getParent: (
   fileSystemDirectoryEntry,
-  ~successCallback: fileSystemEntryCallback,
-  ~errorCallback: errorCallback,
+  ~successCallback: fileSystemEntryCallback=?,
+  ~errorCallback: errorCallback=?,
 ) => unit = "getParent"
 
 /**
@@ -22,10 +22,10 @@ external createReader: fileSystemDirectoryEntry => fileSystemDirectoryReader = "
 @send
 external getFile: (
   fileSystemDirectoryEntry,
-  ~path: string,
-  ~options: fileSystemFlags,
-  ~successCallback: fileSystemEntryCallback,
-  ~errorCallback: errorCallback,
+  ~path: string=?,
+  ~options: fileSystemFlags=?,
+  ~successCallback: fileSystemEntryCallback=?,
+  ~errorCallback: errorCallback=?,
 ) => unit = "getFile"
 
 /**
@@ -34,8 +34,8 @@ external getFile: (
 @send
 external getDirectory: (
   fileSystemDirectoryEntry,
-  ~path: string,
-  ~options: fileSystemFlags,
-  ~successCallback: fileSystemEntryCallback,
-  ~errorCallback: errorCallback,
+  ~path: string=?,
+  ~options: fileSystemFlags=?,
+  ~successCallback: fileSystemEntryCallback=?,
+  ~errorCallback: errorCallback=?,
 ) => unit = "getDirectory"

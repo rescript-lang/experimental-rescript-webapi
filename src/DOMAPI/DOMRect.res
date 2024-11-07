@@ -4,13 +4,13 @@ open DOMAPI
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/DOMRect)
 */
 @new
-external make: (~x: float, ~y: float, ~width: float, ~height: float) => domRect = "DOMRect"
+external make: (~x: float=?, ~y: float=?, ~width: float=?, ~height: float=?) => domRect = "DOMRect"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/DOMRect/fromRect_static)
 */
 @scope("DOMRect")
-external fromRect: domRectInit => domRect = "fromRect"
+external fromRect: (~other: domRectInit=?) => domRect = "fromRect"
 
 @send
 external toJSON: domRect => Dict.t<string> = "toJSON"

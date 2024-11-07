@@ -12,7 +12,7 @@ external make: unit => htmlTableSectionElement = "HTMLTableSectionElement"
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/focus)
 */
 @send
-external focus: (htmlTableSectionElement, focusOptions) => unit = "focus"
+external focus: (htmlTableSectionElement, ~options: focusOptions=?) => unit = "focus"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/blur)
@@ -153,15 +153,17 @@ external remove: htmlTableSectionElement => unit = "remove"
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/animate)
 */
 @send
-external animate: (htmlTableSectionElement, ~keyframes: any, ~options: unknown) => animation =
+external animate: (htmlTableSectionElement, ~keyframes: any, ~options: unknown=?) => animation =
   "animate"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/getAnimations)
 */
 @send
-external getAnimations: (htmlTableSectionElement, getAnimationsOptions) => array<animation> =
-  "getAnimations"
+external getAnimations: (
+  htmlTableSectionElement,
+  ~options: getAnimationsOptions=?,
+) => array<animation> = "getAnimations"
 
 /**
 Appends an event listener for events whose type attribute value is type. The callback argument sets the callback that will be invoked when the event is dispatched.
@@ -275,7 +277,8 @@ Returns node's root.
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/getRootNode)
 */
 @send
-external getRootNode: (htmlTableSectionElement, getRootNodeOptions) => node = "getRootNode"
+external getRootNode: (htmlTableSectionElement, ~options: getRootNodeOptions=?) => node =
+  "getRootNode"
 
 /**
 Returns whether node has children.
@@ -296,7 +299,7 @@ Returns a copy of node. If deep is true, the copy also includes the node's desce
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/cloneNode)
 */
 @send
-external cloneNode: (htmlTableSectionElement, bool) => node = "cloneNode"
+external cloneNode: (htmlTableSectionElement, ~deep: bool=?) => node = "cloneNode"
 
 /**
 Returns whether node and otherNode have the same properties.
@@ -444,8 +447,11 @@ Returns true if qualifiedName is now present, and false otherwise.
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/toggleAttribute)
 */
 @send
-external toggleAttribute: (htmlTableSectionElement, ~qualifiedName: string, ~force: bool) => bool =
-  "toggleAttribute"
+external toggleAttribute: (
+  htmlTableSectionElement,
+  ~qualifiedName: string,
+  ~force: bool=?,
+) => bool = "toggleAttribute"
 
 /**
 Returns true if element has an attribute whose qualified name is qualifiedName, and false otherwise.
@@ -584,27 +590,27 @@ external getBoundingClientRect: htmlTableSectionElement => domRect = "getBoundin
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/checkVisibility)
 */
 @send
-external checkVisibility: (htmlTableSectionElement, checkVisibilityOptions) => bool =
+external checkVisibility: (htmlTableSectionElement, ~options: checkVisibilityOptions=?) => bool =
   "checkVisibility"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/scrollIntoView)
 */
 @send
-external scrollIntoView: (htmlTableSectionElement, bool) => unit = "scrollIntoView"
+external scrollIntoView: (htmlTableSectionElement, ~arg: bool=?) => unit = "scrollIntoView"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/scrollIntoView)
 */
 @send
-external scrollIntoView2: (htmlTableSectionElement, scrollIntoViewOptions) => unit =
+external scrollIntoView2: (htmlTableSectionElement, ~arg: scrollIntoViewOptions=?) => unit =
   "scrollIntoView"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/scroll)
 */
 @send
-external scroll: (htmlTableSectionElement, scrollToOptions) => unit = "scroll"
+external scroll: (htmlTableSectionElement, ~options: scrollToOptions=?) => unit = "scroll"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/scroll)
@@ -616,7 +622,7 @@ external scroll2: (htmlTableSectionElement, ~x: float, ~y: float) => unit = "scr
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/scrollTo)
 */
 @send
-external scrollTo: (htmlTableSectionElement, scrollToOptions) => unit = "scrollTo"
+external scrollTo: (htmlTableSectionElement, ~options: scrollToOptions=?) => unit = "scrollTo"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/scrollTo)
@@ -628,7 +634,7 @@ external scrollTo2: (htmlTableSectionElement, ~x: float, ~y: float) => unit = "s
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/scrollBy)
 */
 @send
-external scrollBy: (htmlTableSectionElement, scrollToOptions) => unit = "scrollBy"
+external scrollBy: (htmlTableSectionElement, ~options: scrollToOptions=?) => unit = "scrollBy"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/scrollBy)
@@ -643,8 +649,10 @@ When supplied, options's navigationUI member indicates whether showing navigatio
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/requestFullscreen)
 */
 @send
-external requestFullscreen: (htmlTableSectionElement, fullscreenOptions) => Promise.t<unit> =
-  "requestFullscreen"
+external requestFullscreen: (
+  htmlTableSectionElement,
+  ~options: fullscreenOptions=?,
+) => Promise.t<unit> = "requestFullscreen"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/setHTMLUnsafe)
@@ -656,7 +664,7 @@ external setHTMLUnsafe: (htmlTableSectionElement, string) => unit = "setHTMLUnsa
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/getHTML)
 */
 @send
-external getHTML: (htmlTableSectionElement, getHTMLOptions) => string = "getHTML"
+external getHTML: (htmlTableSectionElement, ~options: getHTMLOptions=?) => string = "getHTML"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/insertAdjacentHTML)
@@ -690,8 +698,10 @@ external hasPointerCapture: (htmlTableSectionElement, int) => bool = "hasPointer
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/requestPointerLock)
 */
 @send
-external requestPointerLock: (htmlTableSectionElement, pointerLockOptions) => Promise.t<unit> =
-  "requestPointerLock"
+external requestPointerLock: (
+  htmlTableSectionElement,
+  ~options: pointerLockOptions=?,
+) => Promise.t<unit> = "requestPointerLock"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/click)
@@ -721,7 +731,7 @@ external hidePopover: htmlTableSectionElement => unit = "hidePopover"
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/togglePopover)
 */
 @send
-external togglePopover: (htmlTableSectionElement, bool) => bool = "togglePopover"
+external togglePopover: (htmlTableSectionElement, ~force: bool=?) => bool = "togglePopover"
 
 /**
 Creates a new row (tr) in the table, and adds the row to the rows collection.
@@ -729,7 +739,7 @@ Creates a new row (tr) in the table, and adds the row to the rows collection.
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLTableSectionElement/insertRow)
 */
 @send
-external insertRow: (htmlTableSectionElement, int) => htmlTableRowElement = "insertRow"
+external insertRow: (htmlTableSectionElement, ~index: int=?) => htmlTableRowElement = "insertRow"
 
 /**
 Removes the specified row (tr) from the element and from the rows collection.

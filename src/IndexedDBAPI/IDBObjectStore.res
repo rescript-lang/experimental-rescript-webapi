@@ -12,7 +12,7 @@ If successful, request's result will be the record's key.
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/IDBObjectStore/put)
 */
 @send
-external put: (idbObjectStore, ~value: any, ~key: idbValidKey) => idbRequest<idbValidKey> = "put"
+external put: (idbObjectStore, ~value: any, ~key: idbValidKey=?) => idbRequest<idbValidKey> = "put"
 
 /**
 Adds or updates a record in store with the given value and key.
@@ -25,7 +25,7 @@ If successful, request's result will be the record's key.
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/IDBObjectStore/add)
 */
 @send
-external add: (idbObjectStore, ~value: any, ~key: idbValidKey) => idbRequest<idbValidKey> = "add"
+external add: (idbObjectStore, ~value: any, ~key: idbValidKey=?) => idbRequest<idbValidKey> = "add"
 
 /**
 Deletes records in store with the given key or in the given key range in query.
@@ -70,7 +70,7 @@ If successful, request's result will be an Array of the values.
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/IDBObjectStore/getAll)
 */
 @send
-external getAll: (idbObjectStore, ~query: any, ~count: int) => idbRequest<array<any>> = "getAll"
+external getAll: (idbObjectStore, ~query: any=?, ~count: int=?) => idbRequest<array<any>> = "getAll"
 
 /**
 Retrieves the keys of records matching the given key or key range in query (up to count if given).
@@ -79,8 +79,11 @@ If successful, request's result will be an Array of the keys.
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/IDBObjectStore/getAllKeys)
 */
 @send
-external getAllKeys: (idbObjectStore, ~query: any, ~count: int) => idbRequest<array<idbValidKey>> =
-  "getAllKeys"
+external getAllKeys: (
+  idbObjectStore,
+  ~query: any=?,
+  ~count: int=?,
+) => idbRequest<array<idbValidKey>> = "getAllKeys"
 
 /**
 Retrieves the number of records matching the given key or key range in query.
@@ -89,7 +92,7 @@ If successful, request's result will be the count.
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/IDBObjectStore/count)
 */
 @send
-external count: (idbObjectStore, any) => idbRequest<int> = "count"
+external count: (idbObjectStore, ~query: any=?) => idbRequest<int> = "count"
 
 /**
 Opens a cursor over the records matching query, ordered by direction. If query is null, all records in store are matched.
@@ -100,8 +103,8 @@ If successful, request's result will be an IDBCursorWithValue pointing at the fi
 @send
 external openCursor: (
   idbObjectStore,
-  ~query: any,
-  ~direction: idbCursorDirection,
+  ~query: any=?,
+  ~direction: idbCursorDirection=?,
 ) => idbRequest<any> = "openCursor"
 
 /**
@@ -113,8 +116,8 @@ If successful, request's result will be an IDBCursor pointing at the first match
 @send
 external openKeyCursor: (
   idbObjectStore,
-  ~query: any,
-  ~direction: idbCursorDirection,
+  ~query: any=?,
+  ~direction: idbCursorDirection=?,
 ) => idbRequest<any> = "openKeyCursor"
 
 /**
@@ -134,7 +137,7 @@ external createIndex: (
   idbObjectStore,
   ~name: string,
   ~keyPath: unknown,
-  ~options: idbIndexParameters,
+  ~options: idbIndexParameters=?,
 ) => idbIndex = "createIndex"
 
 /**

@@ -5,7 +5,7 @@ open WebAudioAPI
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/OscillatorNode)
 */
 @new
-external make: (~context: baseAudioContext, ~options: oscillatorOptions) => oscillatorNode =
+external make: (~context: baseAudioContext, ~options: oscillatorOptions=?) => oscillatorNode =
   "OscillatorNode"
 
 /**
@@ -122,15 +122,16 @@ external dispatchEvent: (oscillatorNode, event) => bool = "dispatchEvent"
 external connect: (
   oscillatorNode,
   ~destinationNode: audioNode,
-  ~output: int,
-  ~input: int,
+  ~output: int=?,
+  ~input: int=?,
 ) => audioNode = "connect"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/AudioNode/connect)
 */
 @send
-external connect2: (oscillatorNode, ~destinationParam: audioParam, ~output: int) => unit = "connect"
+external connect2: (oscillatorNode, ~destinationParam: audioParam, ~output: int=?) => unit =
+  "connect"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/AudioNode/disconnect)
@@ -185,13 +186,13 @@ external disconnect7: (oscillatorNode, ~destinationParam: audioParam, ~output: i
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/AudioScheduledSourceNode/start)
 */
 @send
-external start: (oscillatorNode, float) => unit = "start"
+external start: (oscillatorNode, ~when_: float=?) => unit = "start"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/AudioScheduledSourceNode/stop)
 */
 @send
-external stop: (oscillatorNode, float) => unit = "stop"
+external stop: (oscillatorNode, ~when_: float=?) => unit = "stop"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/OscillatorNode/setPeriodicWave)

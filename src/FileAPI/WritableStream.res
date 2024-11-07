@@ -6,15 +6,15 @@ open FileAPI
 */
 @new
 external make: (
-  ~underlyingSink: underlyingSink<'w>,
-  ~strategy: queuingStrategy<'w>,
+  ~underlyingSink: underlyingSink<'w>=?,
+  ~strategy: queuingStrategy<'w>=?,
 ) => writableStream<'w> = "WritableStream"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/WritableStream/abort)
 */
 @send
-external abort: (writableStream<'w>, any) => Promise.t<unit> = "abort"
+external abort: (writableStream<'w>, ~reason: any=?) => Promise.t<unit> = "abort"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/WritableStream/close)

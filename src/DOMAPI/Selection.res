@@ -34,13 +34,13 @@ external empty: selection => unit = "empty"
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Selection/collapse)
 */
 @send
-external collapse: (selection, ~node: node, ~offset: int) => unit = "collapse"
+external collapse: (selection, ~node: node, ~offset: int=?) => unit = "collapse"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Selection/collapse)
 */
 @send
-external setPosition: (selection, ~node: node, ~offset: int) => unit = "setPosition"
+external setPosition: (selection, ~node: node, ~offset: int=?) => unit = "setPosition"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Selection/collapseToStart)
@@ -58,7 +58,7 @@ external collapseToEnd: selection => unit = "collapseToEnd"
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Selection/extend)
 */
 @send
-external extend: (selection, ~node: node, ~offset: int) => unit = "extend"
+external extend: (selection, ~node: node, ~offset: int=?) => unit = "extend"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Selection/setBaseAndExtent)
@@ -82,8 +82,12 @@ external selectAllChildren: (selection, node) => unit = "selectAllChildren"
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Selection/modify)
 */
 @send
-external modify: (selection, ~alter: string, ~direction: string, ~granularity: string) => unit =
-  "modify"
+external modify: (
+  selection,
+  ~alter: string=?,
+  ~direction: string=?,
+  ~granularity: string=?,
+) => unit = "modify"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Selection/deleteFromDocument)
@@ -95,5 +99,5 @@ external deleteFromDocument: selection => unit = "deleteFromDocument"
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Selection/containsNode)
 */
 @send
-external containsNode: (selection, ~node: node, ~allowPartialContainment: bool) => bool =
+external containsNode: (selection, ~node: node, ~allowPartialContainment: bool=?) => bool =
   "containsNode"

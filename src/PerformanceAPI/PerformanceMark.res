@@ -4,7 +4,7 @@ open PerformanceAPI
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/PerformanceMark)
 */
 @new
-external make: (~markName: string, ~markOptions: performanceMarkOptions) => performanceMark =
+external make: (~markName: string, ~markOptions: performanceMarkOptions=?) => performanceMark =
   "PerformanceMark"
 
 /**

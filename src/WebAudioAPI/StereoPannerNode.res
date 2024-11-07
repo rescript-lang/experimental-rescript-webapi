@@ -5,7 +5,7 @@ open WebAudioAPI
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/StereoPannerNode)
 */
 @new
-external make: (~context: baseAudioContext, ~options: stereoPannerOptions) => stereoPannerNode =
+external make: (~context: baseAudioContext, ~options: stereoPannerOptions=?) => stereoPannerNode =
   "StereoPannerNode"
 
 /**
@@ -122,15 +122,15 @@ external dispatchEvent: (stereoPannerNode, event) => bool = "dispatchEvent"
 external connect: (
   stereoPannerNode,
   ~destinationNode: audioNode,
-  ~output: int,
-  ~input: int,
+  ~output: int=?,
+  ~input: int=?,
 ) => audioNode = "connect"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/AudioNode/connect)
 */
 @send
-external connect2: (stereoPannerNode, ~destinationParam: audioParam, ~output: int) => unit =
+external connect2: (stereoPannerNode, ~destinationParam: audioParam, ~output: int=?) => unit =
   "connect"
 
 /**

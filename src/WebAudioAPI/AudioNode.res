@@ -112,14 +112,18 @@ external dispatchEvent: (audioNode, event) => bool = "dispatchEvent"
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/AudioNode/connect)
 */
 @send
-external connect: (audioNode, ~destinationNode: audioNode, ~output: int, ~input: int) => audioNode =
-  "connect"
+external connect: (
+  audioNode,
+  ~destinationNode: audioNode,
+  ~output: int=?,
+  ~input: int=?,
+) => audioNode = "connect"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/AudioNode/connect)
 */
 @send
-external connect2: (audioNode, ~destinationParam: audioParam, ~output: int) => unit = "connect"
+external connect2: (audioNode, ~destinationParam: audioParam, ~output: int=?) => unit = "connect"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/AudioNode/disconnect)

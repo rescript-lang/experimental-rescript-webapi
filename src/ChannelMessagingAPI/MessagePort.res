@@ -126,8 +126,11 @@ Throws a "DataCloneError" DOMException if transfer contains duplicate objects or
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/MessagePort/postMessage)
 */
 @send
-external postMessage2: (messagePort, ~message: any, ~options: structuredSerializeOptions) => unit =
-  "postMessage"
+external postMessage2: (
+  messagePort,
+  ~message: any,
+  ~options: structuredSerializeOptions=?,
+) => unit = "postMessage"
 
 /**
 Begins dispatching messages received on the port.

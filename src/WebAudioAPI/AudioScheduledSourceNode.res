@@ -115,16 +115,19 @@ external dispatchEvent: (audioScheduledSourceNode, event) => bool = "dispatchEve
 external connect: (
   audioScheduledSourceNode,
   ~destinationNode: audioNode,
-  ~output: int,
-  ~input: int,
+  ~output: int=?,
+  ~input: int=?,
 ) => audioNode = "connect"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/AudioNode/connect)
 */
 @send
-external connect2: (audioScheduledSourceNode, ~destinationParam: audioParam, ~output: int) => unit =
-  "connect"
+external connect2: (
+  audioScheduledSourceNode,
+  ~destinationParam: audioParam,
+  ~output: int=?,
+) => unit = "connect"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/AudioNode/disconnect)
@@ -185,10 +188,10 @@ external disconnect7: (
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/AudioScheduledSourceNode/start)
 */
 @send
-external start: (audioScheduledSourceNode, float) => unit = "start"
+external start: (audioScheduledSourceNode, ~when_: float=?) => unit = "start"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/AudioScheduledSourceNode/stop)
 */
 @send
-external stop: (audioScheduledSourceNode, float) => unit = "stop"
+external stop: (audioScheduledSourceNode, ~when_: float=?) => unit = "stop"

@@ -5,7 +5,7 @@ open WebAudioAPI
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/GainNode)
 */
 @new
-external make: (~context: baseAudioContext, ~options: gainOptions) => gainNode = "GainNode"
+external make: (~context: baseAudioContext, ~options: gainOptions=?) => gainNode = "GainNode"
 
 /**
 Appends an event listener for events whose type attribute value is type. The callback argument sets the callback that will be invoked when the event is dispatched.
@@ -117,14 +117,18 @@ external dispatchEvent: (gainNode, event) => bool = "dispatchEvent"
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/AudioNode/connect)
 */
 @send
-external connect: (gainNode, ~destinationNode: audioNode, ~output: int, ~input: int) => audioNode =
-  "connect"
+external connect: (
+  gainNode,
+  ~destinationNode: audioNode,
+  ~output: int=?,
+  ~input: int=?,
+) => audioNode = "connect"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/AudioNode/connect)
 */
 @send
-external connect2: (gainNode, ~destinationParam: audioParam, ~output: int) => unit = "connect"
+external connect2: (gainNode, ~destinationParam: audioParam, ~output: int=?) => unit = "connect"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/AudioNode/disconnect)

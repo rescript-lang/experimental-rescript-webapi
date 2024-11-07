@@ -89,7 +89,7 @@ external querySelectorAll: (document, string) => nodeList = "querySelectorAll"
 external createExpression: (
   document,
   ~expression: string,
-  ~resolver: xPathNSResolver,
+  ~resolver: xPathNSResolver=?,
 ) => xPathExpression = "createExpression"
 
 /**
@@ -100,9 +100,9 @@ external evaluate: (
   document,
   ~expression: string,
   ~contextNode: node,
-  ~resolver: xPathNSResolver,
-  ~type_: int,
-  ~result: xPathResult,
+  ~resolver: xPathNSResolver=?,
+  ~type_: int=?,
+  ~result: xPathResult=?,
 ) => xPathResult = "evaluate"
 
 /**
@@ -216,7 +216,7 @@ Returns node's root.
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/getRootNode)
 */
 @send
-external getRootNode: (document, getRootNodeOptions) => node = "getRootNode"
+external getRootNode: (document, ~options: getRootNodeOptions=?) => node = "getRootNode"
 
 /**
 Returns whether node has children.
@@ -237,7 +237,7 @@ Returns a copy of node. If deep is true, the copy also includes the node's desce
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/cloneNode)
 */
 @send
-external cloneNode: (document, bool) => node = "cloneNode"
+external cloneNode: (document, ~deep: bool=?) => node = "cloneNode"
 
 /**
 Returns whether node and otherNode have the same properties.
@@ -347,7 +347,7 @@ Creates an instance of the element for the specified tag.
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Document/createElement)
 */
 @send
-external createElement: (document, ~localName: string, ~options: unknown) => element =
+external createElement: (document, ~localName: string, ~options: unknown=?) => element =
   "createElement"
 
 /**
@@ -371,7 +371,7 @@ external createElementNS: (
   document,
   ~namespace: string,
   ~qualifiedName: string,
-  ~options: unknown,
+  ~options: unknown=?,
 ) => element = "createElementNS"
 
 /**
@@ -422,7 +422,7 @@ If node is a document or a shadow root, throws a "NotSupportedError" DOMExceptio
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Document/importNode)
 */
 @send
-external importNode: (document, 't, ~deep: bool) => 't = "importNode"
+external importNode: (document, 't, ~deep: bool=?) => 't = "importNode"
 
 /**
 Moves node from another document and returns it.
@@ -472,8 +472,8 @@ Creates a NodeIterator object that you can use to traverse filtered lists of nod
 external createNodeIterator: (
   document,
   ~root: node,
-  ~whatToShow: int,
-  ~filter: nodeFilter,
+  ~whatToShow: int=?,
+  ~filter: nodeFilter=?,
 ) => nodeIterator = "createNodeIterator"
 
 /**
@@ -487,16 +487,18 @@ Creates a TreeWalker object that you can use to traverse filtered lists of nodes
 external createTreeWalker: (
   document,
   ~root: node,
-  ~whatToShow: int,
-  ~filter: nodeFilter,
+  ~whatToShow: int=?,
+  ~filter: nodeFilter=?,
 ) => treeWalker = "createTreeWalker"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Document/startViewTransition)
 */
 @send
-external startViewTransition: (document, viewTransitionUpdateCallback) => viewTransition =
-  "startViewTransition"
+external startViewTransition: (
+  document,
+  ~callbackOptions: viewTransitionUpdateCallback=?,
+) => viewTransition = "startViewTransition"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Document/caretPositionFromPoint)
@@ -506,7 +508,7 @@ external caretPositionFromPoint: (
   document,
   ~x: float,
   ~y: float,
-  ~options: caretPositionFromPointOptions,
+  ~options: caretPositionFromPointOptions=?,
 ) => caretPosition = "caretPositionFromPoint"
 
 /**
@@ -539,7 +541,7 @@ Opens a new window and loads a document specified by a given URL. Also, opens a 
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Document/open)
 */
 @send
-external open_: (document, ~unused1: string, ~unused2: string) => document = "open"
+external open_: (document, ~unused1: string=?, ~unused2: string=?) => document = "open"
 
 /**
 Opens a new window and loads a document specified by a given URL. Also, opens a new window that uses the url parameter and the name parameter to collect the output of the write method and the writeln method.

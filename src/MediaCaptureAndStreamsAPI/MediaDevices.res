@@ -125,12 +125,16 @@ external getSupportedConstraints: mediaDevices => mediaTrackSupportedConstraints
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/MediaDevices/getUserMedia)
 */
 @send
-external getUserMedia: (mediaDevices, mediaStreamConstraints) => Promise.t<mediaStream> =
-  "getUserMedia"
+external getUserMedia: (
+  mediaDevices,
+  ~constraints: mediaStreamConstraints=?,
+) => Promise.t<mediaStream> = "getUserMedia"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/MediaDevices/getDisplayMedia)
 */
 @send
-external getDisplayMedia: (mediaDevices, displayMediaStreamOptions) => Promise.t<mediaStream> =
-  "getDisplayMedia"
+external getDisplayMedia: (
+  mediaDevices,
+  ~options: displayMediaStreamOptions=?,
+) => Promise.t<mediaStream> = "getDisplayMedia"

@@ -12,7 +12,7 @@ external make: unit => htmlInputElement = "HTMLInputElement"
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/focus)
 */
 @send
-external focus: (htmlInputElement, focusOptions) => unit = "focus"
+external focus: (htmlInputElement, ~options: focusOptions=?) => unit = "focus"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/blur)
@@ -153,13 +153,13 @@ external remove: htmlInputElement => unit = "remove"
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/animate)
 */
 @send
-external animate: (htmlInputElement, ~keyframes: any, ~options: unknown) => animation = "animate"
+external animate: (htmlInputElement, ~keyframes: any, ~options: unknown=?) => animation = "animate"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/getAnimations)
 */
 @send
-external getAnimations: (htmlInputElement, getAnimationsOptions) => array<animation> =
+external getAnimations: (htmlInputElement, ~options: getAnimationsOptions=?) => array<animation> =
   "getAnimations"
 
 /**
@@ -274,7 +274,7 @@ Returns node's root.
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/getRootNode)
 */
 @send
-external getRootNode: (htmlInputElement, getRootNodeOptions) => node = "getRootNode"
+external getRootNode: (htmlInputElement, ~options: getRootNodeOptions=?) => node = "getRootNode"
 
 /**
 Returns whether node has children.
@@ -295,7 +295,7 @@ Returns a copy of node. If deep is true, the copy also includes the node's desce
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/cloneNode)
 */
 @send
-external cloneNode: (htmlInputElement, bool) => node = "cloneNode"
+external cloneNode: (htmlInputElement, ~deep: bool=?) => node = "cloneNode"
 
 /**
 Returns whether node and otherNode have the same properties.
@@ -437,7 +437,7 @@ Returns true if qualifiedName is now present, and false otherwise.
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/toggleAttribute)
 */
 @send
-external toggleAttribute: (htmlInputElement, ~qualifiedName: string, ~force: bool) => bool =
+external toggleAttribute: (htmlInputElement, ~qualifiedName: string, ~force: bool=?) => bool =
   "toggleAttribute"
 
 /**
@@ -570,25 +570,27 @@ external getBoundingClientRect: htmlInputElement => domRect = "getBoundingClient
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/checkVisibility)
 */
 @send
-external checkVisibility: (htmlInputElement, checkVisibilityOptions) => bool = "checkVisibility"
+external checkVisibility: (htmlInputElement, ~options: checkVisibilityOptions=?) => bool =
+  "checkVisibility"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/scrollIntoView)
 */
 @send
-external scrollIntoView: (htmlInputElement, bool) => unit = "scrollIntoView"
+external scrollIntoView: (htmlInputElement, ~arg: bool=?) => unit = "scrollIntoView"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/scrollIntoView)
 */
 @send
-external scrollIntoView2: (htmlInputElement, scrollIntoViewOptions) => unit = "scrollIntoView"
+external scrollIntoView2: (htmlInputElement, ~arg: scrollIntoViewOptions=?) => unit =
+  "scrollIntoView"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/scroll)
 */
 @send
-external scroll: (htmlInputElement, scrollToOptions) => unit = "scroll"
+external scroll: (htmlInputElement, ~options: scrollToOptions=?) => unit = "scroll"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/scroll)
@@ -600,7 +602,7 @@ external scroll2: (htmlInputElement, ~x: float, ~y: float) => unit = "scroll"
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/scrollTo)
 */
 @send
-external scrollTo: (htmlInputElement, scrollToOptions) => unit = "scrollTo"
+external scrollTo: (htmlInputElement, ~options: scrollToOptions=?) => unit = "scrollTo"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/scrollTo)
@@ -612,7 +614,7 @@ external scrollTo2: (htmlInputElement, ~x: float, ~y: float) => unit = "scrollTo
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/scrollBy)
 */
 @send
-external scrollBy: (htmlInputElement, scrollToOptions) => unit = "scrollBy"
+external scrollBy: (htmlInputElement, ~options: scrollToOptions=?) => unit = "scrollBy"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/scrollBy)
@@ -627,7 +629,7 @@ When supplied, options's navigationUI member indicates whether showing navigatio
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/requestFullscreen)
 */
 @send
-external requestFullscreen: (htmlInputElement, fullscreenOptions) => Promise.t<unit> =
+external requestFullscreen: (htmlInputElement, ~options: fullscreenOptions=?) => Promise.t<unit> =
   "requestFullscreen"
 
 /**
@@ -640,7 +642,7 @@ external setHTMLUnsafe: (htmlInputElement, string) => unit = "setHTMLUnsafe"
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/getHTML)
 */
 @send
-external getHTML: (htmlInputElement, getHTMLOptions) => string = "getHTML"
+external getHTML: (htmlInputElement, ~options: getHTMLOptions=?) => string = "getHTML"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/insertAdjacentHTML)
@@ -674,7 +676,7 @@ external hasPointerCapture: (htmlInputElement, int) => bool = "hasPointerCapture
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/requestPointerLock)
 */
 @send
-external requestPointerLock: (htmlInputElement, pointerLockOptions) => Promise.t<unit> =
+external requestPointerLock: (htmlInputElement, ~options: pointerLockOptions=?) => Promise.t<unit> =
   "requestPointerLock"
 
 /**
@@ -705,7 +707,7 @@ external hidePopover: htmlInputElement => unit = "hidePopover"
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/togglePopover)
 */
 @send
-external togglePopover: (htmlInputElement, bool) => bool = "togglePopover"
+external togglePopover: (htmlInputElement, ~force: bool=?) => bool = "togglePopover"
 
 /**
 Increments a range input control's value by the value given by the Step attribute. If the optional parameter is used, will increment the input control's value by that value.
@@ -713,7 +715,7 @@ Increments a range input control's value by the value given by the Step attribut
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLInputElement/stepUp)
 */
 @send
-external stepUp: (htmlInputElement, int) => unit = "stepUp"
+external stepUp: (htmlInputElement, ~n: int=?) => unit = "stepUp"
 
 /**
 Decrements a range input control's value by the value given by the Step attribute. If the optional parameter is used, it will decrement the input control's step value multiplied by the parameter's value.
@@ -721,7 +723,7 @@ Decrements a range input control's value by the value given by the Step attribut
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLInputElement/stepDown)
 */
 @send
-external stepDown: (htmlInputElement, int) => unit = "stepDown"
+external stepDown: (htmlInputElement, ~n: int=?) => unit = "stepDown"
 
 /**
 Returns whether a form will validate when it is submitted, without having to submit it.
@@ -766,7 +768,7 @@ external setRangeText2: (
   ~replacement: string,
   ~start: int,
   ~end: int,
-  ~selectionMode: selectionMode,
+  ~selectionMode: selectionMode=?,
 ) => unit = "setRangeText"
 
 /**
@@ -777,8 +779,12 @@ Sets the start and end positions of a selection in a text field.
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLInputElement/setSelectionRange)
 */
 @send
-external setSelectionRange: (htmlInputElement, ~start: int, ~end: int, ~direction: string) => unit =
-  "setSelectionRange"
+external setSelectionRange: (
+  htmlInputElement,
+  ~start: int,
+  ~end: int,
+  ~direction: string=?,
+) => unit = "setSelectionRange"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLInputElement/showPicker)

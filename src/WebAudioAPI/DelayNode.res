@@ -5,7 +5,7 @@ open WebAudioAPI
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/DelayNode)
 */
 @new
-external make: (~context: baseAudioContext, ~options: delayOptions) => delayNode = "DelayNode"
+external make: (~context: baseAudioContext, ~options: delayOptions=?) => delayNode = "DelayNode"
 
 /**
 Appends an event listener for events whose type attribute value is type. The callback argument sets the callback that will be invoked when the event is dispatched.
@@ -118,14 +118,18 @@ external dispatchEvent: (delayNode, event) => bool = "dispatchEvent"
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/AudioNode/connect)
 */
 @send
-external connect: (delayNode, ~destinationNode: audioNode, ~output: int, ~input: int) => audioNode =
-  "connect"
+external connect: (
+  delayNode,
+  ~destinationNode: audioNode,
+  ~output: int=?,
+  ~input: int=?,
+) => audioNode = "connect"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/AudioNode/connect)
 */
 @send
-external connect2: (delayNode, ~destinationParam: audioParam, ~output: int) => unit = "connect"
+external connect2: (delayNode, ~destinationParam: audioParam, ~output: int=?) => unit = "connect"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/AudioNode/disconnect)

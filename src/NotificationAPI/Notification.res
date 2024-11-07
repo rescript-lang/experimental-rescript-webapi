@@ -5,7 +5,7 @@ open NotificationAPI
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Notification)
 */
 @new
-external make: (~title: string, ~options: notificationOptions) => notification = "Notification"
+external make: (~title: string, ~options: notificationOptions=?) => notification = "Notification"
 
 /**
 Appends an event listener for events whose type attribute value is type. The callback argument sets the callback that will be invoked when the event is dispatched.
@@ -118,8 +118,9 @@ external dispatchEvent: (notification, event) => bool = "dispatchEvent"
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Notification/requestPermission_static)
 */
 @scope("Notification")
-external requestPermission: notificationPermissionCallback => Promise.t<notificationPermission> =
-  "requestPermission"
+external requestPermission: (
+  ~deprecatedCallback: notificationPermissionCallback=?,
+) => Promise.t<notificationPermission> = "requestPermission"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Notification/close)

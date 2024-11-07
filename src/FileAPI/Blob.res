@@ -4,13 +4,13 @@ open FileAPI
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Blob)
 */
 @new
-external make: (~blobParts: array<blobPart>, ~options: blobPropertyBag) => blob = "Blob"
+external make: (~blobParts: array<blobPart>=?, ~options: blobPropertyBag=?) => blob = "Blob"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Blob/slice)
 */
 @send
-external slice: (blob, ~start: int, ~end: int, ~contentType: string) => blob = "slice"
+external slice: (blob, ~start: int=?, ~end: int=?, ~contentType: string=?) => blob = "slice"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Blob/stream)

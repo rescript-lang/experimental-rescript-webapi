@@ -5,7 +5,7 @@ open WebSpeechAPI
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/SpeechSynthesisUtterance)
 */
 @new
-external make: string => speechSynthesisUtterance = "SpeechSynthesisUtterance"
+external make: (~text: string=?) => speechSynthesisUtterance = "SpeechSynthesisUtterance"
 
 /**
 Appends an event listener for events whose type attribute value is type. The callback argument sets the callback that will be invoked when the event is dispatched.

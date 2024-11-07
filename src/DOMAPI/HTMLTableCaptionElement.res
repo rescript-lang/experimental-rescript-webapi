@@ -12,7 +12,7 @@ external make: unit => htmlTableCaptionElement = "HTMLTableCaptionElement"
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/focus)
 */
 @send
-external focus: (htmlTableCaptionElement, focusOptions) => unit = "focus"
+external focus: (htmlTableCaptionElement, ~options: focusOptions=?) => unit = "focus"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/blur)
@@ -153,15 +153,17 @@ external remove: htmlTableCaptionElement => unit = "remove"
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/animate)
 */
 @send
-external animate: (htmlTableCaptionElement, ~keyframes: any, ~options: unknown) => animation =
+external animate: (htmlTableCaptionElement, ~keyframes: any, ~options: unknown=?) => animation =
   "animate"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/getAnimations)
 */
 @send
-external getAnimations: (htmlTableCaptionElement, getAnimationsOptions) => array<animation> =
-  "getAnimations"
+external getAnimations: (
+  htmlTableCaptionElement,
+  ~options: getAnimationsOptions=?,
+) => array<animation> = "getAnimations"
 
 /**
 Appends an event listener for events whose type attribute value is type. The callback argument sets the callback that will be invoked when the event is dispatched.
@@ -275,7 +277,8 @@ Returns node's root.
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/getRootNode)
 */
 @send
-external getRootNode: (htmlTableCaptionElement, getRootNodeOptions) => node = "getRootNode"
+external getRootNode: (htmlTableCaptionElement, ~options: getRootNodeOptions=?) => node =
+  "getRootNode"
 
 /**
 Returns whether node has children.
@@ -296,7 +299,7 @@ Returns a copy of node. If deep is true, the copy also includes the node's desce
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/cloneNode)
 */
 @send
-external cloneNode: (htmlTableCaptionElement, bool) => node = "cloneNode"
+external cloneNode: (htmlTableCaptionElement, ~deep: bool=?) => node = "cloneNode"
 
 /**
 Returns whether node and otherNode have the same properties.
@@ -444,8 +447,11 @@ Returns true if qualifiedName is now present, and false otherwise.
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/toggleAttribute)
 */
 @send
-external toggleAttribute: (htmlTableCaptionElement, ~qualifiedName: string, ~force: bool) => bool =
-  "toggleAttribute"
+external toggleAttribute: (
+  htmlTableCaptionElement,
+  ~qualifiedName: string,
+  ~force: bool=?,
+) => bool = "toggleAttribute"
 
 /**
 Returns true if element has an attribute whose qualified name is qualifiedName, and false otherwise.
@@ -584,27 +590,27 @@ external getBoundingClientRect: htmlTableCaptionElement => domRect = "getBoundin
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/checkVisibility)
 */
 @send
-external checkVisibility: (htmlTableCaptionElement, checkVisibilityOptions) => bool =
+external checkVisibility: (htmlTableCaptionElement, ~options: checkVisibilityOptions=?) => bool =
   "checkVisibility"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/scrollIntoView)
 */
 @send
-external scrollIntoView: (htmlTableCaptionElement, bool) => unit = "scrollIntoView"
+external scrollIntoView: (htmlTableCaptionElement, ~arg: bool=?) => unit = "scrollIntoView"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/scrollIntoView)
 */
 @send
-external scrollIntoView2: (htmlTableCaptionElement, scrollIntoViewOptions) => unit =
+external scrollIntoView2: (htmlTableCaptionElement, ~arg: scrollIntoViewOptions=?) => unit =
   "scrollIntoView"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/scroll)
 */
 @send
-external scroll: (htmlTableCaptionElement, scrollToOptions) => unit = "scroll"
+external scroll: (htmlTableCaptionElement, ~options: scrollToOptions=?) => unit = "scroll"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/scroll)
@@ -616,7 +622,7 @@ external scroll2: (htmlTableCaptionElement, ~x: float, ~y: float) => unit = "scr
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/scrollTo)
 */
 @send
-external scrollTo: (htmlTableCaptionElement, scrollToOptions) => unit = "scrollTo"
+external scrollTo: (htmlTableCaptionElement, ~options: scrollToOptions=?) => unit = "scrollTo"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/scrollTo)
@@ -628,7 +634,7 @@ external scrollTo2: (htmlTableCaptionElement, ~x: float, ~y: float) => unit = "s
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/scrollBy)
 */
 @send
-external scrollBy: (htmlTableCaptionElement, scrollToOptions) => unit = "scrollBy"
+external scrollBy: (htmlTableCaptionElement, ~options: scrollToOptions=?) => unit = "scrollBy"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/scrollBy)
@@ -643,8 +649,10 @@ When supplied, options's navigationUI member indicates whether showing navigatio
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/requestFullscreen)
 */
 @send
-external requestFullscreen: (htmlTableCaptionElement, fullscreenOptions) => Promise.t<unit> =
-  "requestFullscreen"
+external requestFullscreen: (
+  htmlTableCaptionElement,
+  ~options: fullscreenOptions=?,
+) => Promise.t<unit> = "requestFullscreen"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/setHTMLUnsafe)
@@ -656,7 +664,7 @@ external setHTMLUnsafe: (htmlTableCaptionElement, string) => unit = "setHTMLUnsa
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/getHTML)
 */
 @send
-external getHTML: (htmlTableCaptionElement, getHTMLOptions) => string = "getHTML"
+external getHTML: (htmlTableCaptionElement, ~options: getHTMLOptions=?) => string = "getHTML"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/insertAdjacentHTML)
@@ -690,8 +698,10 @@ external hasPointerCapture: (htmlTableCaptionElement, int) => bool = "hasPointer
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/requestPointerLock)
 */
 @send
-external requestPointerLock: (htmlTableCaptionElement, pointerLockOptions) => Promise.t<unit> =
-  "requestPointerLock"
+external requestPointerLock: (
+  htmlTableCaptionElement,
+  ~options: pointerLockOptions=?,
+) => Promise.t<unit> = "requestPointerLock"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/click)
@@ -721,4 +731,4 @@ external hidePopover: htmlTableCaptionElement => unit = "hidePopover"
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/togglePopover)
 */
 @send
-external togglePopover: (htmlTableCaptionElement, bool) => bool = "togglePopover"
+external togglePopover: (htmlTableCaptionElement, ~force: bool=?) => bool = "togglePopover"

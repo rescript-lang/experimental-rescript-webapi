@@ -124,5 +124,5 @@ external postMessage: (serviceWorker, ~message: any, ~transfer: array<Dict.t<str
 external postMessage2: (
   serviceWorker,
   ~message: any,
-  ~options: structuredSerializeOptions,
+  ~options: structuredSerializeOptions=?,
 ) => unit = "postMessage"

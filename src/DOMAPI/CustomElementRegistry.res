@@ -8,7 +8,7 @@ external define: (
   customElementRegistry,
   ~name: string,
   ~constructor: customElementConstructor,
-  ~options: elementDefinitionOptions,
+  ~options: elementDefinitionOptions=?,
 ) => unit = "define"
 
 /**

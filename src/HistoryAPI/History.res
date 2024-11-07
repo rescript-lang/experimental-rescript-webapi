@@ -5,7 +5,7 @@ open Prelude
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/History/go)
 */
 @send
-external go: (history, int) => unit = "go"
+external go: (history, ~delta: int=?) => unit = "go"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/History/back)
@@ -23,10 +23,11 @@ external forward: history => unit = "forward"
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/History/pushState)
 */
 @send
-external pushState: (history, ~data: any, ~unused: string, ~url: string) => unit = "pushState"
+external pushState: (history, ~data: any, ~unused: string, ~url: string=?) => unit = "pushState"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/History/replaceState)
 */
 @send
-external replaceState: (history, ~data: any, ~unused: string, ~url: string) => unit = "replaceState"
+external replaceState: (history, ~data: any, ~unused: string, ~url: string=?) => unit =
+  "replaceState"

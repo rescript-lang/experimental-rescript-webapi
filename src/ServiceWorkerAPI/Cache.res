@@ -8,7 +8,7 @@ open ServiceWorkerAPI
 external match: (
   cache,
   ~request: requestInfo,
-  ~options: cacheQueryOptions,
+  ~options: cacheQueryOptions=?,
 ) => Nullable.t<response> = "match"
 
 /**
@@ -17,8 +17,8 @@ external match: (
 @send
 external matchAll: (
   cache,
-  ~request: requestInfo,
-  ~options: cacheQueryOptions,
+  ~request: requestInfo=?,
+  ~options: cacheQueryOptions=?,
 ) => Promise.t<array<response>> = "matchAll"
 
 /**
@@ -43,7 +43,7 @@ external put: (cache, ~request: requestInfo, ~response: response) => Promise.t<u
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Cache/delete)
 */
 @send
-external delete: (cache, ~request: requestInfo, ~options: cacheQueryOptions) => Promise.t<bool> =
+external delete: (cache, ~request: requestInfo, ~options: cacheQueryOptions=?) => Promise.t<bool> =
   "delete"
 
 /**
@@ -52,6 +52,6 @@ external delete: (cache, ~request: requestInfo, ~options: cacheQueryOptions) => 
 @send
 external keys: (
   cache,
-  ~request: requestInfo,
-  ~options: cacheQueryOptions,
+  ~request: requestInfo=?,
+  ~options: cacheQueryOptions=?,
 ) => Promise.t<array<request>> = "keys"

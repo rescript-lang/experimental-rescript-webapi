@@ -9,5 +9,5 @@ Any failures in fetching the script or its dependencies will cause the returned 
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Worklet/addModule)
 */
 @send
-external addModule: (worklet, ~moduleURL: string, ~options: workletOptions) => Promise.t<unit> =
+external addModule: (worklet, ~moduleURL: string, ~options: workletOptions=?) => Promise.t<unit> =
   "addModule"

@@ -7,6 +7,6 @@ open DOMAPI
 external evaluate: (
   xPathExpression,
   ~contextNode: node,
-  ~type_: int,
-  ~result: xPathResult,
+  ~type_: int=?,
+  ~result: xPathResult=?,
 ) => xPathResult = "evaluate"

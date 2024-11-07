@@ -6,6 +6,6 @@ open FileAndDirectoryEntriesAPI
 @send
 external getParent: (
   fileSystemEntry,
-  ~successCallback: fileSystemEntryCallback,
-  ~errorCallback: errorCallback,
+  ~successCallback: fileSystemEntryCallback=?,
+  ~errorCallback: errorCallback=?,
 ) => unit = "getParent"

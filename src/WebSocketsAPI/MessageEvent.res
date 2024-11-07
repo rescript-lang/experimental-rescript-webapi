@@ -5,7 +5,7 @@ open WebSocketsAPI
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/MessageEvent)
 */
 @new
-external make: (~type_: string, ~eventInitDict: messageEventInit<'t>) => messageEvent<'t> =
+external make: (~type_: string, ~eventInitDict: messageEventInit<'t>=?) => messageEvent<'t> =
   "MessageEvent"
 
 /**

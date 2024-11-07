@@ -19,11 +19,12 @@ external createDocument: (
   domImplementation,
   ~namespace: string,
   ~qualifiedName: string,
-  ~doctype: documentType,
+  ~doctype: documentType=?,
 ) => xmlDocument = "createDocument"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/DOMImplementation/createHTMLDocument)
 */
 @send
-external createHTMLDocument: (domImplementation, string) => document = "createHTMLDocument"
+external createHTMLDocument: (domImplementation, ~title: string=?) => document =
+  "createHTMLDocument"

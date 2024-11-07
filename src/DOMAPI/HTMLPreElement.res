@@ -12,7 +12,7 @@ external make: unit => htmlPreElement = "HTMLPreElement"
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/focus)
 */
 @send
-external focus: (htmlPreElement, focusOptions) => unit = "focus"
+external focus: (htmlPreElement, ~options: focusOptions=?) => unit = "focus"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/blur)
@@ -153,13 +153,14 @@ external remove: htmlPreElement => unit = "remove"
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/animate)
 */
 @send
-external animate: (htmlPreElement, ~keyframes: any, ~options: unknown) => animation = "animate"
+external animate: (htmlPreElement, ~keyframes: any, ~options: unknown=?) => animation = "animate"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/getAnimations)
 */
 @send
-external getAnimations: (htmlPreElement, getAnimationsOptions) => array<animation> = "getAnimations"
+external getAnimations: (htmlPreElement, ~options: getAnimationsOptions=?) => array<animation> =
+  "getAnimations"
 
 /**
 Appends an event listener for events whose type attribute value is type. The callback argument sets the callback that will be invoked when the event is dispatched.
@@ -273,7 +274,7 @@ Returns node's root.
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/getRootNode)
 */
 @send
-external getRootNode: (htmlPreElement, getRootNodeOptions) => node = "getRootNode"
+external getRootNode: (htmlPreElement, ~options: getRootNodeOptions=?) => node = "getRootNode"
 
 /**
 Returns whether node has children.
@@ -294,7 +295,7 @@ Returns a copy of node. If deep is true, the copy also includes the node's desce
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/cloneNode)
 */
 @send
-external cloneNode: (htmlPreElement, bool) => node = "cloneNode"
+external cloneNode: (htmlPreElement, ~deep: bool=?) => node = "cloneNode"
 
 /**
 Returns whether node and otherNode have the same properties.
@@ -436,7 +437,7 @@ Returns true if qualifiedName is now present, and false otherwise.
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/toggleAttribute)
 */
 @send
-external toggleAttribute: (htmlPreElement, ~qualifiedName: string, ~force: bool) => bool =
+external toggleAttribute: (htmlPreElement, ~qualifiedName: string, ~force: bool=?) => bool =
   "toggleAttribute"
 
 /**
@@ -569,25 +570,26 @@ external getBoundingClientRect: htmlPreElement => domRect = "getBoundingClientRe
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/checkVisibility)
 */
 @send
-external checkVisibility: (htmlPreElement, checkVisibilityOptions) => bool = "checkVisibility"
+external checkVisibility: (htmlPreElement, ~options: checkVisibilityOptions=?) => bool =
+  "checkVisibility"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/scrollIntoView)
 */
 @send
-external scrollIntoView: (htmlPreElement, bool) => unit = "scrollIntoView"
+external scrollIntoView: (htmlPreElement, ~arg: bool=?) => unit = "scrollIntoView"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/scrollIntoView)
 */
 @send
-external scrollIntoView2: (htmlPreElement, scrollIntoViewOptions) => unit = "scrollIntoView"
+external scrollIntoView2: (htmlPreElement, ~arg: scrollIntoViewOptions=?) => unit = "scrollIntoView"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/scroll)
 */
 @send
-external scroll: (htmlPreElement, scrollToOptions) => unit = "scroll"
+external scroll: (htmlPreElement, ~options: scrollToOptions=?) => unit = "scroll"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/scroll)
@@ -599,7 +601,7 @@ external scroll2: (htmlPreElement, ~x: float, ~y: float) => unit = "scroll"
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/scrollTo)
 */
 @send
-external scrollTo: (htmlPreElement, scrollToOptions) => unit = "scrollTo"
+external scrollTo: (htmlPreElement, ~options: scrollToOptions=?) => unit = "scrollTo"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/scrollTo)
@@ -611,7 +613,7 @@ external scrollTo2: (htmlPreElement, ~x: float, ~y: float) => unit = "scrollTo"
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/scrollBy)
 */
 @send
-external scrollBy: (htmlPreElement, scrollToOptions) => unit = "scrollBy"
+external scrollBy: (htmlPreElement, ~options: scrollToOptions=?) => unit = "scrollBy"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/scrollBy)
@@ -626,7 +628,7 @@ When supplied, options's navigationUI member indicates whether showing navigatio
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/requestFullscreen)
 */
 @send
-external requestFullscreen: (htmlPreElement, fullscreenOptions) => Promise.t<unit> =
+external requestFullscreen: (htmlPreElement, ~options: fullscreenOptions=?) => Promise.t<unit> =
   "requestFullscreen"
 
 /**
@@ -639,7 +641,7 @@ external setHTMLUnsafe: (htmlPreElement, string) => unit = "setHTMLUnsafe"
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/getHTML)
 */
 @send
-external getHTML: (htmlPreElement, getHTMLOptions) => string = "getHTML"
+external getHTML: (htmlPreElement, ~options: getHTMLOptions=?) => string = "getHTML"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/insertAdjacentHTML)
@@ -670,7 +672,7 @@ external hasPointerCapture: (htmlPreElement, int) => bool = "hasPointerCapture"
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/requestPointerLock)
 */
 @send
-external requestPointerLock: (htmlPreElement, pointerLockOptions) => Promise.t<unit> =
+external requestPointerLock: (htmlPreElement, ~options: pointerLockOptions=?) => Promise.t<unit> =
   "requestPointerLock"
 
 /**
@@ -701,4 +703,4 @@ external hidePopover: htmlPreElement => unit = "hidePopover"
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/togglePopover)
 */
 @send
-external togglePopover: (htmlPreElement, bool) => bool = "togglePopover"
+external togglePopover: (htmlPreElement, ~force: bool=?) => bool = "togglePopover"

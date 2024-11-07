@@ -47,7 +47,7 @@ Throws an "InvalidCharacterError" DOMException if token contains any spaces.
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/DOMTokenList/toggle)
 */
 @send
-external toggle: (domTokenList, ~token: string, ~force: bool) => bool = "toggle"
+external toggle: (domTokenList, ~token: string, ~force: bool=?) => bool = "toggle"
 
 /**
 Replaces token with newToken.

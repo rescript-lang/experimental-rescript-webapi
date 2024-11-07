@@ -7,7 +7,7 @@ open WebAudioAPI
 @new
 external make: (
   ~context: baseAudioContext,
-  ~options: audioBufferSourceOptions,
+  ~options: audioBufferSourceOptions=?,
 ) => audioBufferSourceNode = "AudioBufferSourceNode"
 
 /**
@@ -124,15 +124,15 @@ external dispatchEvent: (audioBufferSourceNode, event) => bool = "dispatchEvent"
 external connect: (
   audioBufferSourceNode,
   ~destinationNode: audioNode,
-  ~output: int,
-  ~input: int,
+  ~output: int=?,
+  ~input: int=?,
 ) => audioNode = "connect"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/AudioNode/connect)
 */
 @send
-external connect2: (audioBufferSourceNode, ~destinationParam: audioParam, ~output: int) => unit =
+external connect2: (audioBufferSourceNode, ~destinationParam: audioParam, ~output: int=?) => unit =
   "connect"
 
 /**
@@ -188,11 +188,15 @@ external disconnect7: (audioBufferSourceNode, ~destinationParam: audioParam, ~ou
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/AudioBufferSourceNode/start)
 */
 @send
-external start: (audioBufferSourceNode, ~when_: float, ~offset: float, ~duration: float) => unit =
-  "start"
+external start: (
+  audioBufferSourceNode,
+  ~when_: float=?,
+  ~offset: float=?,
+  ~duration: float=?,
+) => unit = "start"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/AudioScheduledSourceNode/stop)
 */
 @send
-external stop: (audioBufferSourceNode, float) => unit = "stop"
+external stop: (audioBufferSourceNode, ~when_: float=?) => unit = "stop"
