@@ -23,7 +23,6 @@ open FileAndDirectoryEntriesAPI
 open WebVTTAPI
 open RemotePlaybackAPI
 open CanvasAPI
-open PictureInPictureAPI
 open StorageAPI
 open WebLocksAPI
 open CSSFontLoadingAPI

@@ -1479,7 +1479,7 @@ export async function emitRescriptBindings(webidl: Browser.WebIdl) {
       {
         name: "ChannelMessagingAPI",
         entries: [individualInterfaces(["MessagePort"])],
-        opens: ["Prelude", "EventAPI"],
+        opens: ["EventAPI"],
       },
       // https://developer.mozilla.org/en-US/docs/Web/API/History
       {
@@ -1546,7 +1546,7 @@ export async function emitRescriptBindings(webidl: Browser.WebIdl) {
           individualInterfaces(["ClipboardItem", "Clipboard"]),
           dictionaries(["ClipboardItemOptions"]),
         ],
-        opens: ["Prelude", "EventAPI", "FileAPI"],
+        opens: ["EventAPI"],
       },
       // https://developer.mozilla.org/en-US/docs/Web/API/Credential_Management_API
       {
@@ -1894,7 +1894,7 @@ export async function emitRescriptBindings(webidl: Browser.WebIdl) {
           ),
           dictionaries(["ImageEncodeOptions"]),
         ],
-        opens: ["Prelude", "EventAPI", "FileAPI"],
+        opens: ["Prelude", "EventAPI"],
       },
       // https://developer.mozilla.org/en-US/docs/Web/API/Picture-in-Picture_API
       {
@@ -1918,7 +1918,7 @@ export async function emitRescriptBindings(webidl: Browser.WebIdl) {
           individualInterfaces(["StorageManager"]),
           dictionaries(["StorageEstimate"]),
         ],
-        opens: ["FileAPI"],
+        opens: [],
       },
       // https://developer.mozilla.org/en-US/docs/Web/API/Web_Locks_API
       {
@@ -2250,7 +2250,6 @@ export async function emitRescriptBindings(webidl: Browser.WebIdl) {
           "WebVTTAPI",
           "RemotePlaybackAPI",
           "CanvasAPI",
-          "PictureInPictureAPI",
           "StorageAPI",
           "WebLocksAPI",
           "CSSFontLoadingAPI",

@@ -2,7 +2,6 @@
 
 open Prelude
 open EventAPI
-open FileAPI
 
 type offscreenRenderingContextId =
   | @as("2d") V2d

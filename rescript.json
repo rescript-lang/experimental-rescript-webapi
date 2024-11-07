@@ -1,6 +1,6 @@
 {
   "version": "0.0.0",
-  "name": "rescript-dom-generator",
+  "name": "@rescript/webapi",
   "sources": [
     {
       "dir": "src",
