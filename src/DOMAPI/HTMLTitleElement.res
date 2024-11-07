@@ -153,7 +153,17 @@ external remove: htmlTitleElement => unit = "remove"
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/animate)
 */
 @send
-external animate: (htmlTitleElement, ~keyframes: any, ~options: unknown=?) => animation = "animate"
+external animate: (htmlTitleElement, ~keyframes: any, ~options: float=?) => animation = "animate"
+
+/**
+[Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/animate)
+*/
+@send
+external animate2: (
+  htmlTitleElement,
+  ~keyframes: any,
+  ~options: keyframeAnimationOptions=?,
+) => animation = "animate"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/getAnimations)

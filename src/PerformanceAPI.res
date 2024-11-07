@@ -77,3 +77,10 @@ type performanceMarkOptions = {
   mutable detail?: any,
   mutable startTime?: float,
 }
+
+type performanceMeasureOptions = {
+  mutable detail?: any,
+  mutable start?: unknown,
+  mutable duration?: float,
+  mutable end?: unknown,
+}

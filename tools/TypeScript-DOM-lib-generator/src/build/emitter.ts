@@ -940,18 +940,30 @@ export async function emitRescriptBindings(webidl: Browser.WebIdl) {
   */
 
   function dedupeSignature(signature: Browser.Signature): Browser.Signature[] {
-    if (
-      signature.param &&
-      signature.param.length === 1 &&
-      Array.isArray(signature.param[0].type)
-    ) {
-      const param = signature.param[0];
-      return signature.param[0].type.map((t) => {
-        return {
-          ...signature,
-          param: [{ ...param, type: [t] }],
-        };
+    const param = signature.param;
+
+    if (param === undefined) {
+      return [signature];
+    }
+
+    const parametersWithMultipleTypes = param
+      .map((p, idx) => ({ p, idx }))
+      .filter(({ p }) => {
+        return Array.isArray(p.type) && p.type.length > 1;
       });
+
+    // If a single parameter has multiple types, we need to create a signature for each type.
+    // TODO: This could in theory happen for multiple parameters...
+    if (parametersWithMultipleTypes.length === 1) {
+      const { p, idx } = parametersWithMultipleTypes[0];
+      if (Array.isArray(p.type)) {
+        return p.type.map((t) => {
+          const updatedParams = param.map((p, i) => {
+            return i !== idx ? p : { ...p, type: [t] };
+          });
+          return { ...signature, param: updatedParams };
+        });
+      }
     }
 
     return [signature];
@@ -2173,8 +2185,7 @@ export async function emitRescriptBindings(webidl: Browser.WebIdl) {
             "PerformanceMeasure",
           ]),
           byHand("PerformanceEntryList", emitAny("PerformanceEntryList")),
-          dictionaries(["PerformanceMarkOptions"]),
-          // ...callbacks(["PerformanceObserverCallback"]),
+          dictionaries(["PerformanceMarkOptions", "PerformanceMeasureOptions"]),
         ],
         opens: ["Prelude", "EventAPI"],
       },
@@ -2206,6 +2217,8 @@ export async function emitRescriptBindings(webidl: Browser.WebIdl) {
             "ResizeQuality",
             "ScrollLogicalPosition",
             "SelectionMode",
+            "CompositeOperation",
+            "IterationCompositeOperation",
           ]),
           // TODO: perhaps move to Web Share API?
           // See https://developer.mozilla.org/en-US/docs/Web/API/Web_Share_API
@@ -2392,6 +2405,9 @@ export async function emitRescriptBindings(webidl: Browser.WebIdl) {
             "ImageBitmapOptions",
             "ScrollIntoViewOptions",
             "WindowPostMessageOptions",
+            "KeyframeEffectOptions",
+            "KeyframeAnimationOptions",
+            "ElementCreationOptions",
           ]),
           byHand("XPathNSResolver", emitAny("XPathNSResolver")),
           byHand("TimerHandler", emitAny("TimerHandler")),

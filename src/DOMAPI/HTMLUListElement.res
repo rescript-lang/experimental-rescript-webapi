@@ -153,7 +153,17 @@ external remove: htmluListElement => unit = "remove"
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/animate)
 */
 @send
-external animate: (htmluListElement, ~keyframes: any, ~options: unknown=?) => animation = "animate"
+external animate: (htmluListElement, ~keyframes: any, ~options: float=?) => animation = "animate"
+
+/**
+[Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/animate)
+*/
+@send
+external animate2: (
+  htmluListElement,
+  ~keyframes: any,
+  ~options: keyframeAnimationOptions=?,
+) => animation = "animate"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/getAnimations)

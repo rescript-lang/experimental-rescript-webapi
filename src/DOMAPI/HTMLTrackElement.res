@@ -153,7 +153,17 @@ external remove: htmlTrackElement => unit = "remove"
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/animate)
 */
 @send
-external animate: (htmlTrackElement, ~keyframes: any, ~options: unknown=?) => animation = "animate"
+external animate: (htmlTrackElement, ~keyframes: any, ~options: float=?) => animation = "animate"
+
+/**
+[Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/animate)
+*/
+@send
+external animate2: (
+  htmlTrackElement,
+  ~keyframes: any,
+  ~options: keyframeAnimationOptions=?,
+) => animation = "animate"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/getAnimations)

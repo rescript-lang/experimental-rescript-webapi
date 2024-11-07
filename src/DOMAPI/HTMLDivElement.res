@@ -153,7 +153,17 @@ external remove: htmlDivElement => unit = "remove"
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/animate)
 */
 @send
-external animate: (htmlDivElement, ~keyframes: any, ~options: unknown=?) => animation = "animate"
+external animate: (htmlDivElement, ~keyframes: any, ~options: float=?) => animation = "animate"
+
+/**
+[Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/animate)
+*/
+@send
+external animate2: (
+  htmlDivElement,
+  ~keyframes: any,
+  ~options: keyframeAnimationOptions=?,
+) => animation = "animate"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/getAnimations)

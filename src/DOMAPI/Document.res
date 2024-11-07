@@ -347,8 +347,20 @@ Creates an instance of the element for the specified tag.
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Document/createElement)
 */
 @send
-external createElement: (document, ~localName: string, ~options: unknown=?) => element =
+external createElement: (document, ~localName: string, ~options: string=?) => element =
   "createElement"
+
+/**
+Creates an instance of the element for the specified tag.
+@param tagName The name of an element.
+[Read more on MDN](https://developer.mozilla.org/docs/Web/API/Document/createElement)
+*/
+@send
+external createElement2: (
+  document,
+  ~localName: string,
+  ~options: elementCreationOptions=?,
+) => element = "createElement"
 
 /**
 Returns an element with namespace namespace. Its namespace prefix will be everything before ":" (U+003E) in qualifiedName or null. Its local name will be everything after ":" (U+003E) in qualifiedName or qualifiedName.
@@ -371,7 +383,31 @@ external createElementNS: (
   document,
   ~namespace: string,
   ~qualifiedName: string,
-  ~options: unknown=?,
+  ~options: string=?,
+) => element = "createElementNS"
+
+/**
+Returns an element with namespace namespace. Its namespace prefix will be everything before ":" (U+003E) in qualifiedName or null. Its local name will be everything after ":" (U+003E) in qualifiedName or qualifiedName.
+
+If localName does not match the Name production an "InvalidCharacterError" DOMException will be thrown.
+
+If one of the following conditions is true a "NamespaceError" DOMException will be thrown:
+
+localName does not match the QName production.
+Namespace prefix is not null and namespace is the empty string.
+Namespace prefix is "xml" and namespace is not the XML namespace.
+qualifiedName or namespace prefix is "xmlns" and namespace is not the XMLNS namespace.
+namespace is the XMLNS namespace and neither qualifiedName nor namespace prefix is "xmlns".
+
+When supplied, options's is can be used to create a customized built-in element.
+[Read more on MDN](https://developer.mozilla.org/docs/Web/API/Document/createElementNS)
+*/
+@send
+external createElementNS2: (
+  document,
+  ~namespace: string,
+  ~qualifiedName: string,
+  ~options: elementCreationOptions=?,
 ) => element = "createElementNS"
 
 /**

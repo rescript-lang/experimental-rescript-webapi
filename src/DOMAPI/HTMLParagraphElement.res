@@ -153,8 +153,18 @@ external remove: htmlParagraphElement => unit = "remove"
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/animate)
 */
 @send
-external animate: (htmlParagraphElement, ~keyframes: any, ~options: unknown=?) => animation =
+external animate: (htmlParagraphElement, ~keyframes: any, ~options: float=?) => animation =
   "animate"
+
+/**
+[Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/animate)
+*/
+@send
+external animate2: (
+  htmlParagraphElement,
+  ~keyframes: any,
+  ~options: keyframeAnimationOptions=?,
+) => animation = "animate"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/getAnimations)

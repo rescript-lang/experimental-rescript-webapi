@@ -5,9 +5,16 @@ open Prelude
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/FontFace)
 */
 @new
-external make: (
+external make: (~family: string, ~source: string, ~descriptors: fontFaceDescriptors=?) => fontFace =
+  "FontFace"
+
+/**
+[Read more on MDN](https://developer.mozilla.org/docs/Web/API/FontFace)
+*/
+@new
+external make2: (
   ~family: string,
-  ~source: unknown,
+  ~source: bufferSource,
   ~descriptors: fontFaceDescriptors=?,
 ) => fontFace = "FontFace"
 

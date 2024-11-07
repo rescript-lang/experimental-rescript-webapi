@@ -7,7 +7,13 @@ open FileAPI
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/WebSocket)
 */
 @new
-external make: (~url: string, ~protocols: unknown=?) => webSocket = "WebSocket"
+external make: (~url: string, ~protocols: string=?) => webSocket = "WebSocket"
+
+/**
+[Read more on MDN](https://developer.mozilla.org/docs/Web/API/WebSocket)
+*/
+@new
+external make2: (~url: string, ~protocols: array<string>=?) => webSocket = "WebSocket"
 
 /**
 Appends an event listener for events whose type attribute value is type. The callback argument sets the callback that will be invoked when the event is dispatched.

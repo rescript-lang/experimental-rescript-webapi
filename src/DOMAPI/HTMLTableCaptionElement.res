@@ -153,8 +153,18 @@ external remove: htmlTableCaptionElement => unit = "remove"
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/animate)
 */
 @send
-external animate: (htmlTableCaptionElement, ~keyframes: any, ~options: unknown=?) => animation =
+external animate: (htmlTableCaptionElement, ~keyframes: any, ~options: float=?) => animation =
   "animate"
+
+/**
+[Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/animate)
+*/
+@send
+external animate2: (
+  htmlTableCaptionElement,
+  ~keyframes: any,
+  ~options: keyframeAnimationOptions=?,
+) => animation = "animate"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/getAnimations)

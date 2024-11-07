@@ -136,7 +136,21 @@ Throws an "InvalidStateError" DOMException if not called within an upgrade trans
 external createIndex: (
   idbObjectStore,
   ~name: string,
-  ~keyPath: unknown,
+  ~keyPath: string,
+  ~options: idbIndexParameters=?,
+) => idbIndex = "createIndex"
+
+/**
+Creates a new index in store with the given name, keyPath and options and returns a new IDBIndex. If the keyPath and options define constraints that cannot be satisfied with the data already in store the upgrade transaction will abort with a "ConstraintError" DOMException.
+
+Throws an "InvalidStateError" DOMException if not called within an upgrade transaction.
+[Read more on MDN](https://developer.mozilla.org/docs/Web/API/IDBObjectStore/createIndex)
+*/
+@send
+external createIndex2: (
+  idbObjectStore,
+  ~name: string,
+  ~keyPath: array<string>,
   ~options: idbIndexParameters=?,
 ) => idbIndex = "createIndex"
 

@@ -150,6 +150,15 @@ type selectionMode =
   | @as("select") Select
   | @as("start") Start
 
+type compositeOperation =
+  | @as("accumulate") Accumulate
+  | @as("add") Add
+  | @as("replace") Replace
+
+type iterationCompositeOperation =
+  | @as("accumulate") Accumulate
+  | @as("replace") Replace
+
 type shareData = {
   mutable files?: array<file>,
   mutable title?: string,
@@ -9182,6 +9191,21 @@ type windowPostMessageOptions = {
   ...structuredSerializeOptions,
   mutable targetOrigin?: string,
 }
+
+type keyframeEffectOptions = {
+  ...effectTiming,
+  mutable composite?: compositeOperation,
+  mutable pseudoElement?: Null.t<string>,
+  mutable iterationComposite?: iterationCompositeOperation,
+}
+
+type keyframeAnimationOptions = {
+  ...keyframeEffectOptions,
+  mutable id?: string,
+  mutable timeline?: Null.t<animationTimeline>,
+}
+
+type elementCreationOptions = {mutable is?: string}
 
 type xPathNSResolver = any
 

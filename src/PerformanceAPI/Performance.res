@@ -174,7 +174,18 @@ external clearMarks: (performance, ~markName: string=?) => unit = "clearMarks"
 external measure: (
   performance,
   ~measureName: string,
-  ~startOrMeasureOptions: unknown=?,
+  ~startOrMeasureOptions: string=?,
+  ~endMark: string=?,
+) => performanceMeasure = "measure"
+
+/**
+[Read more on MDN](https://developer.mozilla.org/docs/Web/API/Performance/measure)
+*/
+@send
+external measure2: (
+  performance,
+  ~measureName: string,
+  ~startOrMeasureOptions: performanceMeasureOptions=?,
   ~endMark: string=?,
 ) => performanceMeasure = "measure"
 
