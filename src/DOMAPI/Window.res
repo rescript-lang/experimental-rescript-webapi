@@ -1,9 +1,9 @@
 open Prelude
 open DOMAPI
 open CanvasAPI
+open FileAPI
 open ChannelMessagingAPI
 open FetchAPI
-open ServiceWorkerAPI
 open EventAPI
 
 /**
@@ -28,7 +28,14 @@ external atob: (window, string) => string = "atob"
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/setTimeout)
 */
 @send
-external setTimeout: (window, ~handler: timerHandler, ~timeout: int=?, ~arguments: any) => int =
+external setTimeout: (window, ~handler: string, ~timeout: int=?, ~arguments: any) => int =
+  "setTimeout"
+
+/**
+[Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/setTimeout)
+*/
+@send
+external setTimeout2: (window, ~handler: unit => unit, ~timeout: int=?, ~arguments: any) => int =
   "setTimeout"
 
 /**
@@ -41,7 +48,14 @@ external clearTimeout: (window, int) => unit = "clearTimeout"
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/setInterval)
 */
 @send
-external setInterval: (window, ~handler: timerHandler, ~timeout: int=?, ~arguments: any) => int =
+external setInterval: (window, ~handler: string, ~timeout: int=?, ~arguments: any) => int =
+  "setInterval"
+
+/**
+[Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/setInterval)
+*/
+@send
+external setInterval2: (window, ~handler: unit => unit, ~timeout: int=?, ~arguments: any) => int =
   "setInterval"
 
 /**
@@ -62,7 +76,7 @@ external queueMicrotask: (window, voidFunction) => unit = "queueMicrotask"
 @send
 external createImageBitmap: (
   window,
-  ~image: imageBitmapSource,
+  ~image: htmlImageElement,
   ~options: imageBitmapOptions=?,
 ) => Promise.t<imageBitmap> = "createImageBitmap"
 
@@ -72,7 +86,199 @@ external createImageBitmap: (
 @send
 external createImageBitmap2: (
   window,
-  ~image: imageBitmapSource,
+  ~image: svgImageElement,
+  ~options: imageBitmapOptions=?,
+) => Promise.t<imageBitmap> = "createImageBitmap"
+
+/**
+[Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/createImageBitmap)
+*/
+@send
+external createImageBitmap3: (
+  window,
+  ~image: htmlVideoElement,
+  ~options: imageBitmapOptions=?,
+) => Promise.t<imageBitmap> = "createImageBitmap"
+
+/**
+[Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/createImageBitmap)
+*/
+@send
+external createImageBitmap4: (
+  window,
+  ~image: htmlCanvasElement,
+  ~options: imageBitmapOptions=?,
+) => Promise.t<imageBitmap> = "createImageBitmap"
+
+/**
+[Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/createImageBitmap)
+*/
+@send
+external createImageBitmap5: (
+  window,
+  ~image: imageBitmap,
+  ~options: imageBitmapOptions=?,
+) => Promise.t<imageBitmap> = "createImageBitmap"
+
+/**
+[Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/createImageBitmap)
+*/
+@send
+external createImageBitmap6: (
+  window,
+  ~image: offscreenCanvas,
+  ~options: imageBitmapOptions=?,
+) => Promise.t<imageBitmap> = "createImageBitmap"
+
+/**
+[Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/createImageBitmap)
+*/
+@send
+external createImageBitmap7: (
+  window,
+  ~image: videoFrame,
+  ~options: imageBitmapOptions=?,
+) => Promise.t<imageBitmap> = "createImageBitmap"
+
+/**
+[Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/createImageBitmap)
+*/
+@send
+external createImageBitmap8: (
+  window,
+  ~image: blob,
+  ~options: imageBitmapOptions=?,
+) => Promise.t<imageBitmap> = "createImageBitmap"
+
+/**
+[Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/createImageBitmap)
+*/
+@send
+external createImageBitmap9: (
+  window,
+  ~image: imageData,
+  ~options: imageBitmapOptions=?,
+) => Promise.t<imageBitmap> = "createImageBitmap"
+
+/**
+[Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/createImageBitmap)
+*/
+@send
+external createImageBitmap10: (
+  window,
+  ~image: htmlImageElement,
+  ~sx: int,
+  ~sy: int,
+  ~sw: int,
+  ~sh: int,
+  ~options: imageBitmapOptions=?,
+) => Promise.t<imageBitmap> = "createImageBitmap"
+
+/**
+[Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/createImageBitmap)
+*/
+@send
+external createImageBitmap11: (
+  window,
+  ~image: svgImageElement,
+  ~sx: int,
+  ~sy: int,
+  ~sw: int,
+  ~sh: int,
+  ~options: imageBitmapOptions=?,
+) => Promise.t<imageBitmap> = "createImageBitmap"
+
+/**
+[Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/createImageBitmap)
+*/
+@send
+external createImageBitmap12: (
+  window,
+  ~image: htmlVideoElement,
+  ~sx: int,
+  ~sy: int,
+  ~sw: int,
+  ~sh: int,
+  ~options: imageBitmapOptions=?,
+) => Promise.t<imageBitmap> = "createImageBitmap"
+
+/**
+[Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/createImageBitmap)
+*/
+@send
+external createImageBitmap13: (
+  window,
+  ~image: htmlCanvasElement,
+  ~sx: int,
+  ~sy: int,
+  ~sw: int,
+  ~sh: int,
+  ~options: imageBitmapOptions=?,
+) => Promise.t<imageBitmap> = "createImageBitmap"
+
+/**
+[Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/createImageBitmap)
+*/
+@send
+external createImageBitmap14: (
+  window,
+  ~image: imageBitmap,
+  ~sx: int,
+  ~sy: int,
+  ~sw: int,
+  ~sh: int,
+  ~options: imageBitmapOptions=?,
+) => Promise.t<imageBitmap> = "createImageBitmap"
+
+/**
+[Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/createImageBitmap)
+*/
+@send
+external createImageBitmap15: (
+  window,
+  ~image: offscreenCanvas,
+  ~sx: int,
+  ~sy: int,
+  ~sw: int,
+  ~sh: int,
+  ~options: imageBitmapOptions=?,
+) => Promise.t<imageBitmap> = "createImageBitmap"
+
+/**
+[Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/createImageBitmap)
+*/
+@send
+external createImageBitmap16: (
+  window,
+  ~image: videoFrame,
+  ~sx: int,
+  ~sy: int,
+  ~sw: int,
+  ~sh: int,
+  ~options: imageBitmapOptions=?,
+) => Promise.t<imageBitmap> = "createImageBitmap"
+
+/**
+[Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/createImageBitmap)
+*/
+@send
+external createImageBitmap17: (
+  window,
+  ~image: blob,
+  ~sx: int,
+  ~sy: int,
+  ~sw: int,
+  ~sh: int,
+  ~options: imageBitmapOptions=?,
+) => Promise.t<imageBitmap> = "createImageBitmap"
+
+/**
+[Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/createImageBitmap)
+*/
+@send
+external createImageBitmap18: (
+  window,
+  ~image: imageData,
   ~sx: int,
   ~sy: int,
   ~sw: int,
@@ -91,7 +297,13 @@ external structuredClone: (window, 't, ~options: structuredSerializeOptions=?) =
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/fetch)
 */
 @send
-external fetch: (window, ~input: requestInfo, ~init: requestInit=?) => Promise.t<response> = "fetch"
+external fetch: (window, ~input: request, ~init: requestInit=?) => Promise.t<response> = "fetch"
+
+/**
+[Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/fetch)
+*/
+@send
+external fetch2: (window, ~input: string, ~init: requestInit=?) => Promise.t<response> = "fetch"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/DedicatedWorkerGlobalScope/requestAnimationFrame)

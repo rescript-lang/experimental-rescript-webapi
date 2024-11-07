@@ -23,8 +23,31 @@ external getWriter: fileSystemWritableFileStream => writableStreamDefaultWriter<
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/FileSystemWritableFileStream/write)
 */
 @send
-external write: (fileSystemWritableFileStream, fileSystemWriteChunkType) => Promise.t<unit> =
-  "write"
+external write: (fileSystemWritableFileStream, DataView.t) => Promise.t<unit> = "write"
+
+/**
+[Read more on MDN](https://developer.mozilla.org/docs/Web/API/FileSystemWritableFileStream/write)
+*/
+@send
+external write2: (fileSystemWritableFileStream, ArrayBuffer.t) => Promise.t<unit> = "write"
+
+/**
+[Read more on MDN](https://developer.mozilla.org/docs/Web/API/FileSystemWritableFileStream/write)
+*/
+@send
+external write3: (fileSystemWritableFileStream, blob) => Promise.t<unit> = "write"
+
+/**
+[Read more on MDN](https://developer.mozilla.org/docs/Web/API/FileSystemWritableFileStream/write)
+*/
+@send
+external write4: (fileSystemWritableFileStream, string) => Promise.t<unit> = "write"
+
+/**
+[Read more on MDN](https://developer.mozilla.org/docs/Web/API/FileSystemWritableFileStream/write)
+*/
+@send
+external write5: (fileSystemWritableFileStream, writeParams) => Promise.t<unit> = "write"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/FileSystemWritableFileStream/seek)

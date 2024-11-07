@@ -62,7 +62,18 @@ external digest: (
 @send
 external generateKey: (
   subtleCrypto,
-  ~algorithm: algorithmIdentifier,
+  ~algorithm: algorithm,
+  ~extractable: bool,
+  ~keyUsages: array<keyUsage>,
+) => Promise.t<any> = "generateKey"
+
+/**
+[Read more on MDN](https://developer.mozilla.org/docs/Web/API/SubtleCrypto/generateKey)
+*/
+@send
+external generateKey2: (
+  subtleCrypto,
+  ~algorithm: string,
   ~extractable: bool,
   ~keyUsages: array<keyUsage>,
 ) => Promise.t<any> = "generateKey"
@@ -86,7 +97,18 @@ external deriveKey: (
 @send
 external deriveBits: (
   subtleCrypto,
-  ~algorithm: algorithmIdentifier,
+  ~algorithm: algorithm,
+  ~baseKey: cryptoKey,
+  ~length: int=?,
+) => Promise.t<ArrayBuffer.t> = "deriveBits"
+
+/**
+[Read more on MDN](https://developer.mozilla.org/docs/Web/API/SubtleCrypto/deriveBits)
+*/
+@send
+external deriveBits2: (
+  subtleCrypto,
+  ~algorithm: string,
   ~baseKey: cryptoKey,
   ~length: int=?,
 ) => Promise.t<ArrayBuffer.t> = "deriveBits"
@@ -120,7 +142,19 @@ external wrapKey: (
   ~format: keyFormat,
   ~key: cryptoKey,
   ~wrappingKey: cryptoKey,
-  ~wrapAlgorithm: algorithmIdentifier,
+  ~wrapAlgorithm: algorithm,
+) => Promise.t<any> = "wrapKey"
+
+/**
+[Read more on MDN](https://developer.mozilla.org/docs/Web/API/SubtleCrypto/wrapKey)
+*/
+@send
+external wrapKey2: (
+  subtleCrypto,
+  ~format: keyFormat,
+  ~key: cryptoKey,
+  ~wrappingKey: cryptoKey,
+  ~wrapAlgorithm: string,
 ) => Promise.t<any> = "wrapKey"
 
 /**

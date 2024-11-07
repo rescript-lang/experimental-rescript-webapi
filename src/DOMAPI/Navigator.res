@@ -1,5 +1,6 @@
 open DOMAPI
-open Prelude
+open FileAPI
+open FetchAPI
 open EncryptedMediaExtensionsAPI
 open GamepadAPI
 open WebMIDIAPI
@@ -27,7 +28,43 @@ external registerProtocolHandler: (navigator, ~scheme: string, ~url: string) => 
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Navigator/sendBeacon)
 */
 @send
-external sendBeacon: (navigator, ~url: string, ~data: bodyInit=?) => bool = "sendBeacon"
+external sendBeacon: (navigator, ~url: string, ~data: readableStream<unit>=?) => bool = "sendBeacon"
+
+/**
+[Read more on MDN](https://developer.mozilla.org/docs/Web/API/Navigator/sendBeacon)
+*/
+@send
+external sendBeacon2: (navigator, ~url: string, ~data: blob=?) => bool = "sendBeacon"
+
+/**
+[Read more on MDN](https://developer.mozilla.org/docs/Web/API/Navigator/sendBeacon)
+*/
+@send
+external sendBeacon3: (navigator, ~url: string, ~data: DataView.t=?) => bool = "sendBeacon"
+
+/**
+[Read more on MDN](https://developer.mozilla.org/docs/Web/API/Navigator/sendBeacon)
+*/
+@send
+external sendBeacon4: (navigator, ~url: string, ~data: ArrayBuffer.t=?) => bool = "sendBeacon"
+
+/**
+[Read more on MDN](https://developer.mozilla.org/docs/Web/API/Navigator/sendBeacon)
+*/
+@send
+external sendBeacon5: (navigator, ~url: string, ~data: formData=?) => bool = "sendBeacon"
+
+/**
+[Read more on MDN](https://developer.mozilla.org/docs/Web/API/Navigator/sendBeacon)
+*/
+@send
+external sendBeacon6: (navigator, ~url: string, ~data: urlSearchParams=?) => bool = "sendBeacon"
+
+/**
+[Read more on MDN](https://developer.mozilla.org/docs/Web/API/Navigator/sendBeacon)
+*/
+@send
+external sendBeacon7: (navigator, ~url: string, ~data: string=?) => bool = "sendBeacon"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Navigator/requestMediaKeySystemAccess)
@@ -49,7 +86,13 @@ external getGamepads: navigator => array<gamepad> = "getGamepads"
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Navigator/vibrate)
 */
 @send
-external vibrate: (navigator, vibratePattern) => bool = "vibrate"
+external vibrate: (navigator, int) => bool = "vibrate"
+
+/**
+[Read more on MDN](https://developer.mozilla.org/docs/Web/API/Navigator/vibrate)
+*/
+@send
+external vibrate2: (navigator, array<int>) => bool = "vibrate"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Navigator/share)

@@ -1,6 +1,5 @@
 open EventAPI
 open WebSocketsAPI
-open Prelude
 open FileAPI
 
 /**
@@ -134,18 +133,25 @@ Transmits data using the WebSocket connection. data can be a string, a Blob, an 
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/WebSocket/send)
 */
 @send
-external send: (webSocket, bufferSource) => unit = "send"
+external send: (webSocket, DataView.t) => unit = "send"
 
 /**
 Transmits data using the WebSocket connection. data can be a string, a Blob, an ArrayBuffer, or an ArrayBufferView.
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/WebSocket/send)
 */
 @send
-external send2: (webSocket, blob) => unit = "send"
+external send2: (webSocket, ArrayBuffer.t) => unit = "send"
 
 /**
 Transmits data using the WebSocket connection. data can be a string, a Blob, an ArrayBuffer, or an ArrayBufferView.
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/WebSocket/send)
 */
 @send
-external send3: (webSocket, string) => unit = "send"
+external send3: (webSocket, blob) => unit = "send"
+
+/**
+Transmits data using the WebSocket connection. data can be a string, a Blob, an ArrayBuffer, or an ArrayBufferView.
+[Read more on MDN](https://developer.mozilla.org/docs/Web/API/WebSocket/send)
+*/
+@send
+external send4: (webSocket, string) => unit = "send"

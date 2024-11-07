@@ -470,6 +470,12 @@ export async function emitRescriptBindings(webidl: Browser.WebIdl) {
       case "ArrayBuffer":
         return "ArrayBuffer.t";
 
+      // TODO: this isn't entirely accurate
+      // Could also be https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/TypedArray
+      // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/ArrayBuffer/isView
+      case "ArrayBufferView":
+        return "DataView.t";
+
       case "WindowProxy":
       case "WindowProxy & typeof globalThis":
       case "Window & typeof globalThis":
@@ -561,6 +567,9 @@ export async function emitRescriptBindings(webidl: Browser.WebIdl) {
 
       case "null":
         return "Null.t<unit>";
+
+      case "Function":
+        return "(unit => unit)";
 
       default:
         // TODO: some types are a inline variant type
@@ -939,6 +948,18 @@ export async function emitRescriptBindings(webidl: Browser.WebIdl) {
               ],
   */
 
+  function dedubeTypeIfTypeDef(typed: Browser.Typed): Browser.Typed[] {
+    const typeDef = allTypeDefs.find((td) => {
+      return td.name === typed.type;
+    });
+
+    if (typeDef && Array.isArray(typeDef.type)) {
+      return typeDef.type.flatMap((tdt) => dedubeTypeIfTypeDef(tdt));
+    }
+
+    return [typed];
+  }
+
   function dedupeSignature(signature: Browser.Signature): Browser.Signature[] {
     const param = signature.param;
 
@@ -947,17 +968,27 @@ export async function emitRescriptBindings(webidl: Browser.WebIdl) {
     }
 
     const parametersWithMultipleTypes = param
-      .map((p, idx) => ({ p, idx }))
-      .filter(({ p }) => {
-        return Array.isArray(p.type) && p.type.length > 1;
+      .map((p, idx) => {
+        const typedef = allTypeDefs.find((t) => t.name === p.type);
+        return { p, idx, typedef };
+      })
+      .filter(({ p, typedef }) => {
+        return (
+          (Array.isArray(p.type) && p.type.length > 1) ||
+          (typedef && Array.isArray(typedef.type))
+        );
       });
 
     // If a single parameter has multiple types, we need to create a signature for each type.
     // TODO: This could in theory happen for multiple parameters...
     if (parametersWithMultipleTypes.length === 1) {
-      const { p, idx } = parametersWithMultipleTypes[0];
-      if (Array.isArray(p.type)) {
-        return p.type.map((t) => {
+      const { p, idx, typedef } = parametersWithMultipleTypes[0];
+      let types = typedef?.type || p.type;
+      if (Array.isArray(types)) {
+        // Interestly enough each type could also be a typedef
+        types = types.flatMap(dedubeTypeIfTypeDef);
+
+        return types.map((t) => {
           const updatedParams = param.map((p, i) => {
             return i !== idx ? p : { ...p, type: [t] };
           });
@@ -1638,6 +1669,10 @@ export async function emitRescriptBindings(webidl: Browser.WebIdl) {
           byHand("any", () => printer.printLine("type any = {}")),
           byHand("BufferSource", emitAny("BufferSource")),
           byHand("BodyInit", emitAny("BodyInit")),
+          // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/SharedArrayBuffer
+          byHand("SharedArrayBuffer", emitAny("SharedArrayBuffer")),
+          // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Float64Array
+          byHand("Float64Array", emitAny("Float64Array")),
           individualInterfaces(["DOMException", "DOMStringList"]),
         ],
         opens: [],
@@ -1688,6 +1723,7 @@ export async function emitRescriptBindings(webidl: Browser.WebIdl) {
             "EndingType",
             "ReadableStreamReaderMode",
             "FileSystemHandleKind",
+            "WriteCommandType",
           ]),
           individualInterfaces([
             "Blob",
@@ -1724,6 +1760,7 @@ export async function emitRescriptBindings(webidl: Browser.WebIdl) {
             "FileSystemGetDirectoryOptions",
             "FileSystemRemoveOptions",
             "FileSystemCreateWritableOptions",
+            "WriteParams",
           ]),
         ],
         opens: ["Prelude", "EventAPI"],
@@ -1909,7 +1946,13 @@ export async function emitRescriptBindings(webidl: Browser.WebIdl) {
             "RequestRedirect",
             "RequestPriority",
           ]),
-          individualInterfaces(["Headers", "Request", "Response", "FormData"]),
+          individualInterfaces([
+            "Headers",
+            "Request",
+            "Response",
+            "FormData",
+            "URLSearchParams",
+          ]),
           byHand("HeadersInit", emitAny("HeadersInit")),
           byHand("RequestInfo", emitAny("RequestInfo")),
           byHand("FormDataEntryValue", emitAny("FormDataEntryValue")),
@@ -2170,6 +2213,7 @@ export async function emitRescriptBindings(webidl: Browser.WebIdl) {
           dictionaries(["KeyAlgorithm"]),
           individualInterfaces(["SubtleCrypto", "Crypto", "CryptoKey"]),
           byHand("AlgorithmIdentifier", emitAny("AlgorithmIdentifier")),
+          dictionaries(["Algorithm"]),
         ],
         opens: ["Prelude"],
       },
@@ -2219,6 +2263,12 @@ export async function emitRescriptBindings(webidl: Browser.WebIdl) {
             "SelectionMode",
             "CompositeOperation",
             "IterationCompositeOperation",
+            "VideoPixelFormat",
+            "VideoColorPrimaries",
+            "VideoTransferCharacteristics",
+            "VideoMatrixCoefficients",
+            "AlphaOption",
+            "PredefinedColorSpace",
           ]),
           // TODO: perhaps move to Web Share API?
           // See https://developer.mozilla.org/en-US/docs/Web/API/Web_Share_API
@@ -2377,6 +2427,19 @@ export async function emitRescriptBindings(webidl: Browser.WebIdl) {
             "AnimationEffect",
             "XPathExpression",
             "XPathResult",
+            "SVGAnimatedPreserveAspectRatio",
+            "SVGLength",
+            "SVGAnimatedLength",
+            "SVGElement",
+            "SVGGraphicsElement",
+            "SVGImageElement",
+            "DOMMatrixReadOnly",
+            "DOMMatrix",
+            "VideoColorSpace",
+            "VideoFrame",
+            "ImageData",
+            "DOMPointReadOnly",
+            "DOMPoint",
           ]),
           chain(["Animation"]),
           dictionaries([
@@ -2408,6 +2471,16 @@ export async function emitRescriptBindings(webidl: Browser.WebIdl) {
             "KeyframeEffectOptions",
             "KeyframeAnimationOptions",
             "ElementCreationOptions",
+            "SVGBoundingBoxOptions",
+            "DOMMatrix2DInit",
+            "DOMMatrixInit",
+            "VideoFrameInit",
+            "VideoColorSpaceInit",
+            "PlaneLayout",
+            "VideoFrameBufferInit",
+            "ImageDataSettings",
+            "VideoFrameCopyToOptions",
+            "DOMPointInit",
           ]),
           byHand("XPathNSResolver", emitAny("XPathNSResolver")),
           byHand("TimerHandler", emitAny("TimerHandler")),

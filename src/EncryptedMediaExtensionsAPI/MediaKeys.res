@@ -1,5 +1,4 @@
 open EncryptedMediaExtensionsAPI
-open Prelude
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/MediaKeys/createSession)
@@ -19,4 +18,11 @@ external getStatusForPolicy: (mediaKeys, ~policy: mediaKeysPolicy=?) => Promise.
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/MediaKeys/setServerCertificate)
 */
 @send
-external setServerCertificate: (mediaKeys, bufferSource) => Promise.t<bool> = "setServerCertificate"
+external setServerCertificate: (mediaKeys, DataView.t) => Promise.t<bool> = "setServerCertificate"
+
+/**
+[Read more on MDN](https://developer.mozilla.org/docs/Web/API/MediaKeys/setServerCertificate)
+*/
+@send
+external setServerCertificate2: (mediaKeys, ArrayBuffer.t) => Promise.t<bool> =
+  "setServerCertificate"

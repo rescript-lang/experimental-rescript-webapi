@@ -208,6 +208,16 @@ Provides a way to easily construct a set of key/value pairs representing form fi
 */
 type formData = {}
 
+/**
+[See URLSearchParams on MDN](https://developer.mozilla.org/docs/Web/API/URLSearchParams)
+*/
+type urlSearchParams = {
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/URLSearchParams/size)
+    */
+  size: int,
+}
+
 type headersInit = any
 
 type requestInfo = any

@@ -1,10 +1,17 @@
 open FetchAPI
+open Prelude
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Headers)
 */
 @new
-external make: (~init: headersInit=?) => headers = "Headers"
+external make: (~init: array<array<string>>=?) => headers = "Headers"
+
+/**
+[Read more on MDN](https://developer.mozilla.org/docs/Web/API/Headers)
+*/
+@new
+external make2: (~init: any=?) => headers = "Headers"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Headers/append)

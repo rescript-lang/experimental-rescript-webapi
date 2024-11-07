@@ -7,7 +7,17 @@ open ServiceWorkerAPI
 @send
 external match: (
   cacheStorage,
-  ~request: requestInfo,
+  ~request: request,
+  ~options: multiCacheQueryOptions=?,
+) => Nullable.t<response> = "match"
+
+/**
+[Read more on MDN](https://developer.mozilla.org/docs/Web/API/CacheStorage/match)
+*/
+@send
+external match2: (
+  cacheStorage,
+  ~request: string,
   ~options: multiCacheQueryOptions=?,
 ) => Nullable.t<response> = "match"
 

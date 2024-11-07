@@ -13,6 +13,11 @@ type fileSystemHandleKind =
   | @as("directory") Directory
   | @as("file") File
 
+type writeCommandType =
+  | @as("seek") Seek
+  | @as("truncate") Truncate
+  | @as("write") Write
+
 /**
 A file-like object of immutable, raw data. Blobs represent data that isn't necessarily in a JavaScript-native format. The File interface is based on Blob, inheriting blob functionality and expanding it to support files on the user's system.
 [See Blob on MDN](https://developer.mozilla.org/docs/Web/API/Blob)
@@ -204,3 +209,10 @@ type fileSystemGetDirectoryOptions = {mutable create?: bool}
 type fileSystemRemoveOptions = {mutable recursive?: bool}
 
 type fileSystemCreateWritableOptions = {mutable keepExistingData?: bool}
+
+type writeParams = {
+  @as("type") mutable type_: writeCommandType,
+  mutable size?: Null.t<int>,
+  mutable position?: Null.t<int>,
+  mutable data?: Null.t<unknown>,
+}

@@ -159,6 +159,41 @@ type iterationCompositeOperation =
   | @as("accumulate") Accumulate
   | @as("replace") Replace
 
+type videoPixelFormat =
+  | BGRA
+  | BGRX
+  | I420
+  | I420A
+  | I422
+  | I444
+  | NV12
+  | RGBA
+  | RGBX
+
+type videoColorPrimaries =
+  | @as("bt470bg") Bt470bg
+  | @as("bt709") Bt709
+  | @as("smpte170m") Smpte170m
+
+type videoTransferCharacteristics =
+  | @as("bt709") Bt709
+  | @as("iec61966-2-1") Iec6196621
+  | @as("smpte170m") Smpte170m
+
+type videoMatrixCoefficients =
+  | @as("bt470bg") Bt470bg
+  | @as("bt709") Bt709
+  | @as("rgb") Rgb
+  | @as("smpte170m") Smpte170m
+
+type alphaOption =
+  | @as("discard") Discard
+  | @as("keep") Keep
+
+type predefinedColorSpace =
+  | @as("display-p3") DisplayP3
+  | @as("srgb") Srgb
+
 type shareData = {
   mutable files?: array<file>,
   mutable title?: string,
@@ -9001,6 +9036,325 @@ type xPathResult = {
 }
 
 /**
+Used for attributes of type SVGPreserveAspectRatio which can be animated.
+[See SVGAnimatedPreserveAspectRatio on MDN](https://developer.mozilla.org/docs/Web/API/SVGAnimatedPreserveAspectRatio)
+*/
+type svgAnimatedPreserveAspectRatio = {}
+
+/**
+Correspond to the <length> basic data type.
+[See SVGLength on MDN](https://developer.mozilla.org/docs/Web/API/SVGLength)
+*/
+type svgLength = {}
+
+/**
+Used for attributes of basic type <length> which can be animated.
+[See SVGAnimatedLength on MDN](https://developer.mozilla.org/docs/Web/API/SVGAnimatedLength)
+*/
+type svgAnimatedLength = {
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/SVGAnimatedLength/baseVal)
+    */
+  baseVal: svgLength,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/SVGAnimatedLength/animVal)
+    */
+  animVal: svgLength,
+}
+
+/**
+All of the SVG DOM interfaces that correspond directly to elements in the SVG language derive from the SVGElement interface.
+[See SVGElement on MDN](https://developer.mozilla.org/docs/Web/API/SVGElement)
+*/
+type svgElement = {
+  ...element,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/dataset)
+    */
+  dataset: domStringMap,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/nonce)
+    */
+  mutable nonce?: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/autofocus)
+    */
+  mutable autofocus: bool,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/tabIndex)
+    */
+  mutable tabIndex: int,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/style)
+    */
+  style: cssStyleDeclaration,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/attributeStyleMap)
+    */
+  attributeStyleMap: stylePropertyMap,
+}
+
+/**
+SVG elements whose primary purpose is to directly render graphics into a group.
+[See SVGGraphicsElement on MDN](https://developer.mozilla.org/docs/Web/API/SVGGraphicsElement)
+*/
+type svgGraphicsElement = {
+  ...svgElement,
+}
+
+/**
+Corresponds to the <image> element.
+[See SVGImageElement on MDN](https://developer.mozilla.org/docs/Web/API/SVGImageElement)
+*/
+type svgImageElement = {
+  ...svgGraphicsElement,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/SVGImageElement/x)
+    */
+  x: svgAnimatedLength,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/SVGImageElement/y)
+    */
+  y: svgAnimatedLength,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/SVGImageElement/width)
+    */
+  width: svgAnimatedLength,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/SVGImageElement/height)
+    */
+  height: svgAnimatedLength,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/SVGImageElement/preserveAspectRatio)
+    */
+  preserveAspectRatio: svgAnimatedPreserveAspectRatio,
+}
+
+/**
+[See DOMMatrixReadOnly on MDN](https://developer.mozilla.org/docs/Web/API/DOMMatrixReadOnly)
+*/
+type domMatrixReadOnly = {
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/DOMMatrixReadOnly#instance_properties)
+    */
+  a: float,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/DOMMatrixReadOnly#instance_properties)
+    */
+  b: float,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/DOMMatrixReadOnly#instance_properties)
+    */
+  c: float,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/DOMMatrixReadOnly#instance_properties)
+    */
+  d: float,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/DOMMatrixReadOnly#instance_properties)
+    */
+  e: float,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/DOMMatrixReadOnly#instance_properties)
+    */
+  f: float,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/DOMMatrixReadOnly#instance_properties)
+    */
+  m11: float,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/DOMMatrixReadOnly#instance_properties)
+    */
+  m12: float,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/DOMMatrixReadOnly#instance_properties)
+    */
+  m13: float,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/DOMMatrixReadOnly#instance_properties)
+    */
+  m14: float,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/DOMMatrixReadOnly#instance_properties)
+    */
+  m21: float,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/DOMMatrixReadOnly#instance_properties)
+    */
+  m22: float,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/DOMMatrixReadOnly#instance_properties)
+    */
+  m23: float,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/DOMMatrixReadOnly#instance_properties)
+    */
+  m24: float,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/DOMMatrixReadOnly#instance_properties)
+    */
+  m31: float,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/DOMMatrixReadOnly#instance_properties)
+    */
+  m32: float,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/DOMMatrixReadOnly#instance_properties)
+    */
+  m33: float,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/DOMMatrixReadOnly#instance_properties)
+    */
+  m34: float,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/DOMMatrixReadOnly#instance_properties)
+    */
+  m41: float,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/DOMMatrixReadOnly#instance_properties)
+    */
+  m42: float,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/DOMMatrixReadOnly#instance_properties)
+    */
+  m43: float,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/DOMMatrixReadOnly#instance_properties)
+    */
+  m44: float,
+}
+
+/**
+[See DOMMatrix on MDN](https://developer.mozilla.org/docs/Web/API/DOMMatrix)
+*/
+type domMatrix = {
+  ...domMatrixReadOnly,
+}
+
+/**
+[See VideoColorSpace on MDN](https://developer.mozilla.org/docs/Web/API/VideoColorSpace)
+*/
+type videoColorSpace = {
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/VideoColorSpace/primaries)
+    */
+  primaries: Null.t<videoColorPrimaries>,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/VideoColorSpace/transfer)
+    */
+  transfer: Null.t<videoTransferCharacteristics>,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/VideoColorSpace/matrix)
+    */
+  matrix: Null.t<videoMatrixCoefficients>,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/VideoColorSpace/fullRange)
+    */
+  fullRange: Null.t<bool>,
+}
+
+/**
+[See VideoFrame on MDN](https://developer.mozilla.org/docs/Web/API/VideoFrame)
+*/
+type videoFrame = {
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/VideoFrame/format)
+    */
+  format: Null.t<videoPixelFormat>,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/VideoFrame/codedWidth)
+    */
+  codedWidth: int,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/VideoFrame/codedHeight)
+    */
+  codedHeight: int,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/VideoFrame/codedRect)
+    */
+  codedRect: Null.t<domRectReadOnly>,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/VideoFrame/visibleRect)
+    */
+  visibleRect: Null.t<domRectReadOnly>,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/VideoFrame/displayWidth)
+    */
+  displayWidth: int,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/VideoFrame/displayHeight)
+    */
+  displayHeight: int,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/VideoFrame/duration)
+    */
+  duration: Null.t<int>,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/VideoFrame/timestamp)
+    */
+  timestamp: int,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/VideoFrame/colorSpace)
+    */
+  colorSpace: videoColorSpace,
+}
+
+/**
+The underlying pixel data of an area of a <canvas> element. It is created using the ImageData() constructor or creator methods on the CanvasRenderingContext2D object associated with a canvas: createImageData() and getImageData(). It can also be used to set a part of the canvas by using putImageData().
+[See ImageData on MDN](https://developer.mozilla.org/docs/Web/API/ImageData)
+*/
+type imageData = {
+  /**
+    Returns the actual dimensions of the data in the ImageData object, in pixels.
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/ImageData/width)
+    */
+  width: int,
+  /**
+    Returns the actual dimensions of the data in the ImageData object, in pixels.
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/ImageData/height)
+    */
+  height: int,
+  /**
+    Returns the one-dimensional array containing the data in RGBA order, as integers in the range 0 to 255.
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/ImageData/data)
+    */
+  data: array<int>,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/ImageData/colorSpace)
+    */
+  colorSpace: predefinedColorSpace,
+}
+
+/**
+[See DOMPointReadOnly on MDN](https://developer.mozilla.org/docs/Web/API/DOMPointReadOnly)
+*/
+type domPointReadOnly = {
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/DOMPointReadOnly/x)
+    */
+  x: float,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/DOMPointReadOnly/y)
+    */
+  y: float,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/DOMPointReadOnly/z)
+    */
+  z: float,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/DOMPointReadOnly/w)
+    */
+  w: float,
+}
+
+/**
+[See DOMPoint on MDN](https://developer.mozilla.org/docs/Web/API/DOMPoint)
+*/
+type domPoint = {
+  ...domPointReadOnly,
+}
+
+/**
 [See Animation on MDN](https://developer.mozilla.org/docs/Web/API/Animation)
 */
 type rec animation = {
@@ -9206,6 +9560,93 @@ type keyframeAnimationOptions = {
 }
 
 type elementCreationOptions = {mutable is?: string}
+
+type svgBoundingBoxOptions = {
+  mutable fill?: bool,
+  mutable stroke?: bool,
+  mutable markers?: bool,
+  mutable clipped?: bool,
+}
+
+type domMatrix2DInit = {
+  mutable a?: float,
+  mutable b?: float,
+  mutable c?: float,
+  mutable d?: float,
+  mutable e?: float,
+  mutable f?: float,
+  mutable m11?: float,
+  mutable m12?: float,
+  mutable m21?: float,
+  mutable m22?: float,
+  mutable m41?: float,
+  mutable m42?: float,
+}
+
+type domMatrixInit = {
+  ...domMatrix2DInit,
+  mutable m13?: float,
+  mutable m14?: float,
+  mutable m23?: float,
+  mutable m24?: float,
+  mutable m31?: float,
+  mutable m32?: float,
+  mutable m33?: float,
+  mutable m34?: float,
+  mutable m43?: float,
+  mutable m44?: float,
+  mutable is2D?: bool,
+}
+
+type videoFrameInit = {
+  mutable duration?: int,
+  mutable timestamp?: int,
+  mutable alpha?: alphaOption,
+  mutable visibleRect?: domRectInit,
+  mutable displayWidth?: int,
+  mutable displayHeight?: int,
+}
+
+type videoColorSpaceInit = {
+  mutable primaries?: Null.t<videoColorPrimaries>,
+  mutable transfer?: Null.t<videoTransferCharacteristics>,
+  mutable matrix?: Null.t<videoMatrixCoefficients>,
+  mutable fullRange?: Null.t<bool>,
+}
+
+type planeLayout = {
+  mutable offset: int,
+  mutable stride: int,
+}
+
+type videoFrameBufferInit = {
+  mutable format: videoPixelFormat,
+  mutable codedWidth: int,
+  mutable codedHeight: int,
+  mutable timestamp: int,
+  mutable duration?: int,
+  mutable layout?: array<planeLayout>,
+  mutable visibleRect?: domRectInit,
+  mutable displayWidth?: int,
+  mutable displayHeight?: int,
+  mutable colorSpace?: videoColorSpaceInit,
+}
+
+type imageDataSettings = {mutable colorSpace?: predefinedColorSpace}
+
+type videoFrameCopyToOptions = {
+  mutable rect?: domRectInit,
+  mutable layout?: array<planeLayout>,
+  mutable format?: videoPixelFormat,
+  mutable colorSpace?: predefinedColorSpace,
+}
+
+type domPointInit = {
+  mutable x?: float,
+  mutable y?: float,
+  mutable z?: float,
+  mutable w?: float,
+}
 
 type xPathNSResolver = any
 

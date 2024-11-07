@@ -1,13 +1,18 @@
 open FetchAPI
 open FileAPI
 open Prelude
-open ServiceWorkerAPI
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Request)
 */
 @new
-external make: (~input: requestInfo, ~init: requestInit=?) => request = "Request"
+external make: (~input: request, ~init: requestInit=?) => request = "Request"
+
+/**
+[Read more on MDN](https://developer.mozilla.org/docs/Web/API/Request)
+*/
+@new
+external make2: (~input: string, ~init: requestInit=?) => request = "Request"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Request/arrayBuffer)

@@ -67,3 +67,5 @@ type cryptoKey = {
 }
 
 type algorithmIdentifier = any
+
+type algorithm = {mutable name: string}

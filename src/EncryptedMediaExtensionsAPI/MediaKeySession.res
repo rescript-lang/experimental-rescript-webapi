@@ -1,6 +1,5 @@
 open EventAPI
 open EncryptedMediaExtensionsAPI
-open Prelude
 
 /**
 Appends an event listener for events whose type attribute value is type. The callback argument sets the callback that will be invoked when the event is dispatched.
@@ -116,7 +115,17 @@ external dispatchEvent: (mediaKeySession, event) => bool = "dispatchEvent"
 external generateRequest: (
   mediaKeySession,
   ~initDataType: string,
-  ~initData: bufferSource,
+  ~initData: DataView.t,
+) => Promise.t<unit> = "generateRequest"
+
+/**
+[Read more on MDN](https://developer.mozilla.org/docs/Web/API/MediaKeySession/generateRequest)
+*/
+@send
+external generateRequest2: (
+  mediaKeySession,
+  ~initDataType: string,
+  ~initData: ArrayBuffer.t,
 ) => Promise.t<unit> = "generateRequest"
 
 /**
@@ -129,7 +138,13 @@ external load: (mediaKeySession, string) => Promise.t<bool> = "load"
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/MediaKeySession/update)
 */
 @send
-external update: (mediaKeySession, bufferSource) => Promise.t<unit> = "update"
+external update: (mediaKeySession, DataView.t) => Promise.t<unit> = "update"
+
+/**
+[Read more on MDN](https://developer.mozilla.org/docs/Web/API/MediaKeySession/update)
+*/
+@send
+external update2: (mediaKeySession, ArrayBuffer.t) => Promise.t<unit> = "update"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/MediaKeySession/close)
