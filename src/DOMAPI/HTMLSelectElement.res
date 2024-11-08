@@ -754,7 +754,7 @@ Removes an element from the collection.
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLSelectElement/remove)
 */
 @send
-external remove: htmlSelectElement => unit = "remove"
+external removeH: htmlSelectElement => unit = "remove"
 
 /**
 Removes an element from the collection.
@@ -762,7 +762,7 @@ Removes an element from the collection.
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLSelectElement/remove)
 */
 @send
-external remove2: (htmlSelectElement, int) => unit = "remove"
+external removeH2: (htmlSelectElement, int) => unit = "remove"
 
 /**
 Returns whether a form will validate when it is submitted, without having to submit it.

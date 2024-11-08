@@ -196,7 +196,7 @@ and abortSignal = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/AbortSignal/reason)
     */
-  reason: any,
+  reason: JSON.t,
 }
 
 type eventListenerOptions = {mutable capture?: bool}

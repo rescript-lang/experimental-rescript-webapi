@@ -14,7 +14,7 @@ external make: (
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/WritableStream/abort)
 */
 @send
-external abort: (writableStream<'w>, ~reason: any=?) => Promise.t<unit> = "abort"
+external abort: (writableStream<'w>, ~reason: JSON.t=?) => Promise.t<unit> = "abort"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/WritableStream/close)

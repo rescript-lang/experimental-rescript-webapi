@@ -100,13 +100,13 @@ external toFloat64Array: domMatrix => float64Array = "toFloat64Array"
 external toJSON: domMatrix => Dict.t<string> = "toJSON"
 
 @scope("DOMMatrix")
-external fromMatrix: (~other: domMatrixInit=?) => domMatrix = "fromMatrix"
+external fromMatrixD: (~other: domMatrixInit=?) => domMatrix = "fromMatrix"
 
 @scope("DOMMatrix")
-external fromFloat32Array: array<float> => domMatrix = "fromFloat32Array"
+external fromFloat32ArrayD: array<float> => domMatrix = "fromFloat32Array"
 
 @scope("DOMMatrix")
-external fromFloat64Array: float64Array => domMatrix = "fromFloat64Array"
+external fromFloat64ArrayD: float64Array => domMatrix = "fromFloat64Array"
 
 @send
 external multiplySelf: (domMatrix, ~other: domMatrixInit=?) => domMatrix = "multiplySelf"

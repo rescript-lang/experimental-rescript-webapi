@@ -25,4 +25,4 @@ external toJSON: domPoint => Dict.t<string> = "toJSON"
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/DOMPoint/fromPoint_static)
 */
 @scope("DOMPoint")
-external fromPoint: (~other: domPointInit=?) => domPoint = "fromPoint"
+external fromPointD: (~other: domPointInit=?) => domPoint = "fromPoint"

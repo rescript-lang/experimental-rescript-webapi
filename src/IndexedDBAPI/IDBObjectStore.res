@@ -12,7 +12,8 @@ If successful, request's result will be the record's key.
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/IDBObjectStore/put)
 */
 @send
-external put: (idbObjectStore, ~value: any, ~key: idbValidKey=?) => idbRequest<idbValidKey> = "put"
+external put: (idbObjectStore, ~value: JSON.t, ~key: idbValidKey=?) => idbRequest<idbValidKey> =
+  "put"
 
 /**
 Adds or updates a record in store with the given value and key.
@@ -25,7 +26,8 @@ If successful, request's result will be the record's key.
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/IDBObjectStore/add)
 */
 @send
-external add: (idbObjectStore, ~value: any, ~key: idbValidKey=?) => idbRequest<idbValidKey> = "add"
+external add: (idbObjectStore, ~value: JSON.t, ~key: idbValidKey=?) => idbRequest<idbValidKey> =
+  "add"
 
 /**
 Deletes records in store with the given key or in the given key range in query.
@@ -52,7 +54,7 @@ If successful, request's result will be the value, or undefined if there was no 
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/IDBObjectStore/get)
 */
 @send
-external get: (idbObjectStore, any) => idbRequest<any> = "get"
+external get: (idbObjectStore, any) => idbRequest<JSON.t> = "get"
 
 /**
 Retrieves the key of the first record matching the given key or key range in query.
@@ -70,7 +72,8 @@ If successful, request's result will be an Array of the values.
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/IDBObjectStore/getAll)
 */
 @send
-external getAll: (idbObjectStore, ~query: any=?, ~count: int=?) => idbRequest<array<any>> = "getAll"
+external getAll: (idbObjectStore, ~query: any=?, ~count: int=?) => idbRequest<array<JSON.t>> =
+  "getAll"
 
 /**
 Retrieves the keys of records matching the given key or key range in query (up to count if given).

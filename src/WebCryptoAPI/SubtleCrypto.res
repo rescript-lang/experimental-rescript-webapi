@@ -32,7 +32,7 @@ external sign: (
   ~algorithm: algorithmIdentifier,
   ~key: cryptoKey,
   ~data: bufferSource,
-) => Promise.t<any> = "sign"
+) => Promise.t<JSON.t> = "sign"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/SubtleCrypto/verify)
@@ -44,7 +44,7 @@ external verify: (
   ~key: cryptoKey,
   ~signature: bufferSource,
   ~data: bufferSource,
-) => Promise.t<any> = "verify"
+) => Promise.t<JSON.t> = "verify"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/SubtleCrypto/digest)
@@ -54,7 +54,7 @@ external digest: (
   subtleCrypto,
   ~algorithm: algorithmIdentifier,
   ~data: bufferSource,
-) => Promise.t<any> = "digest"
+) => Promise.t<JSON.t> = "digest"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/SubtleCrypto/generateKey)
@@ -65,7 +65,7 @@ external generateKey: (
   ~algorithm: algorithm,
   ~extractable: bool,
   ~keyUsages: array<keyUsage>,
-) => Promise.t<any> = "generateKey"
+) => Promise.t<JSON.t> = "generateKey"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/SubtleCrypto/generateKey)
@@ -76,7 +76,7 @@ external generateKey2: (
   ~algorithm: string,
   ~extractable: bool,
   ~keyUsages: array<keyUsage>,
-) => Promise.t<any> = "generateKey"
+) => Promise.t<JSON.t> = "generateKey"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/SubtleCrypto/deriveKey)
@@ -89,7 +89,7 @@ external deriveKey: (
   ~derivedKeyType: algorithmIdentifier,
   ~extractable: bool,
   ~keyUsages: array<keyUsage>,
-) => Promise.t<any> = "deriveKey"
+) => Promise.t<JSON.t> = "deriveKey"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/SubtleCrypto/deriveBits)
@@ -130,7 +130,7 @@ external importKey: (
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/SubtleCrypto/exportKey)
 */
 @send
-external exportKey: (subtleCrypto, ~format: keyFormat, ~key: cryptoKey) => Promise.t<any> =
+external exportKey: (subtleCrypto, ~format: keyFormat, ~key: cryptoKey) => Promise.t<JSON.t> =
   "exportKey"
 
 /**
@@ -143,7 +143,7 @@ external wrapKey: (
   ~key: cryptoKey,
   ~wrappingKey: cryptoKey,
   ~wrapAlgorithm: algorithm,
-) => Promise.t<any> = "wrapKey"
+) => Promise.t<JSON.t> = "wrapKey"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/SubtleCrypto/wrapKey)
@@ -155,7 +155,7 @@ external wrapKey2: (
   ~key: cryptoKey,
   ~wrappingKey: cryptoKey,
   ~wrapAlgorithm: string,
-) => Promise.t<any> = "wrapKey"
+) => Promise.t<JSON.t> = "wrapKey"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/SubtleCrypto/unwrapKey)

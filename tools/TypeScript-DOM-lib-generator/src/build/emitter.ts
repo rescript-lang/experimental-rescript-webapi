@@ -4,6 +4,7 @@ import { promises as fs } from "fs";
 import { execSync } from "child_process";
 import { fileURLToPath } from "url";
 import * as path from "path";
+import { isConstructorDeclaration } from "typescript";
 
 /// Decide which members of a function to emit
 enum EmitScope {
@@ -570,6 +571,9 @@ export async function emitRescriptBindings(webidl: Browser.WebIdl) {
 
       case "Function":
         return "(unit => unit)";
+
+      case "any":
+        return "JSON.t";
 
       default:
         // TODO: some types are a inline variant type
@@ -1173,19 +1177,23 @@ export async function emitRescriptBindings(webidl: Browser.WebIdl) {
     printer.endLine();
   }
 
-  function extractMethodEntries(i: Browser.Interface): Browser.Method[] {
+  type MethodWithSource = Browser.Method & { source: string };
+
+  function extractMethodEntries(i: Browser.Interface): MethodWithSource[] {
     // Own methods
-    let methodEntries: Browser.Method[] =
-      i.methods && i.methods.method ? Object.values(i.methods.method) : [];
+    let methodEntries: MethodWithSource[] =
+      i.methods && i.methods.method
+        ? Object.values(i.methods.method).map((m) => ({ ...m, source: i.name }))
+        : [];
 
     // Mixin methods
     let mixinMethods = (i.implements || []).flatMap((i) => {
       const method = allMixins.find((m) => m.name === i)?.methods?.method || {};
-      return Object.values(method);
+      return Object.values(method).map((m) => ({ ...m, source: i }));
     });
 
     // Inherit methods from extended interfaces
-    let extendedMethods: Browser.Method[] = [];
+    let extendedMethods: MethodWithSource[] = [];
     if (i.extends && typeof i.extends === "string") {
       let entry = allInterfaces.find((j) => j.name === i.extends);
       if (entry) {
@@ -1194,7 +1202,12 @@ export async function emitRescriptBindings(webidl: Browser.WebIdl) {
     }
 
     // Combine all methods
-    return [...mixinMethods, ...extendedMethods, ...methodEntries];
+    const allMethods: MethodWithSource[] = [
+      ...mixinMethods,
+      ...extendedMethods,
+      ...methodEntries,
+    ];
+    return allMethods;
   }
 
   // We try and detect which open statements are required for the functions of a nested module.
@@ -1254,7 +1267,7 @@ export async function emitRescriptBindings(webidl: Browser.WebIdl) {
     }
 
     const methodEntries = extractMethodEntries(i);
-    for (const method of Object.values(methodEntries)) {
+    for (const method of methodEntries) {
       if (isInvalidMethod(method)) continue;
 
       for (const dedupedMethod of dedupeMethod(method)) {
@@ -1315,7 +1328,8 @@ export async function emitRescriptBindings(webidl: Browser.WebIdl) {
       }
     }
 
-    let methodEntries: Browser.Method[] = extractMethodEntries(i);
+    let methodEntries: MethodWithSource[] = extractMethodEntries(i);
+    const seen = new Set<string>();
 
     for (const method of methodEntries) {
       // if (!method.name && key === "forEach") {
@@ -1334,11 +1348,15 @@ export async function emitRescriptBindings(webidl: Browser.WebIdl) {
       }
 
       if (method.signature) {
+        let suffix = seen.has(method.name)
+          ? method.source[0].toUpperCase()
+          : "";
         const dedupedMethods = dedupeMethod(method);
         for (const [idx, dedupedMethod] of dedupedMethods.entries()) {
-          const suffix = idx > 0 ? `${idx + 1}` : "";
-          emitMethod(i, dedupedMethod, suffix);
+          const methodSuffix = idx > 0 ? `${suffix}${idx + 1}` : suffix;
+          emitMethod(i, dedupedMethod, methodSuffix);
         }
+        seen.add(method.name);
       }
     }
   }

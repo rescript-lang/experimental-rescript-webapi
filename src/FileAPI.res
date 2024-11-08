@@ -139,7 +139,7 @@ type writableStreamDefaultWriter<'t> = any
 
 type fileSystemWriteChunkType = any
 
-type underlyingSourceCancelCallback = any => Promise.t<unit>
+type underlyingSourceCancelCallback = JSON.t => Promise.t<unit>
 
 type blobPropertyBag = {
   @as("type") mutable type_?: string,

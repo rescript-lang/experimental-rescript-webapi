@@ -129,7 +129,7 @@ Returns null if the canvas has already been initialized with another context typ
 external getContext: (
   offscreenCanvas,
   ~contextId: offscreenRenderingContextId,
-  ~options: any=?,
+  ~options: JSON.t=?,
 ) => offscreenRenderingContext = "getContext"
 
 /**

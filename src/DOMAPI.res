@@ -6003,7 +6003,7 @@ and window = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/opener)
     */
-  mutable opener: any,
+  mutable opener: JSON.t,
   /**
     Refers to either the parent WindowProxy, or itself.
 

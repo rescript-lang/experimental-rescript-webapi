@@ -8,7 +8,7 @@ If successful, request's result will be the value, or undefined if there was no 
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/IDBIndex/get)
 */
 @send
-external get: (idbIndex, any) => idbRequest<any> = "get"
+external get: (idbIndex, any) => idbRequest<JSON.t> = "get"
 
 /**
 Retrieves the key of the first record matching the given key or key range in query.
@@ -26,7 +26,7 @@ If successful, request's result will be an Array of the values.
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/IDBIndex/getAll)
 */
 @send
-external getAll: (idbIndex, ~query: any=?, ~count: int=?) => idbRequest<array<any>> = "getAll"
+external getAll: (idbIndex, ~query: any=?, ~count: int=?) => idbRequest<array<JSON.t>> = "getAll"
 
 /**
 Retrieves the keys of records matching the given key or key range in query (up to count if given).

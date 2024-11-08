@@ -112,7 +112,7 @@ external dispatchEvent: (abortSignal, event) => bool = "dispatchEvent"
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/AbortSignal/abort_static)
 */
 @scope("AbortSignal")
-external abort: (~reason: any=?) => abortSignal = "abort"
+external abort: (~reason: JSON.t=?) => abortSignal = "abort"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/AbortSignal/timeout_static)

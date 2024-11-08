@@ -62,7 +62,7 @@ type notification = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Notification/data)
     */
-  data: any,
+  data: JSON.t,
 }
 
 type notificationOptions = {
@@ -74,7 +74,7 @@ type notificationOptions = {
   mutable badge?: string,
   mutable silent?: Null.t<bool>,
   mutable requireInteraction?: bool,
-  mutable data?: any,
+  mutable data?: JSON.t,
 }
 
 type getNotificationOptions = {mutable tag?: string}

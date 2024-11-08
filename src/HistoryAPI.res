@@ -22,5 +22,5 @@ type history = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/History/state)
     */
-  state: any,
+  state: JSON.t,
 }

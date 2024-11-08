@@ -42,7 +42,7 @@ external formData: request => Promise.t<formData> = "formData"
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Request/json)
 */
 @send
-external json: request => Promise.t<any> = "json"
+external json: request => Promise.t<JSON.t> = "json"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Request/text)

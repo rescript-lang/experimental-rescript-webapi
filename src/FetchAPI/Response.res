@@ -72,7 +72,7 @@ external formData: response => Promise.t<formData> = "formData"
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Request/json)
 */
 @send
-external json: response => Promise.t<any> = "json"
+external json: response => Promise.t<JSON.t> = "json"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Request/text)
@@ -96,7 +96,7 @@ external redirect: (~url: string, ~status: int=?) => response = "redirect"
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Response/json_static)
 */
 @scope("Response")
-external json: (~data: any, ~init: responseInit=?) => response = "json"
+external jsonR: (~data: JSON.t, ~init: responseInit=?) => response = "json"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Response/clone)

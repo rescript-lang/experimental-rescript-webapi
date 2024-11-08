@@ -23,7 +23,7 @@ external make3: unit => unknown = "ReadableStream"
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/ReadableStream/cancel)
 */
 @send
-external cancel: (readableStream<'r>, ~reason: any=?) => Promise.t<unit> = "cancel"
+external cancel: (readableStream<'r>, ~reason: JSON.t=?) => Promise.t<unit> = "cancel"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/ReadableStream/getReader)

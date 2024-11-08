@@ -5,8 +5,11 @@ open WebLocksAPI
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/LockManager/request)
 */
 @send
-external request: (lockManager, ~name: string, ~callback: lockGrantedCallback) => Promise.t<any> =
-  "request"
+external request: (
+  lockManager,
+  ~name: string,
+  ~callback: lockGrantedCallback,
+) => Promise.t<JSON.t> = "request"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/LockManager/request)
@@ -17,7 +20,7 @@ external request2: (
   ~name: string,
   ~options: lockOptions,
   ~callback: lockGrantedCallback,
-) => Promise.t<any> = "request"
+) => Promise.t<JSON.t> = "request"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/LockManager/query)

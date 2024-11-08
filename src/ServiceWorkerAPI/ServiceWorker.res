@@ -114,7 +114,7 @@ external dispatchEvent: (serviceWorker, event) => bool = "dispatchEvent"
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/ServiceWorker/postMessage)
 */
 @send
-external postMessage: (serviceWorker, ~message: any, ~transfer: array<Dict.t<string>>) => unit =
+external postMessage: (serviceWorker, ~message: JSON.t, ~transfer: array<Dict.t<string>>) => unit =
   "postMessage"
 
 /**
@@ -123,6 +123,6 @@ external postMessage: (serviceWorker, ~message: any, ~transfer: array<Dict.t<str
 @send
 external postMessage2: (
   serviceWorker,
-  ~message: any,
+  ~message: JSON.t,
   ~options: structuredSerializeOptions=?,
 ) => unit = "postMessage"

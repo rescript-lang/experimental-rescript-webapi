@@ -10,7 +10,7 @@ open EventAPI
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/reportError)
 */
 @send
-external reportError: (window, any) => unit = "reportError"
+external reportError: (window, JSON.t) => unit = "reportError"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/btoa)
@@ -28,14 +28,14 @@ external atob: (window, string) => string = "atob"
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/setTimeout)
 */
 @send
-external setTimeout: (window, ~handler: string, ~timeout: int=?, ~arguments: any) => int =
+external setTimeout: (window, ~handler: string, ~timeout: int=?, ~arguments: JSON.t) => int =
   "setTimeout"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/setTimeout)
 */
 @send
-external setTimeout2: (window, ~handler: unit => unit, ~timeout: int=?, ~arguments: any) => int =
+external setTimeout2: (window, ~handler: unit => unit, ~timeout: int=?, ~arguments: JSON.t) => int =
   "setTimeout"
 
 /**
@@ -48,15 +48,19 @@ external clearTimeout: (window, int) => unit = "clearTimeout"
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/setInterval)
 */
 @send
-external setInterval: (window, ~handler: string, ~timeout: int=?, ~arguments: any) => int =
+external setInterval: (window, ~handler: string, ~timeout: int=?, ~arguments: JSON.t) => int =
   "setInterval"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/setInterval)
 */
 @send
-external setInterval2: (window, ~handler: unit => unit, ~timeout: int=?, ~arguments: any) => int =
-  "setInterval"
+external setInterval2: (
+  window,
+  ~handler: unit => unit,
+  ~timeout: int=?,
+  ~arguments: JSON.t,
+) => int = "setInterval"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/clearInterval)
@@ -491,7 +495,7 @@ Throws a "DataCloneError" DOMException if transfer array contains duplicate obje
 @send
 external postMessage: (
   window,
-  ~message: any,
+  ~message: JSON.t,
   ~targetOrigin: string,
   ~transfer: array<Dict.t<string>>=?,
 ) => unit = "postMessage"
@@ -509,7 +513,7 @@ Throws a "DataCloneError" DOMException if transfer array contains duplicate obje
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/postMessage)
 */
 @send
-external postMessage2: (window, ~message: any, ~options: windowPostMessageOptions=?) => unit =
+external postMessage2: (window, ~message: JSON.t, ~options: windowPostMessageOptions=?) => unit =
   "postMessage"
 
 /**

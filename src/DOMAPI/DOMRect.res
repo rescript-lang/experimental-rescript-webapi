@@ -19,4 +19,4 @@ external toJSON: domRect => Dict.t<string> = "toJSON"
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/DOMRect/fromRect_static)
 */
 @scope("DOMRect")
-external fromRect: (~other: domRectInit=?) => domRect = "fromRect"
+external fromRectD: (~other: domRectInit=?) => domRect = "fromRect"

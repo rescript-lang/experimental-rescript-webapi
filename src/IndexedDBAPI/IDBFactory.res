@@ -28,4 +28,4 @@ Throws a "DataError" DOMException if either input is not a valid key.
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/IDBFactory/cmp)
 */
 @send
-external cmp: (idbFactory, ~first: any, ~second: any) => int = "cmp"
+external cmp: (idbFactory, ~first: JSON.t, ~second: JSON.t) => int = "cmp"

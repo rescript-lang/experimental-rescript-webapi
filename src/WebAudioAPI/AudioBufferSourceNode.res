@@ -200,7 +200,7 @@ external stop: (audioBufferSourceNode, ~when_: float=?) => unit = "stop"
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/AudioBufferSourceNode/start)
 */
 @send
-external start: (
+external startA: (
   audioBufferSourceNode,
   ~when_: float=?,
   ~offset: float=?,

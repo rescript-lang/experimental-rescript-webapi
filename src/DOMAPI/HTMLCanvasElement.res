@@ -730,8 +730,11 @@ Returns an object that provides methods and properties for drawing and manipulat
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLCanvasElement/getContext)
 */
 @send
-external getContext: (htmlCanvasElement, ~contextId: string, ~options: any=?) => renderingContext =
-  "getContext"
+external getContext: (
+  htmlCanvasElement,
+  ~contextId: string,
+  ~options: JSON.t=?,
+) => renderingContext = "getContext"
 
 /**
 Returns the content of the current canvas as an image that you can use as a source for another canvas or an HTML element.
@@ -739,7 +742,8 @@ Returns the content of the current canvas as an image that you can use as a sour
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLCanvasElement/toDataURL)
 */
 @send
-external toDataURL: (htmlCanvasElement, ~type_: string=?, ~quality: any=?) => string = "toDataURL"
+external toDataURL: (htmlCanvasElement, ~type_: string=?, ~quality: JSON.t=?) => string =
+  "toDataURL"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLCanvasElement/toBlob)
@@ -749,7 +753,7 @@ external toBlob: (
   htmlCanvasElement,
   ~callback: blobCallback,
   ~type_: string=?,
-  ~quality: any=?,
+  ~quality: JSON.t=?,
 ) => unit = "toBlob"
 
 /**

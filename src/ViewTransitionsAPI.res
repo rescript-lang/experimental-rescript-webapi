@@ -20,4 +20,4 @@ type viewTransition = {
   finished: Promise.t<unit>,
 }
 
-type viewTransitionUpdateCallback = Promise.t<any>
+type viewTransitionUpdateCallback = Promise.t<JSON.t>

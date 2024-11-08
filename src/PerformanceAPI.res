@@ -56,7 +56,7 @@ type performanceMark = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/PerformanceMark/detail)
     */
-  detail: any,
+  detail: JSON.t,
 }
 
 /**
@@ -68,18 +68,18 @@ type performanceMeasure = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/PerformanceMeasure/detail)
     */
-  detail: any,
+  detail: JSON.t,
 }
 
 type performanceEntryList = any
 
 type performanceMarkOptions = {
-  mutable detail?: any,
+  mutable detail?: JSON.t,
   mutable startTime?: float,
 }
 
 type performanceMeasureOptions = {
-  mutable detail?: any,
+  mutable detail?: JSON.t,
   mutable start?: unknown,
   mutable duration?: float,
   mutable end?: unknown,

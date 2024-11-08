@@ -5,7 +5,7 @@ open FileAPI
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/WritableStream/abort)
 */
 @send
-external abort: (fileSystemWritableFileStream, ~reason: any=?) => Promise.t<unit> = "abort"
+external abort: (fileSystemWritableFileStream, ~reason: JSON.t=?) => Promise.t<unit> = "abort"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/WritableStream/close)
