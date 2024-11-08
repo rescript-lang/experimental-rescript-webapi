@@ -185,6 +185,18 @@ external disconnect7: (audioBufferSourceNode, ~destinationParam: audioParam, ~ou
   "disconnect"
 
 /**
+[Read more on MDN](https://developer.mozilla.org/docs/Web/API/AudioScheduledSourceNode/start)
+*/
+@send
+external start: (audioBufferSourceNode, ~when_: float=?) => unit = "start"
+
+/**
+[Read more on MDN](https://developer.mozilla.org/docs/Web/API/AudioScheduledSourceNode/stop)
+*/
+@send
+external stop: (audioBufferSourceNode, ~when_: float=?) => unit = "stop"
+
+/**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/AudioBufferSourceNode/start)
 */
 @send
@@ -194,9 +206,3 @@ external start: (
   ~offset: float=?,
   ~duration: float=?,
 ) => unit = "start"
-
-/**
-[Read more on MDN](https://developer.mozilla.org/docs/Web/API/AudioScheduledSourceNode/stop)
-*/
-@send
-external stop: (audioBufferSourceNode, ~when_: float=?) => unit = "stop"

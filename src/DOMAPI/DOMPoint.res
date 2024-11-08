@@ -7,10 +7,10 @@ open DOMAPI
 external make: (~x: float=?, ~y: float=?, ~z: float=?, ~w: float=?) => domPoint = "DOMPoint"
 
 /**
-[Read more on MDN](https://developer.mozilla.org/docs/Web/API/DOMPoint/fromPoint_static)
+[Read more on MDN](https://developer.mozilla.org/docs/Web/API/DOMPointReadOnly/fromPoint_static)
 */
 @scope("DOMPoint")
-external fromPoint: (~other: domPointInit=?) => domPoint = "fromPoint"
+external fromPoint: (~other: domPointInit=?) => domPointReadOnly = "fromPoint"
 
 @send
 external matrixTransform: (domPoint, ~matrix: domMatrixInit=?) => domPoint = "matrixTransform"
@@ -20,3 +20,9 @@ external matrixTransform: (domPoint, ~matrix: domMatrixInit=?) => domPoint = "ma
 */
 @send
 external toJSON: domPoint => Dict.t<string> = "toJSON"
+
+/**
+[Read more on MDN](https://developer.mozilla.org/docs/Web/API/DOMPoint/fromPoint_static)
+*/
+@scope("DOMPoint")
+external fromPoint: (~other: domPointInit=?) => domPoint = "fromPoint"

@@ -14,13 +14,13 @@ external make: (~init: string=?) => domMatrix = "DOMMatrix"
 external make2: (~init: array<float>=?) => domMatrix = "DOMMatrix"
 
 @scope("DOMMatrix")
-external fromMatrix: (~other: domMatrixInit=?) => domMatrix = "fromMatrix"
+external fromMatrix: (~other: domMatrixInit=?) => domMatrixReadOnly = "fromMatrix"
 
 @scope("DOMMatrix")
-external fromFloat32Array: array<float> => domMatrix = "fromFloat32Array"
+external fromFloat32Array: array<float> => domMatrixReadOnly = "fromFloat32Array"
 
 @scope("DOMMatrix")
-external fromFloat64Array: float64Array => domMatrix = "fromFloat64Array"
+external fromFloat64Array: float64Array => domMatrixReadOnly = "fromFloat64Array"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/DOMMatrixReadOnly/translate)
@@ -98,6 +98,15 @@ external toFloat64Array: domMatrix => float64Array = "toFloat64Array"
 
 @send
 external toJSON: domMatrix => Dict.t<string> = "toJSON"
+
+@scope("DOMMatrix")
+external fromMatrix: (~other: domMatrixInit=?) => domMatrix = "fromMatrix"
+
+@scope("DOMMatrix")
+external fromFloat32Array: array<float> => domMatrix = "fromFloat32Array"
+
+@scope("DOMMatrix")
+external fromFloat64Array: float64Array => domMatrix = "fromFloat64Array"
 
 @send
 external multiplySelf: (domMatrix, ~other: domMatrixInit=?) => domMatrix = "multiplySelf"

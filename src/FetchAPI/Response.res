@@ -69,10 +69,10 @@ external bytes: response => Promise.t<array<int>> = "bytes"
 external formData: response => Promise.t<formData> = "formData"
 
 /**
-[Read more on MDN](https://developer.mozilla.org/docs/Web/API/Response/json_static)
+[Read more on MDN](https://developer.mozilla.org/docs/Web/API/Request/json)
 */
-@scope("Response")
-external json: (~data: any, ~init: responseInit=?) => response = "json"
+@send
+external json: response => Promise.t<any> = "json"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Request/text)
@@ -91,6 +91,12 @@ external error: unit => response = "error"
 */
 @scope("Response")
 external redirect: (~url: string, ~status: int=?) => response = "redirect"
+
+/**
+[Read more on MDN](https://developer.mozilla.org/docs/Web/API/Response/json_static)
+*/
+@scope("Response")
+external json: (~data: any, ~init: responseInit=?) => response = "json"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Response/clone)

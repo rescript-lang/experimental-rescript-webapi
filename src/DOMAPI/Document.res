@@ -9,6 +9,13 @@ open ViewTransitionsAPI
 external make: unit => document = "Document"
 
 /**
+Returns the first element within node's descendants whose ID is elementId.
+[Read more on MDN](https://developer.mozilla.org/docs/Web/API/Document/getElementById)
+*/
+@send
+external getElementById: (document, string) => element = "getElementById"
+
+/**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Document/getAnimations)
 */
 @send

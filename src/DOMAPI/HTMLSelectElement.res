@@ -143,20 +143,11 @@ Throws a "HierarchyRequestError" DOMException if the constraints of the node tre
 external replaceWith2: (htmlSelectElement, string) => unit = "replaceWith"
 
 /**
-Removes an element from the collection.
-@param index Number that specifies the zero-based index of the element to remove from the collection.
-[Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLSelectElement/remove)
+Removes node.
+[Read more on MDN](https://developer.mozilla.org/docs/Web/API/CharacterData/remove)
 */
 @send
 external remove: htmlSelectElement => unit = "remove"
-
-/**
-Removes an element from the collection.
-@param index Number that specifies the zero-based index of the element to remove from the collection.
-[Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLSelectElement/remove)
-*/
-@send
-external remove2: (htmlSelectElement, int) => unit = "remove"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/animate)
@@ -756,6 +747,22 @@ Adds an element to the areas, controlRange, or options collection.
 */
 @send
 external add: (htmlSelectElement, ~element: unknown, ~before: unknown=?) => unit = "add"
+
+/**
+Removes an element from the collection.
+@param index Number that specifies the zero-based index of the element to remove from the collection.
+[Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLSelectElement/remove)
+*/
+@send
+external remove: htmlSelectElement => unit = "remove"
+
+/**
+Removes an element from the collection.
+@param index Number that specifies the zero-based index of the element to remove from the collection.
+[Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLSelectElement/remove)
+*/
+@send
+external remove2: (htmlSelectElement, int) => unit = "remove"
 
 /**
 Returns whether a form will validate when it is submitted, without having to submit it.

@@ -1173,20 +1173,19 @@ export async function emitRescriptBindings(webidl: Browser.WebIdl) {
     printer.endLine();
   }
 
-  function extractMethodEntries(
-    i: Browser.Interface,
-  ): Record<string, Browser.Method> {
+  function extractMethodEntries(i: Browser.Interface): Browser.Method[] {
     // Own methods
-    let methodEntries: Record<string, Browser.Method> =
-      i.methods && i.methods.method ? i.methods.method : {};
+    let methodEntries: Browser.Method[] =
+      i.methods && i.methods.method ? Object.values(i.methods.method) : [];
 
     // Mixin methods
-    let mixinMethods = (i.implements || []).map(
-      (i) => allMixins.find((m) => m.name === i)?.methods?.method || {},
-    );
+    let mixinMethods = (i.implements || []).flatMap((i) => {
+      const method = allMixins.find((m) => m.name === i)?.methods?.method || {};
+      return Object.values(method);
+    });
 
     // Inherit methods from extended interfaces
-    let extendedMethods: Record<string, Browser.Method> = {};
+    let extendedMethods: Browser.Method[] = [];
     if (i.extends && typeof i.extends === "string") {
       let entry = allInterfaces.find((j) => j.name === i.extends);
       if (entry) {
@@ -1195,7 +1194,7 @@ export async function emitRescriptBindings(webidl: Browser.WebIdl) {
     }
 
     // Combine all methods
-    return Object.assign({}, ...mixinMethods, extendedMethods, methodEntries);
+    return [...mixinMethods, ...extendedMethods, ...methodEntries];
   }
 
   // We try and detect which open statements are required for the functions of a nested module.
@@ -1316,13 +1315,13 @@ export async function emitRescriptBindings(webidl: Browser.WebIdl) {
       }
     }
 
-    let methodEntries: Record<string, Browser.Method> = extractMethodEntries(i);
+    let methodEntries: Browser.Method[] = extractMethodEntries(i);
 
-    for (const [key, method] of Object.entries(methodEntries)) {
-      if (!method.name && key === "forEach") {
-        emitForEachMethod(i, method);
-        continue;
-      }
+    for (const method of methodEntries) {
+      // if (!method.name && key === "forEach") {
+      //   emitForEachMethod(i, method);
+      //   continue;
+      // }
 
       if (method.name === "addEventListener") {
         emitAddOrRemoveEventListener("add", i, method);
