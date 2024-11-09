@@ -19,7 +19,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '22' # Specify your desired Node.js version
+          node-version: '22'
 
       - name: Install dependencies
         run: npm ci
@@ -51,3 +51,10 @@ jobs:
         with:
           name: npm-package
           path: '*.tgz'
+
+      - name: Publish to npm
+        if: false
+        # if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NODE_AUTH_TOKEN }}
+        run: npm publish ./*.tgz
