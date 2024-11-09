@@ -857,44 +857,6 @@ export async function emitRescriptBindings(webidl: Browser.WebIdl) {
     printer.endLine();
   }
 
-  // I'm deviating quite heavily from what the typescript definition does here
-  // It simplifies the event handling quite a bit for now.
-  function emitAddOrRemoveEventListener(
-    prefix: "add" | "remove",
-    i: Browser.Interface,
-    method: Browser.Method,
-  ) {
-    printComment({
-      mdnUrl: method.mdnUrl,
-      comment: method.comment,
-    });
-    printer.printLine("@send");
-    printer.printLine(
-      `external ${prefix}EventListener: (${toCamelCase(i.name)}, eventType, eventListener<'event>) => unit = "addEventListener"`,
-    );
-    printer.endLine();
-
-    printComment({
-      mdnUrl: method.mdnUrl,
-      comment: method.comment,
-    });
-    printer.printLine("@send");
-    printer.printLine(
-      `external ${prefix}EventListenerWithOptions: (${toCamelCase(i.name)}, eventType, eventListener<'event>, ${prefix === "add" ? "addE" : "e"}ventListenerOptions) => unit = "addEventListener"`,
-    );
-    printer.endLine();
-
-    printComment({
-      mdnUrl: method.mdnUrl,
-      comment: method.comment,
-    });
-    printer.printLine("@send");
-    printer.printLine(
-      `external ${prefix}EventListenerWithUseCapture: (${toCamelCase(i.name)}, eventType, eventListener<'event>, bool) => unit = "addEventListener"`,
-    );
-    printer.endLine();
-  }
-
   function mapMethodName(method: Browser.Method, suffix: string = "") {
     if (reservedRescriptWords.includes(method.name) && !suffix) {
       return `${method.name}_`;
@@ -1051,7 +1013,7 @@ export async function emitRescriptBindings(webidl: Browser.WebIdl) {
 
     const signature = method.signature[0];
 
-    let ps = mapSignatureParameters(signature);
+    let ps = mapSignatureParameters(method.name, signature);
 
     printComment({
       mdnUrl: method.mdnUrl,
@@ -1076,6 +1038,7 @@ export async function emitRescriptBindings(webidl: Browser.WebIdl) {
 
   // TODO: consider dealing with variadic parameters
   function mapSignatureParameters(
+    owner: string,
     signature: Browser.Signature,
     join: string = ", ",
     includeParameterNames: boolean = true,
@@ -1097,7 +1060,16 @@ export async function emitRescriptBindings(webidl: Browser.WebIdl) {
               return `'${toCamelCase(p.overrideType)}`;
             }
 
-            const t = transformTyped(p);
+            let t = transformTyped(p);
+
+            if (owner === "addEventListener" && p.name === "type") {
+              return "~type_: eventType";
+            }
+
+            if (owner === "removeEventListener" && p.name === "type") {
+              return "~type_: eventType";
+            }
+
             if (!includeParameterNames) {
               return t;
             }
@@ -1171,7 +1143,7 @@ export async function emitRescriptBindings(webidl: Browser.WebIdl) {
     }
 
     const signature = c.signature[0];
-    let ps = mapSignatureParameters(signature);
+    let ps = mapSignatureParameters(`${i.name} ctor`, signature);
 
     if (i.name === "ReadableStream") {
       ps = "";
@@ -1378,16 +1350,6 @@ export async function emitRescriptBindings(webidl: Browser.WebIdl) {
       //   continue;
       // }
 
-      if (method.name === "addEventListener") {
-        emitAddOrRemoveEventListener("add", i, method);
-        continue;
-      }
-
-      if (method.name === "removeEventListener") {
-        emitAddOrRemoveEventListener("remove", i, method);
-        continue;
-      }
-
       if (method.signature) {
         let suffix = seen.has(method.name)
           ? method.source[0].toUpperCase()
@@ -1416,7 +1378,7 @@ export async function emitRescriptBindings(webidl: Browser.WebIdl) {
 
     const signature = c.signature[0];
 
-    let ps = mapSignatureParameters(signature, " => ", false);
+    let ps = mapSignatureParameters(c.name, signature, " => ", false);
     ps = ps && `${ps} => `;
 
     printer.printLine(
@@ -1617,7 +1579,10 @@ export async function emitRescriptBindings(webidl: Browser.WebIdl) {
         // We don't use emitMethod because do not want to include the @send annotation
         const suffix = idx > 0 ? (idx + 1).toString() : "";
         const signature = dedupedMethod.signature[0];
-        let ps = mapSignatureParameters(dedupedMethod.signature[0]);
+        let ps = mapSignatureParameters(
+          dedupeMethod.name,
+          dedupedMethod.signature[0],
+        );
         printer.printLine(
           `external ${mapMethodName(method, suffix)}: (${ps}) => ${mapMethodReturnType(signature)} = "${method.name}"`,
         );
