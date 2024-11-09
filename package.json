@@ -25,8 +25,10 @@
     "rescript.json",
     "src/**/*.res"
   ],
+  "type": "module",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "node tests/index.js",
+    "build": "rewatch"
   },
   "license": "MIT",
   "dependencies": {
