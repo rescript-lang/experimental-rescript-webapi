@@ -3,12 +3,6 @@ open Prelude
 open EventAPI
 
 /**
-[Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLSpanElement)
-*/
-@new
-external make: unit => htmlSpanElement = "HTMLSpanElement"
-
-/**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/focus)
 */
 @send

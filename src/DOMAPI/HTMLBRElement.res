@@ -3,12 +3,6 @@ open Prelude
 open EventAPI
 
 /**
-[Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLBRElement)
-*/
-@new
-external make: unit => htmlbrElement = "HTMLBRElement"
-
-/**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/focus)
 */
 @send

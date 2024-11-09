@@ -3,12 +3,6 @@ open Prelude
 open EventAPI
 
 /**
-[Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLTableElement)
-*/
-@new
-external make: unit => htmlTableElement = "HTMLTableElement"
-
-/**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/focus)
 */
 @send

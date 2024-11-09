@@ -3,12 +3,6 @@ open Prelude
 open EventAPI
 
 /**
-[Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLEmbedElement)
-*/
-@new
-external make: unit => htmlEmbedElement = "HTMLEmbedElement"
-
-/**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/focus)
 */
 @send

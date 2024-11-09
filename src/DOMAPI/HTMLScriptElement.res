@@ -3,12 +3,6 @@ open Prelude
 open EventAPI
 
 /**
-[Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLScriptElement)
-*/
-@new
-external make: unit => htmlScriptElement = "HTMLScriptElement"
-
-/**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/focus)
 */
 @send

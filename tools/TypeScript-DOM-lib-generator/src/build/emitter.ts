@@ -1302,6 +1302,11 @@ export async function emitRescriptBindings(webidl: Browser.WebIdl) {
     return opens;
   }
 
+  /// You can't do something like `new HTMLInputElement()` but TypeScript does include a constructor for these types.
+  function isHTMLElement(i: Browser.Interface) {
+    return i.name && i.name.startsWith("HTML") && i.name.endsWith("Element");
+  }
+
   // TODO: add constructor fn and cast fn
   // TODO: include methods of "implements" mixins
 
@@ -1320,7 +1325,7 @@ export async function emitRescriptBindings(webidl: Browser.WebIdl) {
       printer.endLine();
     }
 
-    if (i.constructor) {
+    if (i.constructor && !isHTMLElement(i)) {
       const dedupedConstructors = dedupeConstructor(i.constructor);
       for (const [idx, dedupedConstructor] of dedupedConstructors.entries()) {
         const suffix = idx > 0 ? `${idx + 1}` : "";

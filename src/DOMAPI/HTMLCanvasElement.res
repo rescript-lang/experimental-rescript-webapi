@@ -5,12 +5,6 @@ open CanvasAPI
 open MediaCaptureAndStreamsAPI
 
 /**
-[Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLCanvasElement)
-*/
-@new
-external make: unit => htmlCanvasElement = "HTMLCanvasElement"
-
-/**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/focus)
 */
 @send

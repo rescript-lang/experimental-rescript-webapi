@@ -6,12 +6,6 @@ open EncryptedMediaExtensionsAPI
 open PictureInPictureAPI
 
 /**
-[Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLVideoElement)
-*/
-@new
-external make: unit => htmlVideoElement = "HTMLVideoElement"
-
-/**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/focus)
 */
 @send
