@@ -1,5 +1,6 @@
 open DOMAPI
 
+external asHTMLCollection: htmlCollectionOf<'t> => htmlCollection = "%identity"
 /**
 Retrieves an object from various collections.
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLCollection/item)

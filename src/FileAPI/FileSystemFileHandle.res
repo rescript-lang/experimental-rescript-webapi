@@ -1,5 +1,6 @@
 open FileAPI
 
+external asFileSystemHandle: fileSystemFileHandle => fileSystemHandle = "%identity"
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/FileSystemHandle/isSameEntry)
 */

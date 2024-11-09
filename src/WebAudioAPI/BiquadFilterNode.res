@@ -8,6 +8,8 @@ open WebAudioAPI
 external make: (~context: baseAudioContext, ~options: biquadFilterOptions=?) => biquadFilterNode =
   "BiquadFilterNode"
 
+external asAudioNode: biquadFilterNode => audioNode = "%identity"
+external asEventTarget: biquadFilterNode => eventTarget = "%identity"
 /**
 Appends an event listener for events whose type attribute value is type. The callback argument sets the callback that will be invoked when the event is dispatched.
 

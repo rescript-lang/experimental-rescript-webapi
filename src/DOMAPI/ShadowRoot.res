@@ -1,6 +1,9 @@
 open DOMAPI
 open EventAPI
 
+external asDocumentFragment: shadowRoot => documentFragment = "%identity"
+external asNode: shadowRoot => node = "%identity"
+external asEventTarget: shadowRoot => eventTarget = "%identity"
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Document/getAnimations)
 */

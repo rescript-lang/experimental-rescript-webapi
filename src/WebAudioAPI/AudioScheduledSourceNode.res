@@ -1,6 +1,8 @@
 open EventAPI
 open WebAudioAPI
 
+external asAudioNode: audioScheduledSourceNode => audioNode = "%identity"
+external asEventTarget: audioScheduledSourceNode => eventTarget = "%identity"
 /**
 Appends an event listener for events whose type attribute value is type. The callback argument sets the callback that will be invoked when the event is dispatched.
 

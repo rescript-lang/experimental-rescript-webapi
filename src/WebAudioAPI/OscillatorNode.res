@@ -8,6 +8,9 @@ open WebAudioAPI
 external make: (~context: baseAudioContext, ~options: oscillatorOptions=?) => oscillatorNode =
   "OscillatorNode"
 
+external asAudioScheduledSourceNode: oscillatorNode => audioScheduledSourceNode = "%identity"
+external asAudioNode: oscillatorNode => audioNode = "%identity"
+external asEventTarget: oscillatorNode => eventTarget = "%identity"
 /**
 Appends an event listener for events whose type attribute value is type. The callback argument sets the callback that will be invoked when the event is dispatched.
 

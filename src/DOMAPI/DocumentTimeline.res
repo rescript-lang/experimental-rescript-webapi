@@ -5,3 +5,5 @@ open DOMAPI
 */
 @new
 external make: (~options: documentTimelineOptions=?) => documentTimeline = "DocumentTimeline"
+
+external asAnimationTimeline: documentTimeline => animationTimeline = "%identity"

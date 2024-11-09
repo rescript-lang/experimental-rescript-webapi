@@ -7,6 +7,8 @@ open EventAPI
 @new
 external make: unit => documentFragment = "DocumentFragment"
 
+external asNode: documentFragment => node = "%identity"
+external asEventTarget: documentFragment => eventTarget = "%identity"
 /**
 Returns the first element within node's descendants whose ID is elementId.
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Document/getElementById)

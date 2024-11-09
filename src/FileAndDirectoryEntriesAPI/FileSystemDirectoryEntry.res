@@ -1,5 +1,6 @@
 open FileAndDirectoryEntriesAPI
 
+external asFileSystemEntry: fileSystemDirectoryEntry => fileSystemEntry = "%identity"
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/FileSystemEntry/getParent)
 */

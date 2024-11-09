@@ -14,6 +14,8 @@ external make: offlineAudioContextOptions => offlineAudioContext = "OfflineAudio
 external make2: (~numberOfChannels: int, ~length: int, ~sampleRate: float) => offlineAudioContext =
   "OfflineAudioContext"
 
+external asBaseAudioContext: offlineAudioContext => baseAudioContext = "%identity"
+external asEventTarget: offlineAudioContext => eventTarget = "%identity"
 /**
 Appends an event listener for events whose type attribute value is type. The callback argument sets the callback that will be invoked when the event is dispatched.
 

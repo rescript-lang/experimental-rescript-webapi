@@ -1,6 +1,8 @@
 open DOMAPI
 open EventAPI
 
+external asNode: characterData => node = "%identity"
+external asEventTarget: characterData => eventTarget = "%identity"
 /**
 Inserts nodes just before node, while replacing strings in nodes with equivalent Text nodes.
 

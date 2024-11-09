@@ -2,6 +2,10 @@ open DOMAPI
 open Prelude
 open EventAPI
 
+external asSVGElement: svgGraphicsElement => svgElement = "%identity"
+external asElement: svgGraphicsElement => element = "%identity"
+external asNode: svgGraphicsElement => node = "%identity"
+external asEventTarget: svgGraphicsElement => eventTarget = "%identity"
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/focus)
 */

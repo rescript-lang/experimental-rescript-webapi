@@ -1318,6 +1318,29 @@ export async function emitRescriptBindings(webidl: Browser.WebIdl) {
     return i.name && i.name.startsWith("HTML") && i.name.endsWith("Element");
   }
 
+  function emitCastToBaseInterfaceMethods(
+    initialInterface: Browser.Interface,
+    currentInterface: Browser.Interface,
+  ) {
+    if (
+      !currentInterface.extends ||
+      typeof currentInterface.extends !== "string"
+    )
+      return;
+
+    const baseInterface = allInterfaces.find(
+      (j) => j.name === currentInterface.extends,
+    );
+    if (!baseInterface) return;
+
+    printer.printLine(
+      `external as${baseInterface.name}: ${mapInterfaceName(initialInterface)} => ${mapInterfaceName(
+        baseInterface,
+      )} = "%identity"`,
+    );
+    emitCastToBaseInterfaceMethods(initialInterface, baseInterface);
+  }
+
   // TODO: add constructor fn and cast fn
   // TODO: include methods of "implements" mixins
 
@@ -1343,6 +1366,8 @@ export async function emitRescriptBindings(webidl: Browser.WebIdl) {
         emitConstructor(i, dedupedConstructor, suffix);
       }
     }
+
+    emitCastToBaseInterfaceMethods(i, i);
 
     let methodEntries: MethodWithSource[] = extractMethodEntries(i);
     const seen = new Set<string>();
@@ -1765,6 +1790,13 @@ export async function emitRescriptBindings(webidl: Browser.WebIdl) {
         name: "Prelude",
         entries: [
           byHand("any", () => printer.printLine("type any = {}")),
+          byHand("unsafeConversion", () => {
+            printer.endLine();
+            printer.printLine(
+              `external unsafeConversation: 'tinput => 'toutput = "%identity"`,
+            );
+            printer.endLine();
+          }),
           byHand("BufferSource", emitAny("BufferSource")),
           byHand("BodyInit", emitAny("BodyInit")),
           // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/SharedArrayBuffer

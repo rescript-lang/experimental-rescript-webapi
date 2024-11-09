@@ -5,6 +5,11 @@ open WebVTTAPI
 open EncryptedMediaExtensionsAPI
 open PictureInPictureAPI
 
+external asHTMLMediaElement: htmlVideoElement => htmlMediaElement = "%identity"
+external asHTMLElement: htmlVideoElement => htmlElement = "%identity"
+external asElement: htmlVideoElement => element = "%identity"
+external asNode: htmlVideoElement => node = "%identity"
+external asEventTarget: htmlVideoElement => eventTarget = "%identity"
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/focus)
 */

@@ -6,6 +6,7 @@ open DOMAPI
 @new
 external make: unit => range = "Range"
 
+external asAbstractRange: range => abstractRange = "%identity"
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Range/setStart)
 */

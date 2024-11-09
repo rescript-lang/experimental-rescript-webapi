@@ -6,6 +6,7 @@ open DOMAPI
 @new
 external make: (~options: cssStyleSheetInit=?) => cssStyleSheet = "CSSStyleSheet"
 
+external asStyleSheet: cssStyleSheet => styleSheet = "%identity"
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CSSStyleSheet/insertRule)
 */

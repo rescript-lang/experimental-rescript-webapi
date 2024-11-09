@@ -1,6 +1,7 @@
 open Prelude
 open FileAPI
 
+external asWritableStream: fileSystemWritableFileStream => writableStream<'w> = "%identity"
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/WritableStream/abort)
 */

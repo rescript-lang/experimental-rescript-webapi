@@ -2,6 +2,10 @@ open DOMAPI
 open Prelude
 open EventAPI
 
+external asHTMLElement: htmlDataListElement => htmlElement = "%identity"
+external asElement: htmlDataListElement => element = "%identity"
+external asNode: htmlDataListElement => node = "%identity"
+external asEventTarget: htmlDataListElement => eventTarget = "%identity"
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/focus)
 */

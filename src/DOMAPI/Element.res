@@ -2,6 +2,8 @@ open DOMAPI
 open Prelude
 open EventAPI
 
+external asNode: element => node = "%identity"
+external asEventTarget: element => eventTarget = "%identity"
 /**
 Inserts nodes before the first child of node, while replacing strings in nodes with equivalent Text nodes.
 

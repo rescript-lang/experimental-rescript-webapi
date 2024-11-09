@@ -6,6 +6,7 @@ open DOMAPI
 @new
 external make: (~x: float=?, ~y: float=?, ~z: float=?, ~w: float=?) => domPoint = "DOMPoint"
 
+external asDOMPointReadOnly: domPoint => domPointReadOnly = "%identity"
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/DOMPointReadOnly/fromPoint_static)
 */

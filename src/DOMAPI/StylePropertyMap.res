@@ -1,5 +1,6 @@
 open DOMAPI
 
+external asStylePropertyMapReadOnly: stylePropertyMap => stylePropertyMapReadOnly = "%identity"
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/StylePropertyMapReadOnly/getAll)
 */

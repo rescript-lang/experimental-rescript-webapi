@@ -13,6 +13,7 @@ external make: (~init: string=?) => domMatrix = "DOMMatrix"
 @new
 external make2: (~init: array<float>=?) => domMatrix = "DOMMatrix"
 
+external asDOMMatrixReadOnly: domMatrix => domMatrixReadOnly = "%identity"
 @scope("DOMMatrix")
 external fromMatrix: (~other: domMatrixInit=?) => domMatrixReadOnly = "fromMatrix"
 

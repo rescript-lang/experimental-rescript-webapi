@@ -4,6 +4,10 @@ open EventAPI
 open WebVTTAPI
 open EncryptedMediaExtensionsAPI
 
+external asHTMLElement: htmlMediaElement => htmlElement = "%identity"
+external asElement: htmlMediaElement => element = "%identity"
+external asNode: htmlMediaElement => node = "%identity"
+external asEventTarget: htmlMediaElement => eventTarget = "%identity"
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/focus)
 */

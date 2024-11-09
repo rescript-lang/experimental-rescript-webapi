@@ -4,6 +4,11 @@ open EventAPI
 open WebVTTAPI
 open EncryptedMediaExtensionsAPI
 
+external asHTMLMediaElement: htmlAudioElement => htmlMediaElement = "%identity"
+external asHTMLElement: htmlAudioElement => htmlElement = "%identity"
+external asElement: htmlAudioElement => element = "%identity"
+external asNode: htmlAudioElement => node = "%identity"
+external asEventTarget: htmlAudioElement => eventTarget = "%identity"
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/focus)
 */

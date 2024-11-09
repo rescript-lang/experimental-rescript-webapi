@@ -8,6 +8,8 @@ open WebAudioAPI
 external make: (~context: baseAudioContext, ~options: stereoPannerOptions=?) => stereoPannerNode =
   "StereoPannerNode"
 
+external asAudioNode: stereoPannerNode => audioNode = "%identity"
+external asEventTarget: stereoPannerNode => eventTarget = "%identity"
 /**
 Appends an event listener for events whose type attribute value is type. The callback argument sets the callback that will be invoked when the event is dispatched.
 

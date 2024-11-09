@@ -7,6 +7,9 @@ open EventAPI
 @new
 external make: (~data: string=?) => comment = "Comment"
 
+external asCharacterData: comment => characterData = "%identity"
+external asNode: comment => node = "%identity"
+external asEventTarget: comment => eventTarget = "%identity"
 /**
 Inserts nodes just before node, while replacing strings in nodes with equivalent Text nodes.
 

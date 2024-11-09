@@ -19,6 +19,7 @@ external make2: mediaStream => mediaStream = "MediaStream"
 @new
 external make3: array<mediaStreamTrack> => mediaStream = "MediaStream"
 
+external asEventTarget: mediaStream => eventTarget = "%identity"
 /**
 Appends an event listener for events whose type attribute value is type. The callback argument sets the callback that will be invoked when the event is dispatched.
 
