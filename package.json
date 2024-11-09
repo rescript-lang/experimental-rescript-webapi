@@ -2,19 +2,32 @@
   "name": "experimental-rescript-webapi",
   "version": "0.1.0",
   "description": "Experimental successor to [rescript-webapi](https://github.com/TheSpyder/rescript-webapi)",
+  "homepage": "https://github.com/rescript-lang/experimental-rescript-webapi",
+  "bugs": "https://github.com/rescript-lang/experimental-rescript-webapi/issues",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rescript-lang/experimental-rescript-webapi.git"
+  },
   "author": {
     "name": "Florian Verdonck"
   },
   "maintainers": [
     "Florian Verdonck (https://github.com/nojaf)"
   ],
+  "keywords": [
+    "rescript",
+    "webapi",
+    "mdn",
+    "dom",
+    "fetch"
+  ],
   "files": [
+    "rescript.json",
     "src/**/*.res"
   ],
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": [],
   "license": "MIT",
   "dependencies": {
     "rescript": "^12.0.0-alpha.4"
