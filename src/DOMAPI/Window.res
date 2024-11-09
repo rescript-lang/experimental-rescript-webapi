@@ -28,15 +28,13 @@ external atob: (window, string) => string = "atob"
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/setTimeout)
 */
 @send
-external setTimeout: (window, ~handler: string, ~timeout: int=?, ~arguments: JSON.t) => int =
-  "setTimeout"
+external setTimeout: (window, ~handler: string, ~timeout: int=?) => int = "setTimeout"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/setTimeout)
 */
 @send
-external setTimeout2: (window, ~handler: unit => unit, ~timeout: int=?, ~arguments: JSON.t) => int =
-  "setTimeout"
+external setTimeout2: (window, ~handler: unit => unit, ~timeout: int=?) => int = "setTimeout"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/clearTimeout)
@@ -48,19 +46,13 @@ external clearTimeout: (window, int) => unit = "clearTimeout"
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/setInterval)
 */
 @send
-external setInterval: (window, ~handler: string, ~timeout: int=?, ~arguments: JSON.t) => int =
-  "setInterval"
+external setInterval: (window, ~handler: string, ~timeout: int=?) => int = "setInterval"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/setInterval)
 */
 @send
-external setInterval2: (
-  window,
-  ~handler: unit => unit,
-  ~timeout: int=?,
-  ~arguments: JSON.t,
-) => int = "setInterval"
+external setInterval2: (window, ~handler: unit => unit, ~timeout: int=?) => int = "setInterval"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/clearInterval)

@@ -4,7 +4,6 @@ import { promises as fs } from "fs";
 import { execSync } from "child_process";
 import { fileURLToPath } from "url";
 import * as path from "path";
-import { isConstructorDeclaration } from "typescript";
 
 /// Decide which members of a function to emit
 enum EmitScope {
@@ -575,6 +574,9 @@ export async function emitRescriptBindings(webidl: Browser.WebIdl) {
       case "any":
         return "JSON.t";
 
+      case "EventListenerOrEventListenerObject":
+        return "eventListener<'event>";
+
       default:
         // TODO: some types are a inline variant type
         // Example: "IDBValidKey | IDBKeyRange"
@@ -757,6 +759,21 @@ export async function emitRescriptBindings(webidl: Browser.WebIdl) {
   // TODO: some interface seems to have an "implements" property.
   // These properties and methods should also be included.
 
+  function collectAllProperties(i: Browser.Interface): Browser.Property[] {
+    const allProperties: Browser.Property[] = Object.values(
+      i.properties?.property ?? {},
+    );
+
+    for (const mixinName of i.implements ?? []) {
+      const mixin = allMixins.find((m) => m.name === mixinName);
+      if (mixin) {
+        allProperties.push(...Object.values(mixin.properties?.property ?? {}));
+      }
+    }
+
+    return allProperties;
+  }
+
   function emitInterfaceRecord(
     options: interfaceSettings,
     i: Browser.Interface,
@@ -795,16 +812,7 @@ export async function emitRescriptBindings(webidl: Browser.WebIdl) {
       }
     }
 
-    const allProperties: Browser.Property[] = Object.values(
-      i.properties?.property ?? {},
-    );
-
-    for (const mixinName of i.implements ?? []) {
-      const mixin = allMixins.find((m) => m.name === mixinName);
-      if (mixin) {
-        allProperties.push(...Object.values(mixin.properties?.property ?? {}));
-      }
-    }
+    const allProperties: Browser.Property[] = collectAllProperties(i);
 
     for (const property of allProperties) {
       // I'm curious to know which properties are overwritten in the extended interface
@@ -1066,6 +1074,7 @@ export async function emitRescriptBindings(webidl: Browser.WebIdl) {
     printer.endLine();
   }
 
+  // TODO: consider dealing with variadic parameters
   function mapSignatureParameters(
     signature: Browser.Signature,
     join: string = ", ",
@@ -1075,7 +1084,10 @@ export async function emitRescriptBindings(webidl: Browser.WebIdl) {
       (signature.typeParameters || []).map((tp) => tp.name),
     );
 
-    const parameters = signature.param || [];
+    // Avoids the additional parameters for setTimeout and setInterval
+    const parameters = (signature.param || []).filter(
+      (p) => !(p.variadic && p.type === "any"),
+    );
 
     return parameters.length === 0
       ? ""
@@ -1207,7 +1219,8 @@ export async function emitRescriptBindings(webidl: Browser.WebIdl) {
       ...extendedMethods,
       ...methodEntries,
     ];
-    return allMethods;
+
+    return allMethods.filter((m) => !m.deprecated && !isInvalidMethod(m));
   }
 
   // We try and detect which open statements are required for the functions of a nested module.
@@ -1268,8 +1281,6 @@ export async function emitRescriptBindings(webidl: Browser.WebIdl) {
 
     const methodEntries = extractMethodEntries(i);
     for (const method of methodEntries) {
-      if (isInvalidMethod(method)) continue;
-
       for (const dedupedMethod of dedupeMethod(method)) {
         const signature = dedupedMethod.signature[0];
         verifyTypesFromSignature(
@@ -1526,6 +1537,71 @@ export async function emitRescriptBindings(webidl: Browser.WebIdl) {
     if (opens.length > 0) {
       printer.endLine();
     }
+  }
+
+  async function emitGlobalModule() {
+    printer.reset();
+    const opens = [
+      "DOMAPI",
+      "HistoryAPI",
+      "VisualViewportAPI",
+      "WebSpeechAPI",
+      "IndexedDBAPI",
+      "WebCryptoAPI",
+      "PerformanceAPI",
+      "ServiceWorkerAPI",
+      "WebStorageAPI",
+      "CanvasAPI",
+      "FileAPI",
+      "ChannelMessagingAPI",
+      "FetchAPI",
+      "EventAPI",
+    ];
+    for (const o of opens) {
+      printer.printLine(`open ${o}`);
+    }
+    printer.endLine();
+
+    const windowInterface = allInterfaces.find((i) => i.name === "Window");
+    if (!windowInterface) throw new Error("Window interface not found");
+
+    const allProperties: Browser.Property[] =
+      collectAllProperties(windowInterface);
+    for (const property of allProperties) {
+      if (property.name.startsWith("on") || property.deprecated) {
+        continue;
+      }
+
+      const name = reservedRescriptWords.includes(property.name)
+        ? `${property.name}_`
+        : property.name;
+
+      printer.printLine(
+        `external ${name}: ${transformPropertyValue(windowInterface, property)} = "${property.name}"`,
+      );
+    }
+
+    printer.endLine();
+
+    const allMethods: MethodWithSource[] =
+      extractMethodEntries(windowInterface);
+
+    for (const method of allMethods) {
+      const dedupedMethods = dedupeMethod(method);
+      for (const [idx, dedupedMethod] of dedupedMethods.entries()) {
+        // We don't use emitMethod because do not want to include the @send annotation
+        const suffix = idx > 0 ? (idx + 1).toString() : "";
+        const signature = dedupedMethod.signature[0];
+        let ps = mapSignatureParameters(dedupedMethod.signature[0]);
+        printer.printLine(
+          `external ${mapMethodName(method, suffix)}: (${ps}) => ${mapMethodReturnType(signature)} = "${method.name}"`,
+        );
+        printer.endLine();
+      }
+    }
+
+    const contents = printer.getResult();
+    await fs.writeFile(path.join(outputFolder, `Global.res`), contents);
   }
 
   async function emit() {
@@ -2777,6 +2853,8 @@ export async function emitRescriptBindings(webidl: Browser.WebIdl) {
         }
       }
     }
+
+    await emitGlobalModule();
 
     execSync("npx rescript format -all", { cwd: repoRoot, stdio: "inherit" });
     execSync("npx rewatch", { cwd: repoRoot, stdio: "inherit" });
