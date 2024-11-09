@@ -1,5 +1,5 @@
 {
-  "name": "@rescript/experimental-rescript-webapi",
+  "name": "@rescript/rescript-webapi",
   "version": "0.1.0",
   "description": "Experimental successor to [rescript-webapi](https://github.com/TheSpyder/rescript-webapi)",
   "homepage": "https://github.com/rescript-lang/experimental-rescript-webapi",

@@ -41,7 +41,7 @@ jobs:
         run: echo "COMMIT_HASH=$(git rev-parse --short HEAD)" >> $GITHUB_ENV
 
       - name: Update version to -<commit-hash>
-        run: npm version --no-git-tag-version "${{ steps.package-version.outputs.current-version }}-${{ env.COMMIT_HASH }}"
+        run: npm version --no-git-tag-version "${{ steps.package-version.outputs.current-version }}-experimental-${{ env.COMMIT_HASH }}"
 
       - name: Package npm project
         run: npm pack
@@ -57,4 +57,4 @@ jobs:
         # if: github.ref == 'refs/heads/main' && github.event_name == 'push'
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NODE_AUTH_TOKEN }}
-        run: npm publish ./*.tgz
+        run: npm publish ./*.tgz --tag experimental
