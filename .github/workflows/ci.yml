@@ -59,4 +59,4 @@ jobs:
         if: github.ref == 'refs/heads/main' && github.event_name == 'push'
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NODE_AUTH_TOKEN }}
-        run: npm publish ./*.tgz --tag experimental
+        run: npm publish --access public ./*.tgz --tag experimental
