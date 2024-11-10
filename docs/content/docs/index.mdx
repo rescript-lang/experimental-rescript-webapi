@@ -1,0 +1,79 @@
+---
+title: Getting started
+description: Learn more about @rescript/webapi.
+---
+
+import { Tabs, TabItem, Code } from "@astrojs/starlight/components";
+
+## Installation
+
+Install the package using your favorite package manager:
+
+<Tabs syncKey="package manager">
+  <TabItem label="npm">
+    <Code
+      lang="shell"
+      frame="none"
+      code="npm i -D @rescript/webapi@experimental"
+    />
+  </TabItem>
+  <TabItem label="bun">
+    <Code
+      lang="shell"
+      frame="none"
+      code="bun i -D @rescript/webapi@experimental"
+    />
+  </TabItem>
+</Tabs>
+
+and add `@rescript/webapi` to your `rescript.json`:
+
+export const rescriptJson = `
+{
+  "bs-dependencies": [
+    "@rescript/webapi",
+  ],
+  "bsc-flags": [
+    "-open Global"
+  ]
+}
+`;
+
+<Code lang="json" code={rescriptJson} ins={[3, 6]}></Code>
+
+## Usage
+
+After installing the package , you can use bindings for the various Web APIs as defined in [MDN](https://developer.mozilla.org/en-US/docs/Web/API).
+
+export const rescriptSample = `
+// Note that this only works when you added the \`-open Global\` bsc flag.
+let location = window.location
+
+// Access properties using \`.\`
+let href = location.href
+
+// Invoke methods using the \`->TypeModule.method\`
+location->Location.reload
+`;
+
+export const compiledSample = `
+let location = window.location;
+
+let href = location.href;
+
+location.reload();
+
+export {
+  location,
+  href,
+}
+`;
+
+<Tabs>
+  <TabItem label="ReScript">
+    <Code lang="ReScript" frame="none" code={rescriptSample}></Code>
+  </TabItem>
+  <TabItem label="JavaScript">
+    <Code lang="js" frame="none" code={compiledSample} />
+  </TabItem>
+</Tabs>
