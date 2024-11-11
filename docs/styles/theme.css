@@ -4,15 +4,21 @@
 }
 
 /*
+https://github.com/withastro/starlight/blob/main/packages/starlight/style/props.css
 https://github.com/rescript-lang/rescript-lang.org/blob/4e4f9520f6fc7a0376db82a0a6db52211e8a8187/tailwind.config.mjs#L13
 */
 
 :root[data-theme="light"],
 [data-theme="light"] ::backdrop {
-  /* --sl-color-accent-high: hsl(234, 80%, 30%); */
+  --sl-color-accent-low: #4a0f14;
   --sl-color-accent: #e6484f;
-  /* --sl-color-accent-low: hsl(234, 88%, 90%); */
-  --sl-color-bg-nav: rgb(20, 22, 44);
+  --sl-color-accent-high: #f9d5d7;
+  --sl-color-bg-nav: rgb(20, 22, 44); 
+
+  & starlight-theme-select {
+    --sl-color-gray-1: var(--sl-color-black);
+    --sl-color-gray-2: var(--sl-color-gray-5);
+  }
 }
 
 body {
