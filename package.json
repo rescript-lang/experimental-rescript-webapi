@@ -30,7 +30,8 @@
     "test": "node tests/index.js",
     "build": "rewatch",
     "format": "rescript format -all && prettier --write ./docs ./tests/index.js ./package.json",
-    "docs": "astro dev"
+    "docs": "astro dev",
+    "build:docs": "astro build"
   },
   "license": "MIT",
   "dependencies": {
@@ -39,6 +40,7 @@
   "devDependencies": {
     "@astrojs/starlight": "^0.29.0",
     "astro": "^4.16.10",
+    "prettier": "^3.3.3",
     "sharp": "^0.32.5"
   }
 }
