@@ -17,6 +17,9 @@ export default defineConfig({
       logo: {
         src: "./docs/assets/rescript-logo.svg",
       },
+      social: {
+        github: 'https://github.com/rescript-lang/experimental-rescript-webapi',
+      },
       customCss: ["./docs/styles/fonts.css", "./docs/styles/theme.css"],
       expressiveCode: {
         shiki: {
