@@ -20,6 +20,9 @@ export default defineConfig({
       social: {
         github: 'https://github.com/rescript-lang/experimental-rescript-webapi',
       },
+      editLink: {
+        baseUrl: 'https://github.com/rescript-lang/experimental-rescript-webapi/edit/main/',
+      },
       customCss: ["./docs/styles/fonts.css", "./docs/styles/theme.css"],
       expressiveCode: {
         shiki: {
