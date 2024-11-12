@@ -9,7 +9,8 @@ const rescriptTM = JSON.parse(
 export default defineConfig({
   srcDir: "docs",
   publicDir: "docs/public",
-  "site": "https://rescript-lang.github.io/experimental-rescript-webapi/",
+  site: "https://rescript-lang.github.io",
+  base: "experimental-rescript-webapi",
   integrations: [
     starlight({
       title: "Experimental WebAPI",
