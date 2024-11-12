@@ -1,3 +1,5 @@
+[![NPM Version](https://img.shields.io/npm/v/%40rescript%2Fwebapi)](https://www.npmjs.com/package/@rescript/webapi)
+
 # experimental-rescript-webapi
 
 Experimental successor to [rescript-webapi](https://github.com/TheSpyder/rescript-webapi)
