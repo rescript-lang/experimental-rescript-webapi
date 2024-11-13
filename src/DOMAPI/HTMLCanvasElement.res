@@ -704,7 +704,43 @@ external getContext: (
   htmlCanvasElement,
   ~contextId: string,
   ~options: JSON.t=?,
-) => renderingContext = "getContext"
+) => canvasRenderingContext2D = "getContext"
+
+/**
+Returns an object that provides methods and properties for drawing and manipulating images and graphics on a canvas element in a document. A context object includes information about colors, line widths, fonts, and other graphic parameters that can be drawn on a canvas.
+@param contextId The identifier (ID) of the type of canvas to create. Internet Explorer 9 and Internet Explorer 10 support only a 2-D context using canvas.getContext("2d"); IE11 Preview also supports 3-D or WebGL context using canvas.getContext("experimental-webgl");
+[Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLCanvasElement/getContext)
+*/
+@send
+external getContext2: (
+  htmlCanvasElement,
+  ~contextId: string,
+  ~options: JSON.t=?,
+) => imageBitmapRenderingContext = "getContext"
+
+/**
+Returns an object that provides methods and properties for drawing and manipulating images and graphics on a canvas element in a document. A context object includes information about colors, line widths, fonts, and other graphic parameters that can be drawn on a canvas.
+@param contextId The identifier (ID) of the type of canvas to create. Internet Explorer 9 and Internet Explorer 10 support only a 2-D context using canvas.getContext("2d"); IE11 Preview also supports 3-D or WebGL context using canvas.getContext("experimental-webgl");
+[Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLCanvasElement/getContext)
+*/
+@send
+external getContext3: (
+  htmlCanvasElement,
+  ~contextId: string,
+  ~options: JSON.t=?,
+) => webGLRenderingContext = "getContext"
+
+/**
+Returns an object that provides methods and properties for drawing and manipulating images and graphics on a canvas element in a document. A context object includes information about colors, line widths, fonts, and other graphic parameters that can be drawn on a canvas.
+@param contextId The identifier (ID) of the type of canvas to create. Internet Explorer 9 and Internet Explorer 10 support only a 2-D context using canvas.getContext("2d"); IE11 Preview also supports 3-D or WebGL context using canvas.getContext("experimental-webgl");
+[Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLCanvasElement/getContext)
+*/
+@send
+external getContext4: (
+  htmlCanvasElement,
+  ~contextId: string,
+  ~options: JSON.t=?,
+) => webGL2RenderingContext = "getContext"
 
 /**
 Returns the content of the current canvas as an image that you can use as a source for another canvas or an HTML element.

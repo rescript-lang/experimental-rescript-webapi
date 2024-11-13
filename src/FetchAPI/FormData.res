@@ -31,7 +31,13 @@ external delete: (formData, string) => unit = "delete"
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/FormData/get)
 */
 @send
-external get: (formData, string) => formDataEntryValue = "get"
+external get: (formData, string) => file = "get"
+
+/**
+[Read more on MDN](https://developer.mozilla.org/docs/Web/API/FormData/get)
+*/
+@send
+external get2: (formData, string) => string = "get"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/FormData/getAll)

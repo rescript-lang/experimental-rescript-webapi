@@ -971,6 +971,20 @@ export async function emitRescriptBindings(webidl: Browser.WebIdl) {
       }
     }
 
+    // Example case: HTMLCanvasElement->getContext
+    const returnTypeWithMultipleTypes = allTypeDefs.find(
+      (t) => t.name === signature.type,
+    );
+    if (
+      returnTypeWithMultipleTypes &&
+      Array.isArray(returnTypeWithMultipleTypes.type) &&
+      !signature.overrideType
+    ) {
+      return returnTypeWithMultipleTypes.type.map((t) => {
+        return { ...signature, type: t.type };
+      });
+    }
+
     return [signature];
   }
 
@@ -1068,6 +1082,10 @@ export async function emitRescriptBindings(webidl: Browser.WebIdl) {
 
             if (owner === "removeEventListener" && p.name === "type") {
               return "~type_: eventType";
+            }
+
+            if (owner.startsWith("roundRect") && p.name === "radii") {
+              return "~radii_: array<float>=?";
             }
 
             if (!includeParameterNames) {
@@ -2225,13 +2243,42 @@ export async function emitRescriptBindings(webidl: Browser.WebIdl) {
       {
         name: "CanvasAPI",
         entries: [
-          enums(["OffscreenRenderingContextId"]),
-          individualInterfaces(["OffscreenCanvas", "ImageBitmap"]),
+          enums([
+            "OffscreenRenderingContextId",
+            "GlobalCompositeOperation",
+            "ImageSmoothingQuality",
+            "CanvasLineCap",
+            "CanvasLineJoin",
+            "CanvasTextAlign",
+            "CanvasTextBaseline",
+            "CanvasDirection",
+            "CanvasFontKerning",
+            "CanvasFontStretch",
+            "CanvasFontVariantCaps",
+            "CanvasTextRendering",
+            "PredefinedColorSpace",
+            "CanvasFillRule",
+          ]),
+          individualInterfaces([
+            "OffscreenCanvas",
+            "ImageBitmap",
+            "OffscreenCanvasRenderingContext2D",
+            "ImageBitmapRenderingContext",
+            "WebGLRenderingContext",
+            "WebGL2RenderingContext",
+            "CanvasGradient",
+            "CanvasPattern",
+            "Path2D",
+            "TextMetrics",
+          ]),
           byHand(
             "OffscreenRenderingContext",
             emitAny("OffscreenRenderingContext"),
           ),
-          dictionaries(["ImageEncodeOptions"]),
+          dictionaries([
+            "ImageEncodeOptions",
+            "CanvasRenderingContext2DSettings",
+          ]),
         ],
         opens: ["Prelude", "EventAPI"],
       },
@@ -2545,6 +2592,7 @@ export async function emitRescriptBindings(webidl: Browser.WebIdl) {
             "ImageData",
             "DOMPointReadOnly",
             "DOMPoint",
+            "CanvasRenderingContext2D",
           ]),
           chain(["Animation"]),
           dictionaries([
