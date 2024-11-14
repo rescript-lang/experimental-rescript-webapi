@@ -15,8 +15,6 @@ const successGreen = "\x1b[32m";
 const warningYellow = "\x1b[33m";
 const resetColor = "\x1b[0m";
 
-console.log(testsDir);
-
 // Assert nothing changed
 const gitDff = execSync("git ls-files --modified .", {
   cwd: testsDir,
