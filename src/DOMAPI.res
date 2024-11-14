@@ -9355,6 +9355,16 @@ type domPoint = {
 }
 
 /**
+ [Read more on MDN](https://developer.mozilla.org/en-US/docs/Web/API/HTMLCanvasElement/getContext#contextattributes)
+ */
+type canvasContext2DAttributes = {
+  alpha: bool,
+  colorspace?: predefinedColorSpace,
+  desynchronized: bool,
+  willReadFrequently: bool,
+}
+
+/**
 The CanvasRenderingContext2D interface, part of the Canvas API, provides the 2D rendering context for the drawing surface of a <canvas> element. It is used for drawing shapes, text, images, and other objects.
 [See CanvasRenderingContext2D on MDN](https://developer.mozilla.org/docs/Web/API/CanvasRenderingContext2D)
 */

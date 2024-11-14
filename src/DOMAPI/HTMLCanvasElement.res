@@ -696,14 +696,15 @@ external togglePopover: (htmlCanvasElement, ~force: bool=?) => bool = "togglePop
 
 /**
 Returns an object that provides methods and properties for drawing and manipulating images and graphics on a canvas element in a document. A context object includes information about colors, line widths, fonts, and other graphic parameters that can be drawn on a canvas.
-@param contextId The identifier (ID) of the type of canvas to create. Internet Explorer 9 and Internet Explorer 10 support only a 2-D context using canvas.getContext("2d"); IE11 Preview also supports 3-D or WebGL context using canvas.getContext("experimental-webgl");
-[Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLCanvasElement/getContext)
+Creates a CanvasRenderingContext2D object representing a two-dimensional rendering context.
+
+[Read more on MDN](https://developer.mozilla.org/en-US/docs/Web/API/HTMLCanvasElement/getContext#2d)
 */
 @send
-external getContext: (
+external getContext2D: (
   htmlCanvasElement,
-  ~contextId: string,
-  ~options: JSON.t=?,
+  @as("2d") _,
+  ~options: canvasRenderingContext2D=?,
 ) => canvasRenderingContext2D = "getContext"
 
 /**
