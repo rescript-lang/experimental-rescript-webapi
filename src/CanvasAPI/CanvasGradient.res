@@ -8,3 +8,5 @@ Throws an "IndexSizeError" DOMException if the offset is out of range. Throws a 
 */
 @send
 external addColorStop: (canvasGradient, ~offset: float, ~color: string) => unit = "addColorStop"
+
+let isInstanceOf = (_: 't): bool => %raw(`param instanceof CanvasGradient`)

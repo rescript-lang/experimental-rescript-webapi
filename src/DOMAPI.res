@@ -201,6 +201,8 @@ type shareData = {
   mutable url?: string,
 }
 
+type fillStyle
+
 /**
 The location (URL) of the object it is linked to. Changes done on it are reflected on the object it relates to. Both the Document and Window interface have such a linked Location, accessible via Document.location and Window.location respectively.
 [See Location on MDN](https://developer.mozilla.org/docs/Web/API/Location)
@@ -9396,7 +9398,7 @@ type canvasRenderingContext2D = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CanvasRenderingContext2D/fillStyle)
     */
-  mutable fillStyle: unknown,
+  mutable fillStyle: fillStyle,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CanvasRenderingContext2D/shadowOffsetX)
     */

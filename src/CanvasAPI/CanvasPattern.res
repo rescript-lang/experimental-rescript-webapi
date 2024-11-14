@@ -7,3 +7,5 @@ Sets the transformation matrix that will be used when rendering the pattern duri
 */
 @send
 external setTransform: (canvasPattern, ~transform: domMatrix2DInit=?) => unit = "setTransform"
+
+let isInstanceOf = (_: 't): bool => %raw(`param instanceof CanvasPattern`)
