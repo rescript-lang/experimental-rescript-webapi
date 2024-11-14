@@ -112,6 +112,11 @@ type canvasFillRule =
   | @as("evenodd") Evenodd
   | @as("nonzero") Nonzero
 
+type webGLPowerPreference =
+  | @as("default") Default
+  | @as("high-performance") HighPerformance
+  | @as("low-power") LowPower
+
 /**
 [See OffscreenCanvas on MDN](https://developer.mozilla.org/docs/Web/API/OffscreenCanvas)
 */
@@ -425,3 +430,17 @@ type canvasRenderingContext2DSettings = {
   mutable colorSpace?: predefinedColorSpace,
   mutable willReadFrequently?: bool,
 }
+
+type webGLContextAttributes = {
+  mutable alpha?: bool,
+  mutable depth?: bool,
+  mutable stencil?: bool,
+  mutable antialias?: bool,
+  mutable premultipliedAlpha?: bool,
+  mutable preserveDrawingBuffer?: bool,
+  mutable powerPreference?: webGLPowerPreference,
+  mutable failIfMajorPerformanceCaveat?: bool,
+  mutable desynchronized?: bool,
+}
+
+type imageBitmapRenderingContextSettings = {mutable alpha?: bool}

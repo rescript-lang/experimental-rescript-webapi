@@ -1778,7 +1778,7 @@ export async function emitRescriptBindings(webidl: Browser.WebIdl) {
         });
     }
 
-    const interfaceHierarchy: RescriptFile[] = [
+    let interfaceHierarchy: RescriptFile[] = [
       {
         name: "Prelude",
         entries: [
@@ -2820,6 +2820,17 @@ export async function emitRescriptBindings(webidl: Browser.WebIdl) {
       },
     ];
 
+    interfaceHierarchy = [
+      {
+        name: "Temp",
+        entries: [
+          enums(["WebGLPowerPreference"]),
+          dictionaries(["ImageBitmapRenderingContextSettings", "WebGLContextAttributes"]),
+        ],
+        opens: [],
+      }
+    ]
+
     // Ensure the output folder exists.
     await fs.mkdir(outputFolder, { recursive: true });
 
@@ -2911,7 +2922,7 @@ export async function emitRescriptBindings(webidl: Browser.WebIdl) {
 
     await emitGlobalModule();
 
-    execSync("npx rescript format -all", { cwd: repoRoot, stdio: "inherit" });
+    // execSync("npx rescript format -all", { cwd: repoRoot, stdio: "inherit" });
 
     // let remainers = allInterfaces.filter((i) => {
     //   return !interfaceHierarchy.some((h) => {
