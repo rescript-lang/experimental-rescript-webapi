@@ -26,6 +26,6 @@ if (!gitDff) {
   console.log(
     `${warningYellow}⚠️ There are unstaged differences in tests! Did you break a test?\n${gitDff}${resetColor}`,
   );
-  execSync("git --no-pager diff .", { stdio: "inherit" });
+  execSync("git --no-pager diff .", { stdio: "inherit", cwd: testsDir });
   exit(1);
 }
