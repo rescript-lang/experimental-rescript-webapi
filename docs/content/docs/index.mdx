@@ -36,7 +36,7 @@ export const rescriptJson = `
     "@rescript/webapi",
   ],
   "bsc-flags": [
-    "-open Global"
+    "-open WebAPI.Global"
   ]
 }
 `;
@@ -48,7 +48,7 @@ export const rescriptJson = `
 After installing the package , you can use bindings for the various Web APIs as defined in [MDN](https://developer.mozilla.org/en-US/docs/Web/API).
 
 export const rescriptSample = `
-// Note that this only works when you added the \`-open Global\` bsc flag.
+// Note that this only works when you added the \`-open WebAPI.Global\` bsc flag.
 let location = window.location
 
 // Access properties using \`.\`
