@@ -260,7 +260,7 @@ type interfaceSettings = {
 const currentFileName = fileURLToPath(import.meta.url);
 const currentDir = path.dirname(currentFileName);
 const repoRoot = path.resolve(currentDir, "..", "..", "..", "..");
-const outputFolder = path.join(repoRoot, "src");
+const outputFolder = path.join(repoRoot, "tmp");
 
 export async function emitRescriptBindings(webidl: Browser.WebIdl) {
   // Global print target
@@ -2912,7 +2912,6 @@ export async function emitRescriptBindings(webidl: Browser.WebIdl) {
     await emitGlobalModule();
 
     execSync("npx rescript format -all", { cwd: repoRoot, stdio: "inherit" });
-    execSync("npx rewatch", { cwd: repoRoot, stdio: "inherit" });
 
     // let remainers = allInterfaces.filter((i) => {
     //   return !interfaceHierarchy.some((h) => {

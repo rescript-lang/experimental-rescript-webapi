@@ -3,3 +3,4 @@
 .bsb.lock
 .astro
 dist/
+tmp/

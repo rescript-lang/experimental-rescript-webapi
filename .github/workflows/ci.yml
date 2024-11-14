@@ -30,12 +30,7 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Install tool dependencies
-        working-directory: ./tools/TypeScript-DOM-lib-generator
-        run: npm ci
-
-      - name: Generate ReScript code
-        working-directory: ./tools/TypeScript-DOM-lib-generator
+      - name: Build ReScript code
         run: npm run build
 
       - name: Run tests
