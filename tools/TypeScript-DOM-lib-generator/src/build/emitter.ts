@@ -1563,9 +1563,14 @@ export async function emitRescriptBindings(webidl: Browser.WebIdl) {
         ? `${property.name}_`
         : property.name;
 
+      printComment({
+        mdnUrl: property.mdnUrl,
+        comment: property.comment,
+      });
       printer.printLine(
         `external ${name}: ${transformPropertyValue(windowInterface, property)} = "${property.name}"`,
       );
+      printer.endLine();
     }
 
     printer.endLine();
@@ -1583,6 +1588,11 @@ export async function emitRescriptBindings(webidl: Browser.WebIdl) {
           dedupeMethod.name,
           dedupedMethod.signature[0],
         );
+
+        printComment({
+          mdnUrl: method.mdnUrl,
+          comment: method.comment,
+        });
         printer.printLine(
           `external ${mapMethodName(method, suffix)}: (${ps}) => ${mapMethodReturnType(signature)} = "${method.name}"`,
         );

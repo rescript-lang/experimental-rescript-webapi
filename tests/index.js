@@ -15,6 +15,8 @@ const successGreen = "\x1b[32m";
 const warningYellow = "\x1b[33m";
 const resetColor = "\x1b[0m";
 
+console.log(testsDir);
+
 // Assert nothing changed
 const gitDff = execSync("git ls-files --modified .", {
   cwd: testsDir,
@@ -26,6 +28,6 @@ if (!gitDff) {
   console.log(
     `${warningYellow}⚠️ There are unstaged differences in tests! Did you break a test?\n${gitDff}${resetColor}`,
   );
-  execSync("git --no-pager diff .", { stdio: "inherit" });
+  execSync("git --no-pager diff .", { stdio: "inherit", cwd: testsDir });
   exit(1);
 }
