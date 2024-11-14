@@ -20,7 +20,7 @@ and add `@rescript/webapi` to your `rescript.json`:
 +    "@rescript/webapi",
   ],
   "bsc-flags": [
-+    "-open Global"
++    "-open WebAPI.Global"
   ]
 }
 ```
