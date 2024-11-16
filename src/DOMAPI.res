@@ -201,6 +201,8 @@ type shareData = {
   mutable url?: string,
 }
 
+type fillStyle
+
 /**
 The location (URL) of the object it is linked to. Changes done on it are reflected on the object it relates to. Both the Document and Window interface have such a linked Location, accessible via Document.location and Window.location respectively.
 [See Location on MDN](https://developer.mozilla.org/docs/Web/API/Location)
@@ -9352,6 +9354,131 @@ type domPointReadOnly = {
 */
 type domPoint = {
   ...domPointReadOnly,
+}
+
+/**
+ [Read more on MDN](https://developer.mozilla.org/en-US/docs/Web/API/HTMLCanvasElement/getContext#contextattributes)
+ */
+type canvasContext2DAttributes = {
+  alpha: bool,
+  colorspace?: predefinedColorSpace,
+  desynchronized: bool,
+  willReadFrequently: bool,
+}
+
+/**
+The CanvasRenderingContext2D interface, part of the Canvas API, provides the 2D rendering context for the drawing surface of a <canvas> element. It is used for drawing shapes, text, images, and other objects.
+[See CanvasRenderingContext2D on MDN](https://developer.mozilla.org/docs/Web/API/CanvasRenderingContext2D)
+*/
+type canvasRenderingContext2D = {
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CanvasRenderingContext2D/canvas)
+    */
+  canvas: htmlCanvasElement,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CanvasRenderingContext2D/globalAlpha)
+    */
+  mutable globalAlpha: float,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CanvasRenderingContext2D/globalCompositeOperation)
+    */
+  mutable globalCompositeOperation: globalCompositeOperation,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CanvasRenderingContext2D/imageSmoothingEnabled)
+    */
+  mutable imageSmoothingEnabled: bool,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CanvasRenderingContext2D/imageSmoothingQuality)
+    */
+  mutable imageSmoothingQuality: imageSmoothingQuality,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CanvasRenderingContext2D/strokeStyle)
+    */
+  mutable strokeStyle: unknown,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CanvasRenderingContext2D/fillStyle)
+    */
+  mutable fillStyle: fillStyle,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CanvasRenderingContext2D/shadowOffsetX)
+    */
+  mutable shadowOffsetX: float,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CanvasRenderingContext2D/shadowOffsetY)
+    */
+  mutable shadowOffsetY: float,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CanvasRenderingContext2D/shadowBlur)
+    */
+  mutable shadowBlur: float,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CanvasRenderingContext2D/shadowColor)
+    */
+  mutable shadowColor: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CanvasRenderingContext2D/filter)
+    */
+  mutable filter: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CanvasRenderingContext2D/lineWidth)
+    */
+  mutable lineWidth: float,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CanvasRenderingContext2D/lineCap)
+    */
+  mutable lineCap: canvasLineCap,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CanvasRenderingContext2D/lineJoin)
+    */
+  mutable lineJoin: canvasLineJoin,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CanvasRenderingContext2D/miterLimit)
+    */
+  mutable miterLimit: float,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CanvasRenderingContext2D/lineDashOffset)
+    */
+  mutable lineDashOffset: float,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CanvasRenderingContext2D/font)
+    */
+  mutable font: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CanvasRenderingContext2D/textAlign)
+    */
+  mutable textAlign: canvasTextAlign,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CanvasRenderingContext2D/textBaseline)
+    */
+  mutable textBaseline: canvasTextBaseline,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CanvasRenderingContext2D/direction)
+    */
+  mutable direction: canvasDirection,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CanvasRenderingContext2D/letterSpacing)
+    */
+  mutable letterSpacing: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CanvasRenderingContext2D/fontKerning)
+    */
+  mutable fontKerning: canvasFontKerning,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CanvasRenderingContext2D/fontStretch)
+    */
+  mutable fontStretch: canvasFontStretch,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CanvasRenderingContext2D/fontVariantCaps)
+    */
+  mutable fontVariantCaps: canvasFontVariantCaps,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CanvasRenderingContext2D/textRendering)
+    */
+  mutable textRendering: canvasTextRendering,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CanvasRenderingContext2D/wordSpacing)
+    */
+  mutable wordSpacing: string,
 }
 
 /**

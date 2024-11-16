@@ -23,6 +23,21 @@ export default defineConfig({
       editLink: {
         baseUrl: 'https://github.com/rescript-lang/experimental-rescript-webapi/edit/main/',
       },
+      sidebar: [
+        {
+          slug: '',
+        },
+        {
+          slug: 'design-philosophy',
+        },
+        {
+          slug: 'project-status',
+        },
+        {
+          label: 'Contributing',
+          autogenerate: { directory: 'contributing' },
+        },
+      ],
       customCss: ["./docs/styles/fonts.css", "./docs/styles/theme.css"],
       expressiveCode: {
         shiki: {
