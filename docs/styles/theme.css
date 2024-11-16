@@ -43,3 +43,8 @@ body {
     background-color: var(--scrollbar-thumb-background);
   }
 }
+
+.sl-markdown-content .inline-icon {
+  display: inline-block;
+  vertical-align: text-bottom;
+}

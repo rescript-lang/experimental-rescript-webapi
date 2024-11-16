@@ -1,10 +1,10 @@
 ---
 title: Testing
 description: Learn more about testing the bindings for @rescript/webapi.
-slug: "04-testing"
+slug: "05-testing"
 ---
 
-import { Aside } from "@astrojs/starlight/components";
+import { Aside, FileTree } from "@astrojs/starlight/components";
 
 Adding some unit tests is a great way to ensure that the bindings work as expected.
 It illustrates how the bindings are supposed to be used and can help to catch regressions.
@@ -13,11 +13,16 @@ It illustrates how the bindings are supposed to be used and can help to catch re
 
 Create a new help in the `test` folder with the same name as the module you want to test, followed by `_test.res`.
 
-import { FileTree } from "@astrojs/starlight/components";
-
 <FileTree>
-  - src - DOMAPI.res - DOMAPI/ - HTMLCanvasElement.res - test - DOMAPI/ -
-  HTMLCanvasElement_test.res
+
+- src
+  - DOMAPI.res
+  - DOMAPI
+    - HTMLCanvasElement.res
+- tests
+  - DOMAPI
+    - HTMLCanvasElement_test.res
+
 </FileTree>
 
 Add a small sample of valid code that uses the bindings you've changed.

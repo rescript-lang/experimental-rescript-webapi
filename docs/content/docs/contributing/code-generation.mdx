@@ -43,7 +43,7 @@ external fetch: (window, string, ~init: requestInit=?)
 
 /** TODO: add better docs */
 @send
-external fetch_with_request: (window, request, ~init: requestInit=?)
+external fetch_withRequest: (window, request, ~init: requestInit=?)
   => Promise.t<response> = "fetch"
 ```
 
