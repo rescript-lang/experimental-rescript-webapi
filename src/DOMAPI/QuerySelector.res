@@ -1,6 +1,9 @@
 open Prelude
 open DOMAPI
 
+let isInstanceOfHTMLCanvasElement = (_: 't): bool => %raw(`param instanceof HTMLCanvasElement`)
+let isInstanceOfHTMLDivElement = (_: 't): bool => %raw(`param instanceof HTMLDivElement`)
+
 module Impl = (
   T: {
     type t
@@ -21,16 +24,19 @@ t->querySelector("#myCanvas")
   @send
   external querySelector: (T.t, string) => null<element> = "querySelector"
 
-  let querySelector_htmlCanvasElement = (t: T.t, selector: string): option<htmlCanvasElement> => {
+  let safeQuerySelector = (predicate: T.t => bool, t: T.t, selector: string): option<'return> => {
     let e = querySelector(t, selector)
     switch e {
     | Null.Null => None
-    | Null.Value(e) =>
-      if HTMLCanvasElement.isInstanceOf(e) {
-        Some(unsafeConversation(e))
-      } else {
-        None
-      }
+    | Null.Value(e) => predicate(t) ? Some(unsafeConversation(e)) : None
     }
+  }
+
+  let querySelector_htmlCanvasElement = (t: T.t, selector: string): option<htmlCanvasElement> => {
+    safeQuerySelector(isInstanceOfHTMLCanvasElement, t, selector)
+  }
+
+  let querySelector_htmlDivElement = (t: T.t, selector: string): option<htmlDivElement> => {
+    safeQuerySelector(isInstanceOfHTMLDivElement, t, selector)
   }
 }

@@ -3,8 +3,11 @@
 import * as Option from "rescript/lib/es6/Option.js";
 import * as Document$WebAPI from "../../src/DOMAPI/Document.js";
 import * as FillStyle$WebAPI from "../../src/DOMAPI/FillStyle.js";
+import * as HTMLDivElement$WebAPI from "../../src/DOMAPI/HTMLDivElement.js";
 
-let myCanvas = Document$WebAPI.querySelector_htmlCanvasElement(document, "#myCanvas");
+let myDiv = Document$WebAPI.querySelector_htmlDivElement(document, "#myDiv");
+
+let myCanvas = Option.flatMap(myDiv, div => HTMLDivElement$WebAPI.querySelector_htmlCanvasElement(div, "#myCanvas"));
 
 Option.forEach(myCanvas, myCanvas => {
   let ctx = myCanvas.getContext("2d");
@@ -29,6 +32,7 @@ Option.forEach(myCanvas, myCanvas => {
 });
 
 export {
+  myDiv,
   myCanvas,
 }
-/* myCanvas Not a pure module */
+/* myDiv Not a pure module */

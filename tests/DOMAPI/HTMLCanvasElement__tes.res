@@ -1,7 +1,9 @@
 open WebAPI.Global
 
+let myDiv = document->Document.querySelector_htmlDivElement("#myDiv")
+
 let myCanvas: option<DOMAPI.htmlCanvasElement> =
-  document->Document.querySelector_htmlCanvasElement("#myCanvas")
+  myDiv->Option.flatMap(div => div->HTMLDivElement.querySelector_htmlCanvasElement("#myCanvas"))
 
 myCanvas->Option.forEach(myCanvas => {
   let ctx = myCanvas->HTMLCanvasElement.getContext_2D
