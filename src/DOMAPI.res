@@ -7443,6 +7443,19 @@ and htmlTableRowElement = {
 }
 
 /**
+Provides special properties (beyond the HTMLElement interface it also has available to it inheritance) for manipulating single or grouped table column elements.
+[See HTMLTableColElement on MDN](https://developer.mozilla.org/docs/Web/API/HTMLTableColElement)
+*/
+type htmlTableColElement = {
+  ...htmlElement,
+  /**
+    Sets or retrieves the number of columns in the group.
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLTableColElement/span)
+    */
+  mutable span: int,
+}
+
+/**
 Provides properties and methods (beyond the regular HTMLElement interface it also has available to it by inheritance) for manipulating <button> elements.
 [See HTMLButtonElement on MDN](https://developer.mozilla.org/docs/Web/API/HTMLButtonElement)
 */
@@ -8305,6 +8318,22 @@ type htmlDataElement = {
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLDataElement/value)
     */
   mutable value: string,
+}
+
+/**
+[See HTMLDetailsElement on MDN](https://developer.mozilla.org/docs/Web/API/HTMLDetailsElement)
+*/
+type htmlDetailsElement = {
+  ...htmlElement,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLDetailsElement/open)
+    */
+  mutable name: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLDetailsElement/open)
+    */
+  @as("open")
+  mutable open_: bool,
 }
 
 /**
