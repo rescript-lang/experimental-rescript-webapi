@@ -9,7 +9,7 @@ Experimental successor to [rescript-webapi](https://github.com/TheSpyder/rescrip
 Install the package using your favorite package manager:
 
 ```shell
-npm i -D @rescript/webapi@experimental
+npm i @rescript/webapi@experimental
 ```
 
 and add `@rescript/webapi` to your `rescript.json`:

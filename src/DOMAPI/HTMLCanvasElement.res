@@ -8,6 +8,7 @@ external asHTMLElement: htmlCanvasElement => htmlElement = "%identity"
 external asElement: htmlCanvasElement => element = "%identity"
 external asNode: htmlCanvasElement => node = "%identity"
 external asEventTarget: htmlCanvasElement => eventTarget = "%identity"
+
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/focus)
 */

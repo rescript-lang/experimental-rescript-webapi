@@ -72,12 +72,9 @@ Throws a "HierarchyRequestError" DOMException if the constraints of the node tre
 @send
 external replaceChildren2: (htmlDivElement, string) => unit = "replaceChildren"
 
-/**
-Returns the first element that is a descendant of node that matches selectors.
-[Read more on MDN](https://developer.mozilla.org/docs/Web/API/Document/querySelector)
-*/
-@send
-external querySelector: (htmlDivElement, string) => element = "querySelector"
+include QuerySelector.Impl({
+  type t = htmlDivElement
+})
 
 /**
 Returns all element descendants of node that match selectors.
