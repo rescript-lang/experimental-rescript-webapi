@@ -6,7 +6,14 @@ open EventAPI
 @new
 external make: unit => eventTarget = "EventTarget"
 
-/**
+module Impl = (
+  T: {
+    type t
+  },
+) => {
+  external asEventTarget: T.t => eventTarget = "%identity"
+
+  /**
 Appends an event listener for events whose type attribute value is type. The callback argument sets the callback that will be invoked when the event is dispatched.
 
 The options argument sets listener-specific options. For compatibility this can be a boolean, in which case the method behaves exactly as if the value was specified as options's capture.
@@ -22,15 +29,15 @@ If an AbortSignal is passed for options's signal, then the event listener will b
 The event listener is appended to target's event listener list and is not appended if it has the same type, callback, and capture.
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/EventTarget/addEventListener)
 */
-@send
-external addEventListener: (
-  eventTarget,
-  ~type_: eventType,
-  ~callback: eventListener<'event>,
-  ~options: addEventListenerOptions=?,
-) => unit = "addEventListener"
+  @send
+  external addEventListener: (
+    T.t,
+    ~type_: eventType,
+    ~callback: eventListener<'event>,
+    ~options: addEventListenerOptions=?,
+  ) => unit = "addEventListener"
 
-/**
+  /**
 Appends an event listener for events whose type attribute value is type. The callback argument sets the callback that will be invoked when the event is dispatched.
 
 The options argument sets listener-specific options. For compatibility this can be a boolean, in which case the method behaves exactly as if the value was specified as options's capture.
@@ -46,41 +53,46 @@ If an AbortSignal is passed for options's signal, then the event listener will b
 The event listener is appended to target's event listener list and is not appended if it has the same type, callback, and capture.
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/EventTarget/addEventListener)
 */
-@send
-external addEventListener2: (
-  eventTarget,
-  ~type_: eventType,
-  ~callback: eventListener<'event>,
-  ~options: bool=?,
-) => unit = "addEventListener"
+  @send
+  external addEventListener_useCapture: (
+    T.t,
+    ~type_: eventType,
+    ~callback: eventListener<'event>,
+    @as(json`true`) _,
+  ) => unit = "addEventListener"
 
-/**
+  /**
 Removes the event listener in target's event listener list with the same type, callback, and options.
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/EventTarget/removeEventListener)
 */
-@send
-external removeEventListener: (
-  eventTarget,
-  ~type_: eventType,
-  ~callback: eventListener<'event>,
-  ~options: eventListenerOptions=?,
-) => unit = "removeEventListener"
+  @send
+  external removeEventListener: (
+    T.t,
+    ~type_: eventType,
+    ~callback: eventListener<'event>,
+    ~options: eventListenerOptions=?,
+  ) => unit = "removeEventListener"
 
-/**
+  /**
 Removes the event listener in target's event listener list with the same type, callback, and options.
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/EventTarget/removeEventListener)
 */
-@send
-external removeEventListener2: (
-  eventTarget,
-  ~type_: eventType,
-  ~callback: eventListener<'event>,
-  ~options: bool=?,
-) => unit = "removeEventListener"
+  @send
+  external removeEventListener_useCapture: (
+    T.t,
+    ~type_: eventType,
+    ~callback: eventListener<'event>,
+    @as(json`true`) _,
+  ) => unit = "removeEventListener"
 
-/**
+  /**
 Dispatches a synthetic event event to target and returns true if either event's cancelable attribute value is false or its preventDefault() method was not invoked, and false otherwise.
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/EventTarget/dispatchEvent)
 */
-@send
-external dispatchEvent: (eventTarget, event) => bool = "dispatchEvent"
+  @send
+  external dispatchEvent: (T.t, event) => bool = "dispatchEvent"
+}
+
+include Impl({
+  type t = eventTarget
+})
