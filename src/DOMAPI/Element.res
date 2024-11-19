@@ -1,460 +1,470 @@
 open DOMAPI
 open Prelude
-open EventAPI
 
-include Node.Impl({
-  type t = element
-})
+module Impl = (
+  T: {
+    type t
+  },
+) => {
+  include Node.Impl({
+    type t = T.t
+  })
 
-/**
-Inserts nodes before the first child of node, while replacing strings in nodes with equivalent Text nodes.
+  external asElement: T.t => element = "%identity"
 
-Throws a "HierarchyRequestError" DOMException if the constraints of the node tree are violated.
-[Read more on MDN](https://developer.mozilla.org/docs/Web/API/Document/prepend)
-*/
-@send
-external prepend: (element, node) => unit = "prepend"
-
-/**
-Inserts nodes before the first child of node, while replacing strings in nodes with equivalent Text nodes.
-
-Throws a "HierarchyRequestError" DOMException if the constraints of the node tree are violated.
-[Read more on MDN](https://developer.mozilla.org/docs/Web/API/Document/prepend)
-*/
-@send
-external prepend2: (element, string) => unit = "prepend"
-
-/**
-Inserts nodes after the last child of node, while replacing strings in nodes with equivalent Text nodes.
-
-Throws a "HierarchyRequestError" DOMException if the constraints of the node tree are violated.
-[Read more on MDN](https://developer.mozilla.org/docs/Web/API/Document/append)
-*/
-@send
-external append: (element, node) => unit = "append"
-
-/**
-Inserts nodes after the last child of node, while replacing strings in nodes with equivalent Text nodes.
-
-Throws a "HierarchyRequestError" DOMException if the constraints of the node tree are violated.
-[Read more on MDN](https://developer.mozilla.org/docs/Web/API/Document/append)
-*/
-@send
-external append2: (element, string) => unit = "append"
-
-/**
-Replace all children of node with nodes, while replacing strings in nodes with equivalent Text nodes.
-
-Throws a "HierarchyRequestError" DOMException if the constraints of the node tree are violated.
-[Read more on MDN](https://developer.mozilla.org/docs/Web/API/Document/replaceChildren)
-*/
-@send
-external replaceChildren: (element, node) => unit = "replaceChildren"
-
-/**
-Replace all children of node with nodes, while replacing strings in nodes with equivalent Text nodes.
-
-Throws a "HierarchyRequestError" DOMException if the constraints of the node tree are violated.
-[Read more on MDN](https://developer.mozilla.org/docs/Web/API/Document/replaceChildren)
-*/
-@send
-external replaceChildren2: (element, string) => unit = "replaceChildren"
-
-/**
-Returns the first element that is a descendant of node that matches selectors.
-[Read more on MDN](https://developer.mozilla.org/docs/Web/API/Document/querySelector)
-*/
-@send
-external querySelector: (element, string) => element = "querySelector"
-
-/**
-Returns all element descendants of node that match selectors.
-[Read more on MDN](https://developer.mozilla.org/docs/Web/API/Document/querySelectorAll)
-*/
-@send
-external querySelectorAll: (element, string) => nodeList = "querySelectorAll"
-
-/**
-Inserts nodes just before node, while replacing strings in nodes with equivalent Text nodes.
-
-Throws a "HierarchyRequestError" DOMException if the constraints of the node tree are violated.
-[Read more on MDN](https://developer.mozilla.org/docs/Web/API/CharacterData/before)
-*/
-@send
-external before: (element, node) => unit = "before"
-
-/**
-Inserts nodes just before node, while replacing strings in nodes with equivalent Text nodes.
-
-Throws a "HierarchyRequestError" DOMException if the constraints of the node tree are violated.
-[Read more on MDN](https://developer.mozilla.org/docs/Web/API/CharacterData/before)
-*/
-@send
-external before2: (element, string) => unit = "before"
-
-/**
+  /**
 Inserts nodes just after node, while replacing strings in nodes with equivalent Text nodes.
 
 Throws a "HierarchyRequestError" DOMException if the constraints of the node tree are violated.
-[Read more on MDN](https://developer.mozilla.org/docs/Web/API/CharacterData/after)
+[Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/after)
 */
-@send
-external after: (element, node) => unit = "after"
+  @send
+  external after: (T.t, node) => unit = "after"
 
-/**
+  /**
 Inserts nodes just after node, while replacing strings in nodes with equivalent Text nodes.
 
 Throws a "HierarchyRequestError" DOMException if the constraints of the node tree are violated.
-[Read more on MDN](https://developer.mozilla.org/docs/Web/API/CharacterData/after)
+[Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/after)
 */
-@send
-external after2: (element, string) => unit = "after"
+  @send
+  external after2: (T.t, string) => unit = "after"
 
-/**
-Replaces node with nodes, while replacing strings in nodes with equivalent Text nodes.
-
-Throws a "HierarchyRequestError" DOMException if the constraints of the node tree are violated.
-[Read more on MDN](https://developer.mozilla.org/docs/Web/API/CharacterData/replaceWith)
-*/
-@send
-external replaceWith: (element, node) => unit = "replaceWith"
-
-/**
-Replaces node with nodes, while replacing strings in nodes with equivalent Text nodes.
-
-Throws a "HierarchyRequestError" DOMException if the constraints of the node tree are violated.
-[Read more on MDN](https://developer.mozilla.org/docs/Web/API/CharacterData/replaceWith)
-*/
-@send
-external replaceWith2: (element, string) => unit = "replaceWith"
-
-/**
-Removes node.
-[Read more on MDN](https://developer.mozilla.org/docs/Web/API/CharacterData/remove)
-*/
-@send
-external remove: element => unit = "remove"
-
-/**
+  /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/animate)
 */
-@send
-external animate: (element, ~keyframes: any, ~options: float=?) => animation = "animate"
+  @send
+  external animate: (T.t, ~keyframes: any, ~options: float=?) => animation = "animate"
 
-/**
+  /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/animate)
 */
-@send
-external animate2: (element, ~keyframes: any, ~options: keyframeAnimationOptions=?) => animation =
-  "animate"
+  @send
+  external animate2: (T.t, ~keyframes: any, ~options: keyframeAnimationOptions=?) => animation =
+    "animate"
 
-/**
-[Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/getAnimations)
+  /**
+Inserts nodes after the last child of node, while replacing strings in nodes with equivalent Text nodes.
+
+Throws a "HierarchyRequestError" DOMException if the constraints of the node tree are violated.
+[Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/append)
 */
-@send
-external getAnimations: (element, ~options: getAnimationsOptions=?) => array<animation> =
-  "getAnimations"
+  @send
+  external append: (T.t, node) => unit = "append"
 
-/**
-Returns true if element has attributes, and false otherwise.
-[Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/hasAttributes)
+  /**
+Inserts nodes after the last child of node, while replacing strings in nodes with equivalent Text nodes.
+
+Throws a "HierarchyRequestError" DOMException if the constraints of the node tree are violated.
+[Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/append)
 */
-@send
-external hasAttributes: element => bool = "hasAttributes"
+  @send
+  external append2: (T.t, string) => unit = "append"
 
-/**
-Returns the qualified names of all element's attributes. Can contain duplicates.
-[Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/getAttributeNames)
-*/
-@send
-external getAttributeNames: element => array<string> = "getAttributeNames"
-
-/**
-Returns element's first attribute whose qualified name is qualifiedName, and null if there is no such attribute otherwise.
-[Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/getAttribute)
-*/
-@send
-external getAttribute: (element, string) => string = "getAttribute"
-
-/**
-Returns element's attribute whose namespace is namespace and local name is localName, and null if there is no such attribute otherwise.
-[Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/getAttributeNS)
-*/
-@send
-external getAttributeNS: (element, ~namespace: string, ~localName: string) => string =
-  "getAttributeNS"
-
-/**
-Sets the value of element's first attribute whose qualified name is qualifiedName to value.
-[Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/setAttribute)
-*/
-@send
-external setAttribute: (element, ~qualifiedName: string, ~value: string) => unit = "setAttribute"
-
-/**
-Sets the value of element's attribute whose namespace is namespace and local name is localName to value.
-[Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/setAttributeNS)
-*/
-@send
-external setAttributeNS: (
-  element,
-  ~namespace: string,
-  ~qualifiedName: string,
-  ~value: string,
-) => unit = "setAttributeNS"
-
-/**
-Removes element's first attribute whose qualified name is qualifiedName.
-[Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/removeAttribute)
-*/
-@send
-external removeAttribute: (element, string) => unit = "removeAttribute"
-
-/**
-Removes element's attribute whose namespace is namespace and local name is localName.
-[Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/removeAttributeNS)
-*/
-@send
-external removeAttributeNS: (element, ~namespace: string, ~localName: string) => unit =
-  "removeAttributeNS"
-
-/**
-If force is not given, "toggles" qualifiedName, removing it if it is present and adding it if it is not present. If force is true, adds qualifiedName. If force is false, removes qualifiedName.
-
-Returns true if qualifiedName is now present, and false otherwise.
-[Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/toggleAttribute)
-*/
-@send
-external toggleAttribute: (element, ~qualifiedName: string, ~force: bool=?) => bool =
-  "toggleAttribute"
-
-/**
-Returns true if element has an attribute whose qualified name is qualifiedName, and false otherwise.
-[Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/hasAttribute)
-*/
-@send
-external hasAttribute: (element, string) => bool = "hasAttribute"
-
-/**
-Returns true if element has an attribute whose namespace is namespace and local name is localName.
-[Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/hasAttributeNS)
-*/
-@send
-external hasAttributeNS: (element, ~namespace: string, ~localName: string) => bool =
-  "hasAttributeNS"
-
-/**
-[Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/getAttributeNode)
-*/
-@send
-external getAttributeNode: (element, string) => attr = "getAttributeNode"
-
-/**
-[Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/getAttributeNodeNS)
-*/
-@send
-external getAttributeNodeNS: (element, ~namespace: string, ~localName: string) => attr =
-  "getAttributeNodeNS"
-
-/**
-[Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/setAttributeNode)
-*/
-@send
-external setAttributeNode: (element, attr) => attr = "setAttributeNode"
-
-/**
-[Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/setAttributeNodeNS)
-*/
-@send
-external setAttributeNodeNS: (element, attr) => attr = "setAttributeNodeNS"
-
-/**
-[Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/removeAttributeNode)
-*/
-@send
-external removeAttributeNode: (element, attr) => attr = "removeAttributeNode"
-
-/**
+  /**
 Creates a shadow root for element and returns it.
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/attachShadow)
 */
-@send
-external attachShadow: (element, shadowRootInit) => shadowRoot = "attachShadow"
+  @send
+  external attachShadow: (T.t, shadowRootInit) => shadowRoot = "attachShadow"
 
-/**
+  /**
+Inserts nodes just before node, while replacing strings in nodes with equivalent Text nodes.
+
+Throws a "HierarchyRequestError" DOMException if the constraints of the node tree are violated.
+[Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/before)
+*/
+  @send
+  external before: (T.t, node) => unit = "before"
+
+  /**
+Inserts nodes just before node, while replacing strings in nodes with equivalent Text nodes.
+
+Throws a "HierarchyRequestError" DOMException if the constraints of the node tree are violated.
+[Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/before)
+*/
+  @send
+  external before2: (T.t, string) => unit = "before"
+
+  /**
+[Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/checkVisibility)
+*/
+  @send
+  external checkVisibility: (T.t, ~options: checkVisibilityOptions=?) => bool = "checkVisibility"
+
+  /**
 Returns the first (starting at element) inclusive ancestor that matches selectors, and null otherwise.
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/closest)
 */
-@send
-external closest: (element, string) => 'e = "closest"
+  @send
+  external closest: (T.t, string) => 'e = "closest"
 
-/**
-Returns true if matching selectors against element's root yields element, and false otherwise.
-[Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/matches)
+  /**
+[Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/computedStyleMap)
 */
-@send
-external matches: (element, string) => bool = "matches"
+  @send
+  external computedStyleMap: element => stylePropertyMapReadOnly = "computedStyleMap"
 
-/**
-[Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/getElementsByTagName)
+  /**
+[Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/getAnimations)
 */
-@send
-external getElementsByTagName: (element, string) => htmlCollection = "getElementsByTagName"
+  @send
+  external getAnimations: (T.t, ~options: getAnimationsOptions=?) => array<animation> =
+    "getAnimations"
 
-/**
-[Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/getElementsByTagNameNS)
+  /**
+Returns element's first attribute whose qualified name is qualifiedName, and null if there is no such attribute otherwise.
+[Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/getAttribute)
 */
-@send
-external getElementsByTagNameNS: (
-  element,
-  ~namespace: string,
-  ~localName: string,
-) => htmlCollectionOf<element> = "getElementsByTagNameNS"
+  @send
+  external getAttribute: (T.t, string) => string = "getAttribute"
 
-/**
+  /**
+Returns the qualified names of all element's attributes. Can contain duplicates.
+[Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/getAttributeNames)
+*/
+  @send
+  external getAttributeNames: element => array<string> = "getAttributeNames"
+
+  /**
+[Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/getAttributeNode)
+*/
+  @send
+  external getAttributeNode: (T.t, string) => attr = "getAttributeNode"
+
+  /**
+[Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/getAttributeNodeNS)
+*/
+  @send
+  external getAttributeNodeNS: (T.t, ~namespace: string, ~localName: string) => attr =
+    "getAttributeNodeNS"
+
+  /**
+Returns element's attribute whose namespace is namespace and local name is localName, and null if there is no such attribute otherwise.
+[Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/getAttributeNS)
+*/
+  @send
+  external getAttributeNS: (T.t, ~namespace: string, ~localName: string) => string =
+    "getAttributeNS"
+
+  /**
+[Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/getBoundingClientRect)
+*/
+  @send
+  external getBoundingClientRect: element => domRect = "getBoundingClientRect"
+
+  /**
+[Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/getClientRects)
+*/
+  @send
+  external getClientRects: element => domRectList = "getClientRects"
+
+  /**
 Returns a HTMLCollection of the elements in the object on which the method was invoked (a document or an element) that have all the classes given by classNames. The classNames argument is interpreted as a space-separated list of classes.
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/getElementsByClassName)
 */
-@send
-external getElementsByClassName: (element, string) => htmlCollectionOf<element> =
-  "getElementsByClassName"
+  @send
+  external getElementsByClassName: (T.t, string) => htmlCollectionOf<element> =
+    "getElementsByClassName"
 
-/**
+  /**
+[Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/getElementsByTagName)
+*/
+  @send
+  external getElementsByTagName: (T.t, string) => htmlCollection = "getElementsByTagName"
+
+  /**
+[Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/getElementsByTagNameNS)
+*/
+  @send
+  external getElementsByTagNameNS: (
+    element,
+    ~namespace: string,
+    ~localName: string,
+  ) => htmlCollectionOf<element> = "getElementsByTagNameNS"
+
+  /**
+[Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/getHTML)
+*/
+  @send
+  external getHTML: (T.t, ~options: getHTMLOptions=?) => string = "getHTML"
+
+  /**
+Returns true if element has an attribute whose qualified name is qualifiedName, and false otherwise.
+[Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/hasAttribute)
+*/
+  @send
+  external hasAttribute: (T.t, string) => bool = "hasAttribute"
+
+  /**
+Returns true if element has an attribute whose namespace is namespace and local name is localName.
+[Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/hasAttributeNS)
+*/
+  @send
+  external hasAttributeNS: (T.t, ~namespace: string, ~localName: string) => bool = "hasAttributeNS"
+
+  /**
+Returns true if element has attributes, and false otherwise.
+[Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/hasAttributes)
+*/
+  @send
+  external hasAttributes: element => bool = "hasAttributes"
+
+  /**
+[Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/hasPointerCapture)
+*/
+  @send
+  external hasPointerCapture: (T.t, int) => bool = "hasPointerCapture"
+
+  /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/insertAdjacentElement)
 */
-@send
-external insertAdjacentElement: (element, ~where: insertPosition, ~element: element) => element =
-  "insertAdjacentElement"
+  @send
+  external insertAdjacentElement: (T.t, ~where: insertPosition, ~element: element) => element =
+    "insertAdjacentElement"
 
-/**
+  /**
+[Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/insertAdjacentHTML)
+*/
+  @send
+  external insertAdjacentHTML: (T.t, ~position: insertPosition, ~string: string) => unit =
+    "insertAdjacentHTML"
+
+  /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/insertAdjacentText)
 */
-@send
-external insertAdjacentText: (element, ~where: insertPosition, ~data: string) => unit =
-  "insertAdjacentText"
+  @send
+  external insertAdjacentText: (T.t, ~where: insertPosition, ~data: string) => unit =
+    "insertAdjacentText"
 
-/**
-[Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/computedStyleMap)
+  /**
+Returns true if matching selectors against element's root yields element, and false otherwise.
+[Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/matches)
 */
-@send
-external computedStyleMap: element => stylePropertyMapReadOnly = "computedStyleMap"
+  @send
+  external matches: (T.t, string) => bool = "matches"
 
-/**
-[Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/getClientRects)
+  /**
+Inserts nodes before the first child of node, while replacing strings in nodes with equivalent Text nodes.
+
+Throws a "HierarchyRequestError" DOMException if the constraints of the node tree are violated.
+[Read more on MDN](https://developer.mozilla.org/docs/Web/API/Document/prepend)
 */
-@send
-external getClientRects: element => domRectList = "getClientRects"
+  @send
+  external prepend: (T.t, node) => unit = "prepend"
 
-/**
-[Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/getBoundingClientRect)
+  /**
+Inserts nodes before the first child of node, while replacing strings in nodes with equivalent Text nodes.
+
+Throws a "HierarchyRequestError" DOMException if the constraints of the node tree are violated.
+[Read more on MDN](https://developer.mozilla.org/docs/Web/API/Document/prepend)
 */
-@send
-external getBoundingClientRect: element => domRect = "getBoundingClientRect"
+  @send
+  external prepend2: (T.t, string) => unit = "prepend"
 
-/**
-[Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/checkVisibility)
+  /**
+Returns the first element that is a descendant of node that matches selectors.
+[Read more on MDN](https://developer.mozilla.org/docs/Web/API/Document/querySelector)
 */
-@send
-external checkVisibility: (element, ~options: checkVisibilityOptions=?) => bool = "checkVisibility"
+  @send
+  external querySelector: (T.t, string) => element = "querySelector"
 
-/**
-[Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/scrollIntoView)
+  /**
+Returns all element descendants of node that match selectors.
+[Read more on MDN](https://developer.mozilla.org/docs/Web/API/Document/querySelectorAll)
 */
-@send
-external scrollIntoView: (element, ~arg: bool=?) => unit = "scrollIntoView"
+  @send
+  external querySelectorAll: (T.t, string) => nodeList = "querySelectorAll"
 
-/**
-[Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/scrollIntoView)
+  /**
+[Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/releasePointerCapture)
 */
-@send
-external scrollIntoView2: (element, ~arg: scrollIntoViewOptions=?) => unit = "scrollIntoView"
+  @send
+  external releasePointerCapture: (T.t, int) => unit = "releasePointerCapture"
 
-/**
-[Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/scroll)
+  /**
+Removes node.
+[Read more on MDN](https://developer.mozilla.org/docs/Web/API/CharacterData/remove)
 */
-@send
-external scroll: (element, ~options: scrollToOptions=?) => unit = "scroll"
+  @send
+  external remove: element => unit = "remove"
 
-/**
-[Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/scroll)
+  /**
+Removes element's first attribute whose qualified name is qualifiedName.
+[Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/removeAttribute)
 */
-@send
-external scroll2: (element, ~x: float, ~y: float) => unit = "scroll"
+  @send
+  external removeAttribute: (T.t, string) => unit = "removeAttribute"
 
-/**
-[Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/scrollTo)
+  /**
+[Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/removeAttributeNode)
 */
-@send
-external scrollTo: (element, ~options: scrollToOptions=?) => unit = "scrollTo"
+  @send
+  external removeAttributeNode: (T.t, attr) => attr = "removeAttributeNode"
 
-/**
-[Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/scrollTo)
+  /**
+Removes element's attribute whose namespace is namespace and local name is localName.
+[Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/removeAttributeNS)
 */
-@send
-external scrollTo2: (element, ~x: float, ~y: float) => unit = "scrollTo"
+  @send
+  external removeAttributeNS: (T.t, ~namespace: string, ~localName: string) => unit =
+    "removeAttributeNS"
 
-/**
-[Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/scrollBy)
+  /**
+Replace all children of node with nodes, while replacing strings in nodes with equivalent Text nodes.
+
+Throws a "HierarchyRequestError" DOMException if the constraints of the node tree are violated.
+[Read more on MDN](https://developer.mozilla.org/docs/Web/API/Document/replaceChildren)
 */
-@send
-external scrollBy: (element, ~options: scrollToOptions=?) => unit = "scrollBy"
+  @send
+  external replaceChildren: (T.t, node) => unit = "replaceChildren"
 
-/**
-[Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/scrollBy)
+  /**
+Replace all children of node with nodes, while replacing strings in nodes with equivalent Text nodes.
+
+Throws a "HierarchyRequestError" DOMException if the constraints of the node tree are violated.
+[Read more on MDN](https://developer.mozilla.org/docs/Web/API/Document/replaceChildren)
 */
-@send
-external scrollBy2: (element, ~x: float, ~y: float) => unit = "scrollBy"
+  @send
+  external replaceChildren2: (T.t, string) => unit = "replaceChildren"
 
-/**
+  /**
+Replaces node with nodes, while replacing strings in nodes with equivalent Text nodes.
+
+Throws a "HierarchyRequestError" DOMException if the constraints of the node tree are violated.
+[Read more on MDN](https://developer.mozilla.org/docs/Web/API/CharacterData/replaceWith)
+*/
+  @send
+  external replaceWith: (T.t, node) => unit = "replaceWith"
+
+  /**
+Replaces node with nodes, while replacing strings in nodes with equivalent Text nodes.
+
+Throws a "HierarchyRequestError" DOMException if the constraints of the node tree are violated.
+[Read more on MDN](https://developer.mozilla.org/docs/Web/API/CharacterData/replaceWith)
+*/
+  @send
+  external replaceWith2: (T.t, string) => unit = "replaceWith"
+
+  /**
 Displays element fullscreen and resolves promise when done.
 
 When supplied, options's navigationUI member indicates whether showing navigation UI while in fullscreen is preferred or not. If set to "show", navigation simplicity is preferred over screen space, and if set to "hide", more screen space is preferred. User agents are always free to honor user preference over the application's. The default value "auto" indicates no application preference.
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/requestFullscreen)
 */
-@send
-external requestFullscreen: (element, ~options: fullscreenOptions=?) => Promise.t<unit> =
-  "requestFullscreen"
+  @send
+  external requestFullscreen: (T.t, ~options: fullscreenOptions=?) => Promise.t<unit> =
+    "requestFullscreen"
 
-/**
-[Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/setHTMLUnsafe)
-*/
-@send
-external setHTMLUnsafe: (element, string) => unit = "setHTMLUnsafe"
-
-/**
-[Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/getHTML)
-*/
-@send
-external getHTML: (element, ~options: getHTMLOptions=?) => string = "getHTML"
-
-/**
-[Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/insertAdjacentHTML)
-*/
-@send
-external insertAdjacentHTML: (element, ~position: insertPosition, ~string: string) => unit =
-  "insertAdjacentHTML"
-
-/**
-[Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/setPointerCapture)
-*/
-@send
-external setPointerCapture: (element, int) => unit = "setPointerCapture"
-
-/**
-[Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/releasePointerCapture)
-*/
-@send
-external releasePointerCapture: (element, int) => unit = "releasePointerCapture"
-
-/**
-[Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/hasPointerCapture)
-*/
-@send
-external hasPointerCapture: (element, int) => bool = "hasPointerCapture"
-
-/**
+  /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/requestPointerLock)
 */
-@send
-external requestPointerLock: (element, ~options: pointerLockOptions=?) => Promise.t<unit> =
-  "requestPointerLock"
+  @send
+  external requestPointerLock: (T.t, ~options: pointerLockOptions=?) => Promise.t<unit> =
+    "requestPointerLock"
+
+  /**
+[Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/scroll)
+*/
+  @send
+  external scroll: (T.t, ~options: scrollToOptions=?) => unit = "scroll"
+
+  /**
+[Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/scroll)
+*/
+  @send
+  external scroll2: (T.t, ~x: float, ~y: float) => unit = "scroll"
+
+  /**
+[Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/scrollBy)
+*/
+  @send
+  external scrollBy: (T.t, ~options: scrollToOptions=?) => unit = "scrollBy"
+
+  /**
+[Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/scrollBy)
+*/
+  @send
+  external scrollBy2: (T.t, ~x: float, ~y: float) => unit = "scrollBy"
+
+  /**
+[Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/scrollIntoView)
+*/
+  @send
+  external scrollIntoView: (T.t, ~arg: bool=?) => unit = "scrollIntoView"
+
+  /**
+[Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/scrollIntoView)
+*/
+  @send
+  external scrollIntoView2: (T.t, ~arg: scrollIntoViewOptions=?) => unit = "scrollIntoView"
+
+  /**
+[Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/scrollTo)
+*/
+  @send
+  external scrollTo: (T.t, ~options: scrollToOptions=?) => unit = "scrollTo"
+
+  /**
+[Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/scrollTo)
+*/
+  @send
+  external scrollTo2: (T.t, ~x: float, ~y: float) => unit = "scrollTo"
+
+  /**
+Sets the value of element's first attribute whose qualified name is qualifiedName to value.
+[Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/setAttribute)
+*/
+  @send
+  external setAttribute: (T.t, ~qualifiedName: string, ~value: string) => unit = "setAttribute"
+
+  /**
+[Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/setAttributeNode)
+*/
+  @send
+  external setAttributeNode: (T.t, attr) => attr = "setAttributeNode"
+
+  /**
+[Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/setAttributeNodeNS)
+*/
+  @send
+  external setAttributeNodeNS: (T.t, attr) => attr = "setAttributeNodeNS"
+
+  /**
+Sets the value of element's attribute whose namespace is namespace and local name is localName to value.
+[Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/setAttributeNS)
+*/
+  @send
+  external setAttributeNS: (
+    element,
+    ~namespace: string,
+    ~qualifiedName: string,
+    ~value: string,
+  ) => unit = "setAttributeNS"
+
+  /**
+[Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/setHTMLUnsafe)
+*/
+  @send
+  external setHTMLUnsafe: (T.t, string) => unit = "setHTMLUnsafe"
+
+  /**
+[Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/setPointerCapture)
+*/
+  @send
+  external setPointerCapture: (T.t, int) => unit = "setPointerCapture"
+
+  /**
+If force is not given, "toggles" qualifiedName, removing it if it is present and adding it if it is not present. If force is true, adds qualifiedName. If force is false, removes qualifiedName.
+
+Returns true if qualifiedName is now present, and false otherwise.
+[Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/toggleAttribute)
+*/
+  @send
+  external toggleAttribute: (T.t, ~qualifiedName: string, ~force: bool=?) => bool =
+    "toggleAttribute"
+}
+
+include Impl({
+  type t = element
+})
