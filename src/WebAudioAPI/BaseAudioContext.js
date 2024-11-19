@@ -2,6 +2,12 @@
 
 import * as EventTarget$WebAPI from "../EventAPI/EventTarget.js";
 
-EventTarget$WebAPI.Impl({});
+function Impl(T) {
+  EventTarget$WebAPI.Impl({});
+  return {};
+}
 
-/*  Not a pure module */
+export {
+  Impl,
+}
+/* No side effect */
