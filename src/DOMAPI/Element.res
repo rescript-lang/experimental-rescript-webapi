@@ -103,7 +103,7 @@ Returns the first (starting at element) inclusive ancestor that matches selector
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/computedStyleMap)
 */
   @send
-  external computedStyleMap: element => stylePropertyMapReadOnly = "computedStyleMap"
+  external computedStyleMap: T.t => stylePropertyMapReadOnly = "computedStyleMap"
 
   /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/getAnimations)
@@ -124,7 +124,7 @@ Returns the qualified names of all element's attributes. Can contain duplicates.
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/getAttributeNames)
 */
   @send
-  external getAttributeNames: element => array<string> = "getAttributeNames"
+  external getAttributeNames: T.t => array<string> = "getAttributeNames"
 
   /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/getAttributeNode)
@@ -151,13 +151,13 @@ Returns element's attribute whose namespace is namespace and local name is local
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/getBoundingClientRect)
 */
   @send
-  external getBoundingClientRect: element => domRect = "getBoundingClientRect"
+  external getBoundingClientRect: T.t => domRect = "getBoundingClientRect"
 
   /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/getClientRects)
 */
   @send
-  external getClientRects: element => domRectList = "getClientRects"
+  external getClientRects: T.t => domRectList = "getClientRects"
 
   /**
 Returns a HTMLCollection of the elements in the object on which the method was invoked (a document or an element) that have all the classes given by classNames. The classNames argument is interpreted as a space-separated list of classes.
@@ -208,7 +208,7 @@ Returns true if element has attributes, and false otherwise.
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/hasAttributes)
 */
   @send
-  external hasAttributes: element => bool = "hasAttributes"
+  external hasAttributes: T.t => bool = "hasAttributes"
 
   /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/hasPointerCapture)
@@ -287,7 +287,7 @@ Removes node.
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CharacterData/remove)
 */
   @send
-  external remove: element => unit = "remove"
+  external remove: T.t => unit = "remove"
 
   /**
 Removes element's first attribute whose qualified name is qualifiedName.
