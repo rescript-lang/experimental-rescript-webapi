@@ -2,6 +2,14 @@
 
 import * as Node$WebAPI from "./Node.js";
 
+function Impl(T) {
+  Node$WebAPI.Impl({});
+  return {};
+}
+
 Node$WebAPI.Impl({});
 
+export {
+  Impl,
+}
 /*  Not a pure module */
