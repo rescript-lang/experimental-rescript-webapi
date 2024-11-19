@@ -2,63 +2,75 @@ open DOMAPI
 open WebVTTAPI
 open EncryptedMediaExtensionsAPI
 
-include HTMLElement.Impl({
-  type t = htmlMediaElement
-})
+module Impl = (
+  T: {
+    type t
+  },
+) => {
+  include HTMLElement.Impl({
+    type t = htmlMediaElement
+  })
 
-/**
-Resets the audio or video object and loads a new media resource.
-[Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLMediaElement/load)
+  external asHTMLMediaElement: T.t => htmlMediaElement = "%identity"
+
+  /**
+[Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLMediaElement/addTextTrack)
 */
-@send
-external load: htmlMediaElement => unit = "load"
+  @send
+  external addTextTrack: (
+    T.t,
+    ~kind: textTrackKind,
+    ~label: string=?,
+    ~language: string=?,
+  ) => textTrack = "addTextTrack"
 
-/**
+  /**
 Returns a string that specifies whether the client can play a given media resource type.
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLMediaElement/canPlayType)
 */
-@send
-external canPlayType: (htmlMediaElement, string) => canPlayTypeResult = "canPlayType"
+  @send
+  external canPlayType: (T.t, string) => canPlayTypeResult = "canPlayType"
 
-/**
+  /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLMediaElement/fastSeek)
 */
-@send
-external fastSeek: (htmlMediaElement, float) => unit = "fastSeek"
+  @send
+  external fastSeek: (T.t, float) => unit = "fastSeek"
 
-/**
-Loads and starts playback of a media resource.
-[Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLMediaElement/play)
+  /**
+Resets the audio or video object and loads a new media resource.
+[Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLMediaElement/load)
 */
-@send
-external play: htmlMediaElement => Promise.t<unit> = "play"
+  @send
+  external load: T.t => unit = "load"
 
-/**
+  /**
 Pauses the current playback and sets paused to TRUE.
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLMediaElement/pause)
 */
-@send
-external pause: htmlMediaElement => unit = "pause"
+  @send
+  external pause: T.t => unit = "pause"
 
-/**
-[Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLMediaElement/addTextTrack)
+  /**
+Loads and starts playback of a media resource.
+[Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLMediaElement/play)
 */
-@send
-external addTextTrack: (
-  htmlMediaElement,
-  ~kind: textTrackKind,
-  ~label: string=?,
-  ~language: string=?,
-) => textTrack = "addTextTrack"
+  @send
+  external play: T.t => Promise.t<unit> = "play"
 
-/**
-[Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLMediaElement/setSinkId)
-*/
-@send
-external setSinkId: (htmlMediaElement, string) => Promise.t<unit> = "setSinkId"
-
-/**
+  /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLMediaElement/setMediaKeys)
 */
-@send
-external setMediaKeys: (htmlMediaElement, mediaKeys) => Promise.t<unit> = "setMediaKeys"
+  @send
+  external setMediaKeys: (T.t, mediaKeys) => Promise.t<unit> = "setMediaKeys"
+
+  /**
+[Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLMediaElement/setSinkId)
+*/
+  @send
+  external setSinkId: (T.t, string) => Promise.t<unit> = "setSinkId"
+}
+
+include Impl({
+  type t = htmlMediaElement
+})

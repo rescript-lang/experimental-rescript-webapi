@@ -2,6 +2,14 @@
 
 import * as HTMLElement$WebAPI from "./HTMLElement.js";
 
+function Impl(T) {
+  HTMLElement$WebAPI.Impl({});
+  return {};
+}
+
 HTMLElement$WebAPI.Impl({});
 
+export {
+  Impl,
+}
 /*  Not a pure module */

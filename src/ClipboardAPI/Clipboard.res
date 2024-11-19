@@ -1,4 +1,3 @@
-open EventAPI
 open ClipboardAPI
 
 include EventTarget.Impl({

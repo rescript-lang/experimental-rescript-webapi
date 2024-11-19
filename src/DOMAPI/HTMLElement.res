@@ -1,6 +1,4 @@
 open DOMAPI
-open Prelude
-open EventAPI
 
 module Impl = (
   T: {
@@ -55,3 +53,7 @@ module Impl = (
   @send
   external togglePopover: (T.t, ~force: bool=?) => bool = "togglePopover"
 }
+
+include Impl({
+  type t = htmlElement
+})

@@ -9,4 +9,3 @@ include CharacterData.Impl({
 */
 @new
 external make: (~data: string=?) => comment = "Comment"
-

@@ -7,7 +7,9 @@ function Impl(T) {
   return {};
 }
 
+Element$WebAPI.Impl({});
+
 export {
   Impl,
 }
-/* Element-WebAPI Not a pure module */
+/*  Not a pure module */
