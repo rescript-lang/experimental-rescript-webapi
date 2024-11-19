@@ -1,4 +1,3 @@
-open EventAPI
 open RemotePlaybackAPI
 
 include EventTarget.Impl({

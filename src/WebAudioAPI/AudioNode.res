@@ -1,4 +1,3 @@
-open EventAPI
 open WebAudioAPI
 
 include EventTarget.Impl({
