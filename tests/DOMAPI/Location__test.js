@@ -7,8 +7,11 @@ let href = location.href;
 
 location.reload();
 
+let a = 0;
+
 export {
   location,
   href,
+  a,
 }
 /* location Not a pure module */
