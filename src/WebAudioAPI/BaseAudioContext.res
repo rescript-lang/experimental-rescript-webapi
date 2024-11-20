@@ -1,212 +1,142 @@
-open EventAPI
 open WebAudioAPI
 
-external asEventTarget: baseAudioContext => eventTarget = "%identity"
-/**
-Appends an event listener for events whose type attribute value is type. The callback argument sets the callback that will be invoked when the event is dispatched.
+module Impl = (
+  T: {
+    type t
+  },
+) => {
+  include EventTarget.Impl({
+    type t = T.t
+  })
 
-The options argument sets listener-specific options. For compatibility this can be a boolean, in which case the method behaves exactly as if the value was specified as options's capture.
+  external asBaseAudioContext: T.t => baseAudioContext = "%identity"
 
-When set to true, options's capture prevents callback from being invoked when the event's eventPhase attribute value is BUBBLING_PHASE. When false (or not present), callback will not be invoked when event's eventPhase attribute value is CAPTURING_PHASE. Either way, callback will be invoked if event's eventPhase attribute value is AT_TARGET.
-
-When set to true, options's passive indicates that the callback will not cancel the event by invoking preventDefault(). This is used to enable performance optimizations described in § 2.8 Observing event listeners.
-
-When set to true, options's once indicates that the callback will only be invoked once after which the event listener will be removed.
-
-If an AbortSignal is passed for options's signal, then the event listener will be removed when signal is aborted.
-
-The event listener is appended to target's event listener list and is not appended if it has the same type, callback, and capture.
-[Read more on MDN](https://developer.mozilla.org/docs/Web/API/EventTarget/addEventListener)
-*/
-@send
-external addEventListener: (
-  baseAudioContext,
-  ~type_: eventType,
-  ~callback: eventListener<'event>,
-  ~options: addEventListenerOptions=?,
-) => unit = "addEventListener"
-
-/**
-Appends an event listener for events whose type attribute value is type. The callback argument sets the callback that will be invoked when the event is dispatched.
-
-The options argument sets listener-specific options. For compatibility this can be a boolean, in which case the method behaves exactly as if the value was specified as options's capture.
-
-When set to true, options's capture prevents callback from being invoked when the event's eventPhase attribute value is BUBBLING_PHASE. When false (or not present), callback will not be invoked when event's eventPhase attribute value is CAPTURING_PHASE. Either way, callback will be invoked if event's eventPhase attribute value is AT_TARGET.
-
-When set to true, options's passive indicates that the callback will not cancel the event by invoking preventDefault(). This is used to enable performance optimizations described in § 2.8 Observing event listeners.
-
-When set to true, options's once indicates that the callback will only be invoked once after which the event listener will be removed.
-
-If an AbortSignal is passed for options's signal, then the event listener will be removed when signal is aborted.
-
-The event listener is appended to target's event listener list and is not appended if it has the same type, callback, and capture.
-[Read more on MDN](https://developer.mozilla.org/docs/Web/API/EventTarget/addEventListener)
-*/
-@send
-external addEventListener2: (
-  baseAudioContext,
-  ~type_: eventType,
-  ~callback: eventListener<'event>,
-  ~options: bool=?,
-) => unit = "addEventListener"
-
-/**
-Removes the event listener in target's event listener list with the same type, callback, and options.
-[Read more on MDN](https://developer.mozilla.org/docs/Web/API/EventTarget/removeEventListener)
-*/
-@send
-external removeEventListener: (
-  baseAudioContext,
-  ~type_: eventType,
-  ~callback: eventListener<'event>,
-  ~options: eventListenerOptions=?,
-) => unit = "removeEventListener"
-
-/**
-Removes the event listener in target's event listener list with the same type, callback, and options.
-[Read more on MDN](https://developer.mozilla.org/docs/Web/API/EventTarget/removeEventListener)
-*/
-@send
-external removeEventListener2: (
-  baseAudioContext,
-  ~type_: eventType,
-  ~callback: eventListener<'event>,
-  ~options: bool=?,
-) => unit = "removeEventListener"
-
-/**
-Dispatches a synthetic event event to target and returns true if either event's cancelable attribute value is false or its preventDefault() method was not invoked, and false otherwise.
-[Read more on MDN](https://developer.mozilla.org/docs/Web/API/EventTarget/dispatchEvent)
-*/
-@send
-external dispatchEvent: (baseAudioContext, event) => bool = "dispatchEvent"
-
-/**
+  /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/BaseAudioContext/createAnalyser)
 */
-@send
-external createAnalyser: baseAudioContext => analyserNode = "createAnalyser"
+  @send
+  external createAnalyser: T.t => analyserNode = "createAnalyser"
 
-/**
+  /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/BaseAudioContext/createBiquadFilter)
 */
-@send
-external createBiquadFilter: baseAudioContext => biquadFilterNode = "createBiquadFilter"
+  @send
+  external createBiquadFilter: T.t => biquadFilterNode = "createBiquadFilter"
 
-/**
+  /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/BaseAudioContext/createBuffer)
 */
-@send
-external createBuffer: (
-  baseAudioContext,
-  ~numberOfChannels: int,
-  ~length: int,
-  ~sampleRate: float,
-) => audioBuffer = "createBuffer"
+  @send
+  external createBuffer: (
+    T.t,
+    ~numberOfChannels: int,
+    ~length: int,
+    ~sampleRate: float,
+  ) => audioBuffer = "createBuffer"
 
-/**
+  /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/BaseAudioContext/createBufferSource)
 */
-@send
-external createBufferSource: baseAudioContext => audioBufferSourceNode = "createBufferSource"
+  @send
+  external createBufferSource: T.t => audioBufferSourceNode = "createBufferSource"
 
-/**
+  /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/BaseAudioContext/createChannelMerger)
 */
-@send
-external createChannelMerger: (baseAudioContext, ~numberOfInputs: int=?) => channelMergerNode =
-  "createChannelMerger"
+  @send
+  external createChannelMerger: (T.t, ~numberOfInputs: int=?) => channelMergerNode =
+    "createChannelMerger"
 
-/**
+  /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/BaseAudioContext/createChannelSplitter)
 */
-@send
-external createChannelSplitter: (baseAudioContext, ~numberOfOutputs: int=?) => channelSplitterNode =
-  "createChannelSplitter"
+  @send
+  external createChannelSplitter: (T.t, ~numberOfOutputs: int=?) => channelSplitterNode =
+    "createChannelSplitter"
 
-/**
+  /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/BaseAudioContext/createConstantSource)
 */
-@send
-external createConstantSource: baseAudioContext => constantSourceNode = "createConstantSource"
+  @send
+  external createConstantSource: T.t => constantSourceNode = "createConstantSource"
 
-/**
+  /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/BaseAudioContext/createConvolver)
 */
-@send
-external createConvolver: baseAudioContext => convolverNode = "createConvolver"
+  @send
+  external createConvolver: T.t => convolverNode = "createConvolver"
 
-/**
+  /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/BaseAudioContext/createDelay)
 */
-@send
-external createDelay: (baseAudioContext, ~maxDelayTime: float=?) => delayNode = "createDelay"
+  @send
+  external createDelay: (T.t, ~maxDelayTime: float=?) => delayNode = "createDelay"
 
-/**
+  /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/BaseAudioContext/createDynamicsCompressor)
 */
-@send
-external createDynamicsCompressor: baseAudioContext => dynamicsCompressorNode =
-  "createDynamicsCompressor"
+  @send
+  external createDynamicsCompressor: T.t => dynamicsCompressorNode = "createDynamicsCompressor"
 
-/**
+  /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/BaseAudioContext/createGain)
 */
-@send
-external createGain: baseAudioContext => gainNode = "createGain"
+  @send
+  external createGain: T.t => gainNode = "createGain"
 
-/**
+  /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/BaseAudioContext/createIIRFilter)
 */
-@send
-external createIIRFilter: (
-  baseAudioContext,
-  ~feedforward: array<float>,
-  ~feedback: array<float>,
-) => iirFilterNode = "createIIRFilter"
+  @send
+  external createIIRFilter: (
+    T.t,
+    ~feedforward: array<float>,
+    ~feedback: array<float>,
+  ) => iirFilterNode = "createIIRFilter"
 
-/**
+  /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/BaseAudioContext/createOscillator)
 */
-@send
-external createOscillator: baseAudioContext => oscillatorNode = "createOscillator"
+  @send
+  external createOscillator: T.t => oscillatorNode = "createOscillator"
 
-/**
+  /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/BaseAudioContext/createPanner)
 */
-@send
-external createPanner: baseAudioContext => pannerNode = "createPanner"
+  @send
+  external createPanner: T.t => pannerNode = "createPanner"
 
-/**
+  /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/BaseAudioContext/createPeriodicWave)
 */
-@send
-external createPeriodicWave: (
-  baseAudioContext,
-  ~real: array<float>,
-  ~imag: array<float>,
-  ~constraints: periodicWaveConstraints=?,
-) => periodicWave = "createPeriodicWave"
+  @send
+  external createPeriodicWave: (
+    T.t,
+    ~real: array<float>,
+    ~imag: array<float>,
+    ~constraints: periodicWaveConstraints=?,
+  ) => periodicWave = "createPeriodicWave"
 
-/**
+  /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/BaseAudioContext/createStereoPanner)
 */
-@send
-external createStereoPanner: baseAudioContext => stereoPannerNode = "createStereoPanner"
+  @send
+  external createStereoPanner: T.t => stereoPannerNode = "createStereoPanner"
 
-/**
+  /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/BaseAudioContext/createWaveShaper)
 */
-@send
-external createWaveShaper: baseAudioContext => waveShaperNode = "createWaveShaper"
+  @send
+  external createWaveShaper: T.t => waveShaperNode = "createWaveShaper"
 
-/**
+  /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/BaseAudioContext/decodeAudioData)
 */
-@send
-external decodeAudioData: (
-  baseAudioContext,
-  ~audioData: ArrayBuffer.t,
-  ~successCallback: decodeSuccessCallback=?,
-  ~errorCallback: decodeErrorCallback=?,
-) => Promise.t<audioBuffer> = "decodeAudioData"
+  @send
+  external decodeAudioData: (
+    T.t,
+    ~audioData: ArrayBuffer.t,
+    ~successCallback: decodeSuccessCallback=?,
+    ~errorCallback: decodeErrorCallback=?,
+  ) => Promise.t<audioBuffer> = "decodeAudioData"
+}
