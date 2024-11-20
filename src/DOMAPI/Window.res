@@ -294,16 +294,33 @@ external structuredClone: (window, 't, ~options: structuredSerializeOptions=?) =
   "structuredClone"
 
 /**
+`fetch(window, string, init)`
+
+Starts the process of fetching a resource from the network,
+returning a promise that is fulfilled once the response is available.
+
+```res
+let response = await window->Window.fetch("https://rescript-lang.org")
+```
+
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/fetch)
 */
 @send
-external fetch: (window, ~input: request, ~init: requestInit=?) => Promise.t<response> = "fetch"
+external fetch: (window, string, ~init: requestInit=?) => Promise.t<response> = "fetch"
 
 /**
+`fetch_withRequest(window, request, init)`
+
+Starts the process of fetching a resource from the network,
+returning a promise that is fulfilled once the response is available.
+
+```res
+let response = await window->Window.fetch(myRequest)
+```
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/fetch)
 */
 @send
-external fetch2: (window, ~input: string, ~init: requestInit=?) => Promise.t<response> = "fetch"
+external fetch_withRequest: (window, request, ~init: requestInit=?) => Promise.t<response> = "fetch"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/DedicatedWorkerGlobalScope/requestAnimationFrame)
