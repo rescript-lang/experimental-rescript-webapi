@@ -480,14 +480,33 @@ external createImageBitmap18: (
 external structuredClone: ('t, ~options: structuredSerializeOptions=?) => 't = "structuredClone"
 
 /**
+`fetch(string, init)`
+
+Starts the process of fetching a resource from the network,
+returning a promise that is fulfilled once the response is available.
+
+```res
+let response = await fetch("https://rescript-lang.org")
+```
+
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/fetch)
 */
-external fetch: (~input: request, ~init: requestInit=?) => Promise.t<response> = "fetch"
+external fetch: (string, ~init: requestInit=?) => Promise.t<response> = "fetch"
 
 /**
+`fetch_withRequest(request, init)`
+
+Starts the process of fetching a resource from the network,
+returning a promise that is fulfilled once the response is available.
+
+```res
+let response = await fetch(myRequest)
+```
+
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/fetch)
 */
-external fetch2: (~input: string, ~init: requestInit=?) => Promise.t<response> = "fetch"
+@send
+external fetch_withRequest: (request, ~init: requestInit=?) => Promise.t<response> = "fetch"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/DedicatedWorkerGlobalScope/requestAnimationFrame)
