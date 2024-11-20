@@ -5,8 +5,6 @@ external unsafeConversation: 'tinput => 'toutput = "%identity"
 
 type bufferSource = any
 
-type bodyInit = any
-
 type sharedArrayBuffer = any
 
 type float64Array = any

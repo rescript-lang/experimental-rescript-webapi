@@ -3,7 +3,16 @@
 
 let response = await fetch("https://rescript-lang.org/");
 
+let response2 = await fetch("https://rescript-lang.org/", {
+  headers: {
+    "Content-Type": "application/json",
+    Authorization: "Bearer token"
+  },
+  body: "secret=foo&response=bar"
+});
+
 export {
   response,
+  response2,
 }
 /* response Not a pure module */
