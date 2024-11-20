@@ -218,7 +218,9 @@ type urlSearchParams = {
   size: int,
 }
 
-type headersInit = any
+type headersInit
+
+type bodyInit
 
 type requestInfo = any
 
@@ -236,7 +238,7 @@ type requestInit = {
   /**
     A BodyInit object or null to set request's body.
     */
-  mutable body?: Null.t<bodyInit>,
+  mutable body?: bodyInit,
   /**
     A string whose value is a same-origin URL, "about:client", or the empty string, to set request's referrer.
     */
