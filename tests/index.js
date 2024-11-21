@@ -9,7 +9,7 @@ const repoRoot = path.resolve(currentDir, "..");
 const testsDir = path.join(repoRoot, "tests");
 
 // Compile all tests
-execSync("npx rewatch", { cwd: repoRoot, stdio: "inherit" });
+execSync("npx rescript", { cwd: repoRoot, stdio: "inherit" });
 
 const successGreen = "\x1b[32m";
 const warningYellow = "\x1b[33m";
