@@ -2,6 +2,33 @@ import { readFileSync } from "node:fs";
 import { defineConfig } from "astro/config";
 import starlight from "@astrojs/starlight";
 
+const starlightPlugin = {
+  name: "RescriptAPIDocs",
+  hooks: {
+    setup: ({ config, updateConfig, addIntegration }) => {
+      console.log(`Setup yow!`)
+      addIntegration({
+        name: "RescriptAPIDocs",
+        hooks: {
+          "astro:config:setup": ({ injectRoute }) => {
+            injectRoute({
+              pattern: "meh",
+              entrypoint: "docs/apidocs/meh.astro"
+            })
+          }
+        }
+      })
+
+      updateConfig({
+        sidebar: [
+          ...config.sidebar,
+          { label: "meh", link: "meh" }
+        ]
+      });
+    }
+  }
+}
+
 const rescriptTM = JSON.parse(
   readFileSync("./docs/assets/rescript.tmLanguage.json", "utf-8"),
 );
@@ -44,6 +71,7 @@ export default defineConfig({
           langs: [rescriptTM],
         },
       },
+      plugins: [starlightPlugin],
     }),
   ],
 });
