@@ -29,18 +29,19 @@
   "scripts": {
     "test": "node tests/index.js",
     "build": "rewatch",
-    "format": "rescript format -all && prettier --write ./tests/index.js ./package.json",
+    "format": "rescript format -all && prettier --write ./tests/index.js ./package.json ./docs/pages",
     "docs": "astro dev",
     "build:docs": "astro build"
   },
   "license": "MIT",
   "dependencies": {
-    "rescript": "^12.0.0-alpha.4"
+    "rescript": "^12.0.0-alpha.5"
   },
   "devDependencies": {
     "@astrojs/starlight": "^0.29.0",
     "astro": "^4.16.10",
     "prettier": "^3.3.3",
+    "prettier-plugin-astro": "^0.14.1",
     "sharp": "^0.33.5"
   }
 }

@@ -1,37 +1,16 @@
 import { readFileSync } from "node:fs";
 import { defineConfig } from "astro/config";
 import starlight from "@astrojs/starlight";
-
-const starlightPlugin = {
-  name: "RescriptAPIDocs",
-  hooks: {
-    setup: ({ config, updateConfig, addIntegration }) => {
-      console.log(`Setup yow!`)
-      addIntegration({
-        name: "RescriptAPIDocs",
-        hooks: {
-          "astro:config:setup": ({ injectRoute }) => {
-            injectRoute({
-              pattern: "meh",
-              entrypoint: "docs/apidocs/meh.astro"
-            })
-          }
-        }
-      })
-
-      updateConfig({
-        sidebar: [
-          ...config.sidebar,
-          { label: "meh", link: "meh" }
-        ]
-      });
-    }
-  }
-}
+import { apiModules } from "./docs/pages/apidocs/utils";
 
 const rescriptTM = JSON.parse(
   readFileSync("./docs/assets/rescript.tmLanguage.json", "utf-8"),
 );
+
+const apiSidebarItems = apiModules.map(({ moduleName, link }) => ({
+  label: moduleName,
+  link,
+}));
 
 export default defineConfig({
   srcDir: "docs",
@@ -45,24 +24,36 @@ export default defineConfig({
         src: "./docs/assets/rescript-logo.svg",
       },
       social: {
-        github: 'https://github.com/rescript-lang/experimental-rescript-webapi',
+        github: "https://github.com/rescript-lang/experimental-rescript-webapi",
       },
       editLink: {
-        baseUrl: 'https://github.com/rescript-lang/experimental-rescript-webapi/edit/main/',
+        baseUrl:
+          "https://github.com/rescript-lang/experimental-rescript-webapi/edit/main/",
       },
       sidebar: [
         {
-          slug: '',
+          slug: "",
         },
         {
-          slug: 'design-philosophy',
+          slug: "design-philosophy",
         },
         {
-          slug: 'project-status',
+          slug: "project-status",
         },
         {
-          label: 'Contributing',
-          autogenerate: { directory: 'contributing' },
+          label: "Contributing",
+          autogenerate: { directory: "contributing" },
+        },
+        {
+          label: "API Documentation",
+          collapsed: true,
+          items: [
+            {
+              label: "Overview",
+              link: "apidocs",
+            },
+            ...apiSidebarItems,
+          ],
         },
       ],
       customCss: ["./docs/styles/fonts.css", "./docs/styles/theme.css"],
@@ -71,7 +62,6 @@ export default defineConfig({
           langs: [rescriptTM],
         },
       },
-      plugins: [starlightPlugin],
     }),
   ],
 });
