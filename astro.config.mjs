@@ -7,10 +7,24 @@ const rescriptTM = JSON.parse(
   readFileSync("./docs/assets/rescript.tmLanguage.json", "utf-8"),
 );
 
-const apiSidebarItems = apiModules.map(({ moduleName, link }) => ({
-  label: moduleName,
-  link,
-}));
+const apiSidebarItems = apiModules.map(({ moduleName, link, items }) => {
+  const nestedItems = Object.values(items).map(({ moduleName, link }) => ({
+    label: moduleName,
+    link
+  }));
+
+  return ({
+    label: moduleName,
+    collapsed: true,
+    items: [
+      {
+        label: `Overview`,
+        link
+      },
+      ...nestedItems
+    ]
+  });
+});
 
 export default defineConfig({
   srcDir: "docs",

@@ -9,7 +9,7 @@ export async function getStaticPaths() {
   return apiModules.map((apiModule) => {
     return {
       params: {
-        API: apiModule.apiRoute,
+        API: apiModule.apiRouteParameter,
       },
       props: apiModule,
     };

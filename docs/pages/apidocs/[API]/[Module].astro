@@ -1,0 +1,25 @@
+---
+import { apiModules, getDoc } from "../utils";
+// import StarlightPage from "@astrojs/starlight/components/StarlightPage.astro";
+// import { Code } from "@astrojs/starlight/components";
+// import { micromark } from "micromark";
+// import Record from "../../components/record.astro";
+
+export async function getStaticPaths() {
+  return apiModules.flatMap((apiModule) => {
+    return Object.values(apiModule.items).map((typeModule) => {
+      return {
+        params: {
+          API: apiModule.apiRouteParameter,
+          Module: typeModule.apiRouteParameter,
+        },
+        props: { parentModule: apiModule, currentModule: typeModule },
+      };
+    });
+  });
+}
+
+const name = Astro.props.currentModule.moduleName;
+---
+
+<h1>Yupla {name}</h1>

@@ -1,6 +1,7 @@
 import * as path from "node:path";
 import { exec } from "node:child_process";
 import { promisify } from "node:util";
+import { readdirSync, existsSync } from "fs";
 
 const execAsync = promisify(exec);
 
@@ -15,17 +16,54 @@ export function createModuleLink(moduleName) {
   return `/apidocs/${toKebabCase(moduleName)}`;
 }
 
+function mapTypeModules(parentModuleLink, file) {
+  const folder = file.replace(".res", "");
+
+  if (!existsSync(folder)) {
+    return [];
+  }
+
+  const files = readdirSync(folder);
+  return files
+    .filter((f) => f.endsWith(".res"))
+    .map((file) => {
+      const fullPath = path.join(folder, file);
+
+      const moduleName = file
+        .replace("$", "")
+        .replace(folder, "")
+        .replace(".res", "");
+      const apiRouteParameter = toKebabCase(moduleName);
+      const link = `${parentModuleLink}/${apiRouteParameter}`;
+      const typeName = moduleName[0].toLocaleLowerCase() + moduleName.slice(1);
+
+      return [
+        typeName,
+        {
+          fullPath,
+          moduleName,
+          link,
+          apiRouteParameter,
+        },
+      ];
+    });
+}
+
 function mapRescriptFile(file) {
   const moduleName = path
     .basename(file, ".res")
     .replace("$", "")
     .replace("API", " API");
+  const filePath = path.join(import.meta.dirname, file);
   const link = createModuleLink(moduleName);
+  const items = Object.fromEntries(mapTypeModules(link, filePath));
+
   return {
-    filePath: path.join(import.meta.dirname, file),
+    filePath,
     moduleName,
     link,
-    apiRoute: toKebabCase(moduleName),
+    apiRouteParameter: toKebabCase(moduleName),
+    items,
   };
 }
 
