@@ -1,6 +1,8 @@
 ---
 import { apiModules, getDoc } from "./utils";
 import StarlightPage from "@astrojs/starlight/components/StarlightPage.astro";
+import { Code } from "@astrojs/starlight/components";
+import { micromark } from "micromark";
 
 export async function getStaticPaths() {
   return apiModules.map((apiModule) => {
@@ -15,24 +17,60 @@ export async function getStaticPaths() {
 
 const { moduleName, filePath } = Astro.props;
 
+const docInfo = await getDoc(filePath);
+
+const types = docInfo.items
+  .filter((item) => item.kind === "type")
+  .sort((a, b) => a.name.localeCompare(b.name))
+  .map((type) => {
+    const documentation =
+      type.docstrings && micromark(type.docstrings.join("\n"));
+    return {
+      name: type.name,
+      documentation,
+      signature: type.signature,
+    };
+  });
+
+const typeHeadings = types.map((type) => ({
+  depth: 3,
+  slug: type.name,
+  text: type.name,
+}));
+
 const frontmatter = {
   title: moduleName,
 };
 
 const headings = [
-  //   {
-  //     depth: 2,
-  //     slug: "web-apis",
-  //     text: "Web APIs",
-  //   },
+  {
+    depth: 2,
+    slug: "types",
+    text: "Types",
+  },
+  ...typeHeadings,
 ];
-
-const docInfo = await getDoc(filePath);
 ---
 
 <StarlightPage frontmatter={frontmatter} headings={headings}>
-  <h2>{moduleName} overview</h2>
-  <code>
-    <pre>{JSON.stringify(docInfo, null, 4)}</pre>
-  </code>
+  <div id="apidocs">
+    <h2 id="types">Types</h2>
+    {
+      types.map((type) => (
+        <div class="rescript_type">
+          <h3 id={type.name}>{type.name}</h3>
+          <div set:html={type.documentation} />
+          <Code lang="ReScript" code={type.signature} />
+        </div>
+      ))
+    }
+    <code>
+      <pre>{JSON.stringify(docInfo, null, 4)}</pre>
+    </code>
+  </div>
 </StarlightPage>
+<style>
+  #apidocs .rescript_type {
+    margin-block: 2rem;
+  }
+</style>
