@@ -1,0 +1,29 @@
+---
+import { createModuleLink } from "../pages/apidocs/utils.js";
+const { item, typesInOwnModule } = Astro.props;
+
+let link;
+if (typesInOwnModule.has(item.ident)) {
+  link = `#${item.ident}`;
+}
+
+if (item.ident.startsWith("WebAPI.")) {
+  const idents = item.ident.split(".");
+  if (idents.length === 3){
+    link = `${createModuleLink(idents[1])}#${idents[2]}`;
+  }
+}
+---
+
+{link ? <a href={link}>{item.ident}</a> : item.ident}
+{
+  item.genericArguments.length > 0 && (
+    <>
+      {"<"}
+      {item.genericArguments.map((subItem) => (
+        <Astro.self typesInOwnModule={typesInOwnModule} item={subItem} />
+      ))}
+      {">"}
+    </>
+  )
+}

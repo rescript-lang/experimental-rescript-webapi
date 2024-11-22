@@ -11,12 +11,16 @@ function toKebabCase(input) {
     .toLowerCase(); // Convert to lowercase
 }
 
+export function createModuleLink(moduleName) {
+  return `/apidocs/${toKebabCase(moduleName)}`;
+}
+
 function mapRescriptFile(file) {
   const moduleName = path
     .basename(file, ".res")
     .replace("$", "")
     .replace("API", " API");
-  const link = `apidocs/${toKebabCase(moduleName)}`;
+  const link = createModuleLink(moduleName);
   return {
     filePath: path.join(import.meta.dirname, file),
     moduleName,

@@ -1,5 +1,6 @@
 ---
 import { micromark } from "micromark";
+import Signature from "./signature.astro";
 const { name, items, typesInOwnModule } = Astro.props;
 ---
 
@@ -13,11 +14,10 @@ const { name, items, typesInOwnModule } = Astro.props;
       <div class="record_field">
         <h5 id={`${name}_${item.name}`}>{item.name}</h5>
         <div class="type">
-          {typesInOwnModule.has(item.signature) ? (
-            <a href={`#${item.signature}`}>{item.signature}</a>
-          ) : (
-            item.signature
-          )}
+          <Signature
+            signature={item.signature}
+            typesInOwnModule={typesInOwnModule}
+          />
         </div>
         {documentation && <div class="doc" set:html={documentation} />}
       </div>
@@ -37,6 +37,7 @@ const { name, items, typesInOwnModule } = Astro.props;
     & .type {
       justify-self: end;
       color: var(--sl-color-accent-low);
+      margin-top: 0;
     }
 
     & .doc {
