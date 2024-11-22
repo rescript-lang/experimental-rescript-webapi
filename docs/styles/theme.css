@@ -8,6 +8,12 @@ https://github.com/withastro/starlight/blob/main/packages/starlight/style/props.
 https://github.com/rescript-lang/rescript-lang.org/blob/4e4f9520f6fc7a0376db82a0a6db52211e8a8187/tailwind.config.mjs#L13
 */
 
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth; /* Enables smooth scrolling for users without motion sensitivity */
+  }
+}
+
 :root[data-theme="light"],
 [data-theme="light"] ::backdrop {
   --sl-color-accent-low: #4a0f14;

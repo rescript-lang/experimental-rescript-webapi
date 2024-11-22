@@ -3,6 +3,7 @@ import { apiModules, getDoc } from "./utils";
 import StarlightPage from "@astrojs/starlight/components/StarlightPage.astro";
 import { Code } from "@astrojs/starlight/components";
 import { micromark } from "micromark";
+import Record from "../../components/record.astro";
 
 export async function getStaticPaths() {
   return apiModules.map((apiModule) => {
@@ -13,6 +14,10 @@ export async function getStaticPaths() {
       props: apiModule,
     };
   });
+}
+
+function showRecord(details) {
+  return details && details.kind === "record" && details.items.length > 0;
 }
 
 const { moduleName, filePath } = Astro.props;
@@ -29,8 +34,11 @@ const types = docInfo.items
       name: type.name,
       documentation,
       signature: type.signature,
+      detail: type.detail,
     };
   });
+
+const typesInOwnModule = new Set(types.map((t) => t.name));
 
 const typeHeadings = types.map((type) => ({
   depth: 3,
@@ -61,6 +69,13 @@ const headings = [
           <h3 id={type.name}>{type.name}</h3>
           <div set:html={type.documentation} />
           <Code lang="ReScript" code={type.signature} />
+          {showRecord(type.detail) ? (
+            <Record
+              name={type.name}
+              typesInOwnModule={typesInOwnModule}
+              {...type.detail}
+            />
+          ) : null}
         </div>
       ))
     }
