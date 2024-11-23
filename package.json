@@ -28,7 +28,7 @@
   "type": "module",
   "scripts": {
     "test": "node tests/index.js",
-    "build": "rewatch",
+    "build": "rescript",
     "format": "rescript format -all && prettier --write ./tests/index.js ./package.json ./docs/pages",
     "docs": "astro dev",
     "build:docs": "astro build"
