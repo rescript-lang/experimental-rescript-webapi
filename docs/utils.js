@@ -12,8 +12,14 @@ function toKebabCase(input) {
     .toLowerCase(); // Convert to lowercase
 }
 
-export function createModuleLink(moduleName) {
-  return `/apidocs/${toKebabCase(moduleName)}`;
+export function createAPIModuleLink(moduleName) {
+  // This function is called before import.meta.env.BASE_URL is set.
+  // So, I'm hardcoding the path here.
+  return `apidocs/${toKebabCase(moduleName)}`;
+}
+
+export function createTypeModuleLink(parentModuleLink, typeName) {
+  return `${parentModuleLink}/${toKebabCase(typeName)}`;
 }
 
 function mapTypeModules(parentModuleLink, file) {
@@ -27,20 +33,20 @@ function mapTypeModules(parentModuleLink, file) {
   return files
     .filter((f) => f.endsWith(".res"))
     .map((file) => {
-      const fullPath = path.join(folder, file);
+      const filePath = path.join(folder, file);
 
       const moduleName = file
         .replace("$", "")
         .replace(folder, "")
         .replace(".res", "");
       const apiRouteParameter = toKebabCase(moduleName);
-      const link = `${parentModuleLink}/${apiRouteParameter}`;
+      const link = createTypeModuleLink(parentModuleLink, moduleName);
       const typeName = moduleName[0].toLocaleLowerCase() + moduleName.slice(1);
 
       return [
         typeName,
         {
-          fullPath,
+          filePath,
           moduleName,
           link,
           apiRouteParameter,
@@ -49,13 +55,10 @@ function mapTypeModules(parentModuleLink, file) {
     });
 }
 
-function mapRescriptFile(file) {
-  const moduleName = path
-    .basename(file, ".res")
-    .replace("$", "")
-    .replace("API", " API");
-  const filePath = path.join(import.meta.dirname, file);
-  const link = createModuleLink(moduleName);
+function mapRescriptFile(srcDir, file) {
+  const moduleName = path.basename(file, ".res").replace("$", "");
+  const filePath = path.join(srcDir, file);
+  const link = createAPIModuleLink(moduleName);
   const items = Object.fromEntries(mapTypeModules(link, filePath));
 
   return {
@@ -67,13 +70,8 @@ function mapRescriptFile(file) {
   };
 }
 
-export const apiModules = Object.keys(
-  import.meta.glob("../../../src/*.res"),
-).map(mapRescriptFile);
-
-export const fileModules = Object.keys(
-  import.meta.glob("../../../src/**/*.res"),
-).map(mapRescriptFile);
+const srcDir = path.resolve(process.cwd(), "src");
+export const apiModules = readdirSync(srcDir).filter(f => f.endsWith(".res")).map(r => mapRescriptFile(srcDir, r));
 
 export async function getDoc(absoluteFilePath) {
   const { stdout, stderr } = await execAsync(

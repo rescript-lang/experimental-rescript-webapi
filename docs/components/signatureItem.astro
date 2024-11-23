@@ -1,29 +1,38 @@
 ---
-import { createModuleLink } from "../pages/apidocs/utils.js";
+import { createAPIModuleLink } from "../utils.js";
 const { item, typesInOwnModule } = Astro.props;
 
 let link;
-if (typesInOwnModule.has(item.ident)) {
-  link = `#${item.ident}`;
+if (typesInOwnModule && typesInOwnModule.has(item.path)) {
+  link = `#${item.path}`;
 }
 
-if (item.ident.startsWith("WebAPI.")) {
-  const idents = item.ident.split(".");
-  if (idents.length === 3){
-    link = `${createModuleLink(idents[1])}#${idents[2]}`;
+if (item.path.startsWith("WebAPI.")) {
+  const paths = item.path.split(".");
+  if (paths.length === 3) {
+    link = `${import.meta.env.BASE_URL}/${createAPIModuleLink(paths[1])}#${paths[2]}`;
   }
 }
+
+const genericTypeParameters = item.genericTypeParameters || [];
 ---
 
-{link ? <a href={link}>{item.ident}</a> : item.ident}
-{
-  item.genericArguments.length > 0 && (
-    <>
-      {"<"}
-      {item.genericArguments.map((subItem) => (
-        <Astro.self typesInOwnModule={typesInOwnModule} item={subItem} />
-      ))}
-      {">"}
-    </>
-  )
-}
+<span>
+  {link ? <a href={link}>{item.path}</a> : item.path}{
+    genericTypeParameters.length > 0 && (
+      <>
+        {"<"}
+        {genericTypeParameters.map((subItem) => (
+          <Astro.self typesInOwnModule={typesInOwnModule} item={subItem} />
+        ))}
+        {">"}
+      </>
+    )
+  }
+</span>
+<style>
+  span {
+    display: inline-flex;
+    color: var(--sl-color-accent-low);
+  }
+</style>

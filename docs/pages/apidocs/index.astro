@@ -1,6 +1,6 @@
 ---
 import StarlightPage from "@astrojs/starlight/components/StarlightPage.astro";
-import { apiModules } from "./utils";
+import { apiModules } from "../../utils";
 
 const frontmatter = {
   title: "API Documentation",
@@ -14,14 +14,13 @@ const headings = [
   },
 ];
 
-const resFiles = apiModules;
 ---
 
 <StarlightPage frontmatter={frontmatter} headings={headings}>
   <h2 id="web-apis">Web APIs</h2>
   <ul>
     {
-      resFiles.map(({ moduleName, link }) => (
+      apiModules.map(({ moduleName, link }) => (
         <li>
           <a href={link}>{moduleName}</a>
         </li>

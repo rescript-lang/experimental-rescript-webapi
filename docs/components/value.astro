@@ -1,0 +1,27 @@
+---
+import SignatureItem from "./signatureItem.astro";
+const { parameters, returnType } = Astro.props;
+---
+
+<div class="value">
+  <h4>Parameters</h4>
+  {
+    parameters.map((p) => (
+      <SignatureItem item={p}   />
+    ))
+  }
+  <h4>Return type</h4>
+  <SignatureItem item={returnType} />
+</div>
+<style>
+  .value {
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--sl-color-gray-7);
+
+    .signature {
+      margin-top: 0rem;
+    }
+  }
+</style>

@@ -1,13 +1,13 @@
 import { readFileSync } from "node:fs";
 import { defineConfig } from "astro/config";
 import starlight from "@astrojs/starlight";
-import { apiModules } from "./docs/pages/apidocs/utils";
+import { apiModules } from "./docs/utils";
 
 const rescriptTM = JSON.parse(
   readFileSync("./docs/assets/rescript.tmLanguage.json", "utf-8"),
 );
 
-const apiSidebarItems = apiModules.map(({ moduleName, link, items }) => {
+const apiSidebarItems  = apiModules.map(({ moduleName, link, items }) => {
   const nestedItems = Object.values(items).map(({ moduleName, link }) => ({
     label: moduleName,
     link

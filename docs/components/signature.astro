@@ -15,20 +15,20 @@ function parseTokens(tokens) {
   let index = 0;
 
   const parseNode = () => {
-    const ident = tokens[index++]; // Read the current token and increment index
-    let genericArguments = [];
+    const path = tokens[index++]; // Read the current token and increment index
+    let genericTypeParameters = [];
 
     if (tokens[index] === "<") {
       // Check for generics
       index++; // Consume "<"
       while (tokens[index] !== ">") {
-        genericArguments.push(parseNode());
+        genericTypeParameters.push(parseNode());
         if (tokens[index] === ",") index++; // Consume ","
       }
       index++; // Consume ">"
     }
 
-    return { ident, genericArguments };
+    return { path, genericTypeParameters };
   };
 
   return parseNode();

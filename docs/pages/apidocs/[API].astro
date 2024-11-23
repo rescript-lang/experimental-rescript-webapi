@@ -1,5 +1,7 @@
 ---
-import { apiModules, getDoc } from "./utils";
+import * as path from "node:path";
+import { existsSync } from "fs";
+import { apiModules, getDoc, createTypeModuleLink } from "../../utils";
 import StarlightPage from "@astrojs/starlight/components/StarlightPage.astro";
 import { Code } from "@astrojs/starlight/components";
 import { micromark } from "micromark";
@@ -20,7 +22,17 @@ function showRecord(details) {
   return details && details.kind === "record" && details.items.length > 0;
 }
 
-const { moduleName, filePath } = Astro.props;
+function getModuleFileName(typeName) {
+  return `${typeName[0].toUpperCase()}${typeName.slice(1)}`;
+}
+
+function showModule(typeName, filePath) {
+  const moduleFileName = `${getModuleFileName(typeName)}.res`;
+  const potentialPath = path.join(filePath.replace(".res", ""), moduleFileName);
+  return existsSync(potentialPath);
+}
+
+const { moduleName, filePath, link } = Astro.props;
 
 const docInfo = await getDoc(filePath);
 
@@ -76,6 +88,20 @@ const headings = [
               {...type.detail}
             />
           ) : null}
+          {showModule(type.name, filePath) && (
+            <>
+              <h4>Module</h4>
+              <p>
+                There are methods and helpers defined in{" "}
+                <a
+                  href={`${import.meta.env.BASE_URL}/${createTypeModuleLink(link, type.name)}`}
+                >
+                  {getModuleFileName(type.name)}
+                </a>
+                .
+              </p>
+            </>
+          )}
         </div>
       ))
     }

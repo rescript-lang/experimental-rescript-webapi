@@ -1,9 +1,9 @@
 ---
-import { apiModules, getDoc } from "../utils";
-// import StarlightPage from "@astrojs/starlight/components/StarlightPage.astro";
-// import { Code } from "@astrojs/starlight/components";
-// import { micromark } from "micromark";
-// import Record from "../../components/record.astro";
+import { apiModules, getDoc } from "../../../utils";
+import StarlightPage from "@astrojs/starlight/components/StarlightPage.astro";
+import { Code } from "@astrojs/starlight/components";
+import { micromark } from "micromark";
+import Value from "../../../components/value.astro";
 
 export async function getStaticPaths() {
   return apiModules.flatMap((apiModule) => {
@@ -19,7 +19,68 @@ export async function getStaticPaths() {
   });
 }
 
-const name = Astro.props.currentModule.moduleName;
+function showValue(detail) {
+  return (
+    detail?.kind === "signature" && detail?.details?.parameters?.length > 0
+  );
+}
+
+const { filePath, moduleName } = Astro.props.currentModule;
+const docInfo = await getDoc(filePath);
+
+const values = docInfo.items
+  .filter((item) => item.kind === "value")
+  .sort((a, b) => a.name.localeCompare(b.name))
+  .map((value) => {
+    const documentation =
+      value.docstrings && micromark(value.docstrings.join("\n"));
+    return {
+      name: value.name,
+      documentation,
+      signature: value.signature,
+      detail: value.detail,
+    };
+  });
+
+const valueHeadings = values.map((value) => ({
+  depth: 3,
+  slug: value.name,
+  text: value.name,
+}));
+
+const frontmatter = {
+  title: moduleName,
+};
+
+const headings = [
+  {
+    depth: 2,
+    slug: "values",
+    text: "Values",
+  },
+  ...valueHeadings,
+];
 ---
 
-<h1>Yupla {name}</h1>
+<StarlightPage frontmatter={frontmatter} headings={headings}>
+  <h2 id="values">Values</h2>
+  {
+    values.map((value) => (
+      <div class="rescript_value">
+        <h3 id={value.name}>{value.name}</h3>
+        <div set:html={value.documentation} />
+        <Code lang="ReScript" code={value.signature} />
+        {showValue(value.detail) && <Value {...value.detail.details} />}
+      </div>
+    ))
+  }
+  <pre>
+{JSON.stringify(docInfo, null, 4)}
+</pre>
+</StarlightPage>
+<style>
+  pre {
+    max-width: 100%;
+    overflow-x: auto;
+  }
+</style>
