@@ -1,0 +1,114 @@
+---
+import * as path from "node:path";
+import { existsSync } from "fs";
+import { apiModules, getDoc, createTypeModuleLink } from "../../utils";
+import StarlightPage from "@astrojs/starlight/components/StarlightPage.astro";
+import { Code } from "@astrojs/starlight/components";
+import { micromark } from "micromark";
+import Record from "../../components/record.astro";
+
+export async function getStaticPaths() {
+  return apiModules.map((apiModule) => {
+    return {
+      params: {
+        API: apiModule.apiRouteParameter,
+      },
+      props: apiModule,
+    };
+  });
+}
+
+function showRecord(details) {
+  return details && details.kind === "record" && details.items.length > 0;
+}
+
+function getModuleFileName(typeName) {
+  return `${typeName[0].toUpperCase()}${typeName.slice(1)}`;
+}
+
+function showModule(typeName, filePath) {
+  const moduleFileName = `${getModuleFileName(typeName)}.res`;
+  const potentialPath = path.join(filePath.replace(".res", ""), moduleFileName);
+  return existsSync(potentialPath);
+}
+
+const { moduleName, filePath, link } = Astro.props;
+
+const docInfo = await getDoc(filePath);
+
+const types = docInfo.items
+  .filter((item) => item.kind === "type")
+  .sort((a, b) => a.name.localeCompare(b.name))
+  .map((type) => {
+    const documentation =
+      type.docstrings && micromark(type.docstrings.join("\n"));
+    return {
+      name: type.name,
+      documentation,
+      signature: type.signature,
+      detail: type.detail,
+    };
+  });
+
+const typesInOwnModule = new Set(types.map((t) => t.name));
+
+const typeHeadings = types.map((type) => ({
+  depth: 3,
+  slug: type.name,
+  text: type.name,
+}));
+
+const frontmatter = {
+  title: moduleName,
+};
+
+const headings = [
+  {
+    depth: 2,
+    slug: "types",
+    text: "Types",
+  },
+  ...typeHeadings,
+];
+---
+
+<StarlightPage frontmatter={frontmatter} headings={headings}>
+  <div id="apidocs">
+    <h2 id="types">Types</h2>
+    {
+      types.map((type) => (
+        <div class="rescript_type">
+          <h3 id={type.name}>{type.name}</h3>
+          <div set:html={type.documentation} />
+          <Code lang="ReScript" code={type.signature} />
+          {showRecord(type.detail) ? (
+            <Record
+              name={type.name}
+              typesInOwnModule={typesInOwnModule}
+              {...type.detail}
+            />
+          ) : null}
+          {showModule(type.name, filePath) && (
+            <>
+              <h4>Module</h4>
+              <p>
+                There are methods and helpers defined in{" "}
+                <a
+                  href={`${import.meta.env.BASE_URL}/${createTypeModuleLink(link, type.name)}`}
+                >
+                  {getModuleFileName(type.name)}
+                </a>
+                .
+              </p>
+            </>
+          )}
+        </div>
+      ))
+    }
+  </div>
+</StarlightPage>
+<style>
+  #apidocs .rescript_type {
+    margin-block: 2rem;
+  }
+</style>

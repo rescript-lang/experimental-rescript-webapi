@@ -29,7 +29,7 @@
   "scripts": {
     "test": "node tests/index.js",
     "build": "rescript",
-    "format": "rescript format -all && prettier --write ./docs ./tests/index.js ./package.json",
+    "format": "rescript format -all && prettier --write ./tests/index.js ./package.json ./docs/pages",
     "docs": "astro dev",
     "build:docs": "astro build"
   },
@@ -40,7 +40,9 @@
   "devDependencies": {
     "@astrojs/starlight": "^0.29.0",
     "astro": "^4.16.10",
+    "micromark": "^4.0.1",
     "prettier": "^3.3.3",
+    "prettier-plugin-astro": "^0.14.1",
     "sharp": "^0.33.5"
   }
 }

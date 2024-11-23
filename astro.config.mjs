@@ -1,10 +1,30 @@
 import { readFileSync } from "node:fs";
 import { defineConfig } from "astro/config";
 import starlight from "@astrojs/starlight";
+import { apiModules } from "./docs/utils";
 
 const rescriptTM = JSON.parse(
   readFileSync("./docs/assets/rescript.tmLanguage.json", "utf-8"),
 );
+
+const apiSidebarItems  = apiModules.map(({ moduleName, link, items }) => {
+  const nestedItems = Object.values(items).map(({ moduleName, link }) => ({
+    label: moduleName,
+    link
+  }));
+
+  return ({
+    label: moduleName,
+    collapsed: true,
+    items: [
+      {
+        label: `Overview`,
+        link
+      },
+      ...nestedItems
+    ]
+  });
+});
 
 export default defineConfig({
   srcDir: "docs",
@@ -18,24 +38,36 @@ export default defineConfig({
         src: "./docs/assets/rescript-logo.svg",
       },
       social: {
-        github: 'https://github.com/rescript-lang/experimental-rescript-webapi',
+        github: "https://github.com/rescript-lang/experimental-rescript-webapi",
       },
       editLink: {
-        baseUrl: 'https://github.com/rescript-lang/experimental-rescript-webapi/edit/main/',
+        baseUrl:
+          "https://github.com/rescript-lang/experimental-rescript-webapi/edit/main/",
       },
       sidebar: [
         {
-          slug: '',
+          slug: "",
         },
         {
-          slug: 'design-philosophy',
+          slug: "design-philosophy",
         },
         {
-          slug: 'project-status',
+          slug: "project-status",
         },
         {
-          label: 'Contributing',
-          autogenerate: { directory: 'contributing' },
+          label: "Contributing",
+          autogenerate: { directory: "contributing" },
+        },
+        {
+          label: "API Documentation",
+          collapsed: true,
+          items: [
+            {
+              label: "Overview",
+              link: "apidocs",
+            },
+            ...apiSidebarItems,
+          ],
         },
       ],
       customCss: ["./docs/styles/fonts.css", "./docs/styles/theme.css"],
