@@ -2,6 +2,7 @@ import * as path from "node:path";
 import { exec } from "node:child_process";
 import { promisify } from "node:util";
 import { readdirSync, existsSync } from "fs";
+import { micromark } from "micromark";
 
 const execAsync = promisify(exec);
 
@@ -73,7 +74,7 @@ function mapRescriptFile(srcDir, file) {
 const srcDir = path.resolve(process.cwd(), "src");
 export const apiModules = readdirSync(srcDir).filter(f => f.endsWith(".res")).map(r => mapRescriptFile(srcDir, r));
 
-export async function getDoc(absoluteFilePath) {
+async function getRescriptDoc(absoluteFilePath) {
   const { stdout, stderr } = await execAsync(
     `rescript-tools doc ${absoluteFilePath}`,
     {
@@ -84,4 +85,59 @@ export async function getDoc(absoluteFilePath) {
     throw new Error(stderr);
   }
   return JSON.parse(stdout);
+}
+
+export async function getDoc(absoluteFilePath) {
+  const docInfo = await getRescriptDoc(absoluteFilePath);
+
+  const types = docInfo.items
+    .filter((item) => item.kind === "type")
+    .sort((a, b) => a.name.localeCompare(b.name))
+    .map((type) => {
+      const documentation =
+        type.docstrings && micromark(type.docstrings.join("\n"));
+      return {
+        name: type.name,
+        documentation,
+        signature: type.signature,
+        detail: type.detail,
+      };
+    });
+
+  const typesInOwnModule = new Set(types.map((t) => t.name));
+
+  const typeHeadings = types.map((type) => ({
+    depth: 3,
+    slug: type.name,
+    text: type.name,
+  }));
+
+  const values = docInfo.items
+    .filter((item) => item.kind === "value")
+    .sort((a, b) => a.name.localeCompare(b.name))
+    .map((value) => {
+      const documentation =
+        value.docstrings && micromark(value.docstrings.join("\n"));
+      return {
+        name: value.name,
+        documentation,
+        signature: value.signature,
+        detail: value.detail,
+      };
+    });
+
+  const valueHeadings = values.map((value) => ({
+    depth: 3,
+    slug: value.name,
+    text: value.name,
+  }));
+
+  return {
+    docInfo,
+    types,
+    typesInOwnModule,
+    typeHeadings,
+    values,
+    valueHeadings,
+  };
 }

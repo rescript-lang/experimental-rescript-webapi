@@ -6,6 +6,9 @@ external fromString: string => fillStyle = "%identity"
 external fromCanvasGradient: canvasGradient => fillStyle = "%identity"
 external fromCanvasPattern: canvasGradient => fillStyle = "%identity"
 
+/**
+Represents a decoded version of the abstract `fillStyle` type, used in Context2D.
+ */
 type decoded =
   | String(string)
   | CanvasGradient(canvasGradient)

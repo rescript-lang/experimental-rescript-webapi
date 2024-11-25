@@ -2,6 +2,8 @@
 ::backdrop {
   --sl-font: "Inter", "Roboto Mono";
   --sl-sidebar-width: 23rem;
+  --sl-text-3xl: 1.5rem;
+  --sl-text-2xl: 1.3rem;
 }
 
 /*
