@@ -388,16 +388,46 @@ When supplied, options's navigationUI member indicates whether showing navigatio
   external scrollBy2: (T.t, ~x: float, ~y: float) => unit = "scrollBy"
 
   /**
+`scrollIntoView()`
+
+Scrolls the element's ancestor containers such that the element on which scrollIntoView() is called is visible to the user.
+
+```res
+element->Element.scrollIntoView()
+```
+
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/scrollIntoView)
 */
   @send
-  external scrollIntoView: (T.t, ~arg: bool=?) => unit = "scrollIntoView"
+  external scrollIntoView: T.t => unit = "scrollIntoView"
 
   /**
+`scrollIntoView(true)`
+
+Scrolls the element's ancestor containers such that the element on which scrollIntoView() is called is visible to the user.
+
+```res
+element->Element.scrollIntoView_alignToTop()
+```
+
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/scrollIntoView)
 */
   @send
-  external scrollIntoView2: (T.t, ~arg: scrollIntoViewOptions=?) => unit = "scrollIntoView"
+  external scrollIntoView_alignToTop: (T.t, @as(json`true`) _) => unit = "scrollIntoView"
+
+  /**
+`scrollIntoView({ behavior: "smooth" })`
+
+Scrolls the element's ancestor containers such that the element on which scrollIntoView() is called is visible to the user.
+
+```res
+element->Element.scrollIntoView_withOptions({ behavior: DOMAPI.Smooth })
+```
+
+[Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/scrollIntoView)
+*/
+  @send
+  external scrollIntoView_withOptions: (T.t, scrollIntoViewOptions) => unit = "scrollIntoView"
 
   /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/scrollTo)
