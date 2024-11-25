@@ -535,7 +535,7 @@ The event listener is appended to target's event listener list and is not append
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/EventTarget/addEventListener)
 */
 external addEventListener: (
-  ~type_: string,
+  ~type_: eventType,
   ~callback: eventListener<'event>,
   ~options: addEventListenerOptions=?,
 ) => unit = "addEventListener"
@@ -556,10 +556,10 @@ If an AbortSignal is passed for options's signal, then the event listener will b
 The event listener is appended to target's event listener list and is not appended if it has the same type, callback, and capture.
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/EventTarget/addEventListener)
 */
-external addEventListener2: (
-  ~type_: string,
+external addEventListener_useCapture: (
+  ~type_: eventType,
   ~callback: eventListener<'event>,
-  ~options: bool=?,
+  @as(json`true`) _,
 ) => unit = "addEventListener"
 
 /**
@@ -576,10 +576,10 @@ external removeEventListener: (
 Removes the event listener in target's event listener list with the same type, callback, and options.
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/EventTarget/removeEventListener)
 */
-external removeEventListener2: (
-  ~type_: string,
+external removeEventListener_useCapture: (
+  ~type_: eventType,
   ~callback: eventListener<'event>,
-  ~options: bool=?,
+  @as(json`true`) _,
 ) => unit = "removeEventListener"
 
 /**
