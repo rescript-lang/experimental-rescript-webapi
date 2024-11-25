@@ -1,7 +1,7 @@
 ---
 import { Code } from "@astrojs/starlight/components";
 import SignatureItem from "./signatureItem.astro";
-const { value } = Astro.props;
+const { value, typesInOwnModule } = Astro.props;
 const details = value.detail?.details || null;
 
 function showValue(detail) {
@@ -19,10 +19,10 @@ function showValue(detail) {
       <div class="value_detail">
         <h4>Parameters</h4>
         {details.parameters.map((p) => (
-          <SignatureItem item={p} />
+          <SignatureItem item={p}  typesInOwnModule={typesInOwnModule} />
         ))}
         <h4>Return type</h4>
-        <SignatureItem item={details.returnType} />
+        <SignatureItem item={details.returnType}  typesInOwnModule={typesInOwnModule} />
       </div>
     )
   }

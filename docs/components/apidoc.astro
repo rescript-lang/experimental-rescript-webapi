@@ -52,7 +52,7 @@ if (values.length > 0) {
       values.length > 0 && (
         <>
           <h2 id="values">Values</h2>
-          {values.map((value) => <Value value={value} />)}
+          {values.map((value) => <Value value={value}  typesInOwnModule={typesInOwnModule} />)}
         </>
       )
     }
