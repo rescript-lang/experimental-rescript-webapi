@@ -84,7 +84,7 @@ Returns the first element that is a descendant of node that matches selectors.
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Document/querySelector)
 */
 @send
-external querySelector: (document, string) => element = "querySelector"
+external querySelector: (document, string) => Null.t<element> = "querySelector"
 
 /**
 Returns all element descendants of node that match selectors.

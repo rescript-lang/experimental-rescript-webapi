@@ -66,7 +66,7 @@ Returns the first element that is a descendant of node that matches selectors.
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/DocumentFragment/querySelector)
 */
   @send
-  external querySelector: (T.t, string) => element = "querySelector"
+  external querySelector: (T.t, string) => Null.t<element> = "querySelector"
 
   /**
 Returns all element descendants of node that match selectors.
