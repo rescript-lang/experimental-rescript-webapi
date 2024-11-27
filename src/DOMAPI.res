@@ -7131,6 +7131,13 @@ type range = {
   commonAncestorContainer: node,
 }
 
+/**
+[See StaticRange on MDN](https://developer.mozilla.org/docs/Web/API/StaticRange)
+*/
+type staticRange = {
+  ...abstractRange,
+}
+
 type nodeFilter = {}
 
 /**
