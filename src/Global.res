@@ -535,8 +535,8 @@ The event listener is appended to target's event listener list and is not append
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/EventTarget/addEventListener)
 */
 external addEventListener: (
-  ~type_: eventType,
-  ~callback: eventListener<'event>,
+  eventType,
+  eventListener<'event>,
   ~options: addEventListenerOptions=?,
 ) => unit = "addEventListener"
 
@@ -557,8 +557,8 @@ The event listener is appended to target's event listener list and is not append
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/EventTarget/addEventListener)
 */
 external addEventListener_useCapture: (
-  ~type_: eventType,
-  ~callback: eventListener<'event>,
+  eventType,
+  eventListener<'event>,
   @as(json`true`) _,
 ) => unit = "addEventListener"
 
@@ -567,8 +567,8 @@ Removes the event listener in target's event listener list with the same type, c
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/EventTarget/removeEventListener)
 */
 external removeEventListener: (
-  ~type_: string,
-  ~callback: eventListener<'event>,
+  string,
+  eventListener<'event>,
   ~options: eventListenerOptions=?,
 ) => unit = "removeEventListener"
 
@@ -577,8 +577,8 @@ Removes the event listener in target's event listener list with the same type, c
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/EventTarget/removeEventListener)
 */
 external removeEventListener_useCapture: (
-  ~type_: eventType,
-  ~callback: eventListener<'event>,
+  eventType,
+  eventListener<'event>,
   @as(json`true`) _,
 ) => unit = "removeEventListener"
 
