@@ -52,6 +52,10 @@ export default defineConfig({
           slug: "design-philosophy",
         },
         {
+          label: "Examples",
+          link: "examples",
+        },
+        {
           slug: "project-status",
         },
         {
