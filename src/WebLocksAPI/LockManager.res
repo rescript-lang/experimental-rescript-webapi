@@ -9,7 +9,7 @@ external request: (
   lockManager,
   ~name: string,
   ~callback: lockGrantedCallback,
-) => Promise.t<JSON.t> = "request"
+) => promise<JSON.t> = "request"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/LockManager/request)
@@ -20,10 +20,10 @@ external request2: (
   ~name: string,
   ~options: lockOptions,
   ~callback: lockGrantedCallback,
-) => Promise.t<JSON.t> = "request"
+) => promise<JSON.t> = "request"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/LockManager/query)
 */
 @send
-external query: lockManager => Promise.t<lockManagerSnapshot> = "query"
+external query: lockManager => promise<lockManagerSnapshot> = "query"

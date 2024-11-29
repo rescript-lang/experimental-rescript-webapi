@@ -7,7 +7,7 @@ open MediaCapabilitiesAPI
 external decodingInfo: (
   mediaCapabilities,
   mediaDecodingConfiguration,
-) => Promise.t<mediaCapabilitiesDecodingInfo> = "decodingInfo"
+) => promise<mediaCapabilitiesDecodingInfo> = "decodingInfo"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/MediaCapabilities/encodingInfo)
@@ -16,4 +16,4 @@ external decodingInfo: (
 external encodingInfo: (
   mediaCapabilities,
   mediaEncodingConfiguration,
-) => Promise.t<mediaCapabilitiesEncodingInfo> = "encodingInfo"
+) => promise<mediaCapabilitiesEncodingInfo> = "encodingInfo"

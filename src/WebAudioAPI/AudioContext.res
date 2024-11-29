@@ -22,19 +22,19 @@ external getOutputTimestamp: audioContext => audioTimestamp = "getOutputTimestam
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/AudioContext/resume)
 */
 @send
-external resume: audioContext => Promise.t<unit> = "resume"
+external resume: audioContext => promise<unit> = "resume"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/AudioContext/suspend)
 */
 @send
-external suspend: audioContext => Promise.t<unit> = "suspend"
+external suspend: audioContext => promise<unit> = "suspend"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/AudioContext/close)
 */
 @send
-external close: audioContext => Promise.t<unit> = "close"
+external close: audioContext => promise<unit> = "close"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/AudioContext/createMediaElementSource)

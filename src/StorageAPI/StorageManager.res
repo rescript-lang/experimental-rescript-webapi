@@ -5,22 +5,22 @@ open FileAPI
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/StorageManager/persisted)
 */
 @send
-external persisted: storageManager => Promise.t<bool> = "persisted"
+external persisted: storageManager => promise<bool> = "persisted"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/StorageManager/persist)
 */
 @send
-external persist: storageManager => Promise.t<bool> = "persist"
+external persist: storageManager => promise<bool> = "persist"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/StorageManager/estimate)
 */
 @send
-external estimate: storageManager => Promise.t<storageEstimate> = "estimate"
+external estimate: storageManager => promise<storageEstimate> = "estimate"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/StorageManager/getDirectory)
 */
 @send
-external getDirectory: storageManager => Promise.t<fileSystemDirectoryHandle> = "getDirectory"
+external getDirectory: storageManager => promise<fileSystemDirectoryHandle> = "getDirectory"

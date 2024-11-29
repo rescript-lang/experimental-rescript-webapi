@@ -353,14 +353,14 @@ When supplied, options's navigationUI member indicates whether showing navigatio
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/requestFullscreen)
 */
   @send
-  external requestFullscreen: (T.t, ~options: fullscreenOptions=?) => Promise.t<unit> =
+  external requestFullscreen: (T.t, ~options: fullscreenOptions=?) => promise<unit> =
     "requestFullscreen"
 
   /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/requestPointerLock)
 */
   @send
-  external requestPointerLock: (T.t, ~options: pointerLockOptions=?) => Promise.t<unit> =
+  external requestPointerLock: (T.t, ~options: pointerLockOptions=?) => promise<unit> =
     "requestPointerLock"
 
   /**

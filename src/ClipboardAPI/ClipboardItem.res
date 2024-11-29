@@ -12,7 +12,7 @@ external make: (~items: any, ~options: clipboardItemOptions=?) => clipboardItem 
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/ClipboardItem/getType)
 */
 @send
-external getType: (clipboardItem, string) => Promise.t<blob> = "getType"
+external getType: (clipboardItem, string) => promise<blob> = "getType"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/ClipboardItem/supports_static)

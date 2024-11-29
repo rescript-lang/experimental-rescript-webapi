@@ -16,7 +16,7 @@ include EventTarget.Impl({
 @scope("Notification")
 external requestPermission: (
   ~deprecatedCallback: notificationPermissionCallback=?,
-) => Promise.t<notificationPermission> = "requestPermission"
+) => promise<notificationPermission> = "requestPermission"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Notification/close)

@@ -76,7 +76,7 @@ external copyTo: (
   videoFrame,
   ~destination: ArrayBuffer.t,
   ~options: videoFrameCopyToOptions=?,
-) => Promise.t<array<planeLayout>> = "copyTo"
+) => promise<array<planeLayout>> = "copyTo"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/VideoFrame/copyTo)
@@ -86,7 +86,7 @@ external copyTo2: (
   videoFrame,
   ~destination: sharedArrayBuffer,
   ~options: videoFrameCopyToOptions=?,
-) => Promise.t<array<planeLayout>> = "copyTo"
+) => promise<array<planeLayout>> = "copyTo"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/VideoFrame/copyTo)
@@ -96,7 +96,7 @@ external copyTo3: (
   videoFrame,
   ~destination: DataView.t,
   ~options: videoFrameCopyToOptions=?,
-) => Promise.t<array<planeLayout>> = "copyTo"
+) => promise<array<planeLayout>> = "copyTo"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/VideoFrame/clone)

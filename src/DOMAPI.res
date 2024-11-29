@@ -9524,11 +9524,11 @@ type rec animation = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Animation/ready)
     */
-  ready: Promise.t<animation>,
+  ready: promise<animation>,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Animation/finished)
     */
-  finished: Promise.t<animation>,
+  finished: promise<animation>,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Animation/startTime)
     */

@@ -41,4 +41,4 @@ external getSettings: mediaStreamTrack => mediaTrackSettings = "getSettings"
 external applyConstraints: (
   mediaStreamTrack,
   ~constraints: mediaTrackConstraints=?,
-) => Promise.t<unit> = "applyConstraints"
+) => promise<unit> = "applyConstraints"

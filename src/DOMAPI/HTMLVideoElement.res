@@ -16,7 +16,7 @@ external getVideoPlaybackQuality: htmlVideoElement => videoPlaybackQuality =
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLVideoElement/requestPictureInPicture)
 */
 @send
-external requestPictureInPicture: htmlVideoElement => Promise.t<pictureInPictureWindow> =
+external requestPictureInPicture: htmlVideoElement => promise<pictureInPictureWindow> =
   "requestPictureInPicture"
 
 /**

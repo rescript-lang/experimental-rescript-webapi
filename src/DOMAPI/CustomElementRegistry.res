@@ -21,7 +21,7 @@ external getName: (customElementRegistry, customElementConstructor) => string = 
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CustomElementRegistry/whenDefined)
 */
 @send
-external whenDefined: (customElementRegistry, string) => Promise.t<customElementConstructor> =
+external whenDefined: (customElementRegistry, string) => promise<customElementConstructor> =
   "whenDefined"
 
 /**

@@ -21,16 +21,16 @@ external make2: (~numberOfChannels: int, ~length: int, ~sampleRate: float) => of
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/OfflineAudioContext/startRendering)
 */
 @send
-external startRendering: offlineAudioContext => Promise.t<audioBuffer> = "startRendering"
+external startRendering: offlineAudioContext => promise<audioBuffer> = "startRendering"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/OfflineAudioContext/resume)
 */
 @send
-external resume: offlineAudioContext => Promise.t<unit> = "resume"
+external resume: offlineAudioContext => promise<unit> = "resume"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/OfflineAudioContext/suspend)
 */
 @send
-external suspend: (offlineAudioContext, float) => Promise.t<unit> = "suspend"
+external suspend: (offlineAudioContext, float) => promise<unit> = "suspend"

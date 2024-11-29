@@ -48,37 +48,37 @@ external make7: (~body: string=?, ~init: responseInit=?) => response = "Response
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Request/arrayBuffer)
 */
 @send
-external arrayBuffer: response => Promise.t<ArrayBuffer.t> = "arrayBuffer"
+external arrayBuffer: response => promise<ArrayBuffer.t> = "arrayBuffer"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Request/blob)
 */
 @send
-external blob: response => Promise.t<blob> = "blob"
+external blob: response => promise<blob> = "blob"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Request/bytes)
 */
 @send
-external bytes: response => Promise.t<array<int>> = "bytes"
+external bytes: response => promise<array<int>> = "bytes"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Request/formData)
 */
 @send
-external formData: response => Promise.t<formData> = "formData"
+external formData: response => promise<formData> = "formData"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Request/json)
 */
 @send
-external json: response => Promise.t<JSON.t> = "json"
+external json: response => promise<JSON.t> = "json"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Request/text)
 */
 @send
-external text: response => Promise.t<string> = "text"
+external text: response => promise<string> = "text"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Response/error_static)

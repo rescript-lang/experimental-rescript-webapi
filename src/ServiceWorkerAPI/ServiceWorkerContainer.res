@@ -13,7 +13,7 @@ external register: (
   serviceWorkerContainer,
   ~scriptURL: string,
   ~options: registrationOptions=?,
-) => Promise.t<serviceWorkerRegistration> = "register"
+) => promise<serviceWorkerRegistration> = "register"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/ServiceWorkerContainer/getRegistration)
@@ -28,7 +28,7 @@ external getRegistration: (
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/ServiceWorkerContainer/getRegistrations)
 */
 @send
-external getRegistrations: serviceWorkerContainer => Promise.t<array<serviceWorkerRegistration>> =
+external getRegistrations: serviceWorkerContainer => promise<array<serviceWorkerRegistration>> =
   "getRegistrations"
 
 /**

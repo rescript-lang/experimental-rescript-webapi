@@ -5,7 +5,7 @@ external asFileSystemHandle: fileSystemDirectoryHandle => fileSystemHandle = "%i
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/FileSystemHandle/isSameEntry)
 */
 @send
-external isSameEntry: (fileSystemDirectoryHandle, fileSystemHandle) => Promise.t<bool> =
+external isSameEntry: (fileSystemDirectoryHandle, fileSystemHandle) => promise<bool> =
   "isSameEntry"
 
 /**
@@ -16,7 +16,7 @@ external getFileHandle: (
   fileSystemDirectoryHandle,
   ~name: string,
   ~options: fileSystemGetFileOptions=?,
-) => Promise.t<fileSystemFileHandle> = "getFileHandle"
+) => promise<fileSystemFileHandle> = "getFileHandle"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/FileSystemDirectoryHandle/getDirectoryHandle)
@@ -26,7 +26,7 @@ external getDirectoryHandle: (
   fileSystemDirectoryHandle,
   ~name: string,
   ~options: fileSystemGetDirectoryOptions=?,
-) => Promise.t<fileSystemDirectoryHandle> = "getDirectoryHandle"
+) => promise<fileSystemDirectoryHandle> = "getDirectoryHandle"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/FileSystemDirectoryHandle/removeEntry)
@@ -36,11 +36,11 @@ external removeEntry: (
   fileSystemDirectoryHandle,
   ~name: string,
   ~options: fileSystemRemoveOptions=?,
-) => Promise.t<unit> = "removeEntry"
+) => promise<unit> = "removeEntry"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/FileSystemDirectoryHandle/resolve)
 */
 @send
-external resolve: (fileSystemDirectoryHandle, fileSystemHandle) => Promise.t<array<string>> =
+external resolve: (fileSystemDirectoryHandle, fileSystemHandle) => promise<array<string>> =
   "resolve"

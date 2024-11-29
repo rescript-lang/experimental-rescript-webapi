@@ -465,7 +465,7 @@ export async function emitRescriptBindings(webidl: Browser.WebIdl) {
         return "array<clipboardItem>";
 
       case "Promise":
-        return "Promise.t";
+        return "promise";
 
       case "ArrayBuffer":
         return "ArrayBuffer.t";

@@ -360,7 +360,7 @@ Stops document's fullscreen element from being displayed fullscreen and resolves
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Document/exitFullscreen)
 */
 @send
-external exitFullscreen: document => Promise.t<unit> = "exitFullscreen"
+external exitFullscreen: document => promise<unit> = "exitFullscreen"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Document/parseHTMLUnsafe_static)
@@ -432,7 +432,7 @@ external hasFocus: document => bool = "hasFocus"
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Document/exitPictureInPicture)
 */
 @send
-external exitPictureInPicture: document => Promise.t<unit> = "exitPictureInPicture"
+external exitPictureInPicture: document => promise<unit> = "exitPictureInPicture"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Document/exitPointerLock)
@@ -451,10 +451,10 @@ external getSelection: document => selection = "getSelection"
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Document/hasStorageAccess)
 */
 @send
-external hasStorageAccess: document => Promise.t<bool> = "hasStorageAccess"
+external hasStorageAccess: document => promise<bool> = "hasStorageAccess"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Document/requestStorageAccess)
 */
 @send
-external requestStorageAccess: document => Promise.t<unit> = "requestStorageAccess"
+external requestStorageAccess: document => promise<unit> = "requestStorageAccess"

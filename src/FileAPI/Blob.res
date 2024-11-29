@@ -28,19 +28,19 @@ module Impl = (
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Blob/text)
 */
   @send
-  external text: T.t => Promise.t<string> = "text"
+  external text: T.t => promise<string> = "text"
 
   /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Blob/arrayBuffer)
 */
   @send
-  external arrayBuffer: T.t => Promise.t<ArrayBuffer.t> = "arrayBuffer"
+  external arrayBuffer: T.t => promise<ArrayBuffer.t> = "arrayBuffer"
 
   /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Blob/bytes)
 */
   @send
-  external bytes: T.t => Promise.t<array<int>> = "bytes"
+  external bytes: T.t => promise<array<int>> = "bytes"
 }
 
 include Impl({

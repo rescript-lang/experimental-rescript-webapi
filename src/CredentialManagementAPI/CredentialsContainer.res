@@ -7,13 +7,13 @@ open CredentialManagementAPI
 external get: (
   credentialsContainer,
   ~options: credentialRequestOptions=?,
-) => Promise.t<credential> = "get"
+) => promise<credential> = "get"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CredentialsContainer/store)
 */
 @send
-external store: (credentialsContainer, credential) => Promise.t<unit> = "store"
+external store: (credentialsContainer, credential) => promise<unit> = "store"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CredentialsContainer/create)
@@ -22,10 +22,10 @@ external store: (credentialsContainer, credential) => Promise.t<unit> = "store"
 external create: (
   credentialsContainer,
   ~options: credentialCreationOptions=?,
-) => Promise.t<credential> = "create"
+) => promise<credential> = "create"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CredentialsContainer/preventSilentAccess)
 */
 @send
-external preventSilentAccess: credentialsContainer => Promise.t<unit> = "preventSilentAccess"
+external preventSilentAccess: credentialsContainer => promise<unit> = "preventSilentAccess"

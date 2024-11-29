@@ -10,7 +10,7 @@ external encrypt: (
   ~algorithm: algorithmIdentifier,
   ~key: cryptoKey,
   ~data: bufferSource,
-) => Promise.t<ArrayBuffer.t> = "encrypt"
+) => promise<ArrayBuffer.t> = "encrypt"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/SubtleCrypto/decrypt)
@@ -21,7 +21,7 @@ external decrypt: (
   ~algorithm: algorithmIdentifier,
   ~key: cryptoKey,
   ~data: bufferSource,
-) => Promise.t<ArrayBuffer.t> = "decrypt"
+) => promise<ArrayBuffer.t> = "decrypt"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/SubtleCrypto/sign)
@@ -32,7 +32,7 @@ external sign: (
   ~algorithm: algorithmIdentifier,
   ~key: cryptoKey,
   ~data: bufferSource,
-) => Promise.t<JSON.t> = "sign"
+) => promise<JSON.t> = "sign"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/SubtleCrypto/verify)
@@ -44,7 +44,7 @@ external verify: (
   ~key: cryptoKey,
   ~signature: bufferSource,
   ~data: bufferSource,
-) => Promise.t<JSON.t> = "verify"
+) => promise<JSON.t> = "verify"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/SubtleCrypto/digest)
@@ -54,7 +54,7 @@ external digest: (
   subtleCrypto,
   ~algorithm: algorithmIdentifier,
   ~data: bufferSource,
-) => Promise.t<JSON.t> = "digest"
+) => promise<JSON.t> = "digest"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/SubtleCrypto/generateKey)
@@ -65,7 +65,7 @@ external generateKey: (
   ~algorithm: algorithm,
   ~extractable: bool,
   ~keyUsages: array<keyUsage>,
-) => Promise.t<JSON.t> = "generateKey"
+) => promise<JSON.t> = "generateKey"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/SubtleCrypto/generateKey)
@@ -76,7 +76,7 @@ external generateKey2: (
   ~algorithm: string,
   ~extractable: bool,
   ~keyUsages: array<keyUsage>,
-) => Promise.t<JSON.t> = "generateKey"
+) => promise<JSON.t> = "generateKey"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/SubtleCrypto/deriveKey)
@@ -89,7 +89,7 @@ external deriveKey: (
   ~derivedKeyType: algorithmIdentifier,
   ~extractable: bool,
   ~keyUsages: array<keyUsage>,
-) => Promise.t<JSON.t> = "deriveKey"
+) => promise<JSON.t> = "deriveKey"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/SubtleCrypto/deriveBits)
@@ -100,7 +100,7 @@ external deriveBits: (
   ~algorithm: algorithm,
   ~baseKey: cryptoKey,
   ~length: int=?,
-) => Promise.t<ArrayBuffer.t> = "deriveBits"
+) => promise<ArrayBuffer.t> = "deriveBits"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/SubtleCrypto/deriveBits)
@@ -111,7 +111,7 @@ external deriveBits2: (
   ~algorithm: string,
   ~baseKey: cryptoKey,
   ~length: int=?,
-) => Promise.t<ArrayBuffer.t> = "deriveBits"
+) => promise<ArrayBuffer.t> = "deriveBits"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/SubtleCrypto/importKey)
@@ -124,13 +124,13 @@ external importKey: (
   ~algorithm: algorithmIdentifier,
   ~extractable: bool,
   ~keyUsages: array<keyUsage>,
-) => Promise.t<cryptoKey> = "importKey"
+) => promise<cryptoKey> = "importKey"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/SubtleCrypto/exportKey)
 */
 @send
-external exportKey: (subtleCrypto, ~format: keyFormat, ~key: cryptoKey) => Promise.t<JSON.t> =
+external exportKey: (subtleCrypto, ~format: keyFormat, ~key: cryptoKey) => promise<JSON.t> =
   "exportKey"
 
 /**
@@ -143,7 +143,7 @@ external wrapKey: (
   ~key: cryptoKey,
   ~wrappingKey: cryptoKey,
   ~wrapAlgorithm: algorithm,
-) => Promise.t<JSON.t> = "wrapKey"
+) => promise<JSON.t> = "wrapKey"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/SubtleCrypto/wrapKey)
@@ -155,7 +155,7 @@ external wrapKey2: (
   ~key: cryptoKey,
   ~wrappingKey: cryptoKey,
   ~wrapAlgorithm: string,
-) => Promise.t<JSON.t> = "wrapKey"
+) => promise<JSON.t> = "wrapKey"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/SubtleCrypto/unwrapKey)
@@ -170,4 +170,4 @@ external unwrapKey: (
   ~unwrappedKeyAlgorithm: algorithmIdentifier,
   ~extractable: bool,
   ~keyUsages: array<keyUsage>,
-) => Promise.t<cryptoKey> = "unwrapKey"
+) => promise<cryptoKey> = "unwrapKey"

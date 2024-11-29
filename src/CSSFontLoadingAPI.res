@@ -70,7 +70,7 @@ type rec fontFace = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/FontFace/loaded)
     */
-  loaded: Promise.t<fontFace>,
+  loaded: promise<fontFace>,
 }
 
 /**
@@ -81,7 +81,7 @@ type rec fontFaceSet = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/FontFaceSet/ready)
     */
-  ready: Promise.t<fontFaceSet>,
+  ready: promise<fontFaceSet>,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/FontFaceSet/status)
     */

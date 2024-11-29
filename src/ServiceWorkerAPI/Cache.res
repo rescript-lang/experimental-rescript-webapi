@@ -23,7 +23,7 @@ external matchAll: (
   cache,
   ~request: request=?,
   ~options: cacheQueryOptions=?,
-) => Promise.t<array<response>> = "matchAll"
+) => promise<array<response>> = "matchAll"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Cache/matchAll)
@@ -33,50 +33,50 @@ external matchAll2: (
   cache,
   ~request: string=?,
   ~options: cacheQueryOptions=?,
-) => Promise.t<array<response>> = "matchAll"
+) => promise<array<response>> = "matchAll"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Cache/add)
 */
 @send
-external add: (cache, request) => Promise.t<unit> = "add"
+external add: (cache, request) => promise<unit> = "add"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Cache/add)
 */
 @send
-external add2: (cache, string) => Promise.t<unit> = "add"
+external add2: (cache, string) => promise<unit> = "add"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Cache/addAll)
 */
 @send
-external addAll: (cache, array<requestInfo>) => Promise.t<unit> = "addAll"
+external addAll: (cache, array<requestInfo>) => promise<unit> = "addAll"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Cache/put)
 */
 @send
-external put: (cache, ~request: request, ~response: response) => Promise.t<unit> = "put"
+external put: (cache, ~request: request, ~response: response) => promise<unit> = "put"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Cache/put)
 */
 @send
-external put2: (cache, ~request: string, ~response: response) => Promise.t<unit> = "put"
+external put2: (cache, ~request: string, ~response: response) => promise<unit> = "put"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Cache/delete)
 */
 @send
-external delete: (cache, ~request: request, ~options: cacheQueryOptions=?) => Promise.t<bool> =
+external delete: (cache, ~request: request, ~options: cacheQueryOptions=?) => promise<bool> =
   "delete"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Cache/delete)
 */
 @send
-external delete2: (cache, ~request: string, ~options: cacheQueryOptions=?) => Promise.t<bool> =
+external delete2: (cache, ~request: string, ~options: cacheQueryOptions=?) => promise<bool> =
   "delete"
 
 /**
@@ -87,7 +87,7 @@ external keys: (
   cache,
   ~request: request=?,
   ~options: cacheQueryOptions=?,
-) => Promise.t<array<request>> = "keys"
+) => promise<array<request>> = "keys"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Cache/keys)
@@ -97,4 +97,4 @@ external keys2: (
   cache,
   ~request: string=?,
   ~options: cacheQueryOptions=?,
-) => Promise.t<array<request>> = "keys"
+) => promise<array<request>> = "keys"

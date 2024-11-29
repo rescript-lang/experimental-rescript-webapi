@@ -19,7 +19,7 @@ external deleteDatabase: (idbFactory, string) => idbOpenDBRequest = "deleteDatab
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/IDBFactory/databases)
 */
 @send
-external databases: idbFactory => Promise.t<array<idbDatabaseInfo>> = "databases"
+external databases: idbFactory => promise<array<idbDatabaseInfo>> = "databases"
 
 /**
 Compares two values as keys. Returns -1 if key1 precedes key2, 1 if key2 precedes key1, and 0 if the keys are equal.
