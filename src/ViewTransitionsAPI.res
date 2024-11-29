@@ -9,15 +9,15 @@ type viewTransition = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/ViewTransition/updateCallbackDone)
     */
-  updateCallbackDone: Promise.t<unit>,
+  updateCallbackDone: promise<unit>,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/ViewTransition/ready)
     */
-  ready: Promise.t<unit>,
+  ready: promise<unit>,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/ViewTransition/finished)
     */
-  finished: Promise.t<unit>,
+  finished: promise<unit>,
 }
 
-type viewTransitionUpdateCallback = Promise.t<JSON.t>
+type viewTransitionUpdateCallback = promise<JSON.t>

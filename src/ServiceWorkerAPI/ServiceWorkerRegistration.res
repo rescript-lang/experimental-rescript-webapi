@@ -10,13 +10,13 @@ include EventTarget.Impl({
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/ServiceWorkerRegistration/update)
 */
 @send
-external update: serviceWorkerRegistration => Promise.t<unit> = "update"
+external update: serviceWorkerRegistration => promise<unit> = "update"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/ServiceWorkerRegistration/unregister)
 */
 @send
-external unregister: serviceWorkerRegistration => Promise.t<bool> = "unregister"
+external unregister: serviceWorkerRegistration => promise<bool> = "unregister"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/ServiceWorkerRegistration/showNotification)
@@ -26,7 +26,7 @@ external showNotification: (
   serviceWorkerRegistration,
   ~title: string,
   ~options: notificationOptions=?,
-) => Promise.t<unit> = "showNotification"
+) => promise<unit> = "showNotification"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/ServiceWorkerRegistration/getNotifications)
@@ -35,4 +35,4 @@ external showNotification: (
 external getNotifications: (
   serviceWorkerRegistration,
   ~filter: getNotificationOptions=?,
-) => Promise.t<array<notification>> = "getNotifications"
+) => promise<array<notification>> = "getNotifications"

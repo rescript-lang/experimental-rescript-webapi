@@ -74,7 +74,7 @@ type mediaKeySession = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/MediaKeySession/closed)
     */
-  closed: Promise.t<mediaKeySessionClosedReason>,
+  closed: promise<mediaKeySessionClosedReason>,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/MediaKeySession/keyStatuses)
     */

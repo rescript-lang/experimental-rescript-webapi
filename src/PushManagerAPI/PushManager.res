@@ -7,13 +7,13 @@ open PushManagerAPI
 external subscribe: (
   pushManager,
   ~options: pushSubscriptionOptionsInit=?,
-) => Promise.t<pushSubscription> = "subscribe"
+) => promise<pushSubscription> = "subscribe"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/PushManager/getSubscription)
 */
 @send
-external getSubscription: pushManager => Promise.t<pushSubscription> = "getSubscription"
+external getSubscription: pushManager => promise<pushSubscription> = "getSubscription"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/PushManager/permissionState)
@@ -22,4 +22,4 @@ external getSubscription: pushManager => Promise.t<pushSubscription> = "getSubsc
 external permissionState: (
   pushManager,
   ~options: pushSubscriptionOptionsInit=?,
-) => Promise.t<permissionState> = "permissionState"
+) => promise<permissionState> = "permissionState"

@@ -138,5 +138,5 @@ module Impl = (
     ~audioData: ArrayBuffer.t,
     ~successCallback: decodeSuccessCallback=?,
     ~errorCallback: decodeErrorCallback=?,
-  ) => Promise.t<audioBuffer> = "decodeAudioData"
+  ) => promise<audioBuffer> = "decodeAudioData"
 }

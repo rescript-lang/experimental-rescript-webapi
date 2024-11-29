@@ -9,13 +9,13 @@ open WebMIDIAPI
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Navigator/setAppBadge)
 */
 @send
-external setAppBadge: (navigator, ~contents: int=?) => Promise.t<unit> = "setAppBadge"
+external setAppBadge: (navigator, ~contents: int=?) => promise<unit> = "setAppBadge"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Navigator/clearAppBadge)
 */
 @send
-external clearAppBadge: navigator => Promise.t<unit> = "clearAppBadge"
+external clearAppBadge: navigator => promise<unit> = "clearAppBadge"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Navigator/registerProtocolHandler)
@@ -74,7 +74,7 @@ external requestMediaKeySystemAccess: (
   navigator,
   ~keySystem: string,
   ~supportedConfigurations: array<mediaKeySystemConfiguration>,
-) => Promise.t<mediaKeySystemAccess> = "requestMediaKeySystemAccess"
+) => promise<mediaKeySystemAccess> = "requestMediaKeySystemAccess"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Navigator/getGamepads)
@@ -98,7 +98,7 @@ external vibrate2: (navigator, array<int>) => bool = "vibrate"
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Navigator/share)
 */
 @send
-external share: (navigator, ~data: shareData=?) => Promise.t<unit> = "share"
+external share: (navigator, ~data: shareData=?) => promise<unit> = "share"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Navigator/canShare)
@@ -110,5 +110,5 @@ external canShare: (navigator, ~data: shareData=?) => bool = "canShare"
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Navigator/requestMIDIAccess)
 */
 @send
-external requestMIDIAccess: (navigator, ~options: midiOptions=?) => Promise.t<midiAccess> =
+external requestMIDIAccess: (navigator, ~options: midiOptions=?) => promise<midiAccess> =
   "requestMIDIAccess"

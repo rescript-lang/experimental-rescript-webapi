@@ -300,7 +300,7 @@ external queueMicrotask: voidFunction => unit = "queueMicrotask"
 external createImageBitmap: (
   ~image: htmlImageElement,
   ~options: imageBitmapOptions=?,
-) => Promise.t<imageBitmap> = "createImageBitmap"
+) => promise<imageBitmap> = "createImageBitmap"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/createImageBitmap)
@@ -308,7 +308,7 @@ external createImageBitmap: (
 external createImageBitmap2: (
   ~image: svgImageElement,
   ~options: imageBitmapOptions=?,
-) => Promise.t<imageBitmap> = "createImageBitmap"
+) => promise<imageBitmap> = "createImageBitmap"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/createImageBitmap)
@@ -316,7 +316,7 @@ external createImageBitmap2: (
 external createImageBitmap3: (
   ~image: htmlVideoElement,
   ~options: imageBitmapOptions=?,
-) => Promise.t<imageBitmap> = "createImageBitmap"
+) => promise<imageBitmap> = "createImageBitmap"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/createImageBitmap)
@@ -324,7 +324,7 @@ external createImageBitmap3: (
 external createImageBitmap4: (
   ~image: htmlCanvasElement,
   ~options: imageBitmapOptions=?,
-) => Promise.t<imageBitmap> = "createImageBitmap"
+) => promise<imageBitmap> = "createImageBitmap"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/createImageBitmap)
@@ -332,7 +332,7 @@ external createImageBitmap4: (
 external createImageBitmap5: (
   ~image: imageBitmap,
   ~options: imageBitmapOptions=?,
-) => Promise.t<imageBitmap> = "createImageBitmap"
+) => promise<imageBitmap> = "createImageBitmap"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/createImageBitmap)
@@ -340,7 +340,7 @@ external createImageBitmap5: (
 external createImageBitmap6: (
   ~image: offscreenCanvas,
   ~options: imageBitmapOptions=?,
-) => Promise.t<imageBitmap> = "createImageBitmap"
+) => promise<imageBitmap> = "createImageBitmap"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/createImageBitmap)
@@ -348,7 +348,7 @@ external createImageBitmap6: (
 external createImageBitmap7: (
   ~image: videoFrame,
   ~options: imageBitmapOptions=?,
-) => Promise.t<imageBitmap> = "createImageBitmap"
+) => promise<imageBitmap> = "createImageBitmap"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/createImageBitmap)
@@ -356,7 +356,7 @@ external createImageBitmap7: (
 external createImageBitmap8: (
   ~image: blob,
   ~options: imageBitmapOptions=?,
-) => Promise.t<imageBitmap> = "createImageBitmap"
+) => promise<imageBitmap> = "createImageBitmap"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/createImageBitmap)
@@ -364,7 +364,7 @@ external createImageBitmap8: (
 external createImageBitmap9: (
   ~image: imageData,
   ~options: imageBitmapOptions=?,
-) => Promise.t<imageBitmap> = "createImageBitmap"
+) => promise<imageBitmap> = "createImageBitmap"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/createImageBitmap)
@@ -376,7 +376,7 @@ external createImageBitmap10: (
   ~sw: int,
   ~sh: int,
   ~options: imageBitmapOptions=?,
-) => Promise.t<imageBitmap> = "createImageBitmap"
+) => promise<imageBitmap> = "createImageBitmap"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/createImageBitmap)
@@ -388,7 +388,7 @@ external createImageBitmap11: (
   ~sw: int,
   ~sh: int,
   ~options: imageBitmapOptions=?,
-) => Promise.t<imageBitmap> = "createImageBitmap"
+) => promise<imageBitmap> = "createImageBitmap"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/createImageBitmap)
@@ -400,7 +400,7 @@ external createImageBitmap12: (
   ~sw: int,
   ~sh: int,
   ~options: imageBitmapOptions=?,
-) => Promise.t<imageBitmap> = "createImageBitmap"
+) => promise<imageBitmap> = "createImageBitmap"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/createImageBitmap)
@@ -412,7 +412,7 @@ external createImageBitmap13: (
   ~sw: int,
   ~sh: int,
   ~options: imageBitmapOptions=?,
-) => Promise.t<imageBitmap> = "createImageBitmap"
+) => promise<imageBitmap> = "createImageBitmap"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/createImageBitmap)
@@ -424,7 +424,7 @@ external createImageBitmap14: (
   ~sw: int,
   ~sh: int,
   ~options: imageBitmapOptions=?,
-) => Promise.t<imageBitmap> = "createImageBitmap"
+) => promise<imageBitmap> = "createImageBitmap"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/createImageBitmap)
@@ -436,7 +436,7 @@ external createImageBitmap15: (
   ~sw: int,
   ~sh: int,
   ~options: imageBitmapOptions=?,
-) => Promise.t<imageBitmap> = "createImageBitmap"
+) => promise<imageBitmap> = "createImageBitmap"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/createImageBitmap)
@@ -448,7 +448,7 @@ external createImageBitmap16: (
   ~sw: int,
   ~sh: int,
   ~options: imageBitmapOptions=?,
-) => Promise.t<imageBitmap> = "createImageBitmap"
+) => promise<imageBitmap> = "createImageBitmap"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/createImageBitmap)
@@ -460,7 +460,7 @@ external createImageBitmap17: (
   ~sw: int,
   ~sh: int,
   ~options: imageBitmapOptions=?,
-) => Promise.t<imageBitmap> = "createImageBitmap"
+) => promise<imageBitmap> = "createImageBitmap"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/createImageBitmap)
@@ -472,7 +472,7 @@ external createImageBitmap18: (
   ~sw: int,
   ~sh: int,
   ~options: imageBitmapOptions=?,
-) => Promise.t<imageBitmap> = "createImageBitmap"
+) => promise<imageBitmap> = "createImageBitmap"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/structuredClone)
@@ -491,7 +491,7 @@ let response = await fetch("https://rescript-lang.org")
 
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/fetch)
 */
-external fetch: (string, ~init: requestInit=?) => Promise.t<response> = "fetch"
+external fetch: (string, ~init: requestInit=?) => promise<response> = "fetch"
 
 /**
 `fetch_withRequest(request, init)`
@@ -506,7 +506,7 @@ let response = await fetch(myRequest)
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/fetch)
 */
 @send
-external fetch_withRequest: (request, ~init: requestInit=?) => Promise.t<response> = "fetch"
+external fetch_withRequest: (request, ~init: requestInit=?) => promise<response> = "fetch"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/DedicatedWorkerGlobalScope/requestAnimationFrame)

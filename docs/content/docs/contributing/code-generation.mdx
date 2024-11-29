@@ -16,14 +16,14 @@ For example the `window.fetch` function was generated as:
 */
 @send
 external fetch: (window, ~input: request, ~init: requestInit=?)
-  => Promise.t<response> = "fetch"
+  => promise<response> = "fetch"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/fetch)
 */
 @send
 external fetch2: (window, ~input: string, ~init: requestInit=?)
-  => Promise.t<response> = "fetch"
+  => promise<response> = "fetch"
 ```
 
 While not that bad and usable, it can be improved:
@@ -39,12 +39,12 @@ While not that bad and usable, it can be improved:
 /** TODO: add better docs */
 @send
 external fetch: (window, string, ~init: requestInit=?)
-  => Promise.t<response> = "fetch"
+  => promise<response> = "fetch"
 
 /** TODO: add better docs */
 @send
 external fetch_withRequest: (window, request, ~init: requestInit=?)
-  => Promise.t<response> = "fetch"
+  => promise<response> = "fetch"
 ```
 
 Once these changes are made, the bindings can be tested and then committed to the repository.

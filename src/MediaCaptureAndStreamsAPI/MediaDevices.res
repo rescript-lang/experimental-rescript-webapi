@@ -9,7 +9,7 @@ include EventTarget.Impl({
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/MediaDevices/enumerateDevices)
 */
 @send
-external enumerateDevices: mediaDevices => Promise.t<array<mediaDeviceInfo>> = "enumerateDevices"
+external enumerateDevices: mediaDevices => promise<array<mediaDeviceInfo>> = "enumerateDevices"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/MediaDevices/getSupportedConstraints)
@@ -25,7 +25,7 @@ external getSupportedConstraints: mediaDevices => mediaTrackSupportedConstraints
 external getUserMedia: (
   mediaDevices,
   ~constraints: mediaStreamConstraints=?,
-) => Promise.t<mediaStream> = "getUserMedia"
+) => promise<mediaStream> = "getUserMedia"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/MediaDevices/getDisplayMedia)
@@ -34,4 +34,4 @@ external getUserMedia: (
 external getDisplayMedia: (
   mediaDevices,
   ~options: displayMediaStreamOptions=?,
-) => Promise.t<mediaStream> = "getDisplayMedia"
+) => promise<mediaStream> = "getDisplayMedia"

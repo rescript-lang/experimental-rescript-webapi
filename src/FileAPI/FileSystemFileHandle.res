@@ -5,13 +5,13 @@ external asFileSystemHandle: fileSystemFileHandle => fileSystemHandle = "%identi
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/FileSystemHandle/isSameEntry)
 */
 @send
-external isSameEntry: (fileSystemFileHandle, fileSystemHandle) => Promise.t<bool> = "isSameEntry"
+external isSameEntry: (fileSystemFileHandle, fileSystemHandle) => promise<bool> = "isSameEntry"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/FileSystemFileHandle/getFile)
 */
 @send
-external getFile: fileSystemFileHandle => Promise.t<file> = "getFile"
+external getFile: fileSystemFileHandle => promise<file> = "getFile"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/FileSystemFileHandle/createWritable)
@@ -20,4 +20,4 @@ external getFile: fileSystemFileHandle => Promise.t<file> = "getFile"
 external createWritable: (
   fileSystemFileHandle,
   ~options: fileSystemCreateWritableOptions=?,
-) => Promise.t<fileSystemWritableFileStream> = "createWritable"
+) => promise<fileSystemWritableFileStream> = "createWritable"

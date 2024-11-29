@@ -56,19 +56,19 @@ Loads and starts playback of a media resource.
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLMediaElement/play)
 */
   @send
-  external play: T.t => Promise.t<unit> = "play"
+  external play: T.t => promise<unit> = "play"
 
   /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLMediaElement/setMediaKeys)
 */
   @send
-  external setMediaKeys: (T.t, mediaKeys) => Promise.t<unit> = "setMediaKeys"
+  external setMediaKeys: (T.t, mediaKeys) => promise<unit> = "setMediaKeys"
 
   /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLMediaElement/setSinkId)
 */
   @send
-  external setSinkId: (T.t, string) => Promise.t<unit> = "setSinkId"
+  external setSinkId: (T.t, string) => promise<unit> = "setSinkId"
 }
 
 include Impl({

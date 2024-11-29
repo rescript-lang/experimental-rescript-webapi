@@ -10,7 +10,7 @@ external getKey: (pushSubscription, pushEncryptionKeyName) => ArrayBuffer.t = "g
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/PushSubscription/unsubscribe)
 */
 @send
-external unsubscribe: pushSubscription => Promise.t<bool> = "unsubscribe"
+external unsubscribe: pushSubscription => promise<bool> = "unsubscribe"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/PushSubscription/toJSON)

@@ -31,4 +31,4 @@ external make3: (
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/FontFace/load)
 */
 @send
-external load: fontFace => Promise.t<fontFace> = "load"
+external load: fontFace => promise<fontFace> = "load"

@@ -10,4 +10,4 @@ external getConfiguration: mediaKeySystemAccess => mediaKeySystemConfiguration =
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/MediaKeySystemAccess/createMediaKeys)
 */
 @send
-external createMediaKeys: mediaKeySystemAccess => Promise.t<mediaKeys> = "createMediaKeys"
+external createMediaKeys: mediaKeySystemAccess => promise<mediaKeys> = "createMediaKeys"
