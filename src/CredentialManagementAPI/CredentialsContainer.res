@@ -4,10 +4,8 @@ open CredentialManagementAPI
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CredentialsContainer/get)
 */
 @send
-external get: (
-  credentialsContainer,
-  ~options: credentialRequestOptions=?,
-) => promise<credential> = "get"
+external get: (credentialsContainer, ~options: credentialRequestOptions=?) => promise<credential> =
+  "get"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CredentialsContainer/store)

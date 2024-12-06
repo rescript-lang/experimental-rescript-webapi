@@ -24,5 +24,4 @@ external setServerCertificate: (mediaKeys, DataView.t) => promise<bool> = "setSe
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/MediaKeys/setServerCertificate)
 */
 @send
-external setServerCertificate2: (mediaKeys, ArrayBuffer.t) => promise<bool> =
-  "setServerCertificate"
+external setServerCertificate2: (mediaKeys, ArrayBuffer.t) => promise<bool> = "setServerCertificate"
