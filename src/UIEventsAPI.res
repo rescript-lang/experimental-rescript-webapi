@@ -3,6 +3,10 @@
 open EventAPI
 open DOMAPI
 
+type touchType =
+  | @as("direct") Direct
+  | @as("stylus") Stylus
+
 /**
 Simple user interface events.
 [See UIEvent on MDN](https://developer.mozilla.org/docs/Web/API/UIEvent)
@@ -296,6 +300,164 @@ type wheelEvent = {
   deltaMode: int,
 }
 
+/**
+A single contact point on a touch-sensitive device. The contact point is commonly a finger or stylus and the device may be a touchscreen or trackpad.
+[See Touch on MDN](https://developer.mozilla.org/docs/Web/API/Touch)
+*/
+type touch = {
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Touch/identifier)
+    */
+  identifier: int,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Touch/target)
+    */
+  target: eventTarget,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Touch/screenX)
+    */
+  screenX: float,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Touch/screenY)
+    */
+  screenY: float,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Touch/clientX)
+    */
+  clientX: float,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Touch/clientY)
+    */
+  clientY: float,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Touch/pageX)
+    */
+  pageX: float,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Touch/pageY)
+    */
+  pageY: float,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Touch/radiusX)
+    */
+  radiusX: float,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Touch/radiusY)
+    */
+  radiusY: float,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Touch/rotationAngle)
+    */
+  rotationAngle: float,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Touch/force)
+    */
+  force: float,
+}
+
+/**
+A list of contact points on a touch surface. For example, if the user has three fingers on the touch surface (such as a screen or trackpad), the corresponding TouchList object would have one Touch object for each finger, for a total of three entries.
+[See TouchList on MDN](https://developer.mozilla.org/docs/Web/API/TouchList)
+*/
+type touchList = {
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/TouchList/length)
+    */
+  length: int,
+}
+
+/**
+An event sent when the state of contacts with a touch-sensitive surface changes. This surface can be a touch screen or trackpad, for example. The event can describe one or more points of contact with the screen and includes support for detecting movement, addition and removal of contact points, and so forth.
+[See TouchEvent on MDN](https://developer.mozilla.org/docs/Web/API/TouchEvent)
+*/
+type touchEvent = {
+  ...uiEvent,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/TouchEvent/touches)
+    */
+  touches: touchList,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/TouchEvent/targetTouches)
+    */
+  targetTouches: touchList,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/TouchEvent/changedTouches)
+    */
+  changedTouches: touchList,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/TouchEvent/altKey)
+    */
+  altKey: bool,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/TouchEvent/metaKey)
+    */
+  metaKey: bool,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/TouchEvent/ctrlKey)
+    */
+  ctrlKey: bool,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/TouchEvent/shiftKey)
+    */
+  shiftKey: bool,
+}
+
+/**
+The state of a DOM event produced by a pointer such as the geometry of the contact point, the device type that generated the event, the amount of pressure that was applied on the contact surface, etc.
+[See PointerEvent on MDN](https://developer.mozilla.org/docs/Web/API/PointerEvent)
+*/
+type pointerEvent = {
+  ...mouseEvent,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/PointerEvent/pointerId)
+    */
+  pointerId: int,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/PointerEvent/width)
+    */
+  width: float,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/PointerEvent/height)
+    */
+  height: float,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/PointerEvent/pressure)
+    */
+  pressure: float,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/PointerEvent/tangentialPressure)
+    */
+  tangentialPressure: float,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/PointerEvent/tiltX)
+    */
+  tiltX: int,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/PointerEvent/tiltY)
+    */
+  tiltY: int,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/PointerEvent/twist)
+    */
+  twist: int,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/PointerEvent/altitudeAngle)
+    */
+  altitudeAngle: float,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/PointerEvent/azimuthAngle)
+    */
+  azimuthAngle: float,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/PointerEvent/pointerType)
+    */
+  pointerType: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/PointerEvent/isPrimary)
+    */
+  isPrimary: bool,
+}
+
 type uiEventInit = {
   ...eventInit,
   mutable view?: Null.t<window>,
@@ -370,4 +532,47 @@ type inputEventInit = {
   mutable inputType?: string,
   mutable dataTransfer?: Null.t<dataTransfer>,
   mutable targetRanges?: array<staticRange>,
+}
+
+type touchInit = {
+  mutable identifier: int,
+  mutable target: eventTarget,
+  mutable clientX?: float,
+  mutable clientY?: float,
+  mutable screenX?: float,
+  mutable screenY?: float,
+  mutable pageX?: float,
+  mutable pageY?: float,
+  mutable radiusX?: float,
+  mutable radiusY?: float,
+  mutable rotationAngle?: float,
+  mutable force?: float,
+  mutable altitudeAngle?: float,
+  mutable azimuthAngle?: float,
+  mutable touchType?: touchType,
+}
+
+type pointerEventInit = {
+  ...mouseEventInit,
+  mutable pointerId?: int,
+  mutable width?: float,
+  mutable height?: float,
+  mutable pressure?: float,
+  mutable tangentialPressure?: float,
+  mutable tiltX?: int,
+  mutable tiltY?: int,
+  mutable twist?: int,
+  mutable altitudeAngle?: float,
+  mutable azimuthAngle?: float,
+  mutable pointerType?: string,
+  mutable isPrimary?: bool,
+  mutable coalescedEvents?: array<pointerEvent>,
+  mutable predictedEvents?: array<pointerEvent>,
+}
+
+type touchEventInit = {
+  ...eventModifierInit,
+  mutable touches?: array<touch>,
+  mutable targetTouches?: array<touch>,
+  mutable changedTouches?: array<touch>,
 }
