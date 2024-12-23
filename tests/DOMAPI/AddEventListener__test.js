@@ -7,9 +7,7 @@ let button = document.querySelector("button");
 
 let h2 = document.querySelector("h2");
 
-if ((button == null) || (h2 == null)) {
-  console.log("Stuff not found");
-} else {
+if (button !== null && h2 !== null) {
   button.addEventListener("click", e => {
     console.log("Button clicked, " + e.button.toString());
     let text = h2.textContent;
@@ -24,11 +22,13 @@ if ((button == null) || (h2 == null)) {
       h2.textContent = "1";
     }
   });
+} else {
+  console.log("Stuff not found");
 }
 
-let button$1 = (button == null) ? undefined : Primitive_option.some(button);
+let button$1 = button === null ? undefined : Primitive_option.some(button);
 
-let h2$1 = (h2 == null) ? undefined : Primitive_option.some(h2);
+let h2$1 = h2 === null ? undefined : Primitive_option.some(h2);
 
 export {
   button$1 as button,
