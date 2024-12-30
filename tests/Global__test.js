@@ -11,8 +11,23 @@ let response2 = await fetch("https://rescript-lang.org/", {
   body: "secret=foo&response=bar"
 });
 
+let response3 = await fetch(new Request("https://rescript-lang.org/"), {
+  method: "POST",
+  headers: {
+    "Content-Type": "application/x-www-form-urlencoded"
+  },
+  body: "secret=foo&response=bar"
+});
+
+removeEventListener("mousedown", prim => {
+  prim.preventDefault();
+}, {
+  capture: false
+});
+
 export {
   response,
   response2,
+  response3,
 }
 /* response Not a pure module */
