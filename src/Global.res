@@ -505,7 +505,6 @@ let response = await fetch(myRequest)
 
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/fetch)
 */
-@send
 external fetch_withRequest: (request, ~init: requestInit=?) => promise<response> = "fetch"
 
 /**
@@ -567,7 +566,7 @@ Removes the event listener in target's event listener list with the same type, c
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/EventTarget/removeEventListener)
 */
 external removeEventListener: (
-  string,
+  eventType,
   eventListener<'event>,
   ~options: eventListenerOptions=?,
 ) => unit = "removeEventListener"
