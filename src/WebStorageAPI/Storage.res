@@ -5,14 +5,14 @@ Returns the name of the nth key, or null if n is greater than or equal to the nu
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Storage/key)
 */
 @send
-external key: (storage, int) => string = "key"
+external key: (storage, int) => Null.t<string> = "key"
 
 /**
 Returns the current value associated with the given key, or null if the given key does not exist.
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Storage/getItem)
 */
 @send
-external getItem: (storage, string) => string = "getItem"
+external getItem: (storage, string) => Null.t<string> = "getItem"
 
 /**
 Sets the value of the pair identified by key to value, creating a new key/value pair if none existed for key previously.
