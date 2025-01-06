@@ -5,6 +5,7 @@ open Prelude
 /**
 [See FileSystemEntry on MDN](https://developer.mozilla.org/docs/Web/API/FileSystemEntry)
 */
+@editor.completeFrom(FileSystemEntry)
 type rec fileSystemEntry = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/FileSystemEntry/isFile)
@@ -31,6 +32,7 @@ type rec fileSystemEntry = {
 /**
 [See FileSystemDirectoryEntry on MDN](https://developer.mozilla.org/docs/Web/API/FileSystemDirectoryEntry)
 */
+@editor.completeFrom(FileSystemDirectoryEntry)
 and fileSystemDirectoryEntry = {
   // Base properties from FileSystemEntry
   /**
@@ -73,6 +75,7 @@ and fileSystem = {
 /**
 [See FileSystemDirectoryReader on MDN](https://developer.mozilla.org/docs/Web/API/FileSystemDirectoryReader)
 */
+@editor.completeFrom(FileSystemDirectoryReader)
 type fileSystemDirectoryReader = {}
 
 type fileSystemFlags = {

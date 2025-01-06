@@ -10,6 +10,7 @@ type lockMode =
 /**
 [See LockManager on MDN](https://developer.mozilla.org/docs/Web/API/LockManager)
 */
+@editor.completeFrom(LockManager)
 type lockManager = {}
 
 /**

@@ -22,6 +22,7 @@ type fontFaceSetLoadStatus =
 /**
 [See FontFace on MDN](https://developer.mozilla.org/docs/Web/API/FontFace)
 */
+@editor.completeFrom(FontFace)
 type rec fontFace = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/FontFace/family)
@@ -76,6 +77,8 @@ type rec fontFace = {
 /**
 [See FontFaceSet on MDN](https://developer.mozilla.org/docs/Web/API/FontFaceSet)
 */
+@editor.completeFrom(FontFace)
+@editor.completeFrom(FontFaceSet)
 type rec fontFaceSet = {
   ...eventTarget,
   /**

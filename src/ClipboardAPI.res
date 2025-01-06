@@ -10,6 +10,7 @@ type presentationStyle =
 /**
 [See ClipboardItem on MDN](https://developer.mozilla.org/docs/Web/API/ClipboardItem)
 */
+@editor.completeFrom(ClipboardItem)
 type clipboardItem = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/ClipboardItem/presentationStyle)
@@ -24,6 +25,7 @@ type clipboardItem = {
 /**
 [See Clipboard on MDN](https://developer.mozilla.org/docs/Web/API/Clipboard)
 */
+@editor.completeFrom(Clipboard)
 type clipboard = {
   ...eventTarget,
 }

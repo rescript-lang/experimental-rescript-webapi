@@ -27,12 +27,14 @@ type idbCursorDirection =
 In the following code snippet, we make a request to open a database, and include handlers for the success and error cases. For a full working example, see our To-do Notifications app (view example live.)
 [See IDBFactory on MDN](https://developer.mozilla.org/docs/Web/API/IDBFactory)
 */
+@editor.completeFrom(IDBFactory)
 type idbFactory = {}
 
 /**
 This IndexedDB API interface provides a connection to a database; you can use an IDBDatabase object to open a transaction on your database then create, manipulate, and delete objects (data) in that database. The interface provides the only way to get and manage versions of the database.
 [See IDBDatabase on MDN](https://developer.mozilla.org/docs/Web/API/IDBDatabase)
 */
+@editor.completeFrom(IDBDatabase)
 type idbDatabase = {
   ...eventTarget,
   /**
@@ -55,6 +57,7 @@ type idbDatabase = {
 /**
 [See IDBTransaction on MDN](https://developer.mozilla.org/docs/Web/API/IDBTransaction)
 */
+@editor.completeFrom(IDBTransaction)
 type idbTransaction = {
   ...eventTarget,
   /**
@@ -128,6 +131,7 @@ type idbOpenDBRequest = {
 This example shows a variety of different uses of object stores, from updating the data structure with IDBObjectStore.createIndex inside an onupgradeneeded function, to adding a new item to our object store with IDBObjectStore.add. For a full working example, see our To-do Notifications app (view example live.)
 [See IDBObjectStore on MDN](https://developer.mozilla.org/docs/Web/API/IDBObjectStore)
 */
+@editor.completeFrom(IDBObjectStore)
 type idbObjectStore = {
   /**
     Returns the name of the store.
@@ -160,6 +164,7 @@ type idbObjectStore = {
 IDBIndex interface of the IndexedDB API provides asynchronous access to an index in a database. An index is a kind of object store for looking up records in another object store, called the referenced object store. You use this interface to retrieve data.
 [See IDBIndex on MDN](https://developer.mozilla.org/docs/Web/API/IDBIndex)
 */
+@editor.completeFrom(IDBIndex)
 type idbIndex = {
   /**
     Returns the name of the index.

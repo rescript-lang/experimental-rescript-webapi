@@ -15,6 +15,7 @@ type mediaStreamTrackState =
 Provides access to connected media input devices like cameras and microphones, as well as screen sharing. In essence, it lets you obtain access to any hardware source of media data.
 [See MediaDevices on MDN](https://developer.mozilla.org/docs/Web/API/MediaDevices)
 */
+@editor.completeFrom(MediaDevices)
 type mediaDevices = {
   ...eventTarget,
 }
@@ -23,6 +24,7 @@ type mediaDevices = {
 The MediaDevicesInfo interface contains information that describes a single media input or output device.
 [See MediaDeviceInfo on MDN](https://developer.mozilla.org/docs/Web/API/MediaDeviceInfo)
 */
+@editor.completeFrom(MediaDeviceInfo)
 type mediaDeviceInfo = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/MediaDeviceInfo/deviceId)
@@ -46,6 +48,7 @@ type mediaDeviceInfo = {
 A stream of media content. A stream consists of several tracks such as video or audio tracks. Each track is specified as an instance of MediaStreamTrack.
 [See MediaStream on MDN](https://developer.mozilla.org/docs/Web/API/MediaStream)
 */
+@editor.completeFrom(MediaStream)
 type mediaStream = {
   ...eventTarget,
   /**
@@ -62,6 +65,7 @@ type mediaStream = {
 A single media track within a stream; typically, these are audio or video tracks, but other track types may exist as well.
 [See MediaStreamTrack on MDN](https://developer.mozilla.org/docs/Web/API/MediaStreamTrack)
 */
+@editor.completeFrom(MediaStreamTrack)
 type mediaStreamTrack = {
   ...eventTarget,
   /**

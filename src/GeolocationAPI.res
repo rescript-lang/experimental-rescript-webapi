@@ -3,11 +3,13 @@
 An object able to programmatically obtain the position of the device. It gives Web content access to the location of the device. This allows a Web site or app to offer customized results based on the user's location.
 [See Geolocation on MDN](https://developer.mozilla.org/docs/Web/API/Geolocation)
 */
+@editor.completeFrom(Geolocation)
 type geolocation = {}
 
 /**
 [See GeolocationCoordinates on MDN](https://developer.mozilla.org/docs/Web/API/GeolocationCoordinates)
 */
+@editor.completeFrom(GeolocationCoordinates)
 type geolocationCoordinates = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/GeolocationCoordinates/accuracy)
@@ -42,6 +44,7 @@ type geolocationCoordinates = {
 /**
 [See GeolocationPosition on MDN](https://developer.mozilla.org/docs/Web/API/GeolocationPosition)
 */
+@editor.completeFrom(GeolocationPosition)
 type geolocationPosition = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/GeolocationPosition/coords)

@@ -11,6 +11,7 @@ type touchType =
 Simple user interface events.
 [See UIEvent on MDN](https://developer.mozilla.org/docs/Web/API/UIEvent)
 */
+@editor.completeFrom(UIEvent)
 type uiEvent = {
   ...event,
   /**
@@ -27,6 +28,7 @@ type uiEvent = {
 The DOM CompositionEvent represents events that occur due to the user indirectly entering text.
 [See CompositionEvent on MDN](https://developer.mozilla.org/docs/Web/API/CompositionEvent)
 */
+@editor.completeFrom(CompositionEvent)
 type compositionEvent = {
   ...uiEvent,
   /**
@@ -39,6 +41,7 @@ type compositionEvent = {
 Focus-related events like focus, blur, focusin, or focusout.
 [See FocusEvent on MDN](https://developer.mozilla.org/docs/Web/API/FocusEvent)
 */
+@editor.completeFrom(FocusEvent)
 type focusEvent = {
   ...uiEvent,
   /**
@@ -51,6 +54,7 @@ type focusEvent = {
 One drag data item. During a drag operation, each drag event has a dataTransfer property which contains a list of drag data items. Each item in the list is a DataTransferItem object.
 [See DataTransferItem on MDN](https://developer.mozilla.org/docs/Web/API/DataTransferItem)
 */
+@editor.completeFrom(DataTransferItem)
 type dataTransferItem = {
   /**
     Returns the drag data item kind, one of: "string", "file".
@@ -69,6 +73,7 @@ type dataTransferItem = {
 A list of DataTransferItem objects representing items being dragged. During a drag operation, each DragEvent has a dataTransfer property and that property is a DataTransferItemList.
 [See DataTransferItemList on MDN](https://developer.mozilla.org/docs/Web/API/DataTransferItemList)
 */
+@editor.completeFrom(DataTransferItemList)
 type dataTransferItemList = {
   /**
     Returns the number of items in the drag data store.
@@ -81,6 +86,7 @@ type dataTransferItemList = {
 Used to hold the data that is being dragged during a drag and drop operation. It may hold one or more data items, each of one or more data types. For more information about drag and drop, see HTML Drag and Drop API.
 [See DataTransfer on MDN](https://developer.mozilla.org/docs/Web/API/DataTransfer)
 */
+@editor.completeFrom(DataTransfer)
 type dataTransfer = {
   /**
     Returns the kind of operation that is currently selected. If the kind of operation isn't one of those that is allowed by the effectAllowed attribute, then the operation will fail.
@@ -120,6 +126,7 @@ The possible values are "none", "copy", "copyLink", "copyMove", "link", "linkMov
 /**
 [See InputEvent on MDN](https://developer.mozilla.org/docs/Web/API/InputEvent)
 */
+@editor.completeFrom(InputEvent)
 type inputEvent = {
   ...uiEvent,
   /**
@@ -144,6 +151,7 @@ type inputEvent = {
 KeyboardEvent objects describe a user interaction with the keyboard; each event describes a single interaction between the user and a key (or combination of a key with modifier keys) on the keyboard.
 [See KeyboardEvent on MDN](https://developer.mozilla.org/docs/Web/API/KeyboardEvent)
 */
+@editor.completeFrom(KeyboardEvent)
 type keyboardEvent = {
   ...uiEvent,
   /**
@@ -188,6 +196,7 @@ type keyboardEvent = {
 Events that occur due to the user interacting with a pointing device (such as a mouse). Common events using this interface include click, dblclick, mouseup, mousedown.
 [See MouseEvent on MDN](https://developer.mozilla.org/docs/Web/API/MouseEvent)
 */
+@editor.completeFrom(MouseEvent)
 type mouseEvent = {
   ...uiEvent,
   /**
@@ -280,6 +289,7 @@ type mouseEvent = {
 Events that occur due to the user moving a mouse wheel or similar input device.
 [See WheelEvent on MDN](https://developer.mozilla.org/docs/Web/API/WheelEvent)
 */
+@editor.completeFrom(WheelEvent)
 type wheelEvent = {
   ...mouseEvent,
   /**
@@ -304,6 +314,7 @@ type wheelEvent = {
 A single contact point on a touch-sensitive device. The contact point is commonly a finger or stylus and the device may be a touchscreen or trackpad.
 [See Touch on MDN](https://developer.mozilla.org/docs/Web/API/Touch)
 */
+@editor.completeFrom(Touch)
 type touch = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Touch/identifier)
@@ -359,6 +370,7 @@ type touch = {
 A list of contact points on a touch surface. For example, if the user has three fingers on the touch surface (such as a screen or trackpad), the corresponding TouchList object would have one Touch object for each finger, for a total of three entries.
 [See TouchList on MDN](https://developer.mozilla.org/docs/Web/API/TouchList)
 */
+@editor.completeFrom(TouchList)
 type touchList = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/TouchList/length)
@@ -370,6 +382,7 @@ type touchList = {
 An event sent when the state of contacts with a touch-sensitive surface changes. This surface can be a touch screen or trackpad, for example. The event can describe one or more points of contact with the screen and includes support for detecting movement, addition and removal of contact points, and so forth.
 [See TouchEvent on MDN](https://developer.mozilla.org/docs/Web/API/TouchEvent)
 */
+@editor.completeFrom(TouchEvent)
 type touchEvent = {
   ...uiEvent,
   /**
@@ -406,6 +419,7 @@ type touchEvent = {
 The state of a DOM event produced by a pointer such as the geometry of the contact point, the device type that generated the event, the amount of pressure that was applied on the contact surface, etc.
 [See PointerEvent on MDN](https://developer.mozilla.org/docs/Web/API/PointerEvent)
 */
+@editor.completeFrom(PointerEvent)
 type pointerEvent = {
   ...mouseEvent,
   /**

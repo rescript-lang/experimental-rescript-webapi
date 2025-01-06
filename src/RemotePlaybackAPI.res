@@ -10,6 +10,7 @@ type remotePlaybackState =
 /**
 [See RemotePlayback on MDN](https://developer.mozilla.org/docs/Web/API/RemotePlayback)
 */
+@editor.completeFrom(RemotePlayback)
 type remotePlayback = {
   ...eventTarget,
   /**
