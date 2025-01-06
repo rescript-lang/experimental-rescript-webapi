@@ -28,6 +28,7 @@ type workerType =
 This ServiceWorker API interface provides a reference to a service worker. Multiple browsing contexts (e.g. pages, workers, etc.) can be associated with the same service worker, each through a unique ServiceWorker object.
 [See ServiceWorker on MDN](https://developer.mozilla.org/docs/Web/API/ServiceWorker)
 */
+@editor.completeFrom(ServiceWorker)
 type serviceWorker = {
   ...eventTarget,
   /**
@@ -43,12 +44,14 @@ type serviceWorker = {
 /**
 [See NavigationPreloadManager on MDN](https://developer.mozilla.org/docs/Web/API/NavigationPreloadManager)
 */
+@editor.completeFrom(NavigationPreloadManager)
 type navigationPreloadManager = {}
 
 /**
 This ServiceWorker API interface represents the service worker registration. You register a service worker to control one or more pages that share the same origin.
 [See ServiceWorkerRegistration on MDN](https://developer.mozilla.org/docs/Web/API/ServiceWorkerRegistration)
 */
+@editor.completeFrom(ServiceWorkerRegistration)
 type serviceWorkerRegistration = {
   ...eventTarget,
   /**
@@ -85,6 +88,7 @@ type serviceWorkerRegistration = {
 The ServiceWorkerContainer interface of the ServiceWorker API provides an object representing the service worker as an overall unit in the network ecosystem, including facilities to register, unregister and update service workers, and access the state of service workers and their registrations.
 [See ServiceWorkerContainer on MDN](https://developer.mozilla.org/docs/Web/API/ServiceWorkerContainer)
 */
+@editor.completeFrom(ServiceWorkerContainer)
 type serviceWorkerContainer = {
   ...eventTarget,
   /**
@@ -101,12 +105,14 @@ type serviceWorkerContainer = {
 The storage for Cache objects.
 [See CacheStorage on MDN](https://developer.mozilla.org/docs/Web/API/CacheStorage)
 */
+@editor.completeFrom(CacheStorage)
 type cacheStorage = {}
 
 /**
 Provides a storage mechanism for Request / Response object pairs that are cached, for example as part of the ServiceWorker life cycle. Note that the Cache interface is exposed to windowed scopes as well as workers. You don't have to use it in conjunction with service workers, even though it is defined in the service worker spec.
 [See Cache on MDN](https://developer.mozilla.org/docs/Web/API/Cache)
 */
+@editor.completeFrom(Cache)
 type cache = {}
 
 type navigationPreloadState = {

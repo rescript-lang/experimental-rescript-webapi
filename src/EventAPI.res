@@ -110,12 +110,14 @@ type eventListener<'event> = 'event => unit
 EventTarget is a DOM interface implemented by objects that can receive events and may have listeners for them.
 [See EventTarget on MDN](https://developer.mozilla.org/docs/Web/API/EventTarget)
 */
+@editor.completeFrom(EventTarget)
 type eventTarget = {}
 
 /**
 An event which takes place in the DOM.
 [See Event on MDN](https://developer.mozilla.org/docs/Web/API/Event)
 */
+@editor.completeFrom(Event)
 type event = {
   /**
     Returns the type of event, e.g. "click", "hashchange", or "submit".
@@ -174,6 +176,7 @@ type event = {
 A controller object that allows you to abort one or more DOM requests as and when desired.
 [See AbortController on MDN](https://developer.mozilla.org/docs/Web/API/AbortController)
 */
+@editor.completeFrom(AbortController)
 type rec abortController = {
   /**
     Returns the AbortSignal object associated with this object.
@@ -186,6 +189,7 @@ type rec abortController = {
 A signal object that allows you to communicate with a DOM request (such as a Fetch) and abort it if required via an AbortController object.
 [See AbortSignal on MDN](https://developer.mozilla.org/docs/Web/API/AbortSignal)
 */
+@editor.completeFrom(AbortSignal)
 and abortSignal = {
   ...eventTarget,
   /**

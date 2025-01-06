@@ -15,6 +15,7 @@ type pushEncryptionKeyName =
 This Push API interface provides a way to receive notifications from third-party servers as well as request URLs for push notifications.
 [See PushManager on MDN](https://developer.mozilla.org/docs/Web/API/PushManager)
 */
+@editor.completeFrom(PushManager)
 type pushManager = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/PushManager/supportedContentEncodings_static)
@@ -40,6 +41,7 @@ type pushSubscriptionOptions = {
 This Push API interface provides a subcription's URL endpoint and allows unsubscription from a push service.
 [See PushSubscription on MDN](https://developer.mozilla.org/docs/Web/API/PushSubscription)
 */
+@editor.completeFrom(PushSubscription)
 type pushSubscription = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/PushSubscription/endpoint)

@@ -5,6 +5,7 @@ open Prelude
 /**
 [See ViewTransition on MDN](https://developer.mozilla.org/docs/Web/API/ViewTransition)
 */
+@editor.completeFrom(ViewTransition)
 type viewTransition = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/ViewTransition/updateCallbackDone)

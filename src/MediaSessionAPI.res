@@ -27,6 +27,7 @@ type mediaImage = {
 /**
 [See MediaMetadata on MDN](https://developer.mozilla.org/docs/Web/API/MediaMetadata)
 */
+@editor.completeFrom(MediaMetadata)
 type mediaMetadata = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/MediaMetadata/title)
@@ -49,6 +50,7 @@ type mediaMetadata = {
 /**
 [See MediaSession on MDN](https://developer.mozilla.org/docs/Web/API/MediaSession)
 */
+@editor.completeFrom(MediaSession)
 type mediaSession = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/MediaSession/metadata)

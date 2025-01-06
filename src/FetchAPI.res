@@ -73,15 +73,17 @@ type requestPriority =
   | @as("low") Low
 
 /**
-This Fetch API interface allows you to perform various actions on HTTP request and response headers. These actions include retrieving, setting, adding to, and removing. A Headers object has an associated header list, which is initially empty and consists of zero or more name and value pairs.  You can add to this using methods like append() (see Examples.) In all methods of this interface, header names are matched by case-insensitive byte sequence.
+@editor.completeFrom(Response) This Fetch API interface allows you to perform various actions on HTTP request and response headers. These actions include retrieving, setting, adding to, and removing. A Headers object has an associated header list, which is initially empty and consists of zero or more name and value pairs.  You can add to this using methods like append() (see Examples.) In all methods of this interface, header names are matched by case-insensitive byte sequence.
 [See Headers on MDN](https://developer.mozilla.org/docs/Web/API/Headers)
 */
+@editor.completeFrom(Headers)
 type headers = {}
 
 /**
 This Fetch API interface represents a resource request.
 [See Request on MDN](https://developer.mozilla.org/docs/Web/API/Request)
 */
+@editor.completeFrom(Request)
 type request = {
   /**
     Returns request's HTTP method, which is "GET" by default.
@@ -162,6 +164,7 @@ type request = {
 This Fetch API interface represents the response to a request.
 [See Response on MDN](https://developer.mozilla.org/docs/Web/API/Response)
 */
+@editor.completeFrom(Response)
 type response = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Response/type)
@@ -206,11 +209,13 @@ type response = {
 Provides a way to easily construct a set of key/value pairs representing form fields and their values, which can then be easily sent using the XMLHttpRequest.send() method. It uses the same format a form would use if the encoding type were set to "multipart/form-data".
 [See FormData on MDN](https://developer.mozilla.org/docs/Web/API/FormData)
 */
+@editor.completeFrom(FormData)
 type formData = {}
 
 /**
 [See URLSearchParams on MDN](https://developer.mozilla.org/docs/Web/API/URLSearchParams)
 */
+@editor.completeFrom(URLSearchParams)
 type urlSearchParams = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/URLSearchParams/size)
@@ -218,9 +223,9 @@ type urlSearchParams = {
   size: int,
 }
 
-type headersInit
+@editor.completeFrom(HeadersInit) type headersInit
 
-type bodyInit
+@editor.completeFrom(BodyInit) type bodyInit
 
 type requestInfo = any
 

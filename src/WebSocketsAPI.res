@@ -14,6 +14,7 @@ type messageEventSource = any
 Provides the API for creating and managing a WebSocket connection to a server, as well as for sending and receiving data on the connection.
 [See WebSocket on MDN](https://developer.mozilla.org/docs/Web/API/WebSocket)
 */
+@editor.completeFrom(WebSocket)
 type webSocket = {
   ...eventTarget,
   /**
@@ -56,6 +57,7 @@ Can be set, to change how binary data is returned. The default is "blob".
 A CloseEvent is sent to clients using WebSockets when the connection is closed. This is delivered to the listener indicated by the WebSocket object's onclose attribute.
 [See CloseEvent on MDN](https://developer.mozilla.org/docs/Web/API/CloseEvent)
 */
+@editor.completeFrom(CloseEvent)
 type closeEvent = {
   ...event,
   /**

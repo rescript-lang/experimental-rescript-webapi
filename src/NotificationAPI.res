@@ -17,6 +17,7 @@ type notificationPermission =
 This Notifications API interface is used to configure and display desktop notifications to the user.
 [See Notification on MDN](https://developer.mozilla.org/docs/Web/API/Notification)
 */
+@editor.completeFrom(Notification)
 type notification = {
   ...eventTarget,
   /**

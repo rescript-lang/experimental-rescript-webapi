@@ -19,6 +19,7 @@ type permissionState =
 /**
 [See Permissions on MDN](https://developer.mozilla.org/docs/Web/API/Permissions)
 */
+@editor.completeFrom(Permissions)
 type permissions = {}
 
 /**

@@ -34,6 +34,7 @@ type gamepadButton = {
 This Gamepad API interface represents hardware in the controller designed to provide haptic feedback to the user (if available), most commonly vibration hardware.
 [See GamepadHapticActuator on MDN](https://developer.mozilla.org/docs/Web/API/GamepadHapticActuator)
 */
+@editor.completeFrom(GamepadHapticActuator)
 type gamepadHapticActuator = {}
 
 /**

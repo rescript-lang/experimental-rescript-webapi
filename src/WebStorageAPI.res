@@ -6,6 +6,7 @@ open EventAPI
 This Web Storage API interface provides access to a particular domain's session or local storage. It allows, for example, the addition, modification, or deletion of stored data items.
 [See Storage on MDN](https://developer.mozilla.org/docs/Web/API/Storage)
 */
+@editor.completeFrom(Storage)
 type storage = {
   /**
     Returns the number of key/value pairs.
@@ -18,6 +19,7 @@ type storage = {
 A StorageEvent is sent to a window when a storage area it has access to is changed within the context of another document.
 [See StorageEvent on MDN](https://developer.mozilla.org/docs/Web/API/StorageEvent)
 */
+@editor.completeFrom(StorageEvent)
 type storageEvent = {
   ...event,
   /**

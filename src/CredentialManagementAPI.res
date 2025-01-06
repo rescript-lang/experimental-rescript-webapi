@@ -41,6 +41,7 @@ type attestationConveyancePreference =
 /**
 [See CredentialsContainer on MDN](https://developer.mozilla.org/docs/Web/API/CredentialsContainer)
 */
+@editor.completeFrom(CredentialsContainer)
 type credentialsContainer = {}
 
 /**
