@@ -2,6 +2,9 @@
 
 open DOMAPI
 
+@editor.completeFrom(IntersectionObserverRoot)
+type root
+
 /**
 provides a way to asynchronously observe changes in the intersection of a target element with an ancestor element or with a top-level document's viewport.
 [See IntersectionObserver on MDN](https://developer.mozilla.org/docs/Web/API/IntersectionObserver)
@@ -11,7 +14,7 @@ type intersectionObserver = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/IntersectionObserver/root)
     */
-  root: Null.t<unknown>,
+  root: root,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/IntersectionObserver/rootMargin)
     */
@@ -58,7 +61,7 @@ type intersectionObserverEntry = {
 }
 
 type intersectionObserverInit = {
-  mutable root?: Null.t<unknown>,
+  mutable root?: root,
   mutable rootMargin?: string,
   mutable threshold?: array<float>,
 }

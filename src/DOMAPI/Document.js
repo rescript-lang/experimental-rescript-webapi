@@ -4,4 +4,11 @@ import * as Node$WebAPI from "./Node.js";
 
 Node$WebAPI.Impl({});
 
+function isInstanceOf(param) {
+  return (param instanceof Document);
+}
+
+export {
+  isInstanceOf,
+}
 /*  Not a pure module */

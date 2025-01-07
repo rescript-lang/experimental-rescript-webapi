@@ -9,7 +9,12 @@ function Impl(T) {
 
 Node$WebAPI.Impl({});
 
+function isInstanceOf(param) {
+  return (param instanceof Element);
+}
+
 export {
   Impl,
+  isInstanceOf,
 }
 /*  Not a pure module */
