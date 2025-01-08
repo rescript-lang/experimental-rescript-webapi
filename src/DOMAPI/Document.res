@@ -458,3 +458,5 @@ external hasStorageAccess: document => promise<bool> = "hasStorageAccess"
 */
 @send
 external requestStorageAccess: document => promise<unit> = "requestStorageAccess"
+
+let isInstanceOf = (_: 't): bool => %raw(`param instanceof Document`)

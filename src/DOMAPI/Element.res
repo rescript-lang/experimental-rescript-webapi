@@ -498,3 +498,5 @@ Returns true if qualifiedName is now present, and false otherwise.
 include Impl({
   type t = element
 })
+
+let isInstanceOf = (_: 't): bool => %raw(`param instanceof Element`)
