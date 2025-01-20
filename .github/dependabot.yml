@@ -11,3 +11,8 @@ updates:
     directory: "/"
     schedule:
       interval: "weekly"
+    groups:
+      astro-and-starlight:
+        patterns:
+          - "astro"
+          - "@astrojs/starlight"
