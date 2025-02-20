@@ -65,10 +65,17 @@ type pushSubscriptionOptionsInit = {
   mutable applicationServerKey?: applicationServerKey,
 }
 
+type pushSubscriptionJSONKeys = {
+  /** Base64URL-encoded ArrayBuffer value */
+  p256dh: string,
+  /** Base64URL-encoded ArrayBuffer value */
+  auth: string,
+}
+
 type pushSubscriptionJSON = {
   mutable endpoint?: string,
   mutable expirationTime?: Null.t<int>,
-  mutable keys?: any,
+  mutable keys?: pushSubscriptionJSONKeys,
 }
 
 @editor.completeFrom(PushMessageData)

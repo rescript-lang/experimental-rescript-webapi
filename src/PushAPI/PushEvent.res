@@ -1,5 +1,5 @@
 open PushAPI
 
 include ExtendableEvent.Impl({
-  type t = pushEvent;
-});
+  type t = pushEvent
+})

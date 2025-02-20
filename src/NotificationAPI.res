@@ -73,7 +73,7 @@ type notification = {
 type notificationAction = {
   action: string,
   title: string,
-  icon?: string
+  icon?: string,
 }
 
 type notificationOptions = {
@@ -86,7 +86,7 @@ type notificationOptions = {
   mutable silent?: Null.t<bool>,
   mutable requireInteraction?: bool,
   mutable data?: JSON.t,
-  mutable actions?: array<notificationAction>
+  mutable actions?: array<notificationAction>,
 }
 
 type getNotificationOptions = {mutable tag?: string}

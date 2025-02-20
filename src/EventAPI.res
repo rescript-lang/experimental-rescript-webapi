@@ -226,5 +226,5 @@ The ExtendableEvent interface extends the lifetime of the install and activate e
  */
 @editor.completeFrom(ExtendableEvent)
 type extendableEvent = {
-  ...event
+  ...event,
 }
