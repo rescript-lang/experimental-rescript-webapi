@@ -2,10 +2,8 @@
 
 open Prelude
 open EventAPI
-open PushManagerAPI
-open NotificationAPI
-open FetchAPI
-open ChannelMessagingAPI
+open PushAPI
+open WebWorkersAPI
 
 type serviceWorkerState =
   | @as("activated") Activated
@@ -101,20 +99,6 @@ type serviceWorkerContainer = {
   ready: promise<serviceWorkerRegistration>,
 }
 
-/**
-The storage for Cache objects.
-[See CacheStorage on MDN](https://developer.mozilla.org/docs/Web/API/CacheStorage)
-*/
-@editor.completeFrom(CacheStorage)
-type cacheStorage = {}
-
-/**
-Provides a storage mechanism for Request / Response object pairs that are cached, for example as part of the ServiceWorker life cycle. Note that the Cache interface is exposed to windowed scopes as well as workers. You don't have to use it in conjunction with service workers, even though it is defined in the service worker spec.
-[See Cache on MDN](https://developer.mozilla.org/docs/Web/API/Cache)
-*/
-@editor.completeFrom(Cache)
-type cache = {}
-
 type navigationPreloadState = {
   mutable enabled?: bool,
   mutable headerValue?: string,
@@ -126,15 +110,49 @@ type registrationOptions = {
   mutable updateViaCache?: serviceWorkerUpdateViaCache,
 }
 
-type cacheQueryOptions = {
-  mutable ignoreSearch?: bool,
-  mutable ignoreMethod?: bool,
-  mutable ignoreVary?: bool,
-}
-
-type multiCacheQueryOptions = {
-  ...cacheQueryOptions,
-  mutable cacheName?: string,
-}
-
 type requestInfo = any
+
+/**
+The Clients interface provides access to Client objects. Access it via self.clients within a service worker.
+[See Clients on MDN](https://developer.mozilla.org/en-US/docs/Web/API/Clients)
+ */
+@editor.completeFrom(Clients)
+type clients
+
+/**
+The ServiceWorkerGlobalScope interface of the Service Worker API represents the global execution context of a service worker.
+[See ServiceWorkerGlobalScope on MDN](https://developer.mozilla.org/en-US/docs/Web/API/ServiceWorkerGlobalScope)
+ */
+@editor.completeFrom(ServiceWorkerGlobalScope)
+type serviceWorkerGlobalScope = {
+  ...workerGlobalScope,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/en-US/docs/Web/API/ServiceWorkerGlobalScope/clients)
+  */
+  clients: clients,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/en-US/docs/Web/API/ServiceWorkerGlobalScope/registration)
+  */
+  registration: serviceWorkerRegistration,
+}
+
+/**
+The Client interface represents an executable context such as a Worker, or a SharedWorker. Window clients are represented by the more-specific WindowClient.
+[See Client on MDN](https://developer.mozilla.org/en-US/docs/Web/API/Client)
+*/
+type client = {
+  /**
+    [Read more on MDN](https://developer.mozilla.org/en-US/docs/Web/API/Client/id)
+  */
+  id: string,
+  /** [Read more on MDN](https://developer.mozilla.org/en-US/docs/Web/API/Client/url) */
+  url: string,
+}
+
+/**
+The WindowClient interface of the ServiceWorker API represents the scope of a service worker client that is a document in a browsing context, controlled by an active worker.
+[See WindowClient on MDN](https://developer.mozilla.org/en-US/docs/Web/API/WindowClient)
+*/
+type windowClient = {
+  ...client,
+}

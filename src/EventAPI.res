@@ -51,6 +51,7 @@ type eventType =
   | @as("mouseout") Mouseout
   | @as("mouseover") Mouseover
   | @as("mouseup") Mouseup
+  | @as("notificationclick") NotificationClick
   | @as("paste") Paste
   | @as("pause") Pause
   | @as("play") Play
@@ -94,6 +95,7 @@ type eventType =
   | @as("pointercancel") Pointercancel
   | @as("pointerout") Pointerout
   | @as("pointerleave") Pointerleave
+  | @as("push") Push
   | @as("gotpointercapture") Gotpointercapture
   | @as("lostpointercapture") Lostpointercapture
   | @as("selectstart") Selectstart
@@ -216,4 +218,13 @@ type eventInit = {
   mutable bubbles?: bool,
   mutable cancelable?: bool,
   mutable composed?: bool,
+}
+
+/**
+The ExtendableEvent interface extends the lifetime of the install and activate events dispatched on the global scope as part of the service worker lifecycle.
+[See ExtendableEvent on MDN](https://developer.mozilla.org/docs/Web/API/ExtendableEvent)
+ */
+@editor.completeFrom(ExtendableEvent)
+type extendableEvent = {
+  ...event
 }

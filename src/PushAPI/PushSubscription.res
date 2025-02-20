@@ -1,4 +1,4 @@
-open PushManagerAPI
+open PushAPI
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/PushSubscription/getKey)

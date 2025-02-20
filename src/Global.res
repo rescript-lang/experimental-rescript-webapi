@@ -5,7 +5,7 @@ open WebSpeechAPI
 open IndexedDBAPI
 open WebCryptoAPI
 open PerformanceAPI
-open ServiceWorkerAPI
+open WebWorkersAPI
 open WebStorageAPI
 open CanvasAPI
 open FileAPI
