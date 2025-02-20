@@ -22,7 +22,7 @@ let response = await self->WorkerGlobalScope.fetch("https://rescript-lang.org")
 
 [Read more on MDN](https://developer.mozilla.org/en-US/docs/Web/API/WorkerGlobalScope/fetch)
 */
-@send
+  @send
   external fetch: (T.t, string, ~init: requestInit=?) => promise<response> = "fetch"
 
   /**

@@ -32,11 +32,32 @@ let subscription = await registrationResult.pushManager.subscribe({
   applicationServerKey: "MyPublicKey"
 });
 
+let pushSubscriptionJSON = subscription.toJSON();
+
+let keys = pushSubscriptionJSON.keys;
+
+let match = keys !== undefined ? [
+    keys.auth,
+    keys.p256dh
+  ] : [
+    "?",
+    "?"
+  ];
+
+let p256dh = match[1];
+
+let auth = match[0];
+
+console.log("For subscription " + subscription.endpoint + ", auth is " + auth + " and p256dh is " + p256dh);
+
 export {
   response,
   response2,
   response3,
   registrationResult,
   subscription,
+  pushSubscriptionJSON,
+  auth,
+  p256dh,
 }
 /* response Not a pure module */
