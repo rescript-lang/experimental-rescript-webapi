@@ -25,9 +25,12 @@ removeEventListener("mousedown", prim => {
   capture: false
 });
 
+let registrationResult = await navigator.serviceWorker.register("/sw.js");
+
 export {
   response,
   response2,
   response3,
+  registrationResult,
 }
 /* response Not a pure module */
