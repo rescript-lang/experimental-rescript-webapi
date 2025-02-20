@@ -1,6 +1,7 @@
 @@warning("-30")
 
 open Prelude
+open EventAPI
 
 type permissionState =
   | @as("denied") Denied
@@ -23,6 +24,8 @@ type pushManager = {
   supportedContentEncodings: array<string>,
 }
 
+type applicationServerKey
+
 /**
 [See PushSubscriptionOptions on MDN](https://developer.mozilla.org/docs/Web/API/PushSubscriptionOptions)
 */
@@ -34,7 +37,7 @@ type pushSubscriptionOptions = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/PushSubscriptionOptions/applicationServerKey)
     */
-  applicationServerKey: Null.t<ArrayBuffer.t>,
+  applicationServerKey: applicationServerKey,
 }
 
 /**
@@ -59,11 +62,23 @@ type pushSubscription = {
 
 type pushSubscriptionOptionsInit = {
   mutable userVisibleOnly?: bool,
-  mutable applicationServerKey?: Null.t<unknown>,
+  mutable applicationServerKey?: applicationServerKey,
 }
 
 type pushSubscriptionJSON = {
   mutable endpoint?: string,
   mutable expirationTime?: Null.t<int>,
   mutable keys?: any,
+}
+
+@editor.completeFrom(PushMessageData)
+type pushMessageData
+
+@editor.completeFrom(PushEvent)
+type pushEvent = {
+  ...extendableEvent,
+  /**
+   [Read more on MDN](https://developer.mozilla.org/docs/Web/API/PushEvent/data)
+   */
+  data?: pushMessageData,
 }

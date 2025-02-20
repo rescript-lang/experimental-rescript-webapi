@@ -1,4 +1,3 @@
-open EventAPI
 open ServiceWorkerAPI
 
 include EventTarget.Impl({
@@ -11,7 +10,7 @@ include EventTarget.Impl({
 @send
 external register: (
   serviceWorkerContainer,
-  ~scriptURL: string,
+  string,
   ~options: registrationOptions=?,
 ) => promise<serviceWorkerRegistration> = "register"
 

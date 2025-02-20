@@ -4,13 +4,16 @@ let observer = IntersectionObserver.make(~callback=(entry, observer) => {
 
 let root = Global.document->Document.querySelector("#root")->Null.getUnsafe
 
-let observer2 = IntersectionObserver.make(~callback=(entry, observer) => {
-  Console.log2(entry, observer)
-}, ~options={
-  root: root->IntersectionObserverRoot.fromElement,
-  rootMargin: "10px",
-  threshold: [0.1],
-})
+let observer2 = IntersectionObserver.make(
+  ~callback=(entry, observer) => {
+    Console.log2(entry, observer)
+  },
+  ~options={
+    root: root->IntersectionObserverRoot.fromElement,
+    rootMargin: "10px",
+    threshold: [0.1],
+  },
+)
 
 switch observer2.root->IntersectionObserverRoot.decode {
 | Element(_) => Console.log("Element")

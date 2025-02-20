@@ -25,9 +25,18 @@ removeEventListener("mousedown", prim => {
   capture: false
 });
 
+let registrationResult = await navigator.serviceWorker.register("/sw.js");
+
+let subscription = await registrationResult.pushManager.subscribe({
+  userVisibleOnly: true,
+  applicationServerKey: "MyPublicKey"
+});
+
 export {
   response,
   response2,
   response3,
+  registrationResult,
+  subscription,
 }
 /* response Not a pure module */

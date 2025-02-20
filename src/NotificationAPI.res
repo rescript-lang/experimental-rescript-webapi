@@ -63,7 +63,17 @@ type notification = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Notification/data)
     */
-  data: JSON.t,
+  data?: JSON.t,
+}
+
+/**
+ An array of actions to display in the notification, for which the default is an empty array. 
+ [Read more on MDN](https://developer.mozilla.org/en-US/docs/Web/API/ServiceWorkerRegistration/showNotification#actions)
+ */
+type notificationAction = {
+  action: string,
+  title: string,
+  icon?: string
 }
 
 type notificationOptions = {
@@ -76,8 +86,21 @@ type notificationOptions = {
   mutable silent?: Null.t<bool>,
   mutable requireInteraction?: bool,
   mutable data?: JSON.t,
+  mutable actions?: array<notificationAction>
 }
 
 type getNotificationOptions = {mutable tag?: string}
 
 type notificationPermissionCallback = notificationPermission => unit
+
+type notificationEvent = {
+  ...extendableEvent,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/NotificationEvent/action)
+  */
+  action: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/NotificationEvent/notification)
+  */
+  notification: notification,
+}

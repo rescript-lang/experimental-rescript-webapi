@@ -1,5 +1,5 @@
 open FetchAPI
-open ServiceWorkerAPI
+open WebWorkersAPI
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Cache/match)
