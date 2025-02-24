@@ -22,6 +22,7 @@ type eventType =
   | @as("cuechange") Cuechange
   | @as("cut") Cut
   | @as("dblclick") Dblclick
+  | @as("DOMContentLoaded") DOMContentLoaded
   | @as("drag") Drag
   | @as("dragend") Dragend
   | @as("dragenter") Dragenter
