@@ -23,3 +23,10 @@ external requestPermission: (
 */
 @send
 external close: notification => unit = "close"
+
+/**
+[Read more on MDN](https://developer.mozilla.org/en-US/docs/Web/API/Notification/permission_static)
+*/
+@scope("Notification")
+@val
+external permission: notificationPermission = "permission"
