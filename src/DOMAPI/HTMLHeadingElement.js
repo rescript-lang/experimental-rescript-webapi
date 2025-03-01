@@ -4,4 +4,19 @@ import * as HTMLElement$WebAPI from "./HTMLElement.js";
 
 HTMLElement$WebAPI.Impl({});
 
+function isInstanceOf(param) {
+  return (param instanceof HTMLHeadingElement);
+}
+
+function tryParse(element) {
+  if (isInstanceOf(element)) {
+    return element;
+  }
+  
+}
+
+export {
+  isInstanceOf,
+  tryParse,
+}
 /*  Not a pure module */
