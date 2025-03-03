@@ -38,7 +38,7 @@
     "rescript": "^12.0.0-alpha.9"
   },
   "devDependencies": {
-    "@astrojs/starlight": "0.32.1",
+    "@astrojs/starlight": "0.32.2",
     "astro": "^5.1.1",
     "micromark": "^4.0.1",
     "prettier": "^3.3.3",
