@@ -87,6 +87,17 @@ Returns the first element that is a descendant of node that matches selectors.
 external querySelector: (document, string) => Null.t<element> = "querySelector"
 
 /**
+Invoke querySelector and checks if the element is an HTMLHeadingElement.
+[Read more on MDN](https://developer.mozilla.org/docs/Web/API/Document/querySelector)
+*/
+let querySelectorAsHeading = (document, selector): option<htmlHeadingElement> => {
+  switch querySelector(document, selector) {
+  | Value(element) if HTMLHeadingElement.isInstanceOf(element) => Some(element->Obj.magic)
+  | _ => None
+  }
+}
+
+/**
 Returns all element descendants of node that match selectors.
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Document/querySelectorAll)
 */
