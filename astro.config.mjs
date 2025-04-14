@@ -7,23 +7,23 @@ const rescriptTM = JSON.parse(
   readFileSync("./docs/assets/rescript.tmLanguage.json", "utf-8"),
 );
 
-const apiSidebarItems  = apiModules.map(({ moduleName, link, items }) => {
+const apiSidebarItems = apiModules.map(({ moduleName, link, items }) => {
   const nestedItems = Object.values(items).map(({ moduleName, link }) => ({
     label: moduleName,
-    link
+    link,
   }));
 
-  return ({
+  return {
     label: moduleName,
     collapsed: true,
     items: [
       {
         label: `Overview`,
-        link
+        link,
       },
-      ...nestedItems
-    ]
-  });
+      ...nestedItems,
+    ],
+  };
 });
 
 export default defineConfig({
@@ -37,9 +37,13 @@ export default defineConfig({
       logo: {
         src: "./docs/assets/rescript-logo.svg",
       },
-      social: {
-        github: "https://github.com/rescript-lang/experimental-rescript-webapi",
-      },
+      social: [
+        {
+          icon: "github",
+          label: "GitHub",
+          href: "https://github.com/rescript-lang/experimental-rescript-webapi",
+        },
+      ],
       editLink: {
         baseUrl:
           "https://github.com/rescript-lang/experimental-rescript-webapi/edit/main/",
