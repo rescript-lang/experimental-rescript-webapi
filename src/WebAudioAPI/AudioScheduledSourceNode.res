@@ -6,7 +6,7 @@ module Impl = (
   },
 ) => {
   include AudioNode.Impl({
-    type t = audioScheduledSourceNode
+    type t = T.t
   })
 
   external asAudioScheduledSourceNode: T.t => audioScheduledSourceNode = "%identity"
