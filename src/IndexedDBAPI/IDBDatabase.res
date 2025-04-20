@@ -1,4 +1,3 @@
-open EventAPI
 open IndexedDBAPI
 
 include EventTarget.Impl({

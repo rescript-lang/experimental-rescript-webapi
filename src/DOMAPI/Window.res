@@ -1,10 +1,8 @@
-open Prelude
 open DOMAPI
 open CanvasAPI
 open FileAPI
 open ChannelMessagingAPI
 open FetchAPI
-open EventAPI
 
 include EventTarget.Impl({
   type t = window

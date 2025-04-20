@@ -1,6 +1,4 @@
-open EventAPI
 open CanvasAPI
-open Prelude
 open FileAPI
 
 /**

@@ -1,6 +1,4 @@
-open EventAPI
 open ServiceWorkerAPI
-open Prelude
 open ChannelMessagingAPI
 
 include EventTarget.Impl({

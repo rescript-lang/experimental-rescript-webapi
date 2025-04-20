@@ -1,4 +1,3 @@
-open EventAPI
 open WebSpeechAPI
 
 include EventTarget.Impl({

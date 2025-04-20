@@ -1,4 +1,3 @@
-open Prelude
 open FileAPI
 
 external asWritableStream: fileSystemWritableFileStream => writableStream<'w> = "%identity"

@@ -1,4 +1,3 @@
-open DOMAPI
 open FileAndDirectoryEntriesAPI
 
 /**

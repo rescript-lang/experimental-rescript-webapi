@@ -1,4 +1,3 @@
-open EventAPI
 open ScreenWakeLockAPI
 
 include EventTarget.Impl({

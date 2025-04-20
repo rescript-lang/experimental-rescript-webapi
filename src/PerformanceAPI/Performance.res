@@ -1,4 +1,3 @@
-open EventAPI
 open PerformanceAPI
 
 include EventTarget.Impl({

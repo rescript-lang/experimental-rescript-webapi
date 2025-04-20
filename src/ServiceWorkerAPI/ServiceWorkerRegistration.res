@@ -1,4 +1,3 @@
-open EventAPI
 open ServiceWorkerAPI
 open NotificationAPI
 
