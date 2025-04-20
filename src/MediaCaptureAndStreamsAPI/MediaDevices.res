@@ -1,4 +1,3 @@
-open EventAPI
 open MediaCaptureAndStreamsAPI
 
 include EventTarget.Impl({

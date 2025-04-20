@@ -1,5 +1,4 @@
 open DOMAPI
-open EventAPI
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/DocumentFragmentFragment)

@@ -1,5 +1,4 @@
 open DOMAPI
-open EventAPI
 
 module Impl = (
   T: {

@@ -1,7 +1,5 @@
 @@warning("-30")
 
-open Prelude
-
 type mediaSessionPlaybackState =
   | @as("none") None
   | @as("paused") Paused

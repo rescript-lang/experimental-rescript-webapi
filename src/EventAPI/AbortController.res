@@ -1,4 +1,3 @@
-open Prelude
 open EventAPI
 
 /**

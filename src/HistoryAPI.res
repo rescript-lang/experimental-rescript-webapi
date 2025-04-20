@@ -1,7 +1,5 @@
 @@warning("-30")
 
-open Prelude
-
 type scrollRestoration =
   | @as("auto") Auto
   | @as("manual") Manual

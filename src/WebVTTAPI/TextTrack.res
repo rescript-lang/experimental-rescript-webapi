@@ -1,4 +1,3 @@
-open EventAPI
 open WebVTTAPI
 
 include EventTarget.Impl({

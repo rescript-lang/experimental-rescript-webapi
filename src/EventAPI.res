@@ -1,7 +1,5 @@
 @@warning("-30")
 
-open Prelude
-
 @unboxed
 type eventType =
   | @as("abort") Abort

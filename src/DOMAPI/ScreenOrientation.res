@@ -1,4 +1,3 @@
-open EventAPI
 open DOMAPI
 
 include EventTarget.Impl({

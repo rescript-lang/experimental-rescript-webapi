@@ -1,5 +1,3 @@
-open FileAPI
-open FetchAPI
 open DOMAPI
 
 /**

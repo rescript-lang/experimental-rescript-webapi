@@ -1,7 +1,5 @@
 @@warning("-30")
 
-open Prelude
-
 /**
 [See ViewTransition on MDN](https://developer.mozilla.org/docs/Web/API/ViewTransition)
 */

@@ -1,6 +1,5 @@
 @@warning("-30")
 
-open Prelude
 open DOMAPI
 
 type resizeObserverBoxOptions =

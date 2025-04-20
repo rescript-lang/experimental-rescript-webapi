@@ -1,5 +1,4 @@
 open HistoryAPI
-open Prelude
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/History/go)
