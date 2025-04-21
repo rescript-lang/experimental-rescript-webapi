@@ -52,6 +52,13 @@ self.addEventListener("push", event => {
         action: "close",
         title: "Close"
       }
+    ],
+    vibrate: [
+      200,
+      50,
+      200,
+      50,
+      400
     ]
   });
 });

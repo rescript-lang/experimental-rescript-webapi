@@ -28,9 +28,10 @@ self->ServiceWorkerGlobalScope.addEventListener(EventAPI.Push, (event: PushAPI.p
       actions: [{action: "open", title: "Open"}, {action: "close", title: "Close"}],
       // For example the id of a new data entry
       data: JSON.Number(17.),
+      vibrate: [200, 50, 200, 50, 400],
     },
   )
-  ->Promise.done
+  ->Promise.ignore
 })
 
 self->ServiceWorkerGlobalScope.addEventListener(EventAPI.NotificationClick, (
@@ -51,6 +52,6 @@ self->ServiceWorkerGlobalScope.addEventListener(EventAPI.NotificationClick, (
   ->Option.forEach(id => {
     self.clients
     ->Clients.openWindow(`https://mywebsite.com/mydata/${id}`)
-    ->Promise.done
+    ->Promise.ignore
   })
 })

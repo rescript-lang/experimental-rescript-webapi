@@ -86,6 +86,10 @@ type notificationOptions = {
   mutable requireInteraction?: bool,
   mutable data?: JSON.t,
   mutable actions?: array<notificationAction>,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/en-US/docs/Web/API/ServiceWorkerRegistration/showNotification#vibrate)
+  */
+  mutable vibrate?: array<int>,
 }
 
 type getNotificationOptions = {mutable tag?: string}
