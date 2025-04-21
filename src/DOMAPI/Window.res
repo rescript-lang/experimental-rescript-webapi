@@ -27,22 +27,20 @@ external btoa: (window, string) => string = "btoa"
 external atob: (window, string) => string = "atob"
 
 /**
+Executes a function after a delay given in milliseconds expires.
+
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/setTimeout)
 */
 @send
-external setTimeout: (window, ~handler: string, ~timeout: int=?) => int = "setTimeout"
+external setTimeout: (window, ~handler: unit => unit, ~timeout: int=?) => timeoutId = "setTimeout"
 
 /**
-[Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/setTimeout)
-*/
-@send
-external setTimeout2: (window, ~handler: unit => unit, ~timeout: int=?) => int = "setTimeout"
+Cancels the execution of a timeout created with setTimeout.
 
-/**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/clearTimeout)
 */
 @send
-external clearTimeout: (window, int) => unit = "clearTimeout"
+external clearTimeout: (window, timeoutId) => unit = "clearTimeout"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/setInterval)
