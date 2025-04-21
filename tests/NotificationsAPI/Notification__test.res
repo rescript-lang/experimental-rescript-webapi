@@ -10,4 +10,4 @@ Notification.requestPermission()
   | Default => Console.log("Permission default")
   }
 })
-->Promise.done
+->Promise.ignore
