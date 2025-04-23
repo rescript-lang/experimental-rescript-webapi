@@ -9917,3 +9917,5 @@ type blobCallback = blob => unit
 type videoFrameRequestCallback = float => videoFrameCallbackMetadata => unit
 
 type frameRequestCallback = float => unit
+
+type timeoutId
