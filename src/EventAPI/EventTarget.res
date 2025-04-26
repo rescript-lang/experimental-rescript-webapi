@@ -54,7 +54,7 @@ The event listener is appended to target's event listener list and is not append
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/EventTarget/addEventListener)
 */
   @send
-  external addEventListener_useCapture: (
+  external addEventListenerWithCapture: (
     T.t,
     eventType,
     eventListener<'event>,
