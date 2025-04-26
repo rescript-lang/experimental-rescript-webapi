@@ -32,8 +32,13 @@ switch (color.TAG) {
     break;
 }
 
+let img = document.createElement("img");
+
+ctx.drawImage(img, 0, 0, 200, 200);
+
 export {
   myCanvas,
   ctx,
+  img,
 }
 /* myCanvas Not a pure module */
