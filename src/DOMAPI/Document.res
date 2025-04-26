@@ -155,8 +155,7 @@ Creates an instance of the element for the specified tag.
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Document/createElement)
 */
 @send
-external createElement: (document, ~localName: string, ~options: string=?) => element =
-  "createElement"
+external createElement: (document, string, ~options: string=?) => element = "createElement"
 
 /**
 Creates an instance of the element for the specified tag.

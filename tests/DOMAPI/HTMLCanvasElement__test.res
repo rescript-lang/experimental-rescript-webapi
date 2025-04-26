@@ -17,3 +17,6 @@ switch ctx.fillStyle->FillStyle.decode {
 | FillStyle.CanvasGradient(_) => Console.log("CanvasGradient")
 | FillStyle.CanvasPattern(_) => Console.log("CanvasPattern")
 }
+
+let img: DOMAPI.htmlImageElement = document->Document.createElement("img")->Obj.magic
+ctx->CanvasRenderingContext2D.drawImageWithDimensions(~image=img, ~dx=0., ~dy=0., ~dw=200., ~dh=200.)

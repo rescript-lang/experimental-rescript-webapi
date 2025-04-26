@@ -362,7 +362,7 @@ external drawImage: (
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CanvasRenderingContext2D/drawImage)
 */
 @send
-external drawImage2: (
+external drawImageWithSvg: (
   canvasRenderingContext2D,
   ~image: svgImageElement,
   ~dx: float,
@@ -373,7 +373,7 @@ external drawImage2: (
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CanvasRenderingContext2D/drawImage)
 */
 @send
-external drawImage3: (
+external drawImageWithVideo: (
   canvasRenderingContext2D,
   ~image: htmlVideoElement,
   ~dx: float,
@@ -384,7 +384,7 @@ external drawImage3: (
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CanvasRenderingContext2D/drawImage)
 */
 @send
-external drawImage4: (
+external drawImageWithCanvas: (
   canvasRenderingContext2D,
   ~image: htmlCanvasElement,
   ~dx: float,
@@ -395,7 +395,7 @@ external drawImage4: (
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CanvasRenderingContext2D/drawImage)
 */
 @send
-external drawImage5: (
+external drawImageWithImageBitmap: (
   canvasRenderingContext2D,
   ~image: imageBitmap,
   ~dx: float,
@@ -406,7 +406,7 @@ external drawImage5: (
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CanvasRenderingContext2D/drawImage)
 */
 @send
-external drawImage6: (
+external drawImageWithOffscreenCanvas: (
   canvasRenderingContext2D,
   ~image: offscreenCanvas,
   ~dx: float,
@@ -417,7 +417,7 @@ external drawImage6: (
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CanvasRenderingContext2D/drawImage)
 */
 @send
-external drawImage7: (
+external drawImageWithVideoFrame: (
   canvasRenderingContext2D,
   ~image: videoFrame,
   ~dx: float,
@@ -428,7 +428,7 @@ external drawImage7: (
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CanvasRenderingContext2D/drawImage)
 */
 @send
-external drawImage8: (
+external drawImageWithDimensions: (
   canvasRenderingContext2D,
   ~image: htmlImageElement,
   ~dx: float,
@@ -441,7 +441,7 @@ external drawImage8: (
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CanvasRenderingContext2D/drawImage)
 */
 @send
-external drawImage9: (
+external drawImageWithSvgDimensions: (
   canvasRenderingContext2D,
   ~image: svgImageElement,
   ~dx: float,
@@ -454,7 +454,7 @@ external drawImage9: (
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CanvasRenderingContext2D/drawImage)
 */
 @send
-external drawImage10: (
+external drawImageWithVideoDimensions: (
   canvasRenderingContext2D,
   ~image: htmlVideoElement,
   ~dx: float,
@@ -467,7 +467,7 @@ external drawImage10: (
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CanvasRenderingContext2D/drawImage)
 */
 @send
-external drawImage11: (
+external drawImageWithCanvasDimensions: (
   canvasRenderingContext2D,
   ~image: htmlCanvasElement,
   ~dx: float,
@@ -480,7 +480,7 @@ external drawImage11: (
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CanvasRenderingContext2D/drawImage)
 */
 @send
-external drawImage12: (
+external drawImageWithImageBitmapDimensions: (
   canvasRenderingContext2D,
   ~image: imageBitmap,
   ~dx: float,
@@ -493,7 +493,7 @@ external drawImage12: (
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CanvasRenderingContext2D/drawImage)
 */
 @send
-external drawImage13: (
+external drawImageWithOffscreenCanvasDimensions: (
   canvasRenderingContext2D,
   ~image: offscreenCanvas,
   ~dx: float,
@@ -506,7 +506,7 @@ external drawImage13: (
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CanvasRenderingContext2D/drawImage)
 */
 @send
-external drawImage14: (
+external drawImageWithVideoFrameDimensions: (
   canvasRenderingContext2D,
   ~image: videoFrame,
   ~dx: float,
@@ -519,7 +519,7 @@ external drawImage14: (
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CanvasRenderingContext2D/drawImage)
 */
 @send
-external drawImage15: (
+external drawImageWithSubRectangle: (
   canvasRenderingContext2D,
   ~image: htmlImageElement,
   ~sx: float,
@@ -536,7 +536,7 @@ external drawImage15: (
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CanvasRenderingContext2D/drawImage)
 */
 @send
-external drawImage16: (
+external drawImageWithSvgSubRectangle: (
   canvasRenderingContext2D,
   ~image: svgImageElement,
   ~sx: float,
@@ -553,7 +553,7 @@ external drawImage16: (
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CanvasRenderingContext2D/drawImage)
 */
 @send
-external drawImage17: (
+external drawImageWithVideoSubRectangle: (
   canvasRenderingContext2D,
   ~image: htmlVideoElement,
   ~sx: float,
@@ -570,7 +570,7 @@ external drawImage17: (
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CanvasRenderingContext2D/drawImage)
 */
 @send
-external drawImage18: (
+external drawImageWithCanvasSubRectangle: (
   canvasRenderingContext2D,
   ~image: htmlCanvasElement,
   ~sx: float,
@@ -587,7 +587,7 @@ external drawImage18: (
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CanvasRenderingContext2D/drawImage)
 */
 @send
-external drawImage19: (
+external drawImageWithImageBitmapSubRectangle: (
   canvasRenderingContext2D,
   ~image: imageBitmap,
   ~sx: float,
@@ -604,7 +604,7 @@ external drawImage19: (
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CanvasRenderingContext2D/drawImage)
 */
 @send
-external drawImage20: (
+external drawImageWithOffscreenCanvasSubRectangle: (
   canvasRenderingContext2D,
   ~image: offscreenCanvas,
   ~sx: float,
@@ -621,7 +621,7 @@ external drawImage20: (
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CanvasRenderingContext2D/drawImage)
 */
 @send
-external drawImage21: (
+external drawImageWithVideoFrameSubRectangle: (
   canvasRenderingContext2D,
   ~image: videoFrame,
   ~sx: float,
