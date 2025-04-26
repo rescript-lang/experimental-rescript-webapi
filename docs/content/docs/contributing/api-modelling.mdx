@@ -48,7 +48,7 @@ We can use [a fixed argument](https://rescript-lang.org/docs/manual/latest/bind-
 
 ```ReScript
 @send
-external addEventListener_useCapture: (
+external addEventListenerWithCapture: (
   htmlButtonElement,
   ~type_: eventType,
   ~callback: eventListener<'event>,
@@ -56,11 +56,7 @@ external addEventListener_useCapture: (
 ) => unit = "addEventListener"
 ```
 
-<Aside type="caution" title="Improving methods">
-  Be aware that inherited interfaces duplicate their inherited methods. This
-  means that improving `addEventListener` in the `EventTarget` interface
-  requires to update all interfaces that inherit from `EventTarget`.
-</Aside>
+When naming an overloaded function, we can use the `With` suffix to indicate that it is an overloaded function.
 
 ### Decoded variants
 

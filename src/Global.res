@@ -554,7 +554,7 @@ If an AbortSignal is passed for options's signal, then the event listener will b
 The event listener is appended to target's event listener list and is not appended if it has the same type, callback, and capture.
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/EventTarget/addEventListener)
 */
-external addEventListener_useCapture: (
+external addEventListenerWithCapture: (
   eventType,
   eventListener<'event>,
   @as(json`true`) _,
