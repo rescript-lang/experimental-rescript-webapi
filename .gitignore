@@ -4,3 +4,4 @@
 .astro
 dist/
 tmp/
+docs/public/llm.txt

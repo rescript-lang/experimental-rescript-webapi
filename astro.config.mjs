@@ -77,6 +77,14 @@ export default defineConfig({
             ...apiSidebarItems,
           ],
         },
+        {
+          label: "LLM Documentation",
+          link: "./llm.txt",
+          badge: {
+            text: "New",
+            variant: "tip",
+          },
+        },
       ],
       customCss: ["./docs/styles/fonts.css", "./docs/styles/theme.css"],
       expressiveCode: {

@@ -31,6 +31,7 @@
     "build": "rescript",
     "format": "rescript format -all && prettier --write ./tests/index.js ./package.json ./docs/pages",
     "docs": "astro dev",
+    "pre:build:docs": "node docs/llm.js",
     "build:docs": "astro build"
   },
   "license": "MIT",
