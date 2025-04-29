@@ -18,7 +18,7 @@ external append: (formData, ~name: string, ~value: string) => unit = "append"
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/FormData/append)
 */
 @send
-external append2: (formData, ~name: string, ~blobValue: blob, ~filename: string=?) => unit =
+external appendBlob: (formData, ~name: string, ~blobValue: blob, ~filename: string=?) => unit =
   "append"
 
 /**
@@ -31,13 +31,13 @@ external delete: (formData, string) => unit = "delete"
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/FormData/get)
 */
 @send
-external get: (formData, string) => file = "get"
+external get: (formData, string) => string = "get"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/FormData/get)
 */
 @send
-external get2: (formData, string) => string = "get"
+external getFile: (formData, string) => file = "get"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/FormData/getAll)
@@ -61,4 +61,4 @@ external set: (formData, ~name: string, ~value: string) => unit = "set"
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/FormData/set)
 */
 @send
-external set2: (formData, ~name: string, ~blobValue: blob, ~filename: string=?) => unit = "set"
+external setBlob: (formData, ~name: string, ~blobValue: blob, ~filename: string=?) => unit = "set"
