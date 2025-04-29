@@ -19,4 +19,10 @@ switch ctx.fillStyle->FillStyle.decode {
 }
 
 let img: DOMAPI.htmlImageElement = document->Document.createElement("img")->Obj.magic
-ctx->CanvasRenderingContext2D.drawImageWithDimensions(~image=img, ~dx=0., ~dy=0., ~dw=200., ~dh=200.)
+ctx->CanvasRenderingContext2D.drawImageWithDimensions(
+  ~image=img,
+  ~dx=0.,
+  ~dy=0.,
+  ~dw=200.,
+  ~dh=200.,
+)
