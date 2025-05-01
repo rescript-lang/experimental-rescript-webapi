@@ -117,6 +117,8 @@ type webGLPowerPreference =
   | @as("high-performance") HighPerformance
   | @as("low-power") LowPower
 
+@editor.completeFrom(FillStyle) type fillStyle
+
 /**
 [See OffscreenCanvas on MDN](https://developer.mozilla.org/docs/Web/API/OffscreenCanvas)
 */
@@ -183,11 +185,11 @@ type offscreenCanvasRenderingContext2D = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CanvasRenderingContext2D/strokeStyle)
     */
-  mutable strokeStyle: unknown,
+  mutable strokeStyle: fillStyle,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CanvasRenderingContext2D/fillStyle)
     */
-  mutable fillStyle: unknown,
+  mutable fillStyle: fillStyle,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CanvasRenderingContext2D/shadowOffsetX)
     */
