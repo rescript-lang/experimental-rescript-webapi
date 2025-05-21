@@ -5,13 +5,13 @@ open FileAPI
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Request)
 */
 @new
-external make: (~input: request, ~init: requestInit=?) => request = "Request"
+external fromURL: (string, ~init: requestInit=?) => request = "Request"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Request)
 */
 @new
-external make2: (~input: string, ~init: requestInit=?) => request = "Request"
+external fromRequest: (request, ~init: requestInit=?) => request = "Request"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Request/arrayBuffer)

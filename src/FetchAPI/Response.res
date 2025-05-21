@@ -5,43 +5,7 @@ open FileAPI
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Response)
 */
 @new
-external make: (~body: readableStream<unit>=?, ~init: responseInit=?) => response = "Response"
-
-/**
-[Read more on MDN](https://developer.mozilla.org/docs/Web/API/Response)
-*/
-@new
-external make2: (~body: blob=?, ~init: responseInit=?) => response = "Response"
-
-/**
-[Read more on MDN](https://developer.mozilla.org/docs/Web/API/Response)
-*/
-@new
-external make3: (~body: DataView.t=?, ~init: responseInit=?) => response = "Response"
-
-/**
-[Read more on MDN](https://developer.mozilla.org/docs/Web/API/Response)
-*/
-@new
-external make4: (~body: ArrayBuffer.t=?, ~init: responseInit=?) => response = "Response"
-
-/**
-[Read more on MDN](https://developer.mozilla.org/docs/Web/API/Response)
-*/
-@new
-external make5: (~body: formData=?, ~init: responseInit=?) => response = "Response"
-
-/**
-[Read more on MDN](https://developer.mozilla.org/docs/Web/API/Response)
-*/
-@new
-external make6: (~body: urlSearchParams=?, ~init: responseInit=?) => response = "Response"
-
-/**
-[Read more on MDN](https://developer.mozilla.org/docs/Web/API/Response)
-*/
-@new
-external make7: (~body: string=?, ~init: responseInit=?) => response = "Response"
+external make: (~body: bodyInit=?, ~init: responseInit=?) => response = "Response"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Request/arrayBuffer)

@@ -16,7 +16,7 @@ let response2 = await fetch(
 )
 
 let response3 = await fetch_withRequest(
-  Request.make2(~input="https://rescript-lang.org/"),
+  Request.fromURL("https://rescript-lang.org/"),
   ~init={
     method: "POST",
     headers: HeadersInit.fromDict(

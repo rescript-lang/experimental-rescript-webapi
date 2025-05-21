@@ -5,13 +5,25 @@ open Prelude
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Headers)
 */
 @new
-external make: (~init: array<array<string>>=?) => headers = "Headers"
+external make: unit => headers = "Headers"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Headers)
 */
 @new
-external make2: (~init: any=?) => headers = "Headers"
+external fromDict: dict<string> => headers = "Headers"
+
+/**
+[Read more on MDN](https://developer.mozilla.org/docs/Web/API/Headers)
+*/
+@new
+external fromHeaders: headers => headers = "Headers"
+
+/**
+[Read more on MDN](https://developer.mozilla.org/docs/Web/API/Headers)
+*/
+@new
+external fromKeyValueArray: array<(string, string)> => headers = "Headers"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Headers/append)
