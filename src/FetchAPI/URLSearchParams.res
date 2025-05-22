@@ -5,19 +5,25 @@ open Prelude
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/URLSearchParams)
 */
 @new
-external make: (~init: array<array<string>>=?) => urlSearchParams = "URLSearchParams"
+external make: unit => urlSearchParams = "URLSearchParams"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/URLSearchParams)
 */
 @new
-external make2: (~init: any=?) => urlSearchParams = "URLSearchParams"
+external fromKeyValueArray: array<(string, string)> => urlSearchParams = "URLSearchParams"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/URLSearchParams)
 */
 @new
-external make3: (~init: string=?) => urlSearchParams = "URLSearchParams"
+external fromDict: dict<string> => urlSearchParams = "URLSearchParams"
+
+/**
+[Read more on MDN](https://developer.mozilla.org/docs/Web/API/URLSearchParams)
+*/
+@new
+external fromString: string => urlSearchParams = "URLSearchParams"
 
 /**
 Appends a specified key/value pair as a new search parameter.

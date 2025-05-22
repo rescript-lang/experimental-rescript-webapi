@@ -5,43 +5,61 @@ open FileAPI
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Response)
 */
 @new
-external make: (~body: readableStream<unit>=?, ~init: responseInit=?) => response = "Response"
+external fromNull: (@as(json`null`) _, ~init: responseInit=?) => response = "Response"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Response)
 */
 @new
-external make2: (~body: blob=?, ~init: responseInit=?) => response = "Response"
+external fromString: (string, ~init: responseInit=?) => response = "Response"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Response)
 */
 @new
-external make3: (~body: DataView.t=?, ~init: responseInit=?) => response = "Response"
+external fromArrayBuffer: (ArrayBuffer.t, ~init: responseInit=?) => response = "Response"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Response)
 */
 @new
-external make4: (~body: ArrayBuffer.t=?, ~init: responseInit=?) => response = "Response"
+external fromTypedArray: (TypedArray.t<'t>, ~init: responseInit=?) => response = "Response"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Response)
 */
 @new
-external make5: (~body: formData=?, ~init: responseInit=?) => response = "Response"
+external fromDataView: (DataView.t, ~init: responseInit=?) => response = "Response"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Response)
 */
 @new
-external make6: (~body: urlSearchParams=?, ~init: responseInit=?) => response = "Response"
+external fromBlob: (blob, ~init: responseInit=?) => response = "Response"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Response)
 */
 @new
-external make7: (~body: string=?, ~init: responseInit=?) => response = "Response"
+external fromFile: (file, ~init: responseInit=?) => response = "Response"
+
+/**
+[Read more on MDN](https://developer.mozilla.org/docs/Web/API/Response)
+*/
+@new
+external fromURLSearchParams: (urlSearchParams, ~init: responseInit=?) => response = "Response"
+
+/**
+[Read more on MDN](https://developer.mozilla.org/docs/Web/API/Response)
+*/
+@new
+external fromFormData: (formData, ~init: responseInit=?) => response = "Response"
+
+/**
+[Read more on MDN](https://developer.mozilla.org/docs/Web/API/Response)
+*/
+@new
+external fromReadableStream: (readableStream<'t>, ~init: responseInit=?) => response = "Response"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Request/arrayBuffer)

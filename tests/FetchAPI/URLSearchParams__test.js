@@ -7,13 +7,25 @@ Array.from(params1.keys()).forEach(prim => {
   console.log(prim);
 });
 
-let params2 = new URLSearchParams("?foo=1&bar=b");
+let params2 = new URLSearchParams([
+  [
+    "foo",
+    "1"
+  ],
+  [
+    "bar",
+    "b"
+  ]
+]);
 
 Array.from(params2.values()).forEach(prim => {
   console.log(prim);
 });
 
-let params3 = new URLSearchParams("?foo=1&bar=b");
+let params3 = new URLSearchParams({
+  foo: "1",
+  bar: "b"
+});
 
 Array.from(params3.entries()).forEach(param => {
   console.log(param[0], param[1]);
