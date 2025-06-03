@@ -1,6 +1,5 @@
 open Prelude
 open CanvasAPI
-open DOMAPI
 
 external fromString: string => fillStyle = "%identity"
 external fromCanvasGradient: canvasGradient => fillStyle = "%identity"
