@@ -1,4 +1,4 @@
-open WebAPI.Global
+open Global
 open WebAPI.Storage
 
 for i in 0 to localStorage.length - 1 {
