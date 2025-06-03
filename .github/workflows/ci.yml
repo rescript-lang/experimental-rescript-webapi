@@ -30,11 +30,6 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      # There is a bug in the ReScript compiler where it tries to compile the test files before finishing the source files
-      - name: Build ReScript code
-        run: npm run build
-        continue-on-error: true
-
       - name: Rebuild ReScript code
         run: npm run build
 
