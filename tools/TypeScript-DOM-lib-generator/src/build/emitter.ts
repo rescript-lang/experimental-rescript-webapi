@@ -1567,7 +1567,7 @@ export async function emitRescriptBindings(webidl: Browser.WebIdl) {
     }
     printer.endLine();
 
-    const windowInterface = allInterfaces.find((i) => i.name === "Window");
+    const windowInterface = allInterfaces.find((i) => i.name === "WindowOrWorkerGlobalScope");
     if (!windowInterface) throw new Error("Window interface not found");
 
     const allProperties: Browser.Property[] =
@@ -2823,11 +2823,12 @@ export async function emitRescriptBindings(webidl: Browser.WebIdl) {
     interfaceHierarchy = [
       {
         name: "Temp",
-        entries: [
-          enums(["WebGLPowerPreference"]),
-          dictionaries(["ImageBitmapRenderingContextSettings", "WebGLContextAttributes"]),
+          entries: [
+              enums(["WorkerType"]),
+            individualInterfaces(["SharedWorker"]),
+            dictionaries(["WorkerOptions"])
         ],
-        opens: [],
+          opens: [ "EventAPI", "ChannelMessagingAPI"],
       }
     ]
 
@@ -2938,5 +2939,10 @@ export async function emitRescriptBindings(webidl: Browser.WebIdl) {
     // emitIndividualInterfaces(remainers);
   }
 
-  await emit();
+    await emit();
+
+    await fs.writeFile(
+        path.join(outputFolder, "sharedworker.json"),
+        JSON.stringify(webidl, null, 2),
+    );
 }
