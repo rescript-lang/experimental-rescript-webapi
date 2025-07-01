@@ -1,8 +1,6 @@
 open ScreenWakeLockAPI
 
-include EventTarget.Impl({
-  type t = wakeLockSentinel
-})
+include EventTarget.Impl({type t = wakeLockSentinel})
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/WakeLockSentinel/release)

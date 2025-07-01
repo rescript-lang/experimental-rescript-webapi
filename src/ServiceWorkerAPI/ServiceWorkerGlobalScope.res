@@ -1,5 +1,3 @@
 open ServiceWorkerAPI
 
-include WorkerGlobalScope.Impl({
-  type t = serviceWorkerGlobalScope
-})
+include WorkerGlobalScope.Impl({type t = serviceWorkerGlobalScope})

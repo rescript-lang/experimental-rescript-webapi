@@ -1,8 +1,6 @@
 open MediaCaptureAndStreamsAPI
 
-include EventTarget.Impl({
-  type t = mediaStreamTrack
-})
+include EventTarget.Impl({type t = mediaStreamTrack})
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/MediaStreamTrack/clone)

@@ -8,9 +8,7 @@ open ViewTransitionsAPI
 @new
 external make: unit => document = "Document"
 
-include Node.Impl({
-  type t = document
-})
+include Node.Impl({type t = document})
 
 /**
 Returns the first element within node's descendants whose ID is elementId.

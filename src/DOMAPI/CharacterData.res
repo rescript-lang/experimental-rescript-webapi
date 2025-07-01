@@ -5,9 +5,7 @@ module Impl = (
     type t
   },
 ) => {
-  include Node.Impl({
-    type t = T.t
-  })
+  include Node.Impl({type t = T.t})
 
   external asCharacterData: T.t => characterData = "%identity"
 
@@ -103,6 +101,4 @@ Throws a "HierarchyRequestError" DOMException if the constraints of the node tre
   external substringData: (T.t, ~offset: int, ~count: int) => string = "substringData"
 }
 
-include Impl({
-  type t = characterData
-})
+include Impl({type t = characterData})

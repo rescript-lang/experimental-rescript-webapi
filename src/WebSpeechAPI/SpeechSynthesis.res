@@ -1,8 +1,6 @@
 open WebSpeechAPI
 
-include EventTarget.Impl({
-  type t = speechSynthesis
-})
+include EventTarget.Impl({type t = speechSynthesis})
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/SpeechSynthesis/speak)

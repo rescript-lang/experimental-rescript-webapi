@@ -1,8 +1,6 @@
 open DOMAPI
 
-include DocumentFragment.Impl({
-  type t = shadowRoot
-})
+include DocumentFragment.Impl({type t = shadowRoot})
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Document/getAnimations)

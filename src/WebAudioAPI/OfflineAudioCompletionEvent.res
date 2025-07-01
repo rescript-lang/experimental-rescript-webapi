@@ -1,8 +1,6 @@
 open WebAudioAPI
 
-include Event.Impl({
-  type t = offlineAudioCompletionEvent
-})
+include Event.Impl({type t = offlineAudioCompletionEvent})
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/OfflineAudioCompletionEvent)

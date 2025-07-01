@@ -1,8 +1,6 @@
 open EventAPI
 
-include EventTarget.Impl({
-  type t = abortSignal
-})
+include EventTarget.Impl({type t = abortSignal})
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/AbortSignal/abort_static)

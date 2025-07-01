@@ -1,8 +1,6 @@
 open RemotePlaybackAPI
 
-include EventTarget.Impl({
-  type t = remotePlayback
-})
+include EventTarget.Impl({type t = remotePlayback})
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/RemotePlayback/watchAvailability)

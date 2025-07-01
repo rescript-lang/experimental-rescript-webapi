@@ -1,8 +1,6 @@
 open WebVTTAPI
 
-include EventTarget.Impl({
-  type t = textTrack
-})
+include EventTarget.Impl({type t = textTrack})
 
 /**
 Adds the given cue to textTrack's text track list of cues.

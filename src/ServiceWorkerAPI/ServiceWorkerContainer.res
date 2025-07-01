@@ -1,8 +1,6 @@
 open ServiceWorkerAPI
 
-include EventTarget.Impl({
-  type t = serviceWorkerContainer
-})
+include EventTarget.Impl({type t = serviceWorkerContainer})
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/ServiceWorkerContainer/register)

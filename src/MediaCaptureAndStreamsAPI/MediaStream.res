@@ -18,9 +18,7 @@ external make2: mediaStream => mediaStream = "MediaStream"
 @new
 external make3: array<mediaStreamTrack> => mediaStream = "MediaStream"
 
-include EventTarget.Impl({
-  type t = mediaStream
-})
+include EventTarget.Impl({type t = mediaStream})
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/MediaStream/getAudioTracks)

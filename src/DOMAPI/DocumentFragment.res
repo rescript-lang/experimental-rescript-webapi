@@ -11,9 +11,7 @@ module Impl = (
     type t
   },
 ) => {
-  include Node.Impl({
-    type t = T.t
-  })
+  include Node.Impl({type t = T.t})
 
   external asDocumentFragment: T.t => documentFragment = "%identity"
 
@@ -93,6 +91,4 @@ Throws a "HierarchyRequestError" DOMException if the constraints of the node tre
   external replaceChildren2: (T.t, string) => unit = "replaceChildren"
 }
 
-include Impl({
-  type t = documentFragment
-})
+include Impl({type t = documentFragment})

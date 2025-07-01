@@ -1,8 +1,6 @@
 open DOMAPI
 
-include HTMLElement.Impl({
-  type t = htmlObjectElement
-})
+include HTMLElement.Impl({type t = htmlObjectElement})
 
 @send
 external getSVGDocument: htmlObjectElement => document = "getSVGDocument"

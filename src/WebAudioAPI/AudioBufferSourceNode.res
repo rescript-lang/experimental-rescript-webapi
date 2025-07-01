@@ -1,8 +1,6 @@
 open WebAudioAPI
 
-include AudioScheduledSourceNode.Impl({
-  type t = audioBufferSourceNode
-})
+include AudioScheduledSourceNode.Impl({type t = audioBufferSourceNode})
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/AudioBufferSourceNode)

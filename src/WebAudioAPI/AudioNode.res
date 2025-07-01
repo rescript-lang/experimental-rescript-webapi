@@ -5,9 +5,7 @@ module Impl = (
     type t
   },
 ) => {
-  include EventTarget.Impl({
-    type t = T.t
-  })
+  include EventTarget.Impl({type t = T.t})
 
   external asAudioNode: T.t => audioNode = "%identity"
 

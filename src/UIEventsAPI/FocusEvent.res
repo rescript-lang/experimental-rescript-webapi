@@ -6,6 +6,4 @@ open UIEventsAPI
 @new
 external make: (~type_: string, ~eventInitDict: focusEventInit=?) => focusEvent = "FocusEvent"
 
-include UIEvent.Impl({
-  type t = focusEvent
-})
+include UIEvent.Impl({type t = focusEvent})

@@ -1,8 +1,6 @@
 open DOMAPI
 
-include HTMLElement.Impl({
-  type t = htmlFormElement
-})
+include HTMLElement.Impl({type t = htmlFormElement})
 
 /**
 Fires when a FORM is about to be submitted.

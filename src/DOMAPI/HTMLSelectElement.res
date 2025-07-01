@@ -69,6 +69,4 @@ external setCustomValidity: (htmlSelectElement, string) => unit = "setCustomVali
 @send
 external showPicker: htmlSelectElement => unit = "showPicker"
 
-include HTMLElement.Impl({
-  type t = htmlSelectElement
-})
+include HTMLElement.Impl({type t = htmlSelectElement})

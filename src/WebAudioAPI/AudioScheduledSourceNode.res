@@ -5,9 +5,7 @@ module Impl = (
     type t
   },
 ) => {
-  include AudioNode.Impl({
-    type t = T.t
-  })
+  include AudioNode.Impl({type t = T.t})
 
   external asAudioScheduledSourceNode: T.t => audioScheduledSourceNode = "%identity"
 
@@ -24,6 +22,4 @@ module Impl = (
   external stop: (T.t, ~when_: float=?) => unit = "stop"
 }
 
-include Impl({
-  type t = audioScheduledSourceNode
-})
+include Impl({type t = audioScheduledSourceNode})

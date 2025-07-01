@@ -1,8 +1,6 @@
 open IndexedDBAPI
 
-include EventTarget.Impl({
-  type t = idbTransaction
-})
+include EventTarget.Impl({type t = idbTransaction})
 
 /**
 Returns an IDBObjectStore in the transaction's scope.

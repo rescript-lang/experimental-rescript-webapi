@@ -1,8 +1,6 @@
 open WebSocketsAPI
 
-include Event.Impl({
-  type t = closeEvent
-})
+include Event.Impl({type t = closeEvent})
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CloseEvent)

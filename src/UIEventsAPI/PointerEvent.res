@@ -18,6 +18,4 @@ external getCoalescedEvents: pointerEvent => array<pointerEvent> = "getCoalesced
 @send
 external getPredictedEvents: pointerEvent => array<pointerEvent> = "getPredictedEvents"
 
-include MouseEvent.Impl({
-  type t = pointerEvent
-})
+include MouseEvent.Impl({type t = pointerEvent})
