@@ -1,8 +1,6 @@
 open WebAudioAPI
 
-include AudioNode.Impl({
-  type t = iirFilterNode
-})
+include AudioNode.Impl({type t = iirFilterNode})
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/IIRFilterNode)

@@ -13,9 +13,7 @@ module Impl = (
 ) => {
   external asMouseEvent: T.t => mouseEvent = "%identity"
 
-  include UIEvent.Impl({
-    type t = T.t
-  })
+  include UIEvent.Impl({type t = T.t})
 
   /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/MouseEvent/getModifierState)
@@ -24,6 +22,4 @@ module Impl = (
   external getModifierState: (T.t, string) => bool = "getModifierState"
 }
 
-include Impl({
-  type t = mouseEvent
-})
+include Impl({type t = mouseEvent})

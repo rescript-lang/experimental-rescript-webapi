@@ -7,9 +7,7 @@ module Impl = (
     type t
   },
 ) => {
-  include HTMLElement.Impl({
-    type t = htmlMediaElement
-  })
+  include HTMLElement.Impl({type t = htmlMediaElement})
 
   external asHTMLMediaElement: T.t => htmlMediaElement = "%identity"
 
@@ -71,6 +69,4 @@ Loads and starts playback of a media resource.
   external setSinkId: (T.t, string) => promise<unit> = "setSinkId"
 }
 
-include Impl({
-  type t = htmlMediaElement
-})
+include Impl({type t = htmlMediaElement})

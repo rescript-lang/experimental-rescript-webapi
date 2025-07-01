@@ -13,6 +13,4 @@ external make: (~type_: string, ~eventInitDict: inputEventInit=?) => inputEvent 
 @send
 external getTargetRanges: inputEvent => array<staticRange> = "getTargetRanges"
 
-include UIEvent.Impl({
-  type t = inputEvent
-})
+include UIEvent.Impl({type t = inputEvent})

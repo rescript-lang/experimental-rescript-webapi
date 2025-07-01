@@ -42,6 +42,4 @@ When dispatched in a tree, invoking this method prevents event from reaching any
   external stopPropagation: T.t => unit = "stopPropagation"
 }
 
-include Impl({
-  type t = event
-})
+include Impl({type t = event})

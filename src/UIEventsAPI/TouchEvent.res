@@ -6,6 +6,4 @@ open UIEventsAPI
 @new
 external make: (~type_: string, ~eventInitDict: touchEventInit=?) => touchEvent = "TouchEvent"
 
-include UIEvent.Impl({
-  type t = touchEvent
-})
+include UIEvent.Impl({type t = touchEvent})

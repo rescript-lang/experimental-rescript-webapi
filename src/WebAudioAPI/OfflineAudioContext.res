@@ -1,8 +1,6 @@
 open WebAudioAPI
 
-include BaseAudioContext.Impl({
-  type t = offlineAudioContext
-})
+include BaseAudioContext.Impl({type t = offlineAudioContext})
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/OfflineAudioContext)

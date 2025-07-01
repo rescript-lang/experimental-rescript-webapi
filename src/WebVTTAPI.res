@@ -72,8 +72,7 @@ Can be set.
 This interface also inherits properties from EventTarget.
 [See TextTrack on MDN](https://developer.mozilla.org/docs/Web/API/TextTrack)
 */
-@editor.completeFrom(TextTrack)
-and textTrack = {
+@editor.completeFrom(TextTrack) and textTrack = {
   ...eventTarget,
   /**
     Returns the text track kind string.

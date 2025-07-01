@@ -212,17 +212,6 @@ Provides a way to easily construct a set of key/value pairs representing form fi
 @editor.completeFrom(FormData)
 type formData = {}
 
-/**
-[See URLSearchParams on MDN](https://developer.mozilla.org/docs/Web/API/URLSearchParams)
-*/
-@editor.completeFrom(URLSearchParams)
-type urlSearchParams = {
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/URLSearchParams/size)
-    */
-  size: int,
-}
-
 @editor.completeFrom(HeadersInit) type headersInit
 
 @editor.completeFrom(BodyInit) type bodyInit

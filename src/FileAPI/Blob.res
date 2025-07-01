@@ -43,6 +43,4 @@ module Impl = (
   external bytes: T.t => promise<array<int>> = "bytes"
 }
 
-include Impl({
-  type t = blob
-})
+include Impl({type t = blob})

@@ -1,8 +1,6 @@
 open DOMAPI
 
-include CharacterData.Impl({
-  type t = text
-})
+include CharacterData.Impl({type t = text})
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Text)

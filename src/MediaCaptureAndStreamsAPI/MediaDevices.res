@@ -1,8 +1,6 @@
 open MediaCaptureAndStreamsAPI
 
-include EventTarget.Impl({
-  type t = mediaDevices
-})
+include EventTarget.Impl({type t = mediaDevices})
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/MediaDevices/enumerateDevices)

@@ -13,6 +13,4 @@ external make: (~type_: string, ~eventInitDict: keyboardEventInit=?) => keyboard
 @send
 external getModifierState: (keyboardEvent, string) => bool = "getModifierState"
 
-include UIEvent.Impl({
-  type t = keyboardEvent
-})
+include UIEvent.Impl({type t = keyboardEvent})

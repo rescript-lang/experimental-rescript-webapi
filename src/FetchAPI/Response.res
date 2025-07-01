@@ -1,5 +1,6 @@
 open FetchAPI
 open FileAPI
+open URLAPI
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Response)

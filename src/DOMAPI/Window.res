@@ -4,9 +4,7 @@ open FileAPI
 open ChannelMessagingAPI
 open FetchAPI
 
-include EventTarget.Impl({
-  type t = window
-})
+include EventTarget.Impl({type t = window})
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/reportError)

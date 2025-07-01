@@ -1,8 +1,6 @@
 open DOMAPI
 
-include HTMLElement.Impl({
-  type t = htmlTableSectionElement
-})
+include HTMLElement.Impl({type t = htmlTableSectionElement})
 
 /**
 Creates a new row (tr) in the table, and adds the row to the rows collection.

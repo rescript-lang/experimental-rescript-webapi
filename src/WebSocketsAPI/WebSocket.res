@@ -13,9 +13,7 @@ external make: (~url: string, ~protocols: string=?) => webSocket = "WebSocket"
 @new
 external make2: (~url: string, ~protocols: array<string>=?) => webSocket = "WebSocket"
 
-include EventTarget.Impl({
-  type t = webSocket
-})
+include EventTarget.Impl({type t = webSocket})
 
 /**
 Closes the WebSocket connection, optionally using code as the the WebSocket connection close code and reason as the the WebSocket connection close reason.

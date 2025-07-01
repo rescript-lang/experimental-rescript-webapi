@@ -1,8 +1,6 @@
 open WebAudioAPI
 
-include AudioNode.Impl({
-  type t = convolverNode
-})
+include AudioNode.Impl({type t = convolverNode})
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/ConvolverNode)

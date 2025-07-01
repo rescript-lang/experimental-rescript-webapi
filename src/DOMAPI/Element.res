@@ -6,9 +6,7 @@ module Impl = (
     type t
   },
 ) => {
-  include Node.Impl({
-    type t = T.t
-  })
+  include Node.Impl({type t = T.t})
 
   external asElement: T.t => element = "%identity"
 
@@ -495,8 +493,6 @@ Returns true if qualifiedName is now present, and false otherwise.
     "toggleAttribute"
 }
 
-include Impl({
-  type t = element
-})
+include Impl({type t = element})
 
 let isInstanceOf = (_: 't): bool => %raw(`param instanceof Element`)

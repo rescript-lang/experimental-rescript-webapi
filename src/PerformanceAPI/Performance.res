@@ -1,8 +1,6 @@
 open PerformanceAPI
 
-include EventTarget.Impl({
-  type t = performance
-})
+include EventTarget.Impl({type t = performance})
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Performance/now)

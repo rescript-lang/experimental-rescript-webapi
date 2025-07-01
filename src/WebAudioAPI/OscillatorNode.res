@@ -1,8 +1,6 @@
 open WebAudioAPI
 
-include AudioScheduledSourceNode.Impl({
-  type t = oscillatorNode
-})
+include AudioScheduledSourceNode.Impl({type t = oscillatorNode})
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/OscillatorNode)

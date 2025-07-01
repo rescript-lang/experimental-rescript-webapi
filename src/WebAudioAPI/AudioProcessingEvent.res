@@ -1,8 +1,6 @@
 open WebAudioAPI
 
-include Event.Impl({
-  type t = audioProcessingEvent
-})
+include Event.Impl({type t = audioProcessingEvent})
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/AudioProcessingEvent)

@@ -1,8 +1,6 @@
 open DOMAPI
 
-include Element.Impl({
-  type t = svgGraphicsElement
-})
+include Element.Impl({type t = svgGraphicsElement})
 
 external asSVGElement: svgGraphicsElement => svgElement = "%identity"
 

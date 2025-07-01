@@ -7,9 +7,7 @@ open DOMAPI
 external make: (~effect: animationEffect=?, ~timeline: animationTimeline=?) => animation =
   "Animation"
 
-include EventTarget.Impl({
-  type t = animation
-})
+include EventTarget.Impl({type t = animation})
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Animation/cancel)

@@ -1,8 +1,6 @@
 open CSSFontLoadingAPI
 
-include EventTarget.Impl({
-  type t = fontFaceSet
-})
+include EventTarget.Impl({type t = fontFaceSet})
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/FontFaceSet/add)
