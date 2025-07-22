@@ -1,8 +1,6 @@
 open WebAudioAPI
 
-include AudioNode.Impl({
-  type t = mediaStreamAudioDestinationNode
-})
+include AudioNode.Impl({type t = mediaStreamAudioDestinationNode})
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/MediaStreamAudioDestinationNode)

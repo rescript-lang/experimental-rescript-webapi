@@ -7,9 +7,7 @@ open FileAPI
 @new
 external make: (~width: int, ~height: int) => offscreenCanvas = "OffscreenCanvas"
 
-include EventTarget.Impl({
-  type t = offscreenCanvas
-})
+include EventTarget.Impl({type t = offscreenCanvas})
 
 /**
 Returns an object that exposes an API for drawing on the OffscreenCanvas object. contextId specifies the desired API: "2d", "bitmaprenderer", "webgl", or "webgl2". options is handled by that API.

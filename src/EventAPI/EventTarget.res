@@ -93,6 +93,4 @@ Dispatches a synthetic event event to target and returns true if either event's 
   external dispatchEvent: (T.t, event) => bool = "dispatchEvent"
 }
 
-include Impl({
-  type t = eventTarget
-})
+include Impl({type t = eventTarget})

@@ -1,9 +1,7 @@
 open ServiceWorkerAPI
 open ChannelMessagingAPI
 
-include EventTarget.Impl({
-  type t = serviceWorker
-})
+include EventTarget.Impl({type t = serviceWorker})
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/ServiceWorker/postMessage)

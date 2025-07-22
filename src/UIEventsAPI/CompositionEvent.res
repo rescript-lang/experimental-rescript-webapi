@@ -7,6 +7,4 @@ open UIEventsAPI
 external make: (~type_: string, ~eventInitDict: compositionEventInit=?) => compositionEvent =
   "CompositionEvent"
 
-include UIEvent.Impl({
-  type t = compositionEvent
-})
+include UIEvent.Impl({type t = compositionEvent})

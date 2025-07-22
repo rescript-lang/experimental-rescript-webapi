@@ -1,8 +1,6 @@
 open WebAudioAPI
 
-include AudioNode.Impl({
-  type t = channelSplitterNode
-})
+include AudioNode.Impl({type t = channelSplitterNode})
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/ChannelSplitterNode)

@@ -1,5 +1,6 @@
 open FileAPI
 open FetchAPI
+open URLAPI
 
 /**
 [Read more on MDN](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch#setting_a_body)

@@ -1,8 +1,6 @@
 open DOMAPI
 
-include HTMLElement.Impl({
-  type t = htmlDialogElement
-})
+include HTMLElement.Impl({type t = htmlDialogElement})
 
 /**
 Displays the dialog element.

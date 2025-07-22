@@ -1,5 +1,3 @@
 open DOMAPI
 
-include HTMLMediaElement.Impl({
-  type t = htmlAudioElement
-})
+include HTMLMediaElement.Impl({type t = htmlAudioElement})

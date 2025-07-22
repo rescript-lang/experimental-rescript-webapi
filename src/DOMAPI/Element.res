@@ -6,9 +6,7 @@ module Impl = (
     type t
   },
 ) => {
-  include Node.Impl({
-    type t = T.t
-  })
+  include Node.Impl({type t = T.t})
 
   external asElement: T.t => element = "%identity"
 
@@ -117,7 +115,7 @@ Returns element's first attribute whose qualified name is qualifiedName, and nul
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/getAttribute)
 */
   @send
-  external getAttribute: (T.t, string) => string = "getAttribute"
+  external getAttribute: (T.t, string) => null<string> = "getAttribute"
 
   /**
 Returns the qualified names of all element's attributes. Can contain duplicates.
@@ -495,8 +493,6 @@ Returns true if qualifiedName is now present, and false otherwise.
     "toggleAttribute"
 }
 
-include Impl({
-  type t = element
-})
+include Impl({type t = element})
 
 let isInstanceOf = (_: 't): bool => %raw(`param instanceof Element`)

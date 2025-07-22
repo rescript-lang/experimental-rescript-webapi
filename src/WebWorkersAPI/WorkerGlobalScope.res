@@ -6,9 +6,7 @@ module Impl = (
     type t
   },
 ) => {
-  include EventTarget.Impl({
-    type t = T.t
-  })
+  include EventTarget.Impl({type t = T.t})
 
   /**
 `fetch(workerGlobalScope, string, init)`
@@ -41,6 +39,4 @@ let response = await self->WorkerGlobalScope.fetch(myRequest)
   external self: T.t = "self"
 }
 
-include Impl({
-  type t = workerGlobalScope
-})
+include Impl({type t = workerGlobalScope})

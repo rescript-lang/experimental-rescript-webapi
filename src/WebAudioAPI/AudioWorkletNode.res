@@ -1,8 +1,6 @@
 open WebAudioAPI
 
-include AudioNode.Impl({
-  type t = audioWorkletNode
-})
+include AudioNode.Impl({type t = audioWorkletNode})
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/AudioWorkletNode)

@@ -1,8 +1,6 @@
 open DOMAPI
 
-include HTMLElement.Impl({
-  type t = htmlOutputElement
-})
+include HTMLElement.Impl({type t = htmlOutputElement})
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLOutputElement/checkValidity)

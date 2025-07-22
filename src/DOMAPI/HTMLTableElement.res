@@ -1,8 +1,6 @@
 open DOMAPI
 
-include HTMLElement.Impl({
-  type t = htmlTableElement
-})
+include HTMLElement.Impl({type t = htmlTableElement})
 
 /**
 Creates an empty caption element in the table.

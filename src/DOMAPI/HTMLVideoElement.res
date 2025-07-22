@@ -1,9 +1,7 @@
 open DOMAPI
 open PictureInPictureAPI
 
-include HTMLMediaElement.Impl({
-  type t = htmlVideoElement
-})
+include HTMLMediaElement.Impl({type t = htmlVideoElement})
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLVideoElement/getVideoPlaybackQuality)

@@ -1,6 +1,7 @@
 open DOMAPI
 open FileAPI
 open FetchAPI
+open URLAPI
 open EncryptedMediaExtensionsAPI
 open GamepadAPI
 open WebMIDIAPI

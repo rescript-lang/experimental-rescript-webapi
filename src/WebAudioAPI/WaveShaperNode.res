@@ -1,8 +1,6 @@
 open WebAudioAPI
 
-include AudioNode.Impl({
-  type t = waveShaperNode
-})
+include AudioNode.Impl({type t = waveShaperNode})
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/WaveShaperNode)

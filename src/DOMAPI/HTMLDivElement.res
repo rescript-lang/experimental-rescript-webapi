@@ -1,5 +1,3 @@
 open DOMAPI
 
-include HTMLElement.Impl({
-  type t = htmlDivElement
-})
+include HTMLElement.Impl({type t = htmlDivElement})

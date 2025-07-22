@@ -32,8 +32,7 @@ type rec fileSystemEntry = {
 /**
 [See FileSystemDirectoryEntry on MDN](https://developer.mozilla.org/docs/Web/API/FileSystemDirectoryEntry)
 */
-@editor.completeFrom(FileSystemDirectoryEntry)
-and fileSystemDirectoryEntry = {
+@editor.completeFrom(FileSystemDirectoryEntry) and fileSystemDirectoryEntry = {
   // Base properties from FileSystemEntry
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/FileSystemEntry/isFile)

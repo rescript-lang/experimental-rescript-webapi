@@ -1,8 +1,6 @@
 open EncryptedMediaExtensionsAPI
 
-include EventTarget.Impl({
-  type t = mediaKeySession
-})
+include EventTarget.Impl({type t = mediaKeySession})
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/MediaKeySession/generateRequest)

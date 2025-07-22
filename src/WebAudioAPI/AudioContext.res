@@ -2,9 +2,7 @@ open WebAudioAPI
 open DOMAPI
 open MediaCaptureAndStreamsAPI
 
-include BaseAudioContext.Impl({
-  type t = audioContext
-})
+include BaseAudioContext.Impl({type t = audioContext})
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/AudioContext)

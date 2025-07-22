@@ -1,8 +1,6 @@
 open DOMAPI
 
-include HTMLElement.Impl({
-  type t = htmlButtonElement
-})
+include HTMLElement.Impl({type t = htmlButtonElement})
 
 /**
 Returns whether a form will validate when it is submitted, without having to submit it.

@@ -506,8 +506,7 @@ type rec animationTimeline = {
 /**
 [See DocumentTimeline on MDN](https://developer.mozilla.org/docs/Web/API/DocumentTimeline)
 */
-@editor.completeFrom(DocumentTimeline)
-and documentTimeline = {
+@editor.completeFrom(DocumentTimeline) and documentTimeline = {
   // Base properties from AnimationTimeline
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/AnimationTimeline/currentTime)
@@ -608,8 +607,7 @@ and styleSheet = {
 A single CSS style sheet. It inherits properties and methods from its parent, StyleSheet.
 [See CSSStyleSheet on MDN](https://developer.mozilla.org/docs/Web/API/CSSStyleSheet)
 */
-@editor.completeFrom(CSSStyleSheet)
-and cssStyleSheet = {
+@editor.completeFrom(CSSStyleSheet) and cssStyleSheet = {
   // Base properties from StyleSheet
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/StyleSheet/type)
@@ -675,8 +673,7 @@ and cssRule = {
 A CSSRuleList is an (indirect-modify only) array-like object containing an ordered collection of CSSRule objects.
 [See CSSRuleList on MDN](https://developer.mozilla.org/docs/Web/API/CSSRuleList)
 */
-@editor.completeFrom(CSSRuleList)
-and cssRuleList = {
+@editor.completeFrom(CSSRuleList) and cssRuleList = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CSSRuleList/length)
     */
@@ -687,8 +684,7 @@ and cssRuleList = {
 An object that is a CSS declaration block, and exposes style information and various style-related methods and properties.
 [See CSSStyleDeclaration on MDN](https://developer.mozilla.org/docs/Web/API/CSSStyleDeclaration)
 */
-@editor.completeFrom(CSSStyleDeclaration)
-and cssStyleDeclaration = {
+@editor.completeFrom(CSSStyleDeclaration) and cssStyleDeclaration = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CSSStyleDeclaration/cssText)
     */
@@ -2472,8 +2468,7 @@ type rec node = {
 NodeList objects are collections of nodes, usually returned by properties such as Node.childNodes and methods such as document.querySelectorAll().
 [See NodeList on MDN](https://developer.mozilla.org/docs/Web/API/NodeList)
 */
-@editor.completeFrom(NodeList)
-and nodeList = {
+@editor.completeFrom(NodeList) and nodeList = {
   /**
     Returns the number of nodes in the collection.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/NodeList/length)
@@ -2495,8 +2490,7 @@ and nodeListOf<'tNode> = {
 Element is the most general base class from which all objects in a Document inherit. It only has methods and properties common to all kinds of elements. More specific classes inherit from Element.
 [See Element on MDN](https://developer.mozilla.org/docs/Web/API/Element)
 */
-@editor.completeFrom(Element)
-and element = {
+@editor.completeFrom(Element) and element = {
   // Base properties from Node
   /**
     Returns the type of node.
@@ -2867,8 +2861,7 @@ and element = {
 /**
 [See ShadowRoot on MDN](https://developer.mozilla.org/docs/Web/API/ShadowRoot)
 */
-@editor.completeFrom(ShadowRoot)
-and shadowRoot = {
+@editor.completeFrom(ShadowRoot) and shadowRoot = {
   // Base properties from DocumentFragment
   // End base properties from DocumentFragment
 
@@ -3008,8 +3001,7 @@ Similarly, when the focused element is in a different node tree than documentOrS
 A generic collection (array-like object similar to arguments) of elements (in document order) and offers methods and properties for selecting from the list.
 [See HTMLCollection on MDN](https://developer.mozilla.org/docs/Web/API/HTMLCollection)
 */
-@editor.completeFrom(HTMLCollection)
-and htmlCollection = {
+@editor.completeFrom(HTMLCollection) and htmlCollection = {
   /**
     Sets or retrieves the number of objects in a collection.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLCollection/length)
@@ -3031,8 +3023,7 @@ and htmlCollectionOf<'t> = {
 A collection of HTML form control elements. 
 [See HTMLFormControlsCollection on MDN](https://developer.mozilla.org/docs/Web/API/HTMLFormControlsCollection)
 */
-@editor.completeFrom(HTMLFormControlsCollection)
-and htmlFormControlsCollection = {
+@editor.completeFrom(HTMLFormControlsCollection) and htmlFormControlsCollection = {
   // Base properties from HTMLCollection
   /**
     Sets or retrieves the number of objects in a collection.
@@ -3046,8 +3037,7 @@ and htmlFormControlsCollection = {
 Any HTML element. Some elements directly implement this interface, while others implement it via an interface that inherits it.
 [See HTMLElement on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement)
 */
-@editor.completeFrom(HTMLElement)
-and htmlElement = {
+@editor.completeFrom(HTMLElement) and htmlElement = {
   // Base properties from Element
   /**
     Returns the namespace.
@@ -3341,8 +3331,7 @@ and htmlElement = {
 Contains the descriptive information, or metadata, for a document. This object inherits all of the properties and methods described in the HTMLElement interface.
 [See HTMLHeadElement on MDN](https://developer.mozilla.org/docs/Web/API/HTMLHeadElement)
 */
-@editor.completeFrom(HTMLHeadElement)
-and htmlHeadElement = {
+@editor.completeFrom(HTMLHeadElement) and htmlHeadElement = {
   // Base properties from HTMLElement
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/title)
@@ -3598,8 +3587,7 @@ and htmlHeadElement = {
 A <form> element in the DOM; it allows access to and in some cases modification of aspects of the form, as well as access to its component elements.
 [See HTMLFormElement on MDN](https://developer.mozilla.org/docs/Web/API/HTMLFormElement)
 */
-@editor.completeFrom(HTMLFormElement)
-and htmlFormElement = {
+@editor.completeFrom(HTMLFormElement) and htmlFormElement = {
   // Base properties from HTMLElement
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/title)
@@ -3906,8 +3894,7 @@ and htmlFormElement = {
 Provides special properties and methods for manipulating <img> elements.
 [See HTMLImageElement on MDN](https://developer.mozilla.org/docs/Web/API/HTMLImageElement)
 */
-@editor.completeFrom(HTMLImageElement)
-and htmlImageElement = {
+@editor.completeFrom(HTMLImageElement) and htmlImageElement = {
   // Base properties from HTMLElement
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/title)
@@ -4250,8 +4237,7 @@ and htmlImageElement = {
 Provides special properties (beyond the regular HTMLElement interface it also has available to it by inheritance) for manipulating <embed> elements.
 [See HTMLEmbedElement on MDN](https://developer.mozilla.org/docs/Web/API/HTMLEmbedElement)
 */
-@editor.completeFrom(HTMLEmbedElement)
-and htmlEmbedElement = {
+@editor.completeFrom(HTMLEmbedElement) and htmlEmbedElement = {
   // Base properties from HTMLElement
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/title)
@@ -4523,8 +4509,7 @@ and htmlEmbedElement = {
 Hyperlink elements and provides special properties and methods (beyond those of the regular HTMLElement object interface that they inherit from) for manipulating the layout and presentation of such elements.
 [See HTMLAnchorElement on MDN](https://developer.mozilla.org/docs/Web/API/HTMLAnchorElement)
 */
-@editor.completeFrom(HTMLAnchorElement)
-and htmlAnchorElement = {
+@editor.completeFrom(HTMLAnchorElement) and htmlAnchorElement = {
   // Base properties from HTMLElement
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/title)
@@ -4897,8 +4882,7 @@ Can be set, to change the URL's fragment (ignores leading "#").
 Provides special properties and methods (beyond those of the regular object HTMLElement interface it also has available to it by inheritance) for manipulating the layout and presentation of <area> elements.
 [See HTMLAreaElement on MDN](https://developer.mozilla.org/docs/Web/API/HTMLAreaElement)
 */
-@editor.completeFrom(HTMLAreaElement)
-and htmlAreaElement = {
+@editor.completeFrom(HTMLAreaElement) and htmlAreaElement = {
   // Base properties from HTMLElement
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/title)
@@ -5251,8 +5235,7 @@ Can be set, to change the URL's fragment (ignores leading "#").
 HTML <script> elements expose the HTMLScriptElement interface, which provides special properties and methods for manipulating the behavior and execution of <script> elements (beyond the inherited HTMLElement interface).
 [See HTMLScriptElement on MDN](https://developer.mozilla.org/docs/Web/API/HTMLScriptElement)
 */
-@editor.completeFrom(HTMLScriptElement)
-and htmlScriptElement = {
+@editor.completeFrom(HTMLScriptElement) and htmlScriptElement = {
   // Base properties from HTMLElement
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/title)
@@ -5554,8 +5537,7 @@ and htmlScriptElement = {
 An object providing methods which are not dependent on any particular document. Such an object is returned by the Document.implementation property.
 [See DOMImplementation on MDN](https://developer.mozilla.org/docs/Web/API/DOMImplementation)
 */
-@editor.completeFrom(DOMImplementation)
-and domImplementation = {}
+@editor.completeFrom(DOMImplementation) and domImplementation = {}
 
 /**
 A Node containing a doctype.
@@ -5651,8 +5633,7 @@ and documentType = {
 Any web page loaded in the browser and serves as an entry point into the web page's content, which is the DOM tree.
 [See Document on MDN](https://developer.mozilla.org/docs/Web/API/Document)
 */
-@editor.completeFrom(Document)
-and document = {
+@editor.completeFrom(Document) and document = {
   // Base properties from Node
   /**
     Returns the type of node.
@@ -5950,8 +5931,7 @@ Similarly, when the focused element is in a different node tree than documentOrS
 A window containing a DOM document; the document property points to the DOM document loaded in that window.
 [See Window on MDN](https://developer.mozilla.org/docs/Web/API/Window)
 */
-@editor.completeFrom(Window)
-and window = {
+@editor.completeFrom(Window) and window = {
   ...eventTarget,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/window)
@@ -6301,8 +6281,7 @@ and attr = {
 The CharacterData abstract interface represents a Node object that contains characters. This is an abstract interface, meaning there aren't any object of type CharacterData: it is implemented by other interfaces, like Text, Comment, or ProcessingInstruction which aren't abstract.
 [See CharacterData on MDN](https://developer.mozilla.org/docs/Web/API/CharacterData)
 */
-@editor.completeFrom(CharacterData)
-and characterData = {
+@editor.completeFrom(CharacterData) and characterData = {
   // Base properties from Node
   /**
     Returns the type of node.
@@ -6398,8 +6377,7 @@ and characterData = {
 A minimal document object that has no parent. It is used as a lightweight version of Document that stores a segment of a document structure comprised of nodes just like a standard document. The key difference is that because the document fragment isn't part of the active document tree structure, changes made to the fragment don't affect the document, cause reflow, or incur any performance impact that can occur when changes are made.
 [See DocumentFragment on MDN](https://developer.mozilla.org/docs/Web/API/DocumentFragment)
 */
-@editor.completeFrom(DocumentFragment)
-and documentFragment = {
+@editor.completeFrom(DocumentFragment) and documentFragment = {
   // Base properties from Node
   /**
     Returns the type of node.
@@ -6495,8 +6473,7 @@ and documentFragment = {
 /**
 [See HTMLSlotElement on MDN](https://developer.mozilla.org/docs/Web/API/HTMLSlotElement)
 */
-@editor.completeFrom(HTMLSlotElement)
-and htmlSlotElement = {
+@editor.completeFrom(HTMLSlotElement) and htmlSlotElement = {
   // Base properties from HTMLElement
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/title)
@@ -7418,8 +7395,7 @@ type rec htmlTableElement = {
 Special properties (beyond the regular HTMLElement interface it also has available to it by inheritance) for manipulating table caption elements.
 [See HTMLTableCaptionElement on MDN](https://developer.mozilla.org/docs/Web/API/HTMLTableCaptionElement)
 */
-@editor.completeFrom(HTMLTableCaptionElement)
-and htmlTableCaptionElement = {
+@editor.completeFrom(HTMLTableCaptionElement) and htmlTableCaptionElement = {
   ...htmlElement,
 }
 
@@ -7427,8 +7403,7 @@ and htmlTableCaptionElement = {
 Provides special properties and methods (beyond the HTMLElement interface it also has available to it by inheritance) for manipulating the layout and presentation of sections, that is headers, footers and bodies, in an HTML table.
 [See HTMLTableSectionElement on MDN](https://developer.mozilla.org/docs/Web/API/HTMLTableSectionElement)
 */
-@editor.completeFrom(HTMLTableSectionElement)
-and htmlTableSectionElement = {
+@editor.completeFrom(HTMLTableSectionElement) and htmlTableSectionElement = {
   ...htmlElement,
   /**
     Sets or retrieves the number of horizontal rows contained in the object.
@@ -7441,8 +7416,7 @@ and htmlTableSectionElement = {
 Provides special properties and methods (beyond the regular HTMLElement interface it also has available to it by inheritance) for manipulating the layout and presentation of table cells, either header or data cells, in an HTML document.
 [See HTMLTableCellElement on MDN](https://developer.mozilla.org/docs/Web/API/HTMLTableCellElement)
 */
-@editor.completeFrom(HTMLTableCellElement)
-and htmlTableCellElement = {
+@editor.completeFrom(HTMLTableCellElement) and htmlTableCellElement = {
   ...htmlElement,
   /**
     Sets or retrieves the number columns in the table that the object should span.
@@ -7480,8 +7454,7 @@ and htmlTableCellElement = {
 Provides special properties and methods (beyond the HTMLElement interface it also has available to it by inheritance) for manipulating the layout and presentation of rows in an HTML table.
 [See HTMLTableRowElement on MDN](https://developer.mozilla.org/docs/Web/API/HTMLTableRowElement)
 */
-@editor.completeFrom(HTMLTableRowElement)
-and htmlTableRowElement = {
+@editor.completeFrom(HTMLTableRowElement) and htmlTableRowElement = {
   ...htmlElement,
   /**
     Retrieves the position of the object in the rows collection for the table.
@@ -7580,8 +7553,7 @@ type rec htmlButtonElement = {
 Gives access to properties specific to <label> elements. It inherits methods and properties from the base HTMLElement interface.
 [See HTMLLabelElement on MDN](https://developer.mozilla.org/docs/Web/API/HTMLLabelElement)
 */
-@editor.completeFrom(HTMLLabelElement)
-and htmlLabelElement = {
+@editor.completeFrom(HTMLLabelElement) and htmlLabelElement = {
   ...htmlElement,
   /**
     Retrieves a reference to the form that the object is embedded in.
@@ -7604,8 +7576,7 @@ and htmlLabelElement = {
 Provides special properties and methods for manipulating the layout and presentation of <textarea> elements.
 [See HTMLTextAreaElement on MDN](https://developer.mozilla.org/docs/Web/API/HTMLTextAreaElement)
 */
-@editor.completeFrom(HTMLTextAreaElement)
-and htmlTextAreaElement = {
+@editor.completeFrom(HTMLTextAreaElement) and htmlTextAreaElement = {
   ...htmlElement,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLTextAreaElement/autocomplete)
@@ -7723,8 +7694,7 @@ and htmlTextAreaElement = {
 Provides properties and methods (beyond those inherited from HTMLElement) for manipulating the layout and presentation of <output> elements.
 [See HTMLOutputElement on MDN](https://developer.mozilla.org/docs/Web/API/HTMLOutputElement)
 */
-@editor.completeFrom(HTMLOutputElement)
-and htmlOutputElement = {
+@editor.completeFrom(HTMLOutputElement) and htmlOutputElement = {
   ...htmlElement,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLOutputElement/htmlFor)
@@ -7777,8 +7747,7 @@ Can be set, to change the value.
 Provides special properties and methods for manipulating the options, layout, and presentation of <input> elements.
 [See HTMLInputElement on MDN](https://developer.mozilla.org/docs/Web/API/HTMLInputElement)
 */
-@editor.completeFrom(HTMLInputElement)
-and htmlInputElement = {
+@editor.completeFrom(HTMLInputElement) and htmlInputElement = {
   ...htmlElement,
   /**
     Sets or retrieves a comma-separated list of content types.
@@ -8001,8 +7970,7 @@ and htmlInputElement = {
 Provides special properties (beyond the HTMLElement object interface it also has available to it by inheritance) to manipulate <datalist> elements and their content.
 [See HTMLDataListElement on MDN](https://developer.mozilla.org/docs/Web/API/HTMLDataListElement)
 */
-@editor.completeFrom(HTMLDataListElement)
-and htmlDataListElement = {
+@editor.completeFrom(HTMLDataListElement) and htmlDataListElement = {
   ...htmlElement,
   /**
     Returns an HTMLCollection of the option elements of the datalist element.
@@ -8015,8 +7983,7 @@ and htmlDataListElement = {
 A <select> HTML Element. These elements also share all of the properties and methods of other HTML elements via the HTMLElement interface.
 [See HTMLSelectElement on MDN](https://developer.mozilla.org/docs/Web/API/HTMLSelectElement)
 */
-@editor.completeFrom(HTMLSelectElement)
-and htmlSelectElement = {
+@editor.completeFrom(HTMLSelectElement) and htmlSelectElement = {
   ...htmlElement,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLSelectElement/disabled)
@@ -8102,8 +8069,7 @@ and htmlSelectElement = {
 <option> elements and inherits all classes and methods of the HTMLElement interface.
 [See HTMLOptionElement on MDN](https://developer.mozilla.org/docs/Web/API/HTMLOptionElement)
 */
-@editor.completeFrom(HTMLOptionElement)
-and htmlOptionElement = {
+@editor.completeFrom(HTMLOptionElement) and htmlOptionElement = {
   ...htmlElement,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLOptionElement/disabled)
@@ -8150,8 +8116,7 @@ and htmlOptionElement = {
 HTMLOptionsCollection is an interface representing a collection of HTML option elements (in document order) and offers methods and properties for traversing the list as well as optionally altering its items. This type is returned solely by the "options" property of select.
 [See HTMLOptionsCollection on MDN](https://developer.mozilla.org/docs/Web/API/HTMLOptionsCollection)
 */
-@editor.completeFrom(HTMLOptionsCollection)
-and htmlOptionsCollection = {
+@editor.completeFrom(HTMLOptionsCollection) and htmlOptionsCollection = {
   ...htmlCollectionOf<htmlOptionElement>,
   /**
     Returns the index of the first selected item, if any, or −1 if there is no selected item.

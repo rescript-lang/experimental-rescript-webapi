@@ -1,8 +1,6 @@
 open DOMAPI
 
-include HTMLElement.Impl({
-  type t = htmlInputElement
-})
+include HTMLElement.Impl({type t = htmlInputElement})
 
 /**
 Increments a range input control's value by the value given by the Step attribute. If the optional parameter is used, will increment the input control's value by that value.

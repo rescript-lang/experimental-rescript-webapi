@@ -5,9 +5,7 @@ module Impl = (
     type t
   },
 ) => {
-  include EventTarget.Impl({
-    type t = T.t
-  })
+  include EventTarget.Impl({type t = T.t})
 
   external asNode: T.t => node = "%identity"
 
@@ -109,6 +107,4 @@ Returns true if other is an inclusive descendant of node, and false otherwise.
   external removeChild: (T.t, 't) => 't = "removeChild"
 }
 
-include Impl({
-  type t = node
-})
+include Impl({type t = node})

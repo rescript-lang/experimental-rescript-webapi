@@ -1,8 +1,6 @@
 open DOMAPI
 
-include HTMLElement.Impl({
-  type t = htmlTextAreaElement
-})
+include HTMLElement.Impl({type t = htmlTextAreaElement})
 
 /**
 Returns whether a form will validate when it is submitted, without having to submit it.

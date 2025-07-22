@@ -6,6 +6,4 @@ open UIEventsAPI
 @new
 external make: (~type_: string, ~eventInitDict: wheelEventInit=?) => wheelEvent = "WheelEvent"
 
-include MouseEvent.Impl({
-  type t = wheelEvent
-})
+include MouseEvent.Impl({type t = wheelEvent})

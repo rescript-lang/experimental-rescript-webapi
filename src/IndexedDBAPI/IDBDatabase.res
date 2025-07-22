@@ -1,8 +1,6 @@
 open IndexedDBAPI
 
-include EventTarget.Impl({
-  type t = idbDatabase
-})
+include EventTarget.Impl({type t = idbDatabase})
 
 /**
 Returns a new transaction with the given mode ("readonly" or "readwrite") and scope which can be a single object store name or an array of names.

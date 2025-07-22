@@ -1,8 +1,6 @@
 open WebAudioAPI
 
-include AudioScheduledSourceNode.Impl({
-  type t = constantSourceNode
-})
+include AudioScheduledSourceNode.Impl({type t = constantSourceNode})
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/ConstantSourceNode)

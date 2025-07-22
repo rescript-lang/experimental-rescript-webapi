@@ -5,9 +5,7 @@ module Impl = (
     type t
   },
 ) => {
-  include Element.Impl({
-    type t = T.t
-  })
+  include Element.Impl({type t = T.t})
 
   external asHTMLElement: T.t => htmlElement = "%identity"
 
@@ -54,6 +52,4 @@ module Impl = (
   external togglePopover: (T.t, ~force: bool=?) => bool = "togglePopover"
 }
 
-include Impl({
-  type t = htmlElement
-})
+include Impl({type t = htmlElement})

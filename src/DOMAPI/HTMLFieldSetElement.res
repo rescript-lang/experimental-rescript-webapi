@@ -1,8 +1,6 @@
 open DOMAPI
 
-include HTMLElement.Impl({
-  type t = htmlFieldSetElement
-})
+include HTMLElement.Impl({type t = htmlFieldSetElement})
 
 /**
 Returns whether a form will validate when it is submitted, without having to submit it.

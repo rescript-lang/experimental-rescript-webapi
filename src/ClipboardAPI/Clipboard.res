@@ -1,8 +1,6 @@
 open ClipboardAPI
 
-include EventTarget.Impl({
-  type t = clipboard
-})
+include EventTarget.Impl({type t = clipboard})
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Clipboard/read)

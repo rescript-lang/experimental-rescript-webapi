@@ -1,8 +1,6 @@
 open FileAPI
 
-include Blob.Impl({
-  type t = file
-})
+include Blob.Impl({type t = file})
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/File)
