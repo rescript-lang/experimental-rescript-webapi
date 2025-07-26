@@ -36,6 +36,7 @@ let response = await self->WorkerGlobalScope.fetch(myRequest)
 [Read more on MDN](https://developer.mozilla.org/en-US/docs/Web/API/WorkerGlobalScope/fetch)
 */
   external fetch_withRequest: (T.t, request, ~init: requestInit=?) => promise<response> = "fetch"
+  external self: T.t = "self"
 }
 
 include Impl({type t = workerGlobalScope})
