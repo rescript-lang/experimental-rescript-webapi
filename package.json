@@ -36,7 +36,7 @@
   },
   "license": "MIT",
   "dependencies": {
-    "rescript": "^12.0.0-beta.2"
+    "rescript": "^12.0.0-beta.3"
   },
   "devDependencies": {
     "@astrojs/starlight": "0.35.1",
