@@ -320,12 +320,12 @@ async function emitDom() {
     //   outputFolder,
     //   useIteratorObject,
     // });
-    emitFlavor(webidl, new Set(knownTypes.Worker), {
-      name: "sharedworker",
-      global: ["SharedWorker", "Worker"],
-      outputFolder,
-      useIteratorObject,
-    });
+    // emitFlavor(webidl, new Set(knownTypes.Worker), {
+    //   name: "sharedworker",
+    //   global: ["SharedWorker", "Worker"],
+    //   outputFolder,
+    //   useIteratorObject,
+    // });
     // emitFlavor(webidl, new Set(knownTypes.Worker), {
     //   name: "serviceworker",
     //   global: ["ServiceWorker", "Worker"],
