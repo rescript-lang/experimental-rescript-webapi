@@ -303,7 +303,7 @@ let response = await window->Window.fetch("https://rescript-lang.org")
 external fetch: (window, string, ~init: requestInit=?) => promise<response> = "fetch"
 
 /**
-`fetch_withRequest(window, request, init)`
+`fetchWithRequest(window, request, init)`
 
 Starts the process of fetching a resource from the network,
 returning a promise that is fulfilled once the response is available.
@@ -314,7 +314,7 @@ let response = await window->Window.fetch(myRequest)
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/fetch)
 */
 @send
-external fetch_withRequest: (window, request, ~init: requestInit=?) => promise<response> = "fetch"
+external fetchWithRequest: (window, request, ~init: requestInit=?) => promise<response> = "fetch"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/DedicatedWorkerGlobalScope/requestAnimationFrame)

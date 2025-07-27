@@ -15,7 +15,7 @@ let response2 = await fetch(
   },
 )
 
-let response3 = await fetch_withRequest(
+let response3 = await fetchWithRequest(
   Request.fromURL("https://rescript-lang.org/"),
   ~init={
     method: "POST",

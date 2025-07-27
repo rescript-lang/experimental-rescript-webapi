@@ -29,7 +29,7 @@ external fetch2: (window, ~input: string, ~init: requestInit=?)
 While not that bad and usable, it can be improved:
 
 - Rename `fetch2` to `fetch` because it is the more common usage of the function.
-- Rename `fetch` to `fetch_with_request` for clarity that this is the "overload" with a `Request` object.
+- Rename `fetch` to `fetchWithRequest` for clarity that this is the "overload" with a `Request` object.
 - Consider removing the named `~input` and `~init` arguments and use positional arguments instead.
   Motivation: If the function does not have any parameters with the same type, it is more ergonomic to use positional arguments.
   This heuristic is not set in stone and can be adjusted based on the specific function.
@@ -43,7 +43,7 @@ external fetch: (window, string, ~init: requestInit=?)
 
 /** TODO: add better docs */
 @send
-external fetch_withRequest: (window, request, ~init: requestInit=?)
+external fetchWithRequest: (window, request, ~init: requestInit=?)
   => promise<response> = "fetch"
 ```
 
