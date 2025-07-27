@@ -21,7 +21,7 @@ let shared: sharedWorker = SharedWorker.make("sharedworker.js")
 external make: string => sharedWorker = "SharedWorker"
 
 /**
-`make_withName(string, string)`
+`makeWithName(string, string)`
 
 The SharedWorker() constructor creates a SharedWorker object that executes the 
 script at the specified URL. This script must obey the same-origin policy.
@@ -33,16 +33,16 @@ let shared: sharedWorker = SharedWorker.make("sharedworker.js", "name")
 [Read more on MDN](https://developer.mozilla.org/en-US/docs/Web/API/SharedWorker/)
 */
 @new
-external make_withName: (string, string) => sharedWorker = "SharedWorker"
+external makeWithName: (string, string) => sharedWorker = "SharedWorker"
 
 /**
-`make_withOptions(string, workerOptions)`
+`makeWithOptions(string, workerOptions)`
 
 The SharedWorker() constructor creates a SharedWorker object that executes the 
 script at the specified URL. This script must obey the same-origin policy.
 
 ```res
-let shared3: sharedWorker = SharedWorker.make_withOptions("sharedworker.js", {
+let shared: sharedWorker = SharedWorker.makeWithOptions("sharedworker.js", {
   name: "workerName",
   type_: Module
 })
@@ -51,7 +51,7 @@ let shared3: sharedWorker = SharedWorker.make_withOptions("sharedworker.js", {
 [Read more on MDN](https://developer.mozilla.org/en-US/docs/Web/API/SharedWorker/)
 */
 @new
-external make_withOptions: (string, workerOptions) => sharedWorker = "SharedWorker"
+external makeWithOptions: (string, workerOptions) => sharedWorker = "SharedWorker"
 
 /**
 `port(sharedWorker)`
