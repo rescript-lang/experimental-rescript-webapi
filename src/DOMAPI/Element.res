@@ -419,13 +419,13 @@ element->Element.scrollIntoView_alignToTop()
 Scrolls the element's ancestor containers such that the element on which scrollIntoView() is called is visible to the user.
 
 ```res
-element->Element.scrollIntoView_withOptions({ behavior: DOMAPI.Smooth })
+element->Element.scrollIntoViewWithOptions({ behavior: DOMAPI.Smooth })
 ```
 
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/scrollIntoView)
 */
   @send
-  external scrollIntoView_withOptions: (T.t, scrollIntoViewOptions) => unit = "scrollIntoView"
+  external scrollIntoViewWithOptions: (T.t, scrollIntoViewOptions) => unit = "scrollIntoView"
 
   /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/scrollTo)

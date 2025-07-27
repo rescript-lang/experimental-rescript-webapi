@@ -5,5 +5,5 @@ document
 ->Document.querySelector("form")
 ->Null.toOption
 ->Option.forEach(form => {
-  form->Element.scrollIntoView_withOptions({behavior: DOMAPI.Smooth})
+  form->Element.scrollIntoViewWithOptions({behavior: DOMAPI.Smooth})
 })
