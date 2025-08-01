@@ -43,6 +43,8 @@ type eventType =
   | @as("loadeddata") Loadeddata
   | @as("loadedmetadata") Loadedmetadata
   | @as("loadstart") Loadstart
+  | @as("message") Message
+  | @as("messageerror") MessageError
   | @as("mousedown") Mousedown
   | @as("mouseenter") Mouseenter
   | @as("mouseleave") Mouseleave
