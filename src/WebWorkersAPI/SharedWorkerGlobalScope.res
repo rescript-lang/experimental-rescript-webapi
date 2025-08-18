@@ -5,9 +5,7 @@ module Impl = (
     type t
   },
 ) => {
-  include WorkerGlobalScope.Impl({
-    type t = T.t
-  })
+  include WorkerGlobalScope.Impl({type t = T.t})
 
   /**
 `close(sharedWorkerGlobalScope)`
@@ -26,7 +24,4 @@ self -> SharedWorkerGlobalScope.close
   external close: T.t => unit = "close"
 }
 
-include Impl({
-  type t = sharedWorkerGlobalScope
-})
-
+include Impl({type t = sharedWorkerGlobalScope})
