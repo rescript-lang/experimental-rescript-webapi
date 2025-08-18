@@ -52,7 +52,6 @@ type workerType =
   | @as("classic") Classic
   | @as("module") Module
 
-
 /** An object containing option properties that can set when creating the
 object instance. */
 type workerOptions = {
@@ -71,5 +70,5 @@ the complete list of functions available to workers.
 @editor.completeFrom(SharedWorkerGlobalScope)
 type sharedWorkerGlobalScope = {
   ...workerGlobalScope,
-  name: option<string>
+  name: option<string>,
 }

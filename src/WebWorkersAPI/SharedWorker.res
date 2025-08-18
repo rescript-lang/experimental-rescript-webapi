@@ -1,9 +1,7 @@
 open ChannelMessagingAPI
 open WebWorkersAPI
 
-include EventTarget.Impl({
-  type t = sharedWorker
-})
+include EventTarget.Impl({type t = sharedWorker})
 
 /**
 `make(string)`

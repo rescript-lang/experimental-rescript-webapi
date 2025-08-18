@@ -31,13 +31,13 @@ external delete: (formData, string) => unit = "delete"
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/FormData/get)
 */
 @send
-external get: (formData, string) => string = "get"
+external get: (formData, string) => null<string> = "get"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/FormData/get)
 */
 @send
-external getFile: (formData, string) => file = "get"
+external getFile: (formData, string) => null<file> = "get"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/FormData/getAll)
@@ -50,6 +50,12 @@ external getAll: (formData, string) => array<formDataEntryValue> = "getAll"
 */
 @send
 external has: (formData, string) => bool = "has"
+
+/**
+[Read more on MDN](https://developer.mozilla.org/docs/Web/API/FormData/keys)
+*/
+@send
+external keys: formData => Iterator.t<string> = "keys"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/FormData/set)
