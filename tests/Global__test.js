@@ -8,7 +8,7 @@ let response2 = await fetch("https://rescript-lang.org/", {
     "Content-Type": "application/json",
     Authorization: "Bearer token"
   },
-  body: "secret=foo&response=bar"
+  body: `secret=foo&response=bar`
 });
 
 let response3 = await fetch(new Request("https://rescript-lang.org/"), {
@@ -16,7 +16,7 @@ let response3 = await fetch(new Request("https://rescript-lang.org/"), {
   headers: {
     "Content-Type": "application/x-www-form-urlencoded"
   },
-  body: "secret=foo&response=bar"
+  body: `secret=foo&response=bar`
 });
 
 removeEventListener("mousedown", prim => {
@@ -48,7 +48,7 @@ let p256dh = match[1];
 
 let auth = match[0];
 
-console.log("For subscription " + subscription.endpoint + ", auth is " + auth + " and p256dh is " + p256dh);
+console.log(`For subscription ` + subscription.endpoint + `, auth is ` + auth + ` and p256dh is ` + p256dh);
 
 export {
   response,

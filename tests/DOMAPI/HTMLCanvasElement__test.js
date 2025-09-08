@@ -22,7 +22,7 @@ let color = FillStyle$WebAPI.decode(ctx.fillStyle);
 
 switch (color.TAG) {
   case "String" :
-    console.log("Color: " + color._0);
+    console.log(`Color: ` + color._0);
     break;
   case "CanvasGradient" :
     console.log("CanvasGradient");
