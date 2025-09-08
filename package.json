@@ -29,7 +29,7 @@
   "scripts": {
     "test": "node tests/index.js",
     "build": "rescript --dev",
-    "format": "rescript format --all && prettier --write ./tests/index.js ./package.json ./docs/pages",
+    "format": "rescript format && prettier --write ./tests/index.js ./package.json ./docs/pages",
     "docs": "astro dev",
     "prebuild:docs": "node docs/llm.js",
     "build:docs": "astro build"
