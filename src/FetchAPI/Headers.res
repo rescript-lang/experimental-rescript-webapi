@@ -40,7 +40,7 @@ external delete: (headers, string) => unit = "delete"
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Headers/get)
 */
 @send
-external get: (headers, string) => string = "get"
+external get: (headers, string) => null<string> = "get"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Headers/getSetCookie)
