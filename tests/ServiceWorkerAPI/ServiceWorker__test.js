@@ -70,7 +70,6 @@ self.addEventListener("notificationclick", event => {
     if (typeof data === "number") {
       return data.toString();
     }
-    
   }), id => {
     self.clients.open(`https://mywebsite.com/mydata/` + id);
   });
