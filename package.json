@@ -28,15 +28,15 @@
   "type": "module",
   "scripts": {
     "test": "node tests/index.js",
-    "build": "rescript --dev",
+    "build": "rescript",
     "format": "rescript format && prettier --write ./tests/index.js ./package.json ./docs/pages",
     "docs": "astro dev",
     "prebuild:docs": "node docs/llm.js",
     "build:docs": "astro build"
   },
   "license": "MIT",
-  "dependencies": {
-    "rescript": "^12.0.0-beta.3"
+  "peerDependencies": {
+    "rescript": ">=12.0.0-rc.0 <13"
   },
   "devDependencies": {
     "@astrojs/starlight": "0.36.2",
@@ -44,6 +44,7 @@
     "micromark": "^4.0.1",
     "prettier": "^3.3.3",
     "prettier-plugin-astro": "^0.14.1",
-    "sharp": "^0.34.0"
+    "sharp": "^0.34.0",
+    "rescript": ">=12.0.0-rc.0 <13"
   }
 }
