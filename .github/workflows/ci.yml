@@ -67,9 +67,7 @@ jobs:
 
       - name: Publish to npm
         if: github.ref == 'refs/heads/main' && github.event_name == 'push'
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NODE_AUTH_TOKEN }}
-        run: npm publish --access public ./*.tgz --tag experimental
+        run: npm publish --provenance --access public --tag experimental ./*.tgz
 
   deploy-docs:
     needs: build
