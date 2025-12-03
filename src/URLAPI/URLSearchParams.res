@@ -50,7 +50,7 @@ Returns the first value associated to the given search parameter.
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/URLSearchParams/get)
 */
 @send
-external get: (urlSearchParams, string) => string = "get"
+external get: (urlSearchParams, string) => null<string> = "get"
 
 /**
 Returns all the values association with a given search parameter.
