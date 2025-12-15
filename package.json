@@ -43,7 +43,7 @@
     "rescript": ">=12.0.0 <13"
   },
   "devDependencies": {
-    "@astrojs/starlight": "0.37.0",
+    "@astrojs/starlight": "0.37.1",
     "astro": "^5.10.1",
     "micromark": "^4.0.1",
     "prettier": "^3.3.3",
