@@ -12,7 +12,7 @@ let shared3 = new SharedWorker("sharedworker.js", {
 
 let port = shared1.port;
 
-let self = self();
+let self = globalThis.self();
 
 self.close();
 
