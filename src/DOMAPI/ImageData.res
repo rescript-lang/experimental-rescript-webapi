@@ -11,7 +11,7 @@ external make: (~sw: int, ~sh: int, ~settings: imageDataSettings=?) => imageData
 */
 @new
 external make2: (
-  ~data: array<int>,
+  ~data: Uint8ClampedArray.t,
   ~sw: int,
   ~sh: int=?,
   ~settings: imageDataSettings=?,
