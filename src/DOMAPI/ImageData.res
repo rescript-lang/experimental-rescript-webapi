@@ -10,7 +10,7 @@ external make: (~sw: int, ~sh: int, ~settings: imageDataSettings=?) => imageData
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/ImageData)
 */
 @new
-external make2: (
+external makeWithData: (
   ~data: Uint8ClampedArray.t,
   ~sw: int,
   ~sh: int=?,
