@@ -3020,7 +3020,7 @@ and htmlCollectionOf<'t> = {
 }
 
 /**
-A collection of HTML form control elements. 
+A collection of HTML form control elements.
 [See HTMLFormControlsCollection on MDN](https://developer.mozilla.org/docs/Web/API/HTMLFormControlsCollection)
 */
 @editor.completeFrom(HTMLFormControlsCollection) and htmlFormControlsCollection = {
@@ -9403,7 +9403,7 @@ type imageData = {
     Returns the one-dimensional array containing the data in RGBA order, as integers in the range 0 to 255.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/ImageData/data)
     */
-  data: array<int>,
+  data: Uint8ClampedArray.t,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/ImageData/colorSpace)
     */
