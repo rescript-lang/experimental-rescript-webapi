@@ -218,7 +218,8 @@ type formData = {}
 
 type requestInfo = any
 
-type formDataEntryValue = any
+@editor.completeFrom(FormDataEntryValue)
+type formDataEntryValue
 
 type requestInit = {
   /**
