@@ -11,3 +11,5 @@ external make: (
   ~fileName: string,
   ~options: filePropertyBag=?,
 ) => file = "File"
+
+let isInstanceOf = (_: 't): bool => %raw(`param instanceof File`)

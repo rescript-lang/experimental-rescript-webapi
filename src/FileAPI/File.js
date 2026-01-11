@@ -4,4 +4,11 @@ import * as Blob$WebAPI from "./Blob.js";
 
 Blob$WebAPI.Impl({});
 
+function isInstanceOf(param) {
+  return (param instanceof File);
+}
+
+export {
+  isInstanceOf,
+}
 /*  Not a pure module */
