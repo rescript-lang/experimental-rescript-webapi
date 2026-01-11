@@ -46,6 +46,12 @@ external getAll: (formData, string) => array<formDataEntryValue> = "getAll"
 external has: (formData, string) => bool = "has"
 
 /**
+[Read more on MDN](https://developer.mozilla.org/docs/Web/API/FormData/entries)
+*/
+@send
+external entries: formData => Iterator.t<(string, formDataEntryValue)> = "entries"
+
+/**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/FormData/keys)
 */
 @send

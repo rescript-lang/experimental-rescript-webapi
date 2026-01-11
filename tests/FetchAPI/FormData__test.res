@@ -31,3 +31,12 @@ let _ = allImages->Array.forEach(entry => {
 // Create formDataEntryValue from string or file
 let stringEntry = FormDataEntryValue.fromString("test value")
 let fileEntry = FormDataEntryValue.fromFile(File.make(~fileBits=[], ~fileName="test.txt"))
+
+// Iterate over all entries in the FormData
+let entries: Iterator.t<(string, FetchAPI.formDataEntryValue)> = formData->FormData.entries
+let _ = entries->Iterator.forEach(((key, value)) => {
+  switch value->FormDataEntryValue.decode {
+  | FormDataEntryValue.String(s) => Console.log(`${key}: ${s}`)
+  | FormDataEntryValue.File(f) => Console.log(`${key}: [File] ${f.name}`)
+  }
+})

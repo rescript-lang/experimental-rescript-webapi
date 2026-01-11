@@ -30,6 +30,18 @@ allImages.forEach(entry => {
 
 let fileEntry = new File([], "test.txt");
 
+let entries = formData.entries();
+
+entries.forEach(param => {
+  let key = param[0];
+  let s = FormDataEntryValue$WebAPI.decode(param[1]);
+  if (s.TAG === "String") {
+    console.log(key + `: ` + s._0);
+    return;
+  }
+  console.log(key + `: [File] ` + s._0.name);
+});
+
 let stringEntry = "test value";
 
 export {
@@ -38,5 +50,6 @@ export {
   allImages,
   stringEntry,
   fileEntry,
+  entries,
 }
 /* formData Not a pure module */
