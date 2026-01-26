@@ -45,9 +45,9 @@ open DOMAPI
 // A concrete type for \`T.t\` is passed later using the \`include\` keyword.
 module Impl = (T: { type t }) => {
 
-/**
+/\*_
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/focus)
-*/
+_/
 @send
 external focus: (T.t, ~options: focusOptions=?) => unit = "focus"
 
@@ -56,11 +56,7 @@ external focus: (T.t, ~options: focusOptions=?) => unit = "focus"
 include Impl({ type t = htmlElement })
 `;
 
-<Code
-  code={htmlElementModule}
-  title="DOMAPI/HTMLElement.res"
-  lang="ReScript"
-></Code>
+<Code code={htmlElementModule} title="DOMAPI/HTMLElement.res" lang="ReScript"></Code>
 
 export const buttonModule = `
 open DOMAPI
@@ -70,17 +66,12 @@ include HTMLElement.Impl({ type t = htmlButtonElement })
 
 // Add additional methods specific to HTMLButtonElement:
 
-/**
+/\*_
 Returns whether a form will validate when it is submitted, without having to submit it.
-[Read more on MDN](
-  https://developer.mozilla.org/docs/Web/API/HTMLButtonElement/checkValidity)
-*/
+[Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLButtonElement/checkValidity)
+_/
 @send
 external checkValidity: htmlButtonElement => bool = "checkValidity"
 `;
 
-<Code
-  code={buttonModule}
-  title="DOMAPI/HTMLButtonElement.res"
-  lang="ReScript"
-></Code>
+<Code code={buttonModule} title="DOMAPI/HTMLButtonElement.res" lang="ReScript"></Code>

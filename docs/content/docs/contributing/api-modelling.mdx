@@ -112,11 +112,7 @@ String(unsafeConversation(t))
 }
 `
 
-<Code
-  code={fillStyleModule}
-  title="DOMAPI/FillStyle.res"
-  lang="ReScript"
-></Code>
+<Code code={fillStyleModule} title="DOMAPI/FillStyle.res" lang="ReScript"></Code>
 
 We can now use `FillStyle.decode` to get the actual value of the `fillStyle` property.  
 And use `FillStyle.fromString`, `FillStyle.fromCanvasGradient`, and `FillStyle.fromCanvasPattern` to set the value.
@@ -135,11 +131,5 @@ switch ctx.fillStyle->FillStyle.decode {
 }
 ```
 
-<Icon
-  name="information"
-  color="var(--sl-color-text-accent)"
-  class="inline-icon"
-  size="1.5rem"
-/>
-Try and use `decoded` and `decode` as conventions for the type and function
-names.
+<Icon name="information" color="var(--sl-color-text-accent)" class="inline-icon" size="1.5rem" />
+Try and use `decoded` and `decode` as conventions for the type and function names.

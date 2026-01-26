@@ -36,10 +36,7 @@ function mapTypeModules(parentModuleLink, file) {
     .map((file) => {
       const filePath = path.join(folder, file);
 
-      const moduleName = file
-        .replace("$", "")
-        .replace(folder, "")
-        .replace(".res", "");
+      const moduleName = file.replace("$", "").replace(folder, "").replace(".res", "");
       const apiRouteParameter = toKebabCase(moduleName);
       const link = createTypeModuleLink(parentModuleLink, moduleName);
       const typeName = moduleName[0].toLocaleLowerCase() + moduleName.slice(1);
@@ -72,15 +69,14 @@ function mapRescriptFile(srcDir, file) {
 }
 
 const srcDir = path.resolve(process.cwd(), "src");
-export const apiModules = readdirSync(srcDir).filter(f => f.endsWith(".res")).map(r => mapRescriptFile(srcDir, r));
+export const apiModules = readdirSync(srcDir)
+  .filter((f) => f.endsWith(".res"))
+  .map((r) => mapRescriptFile(srcDir, r));
 
 async function getRescriptDoc(absoluteFilePath) {
-  const { stdout, stderr } = await execAsync(
-    `rescript-tools doc ${absoluteFilePath}`,
-    {
-      maxBuffer: 1024 * 1024 * 10, // Increase buffer to 10 MB
-    },
-  );
+  const { stdout, stderr } = await execAsync(`rescript-tools doc ${absoluteFilePath}`, {
+    maxBuffer: 1024 * 1024 * 10, // Increase buffer to 10 MB
+  });
   if (stderr) {
     throw new Error(stderr);
   }
@@ -94,8 +90,7 @@ export async function getDoc(absoluteFilePath) {
     .filter((item) => item.kind === "type")
     .sort((a, b) => a.name.localeCompare(b.name))
     .map((type) => {
-      const documentation =
-        type.docstrings && micromark(type.docstrings.join("\n"));
+      const documentation = type.docstrings && micromark(type.docstrings.join("\n"));
       return {
         name: type.name,
         documentation,
@@ -116,8 +111,7 @@ export async function getDoc(absoluteFilePath) {
     .filter((item) => item.kind === "value")
     .sort((a, b) => a.name.localeCompare(b.name))
     .map((value) => {
-      const documentation =
-        value.docstrings && micromark(value.docstrings.join("\n"));
+      const documentation = value.docstrings && micromark(value.docstrings.join("\n"));
       return {
         name: value.name,
         documentation,
@@ -150,24 +144,23 @@ function trimRescriptOutput(output) {
 }
 
 const testDir = path.resolve(process.cwd(), "tests");
-export const testFiles =
-  readdirSync(testDir, { recursive: true })
-    .filter(f => f.endsWith(".res"))
-    .map(tf => {
-      const sourcePath = path.join(testDir, tf);
-      const source = readFileSync(sourcePath, "utf-8");
-      const outputPath = sourcePath.replace(".res", ".js");
-      const output = readFileSync(outputPath, "utf-8");
+export const testFiles = readdirSync(testDir, { recursive: true })
+  .filter((f) => f.endsWith(".res"))
+  .map((tf) => {
+    const sourcePath = path.join(testDir, tf);
+    const source = readFileSync(sourcePath, "utf-8");
+    const outputPath = sourcePath.replace(".res", ".js");
+    const output = readFileSync(outputPath, "utf-8");
 
-      const parts = tf.split(path.sep);
-      const name = parts[parts.length - 1].replace("__tests.res", "");
+    const parts = tf.split(path.sep);
+    const name = parts[parts.length - 1].replace("__tests.res", "");
 
-      return {
-        sourcePath: sourcePath.replace(testDir,""),
-        source,
-        output: trimRescriptOutput(output),
-        outputPath: outputPath.replace(testDir,""),
-        name,
-      };
-    })
-    .sort((a, b) => a.name.localeCompare(b.name));
+    return {
+      sourcePath: sourcePath.replace(testDir, ""),
+      source,
+      output: trimRescriptOutput(output),
+      outputPath: outputPath.replace(testDir, ""),
+      name,
+    };
+  })
+  .sort((a, b) => a.name.localeCompare(b.name));

@@ -2,53 +2,55 @@
   "name": "@rescript/webapi",
   "version": "0.1.0",
   "description": "Experimental successor to [rescript-webapi](https://github.com/TheSpyder/rescript-webapi)",
+  "keywords": [
+    "dom",
+    "fetch",
+    "mdn",
+    "rescript",
+    "webapi"
+  ],
   "homepage": "https://rescript-lang.github.io/experimental-rescript-webapi/",
   "bugs": "https://github.com/rescript-lang/experimental-rescript-webapi/issues",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/rescript-lang/experimental-rescript-webapi.git"
-  },
+  "license": "MIT",
   "author": {
     "name": "Florian Verdonck"
   },
   "maintainers": [
     "Florian Verdonck (https://github.com/nojaf)"
   ],
-  "keywords": [
-    "rescript",
-    "webapi",
-    "mdn",
-    "dom",
-    "fetch"
-  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rescript-lang/experimental-rescript-webapi.git"
+  },
   "files": [
     "rescript.json",
     "src/**/*.res"
   ],
   "type": "module",
-  "scripts": {
-    "test": "node tests/index.js",
-    "build": "rescript",
-    "format": "rescript format && prettier --write ./tests/index.js ./package.json ./docs/pages",
-    "docs": "astro dev",
-    "prebuild:docs": "node docs/llm.js",
-    "build:docs": "astro build"
-  },
-  "license": "MIT",
   "publishConfig": {
     "access": "public",
     "provenance": true
   },
-  "peerDependencies": {
-    "rescript": ">=12.0.0 <13"
+  "scripts": {
+    "test": "node tests/index.js",
+    "build": "rescript",
+    "format": "rescript format && oxfmt ./tests/index.js ./package.json ./docs && prettier --write ./docs/pages",
+    "format:check": "rescript format --check && oxfmt ./tests/index.js ./package.json ./docs --check && prettier --check ./docs/pages",
+    "docs": "astro dev",
+    "prebuild:docs": "node docs/llm.js",
+    "build:docs": "astro build"
   },
   "devDependencies": {
     "@astrojs/starlight": "0.37.4",
     "astro": "^5.10.1",
     "micromark": "^4.0.1",
+    "oxfmt": "^0.26.0",
     "prettier": "^3.3.3",
     "prettier-plugin-astro": "^0.14.1",
-    "sharp": "^0.34.0",
+    "rescript": ">=12.0.0 <13",
+    "sharp": "^0.34.0"
+  },
+  "peerDependencies": {
     "rescript": ">=12.0.0 <13"
   }
 }
