@@ -34,8 +34,8 @@
   "scripts": {
     "test": "node tests/index.js",
     "build": "rescript",
-    "format": "rescript format && oxfmt ./tests/index.js ./package.json ./docs/pages",
-    "format:check": "rescript format --check && oxfmt ./tests/index.js ./package.json ./docs/pages --check",
+    "format": "rescript format && oxfmt ./tests/index.js ./package.json ./docs && prettier --write ./docs/pages",
+    "format:check": "rescript format --check && oxfmt ./tests/index.js ./package.json ./docs --check && prettier --check ./docs/pages",
     "docs": "astro dev",
     "prebuild:docs": "node docs/llm.js",
     "build:docs": "astro build"
