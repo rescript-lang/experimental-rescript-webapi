@@ -44,7 +44,7 @@
     "@astrojs/starlight": "0.37.5",
     "astro": "^5.10.1",
     "micromark": "^4.0.1",
-    "oxfmt": "^0.26.0",
+    "oxfmt": "^0.27.0",
     "prettier": "^3.3.3",
     "prettier-plugin-astro": "^0.14.1",
     "rescript": ">=12.0.0 <13",
