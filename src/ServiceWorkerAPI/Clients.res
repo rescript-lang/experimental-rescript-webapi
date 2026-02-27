@@ -24,7 +24,7 @@ Opens a new browser window for a given URL and returns a `Promise` for the new `
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Clients/openWindow)
 */
 @send
-external openWindow: (clients, string) => promise<windowClient> = "open"
+external openWindow: (clients, string) => promise<windowClient> = "openWindow"
 
 /**
 Allows an active service worker to set itself as the controller for all clients within its scope.
