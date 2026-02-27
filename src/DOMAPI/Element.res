@@ -411,7 +411,7 @@ element->Element.scrollIntoView_alignToTop()
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/scrollIntoView)
 */
   @send
-  external scrollIntoView_alignToTop: (T.t, @as(json`true`) _) => unit = "scrollIntoView"
+  external scrollIntoViewAlignToTop: (T.t, @as(json`true`) _) => unit = "scrollIntoView"
 
   /**
 `scrollIntoView({ behavior: "smooth" })`

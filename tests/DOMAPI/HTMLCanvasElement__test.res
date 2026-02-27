@@ -2,7 +2,7 @@ open WebAPI.Global
 
 let myCanvas: DOMAPI.htmlCanvasElement =
   document->Document.getElementById("myCanvas")->Prelude.unsafeConversation
-let ctx = myCanvas->HTMLCanvasElement.getContext_2D
+let ctx = myCanvas->HTMLCanvasElement.getContext2D
 
 ctx.fillStyle = FillStyle.fromString("red")
 ctx->CanvasRenderingContext2D.fillRect(~x=50., ~y=50., ~w=200., ~h=200.)

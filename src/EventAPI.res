@@ -3,6 +3,7 @@
 @unboxed
 type eventType =
   | @as("abort") Abort
+  | @as("activate") Activate
   | @as("auxclick") Auxclick
   | @as("beforeinput") Beforeinput
   | @as("beforetoggle") Beforetoggle
@@ -35,6 +36,7 @@ type eventType =
   | @as("focus") Focus
   | @as("formdata") Formdata
   | @as("input") Input
+  | @as("install") Install
   | @as("invalid") Invalid
   | @as("keydown") Keydown
   | @as("keypress") Keypress

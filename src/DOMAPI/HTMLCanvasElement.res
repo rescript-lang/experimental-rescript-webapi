@@ -11,7 +11,7 @@ Creates a CanvasRenderingContext2D object representing a two-dimensional renderi
 [Read more on MDN](https://developer.mozilla.org/en-US/docs/Web/API/HTMLCanvasElement/getContext#2d)
 */
 @send
-external getContext_2D: (
+external getContext2D: (
   htmlCanvasElement,
   @as("2d") _,
   ~options: canvasRenderingContext2DSettings=?,
@@ -23,7 +23,7 @@ Returns an object that provides methods and properties for drawing and manipulat
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLCanvasElement/getContext)
 */
 @send
-external getContext_WebGL: (
+external getContextWebGL: (
   htmlCanvasElement,
   @as("webgl") _,
   ~options: webGLContextAttributes=?,
@@ -35,7 +35,7 @@ Returns an object that provides methods and properties for drawing and manipulat
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLCanvasElement/getContext)
 */
 @send
-external getContext_WebGL2: (
+external getContextWebGL2: (
   htmlCanvasElement,
   @as("webgl2") _,
   ~options: webGLContextAttributes=?,
@@ -47,7 +47,7 @@ Returns an object that provides methods and properties for drawing and manipulat
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLCanvasElement/getContext)
 */
 @send
-external getContext_BitmapRenderer: (
+external getContextBitmapRenderer: (
   htmlCanvasElement,
   @as("bitmaprenderer") _,
   ~options: imageBitmapRenderingContextSettings=?,

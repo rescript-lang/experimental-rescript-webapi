@@ -574,7 +574,7 @@ external removeEventListener: (
 Removes the event listener in target's event listener list with the same type, callback, and options.
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/EventTarget/removeEventListener)
 */
-external removeEventListener_useCapture: (
+external removeEventListenerUseCapture: (
   eventType,
   eventListener<'event>,
   @as(json`true`) _,

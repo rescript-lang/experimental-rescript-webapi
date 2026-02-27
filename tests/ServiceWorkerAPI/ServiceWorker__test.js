@@ -71,7 +71,7 @@ self.addEventListener("notificationclick", event => {
       return data.toString();
     }
   }), id => {
-    self.clients.open(`https://mywebsite.com/mydata/` + id);
+    self.clients.openWindow(`https://mywebsite.com/mydata/` + id);
   });
 });
 
