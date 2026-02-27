@@ -78,7 +78,7 @@ Removes the event listener in target's event listener list with the same type, c
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/EventTarget/removeEventListener)
 */
   @send
-  external removeEventListener_useCapture: (
+  external removeEventListenerUseCapture: (
     T.t,
     eventType,
     eventListener<'event>,

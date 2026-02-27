@@ -18,7 +18,7 @@ Returns null if the canvas has already been initialized with another context typ
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/OffscreenCanvas/getContext)
 */
 @send
-external getContext_2D: (
+external getContext2D: (
   offscreenCanvas,
   @as("2d") _,
   ~options: JSON.t=?,
@@ -33,7 +33,7 @@ Returns null if the canvas has already been initialized with another context typ
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/OffscreenCanvas/getContext)
 */
 @send
-external getContext_WebGL: (
+external getContextWebGL: (
   offscreenCanvas,
   @as("webgl") _,
   ~options: webGLContextAttributes=?,
@@ -48,7 +48,7 @@ Returns null if the canvas has already been initialized with another context typ
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/OffscreenCanvas/getContext)
 */
 @send
-external getContext_WebGL2: (
+external getContextWebGL2: (
   offscreenCanvas,
   @as("webgl2") _,
   ~options: webGLContextAttributes=?,
@@ -63,7 +63,7 @@ Returns null if the canvas has already been initialized with another context typ
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/OffscreenCanvas/getContext)
 */
 @send
-external getContext_BitmapRenderer: (
+external getContextBitmapRenderer: (
   offscreenCanvas,
   @as("bitmaprenderer") _,
   ~options: imageBitmapRenderingContextSettings=?,
