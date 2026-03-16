@@ -162,14 +162,14 @@ Returns a HTMLCollection of the elements in the object on which the method was i
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/getElementsByClassName)
 */
   @send
-  external getElementsByClassName: (T.t, string) => htmlCollectionOf<element> =
+  external getElementsByClassName: (T.t, string) => htmlCollection<element> =
     "getElementsByClassName"
 
   /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/getElementsByTagName)
 */
   @send
-  external getElementsByTagName: (T.t, string) => htmlCollection = "getElementsByTagName"
+  external getElementsByTagName: (T.t, string) => htmlCollection<element> = "getElementsByTagName"
 
   /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/getElementsByTagNameNS)
@@ -179,7 +179,7 @@ Returns a HTMLCollection of the elements in the object on which the method was i
     element,
     ~namespace: string,
     ~localName: string,
-  ) => htmlCollectionOf<element> = "getElementsByTagNameNS"
+  ) => htmlCollection<element> = "getElementsByTagNameNS"
 
   /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/getHTML)

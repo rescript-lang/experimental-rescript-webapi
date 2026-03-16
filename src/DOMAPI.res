@@ -2663,7 +2663,7 @@ Element is the most general base class from which all objects in a Document inhe
     Returns the child elements.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Document/children)
     */
-  children: htmlCollection,
+  children: htmlCollection<element>,
   /**
     Returns the first child that is an element, and null otherwise.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Document/firstElementChild)
@@ -3001,22 +3001,12 @@ Similarly, when the focused element is in a different node tree than documentOrS
 A generic collection (array-like object similar to arguments) of elements (in document order) and offers methods and properties for selecting from the list.
 [See HTMLCollection on MDN](https://developer.mozilla.org/docs/Web/API/HTMLCollection)
 */
-@editor.completeFrom(HTMLCollection) and htmlCollection = {
+@editor.completeFrom(HTMLCollection) and htmlCollection<'t> = {
   /**
     Sets or retrieves the number of objects in a collection.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLCollection/length)
     */
   length: int,
-}
-
-and htmlCollectionOf<'t> = {
-  // Base properties from HTMLCollection
-  /**
-    Sets or retrieves the number of objects in a collection.
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLCollection/length)
-    */
-  length: int,
-  // End base properties from HTMLCollection
 }
 
 /**
@@ -5808,32 +5798,32 @@ If the contents are sandboxed into a unique origin (e.g. in an iframe with the s
     Retrieves a collection, in source order, of img objects in the document.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Document/images)
     */
-  images: htmlCollectionOf<htmlImageElement>,
+  images: htmlCollection<htmlImageElement>,
   /**
     Retrieves a collection of all embed objects in the document.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Document/embeds)
     */
-  embeds: htmlCollectionOf<htmlEmbedElement>,
+  embeds: htmlCollection<htmlEmbedElement>,
   /**
     Return an HTMLCollection of the embed elements in the Document.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Document/plugins)
     */
-  plugins: htmlCollectionOf<htmlEmbedElement>,
+  plugins: htmlCollection<htmlEmbedElement>,
   /**
     Retrieves a collection of all a objects that specify the href property and all area objects in the document.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Document/links)
     */
-  links: htmlCollectionOf<any>,
+  links: htmlCollection<element>,
   /**
     Retrieves a collection, in source order, of all form objects in the document.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Document/forms)
     */
-  forms: htmlCollectionOf<htmlFormElement>,
+  forms: htmlCollection<htmlFormElement>,
   /**
     Retrieves a collection of all script objects in the document.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Document/scripts)
     */
-  scripts: htmlCollectionOf<htmlScriptElement>,
+  scripts: htmlCollection<htmlScriptElement>,
   /**
     Returns the script element, or the SVG script element, that is currently executing, as long as the element represents a classic script. In the case of reentrant script execution, returns the one that most recently started executing amongst those that have not yet finished executing.
 
@@ -5910,7 +5900,7 @@ Similarly, when the focused element is in a different node tree than documentOrS
     Returns the child elements.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Document/children)
     */
-  children: htmlCollection,
+  children: htmlCollection<element>,
   /**
     Returns the first child that is an element, and null otherwise.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Document/firstElementChild)
@@ -6453,7 +6443,7 @@ A minimal document object that has no parent. It is used as a lightweight versio
     Returns the child elements.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Document/children)
     */
-  children: htmlCollection,
+  children: htmlCollection<element>,
   /**
     Returns the first child that is an element, and null otherwise.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Document/firstElementChild)
@@ -7383,12 +7373,12 @@ type rec htmlTableElement = {
     Retrieves a collection of all tBody objects in the table. Objects in this collection are in source order.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLTableElement/tBodies)
     */
-  tBodies: htmlCollectionOf<htmlTableSectionElement>,
+  tBodies: htmlCollection<htmlTableSectionElement>,
   /**
     Sets or retrieves the number of horizontal rows contained in the object.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLTableElement/rows)
     */
-  rows: htmlCollectionOf<htmlTableRowElement>,
+  rows: htmlCollection<htmlTableRowElement>,
 }
 
 /**
@@ -7409,7 +7399,7 @@ Provides special properties and methods (beyond the HTMLElement interface it als
     Sets or retrieves the number of horizontal rows contained in the object.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLTableSectionElement/rows)
     */
-  rows: htmlCollectionOf<htmlTableRowElement>,
+  rows: htmlCollection<htmlTableRowElement>,
 }
 
 /**
@@ -7470,7 +7460,7 @@ Provides special properties and methods (beyond the HTMLElement interface it als
     Retrieves a collection of all cells in the table row.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLTableRowElement/cells)
     */
-  cells: htmlCollectionOf<htmlTableCellElement>,
+  cells: htmlCollection<htmlTableCellElement>,
 }
 
 /**
@@ -7976,7 +7966,7 @@ Provides special properties (beyond the HTMLElement object interface it also has
     Returns an HTMLCollection of the option elements of the datalist element.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLDataListElement/options)
     */
-  options: htmlCollectionOf<htmlOptionElement>,
+  options: htmlCollection<htmlOptionElement>,
 }
 
 /**
@@ -8033,7 +8023,7 @@ A <select> HTML Element. These elements also share all of the properties and met
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLSelectElement/selectedOptions)
     */
-  selectedOptions: htmlCollectionOf<htmlOptionElement>,
+  selectedOptions: htmlCollection<htmlOptionElement>,
   /**
     Sets or retrieves the index of the selected option in a select object.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLSelectElement/selectedIndex)
@@ -8117,7 +8107,7 @@ HTMLOptionsCollection is an interface representing a collection of HTML option e
 [See HTMLOptionsCollection on MDN](https://developer.mozilla.org/docs/Web/API/HTMLOptionsCollection)
 */
 @editor.completeFrom(HTMLOptionsCollection) and htmlOptionsCollection = {
-  ...htmlCollectionOf<htmlOptionElement>,
+  ...htmlCollection<htmlOptionElement>,
   /**
     Returns the index of the first selected item, if any, or −1 if there is no selected item.
 
@@ -8411,7 +8401,7 @@ type htmlFieldSetElement = {
     Returns an HTMLCollection of the form controls in the element.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLFieldSetElement/elements)
     */
-  elements: htmlCollection,
+  elements: htmlCollection<element>,
   /**
     Returns whether an element will successfully validate based on forms validation rules and constraints.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLFieldSetElement/willValidate)
@@ -8636,7 +8626,7 @@ type htmlMapElement = {
     Retrieves a collection of the area objects defined for the given map object.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLMapElement/areas)
     */
-  areas: htmlCollection,
+  areas: htmlCollection<element>,
 }
 
 /**

@@ -120,7 +120,8 @@ Retrieves a collection of objects based on the specified element name.
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Document/getElementsByTagName)
 */
 @send
-external getElementsByTagName: (document, string) => htmlCollection = "getElementsByTagName"
+external getElementsByTagName: (document, string) => htmlCollection<element> =
+  "getElementsByTagName"
 
 /**
 If namespace and localName are "*" returns a HTMLCollection of all descendant elements.
@@ -137,14 +138,14 @@ external getElementsByTagNameNS: (
   document,
   ~namespace: string,
   ~localName: string,
-) => htmlCollectionOf<element> = "getElementsByTagNameNS"
+) => htmlCollection<element> = "getElementsByTagNameNS"
 
 /**
 Returns a HTMLCollection of the elements in the object on which the method was invoked (a document or an element) that have all the classes given by classNames. The classNames argument is interpreted as a space-separated list of classes.
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Document/getElementsByClassName)
 */
 @send
-external getElementsByClassName: (document, string) => htmlCollectionOf<element> =
+external getElementsByClassName: (document, string) => htmlCollection<element> =
   "getElementsByClassName"
 
 /**
