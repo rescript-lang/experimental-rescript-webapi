@@ -2433,7 +2433,7 @@ type rec node = {
     Returns the children.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/childNodes)
     */
-  childNodes: nodeListOf<node>,
+  childNodes: nodeList<node>,
   /**
     Returns the first child.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/firstChild)
@@ -2468,22 +2468,12 @@ type rec node = {
 NodeList objects are collections of nodes, usually returned by properties such as Node.childNodes and methods such as document.querySelectorAll().
 [See NodeList on MDN](https://developer.mozilla.org/docs/Web/API/NodeList)
 */
-@editor.completeFrom(NodeList) and nodeList = {
+@editor.completeFrom(NodeList) and nodeList<'tNode> = {
   /**
     Returns the number of nodes in the collection.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/NodeList/length)
     */
   length: int,
-}
-
-and nodeListOf<'tNode> = {
-  // Base properties from NodeList
-  /**
-    Returns the number of nodes in the collection.
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/NodeList/length)
-    */
-  length: int,
-  // End base properties from NodeList
 }
 
 /**
@@ -2531,7 +2521,7 @@ Element is the most general base class from which all objects in a Document inhe
     Returns the children.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/childNodes)
     */
-  childNodes: nodeListOf<node>,
+  childNodes: nodeList<node>,
   /**
     Returns the first child.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/firstChild)
@@ -2905,7 +2895,7 @@ Element is the most general base class from which all objects in a Document inhe
     Returns the children.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/childNodes)
     */
-  childNodes: nodeListOf<node>,
+  childNodes: nodeList<node>,
   /**
     Returns the first child.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/firstChild)
@@ -3168,7 +3158,7 @@ Any HTML element. Some elements directly implement this interface, while others 
     Returns the children.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/childNodes)
     */
-  childNodes: nodeListOf<node>,
+  childNodes: nodeList<node>,
   /**
     Returns the first child.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/firstChild)
@@ -3541,7 +3531,7 @@ Contains the descriptive information, or metadata, for a document. This object i
     Returns the children.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/childNodes)
     */
-  childNodes: nodeListOf<node>,
+  childNodes: nodeList<node>,
   /**
     Returns the first child.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/firstChild)
@@ -3797,7 +3787,7 @@ A <form> element in the DOM; it allows access to and in some cases modification 
     Returns the children.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/childNodes)
     */
-  childNodes: nodeListOf<node>,
+  childNodes: nodeList<node>,
   /**
     Returns the first child.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/firstChild)
@@ -4104,7 +4094,7 @@ Provides special properties and methods for manipulating <img> elements.
     Returns the children.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/childNodes)
     */
-  childNodes: nodeListOf<node>,
+  childNodes: nodeList<node>,
   /**
     Returns the first child.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/firstChild)
@@ -4447,7 +4437,7 @@ Provides special properties (beyond the regular HTMLElement interface it also ha
     Returns the children.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/childNodes)
     */
-  childNodes: nodeListOf<node>,
+  childNodes: nodeList<node>,
   /**
     Returns the first child.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/firstChild)
@@ -4719,7 +4709,7 @@ Hyperlink elements and provides special properties and methods (beyond those of 
     Returns the children.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/childNodes)
     */
-  childNodes: nodeListOf<node>,
+  childNodes: nodeList<node>,
   /**
     Returns the first child.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/firstChild)
@@ -5092,7 +5082,7 @@ Provides special properties and methods (beyond those of the regular object HTML
     Returns the children.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/childNodes)
     */
-  childNodes: nodeListOf<node>,
+  childNodes: nodeList<node>,
   /**
     Returns the first child.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/firstChild)
@@ -5445,7 +5435,7 @@ HTML <script> elements expose the HTMLScriptElement interface, which provides sp
     Returns the children.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/childNodes)
     */
-  childNodes: nodeListOf<node>,
+  childNodes: nodeList<node>,
   /**
     Returns the first child.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/firstChild)
@@ -5574,7 +5564,7 @@ and documentType = {
     Returns the children.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/childNodes)
     */
-  childNodes: nodeListOf<node>,
+  childNodes: nodeList<node>,
   /**
     Returns the first child.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/firstChild)
@@ -5664,7 +5654,7 @@ Any web page loaded in the browser and serves as an entry point into the web pag
     Returns the children.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/childNodes)
     */
-  childNodes: nodeListOf<node>,
+  childNodes: nodeList<node>,
   /**
     Returns the first child.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/firstChild)
@@ -6132,12 +6122,12 @@ and mutationRecord = {
     Return the nodes added and removed respectively.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/MutationRecord/addedNodes)
     */
-  addedNodes: nodeList,
+  addedNodes: nodeList<node>,
   /**
     Return the nodes added and removed respectively.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/MutationRecord/removedNodes)
     */
-  removedNodes: nodeList,
+  removedNodes: nodeList<node>,
   /**
     Return the previous and next sibling respectively of the added or removed nodes, and null otherwise.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/MutationRecord/previousSibling)
@@ -6210,7 +6200,7 @@ and attr = {
     Returns the children.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/childNodes)
     */
-  childNodes: nodeListOf<node>,
+  childNodes: nodeList<node>,
   /**
     Returns the first child.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/firstChild)
@@ -6312,7 +6302,7 @@ The CharacterData abstract interface represents a Node object that contains char
     Returns the children.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/childNodes)
     */
-  childNodes: nodeListOf<node>,
+  childNodes: nodeList<node>,
   /**
     Returns the first child.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/firstChild)
@@ -6408,7 +6398,7 @@ A minimal document object that has no parent. It is used as a lightweight versio
     Returns the children.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/childNodes)
     */
-  childNodes: nodeListOf<node>,
+  childNodes: nodeList<node>,
   /**
     Returns the first child.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/firstChild)
@@ -6683,7 +6673,7 @@ A minimal document object that has no parent. It is used as a lightweight versio
     Returns the children.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/childNodes)
     */
-  childNodes: nodeListOf<node>,
+  childNodes: nodeList<node>,
   /**
     Returns the first child.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/firstChild)
@@ -6859,7 +6849,7 @@ type elementInternals = {
     Returns a NodeList of all the label elements that internals's target element is associated with.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/ElementInternals/labels)
     */
-  labels: nodeList,
+  labels: nodeList<any>,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/ElementInternals/states)
     */
@@ -7528,7 +7518,7 @@ type rec htmlButtonElement = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLButtonElement/labels)
     */
-  labels: nodeListOf<htmlLabelElement>,
+  labels: nodeList<htmlLabelElement>,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLButtonElement/popoverTargetElement)
     */
@@ -7663,7 +7653,7 @@ Provides special properties and methods for manipulating the layout and presenta
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLTextAreaElement/labels)
     */
-  labels: nodeListOf<htmlLabelElement>,
+  labels: nodeList<htmlLabelElement>,
   /**
     Gets or sets the starting position or offset of a text selection.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLTextAreaElement/selectionStart)
@@ -7730,7 +7720,7 @@ Can be set, to change the value.
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLOutputElement/labels)
     */
-  labels: nodeListOf<htmlLabelElement>,
+  labels: nodeList<htmlLabelElement>,
 }
 
 /**
@@ -7919,7 +7909,7 @@ Provides special properties and methods for manipulating the options, layout, an
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLInputElement/labels)
     */
-  labels: Null.t<nodeListOf<htmlLabelElement>>,
+  labels: Null.t<nodeList<htmlLabelElement>>,
   /**
     Gets or sets the starting position or offset of a text selection.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLInputElement/selectionStart)
@@ -8052,7 +8042,7 @@ A <select> HTML Element. These elements also share all of the properties and met
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLSelectElement/labels)
     */
-  labels: nodeListOf<htmlLabelElement>,
+  labels: nodeList<htmlLabelElement>,
 }
 
 /**
@@ -8699,7 +8689,7 @@ type htmlMeterElement = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLMeterElement/labels)
     */
-  labels: nodeListOf<htmlLabelElement>,
+  labels: nodeList<htmlLabelElement>,
 }
 
 /**
@@ -8868,7 +8858,7 @@ type htmlProgressElement = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLProgressElement/labels)
     */
-  labels: nodeListOf<htmlLabelElement>,
+  labels: nodeList<htmlLabelElement>,
 }
 
 /**

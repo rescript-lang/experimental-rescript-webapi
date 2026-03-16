@@ -272,7 +272,7 @@ Returns all element descendants of node that match selectors.
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Document/querySelectorAll)
 */
   @send
-  external querySelectorAll: (T.t, string) => nodeList = "querySelectorAll"
+  external querySelectorAll: (T.t, string) => nodeList<element> = "querySelectorAll"
 
   /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/releasePointerCapture)

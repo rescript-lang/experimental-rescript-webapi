@@ -89,7 +89,7 @@ Returns all element descendants of node that match selectors.
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Document/querySelectorAll)
 */
 @send
-external querySelectorAll: (document, string) => nodeList = "querySelectorAll"
+external querySelectorAll: (document, string) => nodeList<element> = "querySelectorAll"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Document/createExpression)
@@ -372,7 +372,7 @@ Gets a collection of objects based on the value of the NAME or ID attribute.
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Document/getElementsByName)
 */
 @send
-external getElementsByName: (document, string) => nodeListOf<htmlElement> = "getElementsByName"
+external getElementsByName: (document, string) => nodeList<htmlElement> = "getElementsByName"
 
 /**
 Opens a new window and loads a document specified by a given URL. Also, opens a new window that uses the url parameter and the name parameter to collect the output of the write method and the writeln method.
