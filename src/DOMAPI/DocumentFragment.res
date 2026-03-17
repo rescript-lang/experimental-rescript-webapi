@@ -70,7 +70,7 @@ Returns all element descendants of node that match selectors.
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/DocumentFragment/querySelectorAll)
 */
   @send
-  external querySelectorAll: (T.t, string) => nodeList = "querySelectorAll"
+  external querySelectorAll: (T.t, string) => nodeList<element> = "querySelectorAll"
 
   /**
 Replace all children of node with nodes, while replacing strings in nodes with equivalent Text nodes.

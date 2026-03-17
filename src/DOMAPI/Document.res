@@ -89,7 +89,7 @@ Returns all element descendants of node that match selectors.
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Document/querySelectorAll)
 */
 @send
-external querySelectorAll: (document, string) => nodeList = "querySelectorAll"
+external querySelectorAll: (document, string) => nodeList<element> = "querySelectorAll"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Document/createExpression)
@@ -120,7 +120,8 @@ Retrieves a collection of objects based on the specified element name.
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Document/getElementsByTagName)
 */
 @send
-external getElementsByTagName: (document, string) => htmlCollection = "getElementsByTagName"
+external getElementsByTagName: (document, string) => htmlCollection<element> =
+  "getElementsByTagName"
 
 /**
 If namespace and localName are "*" returns a HTMLCollection of all descendant elements.
@@ -137,14 +138,14 @@ external getElementsByTagNameNS: (
   document,
   ~namespace: string,
   ~localName: string,
-) => htmlCollectionOf<element> = "getElementsByTagNameNS"
+) => htmlCollection<element> = "getElementsByTagNameNS"
 
 /**
 Returns a HTMLCollection of the elements in the object on which the method was invoked (a document or an element) that have all the classes given by classNames. The classNames argument is interpreted as a space-separated list of classes.
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Document/getElementsByClassName)
 */
 @send
-external getElementsByClassName: (document, string) => htmlCollectionOf<element> =
+external getElementsByClassName: (document, string) => htmlCollection<element> =
   "getElementsByClassName"
 
 /**
@@ -371,7 +372,7 @@ Gets a collection of objects based on the value of the NAME or ID attribute.
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Document/getElementsByName)
 */
 @send
-external getElementsByName: (document, string) => nodeListOf<htmlElement> = "getElementsByName"
+external getElementsByName: (document, string) => nodeList<htmlElement> = "getElementsByName"
 
 /**
 Opens a new window and loads a document specified by a given URL. Also, opens a new window that uses the url parameter and the name parameter to collect the output of the write method and the writeln method.
