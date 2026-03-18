@@ -15,7 +15,7 @@ Returns the first element within node's descendants whose ID is elementId.
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Document/getElementById)
 */
 @send
-external getElementById: (document, string) => element = "getElementById"
+external getElementById: (document, string) => null<element> = "getElementById"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Document/getAnimations)

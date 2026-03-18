@@ -38,7 +38,7 @@ Returns the first element within node's descendants whose ID is elementId.
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/DocumentFragment/getElementById)
 */
   @send
-  external getElementById: (T.t, string) => element = "getElementById"
+  external getElementById: (T.t, string) => null<element> = "getElementById"
 
   /**
 Inserts nodes before the first child of node, while replacing strings in nodes with equivalent Text nodes.
