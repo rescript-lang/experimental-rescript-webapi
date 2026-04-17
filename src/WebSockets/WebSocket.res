@@ -11,7 +11,7 @@ external make: (~url: string, ~protocols: string=?) => webSocket = "WebSocket"
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/WebSocket)
 */
 @new
-external make2: (~url: string, ~protocols: array<string>=?) => webSocket = "WebSocket"
+external makeWithProtocols: (~url: string, ~protocols: array<string>=?) => webSocket = "WebSocket"
 
 include EventTarget.Impl({type t = webSocket})
 

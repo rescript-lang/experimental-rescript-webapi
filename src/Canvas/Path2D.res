@@ -11,7 +11,7 @@ external make: (~path: path2D=?) => path2D = "Path2D"
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Path2D)
 */
 @new
-external make2: (~path: string=?) => path2D = "Path2D"
+external fromString: (~path: string=?) => path2D = "Path2D"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CanvasRenderingContext2D/closePath)
