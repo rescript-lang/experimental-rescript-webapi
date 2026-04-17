@@ -16,11 +16,11 @@ The bindings are generated from the [MDN Web API documentation](https://develope
 
 In other words, if you are searching for a specific JavaScript binding, begin your journey at the [MDN Web API documentation](https://developer.mozilla.org/en-US/docs/Web/API) and determine which module contains your sample. Ensure that the module is available in the bindings by checking the specific API. Please [open an issue](https://github.com/rescript-lang/experimental-rescript-webapi/issues/new/choose) if you require an API that is not yet present.
 
-Each API will have its interface and auxiliary types in a module named after the API, suffixed with `API` to prevent collisions with the type module.
+Each API will have its interface and auxiliary types in a module named after the API.
 
 ```ReScript
 open WebAPI.Global
-open WebAPI.DOMAPI
+open WebAPI.DOM
 
 let myElement: element = document->Document.createElement( ~localName = "div")
 ```

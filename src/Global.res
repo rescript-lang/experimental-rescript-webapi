@@ -1,17 +1,17 @@
-open DOMAPI
-open HistoryAPI
-open VisualViewportAPI
-open WebSpeechAPI
-open IndexedDBAPI
-open WebCryptoAPI
-open PerformanceAPI
-open WebWorkersAPI
-open WebStorageAPI
-open CanvasAPI
-open FileAPI
-open ChannelMessagingAPI
-open FetchAPI
-open EventAPI
+open DOM
+open History
+open VisualViewport
+open WebSpeech
+open IndexedDB
+open WebCrypto
+open Performance
+open WebWorkers
+open WebStorage
+open Canvas
+open File
+open ChannelMessaging
+open Fetch
+open Event
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/window)

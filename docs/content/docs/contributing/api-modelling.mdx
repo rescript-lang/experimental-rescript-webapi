@@ -83,14 +83,14 @@ mutable fillStyle: fillStyle
 }
 `;
 
-<Code code={fillStyleDef} title="DOMAPI.res" lang="ReScript"></Code>
+<Code code={fillStyleDef} title="DOM.res" lang="ReScript"></Code>
 
 When we wish to read and write the `fillStyle` property, we can use a helper module to lift the type to an actual ReScript variant:
 
 export const fillStyleModule = `
 open Prelude
-open CanvasAPI
-open DOMAPI
+open Canvas
+open DOM
 
 external fromString: string => fillStyle = "%identity"
 external fromCanvasGradient: canvasGradient => fillStyle = "%identity"
@@ -112,7 +112,7 @@ String(unsafeConversation(t))
 }
 `
 
-<Code code={fillStyleModule} title="DOMAPI/FillStyle.res" lang="ReScript"></Code>
+<Code code={fillStyleModule} title="DOM/FillStyle.res" lang="ReScript"></Code>
 
 We can now use `FillStyle.decode` to get the actual value of the `fillStyle` property.  
 And use `FillStyle.fromString`, `FillStyle.fromCanvasGradient`, and `FillStyle.fromCanvasPattern` to set the value.
