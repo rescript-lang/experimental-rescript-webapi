@@ -41,13 +41,15 @@ external sendBeaconWithBlob: (navigator, ~url: string, ~data: blob=?) => bool = 
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Navigator/sendBeacon)
 */
 @send
-external sendBeaconWithDataView: (navigator, ~url: string, ~data: DataView.t=?) => bool = "sendBeacon"
+external sendBeaconWithDataView: (navigator, ~url: string, ~data: DataView.t=?) => bool =
+  "sendBeacon"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Navigator/sendBeacon)
 */
 @send
-external sendBeaconWithArrayBuffer: (navigator, ~url: string, ~data: ArrayBuffer.t=?) => bool = "sendBeacon"
+external sendBeaconWithArrayBuffer: (navigator, ~url: string, ~data: ArrayBuffer.t=?) => bool =
+  "sendBeacon"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Navigator/sendBeacon)
@@ -59,7 +61,8 @@ external sendBeaconWithFormData: (navigator, ~url: string, ~data: formData=?) =>
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Navigator/sendBeacon)
 */
 @send
-external sendBeaconWithSearchParams: (navigator, ~url: string, ~data: urlSearchParams=?) => bool = "sendBeacon"
+external sendBeaconWithSearchParams: (navigator, ~url: string, ~data: urlSearchParams=?) => bool =
+  "sendBeacon"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Navigator/sendBeacon)

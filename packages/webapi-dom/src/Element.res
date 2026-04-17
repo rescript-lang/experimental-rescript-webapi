@@ -38,8 +38,11 @@ Throws a "HierarchyRequestError" DOMException if the constraints of the node tre
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/animate)
 */
   @send
-  external animateWithOptions: (T.t, ~keyframes: any, ~options: keyframeAnimationOptions=?) => animation =
-    "animate"
+  external animateWithOptions: (
+    T.t,
+    ~keyframes: any,
+    ~options: keyframeAnimationOptions=?,
+  ) => animation = "animate"
 
   /**
 Inserts nodes after the last child of node, while replacing strings in nodes with equivalent Text nodes.

@@ -50,7 +50,8 @@ external setInterval: (window, ~handler: string, ~timeout: int=?) => int = "setI
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/setInterval)
 */
 @send
-external setIntervalWithCallback: (window, ~handler: unit => unit, ~timeout: int=?) => int = "setInterval"
+external setIntervalWithCallback: (window, ~handler: unit => unit, ~timeout: int=?) => int =
+  "setInterval"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/clearInterval)
@@ -418,8 +419,11 @@ Throws a "DataCloneError" DOMException if transfer array contains duplicate obje
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/postMessage)
 */
 @send
-external postMessageWithOptions: (window, ~message: JSON.t, ~options: windowPostMessageOptions=?) => unit =
-  "postMessage"
+external postMessageWithOptions: (
+  window,
+  ~message: JSON.t,
+  ~options: windowPostMessageOptions=?,
+) => unit = "postMessage"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/matchMedia)

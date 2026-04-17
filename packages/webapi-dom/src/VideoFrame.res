@@ -12,31 +12,36 @@ external make: (~image: htmlImageElement, ~init: videoFrameInit=?) => videoFrame
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/VideoFrame)
 */
 @new
-external fromSvgImage: (~image: svgImageElement, ~init: videoFrameInit=?) => videoFrame = "VideoFrame"
+external fromSvgImage: (~image: svgImageElement, ~init: videoFrameInit=?) => videoFrame =
+  "VideoFrame"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/VideoFrame)
 */
 @new
-external fromVideoElement: (~image: htmlVideoElement, ~init: videoFrameInit=?) => videoFrame = "VideoFrame"
+external fromVideoElement: (~image: htmlVideoElement, ~init: videoFrameInit=?) => videoFrame =
+  "VideoFrame"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/VideoFrame)
 */
 @new
-external fromCanvasElement: (~image: htmlCanvasElement, ~init: videoFrameInit=?) => videoFrame = "VideoFrame"
+external fromCanvasElement: (~image: htmlCanvasElement, ~init: videoFrameInit=?) => videoFrame =
+  "VideoFrame"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/VideoFrame)
 */
 @new
-external fromImageBitmap: (~image: imageBitmap, ~init: videoFrameInit=?) => videoFrame = "VideoFrame"
+external fromImageBitmap: (~image: imageBitmap, ~init: videoFrameInit=?) => videoFrame =
+  "VideoFrame"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/VideoFrame)
 */
 @new
-external fromOffscreenCanvas: (~image: offscreenCanvas, ~init: videoFrameInit=?) => videoFrame = "VideoFrame"
+external fromOffscreenCanvas: (~image: offscreenCanvas, ~init: videoFrameInit=?) => videoFrame =
+  "VideoFrame"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/VideoFrame)
@@ -48,13 +53,17 @@ external fromVideoFrame: (~image: videoFrame, ~init: videoFrameInit=?) => videoF
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/VideoFrame)
 */
 @new
-external fromArrayBuffer: (~data: ArrayBuffer.t, ~init: videoFrameBufferInit) => videoFrame = "VideoFrame"
+external fromArrayBuffer: (~data: ArrayBuffer.t, ~init: videoFrameBufferInit) => videoFrame =
+  "VideoFrame"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/VideoFrame)
 */
 @new
-external fromSharedArrayBuffer: (~data: sharedArrayBuffer, ~init: videoFrameBufferInit) => videoFrame = "VideoFrame"
+external fromSharedArrayBuffer: (
+  ~data: sharedArrayBuffer,
+  ~init: videoFrameBufferInit,
+) => videoFrame = "VideoFrame"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/VideoFrame)

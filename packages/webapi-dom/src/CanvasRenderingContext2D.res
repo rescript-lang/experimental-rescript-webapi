@@ -239,8 +239,11 @@ external fill: (canvasRenderingContext2D, ~fillRule: canvasFillRule=?) => unit =
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CanvasRenderingContext2D/fill)
 */
 @send
-external fillWithPath: (canvasRenderingContext2D, ~path: path2D, ~fillRule: canvasFillRule=?) => unit =
-  "fill"
+external fillWithPath: (
+  canvasRenderingContext2D,
+  ~path: path2D,
+  ~fillRule: canvasFillRule=?,
+) => unit = "fill"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CanvasRenderingContext2D/stroke)
@@ -264,8 +267,11 @@ external clip: (canvasRenderingContext2D, ~fillRule: canvasFillRule=?) => unit =
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CanvasRenderingContext2D/clip)
 */
 @send
-external clipWithPath: (canvasRenderingContext2D, ~path: path2D, ~fillRule: canvasFillRule=?) => unit =
-  "clip"
+external clipWithPath: (
+  canvasRenderingContext2D,
+  ~path: path2D,
+  ~fillRule: canvasFillRule=?,
+) => unit = "clip"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CanvasRenderingContext2D/isPointInPath)
@@ -301,8 +307,12 @@ external isPointInStroke: (canvasRenderingContext2D, ~x: float, ~y: float) => bo
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CanvasRenderingContext2D/isPointInStroke)
 */
 @send
-external isPointInStrokeWithPath: (canvasRenderingContext2D, ~path: path2D, ~x: float, ~y: float) => bool =
-  "isPointInStroke"
+external isPointInStrokeWithPath: (
+  canvasRenderingContext2D,
+  ~path: path2D,
+  ~x: float,
+  ~y: float,
+) => bool = "isPointInStroke"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CanvasRenderingContext2D/drawFocusIfNeeded)
@@ -314,8 +324,11 @@ external drawFocusIfNeeded: (canvasRenderingContext2D, element) => unit = "drawF
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CanvasRenderingContext2D/drawFocusIfNeeded)
 */
 @send
-external drawFocusIfNeededWithPath: (canvasRenderingContext2D, ~path: path2D, ~element: element) => unit =
-  "drawFocusIfNeeded"
+external drawFocusIfNeededWithPath: (
+  canvasRenderingContext2D,
+  ~path: path2D,
+  ~element: element,
+) => unit = "drawFocusIfNeeded"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CanvasRenderingContext2D/fillText)

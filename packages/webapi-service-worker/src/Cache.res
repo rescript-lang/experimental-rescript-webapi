@@ -12,8 +12,11 @@ external match: (cache, ~request: request, ~options: cacheQueryOptions=?) => Nul
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Cache/match)
 */
 @send
-external matchByUrl: (cache, ~request: string, ~options: cacheQueryOptions=?) => Nullable.t<response> =
-  "match"
+external matchByUrl: (
+  cache,
+  ~request: string,
+  ~options: cacheQueryOptions=?,
+) => Nullable.t<response> = "match"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Cache/matchAll)

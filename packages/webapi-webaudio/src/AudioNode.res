@@ -44,14 +44,19 @@ module Impl = (
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/AudioNode/disconnect)
 */
   @send
-  external disconnectNodeOutput: (T.t, ~destinationNode: audioNode, ~output: int) => unit = "disconnect"
+  external disconnectNodeOutput: (T.t, ~destinationNode: audioNode, ~output: int) => unit =
+    "disconnect"
 
   /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/AudioNode/disconnect)
 */
   @send
-  external disconnectNodeOutputInput: (T.t, ~destinationNode: audioNode, ~output: int, ~input: int) => unit =
-    "disconnect"
+  external disconnectNodeOutputInput: (
+    T.t,
+    ~destinationNode: audioNode,
+    ~output: int,
+    ~input: int,
+  ) => unit = "disconnect"
 
   /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/AudioNode/disconnect)
@@ -63,5 +68,6 @@ module Impl = (
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/AudioNode/disconnect)
 */
   @send
-  external disconnectParamOutput: (T.t, ~destinationParam: audioParam, ~output: int) => unit = "disconnect"
+  external disconnectParamOutput: (T.t, ~destinationParam: audioParam, ~output: int) => unit =
+    "disconnect"
 }
