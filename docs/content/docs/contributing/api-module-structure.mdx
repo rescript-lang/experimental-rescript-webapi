@@ -7,14 +7,14 @@ slug: "02-api-module-structure"
 import { Aside } from "@astrojs/starlight/components";
 import { FileTree } from "@astrojs/starlight/components";
 
-The bindings are organized by the Web API they represent. Each API has its interfaces and auxiliary types in a module named after the API, suffixed with `API` to prevent collisions with the type module.
+The bindings are organized by the Web API they represent. Each API has its interfaces and auxiliary types in a module named after the API.
 
 <FileTree>
 
 - package.json
 - src
-  - DOMAPI.res
-  - DOMAPI
+  - DOM.res
+  - DOM
     - HTMLElement.res
 
 </FileTree>

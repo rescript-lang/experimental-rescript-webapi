@@ -19,7 +19,7 @@ Under normal circumstances, the type module only contains `@send` bindings where
 
 <FileTree>
 
-- DOMAPI
+- DOM
   - HTMLButtonElement.res
 
 </FileTree>
@@ -40,7 +40,7 @@ When an interface inherits from another interface, the base interface methods ca
 All methods from [HTMLElement](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement#instance_methods) should also be available on [HTMLButtonElement](https://developer.mozilla.org/en-US/docs/Web/API/HTMLButtonElement#instance_methods).
 
 export const htmlElementModule = `
-open DOMAPI
+open DOM
 
 // A concrete type for \`T.t\` is passed later using the \`include\` keyword.
 module Impl = (T: { type t }) => {
@@ -56,10 +56,10 @@ external focus: (T.t, ~options: focusOptions=?) => unit = "focus"
 include Impl({ type t = htmlElement })
 `;
 
-<Code code={htmlElementModule} title="DOMAPI/HTMLElement.res" lang="ReScript"></Code>
+<Code code={htmlElementModule} title="DOM/HTMLElement.res" lang="ReScript"></Code>
 
 export const buttonModule = `
-open DOMAPI
+open DOM
 
 // Include all the methods from HTMLElement
 include HTMLElement.Impl({ type t = htmlButtonElement })
@@ -74,4 +74,4 @@ _/
 external checkValidity: htmlButtonElement => bool = "checkValidity"
 `;
 
-<Code code={buttonModule} title="DOMAPI/HTMLButtonElement.res" lang="ReScript"></Code>
+<Code code={buttonModule} title="DOM/HTMLButtonElement.res" lang="ReScript"></Code>
