@@ -1,6 +1,6 @@
 {
-  "name": "@rescript/webapi",
-  "version": "0.1.0",
+  "name": "rescript-webapi-monorepo",
+  "private": true,
   "description": "Experimental successor to [rescript-webapi](https://github.com/TheSpyder/rescript-webapi)",
   "keywords": [
     "dom",
@@ -22,15 +22,8 @@
     "type": "git",
     "url": "git+https://github.com/rescript-lang/experimental-rescript-webapi.git"
   },
-  "files": [
-    "rescript.json",
-    "src/**/*.res"
-  ],
   "type": "module",
-  "publishConfig": {
-    "access": "public",
-    "provenance": true
-  },
+  "workspaces": ["packages/*"],
   "scripts": {
     "test": "node tests/index.js",
     "build": "rescript",
@@ -49,8 +42,5 @@
     "prettier-plugin-astro": "^0.14.1",
     "rescript": ">=12.0.0 <13",
     "sharp": "^0.34.0"
-  },
-  "peerDependencies": {
-    "rescript": ">=12.0.0 <13"
   }
 }

@@ -1,0 +1,9 @@
+{
+  "name": "@rescript/webapi-uievents",
+  "namespace": "WebAPIUIEvents",
+  "sources": [{ "dir": "src", "subdirs": true }],
+  "dependencies": ["@rescript/webapi"],
+  "compiler-flags": ["-open WebAPI"],
+  "package-specs": { "module": "esmodule", "in-source": true },
+  "suffix": ".js"
+}

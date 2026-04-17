@@ -1,4 +1,4 @@
-open WebAPI.Global
+open Global
 
 let response = await fetch("https://rescript-lang.org/")
 

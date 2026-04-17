@@ -1,16 +1,49 @@
 {
-  "name": "@rescript/webapi",
-  "namespace": "WebAPI",
+  "name": "rescript-webapi-monorepo",
   "sources": [
-    {
-      "dir": "src",
-      "subdirs": true
-    },
     {
       "dir": "tests",
       "subdirs": true,
       "type": "dev"
     }
+  ],
+  "dependencies": [
+    "@rescript/webapi",
+    "@rescript/webapi-dom",
+    "@rescript/webapi-fetch",
+    "@rescript/webapi-file",
+    "@rescript/webapi-canvas",
+    "@rescript/webapi-webaudio",
+    "@rescript/webapi-uievents",
+    "@rescript/webapi-service-worker",
+    "@rescript/webapi-web-workers",
+    "@rescript/webapi-indexed-db",
+    "@rescript/webapi-media",
+    "@rescript/webapi-websockets",
+    "@rescript/webapi-geolocation",
+    "@rescript/webapi-webstorage",
+    "@rescript/webapi-crypto",
+    "@rescript/webapi-performance",
+    "@rescript/webapi-global"
+  ],
+  "compiler-flags": [
+    "-open WebAPI",
+    "-open WebAPIDom",
+    "-open WebAPIFetch",
+    "-open WebAPIFile",
+    "-open WebAPICanvas",
+    "-open WebAPIWebAudio",
+    "-open WebAPIUIEvents",
+    "-open WebAPIServiceWorker",
+    "-open WebAPIWebWorkers",
+    "-open WebAPIIndexedDB",
+    "-open WebAPIMedia",
+    "-open WebAPIWebSockets",
+    "-open WebAPIGeolocation",
+    "-open WebAPIWebStorage",
+    "-open WebAPICrypto",
+    "-open WebAPIPerformance",
+    "-open WebAPIGlobal"
   ],
   "package-specs": {
     "module": "esmodule",

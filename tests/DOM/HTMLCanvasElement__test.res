@@ -1,4 +1,4 @@
-open WebAPI.Global
+open Global
 
 let myCanvas: DOM.htmlCanvasElement =
   document->Document.getElementById("myCanvas")->Prelude.unsafeConversation

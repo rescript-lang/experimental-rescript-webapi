@@ -1,5 +1,5 @@
 open WebAPI
-open WebAPI.Global
+open Global
 
 document
 ->Document.querySelector("form")

@@ -6,3 +6,5 @@ dist/
 tmp/
 docs/public/llm.txt
 *~
+/packages/*/node_modules/
+/packages/*/lib/

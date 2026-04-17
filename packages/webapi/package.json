@@ -1,0 +1,16 @@
+{
+  "name": "@rescript/webapi",
+  "version": "0.1.0",
+  "description": "ReScript bindings for the Web API - base types and event bindings",
+  "keywords": ["dom", "fetch", "mdn", "rescript", "webapi"],
+  "license": "MIT",
+  "files": ["rescript.json", "src/**/*.res"],
+  "type": "module",
+  "publishConfig": {
+    "access": "public",
+    "provenance": true
+  },
+  "peerDependencies": {
+    "rescript": ">=12.0.0 <13"
+  }
+}
