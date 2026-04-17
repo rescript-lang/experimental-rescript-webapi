@@ -20,6 +20,8 @@
   },
   "scripts": {
     "build": "rescript",
-    "clean": "rescript clean"
+    "clean": "rescript clean",
+    "format": "rescript format",
+    "format:check": "rescript format --check"
   }
 }
