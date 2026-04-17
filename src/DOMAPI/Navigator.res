@@ -35,37 +35,40 @@ external sendBeacon: (navigator, ~url: string, ~data: readableStream<unit>=?) =>
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Navigator/sendBeacon)
 */
 @send
-external sendBeacon2: (navigator, ~url: string, ~data: blob=?) => bool = "sendBeacon"
+external sendBeaconWithBlob: (navigator, ~url: string, ~data: blob=?) => bool = "sendBeacon"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Navigator/sendBeacon)
 */
 @send
-external sendBeacon3: (navigator, ~url: string, ~data: DataView.t=?) => bool = "sendBeacon"
+external sendBeaconWithDataView: (navigator, ~url: string, ~data: DataView.t=?) => bool =
+  "sendBeacon"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Navigator/sendBeacon)
 */
 @send
-external sendBeacon4: (navigator, ~url: string, ~data: ArrayBuffer.t=?) => bool = "sendBeacon"
+external sendBeaconWithArrayBuffer: (navigator, ~url: string, ~data: ArrayBuffer.t=?) => bool =
+  "sendBeacon"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Navigator/sendBeacon)
 */
 @send
-external sendBeacon5: (navigator, ~url: string, ~data: formData=?) => bool = "sendBeacon"
+external sendBeaconWithFormData: (navigator, ~url: string, ~data: formData=?) => bool = "sendBeacon"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Navigator/sendBeacon)
 */
 @send
-external sendBeacon6: (navigator, ~url: string, ~data: urlSearchParams=?) => bool = "sendBeacon"
+external sendBeaconWithSearchParams: (navigator, ~url: string, ~data: urlSearchParams=?) => bool =
+  "sendBeacon"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Navigator/sendBeacon)
 */
 @send
-external sendBeacon7: (navigator, ~url: string, ~data: string=?) => bool = "sendBeacon"
+external sendBeaconWithString: (navigator, ~url: string, ~data: string=?) => bool = "sendBeacon"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Navigator/requestMediaKeySystemAccess)
@@ -93,7 +96,7 @@ external vibrate: (navigator, int) => bool = "vibrate"
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Navigator/vibrate)
 */
 @send
-external vibrate2: (navigator, array<int>) => bool = "vibrate"
+external vibrateWithPattern: (navigator, array<int>) => bool = "vibrate"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Navigator/share)

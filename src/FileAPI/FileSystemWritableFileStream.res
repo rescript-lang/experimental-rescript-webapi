@@ -29,25 +29,25 @@ external write: (fileSystemWritableFileStream, DataView.t) => promise<unit> = "w
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/FileSystemWritableFileStream/write)
 */
 @send
-external write2: (fileSystemWritableFileStream, ArrayBuffer.t) => promise<unit> = "write"
+external writeArrayBuffer: (fileSystemWritableFileStream, ArrayBuffer.t) => promise<unit> = "write"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/FileSystemWritableFileStream/write)
 */
 @send
-external write3: (fileSystemWritableFileStream, blob) => promise<unit> = "write"
+external writeBlob: (fileSystemWritableFileStream, blob) => promise<unit> = "write"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/FileSystemWritableFileStream/write)
 */
 @send
-external write4: (fileSystemWritableFileStream, string) => promise<unit> = "write"
+external writeString: (fileSystemWritableFileStream, string) => promise<unit> = "write"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/FileSystemWritableFileStream/write)
 */
 @send
-external write5: (fileSystemWritableFileStream, writeParams) => promise<unit> = "write"
+external writeWithParams: (fileSystemWritableFileStream, writeParams) => promise<unit> = "write"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/FileSystemWritableFileStream/seek)

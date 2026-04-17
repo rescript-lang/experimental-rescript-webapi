@@ -19,7 +19,7 @@ Throws a "DataCloneError" DOMException if transfer contains duplicate objects or
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/MessagePort/postMessage)
 */
 @send
-external postMessage2: (
+external postMessageWithOptions: (
   messagePort,
   ~message: JSON.t,
   ~options: structuredSerializeOptions=?,

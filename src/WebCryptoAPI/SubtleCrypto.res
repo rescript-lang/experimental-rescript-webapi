@@ -71,7 +71,7 @@ external generateKey: (
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/SubtleCrypto/generateKey)
 */
 @send
-external generateKey2: (
+external generateKeyWithAlgorithmName: (
   subtleCrypto,
   ~algorithm: string,
   ~extractable: bool,
@@ -106,7 +106,7 @@ external deriveBits: (
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/SubtleCrypto/deriveBits)
 */
 @send
-external deriveBits2: (
+external deriveBitsWithAlgorithmName: (
   subtleCrypto,
   ~algorithm: string,
   ~baseKey: cryptoKey,
@@ -149,7 +149,7 @@ external wrapKey: (
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/SubtleCrypto/wrapKey)
 */
 @send
-external wrapKey2: (
+external wrapKeyWithAlgorithmName: (
   subtleCrypto,
   ~format: keyFormat,
   ~key: cryptoKey,

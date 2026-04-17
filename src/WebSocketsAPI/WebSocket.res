@@ -11,7 +11,7 @@ external make: (~url: string, ~protocols: string=?) => webSocket = "WebSocket"
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/WebSocket)
 */
 @new
-external make2: (~url: string, ~protocols: array<string>=?) => webSocket = "WebSocket"
+external makeWithProtocols: (~url: string, ~protocols: array<string>=?) => webSocket = "WebSocket"
 
 include EventTarget.Impl({type t = webSocket})
 
@@ -34,18 +34,18 @@ Transmits data using the WebSocket connection. data can be a string, a Blob, an 
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/WebSocket/send)
 */
 @send
-external send2: (webSocket, ArrayBuffer.t) => unit = "send"
+external sendArrayBuffer: (webSocket, ArrayBuffer.t) => unit = "send"
 
 /**
 Transmits data using the WebSocket connection. data can be a string, a Blob, an ArrayBuffer, or an ArrayBufferView.
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/WebSocket/send)
 */
 @send
-external send3: (webSocket, blob) => unit = "send"
+external sendBlob: (webSocket, blob) => unit = "send"
 
 /**
 Transmits data using the WebSocket connection. data can be a string, a Blob, an ArrayBuffer, or an ArrayBufferView.
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/WebSocket/send)
 */
 @send
-external send4: (webSocket, string) => unit = "send"
+external sendString: (webSocket, string) => unit = "send"

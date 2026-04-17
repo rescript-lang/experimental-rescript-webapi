@@ -11,7 +11,7 @@ external make: (~family: string, ~source: string, ~descriptors: fontFaceDescript
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/FontFace)
 */
 @new
-external make2: (
+external fromDataView: (
   ~family: string,
   ~source: DataView.t,
   ~descriptors: fontFaceDescriptors=?,
@@ -21,7 +21,7 @@ external make2: (
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/FontFace)
 */
 @new
-external make3: (
+external fromArrayBuffer: (
   ~family: string,
   ~source: ArrayBuffer.t,
   ~descriptors: fontFaceDescriptors=?,
