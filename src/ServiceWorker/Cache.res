@@ -12,7 +12,7 @@ external match: (cache, ~request: request, ~options: cacheQueryOptions=?) => Nul
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Cache/match)
 */
 @send
-external match2: (cache, ~request: string, ~options: cacheQueryOptions=?) => Nullable.t<response> =
+external matchByUrl: (cache, ~request: string, ~options: cacheQueryOptions=?) => Nullable.t<response> =
   "match"
 
 /**
@@ -29,7 +29,7 @@ external matchAll: (
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Cache/matchAll)
 */
 @send
-external matchAll2: (
+external matchAllByUrl: (
   cache,
   ~request: string=?,
   ~options: cacheQueryOptions=?,
@@ -45,7 +45,7 @@ external add: (cache, request) => promise<unit> = "add"
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Cache/add)
 */
 @send
-external add2: (cache, string) => promise<unit> = "add"
+external addByUrl: (cache, string) => promise<unit> = "add"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Cache/addAll)
@@ -63,7 +63,7 @@ external put: (cache, ~request: request, ~response: response) => promise<unit> =
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Cache/put)
 */
 @send
-external put2: (cache, ~request: string, ~response: response) => promise<unit> = "put"
+external putByUrl: (cache, ~request: string, ~response: response) => promise<unit> = "put"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Cache/delete)
@@ -76,7 +76,7 @@ external delete: (cache, ~request: request, ~options: cacheQueryOptions=?) => pr
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Cache/delete)
 */
 @send
-external delete2: (cache, ~request: string, ~options: cacheQueryOptions=?) => promise<bool> =
+external deleteByUrl: (cache, ~request: string, ~options: cacheQueryOptions=?) => promise<bool> =
   "delete"
 
 /**
@@ -93,7 +93,7 @@ external keys: (
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Cache/keys)
 */
 @send
-external keys2: (
+external keysByUrl: (
   cache,
   ~request: string=?,
   ~options: cacheQueryOptions=?,

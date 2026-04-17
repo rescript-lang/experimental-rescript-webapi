@@ -20,7 +20,7 @@ module Impl = (
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/AudioNode/connect)
 */
   @send
-  external connect2: (T.t, ~destinationParam: audioParam, ~output: int=?) => unit = "connect"
+  external connectParam: (T.t, ~destinationParam: audioParam, ~output: int=?) => unit = "connect"
 
   /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/AudioNode/disconnect)
@@ -32,36 +32,36 @@ module Impl = (
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/AudioNode/disconnect)
 */
   @send
-  external disconnect2: (T.t, int) => unit = "disconnect"
+  external disconnectOutput: (T.t, int) => unit = "disconnect"
 
   /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/AudioNode/disconnect)
 */
   @send
-  external disconnect3: (T.t, audioNode) => unit = "disconnect"
+  external disconnectNode: (T.t, audioNode) => unit = "disconnect"
 
   /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/AudioNode/disconnect)
 */
   @send
-  external disconnect4: (T.t, ~destinationNode: audioNode, ~output: int) => unit = "disconnect"
+  external disconnectNodeOutput: (T.t, ~destinationNode: audioNode, ~output: int) => unit = "disconnect"
 
   /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/AudioNode/disconnect)
 */
   @send
-  external disconnect5: (T.t, ~destinationNode: audioNode, ~output: int, ~input: int) => unit =
+  external disconnectNodeOutputInput: (T.t, ~destinationNode: audioNode, ~output: int, ~input: int) => unit =
     "disconnect"
 
   /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/AudioNode/disconnect)
 */
   @send
-  external disconnect6: (T.t, audioParam) => unit = "disconnect"
+  external disconnectParam: (T.t, audioParam) => unit = "disconnect"
 
   /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/AudioNode/disconnect)
 */
   @send
-  external disconnect7: (T.t, ~destinationParam: audioParam, ~output: int) => unit = "disconnect"
+  external disconnectParamOutput: (T.t, ~destinationParam: audioParam, ~output: int) => unit = "disconnect"
 }

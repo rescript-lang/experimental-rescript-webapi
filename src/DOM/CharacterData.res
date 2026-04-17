@@ -25,7 +25,7 @@ Throws a "HierarchyRequestError" DOMException if the constraints of the node tre
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CharacterData/after)
 */
   @send
-  external after2: (T.t, string) => unit = "after"
+  external afterText: (T.t, string) => unit = "after"
 
   /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CharacterData/appendData)
@@ -49,7 +49,7 @@ Throws a "HierarchyRequestError" DOMException if the constraints of the node tre
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CharacterData/before)
 */
   @send
-  external before2: (T.t, string) => unit = "before"
+  external beforeText: (T.t, string) => unit = "before"
 
   /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CharacterData/deleteData)
@@ -92,7 +92,7 @@ Throws a "HierarchyRequestError" DOMException if the constraints of the node tre
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CharacterData/replaceWith)
 */
   @send
-  external replaceWith2: (T.t, string) => unit = "replaceWith"
+  external replaceWithText: (T.t, string) => unit = "replaceWith"
 
   /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CharacterData/substringData)

@@ -79,32 +79,6 @@ external roundRect: (
 ) => unit = "roundRect"
 
 /**
-[Read more on MDN](https://developer.mozilla.org/docs/Web/API/CanvasRenderingContext2D/roundRect)
-*/
-@send
-external roundRect2: (
-  path2D,
-  ~x: float,
-  ~y: float,
-  ~w: float,
-  ~h: float,
-  ~radii_: array<float>=?,
-) => unit = "roundRect"
-
-/**
-[Read more on MDN](https://developer.mozilla.org/docs/Web/API/CanvasRenderingContext2D/roundRect)
-*/
-@send
-external roundRect3: (
-  path2D,
-  ~x: float,
-  ~y: float,
-  ~w: float,
-  ~h: float,
-  ~radii_: array<float>=?,
-) => unit = "roundRect"
-
-/**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CanvasRenderingContext2D/arc)
 */
 @send

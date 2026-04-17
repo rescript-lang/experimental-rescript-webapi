@@ -31,7 +31,7 @@ Throws a "HierarchyRequestError" DOMException if the constraints of the node tre
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/DocumentFragment/append)
 */
   @send
-  external append2: (T.t, string) => unit = "append"
+  external appendText: (T.t, string) => unit = "append"
 
   /**
 Returns the first element within node's descendants whose ID is elementId.
@@ -56,7 +56,7 @@ Throws a "HierarchyRequestError" DOMException if the constraints of the node tre
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/DocumentFragment/prepend)
 */
   @send
-  external prepend2: (T.t, string) => unit = "prepend"
+  external prependText: (T.t, string) => unit = "prepend"
 
   /**
 Returns the first element that is a descendant of node that matches selectors.
@@ -88,7 +88,7 @@ Throws a "HierarchyRequestError" DOMException if the constraints of the node tre
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/DocumentFragment/replaceChildren)
 */
   @send
-  external replaceChildren2: (T.t, string) => unit = "replaceChildren"
+  external replaceChildrenText: (T.t, string) => unit = "replaceChildren"
 }
 
 include Impl({type t = documentFragment})

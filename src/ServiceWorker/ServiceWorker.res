@@ -15,7 +15,7 @@ external postMessage: (serviceWorker, ~message: JSON.t, ~transfer: array<Dict.t<
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/ServiceWorker/postMessage)
 */
 @send
-external postMessage2: (
+external postMessageWithOptions: (
   serviceWorker,
   ~message: JSON.t,
   ~options: structuredSerializeOptions=?,

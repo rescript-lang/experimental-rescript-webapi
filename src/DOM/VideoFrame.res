@@ -82,7 +82,7 @@ external copyTo: (
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/VideoFrame/copyTo)
 */
 @send
-external copyTo2: (
+external copyToSharedArrayBuffer: (
   videoFrame,
   ~destination: sharedArrayBuffer,
   ~options: videoFrameCopyToOptions=?,
@@ -92,7 +92,7 @@ external copyTo2: (
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/VideoFrame/copyTo)
 */
 @send
-external copyTo3: (
+external copyToDataView: (
   videoFrame,
   ~destination: DataView.t,
   ~options: videoFrameCopyToOptions=?,
