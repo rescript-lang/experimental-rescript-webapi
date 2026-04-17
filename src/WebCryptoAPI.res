@@ -1,7 +1,5 @@
 @@warning("-30")
 
-open Prelude
-
 type keyType =
   | @as("private") Private
   | @as("public") Public
@@ -68,6 +66,6 @@ type cryptoKey = {
   usages: array<keyUsage>,
 }
 
-type algorithmIdentifier = any
+type algorithmIdentifier = unknown
 
 type algorithm = {mutable name: string}

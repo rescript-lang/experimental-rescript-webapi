@@ -1,5 +1,4 @@
 open DOMAPI
-open Prelude
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/DOMMatrix)
@@ -21,7 +20,7 @@ external fromMatrix: (~other: domMatrixInit=?) => domMatrixReadOnly = "fromMatri
 external fromFloat32Array: array<float> => domMatrixReadOnly = "fromFloat32Array"
 
 @scope("DOMMatrix")
-external fromFloat64Array: float64Array => domMatrixReadOnly = "fromFloat64Array"
+external fromFloat64Array: Float64Array.t => domMatrixReadOnly = "fromFloat64Array"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/DOMMatrixReadOnly/translate)
@@ -95,7 +94,7 @@ external transformPoint: (domMatrix, ~point: domPointInit=?) => domPoint = "tran
 external toFloat32Array: domMatrix => array<float> = "toFloat32Array"
 
 @send
-external toFloat64Array: domMatrix => float64Array = "toFloat64Array"
+external toFloat64Array: domMatrix => Float64Array.t = "toFloat64Array"
 
 @send
 external toJSON: domMatrix => Dict.t<string> = "toJSON"
@@ -107,7 +106,7 @@ external fromMatrixD: (~other: domMatrixInit=?) => domMatrix = "fromMatrix"
 external fromFloat32ArrayD: array<float> => domMatrix = "fromFloat32Array"
 
 @scope("DOMMatrix")
-external fromFloat64ArrayD: float64Array => domMatrix = "fromFloat64Array"
+external fromFloat64ArrayD: Float64Array.t => domMatrix = "fromFloat64Array"
 
 @send
 external multiplySelf: (domMatrix, ~other: domMatrixInit=?) => domMatrix = "multiplySelf"

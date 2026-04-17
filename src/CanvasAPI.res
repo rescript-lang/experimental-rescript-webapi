@@ -1,6 +1,5 @@
 @@warning("-30")
 
-open Prelude
 open EventAPI
 
 type offscreenRenderingContextId =
@@ -425,7 +424,7 @@ type textMetrics = {
   ideographicBaseline: float,
 }
 
-type offscreenRenderingContext = any
+type offscreenRenderingContext = unknown
 
 type imageEncodeOptions = {
   @as("type") mutable type_?: string,

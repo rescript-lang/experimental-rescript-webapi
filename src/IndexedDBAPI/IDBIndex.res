@@ -1,5 +1,4 @@
 open IndexedDBAPI
-open Prelude
 
 /**
 Retrieves the value of the first record matching the given key or key range in query.
@@ -8,7 +7,7 @@ If successful, request's result will be the value, or undefined if there was no 
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/IDBIndex/get)
 */
 @send
-external get: (idbIndex, any) => idbRequest<JSON.t> = "get"
+external get: (idbIndex, unknown) => idbRequest<JSON.t> = "get"
 
 /**
 Retrieves the key of the first record matching the given key or key range in query.
@@ -17,7 +16,7 @@ If successful, request's result will be the key, or undefined if there was no ma
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/IDBIndex/getKey)
 */
 @send
-external getKey: (idbIndex, any) => idbRequest<any> = "getKey"
+external getKey: (idbIndex, unknown) => idbRequest<unknown> = "getKey"
 
 /**
 Retrieves the values of the records matching the given key or key range in query (up to count if given).
@@ -26,7 +25,8 @@ If successful, request's result will be an Array of the values.
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/IDBIndex/getAll)
 */
 @send
-external getAll: (idbIndex, ~query: any=?, ~count: int=?) => idbRequest<array<JSON.t>> = "getAll"
+external getAll: (idbIndex, ~query: unknown=?, ~count: int=?) => idbRequest<array<JSON.t>> =
+  "getAll"
 
 /**
 Retrieves the keys of records matching the given key or key range in query (up to count if given).
@@ -35,8 +35,11 @@ If successful, request's result will be an Array of the keys.
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/IDBIndex/getAllKeys)
 */
 @send
-external getAllKeys: (idbIndex, ~query: any=?, ~count: int=?) => idbRequest<array<idbValidKey>> =
-  "getAllKeys"
+external getAllKeys: (
+  idbIndex,
+  ~query: unknown=?,
+  ~count: int=?,
+) => idbRequest<array<idbValidKey>> = "getAllKeys"
 
 /**
 Retrieves the number of records matching the given key or key range in query.
@@ -45,7 +48,7 @@ If successful, request's result will be the count.
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/IDBIndex/count)
 */
 @send
-external count: (idbIndex, ~query: any=?) => idbRequest<int> = "count"
+external count: (idbIndex, ~query: unknown=?) => idbRequest<int> = "count"
 
 /**
 Opens a cursor over the records matching query, ordered by direction. If query is null, all records in index are matched.
@@ -56,9 +59,9 @@ If successful, request's result will be an IDBCursorWithValue, or null if there 
 @send
 external openCursor: (
   idbIndex,
-  ~query: any=?,
+  ~query: unknown=?,
   ~direction: idbCursorDirection=?,
-) => idbRequest<any> = "openCursor"
+) => idbRequest<unknown> = "openCursor"
 
 /**
 Opens a cursor with key only flag set over the records matching query, ordered by direction. If query is null, all records in index are matched.
@@ -69,6 +72,6 @@ If successful, request's result will be an IDBCursor, or null if there were no m
 @send
 external openKeyCursor: (
   idbIndex,
-  ~query: any=?,
+  ~query: unknown=?,
   ~direction: idbCursorDirection=?,
-) => idbRequest<any> = "openKeyCursor"
+) => idbRequest<unknown> = "openKeyCursor"

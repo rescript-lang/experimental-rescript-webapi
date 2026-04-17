@@ -1269,7 +1269,7 @@ type audioWorkletNodeOptions = {
   mutable numberOfInputs?: int,
   mutable numberOfOutputs?: int,
   mutable outputChannelCount?: array<int>,
-  mutable parameterData?: any,
+  mutable parameterData?: unknown,
   mutable processorOptions?: Dict.t<string>,
 }
 

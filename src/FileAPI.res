@@ -1,6 +1,5 @@
 @@warning("-30")
 
-open Prelude
 open EventAPI
 
 type endingType =
@@ -126,7 +125,7 @@ type fileSystemFileHandle = {
 */
 @editor.completeFrom(FileSystemWritableFileStream)
 type fileSystemWritableFileStream = {
-  ...writableStream<any>,
+  ...writableStream<unknown>,
 }
 
 @unboxed
@@ -136,15 +135,15 @@ type blobPart =
 // | ArrayBuffer(ArrayBuffer.t)
 // | TypedArray(TypedArray.t<int>)
 
-type queuingStrategy<'t> = any
+type queuingStrategy<'t> = unknown
 
-type underlyingSink<'t> = any
+type underlyingSink<'t> = unknown
 
-type readableStreamReader<'t> = any
+type readableStreamReader<'t> = unknown
 
-type writableStreamDefaultWriter<'t> = any
+type writableStreamDefaultWriter<'t> = unknown
 
-type fileSystemWriteChunkType = any
+type fileSystemWriteChunkType = unknown
 
 type underlyingSourceCancelCallback = JSON.t => promise<unit>
 

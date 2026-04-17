@@ -1,7 +1,9 @@
 open WebAPI.Global
 
+external toHTMLCanvasElement: null<DOMAPI.element> => DOMAPI.htmlCanvasElement = "%identity"
+
 let myCanvas: DOMAPI.htmlCanvasElement =
-  document->Document.getElementById("myCanvas")->Prelude.unsafeConversation
+  document->Document.getElementById("myCanvas")->toHTMLCanvasElement
 let ctx = myCanvas->HTMLCanvasElement.getContext2D
 
 ctx.fillStyle = FillStyle.fromString("red")

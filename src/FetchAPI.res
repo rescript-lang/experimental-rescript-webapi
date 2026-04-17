@@ -1,6 +1,5 @@
 @@warning("-30")
 
-open Prelude
 open EventAPI
 open FileAPI
 
@@ -216,10 +215,12 @@ type formData = {}
 
 @editor.completeFrom(BodyInit) type bodyInit
 
-type requestInfo = any
+type requestInfo = unknown
 
-@editor.completeFrom(FormDataEntryValue)
-type formDataEntryValue
+@editor.completeFrom(FormDataEntryValue) @unboxed
+type formDataEntryValue =
+  | String(string)
+  | File(file)
 
 type requestInit = {
   /**

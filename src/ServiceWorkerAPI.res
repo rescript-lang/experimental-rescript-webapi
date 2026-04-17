@@ -1,6 +1,5 @@
 @@warning("-30")
 
-open Prelude
 open EventAPI
 open PushAPI
 open WebWorkersAPI
@@ -110,7 +109,7 @@ type registrationOptions = {
   mutable updateViaCache?: serviceWorkerUpdateViaCache,
 }
 
-type requestInfo = any
+type requestInfo = unknown
 
 /**
 The Clients interface provides access to Client objects. Access it via self.clients within a service worker.

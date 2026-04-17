@@ -1,12 +1,12 @@
 open FileAPI
 open ClipboardAPI
-open Prelude
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/ClipboardItem)
 */
 @new
-external make: (~items: any, ~options: clipboardItemOptions=?) => clipboardItem = "ClipboardItem"
+external make: (~items: unknown, ~options: clipboardItemOptions=?) => clipboardItem =
+  "ClipboardItem"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/ClipboardItem/getType)

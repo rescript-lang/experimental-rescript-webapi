@@ -1,6 +1,5 @@
 @@warning("-30")
 
-open Prelude
 open EventAPI
 open ChannelMessagingAPI
 
@@ -8,7 +7,7 @@ type binaryType =
   | @as("arraybuffer") Arraybuffer
   | @as("blob") Blob
 
-type messageEventSource = any
+type messageEventSource = unknown
 
 /**
 Provides the API for creating and managing a WebSocket connection to a server, as well as for sending and receiving data on the connection.

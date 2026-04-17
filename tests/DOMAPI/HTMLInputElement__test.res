@@ -1,5 +1,6 @@
 open Global
 
-let input: DOMAPI.htmlInputElement =
-  document->Document.createElement("input")->Prelude.unsafeConversation
+external toHTMLInputElement: DOMAPI.element => DOMAPI.htmlInputElement = "%identity"
+
+let input: DOMAPI.htmlInputElement = document->Document.createElement("input")->toHTMLInputElement
 let value = input.value

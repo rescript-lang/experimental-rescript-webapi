@@ -10,11 +10,8 @@ let phoneEntry: null<FetchAPI.formDataEntryValue> = formData->FormData.get("phon
 // Decode the entry to handle both string and File cases
 let _ = switch phoneEntry->Null.toOption {
 | None => Console.log("No phone field")
-| Some(entry) =>
-  switch entry->FormDataEntryValue.decode {
-  | FormDataEntryValue.String(value) => Console.log(`Phone: ${value}`)
-  | FormDataEntryValue.File(file) => Console.log(`Unexpected file: ${file.name}`)
-  }
+| Some(String(value)) => Console.log(`Phone: ${value}`)
+| Some(File(file)) => Console.log(`Unexpected file: ${file.name}`)
 }
 
 // Get all values for a field (useful for multi-select or multiple file inputs)
@@ -22,21 +19,21 @@ let allImages: array<FetchAPI.formDataEntryValue> = formData->FormData.getAll("i
 
 // Process all entries
 let _ = allImages->Array.forEach(entry => {
-  switch entry->FormDataEntryValue.decode {
-  | FormDataEntryValue.String(value) => Console.log(`String value: ${value}`)
-  | FormDataEntryValue.File(file) => Console.log(`File: ${file.name}`)
+  switch entry {
+  | String(value) => Console.log(`String value: ${value}`)
+  | File(file) => Console.log(`File: ${file.name}`)
   }
 })
 
 // Create formDataEntryValue from string or file
-let stringEntry = FormDataEntryValue.fromString("test value")
-let fileEntry = FormDataEntryValue.fromFile(File.make(~fileBits=[], ~fileName="test.txt"))
+let stringEntry = FetchAPI.String("test value")
+let fileEntry = FetchAPI.File(File.make(~fileBits=[], ~fileName="test.txt"))
 
 // Iterate over all entries in the FormData
 let entries: Iterator.t<(string, FetchAPI.formDataEntryValue)> = formData->FormData.entries
 let _ = entries->Iterator.forEach(((key, value)) => {
-  switch value->FormDataEntryValue.decode {
-  | FormDataEntryValue.String(s) => Console.log(`${key}: ${s}`)
-  | FormDataEntryValue.File(f) => Console.log(`${key}: [File] ${f.name}`)
+  switch value {
+  | String(s) => Console.log(`${key}: ${s}`)
+  | File(f) => Console.log(`${key}: [File] ${f.name}`)
   }
 })

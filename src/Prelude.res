@@ -1,13 +1,11 @@
 @@warning("-30")
-type any = {}
 
-external unsafeConversation: 'tinput => 'toutput = "%identity"
-
-type bufferSource = any
-
-type sharedArrayBuffer = any
-
-type float64Array = any
+module ArrayBufferTypedArrayOrDataView = {
+  type t
+  external fromArrayBuffer: ArrayBuffer.t => t = "%identity"
+  external fromTypedArray: TypedArray.t<'t> => t = "%identity"
+  external fromDataView: DataView.t => t = "%identity"
+}
 
 /**
 An abnormal event (called an exception) which occurs as a result of calling a method or accessing a property of a web API.

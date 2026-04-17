@@ -1,5 +1,4 @@
 open IndexedDBAPI
-open Prelude
 
 /**
 Adds or updates a record in store with the given value and key.
@@ -36,7 +35,7 @@ If successful, request's result will be undefined.
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/IDBObjectStore/delete)
 */
 @send
-external delete: (idbObjectStore, any) => idbRequest<unit> = "delete"
+external delete: (idbObjectStore, unknown) => idbRequest<unit> = "delete"
 
 /**
 Deletes all records in store.
@@ -54,7 +53,7 @@ If successful, request's result will be the value, or undefined if there was no 
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/IDBObjectStore/get)
 */
 @send
-external get: (idbObjectStore, any) => idbRequest<JSON.t> = "get"
+external get: (idbObjectStore, unknown) => idbRequest<JSON.t> = "get"
 
 /**
 Retrieves the key of the first record matching the given key or key range in query.
@@ -63,7 +62,7 @@ If successful, request's result will be the key, or undefined if there was no ma
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/IDBObjectStore/getKey)
 */
 @send
-external getKey: (idbObjectStore, any) => idbRequest<any> = "getKey"
+external getKey: (idbObjectStore, unknown) => idbRequest<unknown> = "getKey"
 
 /**
 Retrieves the values of the records matching the given key or key range in query (up to count if given).
@@ -72,7 +71,7 @@ If successful, request's result will be an Array of the values.
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/IDBObjectStore/getAll)
 */
 @send
-external getAll: (idbObjectStore, ~query: any=?, ~count: int=?) => idbRequest<array<JSON.t>> =
+external getAll: (idbObjectStore, ~query: unknown=?, ~count: int=?) => idbRequest<array<JSON.t>> =
   "getAll"
 
 /**
@@ -84,7 +83,7 @@ If successful, request's result will be an Array of the keys.
 @send
 external getAllKeys: (
   idbObjectStore,
-  ~query: any=?,
+  ~query: unknown=?,
   ~count: int=?,
 ) => idbRequest<array<idbValidKey>> = "getAllKeys"
 
@@ -95,7 +94,7 @@ If successful, request's result will be the count.
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/IDBObjectStore/count)
 */
 @send
-external count: (idbObjectStore, ~query: any=?) => idbRequest<int> = "count"
+external count: (idbObjectStore, ~query: unknown=?) => idbRequest<int> = "count"
 
 /**
 Opens a cursor over the records matching query, ordered by direction. If query is null, all records in store are matched.
@@ -106,9 +105,9 @@ If successful, request's result will be an IDBCursorWithValue pointing at the fi
 @send
 external openCursor: (
   idbObjectStore,
-  ~query: any=?,
+  ~query: unknown=?,
   ~direction: idbCursorDirection=?,
-) => idbRequest<any> = "openCursor"
+) => idbRequest<unknown> = "openCursor"
 
 /**
 Opens a cursor with key only flag set over the records matching query, ordered by direction. If query is null, all records in store are matched.
@@ -119,9 +118,9 @@ If successful, request's result will be an IDBCursor pointing at the first match
 @send
 external openKeyCursor: (
   idbObjectStore,
-  ~query: any=?,
+  ~query: unknown=?,
   ~direction: idbCursorDirection=?,
-) => idbRequest<any> = "openKeyCursor"
+) => idbRequest<unknown> = "openKeyCursor"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/IDBObjectStore/index)

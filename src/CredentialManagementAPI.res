@@ -61,18 +61,18 @@ type credential = {
 
 type publicKeyCredentialDescriptor = {
   @as("type") mutable type_: publicKeyCredentialType,
-  mutable id: bufferSource,
+  mutable id: ArrayBufferTypedArrayOrDataView.t,
   mutable transports?: array<authenticatorTransport>,
 }
 
 type authenticationExtensionsPRFValues = {
-  mutable first: bufferSource,
-  mutable second?: bufferSource,
+  mutable first: ArrayBufferTypedArrayOrDataView.t,
+  mutable second?: ArrayBufferTypedArrayOrDataView.t,
 }
 
 type authenticationExtensionsPRFInputs = {
   mutable eval?: authenticationExtensionsPRFValues,
-  mutable evalByCredential?: any,
+  mutable evalByCredential?: unknown,
 }
 
 type authenticationExtensionsClientInputs = {
@@ -84,7 +84,7 @@ type authenticationExtensionsClientInputs = {
 }
 
 type publicKeyCredentialRequestOptions = {
-  mutable challenge: bufferSource,
+  mutable challenge: ArrayBufferTypedArrayOrDataView.t,
   mutable timeout?: int,
   mutable rpId?: string,
   mutable allowCredentials?: array<publicKeyCredentialDescriptor>,
@@ -107,7 +107,7 @@ type publicKeyCredentialRpEntity = {
 
 type publicKeyCredentialUserEntity = {
   ...publicKeyCredentialEntity,
-  mutable id: bufferSource,
+  mutable id: ArrayBufferTypedArrayOrDataView.t,
   mutable displayName: string,
 }
 
@@ -126,7 +126,7 @@ type authenticatorSelectionCriteria = {
 type publicKeyCredentialCreationOptions = {
   mutable rp: publicKeyCredentialRpEntity,
   mutable user: publicKeyCredentialUserEntity,
-  mutable challenge: bufferSource,
+  mutable challenge: ArrayBufferTypedArrayOrDataView.t,
   mutable pubKeyCredParams: array<publicKeyCredentialParameters>,
   mutable timeout?: int,
   mutable excludeCredentials?: array<publicKeyCredentialDescriptor>,

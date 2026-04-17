@@ -74,7 +74,7 @@ type performanceMeasure = {
   detail: JSON.t,
 }
 
-type performanceEntryList = any
+type performanceEntryList = unknown
 
 type performanceMarkOptions = {
   mutable detail?: JSON.t,

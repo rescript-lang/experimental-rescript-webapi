@@ -1,5 +1,4 @@
 open DOMAPI
-open Prelude
 
 module Impl = (
   T: {
@@ -32,13 +31,13 @@ Throws a "HierarchyRequestError" DOMException if the constraints of the node tre
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/animate)
 */
   @send
-  external animate: (T.t, ~keyframes: any, ~options: float=?) => animation = "animate"
+  external animate: (T.t, ~keyframes: unknown, ~options: float=?) => animation = "animate"
 
   /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/animate)
 */
   @send
-  external animate2: (T.t, ~keyframes: any, ~options: keyframeAnimationOptions=?) => animation =
+  external animate2: (T.t, ~keyframes: unknown, ~options: keyframeAnimationOptions=?) => animation =
     "animate"
 
   /**

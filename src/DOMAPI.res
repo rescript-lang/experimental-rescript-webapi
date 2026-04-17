@@ -488,9 +488,9 @@ type vibratePattern =
   | Int(int)
   | IntArray(array<int>)
 
-type renderingContext = any
+type renderingContext = unknown
 
-type offscreenRenderingContext = any
+type offscreenRenderingContext = unknown
 
 /**
 [See AnimationTimeline on MDN](https://developer.mozilla.org/docs/Web/API/AnimationTimeline)
@@ -6849,7 +6849,7 @@ type elementInternals = {
     Returns a NodeList of all the label elements that internals's target element is associated with.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/ElementInternals/labels)
     */
-  labels: nodeList<any>,
+  labels: nodeList<unknown>,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/ElementInternals/states)
     */
@@ -8107,7 +8107,7 @@ Can be set, to change the selection.
   mutable selectedIndex: int,
 }
 
-type mediaProvider = any
+type mediaProvider = unknown
 
 /**
 Adds to HTMLElement the properties and methods needed to support basic media-related capabilities that are common to audio and video.
@@ -9842,12 +9842,12 @@ type domPointInit = {
   mutable w?: float,
 }
 
-type xPathNSResolver = any
+type xPathNSResolver = unknown
 
-type timerHandler = any
+type timerHandler = unknown
 
 type voidFunction = unit => unit
-type imageBitmapSource = any
+type imageBitmapSource = unknown
 
 type customElementConstructor = htmlElement
 

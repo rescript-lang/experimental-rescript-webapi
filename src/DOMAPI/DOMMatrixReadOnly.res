@@ -1,5 +1,4 @@
 open DOMAPI
-open Prelude
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/DOMMatrixReadOnly)
@@ -20,7 +19,7 @@ external fromMatrix: (~other: domMatrixInit=?) => domMatrixReadOnly = "fromMatri
 external fromFloat32Array: array<float> => domMatrixReadOnly = "fromFloat32Array"
 
 @scope("DOMMatrixReadOnly")
-external fromFloat64Array: float64Array => domMatrixReadOnly = "fromFloat64Array"
+external fromFloat64Array: Float64Array.t => domMatrixReadOnly = "fromFloat64Array"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/DOMMatrixReadOnly/translate)
@@ -97,7 +96,7 @@ external transformPoint: (domMatrixReadOnly, ~point: domPointInit=?) => domPoint
 external toFloat32Array: domMatrixReadOnly => array<float> = "toFloat32Array"
 
 @send
-external toFloat64Array: domMatrixReadOnly => float64Array = "toFloat64Array"
+external toFloat64Array: domMatrixReadOnly => Float64Array.t = "toFloat64Array"
 
 @send
 external toJSON: domMatrixReadOnly => Dict.t<string> = "toJSON"

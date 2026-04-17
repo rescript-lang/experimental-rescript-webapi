@@ -9,7 +9,7 @@ external encrypt: (
   subtleCrypto,
   ~algorithm: algorithmIdentifier,
   ~key: cryptoKey,
-  ~data: bufferSource,
+  ~data: ArrayBufferTypedArrayOrDataView.t,
 ) => promise<ArrayBuffer.t> = "encrypt"
 
 /**
@@ -20,7 +20,7 @@ external decrypt: (
   subtleCrypto,
   ~algorithm: algorithmIdentifier,
   ~key: cryptoKey,
-  ~data: bufferSource,
+  ~data: ArrayBufferTypedArrayOrDataView.t,
 ) => promise<ArrayBuffer.t> = "decrypt"
 
 /**
@@ -31,7 +31,7 @@ external sign: (
   subtleCrypto,
   ~algorithm: algorithmIdentifier,
   ~key: cryptoKey,
-  ~data: bufferSource,
+  ~data: ArrayBufferTypedArrayOrDataView.t,
 ) => promise<JSON.t> = "sign"
 
 /**
@@ -42,8 +42,8 @@ external verify: (
   subtleCrypto,
   ~algorithm: algorithmIdentifier,
   ~key: cryptoKey,
-  ~signature: bufferSource,
-  ~data: bufferSource,
+  ~signature: ArrayBufferTypedArrayOrDataView.t,
+  ~data: ArrayBufferTypedArrayOrDataView.t,
 ) => promise<JSON.t> = "verify"
 
 /**
@@ -53,7 +53,7 @@ external verify: (
 external digest: (
   subtleCrypto,
   ~algorithm: algorithmIdentifier,
-  ~data: bufferSource,
+  ~data: ArrayBufferTypedArrayOrDataView.t,
 ) => promise<JSON.t> = "digest"
 
 /**
@@ -119,8 +119,8 @@ external deriveBits2: (
 @send
 external importKey: (
   subtleCrypto,
-  ~format: any,
-  ~keyData: bufferSource,
+  ~format: unknown,
+  ~keyData: ArrayBufferTypedArrayOrDataView.t,
   ~algorithm: algorithmIdentifier,
   ~extractable: bool,
   ~keyUsages: array<keyUsage>,
@@ -164,7 +164,7 @@ external wrapKey2: (
 external unwrapKey: (
   subtleCrypto,
   ~format: keyFormat,
-  ~wrappedKey: bufferSource,
+  ~wrappedKey: ArrayBufferTypedArrayOrDataView.t,
   ~unwrappingKey: cryptoKey,
   ~unwrapAlgorithm: algorithmIdentifier,
   ~unwrappedKeyAlgorithm: algorithmIdentifier,

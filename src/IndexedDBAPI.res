@@ -190,7 +190,7 @@ type idbIndex = {
   unique: bool,
 }
 
-type idbValidKey = any
+type idbValidKey = unknown
 
 type idbDatabaseInfo = {
   mutable name?: string,

@@ -5,17 +5,19 @@ external fromDocument: document => root = "%identity"
 external fromElement: element => root = "%identity"
 external fromNull: root = "null"
 
+external toElement: root => element = "%identity"
+external toDocument: root => document = "%identity"
+
 type decoded =
   | Element(element)
   | Document(document)
   | Null
 
 let decode = (t: root): decoded => {
-  open Prelude
   if Element.isInstanceOf(t) {
-    Element(t->unsafeConversation)
+    Element(t->toElement)
   } else if Document.isInstanceOf(t) {
-    Document(t->unsafeConversation)
+    Document(t->toDocument)
   } else {
     Null
   }

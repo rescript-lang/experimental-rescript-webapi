@@ -54,7 +54,10 @@ external make8: (~data: ArrayBuffer.t, ~init: videoFrameBufferInit) => videoFram
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/VideoFrame)
 */
 @new
-external make9: (~data: sharedArrayBuffer, ~init: videoFrameBufferInit) => videoFrame = "VideoFrame"
+external make9: (
+  ~data: ArrayBufferTypedArrayOrDataView.t,
+  ~init: videoFrameBufferInit,
+) => videoFrame = "VideoFrame"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/VideoFrame)
@@ -84,7 +87,7 @@ external copyTo: (
 @send
 external copyTo2: (
   videoFrame,
-  ~destination: sharedArrayBuffer,
+  ~destination: ArrayBufferTypedArrayOrDataView.t,
   ~options: videoFrameCopyToOptions=?,
 ) => promise<array<planeLayout>> = "copyTo"
 

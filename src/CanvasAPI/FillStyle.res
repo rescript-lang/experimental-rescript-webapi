@@ -5,6 +5,10 @@ external fromString: string => fillStyle = "%identity"
 external fromCanvasGradient: canvasGradient => fillStyle = "%identity"
 external fromCanvasPattern: canvasGradient => fillStyle = "%identity"
 
+external toString: fillStyle => string = "%identity"
+external toCanvasGradient: fillStyle => canvasGradient = "%identity"
+external toCanvasPattern: fillStyle => canvasPattern = "%identity"
+
 /**
 Represents a decoded version of the abstract `fillStyle` type, used in Context2D.
  */
@@ -15,10 +19,10 @@ type decoded =
 
 let decode = (t: fillStyle): decoded => {
   if CanvasGradient.isInstanceOf(t) {
-    CanvasGradient(unsafeConversation(t))
+    CanvasGradient(toCanvasGradient(t))
   } else if CanvasPattern.isInstanceOf(t) {
-    CanvasPattern(unsafeConversation(t))
+    CanvasPattern(toCanvasPattern(t))
   } else {
-    String(unsafeConversation(t))
+    String(toString(t))
   }
 }
