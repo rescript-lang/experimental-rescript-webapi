@@ -7,18 +7,6 @@ open FileTypes
 external make: unit => readableStream<array<int>> = "ReadableStream"
 
 /**
-[Read more on MDN](https://developer.mozilla.org/docs/Web/API/ReadableStream)
-*/
-@new
-external make2: unit => unknown = "ReadableStream"
-
-/**
-[Read more on MDN](https://developer.mozilla.org/docs/Web/API/ReadableStream)
-*/
-@new
-external make3: unit => unknown = "ReadableStream"
-
-/**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/ReadableStream/cancel)
 */
 @send

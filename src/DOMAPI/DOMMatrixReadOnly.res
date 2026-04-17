@@ -11,7 +11,7 @@ external make: (~init: string=?) => domMatrixReadOnly = "DOMMatrixReadOnly"
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/DOMMatrixReadOnly)
 */
 @new
-external make2: (~init: array<float>=?) => domMatrixReadOnly = "DOMMatrixReadOnly"
+external fromFloatArray: (~init: array<float>=?) => domMatrixReadOnly = "DOMMatrixReadOnly"
 
 @scope("DOMMatrixReadOnly")
 external fromMatrix: (~other: domMatrixInit=?) => domMatrixReadOnly = "fromMatrix"

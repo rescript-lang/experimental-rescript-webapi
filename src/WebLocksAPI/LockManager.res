@@ -11,7 +11,7 @@ external request: (lockManager, ~name: string, ~callback: lockGrantedCallback) =
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/LockManager/request)
 */
 @send
-external request2: (
+external requestWithOptions: (
   lockManager,
   ~name: string,
   ~options: lockOptions,

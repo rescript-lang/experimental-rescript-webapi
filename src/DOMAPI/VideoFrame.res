@@ -12,55 +12,64 @@ external make: (~image: htmlImageElement, ~init: videoFrameInit=?) => videoFrame
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/VideoFrame)
 */
 @new
-external make2: (~image: svgImageElement, ~init: videoFrameInit=?) => videoFrame = "VideoFrame"
+external fromSvgImage: (~image: svgImageElement, ~init: videoFrameInit=?) => videoFrame =
+  "VideoFrame"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/VideoFrame)
 */
 @new
-external make3: (~image: htmlVideoElement, ~init: videoFrameInit=?) => videoFrame = "VideoFrame"
+external fromVideoElement: (~image: htmlVideoElement, ~init: videoFrameInit=?) => videoFrame =
+  "VideoFrame"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/VideoFrame)
 */
 @new
-external make4: (~image: htmlCanvasElement, ~init: videoFrameInit=?) => videoFrame = "VideoFrame"
+external fromCanvasElement: (~image: htmlCanvasElement, ~init: videoFrameInit=?) => videoFrame =
+  "VideoFrame"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/VideoFrame)
 */
 @new
-external make5: (~image: imageBitmap, ~init: videoFrameInit=?) => videoFrame = "VideoFrame"
+external fromImageBitmap: (~image: imageBitmap, ~init: videoFrameInit=?) => videoFrame =
+  "VideoFrame"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/VideoFrame)
 */
 @new
-external make6: (~image: offscreenCanvas, ~init: videoFrameInit=?) => videoFrame = "VideoFrame"
+external fromOffscreenCanvas: (~image: offscreenCanvas, ~init: videoFrameInit=?) => videoFrame =
+  "VideoFrame"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/VideoFrame)
 */
 @new
-external make7: (~image: videoFrame, ~init: videoFrameInit=?) => videoFrame = "VideoFrame"
+external fromVideoFrame: (~image: videoFrame, ~init: videoFrameInit=?) => videoFrame = "VideoFrame"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/VideoFrame)
 */
 @new
-external make8: (~data: ArrayBuffer.t, ~init: videoFrameBufferInit) => videoFrame = "VideoFrame"
+external fromArrayBuffer: (~data: ArrayBuffer.t, ~init: videoFrameBufferInit) => videoFrame =
+  "VideoFrame"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/VideoFrame)
 */
 @new
-external make9: (~data: sharedArrayBuffer, ~init: videoFrameBufferInit) => videoFrame = "VideoFrame"
+external fromSharedArrayBuffer: (
+  ~data: sharedArrayBuffer,
+  ~init: videoFrameBufferInit,
+) => videoFrame = "VideoFrame"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/VideoFrame)
 */
 @new
-external make10: (~data: DataView.t, ~init: videoFrameBufferInit) => videoFrame = "VideoFrame"
+external fromDataView: (~data: DataView.t, ~init: videoFrameBufferInit) => videoFrame = "VideoFrame"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/VideoFrame/allocationSize)
@@ -82,7 +91,7 @@ external copyTo: (
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/VideoFrame/copyTo)
 */
 @send
-external copyTo2: (
+external copyToSharedArrayBuffer: (
   videoFrame,
   ~destination: sharedArrayBuffer,
   ~options: videoFrameCopyToOptions=?,
@@ -92,7 +101,7 @@ external copyTo2: (
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/VideoFrame/copyTo)
 */
 @send
-external copyTo3: (
+external copyToDataView: (
   videoFrame,
   ~destination: DataView.t,
   ~options: videoFrameCopyToOptions=?,
