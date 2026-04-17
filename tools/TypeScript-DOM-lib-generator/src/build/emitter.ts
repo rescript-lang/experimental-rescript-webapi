@@ -27,6 +27,10 @@ const extendConflictsBaseTypes: Record<
 // and can't be converted to namespaces without breaking type packages
 const namespacesAsInterfaces = ["console"];
 
+function normalizeGeneratedModuleName(name: string) {
+  return name.endsWith("API") ? name.slice(0, -3) : name;
+}
+
 // Used to decide if a member should be emitted given its static property and
 // the intended scope level.
 function matchScope(scope: EmitScope, x: { static?: boolean }) {
@@ -1297,7 +1301,7 @@ export async function emitRescriptBindings(webidl: Browser.WebIdl) {
 
     // "forEach" edge case
     if (i.name === "NodeListOf") {
-      opens.add("DOMAPI");
+      opens.add(normalizeGeneratedModuleName("DOMAPI"));
     }
 
     return opens;
@@ -1561,7 +1565,7 @@ export async function emitRescriptBindings(webidl: Browser.WebIdl) {
       "ChannelMessagingAPI",
       "FetchAPI",
       "EventAPI",
-    ];
+    ].map(normalizeGeneratedModuleName);
     for (const o of opens) {
       printer.printLine(`open ${o}`);
     }
@@ -2820,16 +2824,11 @@ export async function emitRescriptBindings(webidl: Browser.WebIdl) {
       },
     ];
 
-    interfaceHierarchy = [
-      {
-        name: "Temp",
-        entries: [
-          enums(["WebGLPowerPreference"]),
-          dictionaries(["ImageBitmapRenderingContextSettings", "WebGLContextAttributes"]),
-        ],
-        opens: [],
-      }
-    ]
+    interfaceHierarchy = interfaceHierarchy.map((file) => ({
+      ...file,
+      name: normalizeGeneratedModuleName(file.name),
+      opens: file.opens.map(normalizeGeneratedModuleName),
+    }));
 
     // Ensure the output folder exists.
     await fs.mkdir(outputFolder, { recursive: true });
