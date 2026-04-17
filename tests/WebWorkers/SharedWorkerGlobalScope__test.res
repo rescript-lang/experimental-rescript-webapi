@@ -1,4 +1,4 @@
-open WebAPI.WebWorkers
+open WebWorkers
 
 external getSelf: unit => sharedWorkerGlobalScope = "self"
 

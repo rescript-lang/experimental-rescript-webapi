@@ -1,4 +1,4 @@
-open WebAPI.WebWorkers
+open WebWorkers
 
 let shared1: sharedWorker = SharedWorker.make("sharedworker.js")
 

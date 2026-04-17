@@ -1,0 +1,7 @@
+{
+  "name": "@rescript/webapi",
+  "namespace": "WebAPI",
+  "sources": [{ "dir": "src", "subdirs": true }],
+  "package-specs": { "module": "esmodule", "in-source": true },
+  "suffix": ".js"
+}

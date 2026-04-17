@@ -1,4 +1,4 @@
-open WebAPI.ServiceWorker
+open ServiceWorker
 
 external self: serviceWorkerGlobalScope = "self"
 

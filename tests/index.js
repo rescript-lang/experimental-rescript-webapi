@@ -8,45 +8,6 @@ const currentFileName = fileURLToPath(import.meta.url);
 const currentDir = path.dirname(currentFileName);
 const repoRoot = path.resolve(currentDir, "..");
 const testsDir = path.join(repoRoot, "tests");
-const sameNameModules = [
-  "Clipboard",
-  "Event",
-  "File",
-  "Geolocation",
-  "History",
-  "IntersectionObserver",
-  "MediaCapabilities",
-  "MediaSession",
-  "MutationObserver",
-  "Notification",
-  "Performance",
-  "Permissions",
-  "RemotePlayback",
-  "ResizeObserver",
-  "ServiceWorker",
-  "URL",
-];
-
-for (const moduleName of sameNameModules) {
-  const rootRes = path.join(repoRoot, "src", `${moduleName}.res`);
-  const rootJs = path.join(repoRoot, "src", `${moduleName}.js`);
-  const nestedRes = path.join(repoRoot, "src", moduleName, `${moduleName}.res`);
-  const nestedJs = path.join(repoRoot, "src", moduleName, `${moduleName}.js`);
-
-  if (existsSync(rootRes) || existsSync(rootJs)) {
-    console.error(
-      `Flattened ${moduleName} module files should live in src/${moduleName}/ instead of src/.`,
-    );
-    exit(1);
-  }
-
-  if (!existsSync(nestedRes) || !existsSync(nestedJs)) {
-    console.error(
-      `Expected nested ${moduleName} module files in src/${moduleName}/.`,
-    );
-    exit(1);
-  }
-}
 
 // Compile all tests
 execSync("npm run build", { cwd: repoRoot, stdio: "inherit" });

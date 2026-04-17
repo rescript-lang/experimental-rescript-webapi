@@ -1,0 +1,27 @@
+{
+  "name": "@rescript/webapi-websockets",
+  "version": "0.1.0",
+  "description": "ReScript bindings for the WebSockets API",
+  "license": "MIT",
+  "files": [
+    "rescript.json",
+    "src/**/*.res"
+  ],
+  "type": "module",
+  "publishConfig": {
+    "access": "public",
+    "provenance": true
+  },
+  "dependencies": {
+    "@rescript/webapi": "0.1.0"
+  },
+  "peerDependencies": {
+    "rescript": ">=12.0.0 <13"
+  },
+  "scripts": {
+    "build": "rescript",
+    "clean": "rescript clean",
+    "format": "rescript format",
+    "format:check": "rescript format --check"
+  }
+}

@@ -1,5 +1,5 @@
 open WebAPI
-open WebAPI.Global
+open Global
 
 let button = document->Document.querySelector("button")->Null.toOption
 let h2 = document->Document.querySelector("h2")->Null.toOption

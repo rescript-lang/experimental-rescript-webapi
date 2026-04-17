@@ -1,0 +1,28 @@
+{
+  "name": "@rescript/webapi-service-worker",
+  "version": "0.1.0",
+  "description": "ReScript bindings for the Service Worker API",
+  "license": "MIT",
+  "files": [
+    "rescript.json",
+    "src/**/*.res"
+  ],
+  "type": "module",
+  "publishConfig": {
+    "access": "public",
+    "provenance": true
+  },
+  "dependencies": {
+    "@rescript/webapi": "0.1.0",
+    "@rescript/webapi-web-workers": "0.1.0"
+  },
+  "peerDependencies": {
+    "rescript": ">=12.0.0 <13"
+  },
+  "scripts": {
+    "build": "rescript",
+    "clean": "rescript clean",
+    "format": "rescript format",
+    "format:check": "rescript format --check"
+  }
+}

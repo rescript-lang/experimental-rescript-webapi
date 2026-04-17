@@ -1,5 +1,5 @@
 open Global
-open WebAPI.Storage
+open Storage
 
 for i in 0 to localStorage.length - 1 {
   localStorage->key(i)->Null.getOr("nothing")->Console.log
