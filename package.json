@@ -27,6 +27,8 @@
   "scripts": {
     "test": "node tests/index.js",
     "build": "rescript",
+    "build:packages": "npm run build --workspaces",
+    "clean": "rescript clean",
     "format": "rescript format && oxfmt ./tests/index.js ./package.json ./docs && prettier --write ./docs/pages",
     "format:check": "rescript format --check && oxfmt ./tests/index.js ./package.json ./docs --check && prettier --check ./docs/pages",
     "docs": "astro dev",
