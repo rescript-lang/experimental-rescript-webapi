@@ -1,6 +1,6 @@
 open WebAPI.ServiceWorkerTypes
 
-external self: serviceWorkerGlobalScope = "self"
+let self = ServiceWorkerGlobalScope.current
 
 self->ServiceWorkerGlobalScope.addEventListener(EventTypes.Push, (event: PushTypes.pushEvent) => {
   Console.log("received push event")
