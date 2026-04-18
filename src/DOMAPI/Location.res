@@ -1,5 +1,7 @@
 open DOMTypes
 
+type t = location = {...location}
+
 /**
 Navigates to the given URL.
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Location/assign)

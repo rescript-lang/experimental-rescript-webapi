@@ -1,7 +1,5 @@
-open WebAPI.Global
-
-let myCanvas: DOMTypes.htmlCanvasElement =
-  document->Document.getElementById("myCanvas")->Prelude.unsafeConversation
+let myCanvas: HTMLCanvasElement.t =
+  Window.current.document->Document.getElementById("myCanvas")->Prelude.unsafeConversation
 let ctx = myCanvas->HTMLCanvasElement.getContext2D
 
 ctx.fillStyle = FillStyle.fromString("red")
@@ -18,7 +16,7 @@ switch ctx.fillStyle->FillStyle.decode {
 | FillStyle.CanvasPattern(_) => Console.log("CanvasPattern")
 }
 
-let img: DOMTypes.htmlImageElement = document->Document.createElement("img")->Obj.magic
+let img: HTMLImageElement.t = Window.current.document->Document.createElement("img")->Obj.magic
 ctx->CanvasRenderingContext2D.drawImageWithDimensions(
   ~image=img,
   ~dx=0.,

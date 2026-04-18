@@ -1,6 +1,8 @@
 open DOMTypes
 open Prelude
 
+type t = element = {...element}
+
 module Impl = (
   T: {
     type t
