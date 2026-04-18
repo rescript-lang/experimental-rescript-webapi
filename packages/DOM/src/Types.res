@@ -75,6 +75,8 @@ type htmlImageElement = Prelude.Types.htmlImageElement
 type htmlAreaElement = Prelude.Types.htmlAreaElement
 type videoPlaybackQuality = Prelude.Types.videoPlaybackQuality
 type idleDeadline = Prelude.Types.idleDeadline
+type cssRuleList = Prelude.Types.cssRuleList
+type mediaKeySystemConfiguration = Prelude.Types.mediaKeySystemConfiguration
 
 /**
 A window containing a DOM document; the document property points to the DOM document loaded in that window.

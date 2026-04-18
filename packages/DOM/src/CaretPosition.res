@@ -1,2 +1,2 @@
 @send
-external getClientRect: Prelude.Types.caretPosition => Prelude.Types.domRect = "getClientRect"
+external getClientRect: Types.caretPosition => Types.domRect = "getClientRect"

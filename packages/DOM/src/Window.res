@@ -463,7 +463,7 @@ external postMessage2: (
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/matchMedia)
 */
 @send
-external matchMedia: (Types.window, string) => Prelude.Types.mediaQueryList = "matchMedia"
+external matchMedia: (Types.window, string) => Types.mediaQueryList = "matchMedia"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/moveTo)
@@ -541,7 +541,7 @@ external getComputedStyle: (
 @send
 external requestIdleCallback: (
   Types.window,
-  ~callback: Prelude.Types.idleDeadline => unit,
+  ~callback: Types.idleDeadline => unit,
   ~options: Types.idleRequestOptions=?,
 ) => int = "requestIdleCallback"
 

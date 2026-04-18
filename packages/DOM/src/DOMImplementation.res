@@ -3,7 +3,7 @@
 */
 @send
 external createDocumentType: (
-  Prelude.Types.domImplementation,
+  Types.domImplementation,
   ~qualifiedName: string,
   ~publicId: string,
   ~systemId: string,

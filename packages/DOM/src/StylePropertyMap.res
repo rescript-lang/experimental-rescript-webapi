@@ -4,7 +4,7 @@ external asStylePropertyMapReadOnly: Types.stylePropertyMap => Types.styleProper
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/StylePropertyMapReadOnly/getAll)
 */
 @send
-external getAll: (Types.stylePropertyMap, string) => array<Prelude.Types.cssStyleValue> = "getAll"
+external getAll: (Types.stylePropertyMap, string) => array<Types.cssStyleValue> = "getAll"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/StylePropertyMapReadOnly/has)
@@ -16,11 +16,8 @@ external has: (Types.stylePropertyMap, string) => bool = "has"
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/StylePropertyMap/set)
 */
 @send
-external set: (
-  Types.stylePropertyMap,
-  ~property: string,
-  ~values: Prelude.Types.cssStyleValue,
-) => unit = "set"
+external set: (Types.stylePropertyMap, ~property: string, ~values: Types.cssStyleValue) => unit =
+  "set"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/StylePropertyMap/set)

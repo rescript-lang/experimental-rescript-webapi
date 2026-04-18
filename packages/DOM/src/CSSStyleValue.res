@@ -2,7 +2,7 @@
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CSSStyleValue/parse_static)
 */
 @scope("CSSStyleValue")
-external parse: (~property: string, ~cssText: string) => Prelude.Types.cssStyleValue = "parse"
+external parse: (~property: string, ~cssText: string) => Types.cssStyleValue = "parse"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CSSStyleValue/parseAll_static)

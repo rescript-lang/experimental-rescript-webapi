@@ -2,7 +2,7 @@
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/NamedNodeMap/item)
 */
 @send
-external item: (Types.namedNodeMap, int) => Prelude.Types.attr = "item"
+external item: (Types.namedNodeMap, int) => Types.attr = "item"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/NamedNodeMap/getNamedItem)
