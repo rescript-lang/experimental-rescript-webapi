@@ -1,0 +1,24 @@
+{
+  "name": "@rescript/webapi-service-worker",
+  "sources": [
+    {
+      "dir": "src",
+      "subdirs": true
+    }
+  ],
+  "package-specs": {
+    "module": "esmodule",
+    "in-source": true
+  },
+  "suffix": ".js",
+  "dependencies": [
+    "@rescript/webapi-channel-messaging",
+    "@rescript/webapi-event",
+    "@rescript/webapi-fetch",
+    "@rescript/webapi-notification",
+    "@rescript/webapi-prelude",
+    "@rescript/webapi-push",
+    "@rescript/webapi-web-workers"
+  ],
+  "namespace": "WebApiServiceWorker"
+}

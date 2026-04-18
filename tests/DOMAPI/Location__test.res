@@ -1,12 +1,9 @@
-open Global
-
-// Note that this only works when you added the `-open Global` bsc flag.
-let location = window.location
+let location = WebApiDOM.Global.document.location
 
 // Access properties using `.`
 let href = location.href
 
 // Invoke methods using the `->TypeModule`
-location->Location.reload
+location->WebApiDOM.Location.reload
 
 let a = 0

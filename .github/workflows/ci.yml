@@ -57,22 +57,27 @@ jobs:
         run: echo "COMMIT_HASH=$(git rev-parse --short HEAD)" >> $GITHUB_ENV
 
       - name: Update version to -<commit-hash>
-        run: npm version --no-git-tag-version "${{ steps.package-version.outputs.current-version }}-experimental-${{ env.COMMIT_HASH }}"
+        run: npm version --workspaces --include-workspace-root=false --no-git-tag-version "${{ steps.package-version.outputs.current-version }}-experimental-${{ env.COMMIT_HASH }}"
 
-      - name: Package npm project
-        run: npm pack
+      - name: Package npm workspaces
+        run: npm pack --workspaces
 
       - name: Upload npm package artifact
         uses: actions/upload-artifact@v7
         with:
-          name: npm-package
-          path: "*.tgz"
+          name: npm-packages
+          path: packages/*/*.tgz
 
-      - name: Publish to npm
+      - name: Publish npm packages
         if: github.ref == 'refs/heads/main' && github.event_name == 'push'
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NODE_AUTH_TOKEN }}
-        run: npm publish --access public ./*.tgz --tag experimental
+        run: |
+          for package in packages/*; do
+            if [ -f "$package/package.json" ]; then
+              npm publish --workspace "$package" --access public --tag experimental
+            fi
+          done
 
   deploy-docs:
     needs: build

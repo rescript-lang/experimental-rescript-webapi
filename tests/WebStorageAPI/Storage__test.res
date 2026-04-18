@@ -1,14 +1,11 @@
-open Global
-open WebAPI.Storage
-
-for i in 0 to localStorage.length - 1 {
-  localStorage->key(i)->Null.getOr("nothing")->Console.log
+for i in 0 to WebApiDOM.Global.localStorage.length - 1 {
+  WebApiDOM.Global.localStorage->WebApiWebStorage.Storage.key(i)->Null.getOr("nothing")->Console.log
 }
 
-let item1 = localStorage->getItem("foo")->Null.getOr("nothing")
+let item1 = WebApiDOM.Global.localStorage->WebApiWebStorage.Storage.getItem("foo")->Null.getOr("nothing")
 
-localStorage->setItem(~key="bar", ~value="...")
+WebApiDOM.Global.localStorage->WebApiWebStorage.Storage.setItem(~key="bar", ~value="...")
 
-localStorage->removeItem("bar")
+WebApiDOM.Global.localStorage->WebApiWebStorage.Storage.removeItem("bar")
 
-localStorage->clear
+WebApiDOM.Global.localStorage->WebApiWebStorage.Storage.clear

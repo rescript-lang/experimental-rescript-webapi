@@ -6,3 +6,12 @@ dist/
 tmp/
 docs/public/llm.txt
 *~
+
+**/lib/bs/
+**/lib/ocaml
+
+.DS_Store
+
+rescript.lock
+
+**/*.res.js

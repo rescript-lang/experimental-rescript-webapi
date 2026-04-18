@@ -1,0 +1,19 @@
+{
+  "name": "@rescript/webapi-event",
+  "sources": [
+    {
+      "dir": "src",
+      "subdirs": true
+    }
+  ],
+  "package-specs": {
+    "module": "esmodule",
+    "in-source": true
+  },
+  "suffix": ".js",
+  "dependencies": [
+    "@rescript/webapi-dom",
+    "@rescript/webapi-prelude"
+  ],
+  "namespace": "WebApiEvent"
+}

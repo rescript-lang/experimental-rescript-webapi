@@ -1,9 +1,6 @@
-open WebAPI
-open WebAPI.Global
-
-document
-->Document.querySelector("form")
+WebApiDOM.Global.document
+->WebApiDOM.Document.querySelector("form")
 ->Null.toOption
 ->Option.forEach(form => {
-  form->Element.scrollIntoViewWithOptions({behavior: DOMAPI.Smooth})
+  form->WebApiDOM.Element.scrollIntoViewWithOptions({behavior: WebApiDOM.Types.Smooth})
 })

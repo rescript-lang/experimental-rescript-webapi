@@ -1,14 +1,14 @@
-open WebAPI.ServiceWorkerAPI
+external self: WebApiServiceWorker.Types.serviceWorkerGlobalScope = "self"
 
-external self: serviceWorkerGlobalScope = "self"
-
-self->ServiceWorkerGlobalScope.addEventListener(EventAPI.Push, (event: PushAPI.pushEvent) => {
+self->WebApiServiceWorker.ServiceWorkerGlobalScope.addEventListener(WebApiEvent.Types.Push, (
+  event: WebApiPush.Types.pushEvent,
+) => {
   Console.log("received push event")
 
   // Extract data
   let (title, body) = switch event.data {
   | Some(data) =>
-    switch data->PushMessageData.json {
+    switch data->WebApiPush.PushMessageData.json {
     | JSON.Object(dict{"title": JSON.String(title), "body": JSON.String(body)}) => (title, body)
     | _ => ("???", "???")
     }
@@ -16,11 +16,13 @@ self->ServiceWorkerGlobalScope.addEventListener(EventAPI.Push, (event: PushAPI.p
   }
 
   // Handle some data sync
-  event->PushEvent.waitUntil(self->ServiceWorkerGlobalScope.fetch("https://rescript-lang.org"))
+  event->WebApiPush.PushEvent.waitUntil(
+    self->WebApiServiceWorker.ServiceWorkerGlobalScope.fetch("https://rescript-lang.org"),
+  )
 
   // Show notification
   self.registration
-  ->ServiceWorkerRegistration.showNotification(
+  ->WebApiServiceWorker.ServiceWorkerRegistration.showNotification(
     ~title,
     ~options={
       body,
@@ -34,12 +36,12 @@ self->ServiceWorkerGlobalScope.addEventListener(EventAPI.Push, (event: PushAPI.p
   ->Promise.ignore
 })
 
-self->ServiceWorkerGlobalScope.addEventListener(EventAPI.NotificationClick, (
-  event: NotificationAPI.notificationEvent,
+self->WebApiServiceWorker.ServiceWorkerGlobalScope.addEventListener(WebApiEvent.Types.NotificationClick, (
+  event: WebApiNotification.Types.notificationEvent,
 ) => {
   Console.log(`notification clicked: ${event.action}`)
   // Close the notification
-  event.notification->Notification.close
+  event.notification->WebApiNotification.Notification.close
 
   // Open a new window if that is relevant
   event.notification.data
@@ -51,7 +53,7 @@ self->ServiceWorkerGlobalScope.addEventListener(EventAPI.NotificationClick, (
   })
   ->Option.forEach(id => {
     self.clients
-    ->Clients.openWindow(`https://mywebsite.com/mydata/${id}`)
+    ->WebApiServiceWorker.Clients.openWindow(`https://mywebsite.com/mydata/${id}`)
     ->Promise.ignore
   })
 })
