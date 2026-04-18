@@ -1,5 +1,5 @@
-let observer = MutationObserver.make((mutations, obs) => {
-  let button = Global.document->Document.querySelector("button")
+let observer: MutationObserver.t = MutationObserver.make((mutations, obs) => {
+  let button = Window.current.document->Document.querySelector("button")
   switch button->Null.toOption {
   | Some(button) => {
       Console.log(button)
@@ -11,7 +11,7 @@ let observer = MutationObserver.make((mutations, obs) => {
 })
 
 observer->MutationObserver.observe(
-  ~target=Global.document->Document.asNode,
+  ~target=Window.current.document->Document.asNode,
   ~options={childList: true, subtree: true},
 )
 

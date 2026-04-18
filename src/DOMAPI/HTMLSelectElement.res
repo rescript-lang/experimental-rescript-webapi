@@ -40,7 +40,7 @@ Removes an element from the collection.
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLSelectElement/remove)
 */
 @send
-external removeH2: (htmlSelectElement, int) => unit = "remove"
+external removeByIndex: (htmlSelectElement, int) => unit = "remove"
 
 /**
 Returns whether a form will validate when it is submitted, without having to submit it.

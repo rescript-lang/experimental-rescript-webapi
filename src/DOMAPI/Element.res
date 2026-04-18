@@ -1,6 +1,8 @@
 open DOMTypes
 open Prelude
 
+type t = element = {...element}
+
 module Impl = (
   T: {
     type t
@@ -26,7 +28,7 @@ Throws a "HierarchyRequestError" DOMException if the constraints of the node tre
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/after)
 */
   @send
-  external after2: (T.t, string) => unit = "after"
+  external afterText: (T.t, string) => unit = "after"
 
   /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/animate)
@@ -38,8 +40,11 @@ Throws a "HierarchyRequestError" DOMException if the constraints of the node tre
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/animate)
 */
   @send
-  external animate2: (T.t, ~keyframes: any, ~options: keyframeAnimationOptions=?) => animation =
-    "animate"
+  external animateWithOptions: (
+    T.t,
+    ~keyframes: any,
+    ~options: keyframeAnimationOptions=?,
+  ) => animation = "animate"
 
   /**
 Inserts nodes after the last child of node, while replacing strings in nodes with equivalent Text nodes.
@@ -57,7 +62,7 @@ Throws a "HierarchyRequestError" DOMException if the constraints of the node tre
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/append)
 */
   @send
-  external append2: (T.t, string) => unit = "append"
+  external appendText: (T.t, string) => unit = "append"
 
   /**
 Creates a shadow root for element and returns it.
@@ -82,7 +87,7 @@ Throws a "HierarchyRequestError" DOMException if the constraints of the node tre
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/before)
 */
   @send
-  external before2: (T.t, string) => unit = "before"
+  external beforeText: (T.t, string) => unit = "before"
 
   /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/checkVisibility)
@@ -258,7 +263,7 @@ Throws a "HierarchyRequestError" DOMException if the constraints of the node tre
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Document/prepend)
 */
   @send
-  external prepend2: (T.t, string) => unit = "prepend"
+  external prependText: (T.t, string) => unit = "prepend"
 
   /**
 Returns the first element that is a descendant of node that matches selectors.
@@ -324,7 +329,7 @@ Throws a "HierarchyRequestError" DOMException if the constraints of the node tre
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Document/replaceChildren)
 */
   @send
-  external replaceChildren2: (T.t, string) => unit = "replaceChildren"
+  external replaceChildrenText: (T.t, string) => unit = "replaceChildren"
 
   /**
 Replaces node with nodes, while replacing strings in nodes with equivalent Text nodes.
@@ -342,7 +347,7 @@ Throws a "HierarchyRequestError" DOMException if the constraints of the node tre
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CharacterData/replaceWith)
 */
   @send
-  external replaceWith2: (T.t, string) => unit = "replaceWith"
+  external replaceWithText: (T.t, string) => unit = "replaceWith"
 
   /**
 Displays element fullscreen and resolves promise when done.
@@ -371,7 +376,7 @@ When supplied, options's navigationUI member indicates whether showing navigatio
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/scroll)
 */
   @send
-  external scroll2: (T.t, ~x: float, ~y: float) => unit = "scroll"
+  external scrollXY: (T.t, ~x: float, ~y: float) => unit = "scroll"
 
   /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/scrollBy)
@@ -383,7 +388,7 @@ When supplied, options's navigationUI member indicates whether showing navigatio
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/scrollBy)
 */
   @send
-  external scrollBy2: (T.t, ~x: float, ~y: float) => unit = "scrollBy"
+  external scrollByXY: (T.t, ~x: float, ~y: float) => unit = "scrollBy"
 
   /**
 `scrollIntoView()`
@@ -437,7 +442,7 @@ element->Element.scrollIntoViewWithOptions({ behavior: DOMTypes.Smooth })
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/scrollTo)
 */
   @send
-  external scrollTo2: (T.t, ~x: float, ~y: float) => unit = "scrollTo"
+  external scrollToXY: (T.t, ~x: float, ~y: float) => unit = "scrollTo"
 
   /**
 Sets the value of element's first attribute whose qualified name is qualifiedName to value.

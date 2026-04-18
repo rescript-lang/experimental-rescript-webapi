@@ -12,7 +12,7 @@ external make: (~path: t=?) => t = "Path2D"
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Path2D)
 */
 @new
-external make2: (~path: string=?) => t = "Path2D"
+external fromString: (~path: string=?) => t = "Path2D"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CanvasRenderingContext2D/closePath)
@@ -71,32 +71,6 @@ external rect: (t, ~x: float, ~y: float, ~w: float, ~h: float) => unit = "rect"
 */
 @send
 external roundRect: (
-  t,
-  ~x: float,
-  ~y: float,
-  ~w: float,
-  ~h: float,
-  ~radii_: array<float>=?,
-) => unit = "roundRect"
-
-/**
-[Read more on MDN](https://developer.mozilla.org/docs/Web/API/CanvasRenderingContext2D/roundRect)
-*/
-@send
-external roundRect2: (
-  t,
-  ~x: float,
-  ~y: float,
-  ~w: float,
-  ~h: float,
-  ~radii_: array<float>=?,
-) => unit = "roundRect"
-
-/**
-[Read more on MDN](https://developer.mozilla.org/docs/Web/API/CanvasRenderingContext2D/roundRect)
-*/
-@send
-external roundRect3: (
   t,
   ~x: float,
   ~y: float,

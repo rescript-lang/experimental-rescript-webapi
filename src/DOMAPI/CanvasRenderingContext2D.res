@@ -81,7 +81,7 @@ external setTransform: (
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CanvasRenderingContext2D/setTransform)
 */
 @send
-external setTransform2: (canvasRenderingContext2D, ~transform: domMatrix2DInit=?) => unit =
+external setTransformWithMatrix: (canvasRenderingContext2D, ~transform: domMatrix2DInit=?) => unit =
   "setTransform"
 
 /**
@@ -141,7 +141,7 @@ external createPattern: (
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CanvasRenderingContext2D/createPattern)
 */
 @send
-external createPattern2: (
+external createPatternFromSvg: (
   canvasRenderingContext2D,
   ~image: svgImageElement,
   ~repetition: string,
@@ -151,7 +151,7 @@ external createPattern2: (
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CanvasRenderingContext2D/createPattern)
 */
 @send
-external createPattern3: (
+external createPatternFromVideo: (
   canvasRenderingContext2D,
   ~image: htmlVideoElement,
   ~repetition: string,
@@ -161,7 +161,7 @@ external createPattern3: (
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CanvasRenderingContext2D/createPattern)
 */
 @send
-external createPattern4: (
+external createPatternFromCanvas: (
   canvasRenderingContext2D,
   ~image: htmlCanvasElement,
   ~repetition: string,
@@ -171,7 +171,7 @@ external createPattern4: (
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CanvasRenderingContext2D/createPattern)
 */
 @send
-external createPattern5: (
+external createPatternFromImageBitmap: (
   canvasRenderingContext2D,
   ~image: imageBitmap,
   ~repetition: string,
@@ -181,7 +181,7 @@ external createPattern5: (
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CanvasRenderingContext2D/createPattern)
 */
 @send
-external createPattern6: (
+external createPatternFromOffscreenCanvas: (
   canvasRenderingContext2D,
   ~image: offscreenCanvas,
   ~repetition: string,
@@ -191,7 +191,7 @@ external createPattern6: (
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CanvasRenderingContext2D/createPattern)
 */
 @send
-external createPattern7: (
+external createPatternFromVideoFrame: (
   canvasRenderingContext2D,
   ~image: videoFrame,
   ~repetition: string,
@@ -239,8 +239,11 @@ external fill: (canvasRenderingContext2D, ~fillRule: canvasFillRule=?) => unit =
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CanvasRenderingContext2D/fill)
 */
 @send
-external fill2: (canvasRenderingContext2D, ~path: path2D, ~fillRule: canvasFillRule=?) => unit =
-  "fill"
+external fillWithPath: (
+  canvasRenderingContext2D,
+  ~path: path2D,
+  ~fillRule: canvasFillRule=?,
+) => unit = "fill"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CanvasRenderingContext2D/stroke)
@@ -252,7 +255,7 @@ external stroke: canvasRenderingContext2D => unit = "stroke"
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CanvasRenderingContext2D/stroke)
 */
 @send
-external stroke2: (canvasRenderingContext2D, path2D) => unit = "stroke"
+external strokeWithPath: (canvasRenderingContext2D, path2D) => unit = "stroke"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CanvasRenderingContext2D/clip)
@@ -264,8 +267,11 @@ external clip: (canvasRenderingContext2D, ~fillRule: canvasFillRule=?) => unit =
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CanvasRenderingContext2D/clip)
 */
 @send
-external clip2: (canvasRenderingContext2D, ~path: path2D, ~fillRule: canvasFillRule=?) => unit =
-  "clip"
+external clipWithPath: (
+  canvasRenderingContext2D,
+  ~path: path2D,
+  ~fillRule: canvasFillRule=?,
+) => unit = "clip"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CanvasRenderingContext2D/isPointInPath)
@@ -282,7 +288,7 @@ external isPointInPath: (
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CanvasRenderingContext2D/isPointInPath)
 */
 @send
-external isPointInPath2: (
+external isPointInPathWithPath: (
   canvasRenderingContext2D,
   ~path: path2D,
   ~x: float,
@@ -301,8 +307,12 @@ external isPointInStroke: (canvasRenderingContext2D, ~x: float, ~y: float) => bo
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CanvasRenderingContext2D/isPointInStroke)
 */
 @send
-external isPointInStroke2: (canvasRenderingContext2D, ~path: path2D, ~x: float, ~y: float) => bool =
-  "isPointInStroke"
+external isPointInStrokeWithPath: (
+  canvasRenderingContext2D,
+  ~path: path2D,
+  ~x: float,
+  ~y: float,
+) => bool = "isPointInStroke"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CanvasRenderingContext2D/drawFocusIfNeeded)
@@ -314,8 +324,11 @@ external drawFocusIfNeeded: (canvasRenderingContext2D, element) => unit = "drawF
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CanvasRenderingContext2D/drawFocusIfNeeded)
 */
 @send
-external drawFocusIfNeeded2: (canvasRenderingContext2D, ~path: path2D, ~element: element) => unit =
-  "drawFocusIfNeeded"
+external drawFocusIfNeededWithPath: (
+  canvasRenderingContext2D,
+  ~path: path2D,
+  ~element: element,
+) => unit = "drawFocusIfNeeded"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CanvasRenderingContext2D/fillText)
@@ -649,7 +662,7 @@ external createImageData: (
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CanvasRenderingContext2D/createImageData)
 */
 @send
-external createImageData2: (canvasRenderingContext2D, imageData) => imageData = "createImageData"
+external createImageDataFrom: (canvasRenderingContext2D, imageData) => imageData = "createImageData"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CanvasRenderingContext2D/getImageData)
@@ -679,7 +692,7 @@ external putImageData: (
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CanvasRenderingContext2D/putImageData)
 */
 @send
-external putImageData2: (
+external putImageDataWithDirtyRect: (
   canvasRenderingContext2D,
   ~imagedata: imageData,
   ~dx: int,
@@ -780,33 +793,6 @@ external roundRect: (
 ) => unit = "roundRect"
 
 /**
-[Read more on MDN](https://developer.mozilla.org/docs/Web/API/CanvasRenderingContext2D/roundRect)
-*/
-@send
-external roundRect2: (
-  canvasRenderingContext2D,
-  ~x: float,
-  ~y: float,
-  ~w: float,
-  ~h: float,
-  ~radii_: array<float>=?,
-) => unit = "roundRect"
-
-/**
-[Read more on MDN](https://developer.mozilla.org/docs/Web/API/CanvasRenderingContext2D/roundRect)
-*/
-@send
-external roundRect3: (
-  canvasRenderingContext2D,
-  ~x: float,
-  ~y: float,
-  ~w: float,
-  ~h: float,
-  ~radii_: array<float>=?,
-) => unit = "roundRect"
-
-/**
-[Read more on MDN](https://developer.mozilla.org/docs/Web/API/CanvasRenderingContext2D/arc)
 */
 @send
 external arc: (
