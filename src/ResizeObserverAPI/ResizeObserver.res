@@ -1,5 +1,5 @@
-open DOMAPI
-open ResizeObserverAPI
+open DOMTypes
+open ResizeObserverTypes
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/ResizeObserver)

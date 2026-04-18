@@ -1,4 +1,4 @@
-open WebAPI.WebWorkersAPI
+open WebAPI.WebWorkersTypes
 
 let shared1: sharedWorker = SharedWorker.make("sharedworker.js")
 
@@ -12,7 +12,7 @@ let shared3: sharedWorker = SharedWorker.makeWithOptions(
   },
 )
 
-let port: WebAPI.ChannelMessagingAPI.messagePort = SharedWorker.port(shared1)
+let port: WebAPI.ChannelMessagingTypes.messagePort = SharedWorker.port(shared1)
 
 external getSelf: unit => sharedWorkerGlobalScope = "self"
 

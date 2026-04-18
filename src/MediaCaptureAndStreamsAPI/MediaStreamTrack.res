@@ -1,4 +1,4 @@
-open MediaCaptureAndStreamsAPI
+open MediaCaptureAndStreamsTypes
 
 include EventTarget.Impl({type t = mediaStreamTrack})
 

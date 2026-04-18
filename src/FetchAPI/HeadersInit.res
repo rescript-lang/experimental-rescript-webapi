@@ -1,4 +1,4 @@
-open FetchAPI
+open FetchTypes
 
 /**
  [Read more on MDN](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch#setting_headers)

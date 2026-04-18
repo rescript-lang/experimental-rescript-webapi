@@ -1,4 +1,4 @@
-open FileAPI
+open FileTypes
 
 external asFileSystemHandle: fileSystemFileHandle => fileSystemHandle = "%identity"
 /**

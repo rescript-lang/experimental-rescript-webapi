@@ -1,4 +1,4 @@
-open WebWorkersAPI
+open WebWorkersTypes
 
 module Impl = (
   T: {

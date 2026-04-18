@@ -1,4 +1,4 @@
-open WebVTTAPI
+open WebVTTTypes
 
 include EventTarget.Impl({type t = textTrack})
 

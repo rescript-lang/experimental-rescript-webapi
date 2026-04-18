@@ -1,4 +1,4 @@
-open ServiceWorkerAPI
+open ServiceWorkerTypes
 
 include WorkerGlobalScope.Impl({type t = serviceWorkerGlobalScope})
 

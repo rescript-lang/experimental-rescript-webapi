@@ -1,5 +1,5 @@
-open FetchAPI
-open WebWorkersAPI
+open FetchTypes
+open WebWorkersTypes
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Cache/match)

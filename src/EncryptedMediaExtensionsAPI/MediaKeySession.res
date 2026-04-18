@@ -1,4 +1,4 @@
-open EncryptedMediaExtensionsAPI
+open EncryptedMediaExtensionsTypes
 
 include EventTarget.Impl({type t = mediaKeySession})
 

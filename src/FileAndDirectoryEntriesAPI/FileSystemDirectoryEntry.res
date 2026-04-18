@@ -1,4 +1,4 @@
-open FileAndDirectoryEntriesAPI
+open FileAndDirectoryEntriesTypes
 
 external asFileSystemEntry: fileSystemDirectoryEntry => fileSystemEntry = "%identity"
 /**

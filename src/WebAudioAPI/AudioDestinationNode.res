@@ -1,3 +1,3 @@
-open WebAudioAPI
+open WebAudioTypes
 
 include AudioNode.Impl({type t = audioDestinationNode})

@@ -1,4 +1,4 @@
-open FetchAPI
+open FetchTypes
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Headers)

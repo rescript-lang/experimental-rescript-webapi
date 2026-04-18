@@ -1,4 +1,4 @@
-open PerformanceAPI
+open PerformanceTypes
 
 include EventTarget.Impl({type t = performance})
 

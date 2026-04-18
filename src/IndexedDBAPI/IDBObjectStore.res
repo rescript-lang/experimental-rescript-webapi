@@ -1,4 +1,4 @@
-open IndexedDBAPI
+open IndexedDBTypes
 open Prelude
 
 /**

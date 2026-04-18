@@ -1,5 +1,5 @@
-open DOMAPI
-open WebVTTAPI
+open DOMTypes
+open WebVTTTypes
 
 include EventTarget.Impl({type t = textTrackList})
 

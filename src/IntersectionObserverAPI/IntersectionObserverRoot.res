@@ -1,5 +1,5 @@
-open DOMAPI
-open IntersectionObserverAPI
+open DOMTypes
+open IntersectionObserverTypes
 
 external fromDocument: document => root = "%identity"
 external fromElement: element => root = "%identity"

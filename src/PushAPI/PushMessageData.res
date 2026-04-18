@@ -1,4 +1,4 @@
-open PushAPI
+open PushTypes
 
 /**
 The json() method of the PushMessageData interface extracts push message data by parsing it as a JSON string and returning the result.

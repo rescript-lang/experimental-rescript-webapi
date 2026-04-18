@@ -1,6 +1,6 @@
-open DOMAPI
-open EventAPI
-open ViewTransitionsAPI
+open DOMTypes
+open EventTypes
+open ViewTransitionsTypes
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Document)

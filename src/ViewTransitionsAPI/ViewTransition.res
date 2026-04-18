@@ -1,4 +1,4 @@
-open ViewTransitionsAPI
+open ViewTransitionsTypes
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/ViewTransition/skipTransition)

@@ -1,5 +1,5 @@
-open CanvasAPI
-open DOMAPI
+open CanvasTypes
+open DOMTypes
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Path2D)

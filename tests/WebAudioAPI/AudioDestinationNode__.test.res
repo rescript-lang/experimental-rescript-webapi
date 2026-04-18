@@ -1,4 +1,4 @@
-open WebAudioAPI
+open WebAudioTypes
 
 let ctx = AudioContext.make()
 

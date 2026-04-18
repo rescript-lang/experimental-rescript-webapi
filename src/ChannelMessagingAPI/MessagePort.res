@@ -1,4 +1,4 @@
-open ChannelMessagingAPI
+open ChannelMessagingTypes
 
 include EventTarget.Impl({type t = messagePort})
 

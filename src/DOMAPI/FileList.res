@@ -1,5 +1,5 @@
-open FileAPI
-open DOMAPI
+open FileTypes
+open DOMTypes
 
 /**
 Returns the `File` at the specified index.

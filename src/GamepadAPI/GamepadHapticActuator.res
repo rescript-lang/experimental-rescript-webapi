@@ -1,4 +1,4 @@
-open GamepadAPI
+open GamepadTypes
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/GamepadHapticActuator/playEffect)

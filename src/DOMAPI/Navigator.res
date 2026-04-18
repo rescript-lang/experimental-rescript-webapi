@@ -1,10 +1,14 @@
-open DOMAPI
-open FileAPI
-open FetchAPI
-open URLAPI
-open EncryptedMediaExtensionsAPI
-open GamepadAPI
-open WebMIDIAPI
+open DOMTypes
+open FileTypes
+open FetchTypes
+open URLTypes
+open EncryptedMediaExtensionsTypes
+open GamepadTypes
+open WebMIDITypes
+
+type t = DOMTypes.navigator = {...DOMTypes.navigator}
+
+external current: t = "navigator"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Navigator/setAppBadge)

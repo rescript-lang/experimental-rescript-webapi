@@ -1,4 +1,4 @@
-open ScreenWakeLockAPI
+open ScreenWakeLockTypes
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/WakeLock/request)

@@ -1,8 +1,12 @@
-open DOMAPI
-open CanvasAPI
-open FileAPI
-open ChannelMessagingAPI
-open FetchAPI
+open DOMTypes
+open CanvasTypes
+open FileTypes
+open ChannelMessagingTypes
+open FetchTypes
+
+type t = DOMTypes.window = {...DOMTypes.window}
+
+external current: t = "window"
 
 include EventTarget.Impl({type t = window})
 

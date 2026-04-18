@@ -1,6 +1,6 @@
-open WebAudioAPI
-open DOMAPI
-open MediaCaptureAndStreamsAPI
+open WebAudioTypes
+open DOMTypes
+open MediaCaptureAndStreamsTypes
 
 include BaseAudioContext.Impl({type t = audioContext})
 

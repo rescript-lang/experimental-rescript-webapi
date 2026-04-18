@@ -1,4 +1,4 @@
-open ServiceWorkerAPI
+open ServiceWorkerTypes
 
 include EventTarget.Impl({type t = serviceWorkerContainer})
 

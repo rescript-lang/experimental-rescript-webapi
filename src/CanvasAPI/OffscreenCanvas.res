@@ -1,5 +1,5 @@
-open CanvasAPI
-open FileAPI
+open CanvasTypes
+open FileTypes
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/OffscreenCanvas)

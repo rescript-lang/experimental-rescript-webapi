@@ -1,4 +1,4 @@
-open DOMAPI
+open DOMTypes
 open Prelude
 
 /**

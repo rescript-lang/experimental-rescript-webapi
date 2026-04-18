@@ -1,6 +1,6 @@
-open UIEventsAPI
-open FileAPI
-open FileAndDirectoryEntriesAPI
+open UIEventsTypes
+open FileTypes
+open FileAndDirectoryEntriesTypes
 
 /**
 Invokes the callback with the string data as the argument, if the drag data item kind is text.

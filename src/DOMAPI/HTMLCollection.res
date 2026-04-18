@@ -1,4 +1,4 @@
-open DOMAPI
+open DOMTypes
 
 /**
 Retrieves an object from various collections.

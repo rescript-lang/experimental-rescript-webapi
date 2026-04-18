@@ -1,4 +1,4 @@
-open DOMAPI
+open DOMTypes
 
 include Element.Impl({type t = svgGraphicsElement})
 

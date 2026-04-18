@@ -1,5 +1,5 @@
-open ChannelMessagingAPI
-open WebWorkersAPI
+open ChannelMessagingTypes
+open WebWorkersTypes
 
 include EventTarget.Impl({type t = sharedWorker})
 
@@ -58,7 +58,7 @@ The port property of the SharedWorker interface returns a MessagePort object
 used to communicate and control the shared worker.
 
 ```res
-let port: WebAPI.ChannelMessagingAPI.messagePort = SharedWorker.port(myWorker)
+let port: WebAPI.ChannelMessagingTypes.messagePort = SharedWorker.port(myWorker)
 ```
 
 [Read more on MDN](https://developer.mozilla.org/en-US/docs/Web/API/SharedWorker/port)

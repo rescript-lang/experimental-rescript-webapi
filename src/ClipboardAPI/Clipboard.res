@@ -1,4 +1,4 @@
-open ClipboardAPI
+open ClipboardTypes
 
 include EventTarget.Impl({type t = clipboard})
 

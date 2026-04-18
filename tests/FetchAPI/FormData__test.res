@@ -1,11 +1,11 @@
 /* This works when your form has an id of "myForm" */
 @scope(("document", "forms"))
-external myForm: DOMAPI.htmlFormElement = "myForm"
+external myForm: DOMTypes.htmlFormElement = "myForm"
 
 let formData = FormData.make(~form=myForm)
 
 // Get a form field - returns formDataEntryValue which could be string or File
-let phoneEntry: null<FetchAPI.formDataEntryValue> = formData->FormData.get("phone")
+let phoneEntry: null<FetchTypes.formDataEntryValue> = formData->FormData.get("phone")
 
 // Decode the entry to handle both string and File cases
 let _ = switch phoneEntry->Null.toOption {
@@ -18,7 +18,7 @@ let _ = switch phoneEntry->Null.toOption {
 }
 
 // Get all values for a field (useful for multi-select or multiple file inputs)
-let allImages: array<FetchAPI.formDataEntryValue> = formData->FormData.getAll("images")
+let allImages: array<FetchTypes.formDataEntryValue> = formData->FormData.getAll("images")
 
 // Process all entries
 let _ = allImages->Array.forEach(entry => {
@@ -33,7 +33,7 @@ let stringEntry = FormDataEntryValue.fromString("test value")
 let fileEntry = FormDataEntryValue.fromFile(File.make(~fileBits=[], ~fileName="test.txt"))
 
 // Iterate over all entries in the FormData
-let entries: Iterator.t<(string, FetchAPI.formDataEntryValue)> = formData->FormData.entries
+let entries: Iterator.t<(string, FetchTypes.formDataEntryValue)> = formData->FormData.entries
 let _ = entries->Iterator.forEach(((key, value)) => {
   switch value->FormDataEntryValue.decode {
   | FormDataEntryValue.String(s) => Console.log(`${key}: ${s}`)

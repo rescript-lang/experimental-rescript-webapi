@@ -1,4 +1,4 @@
-open GeolocationAPI
+open GeolocationTypes
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/GeolocationPosition/toJSON)

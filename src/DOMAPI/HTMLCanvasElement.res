@@ -1,6 +1,6 @@
-open DOMAPI
-open CanvasAPI
-open MediaCaptureAndStreamsAPI
+open DOMTypes
+open CanvasTypes
+open MediaCaptureAndStreamsTypes
 
 include HTMLElement.Impl({type t = htmlCanvasElement})
 

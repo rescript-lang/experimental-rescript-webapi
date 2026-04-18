@@ -1,5 +1,5 @@
-open ServiceWorkerAPI
-open ChannelMessagingAPI
+open ServiceWorkerTypes
+open ChannelMessagingTypes
 
 include EventTarget.Impl({type t = serviceWorker})
 
