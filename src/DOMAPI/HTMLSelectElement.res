@@ -1,4 +1,4 @@
-open DOMAPI
+open DOMTypes
 
 /**
 Retrieves a select object or an object from an options collection.

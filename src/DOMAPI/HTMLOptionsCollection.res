@@ -1,4 +1,4 @@
-open DOMAPI
+open DOMTypes
 
 /**
 Inserts element before the node given by before.

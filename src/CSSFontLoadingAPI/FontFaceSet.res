@@ -1,4 +1,4 @@
-open CSSFontLoadingAPI
+open CSSFontLoadingTypes
 
 include EventTarget.Impl({type t = fontFaceSet})
 

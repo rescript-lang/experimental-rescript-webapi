@@ -1,6 +1,6 @@
 open Prelude
-open FetchAPI
-open FileAPI
+open FetchTypes
+open FileTypes
 
 external fromString: string => formDataEntryValue = "%identity"
 external fromFile: file => formDataEntryValue = "%identity"

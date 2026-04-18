@@ -1,4 +1,4 @@
-open WebCryptoAPI
+open WebCryptoTypes
 open Prelude
 
 /**

@@ -1,4 +1,4 @@
-open DOMAPI
+open DOMTypes
 open Prelude
 
 module Impl = (
@@ -419,7 +419,7 @@ element->Element.scrollIntoView_alignToTop()
 Scrolls the element's ancestor containers such that the element on which scrollIntoView() is called is visible to the user.
 
 ```res
-element->Element.scrollIntoViewWithOptions({ behavior: DOMAPI.Smooth })
+element->Element.scrollIntoViewWithOptions({ behavior: DOMTypes.Smooth })
 ```
 
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/scrollIntoView)

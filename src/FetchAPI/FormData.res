@@ -1,6 +1,6 @@
-open FetchAPI
-open FileAPI
-open DOMAPI
+open FetchTypes
+open FileTypes
+open DOMTypes
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/FormData)

@@ -1,4 +1,4 @@
-open CanvasAPI
+open CanvasTypes
 
 /**
 Releases imageBitmap's underlying bitmap data.

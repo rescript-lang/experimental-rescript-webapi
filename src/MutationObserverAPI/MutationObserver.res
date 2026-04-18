@@ -1,5 +1,5 @@
-open DOMAPI
-open MutationObserverAPI
+open DOMTypes
+open MutationObserverTypes
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/MutationObserver)

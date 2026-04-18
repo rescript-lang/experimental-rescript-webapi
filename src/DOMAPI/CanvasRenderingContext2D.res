@@ -1,5 +1,5 @@
-open DOMAPI
-open CanvasAPI
+open DOMTypes
+open CanvasTypes
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CanvasRenderingContext2D/save)

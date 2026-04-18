@@ -1,4 +1,4 @@
-open FileAPI
+open FileTypes
 
 include Blob.Impl({type t = file})
 

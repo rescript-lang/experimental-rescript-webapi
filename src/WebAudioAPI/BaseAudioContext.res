@@ -1,4 +1,4 @@
-open WebAudioAPI
+open WebAudioTypes
 
 module Impl = (
   T: {

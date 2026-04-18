@@ -1,5 +1,5 @@
 open Prelude
-open CanvasAPI
+open CanvasTypes
 
 external fromString: string => fillStyle = "%identity"
 external fromCanvasGradient: canvasGradient => fillStyle = "%identity"

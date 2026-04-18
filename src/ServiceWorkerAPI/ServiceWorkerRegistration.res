@@ -1,5 +1,5 @@
-open ServiceWorkerAPI
-open NotificationAPI
+open ServiceWorkerTypes
+open NotificationTypes
 
 include EventTarget.Impl({type t = serviceWorkerRegistration})
 

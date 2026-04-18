@@ -1,4 +1,4 @@
-open WebAudioAPI
+open WebAudioTypes
 
 include BaseAudioContext.Impl({type t = offlineAudioContext})
 

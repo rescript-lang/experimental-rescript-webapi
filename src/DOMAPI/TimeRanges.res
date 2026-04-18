@@ -1,4 +1,4 @@
-open DOMAPI
+open DOMTypes
 
 /**
 Returns the time for the start of the range with the given index.

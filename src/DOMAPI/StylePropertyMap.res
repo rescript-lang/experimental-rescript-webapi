@@ -1,4 +1,4 @@
-open DOMAPI
+open DOMTypes
 
 external asStylePropertyMapReadOnly: stylePropertyMap => stylePropertyMapReadOnly = "%identity"
 /**

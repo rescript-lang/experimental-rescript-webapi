@@ -1,4 +1,4 @@
-open WebAPI.NotificationAPI
+open WebAPI.NotificationTypes
 
 let current = Notification.permission
 

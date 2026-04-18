@@ -1,4 +1,4 @@
-open DOMAPI
+open DOMTypes
 
 include DocumentFragment.Impl({type t = shadowRoot})
 

@@ -1,4 +1,4 @@
-open EventAPI
+open EventTypes
 
 include EventTarget.Impl({type t = abortSignal})
 

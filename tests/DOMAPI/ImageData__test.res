@@ -1,4 +1,4 @@
-open DOMAPI
+open DOMTypes
 
 let imageData = ImageData.makeWithData(~data=Uint8ClampedArray.fromArray([]), ~sw=100, ~sh=100)
 

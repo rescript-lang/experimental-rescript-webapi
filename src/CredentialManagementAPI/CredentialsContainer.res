@@ -1,4 +1,4 @@
-open CredentialManagementAPI
+open CredentialManagementTypes
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CredentialsContainer/get)

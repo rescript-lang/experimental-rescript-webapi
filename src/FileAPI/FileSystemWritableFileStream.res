@@ -1,4 +1,4 @@
-open FileAPI
+open FileTypes
 
 external asWritableStream: fileSystemWritableFileStream => writableStream<'w> = "%identity"
 /**

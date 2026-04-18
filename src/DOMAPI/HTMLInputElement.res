@@ -1,4 +1,4 @@
-open DOMAPI
+open DOMTypes
 
 include HTMLElement.Impl({type t = htmlInputElement})
 

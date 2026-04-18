@@ -1,4 +1,4 @@
-open PushAPI
+open PushTypes
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/PushManager/subscribe)

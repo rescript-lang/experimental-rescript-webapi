@@ -1,4 +1,4 @@
-open IndexedDBAPI
+open IndexedDBTypes
 
 include EventTarget.Impl({type t = idbTransaction})
 

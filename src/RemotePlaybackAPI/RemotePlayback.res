@@ -1,4 +1,4 @@
-open RemotePlaybackAPI
+open RemotePlaybackTypes
 
 include EventTarget.Impl({type t = remotePlayback})
 

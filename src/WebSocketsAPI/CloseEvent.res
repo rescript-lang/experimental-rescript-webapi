@@ -1,4 +1,4 @@
-open WebSocketsAPI
+open WebSocketsTypes
 
 include Event.Impl({type t = closeEvent})
 

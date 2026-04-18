@@ -1,5 +1,5 @@
-open FileAPI
-open ClipboardAPI
+open FileTypes
+open ClipboardTypes
 open Prelude
 
 /**

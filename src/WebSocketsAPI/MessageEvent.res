@@ -1,5 +1,5 @@
-open EventAPI
-open WebSocketsAPI
+open EventTypes
+open WebSocketsTypes
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/MessageEvent)

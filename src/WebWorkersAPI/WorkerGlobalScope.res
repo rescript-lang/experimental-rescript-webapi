@@ -1,5 +1,5 @@
-open WebWorkersAPI
-open FetchAPI
+open WebWorkersTypes
+open FetchTypes
 
 module Impl = (
   T: {

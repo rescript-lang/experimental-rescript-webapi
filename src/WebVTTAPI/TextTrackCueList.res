@@ -1,4 +1,4 @@
-open WebVTTAPI
+open WebVTTTypes
 
 /**
 Returns the first text track cue (in text track cue order) with text track cue identifier id.

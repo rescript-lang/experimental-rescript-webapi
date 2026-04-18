@@ -1,6 +1,6 @@
-open DOMAPI
-open WebVTTAPI
-open EncryptedMediaExtensionsAPI
+open DOMTypes
+open WebVTTTypes
+open EncryptedMediaExtensionsTypes
 
 module Impl = (
   T: {

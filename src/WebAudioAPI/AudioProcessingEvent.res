@@ -1,4 +1,4 @@
-open WebAudioAPI
+open WebAudioTypes
 
 include Event.Impl({type t = audioProcessingEvent})
 

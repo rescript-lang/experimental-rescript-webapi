@@ -1,4 +1,4 @@
-open WebStorageAPI
+open WebStorageTypes
 
 /**
 Returns the name of the nth key, or null if n is greater than or equal to the number of key/value pairs.

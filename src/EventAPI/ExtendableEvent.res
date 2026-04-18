@@ -1,4 +1,4 @@
-open EventAPI
+open EventTypes
 
 module Impl = (
   T: {

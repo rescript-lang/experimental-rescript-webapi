@@ -1,5 +1,5 @@
-open DOMAPI
-open CanvasAPI
+open DOMTypes
+open CanvasTypes
 
 /**
 Sets the transformation matrix that will be used when rendering the pattern during a fill or stroke painting operation.

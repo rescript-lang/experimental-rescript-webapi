@@ -1,6 +1,6 @@
-open DOMAPI
+open DOMTypes
 open Prelude
-open CanvasAPI
+open CanvasTypes
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/VideoFrame)
