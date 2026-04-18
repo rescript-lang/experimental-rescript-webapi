@@ -1,6 +1,6 @@
 /* This works when your form has an id of "myForm" */
 @scope(("document", "forms"))
-external myForm: DOMTypes.htmlFormElement = "myForm"
+external myForm: HTMLFormElement.t = "myForm"
 
 let formData = FormData.make(~form=myForm)
 
