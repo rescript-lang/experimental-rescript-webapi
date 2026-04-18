@@ -32,5 +32,4 @@ external pushState: (t, ~data: JSON.t, ~unused: string, ~url: string=?) => unit 
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/History/replaceState)
 */
 @send
-external replaceState: (t, ~data: JSON.t, ~unused: string, ~url: string=?) => unit =
-  "replaceState"
+external replaceState: (t, ~data: JSON.t, ~unused: string, ~url: string=?) => unit = "replaceState"

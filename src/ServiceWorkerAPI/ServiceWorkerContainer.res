@@ -20,17 +20,14 @@ external register: (
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/ServiceWorkerContainer/getRegistration)
 */
 @send
-external getRegistration: (
-  t,
-  ~clientURL: string=?,
-) => Nullable.t<serviceWorkerRegistration> = "getRegistration"
+external getRegistration: (t, ~clientURL: string=?) => Nullable.t<serviceWorkerRegistration> =
+  "getRegistration"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/ServiceWorkerContainer/getRegistrations)
 */
 @send
-external getRegistrations: t => promise<array<serviceWorkerRegistration>> =
-  "getRegistrations"
+external getRegistrations: t => promise<array<serviceWorkerRegistration>> = "getRegistrations"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/ServiceWorkerContainer/startMessages)

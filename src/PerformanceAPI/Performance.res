@@ -53,11 +53,8 @@ external setResourceTimingBufferSize: (t, int) => unit = "setResourceTimingBuffe
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Performance/mark)
 */
 @send
-external mark: (
-  t,
-  ~markName: string,
-  ~markOptions: performanceMarkOptions=?,
-) => performanceMark = "mark"
+external mark: (t, ~markName: string, ~markOptions: performanceMarkOptions=?) => performanceMark =
+  "mark"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Performance/clearMarks)

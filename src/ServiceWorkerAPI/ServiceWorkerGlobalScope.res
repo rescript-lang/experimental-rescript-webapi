@@ -1,6 +1,8 @@
 open ServiceWorkerTypes
 
-type t = ServiceWorkerTypes.serviceWorkerGlobalScope = {...ServiceWorkerTypes.serviceWorkerGlobalScope}
+type t = ServiceWorkerTypes.serviceWorkerGlobalScope = {
+  ...ServiceWorkerTypes.serviceWorkerGlobalScope,
+}
 
 include WorkerGlobalScope.Impl({type t = t})
 

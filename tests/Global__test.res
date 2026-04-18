@@ -41,7 +41,9 @@ let _wakeLock = WakeLock.current
 let _locks = LockManager.current
 let _storageManager = StorageManager.current
 
-let registrationResult = await ServiceWorkerContainer.current->ServiceWorkerContainer.register("/sw.js")
+let registrationResult = await ServiceWorkerContainer.current->ServiceWorkerContainer.register(
+  "/sw.js",
+)
 let subscription = await registrationResult.pushManager->PushManager.subscribe(
   ~options={
     userVisibleOnly: true,
