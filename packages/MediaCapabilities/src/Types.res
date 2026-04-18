@@ -24,9 +24,9 @@ type mediaEncodingType =
   | @as("webrtc") Webrtc
 
 /**
-[See MediaCapabilities on MDN](https://developer.mozilla.org/docs/Web/API/MediaCapabilities)
+[See WebApiMediaCapabilities on MDN](https://developer.mozilla.org/docs/Web/API/WebApiMediaCapabilities)
 */
-@editor.completeFrom(MediaCapabilities)
+@editor.completeFrom(WebApiMediaCapabilities)
 type mediaCapabilities = {}
 
 type audioConfiguration = {

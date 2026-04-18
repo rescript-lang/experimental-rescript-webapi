@@ -1,5 +1,5 @@
 {
-  "name": "@rescript-webapi/gamepad",
+  "name": "@rescript/webapi-gamepad",
   "sources": [
     {
       "dir": "src",
@@ -12,7 +12,7 @@
   },
   "suffix": ".js",
   "dependencies": [
-    "@rescript-webapi/prelude"
+    "@rescript/webapi-prelude"
   ],
-  "namespace": "Gamepad"
+  "namespace": "WebApiGamepad"
 }

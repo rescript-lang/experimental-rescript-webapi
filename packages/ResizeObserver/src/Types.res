@@ -26,11 +26,11 @@ type resizeObserverEntry = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/ResizeObserverEntry/target)
     */
-  target: DOM.Types.element,
+  target: WebApiDOM.Types.element,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/ResizeObserverEntry/contentRect)
     */
-  contentRect: DOM.Types.domRectReadOnly,
+  contentRect: WebApiDOM.Types.domRectReadOnly,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/ResizeObserverEntry/borderBoxSize)
     */
@@ -46,9 +46,9 @@ type resizeObserverEntry = {
 }
 
 /**
-[See ResizeObserver on MDN](https://developer.mozilla.org/docs/Web/API/ResizeObserver)
+[See WebApiResizeObserver on MDN](https://developer.mozilla.org/docs/Web/API/WebApiResizeObserver)
 */
-@editor.completeFrom(ResizeObserver)
+@editor.completeFrom(WebApiResizeObserver)
 type resizeObserver = {}
 
 type resizeObserverOptions = {mutable box?: resizeObserverBoxOptions}

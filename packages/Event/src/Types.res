@@ -112,73 +112,73 @@ type eventType =
 type eventListener<'event> = 'event => unit
 
 /**
-EventTarget is a DOM interface implemented by objects that can receive events and may have listeners for them.
+EventTarget is a WebApiDOM interface implemented by objects that can receive events and may have listeners for them.
 [See EventTarget on MDN](https://developer.mozilla.org/docs/Web/API/EventTarget)
 */
 @editor.completeFrom(EventTarget)
-type eventTarget = Prelude.Types.eventTarget = {...Prelude.Types.eventTarget}
+type eventTarget = WebApiPrelude.Types.eventTarget = {...WebApiPrelude.Types.eventTarget}
 
 /**
-An event which takes place in the DOM.
-[See Event on MDN](https://developer.mozilla.org/docs/Web/API/Event)
+An event which takes place in the WebApiDOM.
+[See WebApiEvent on MDN](https://developer.mozilla.org/docs/Web/API/WebApiEvent)
 */
-@editor.completeFrom(Event)
+@editor.completeFrom(WebApiEvent)
 type event = {
   /**
     Returns the type of event, e.g. "click", "hashchange", or "submit".
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Event/type)
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/WebApiEvent/type)
     */
   @as("type")
   type_: eventType,
   /**
     Returns the object to which event is dispatched (its target).
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Event/target)
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/WebApiEvent/target)
     */
   target: Null.t<eventTarget>,
   /**
     Returns the object whose event listener's callback is currently being invoked.
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Event/currentTarget)
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/WebApiEvent/currentTarget)
     */
   currentTarget: Null.t<eventTarget>,
   /**
     Returns the event's phase, which is one of NONE, CAPTURING_PHASE, AT_TARGET, and BUBBLING_PHASE.
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Event/eventPhase)
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/WebApiEvent/eventPhase)
     */
   eventPhase: int,
   /**
     Returns true or false depending on how event was initialized. True if event goes through its target's ancestors in reverse tree order, and false otherwise.
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Event/bubbles)
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/WebApiEvent/bubbles)
     */
   bubbles: bool,
   /**
     Returns true or false depending on how event was initialized. Its return value does not always carry meaning, but true can indicate that part of the operation during which event was dispatched, can be canceled by invoking the preventDefault() method.
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Event/cancelable)
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/WebApiEvent/cancelable)
     */
   cancelable: bool,
   /**
     Returns true if preventDefault() was invoked successfully to indicate cancelation, and false otherwise.
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Event/defaultPrevented)
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/WebApiEvent/defaultPrevented)
     */
   defaultPrevented: bool,
   /**
     Returns true or false depending on how event was initialized. True if event invokes listeners past a ShadowRoot node that is the root of its target, and false otherwise.
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Event/composed)
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/WebApiEvent/composed)
     */
   composed: bool,
   /**
     Returns true if event was dispatched by the user agent, and false otherwise.
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Event/isTrusted)
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/WebApiEvent/isTrusted)
     */
   isTrusted: bool,
   /**
     Returns the event's timestamp as the number of milliseconds measured relative to the time origin.
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Event/timeStamp)
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/WebApiEvent/timeStamp)
     */
   timeStamp: float,
 }
 
 /**
-A controller object that allows you to abort one or more DOM requests as and when desired.
+A controller object that allows you to abort one or more WebApiDOM requests as and when desired.
 [See AbortController on MDN](https://developer.mozilla.org/docs/Web/API/AbortController)
 */
 @editor.completeFrom(AbortController)
@@ -191,7 +191,7 @@ type rec abortController = {
 }
 
 /**
-A signal object that allows you to communicate with a DOM request (such as a Fetch) and abort it if required via an AbortController object.
+A signal object that allows you to communicate with a WebApiDOM request (such as a WebApiFetch) and abort it if required via an AbortController object.
 [See AbortSignal on MDN](https://developer.mozilla.org/docs/Web/API/AbortSignal)
 */
 @editor.completeFrom(AbortSignal) and abortSignal = {

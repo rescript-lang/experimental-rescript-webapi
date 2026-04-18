@@ -1,5 +1,5 @@
 {
-  "name": "@rescript-webapi/mutation-observer",
+  "name": "@rescript/webapi-mutation-observer",
   "sources": [
     {
       "dir": "src",
@@ -12,8 +12,8 @@
   },
   "suffix": ".js",
   "dependencies": [
-    "@rescript-webapi/dom",
-    "@rescript-webapi/prelude"
+    "@rescript/webapi-dom",
+    "@rescript/webapi-prelude"
   ],
-  "namespace": "MutationObserver"
+  "namespace": "WebApiMutationObserver"
 }

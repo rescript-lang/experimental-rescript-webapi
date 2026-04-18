@@ -69,14 +69,14 @@ type requestPriority =
   | @as("low") Low
 
 /**
-@editor.completeFrom(Response) This Fetch API interface allows you to perform various actions on HTTP request and response headers. These actions include retrieving, setting, adding to, and removing. A Headers object has an associated header list, which is initially empty and consists of zero or more name and value pairs.  You can add to this using methods like append() (see Examples.) In all methods of this interface, header names are matched by case-insensitive byte sequence.
+@editor.completeFrom(Response) This WebApiFetch API interface allows you to perform various actions on HTTP request and response headers. These actions include retrieving, setting, adding to, and removing. A Headers object has an associated header list, which is initially empty and consists of zero or more name and value pairs.  You can add to this using methods like append() (see Examples.) In all methods of this interface, header names are matched by case-insensitive byte sequence.
 [See Headers on MDN](https://developer.mozilla.org/docs/Web/API/Headers)
 */
 @editor.completeFrom(Headers)
 type headers = {}
 
 /**
-This Fetch API interface represents a resource request.
+This WebApiFetch API interface represents a resource request.
 [See Request on MDN](https://developer.mozilla.org/docs/Web/API/Request)
 */
 @editor.completeFrom(Request)
@@ -87,7 +87,7 @@ type request = {
     */
   method: string,
   /**
-    Returns the URL of request as a string.
+    Returns the WebApiURL of request as a string.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Request/url)
     */
   url: string,
@@ -102,7 +102,7 @@ type request = {
     */
   destination: requestDestination,
   /**
-    Returns the referrer of request. Its value can be a same-origin URL if explicitly set in init, the empty string to indicate no referrer, and "about:client" when defaulting to the global's default. This is used during fetching to determine the value of the `Referer` header of the request being made.
+    Returns the referrer of request. Its value can be a same-origin WebApiURL if explicitly set in init, the empty string to indicate no referrer, and "about:client" when defaulting to the global's default. This is used during fetching to determine the value of the `Referer` header of the request being made.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Request/referrer)
     */
   referrer: string,
@@ -117,7 +117,7 @@ type request = {
     */
   mode: requestMode,
   /**
-    Returns the credentials mode associated with request, which is a string indicating whether credentials will be sent with the request always, never, or only when sent to a same-origin URL.
+    Returns the credentials mode associated with request, which is a string indicating whether credentials will be sent with the request always, never, or only when sent to a same-origin WebApiURL.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Request/credentials)
     */
   credentials: requestCredentials,
@@ -145,11 +145,11 @@ type request = {
     Returns the signal associated with request, which is an AbortSignal object indicating whether or not request has been aborted, and its abort event handler.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Request/signal)
     */
-  signal: Event.Types.abortSignal,
+  signal: WebApiEvent.Types.abortSignal,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Request/body)
     */
-  body: Null.t<File.Types.readableStream<array<int>>>,
+  body: Null.t<WebApiFile.Types.readableStream<array<int>>>,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Request/bodyUsed)
     */
@@ -157,7 +157,7 @@ type request = {
 }
 
 /**
-This Fetch API interface represents the response to a request.
+This WebApiFetch API interface represents the response to a request.
 [See Response on MDN](https://developer.mozilla.org/docs/Web/API/Response)
 */
 @editor.completeFrom(Response)
@@ -194,7 +194,7 @@ type response = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Request/body)
     */
-  body: Null.t<File.Types.readableStream<array<int>>>,
+  body: Null.t<WebApiFile.Types.readableStream<array<int>>>,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Request/bodyUsed)
     */
@@ -217,7 +217,7 @@ type requestInfo = unknown
 @editor.completeFrom(FormDataEntryValue) @unboxed
 type formDataEntryValue =
   | String(string)
-  | File(File.Types.file)
+  | File(WebApiFile.Types.file)
 
 type requestInit = {
   /**
@@ -233,7 +233,7 @@ type requestInit = {
     */
   mutable body?: bodyInit,
   /**
-    A string whose value is a same-origin URL, "about:client", or the empty string, to set request's referrer.
+    A string whose value is a same-origin WebApiURL, "about:client", or the empty string, to set request's referrer.
     */
   mutable referrer?: string,
   /**
@@ -245,7 +245,7 @@ type requestInit = {
     */
   mutable mode?: requestMode,
   /**
-    A string indicating whether credentials will be sent with the request always, never, or only when sent to a same-origin URL. Sets request's credentials.
+    A string indicating whether credentials will be sent with the request always, never, or only when sent to a same-origin WebApiURL. Sets request's credentials.
     */
   mutable credentials?: requestCredentials,
   /**
@@ -267,7 +267,7 @@ type requestInit = {
   /**
     An AbortSignal to set request's signal.
     */
-  mutable signal?: Null.t<Event.Types.abortSignal>,
+  mutable signal?: Null.t<WebApiEvent.Types.abortSignal>,
   mutable priority?: requestPriority,
   /**
     Can only be null. Used to disassociate request from any Window.

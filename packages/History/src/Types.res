@@ -6,20 +6,20 @@ type scrollRestoration =
 
 /**
 Allows manipulation of the browser session history, that is the pages visited in the tab or frame that the current page is loaded in.
-[See History on MDN](https://developer.mozilla.org/docs/Web/API/History)
+[See WebApiHistory on MDN](https://developer.mozilla.org/docs/Web/API/WebApiHistory)
 */
-@editor.completeFrom(History)
+@editor.completeFrom(WebApiHistory)
 type history = {
   /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/History/length)
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/WebApiHistory/length)
     */
   length: int,
   /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/History/scrollRestoration)
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/WebApiHistory/scrollRestoration)
     */
   mutable scrollRestoration: scrollRestoration,
   /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/History/state)
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/WebApiHistory/state)
     */
   state: JSON.t,
 }

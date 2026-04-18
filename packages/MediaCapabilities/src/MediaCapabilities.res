@@ -1,5 +1,5 @@
 /**
-[Read more on MDN](https://developer.mozilla.org/docs/Web/API/MediaCapabilities/decodingInfo)
+[Read more on MDN](https://developer.mozilla.org/docs/Web/API/WebApiMediaCapabilities/decodingInfo)
 */
 @send
 external decodingInfo: (
@@ -8,7 +8,7 @@ external decodingInfo: (
 ) => promise<Types.mediaCapabilitiesDecodingInfo> = "decodingInfo"
 
 /**
-[Read more on MDN](https://developer.mozilla.org/docs/Web/API/MediaCapabilities/encodingInfo)
+[Read more on MDN](https://developer.mozilla.org/docs/Web/API/WebApiMediaCapabilities/encodingInfo)
 */
 @send
 external encodingInfo: (

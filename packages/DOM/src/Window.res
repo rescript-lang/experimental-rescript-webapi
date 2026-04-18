@@ -1,4 +1,4 @@
-include Event.EventTarget.Impl({type t = Types.window})
+include WebApiEvent.EventTarget.Impl({type t = Types.window})
 
 /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/window)
@@ -34,7 +34,7 @@ external location: Types.window => Types.location = "location"
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/history)
     */
 @get
-external history: Types.window => History.Types.history = "history"
+external history: Types.window => WebApiHistory.Types.history = "history"
 
 /**
     Defines a new custom element, mapping the given name to the given constructor as an autonomous custom element.
@@ -147,7 +147,7 @@ external screen: Types.window => Types.screen = "screen"
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/visualViewport)
     */
 @get
-external visualViewport: Types.window => Null.t<VisualViewport.Types.visualViewport> =
+external visualViewport: Types.window => Null.t<WebApiVisualViewport.Types.visualViewport> =
   "visualViewport"
 
 /**
@@ -220,7 +220,7 @@ external devicePixelRatio: Types.window => float = "devicePixelRatio"
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/speechSynthesis)
     */
 @get
-external speechSynthesis: Types.window => WebSpeech.Types.speechSynthesis = "speechSynthesis"
+external speechSynthesis: Types.window => WebApiWebSpeech.Types.speechSynthesis = "speechSynthesis"
 
 /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/origin)
@@ -244,37 +244,37 @@ external crossOriginIsolated: Types.window => bool = "crossOriginIsolated"
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/indexedDB)
     */
 @get
-external indexedDB: Types.window => IndexedDB.Types.idbFactory = "indexedDB"
+external indexedDB: Types.window => WebApiIndexedDB.Types.idbFactory = "indexedDB"
 
 /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/crypto)
     */
 @get
-external crypto: Types.window => WebCrypto.Types.crypto = "crypto"
+external crypto: Types.window => WebApiWebCrypto.Types.crypto = "crypto"
 
 /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/performance)
     */
 @get
-external performance: Types.window => Performance.Types.performance = "performance"
+external performance: Types.window => WebApiPerformance.Types.performance = "performance"
 
 /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/caches)
     */
 @get
-external caches: Types.window => WebWorkers.Types.cacheStorage = "caches"
+external caches: Types.window => WebApiWebWorkers.Types.cacheStorage = "caches"
 
 /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/sessionStorage)
     */
 @get
-external sessionStorage: Types.window => WebStorage.Types.storage = "sessionStorage"
+external sessionStorage: Types.window => WebApiWebStorage.Types.storage = "sessionStorage"
 
 /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/localStorage)
     */
 @get
-external localStorage: Types.window => WebStorage.Types.storage = "localStorage"
+external localStorage: Types.window => WebApiWebStorage.Types.storage = "localStorage"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/reportError)
@@ -343,7 +343,7 @@ external queueMicrotask: (Types.window, unit => unit) => unit = "queueMicrotask"
 external structuredClone: (
   Types.window,
   't,
-  ~options: ChannelMessaging.Types.structuredSerializeOptions=?,
+  ~options: WebApiChannelMessaging.Types.structuredSerializeOptions=?,
 ) => 't = "structuredClone"
 
 /**
@@ -421,7 +421,7 @@ external prompt: (Types.window, ~message: string=?, ~default: string=?) => strin
 external print: Types.window => unit = "print"
 
 /**
-Posts a message to the given window. Messages can be structured objects, e.g. nested objects and arrays, can contain JavaScript values (strings, numbers, Date objects, etc), and can contain certain data objects such as File Blob, FileList, and ArrayBuffer objects.
+Posts a message to the given window. Messages can be structured objects, e.g. nested objects and arrays, can contain JavaScript values (strings, numbers, Date objects, etc), and can contain certain data objects such as WebApiFile Blob, FileList, and ArrayBuffer objects.
 
 Objects listed in the transfer member of options are transferred, not just cloned, meaning that they are no longer usable on the sending side.
 
@@ -441,7 +441,7 @@ external postMessage: (
 ) => unit = "postMessage"
 
 /**
-Posts a message to the given window. Messages can be structured objects, e.g. nested objects and arrays, can contain JavaScript values (strings, numbers, Date objects, etc), and can contain certain data objects such as File Blob, FileList, and ArrayBuffer objects.
+Posts a message to the given window. Messages can be structured objects, e.g. nested objects and arrays, can contain JavaScript values (strings, numbers, Date objects, etc), and can contain certain data objects such as WebApiFile Blob, FileList, and ArrayBuffer objects.
 
 Objects listed in the transfer member of options are transferred, not just cloned, meaning that they are no longer usable on the sending side.
 

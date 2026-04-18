@@ -1,5 +1,5 @@
 {
-  "name": "@rescript-webapi/geolocation",
+  "name": "@rescript/webapi-geolocation",
   "sources": [
     {
       "dir": "src",
@@ -12,5 +12,5 @@
   },
   "suffix": ".js",
   "dependencies": [],
-  "namespace": "Geolocation"
+  "namespace": "WebApiGeolocation"
 }

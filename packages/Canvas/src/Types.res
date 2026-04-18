@@ -121,7 +121,7 @@ type webGLPowerPreference =
 */
 @editor.completeFrom(OffscreenCanvas)
 type offscreenCanvas = {
-  ...Event.Types.eventTarget,
+  ...WebApiEvent.Types.eventTarget,
   /**
     These attributes return the dimensions of the OffscreenCanvas object's bitmap.
 
@@ -349,7 +349,7 @@ An opaque object describing a pattern, based on an image, a canvas, or a video, 
 type canvasPattern = {}
 
 /**
-This Canvas 2D API interface is used to declare a path that can then be used on a CanvasRenderingContext2D object. The path methods of the CanvasRenderingContext2D interface are also present on this interface, which gives you the convenience of being able to retain and replay your path whenever desired.
+This WebApiCanvas 2D API interface is used to declare a path that can then be used on a CanvasRenderingContext2D object. The path methods of the CanvasRenderingContext2D interface are also present on this interface, which gives you the convenience of being able to retain and replay your path whenever desired.
 [See Path2D on MDN](https://developer.mozilla.org/docs/Web/API/Path2D)
 */
 @editor.completeFrom(Path2D)

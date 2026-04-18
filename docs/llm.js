@@ -92,7 +92,7 @@ async function processFile(filePath) {
     functionString = "\n\nFunctions:\n\n" + functions.join("\n\n");
   }
 
-  return `File: ${json.source.filepath}
+  return `WebApiFile: ${json.source.filepath}
 Module: ${moduleName}${typeString}${functionString}
 `;
 }

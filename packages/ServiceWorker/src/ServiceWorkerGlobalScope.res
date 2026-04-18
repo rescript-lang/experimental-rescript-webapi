@@ -1,4 +1,4 @@
-include WebWorkers.WorkerGlobalScope.Impl({type t = Types.serviceWorkerGlobalScope})
+include WebApiWebWorkers.WorkerGlobalScope.Impl({type t = Types.serviceWorkerGlobalScope})
 
 /**
 Forces the waiting service worker to become the active service worker.

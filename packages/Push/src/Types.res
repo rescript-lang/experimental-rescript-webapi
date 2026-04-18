@@ -10,7 +10,7 @@ type pushEncryptionKeyName =
   | @as("p256dh") P256dh
 
 /**
-This Push API interface provides a way to receive notifications from third-party servers as well as request URLs for push notifications.
+This WebApiPush API interface provides a way to receive notifications from third-party servers as well as request URLs for push notifications.
 [See PushManager on MDN](https://developer.mozilla.org/docs/Web/API/PushManager)
 */
 @editor.completeFrom(PushManager)
@@ -38,7 +38,7 @@ type pushSubscriptionOptions = {
 }
 
 /**
-This Push API interface provides a subcription's URL endpoint and allows unsubscription from a push service.
+This WebApiPush API interface provides a subcription's WebApiURL endpoint and allows unsubscription from a push service.
 [See PushSubscription on MDN](https://developer.mozilla.org/docs/Web/API/PushSubscription)
 */
 @editor.completeFrom(PushSubscription)
@@ -80,7 +80,7 @@ type pushMessageData
 
 @editor.completeFrom(PushEvent)
 type pushEvent = {
-  ...Event.Types.extendableEvent,
+  ...WebApiEvent.Types.extendableEvent,
   /**
    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/PushEvent/data)
    */

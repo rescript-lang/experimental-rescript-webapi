@@ -5,14 +5,14 @@
 external sendBeacon: (
   Types.navigator,
   ~url: string,
-  ~data: File.Types.readableStream<unit>=?,
+  ~data: WebApiFile.Types.readableStream<unit>=?,
 ) => bool = "sendBeacon"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Navigator/sendBeacon)
 */
 @send
-external sendBeacon2: (Types.navigator, ~url: string, ~data: File.Types.blob=?) => bool =
+external sendBeacon2: (Types.navigator, ~url: string, ~data: WebApiFile.Types.blob=?) => bool =
   "sendBeacon"
 
 /**
@@ -31,14 +31,14 @@ external sendBeacon4: (Types.navigator, ~url: string, ~data: ArrayBuffer.t=?) =>
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Navigator/sendBeacon)
 */
 @send
-external sendBeacon5: (Types.navigator, ~url: string, ~data: Fetch.Types.formData=?) => bool =
+external sendBeacon5: (Types.navigator, ~url: string, ~data: WebApiFetch.Types.formData=?) => bool =
   "sendBeacon"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Navigator/sendBeacon)
 */
 @send
-external sendBeacon6: (Types.navigator, ~url: string, ~data: URL.Types.urlSearchParams=?) => bool =
+external sendBeacon6: (Types.navigator, ~url: string, ~data: WebApiURL.Types.urlSearchParams=?) => bool =
   "sendBeacon"
 
 /**
@@ -51,13 +51,13 @@ external sendBeacon7: (Types.navigator, ~url: string, ~data: string=?) => bool =
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Navigator/getGamepads)
 */
 @send
-external getGamepads: Types.navigator => array<Gamepad.Types.gamepad> = "getGamepads"
+external getGamepads: Types.navigator => array<WebApiGamepad.Types.gamepad> = "getGamepads"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Navigator/serviceWorker)
 */
 @get
-external serviceWorker: Types.navigator => ServiceWorker.Types.serviceWorkerContainer =
+external serviceWorker: Types.navigator => WebApiServiceWorker.Types.serviceWorkerContainer =
   "serviceWorker"
 
 /**
@@ -76,5 +76,5 @@ external requestMediaKeySystemAccess: (
 @send
 external requestMIDIAccess: (
   Types.navigator,
-  ~options: WebMIDI.Types.midiOptions=?,
-) => promise<WebMIDI.Types.midiAccess> = "requestMIDIAccess"
+  ~options: WebApiWebMIDI.Types.midiOptions=?,
+) => promise<WebApiWebMIDI.Types.midiAccess> = "requestMIDIAccess"

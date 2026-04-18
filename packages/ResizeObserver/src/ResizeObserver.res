@@ -1,27 +1,27 @@
 /**
-[Read more on MDN](https://developer.mozilla.org/docs/Web/API/ResizeObserver)
+[Read more on MDN](https://developer.mozilla.org/docs/Web/API/WebApiResizeObserver)
 */
 @new
-external make: Types.resizeObserverCallback => Types.resizeObserver = "ResizeObserver"
+external make: Types.resizeObserverCallback => Types.resizeObserver = "WebApiResizeObserver"
 
 /**
-[Read more on MDN](https://developer.mozilla.org/docs/Web/API/ResizeObserver/observe)
+[Read more on MDN](https://developer.mozilla.org/docs/Web/API/WebApiResizeObserver/observe)
 */
 @send
 external observe: (
   Types.resizeObserver,
-  ~target: DOM.Types.element,
+  ~target: WebApiDOM.Types.element,
   ~options: Types.resizeObserverOptions=?,
 ) => unit = "observe"
 
 /**
-[Read more on MDN](https://developer.mozilla.org/docs/Web/API/ResizeObserver/unobserve)
+[Read more on MDN](https://developer.mozilla.org/docs/Web/API/WebApiResizeObserver/unobserve)
 */
 @send
-external unobserve: (Types.resizeObserver, DOM.Types.element) => unit = "unobserve"
+external unobserve: (Types.resizeObserver, WebApiDOM.Types.element) => unit = "unobserve"
 
 /**
-[Read more on MDN](https://developer.mozilla.org/docs/Web/API/ResizeObserver/disconnect)
+[Read more on MDN](https://developer.mozilla.org/docs/Web/API/WebApiResizeObserver/disconnect)
 */
 @send
 external disconnect: Types.resizeObserver => unit = "disconnect"

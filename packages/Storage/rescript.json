@@ -1,5 +1,5 @@
 {
-  "name": "@rescript-webapi/storage",
+  "name": "@rescript/webapi-storage",
   "sources": [
     {
       "dir": "src",
@@ -12,7 +12,7 @@
   },
   "suffix": ".js",
   "dependencies": [
-    "@rescript-webapi/file"
+    "@rescript/webapi-file"
   ],
-  "namespace": "Storage"
+  "namespace": "WebApiStorage"
 }

@@ -4,18 +4,18 @@
 [See FileSystemEntry on MDN](https://developer.mozilla.org/docs/Web/API/FileSystemEntry)
 */
 @editor.completeFrom(FileSystemEntry)
-type fileSystemEntry = Prelude.Types.fileSystemEntry
+type fileSystemEntry = WebApiPrelude.Types.fileSystemEntry
 
 /**
 [See FileSystemDirectoryEntry on MDN](https://developer.mozilla.org/docs/Web/API/FileSystemDirectoryEntry)
 */
 @editor.completeFrom(FileSystemDirectoryEntry)
-type fileSystemDirectoryEntry = Prelude.Types.fileSystemDirectoryEntry
+type fileSystemDirectoryEntry = WebApiPrelude.Types.fileSystemDirectoryEntry
 
 /**
 [See FileSystem on MDN](https://developer.mozilla.org/docs/Web/API/FileSystem)
 */
-type fileSystem = Prelude.Types.fileSystem
+type fileSystem = WebApiPrelude.Types.fileSystem
 
 /**
 [See FileSystemDirectoryReader on MDN](https://developer.mozilla.org/docs/Web/API/FileSystemDirectoryReader)
@@ -30,6 +30,6 @@ type fileSystemFlags = {
 
 type fileSystemEntryCallback = fileSystemEntry => unit
 
-type errorCallback = Prelude.Types.domException => unit
+type errorCallback = WebApiPrelude.Types.domException => unit
 
 type fileSystemEntriesCallback = array<fileSystemEntry> => unit

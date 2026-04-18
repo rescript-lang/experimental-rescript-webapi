@@ -1,4 +1,4 @@
-include Event.EventTarget.Impl({type t = Types.textTrack})
+include WebApiEvent.EventTarget.Impl({type t = Types.textTrack})
 
 /**
 Adds the given cue to textTrack's text track list of cues.

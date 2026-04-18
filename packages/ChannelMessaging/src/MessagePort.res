@@ -1,4 +1,4 @@
-include Event.EventTarget.Impl({type t = Types.messagePort})
+include WebApiEvent.EventTarget.Impl({type t = Types.messagePort})
 
 /**
 Posts a message through the channel. Objects listed in transfer are transferred, not just cloned, meaning that they are no longer usable on the sending side.

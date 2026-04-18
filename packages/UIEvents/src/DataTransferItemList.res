@@ -14,7 +14,7 @@ Adds a new entry for the given data to the drag data store. If the data is plain
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/DataTransferItemList/add)
 */
 @send
-external addFile: (Types.dataTransferItemList, File.Types.file) => Types.dataTransferItem = "add"
+external addFile: (Types.dataTransferItemList, WebApiFile.Types.file) => Types.dataTransferItem = "add"
 
 /**
 Removes the indexth entry in the drag data store.

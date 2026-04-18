@@ -1,4 +1,4 @@
-include Event.Event.Impl({type t = Types.audioProcessingEvent})
+include WebApiEvent.Event.Impl({type t = Types.audioProcessingEvent})
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/AudioProcessingEvent)

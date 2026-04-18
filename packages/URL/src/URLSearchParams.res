@@ -85,7 +85,7 @@ external set: (Types.urlSearchParams, ~name: string, ~value: string) => unit = "
 external sort: Types.urlSearchParams => unit = "sort"
 
 /**
-Returns the query string suitable for use in a URL, without the question mark.
+Returns the query string suitable for use in a WebApiURL, without the question mark.
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/URLSearchParams/toString)
 */
 @send

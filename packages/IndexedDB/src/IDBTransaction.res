@@ -1,4 +1,4 @@
-include Event.EventTarget.Impl({type t = Types.idbTransaction})
+include WebApiEvent.EventTarget.Impl({type t = Types.idbTransaction})
 
 /**
 Returns an IDBObjectStore in the transaction's scope.

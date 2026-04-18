@@ -1,14 +1,14 @@
-external self: ServiceWorker.Types.serviceWorkerGlobalScope = "self"
+external self: WebApiServiceWorker.Types.serviceWorkerGlobalScope = "self"
 
-self->ServiceWorker.ServiceWorkerGlobalScope.addEventListener(Event.Types.Push, (
-  event: Push.Types.pushEvent,
+self->WebApiServiceWorker.ServiceWorkerGlobalScope.addEventListener(WebApiEvent.Types.Push, (
+  event: WebApiPush.Types.pushEvent,
 ) => {
   Console.log("received push event")
 
   // Extract data
   let (title, body) = switch event.data {
   | Some(data) =>
-    switch data->Push.PushMessageData.json {
+    switch data->WebApiPush.PushMessageData.json {
     | JSON.Object(dict{"title": JSON.String(title), "body": JSON.String(body)}) => (title, body)
     | _ => ("???", "???")
     }
@@ -16,13 +16,13 @@ self->ServiceWorker.ServiceWorkerGlobalScope.addEventListener(Event.Types.Push, 
   }
 
   // Handle some data sync
-  event->Push.PushEvent.waitUntil(
-    self->ServiceWorker.ServiceWorkerGlobalScope.fetch("https://rescript-lang.org"),
+  event->WebApiPush.PushEvent.waitUntil(
+    self->WebApiServiceWorker.ServiceWorkerGlobalScope.fetch("https://rescript-lang.org"),
   )
 
   // Show notification
   self.registration
-  ->ServiceWorker.ServiceWorkerRegistration.showNotification(
+  ->WebApiServiceWorker.ServiceWorkerRegistration.showNotification(
     ~title,
     ~options={
       body,
@@ -36,12 +36,12 @@ self->ServiceWorker.ServiceWorkerGlobalScope.addEventListener(Event.Types.Push, 
   ->Promise.ignore
 })
 
-self->ServiceWorker.ServiceWorkerGlobalScope.addEventListener(Event.Types.NotificationClick, (
-  event: Notification.Types.notificationEvent,
+self->WebApiServiceWorker.ServiceWorkerGlobalScope.addEventListener(WebApiEvent.Types.NotificationClick, (
+  event: WebApiNotification.Types.notificationEvent,
 ) => {
   Console.log(`notification clicked: ${event.action}`)
   // Close the notification
-  event.notification->Notification.Notification.close
+  event.notification->WebApiNotification.Notification.close
 
   // Open a new window if that is relevant
   event.notification.data
@@ -53,7 +53,7 @@ self->ServiceWorker.ServiceWorkerGlobalScope.addEventListener(Event.Types.Notifi
   })
   ->Option.forEach(id => {
     self.clients
-    ->ServiceWorker.Clients.openWindow(`https://mywebsite.com/mydata/${id}`)
+    ->WebApiServiceWorker.Clients.openWindow(`https://mywebsite.com/mydata/${id}`)
     ->Promise.ignore
   })
 })

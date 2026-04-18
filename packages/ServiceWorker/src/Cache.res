@@ -3,58 +3,58 @@
 */
 @send
 external match: (
-  WebWorkers.Types.cache,
-  ~request: Fetch.Types.request,
-  ~options: WebWorkers.Types.cacheQueryOptions=?,
-) => Nullable.t<Fetch.Types.response> = "match"
+  WebApiWebWorkers.Types.cache,
+  ~request: WebApiFetch.Types.request,
+  ~options: WebApiWebWorkers.Types.cacheQueryOptions=?,
+) => Nullable.t<WebApiFetch.Types.response> = "match"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Cache/match)
 */
 @send
 external match2: (
-  WebWorkers.Types.cache,
+  WebApiWebWorkers.Types.cache,
   ~request: string,
-  ~options: WebWorkers.Types.cacheQueryOptions=?,
-) => Nullable.t<Fetch.Types.response> = "match"
+  ~options: WebApiWebWorkers.Types.cacheQueryOptions=?,
+) => Nullable.t<WebApiFetch.Types.response> = "match"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Cache/matchAll)
 */
 @send
 external matchAll: (
-  WebWorkers.Types.cache,
-  ~request: Fetch.Types.request=?,
-  ~options: WebWorkers.Types.cacheQueryOptions=?,
-) => promise<array<Fetch.Types.response>> = "matchAll"
+  WebApiWebWorkers.Types.cache,
+  ~request: WebApiFetch.Types.request=?,
+  ~options: WebApiWebWorkers.Types.cacheQueryOptions=?,
+) => promise<array<WebApiFetch.Types.response>> = "matchAll"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Cache/matchAll)
 */
 @send
 external matchAll2: (
-  WebWorkers.Types.cache,
+  WebApiWebWorkers.Types.cache,
   ~request: string=?,
-  ~options: WebWorkers.Types.cacheQueryOptions=?,
-) => promise<array<Fetch.Types.response>> = "matchAll"
+  ~options: WebApiWebWorkers.Types.cacheQueryOptions=?,
+) => promise<array<WebApiFetch.Types.response>> = "matchAll"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Cache/add)
 */
 @send
-external add: (WebWorkers.Types.cache, Fetch.Types.request) => promise<unit> = "add"
+external add: (WebApiWebWorkers.Types.cache, WebApiFetch.Types.request) => promise<unit> = "add"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Cache/add)
 */
 @send
-external add2: (WebWorkers.Types.cache, string) => promise<unit> = "add"
+external add2: (WebApiWebWorkers.Types.cache, string) => promise<unit> = "add"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Cache/addAll)
 */
 @send
-external addAll: (WebWorkers.Types.cache, array<Fetch.Types.requestInfo>) => promise<unit> =
+external addAll: (WebApiWebWorkers.Types.cache, array<WebApiFetch.Types.requestInfo>) => promise<unit> =
   "addAll"
 
 /**
@@ -62,9 +62,9 @@ external addAll: (WebWorkers.Types.cache, array<Fetch.Types.requestInfo>) => pro
 */
 @send
 external put: (
-  WebWorkers.Types.cache,
-  ~request: Fetch.Types.request,
-  ~response: Fetch.Types.response,
+  WebApiWebWorkers.Types.cache,
+  ~request: WebApiFetch.Types.request,
+  ~response: WebApiFetch.Types.response,
 ) => promise<unit> = "put"
 
 /**
@@ -72,9 +72,9 @@ external put: (
 */
 @send
 external put2: (
-  WebWorkers.Types.cache,
+  WebApiWebWorkers.Types.cache,
   ~request: string,
-  ~response: Fetch.Types.response,
+  ~response: WebApiFetch.Types.response,
 ) => promise<unit> = "put"
 
 /**
@@ -82,9 +82,9 @@ external put2: (
 */
 @send
 external delete: (
-  WebWorkers.Types.cache,
-  ~request: Fetch.Types.request,
-  ~options: WebWorkers.Types.cacheQueryOptions=?,
+  WebApiWebWorkers.Types.cache,
+  ~request: WebApiFetch.Types.request,
+  ~options: WebApiWebWorkers.Types.cacheQueryOptions=?,
 ) => promise<bool> = "delete"
 
 /**
@@ -92,9 +92,9 @@ external delete: (
 */
 @send
 external delete2: (
-  WebWorkers.Types.cache,
+  WebApiWebWorkers.Types.cache,
   ~request: string,
-  ~options: WebWorkers.Types.cacheQueryOptions=?,
+  ~options: WebApiWebWorkers.Types.cacheQueryOptions=?,
 ) => promise<bool> = "delete"
 
 /**
@@ -102,17 +102,17 @@ external delete2: (
 */
 @send
 external keys: (
-  WebWorkers.Types.cache,
-  ~request: Fetch.Types.request=?,
-  ~options: WebWorkers.Types.cacheQueryOptions=?,
-) => promise<array<Fetch.Types.request>> = "keys"
+  WebApiWebWorkers.Types.cache,
+  ~request: WebApiFetch.Types.request=?,
+  ~options: WebApiWebWorkers.Types.cacheQueryOptions=?,
+) => promise<array<WebApiFetch.Types.request>> = "keys"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Cache/keys)
 */
 @send
 external keys2: (
-  WebWorkers.Types.cache,
+  WebApiWebWorkers.Types.cache,
   ~request: string=?,
-  ~options: WebWorkers.Types.cacheQueryOptions=?,
-) => promise<array<Fetch.Types.request>> = "keys"
+  ~options: WebApiWebWorkers.Types.cacheQueryOptions=?,
+) => promise<array<WebApiFetch.Types.request>> = "keys"

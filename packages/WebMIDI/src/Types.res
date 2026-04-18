@@ -14,7 +14,7 @@ type midiOutputMap = {}
 [See MIDIAccess on MDN](https://developer.mozilla.org/docs/Web/API/MIDIAccess)
 */
 type midiAccess = {
-  ...Event.Types.eventTarget,
+  ...WebApiEvent.Types.eventTarget,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/MIDIAccess/inputs)
     */

@@ -1,4 +1,4 @@
-include Event.EventTarget.Impl({type t = Types.fontFaceSet})
+include WebApiEvent.EventTarget.Impl({type t = Types.fontFaceSet})
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/FontFaceSet/add)

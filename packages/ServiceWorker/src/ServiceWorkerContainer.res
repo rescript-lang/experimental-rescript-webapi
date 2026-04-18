@@ -1,4 +1,4 @@
-include Event.EventTarget.Impl({type t = Types.serviceWorkerContainer})
+include WebApiEvent.EventTarget.Impl({type t = Types.serviceWorkerContainer})
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/ServiceWorkerContainer/register)

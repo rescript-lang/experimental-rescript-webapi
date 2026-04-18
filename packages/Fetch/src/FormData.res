@@ -17,7 +17,7 @@ external append: (Types.formData, ~name: string, ~value: string) => unit = "appe
 external appendBlob: (
   Types.formData,
   ~name: string,
-  ~blobValue: File.Types.blob,
+  ~blobValue: WebApiFile.Types.blob,
   ~filename: string=?,
 ) => unit = "append"
 
@@ -70,6 +70,6 @@ external set: (Types.formData, ~name: string, ~value: string) => unit = "set"
 external setBlob: (
   Types.formData,
   ~name: string,
-  ~blobValue: File.Types.blob,
+  ~blobValue: WebApiFile.Types.blob,
   ~filename: string=?,
 ) => unit = "set"

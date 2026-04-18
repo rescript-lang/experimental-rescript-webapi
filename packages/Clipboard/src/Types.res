@@ -21,11 +21,11 @@ type clipboardItem = {
 }
 
 /**
-[See Clipboard on MDN](https://developer.mozilla.org/docs/Web/API/Clipboard)
+[See WebApiClipboard on MDN](https://developer.mozilla.org/docs/Web/API/WebApiClipboard)
 */
-@editor.completeFrom(Clipboard)
+@editor.completeFrom(WebApiClipboard)
 type clipboard = {
-  ...Event.Types.eventTarget,
+  ...WebApiEvent.Types.eventTarget,
 }
 
 type clipboardItemOptions = {mutable presentationStyle?: presentationStyle}

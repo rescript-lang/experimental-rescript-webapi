@@ -1,12 +1,12 @@
 /**
-Navigates to the given URL.
+Navigates to the given WebApiURL.
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Location/assign)
 */
 @send
 external assign: (Types.location, string) => unit = "assign"
 
 /**
-Removes the current page from the session history and navigates to the given URL.
+Removes the current page from the session history and navigates to the given WebApiURL.
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Location/replace)
 */
 @send

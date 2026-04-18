@@ -1,10 +1,10 @@
-include Event.EventTarget.Impl({type t = Types.sharedWorker})
+include WebApiEvent.EventTarget.Impl({type t = Types.sharedWorker})
 
 /**
 `make(string)`
 
 The SharedWorker() constructor creates a SharedWorker object that executes the 
-script at the specified URL. This script must obey the same-origin policy.
+script at the specified WebApiURL. This script must obey the same-origin policy.
 
 ```res
 let shared: sharedWorker = SharedWorker.make("sharedworker.js")
@@ -19,7 +19,7 @@ external make: string => Types.sharedWorker = "SharedWorker"
 `makeWithName(string, string)`
 
 The SharedWorker() constructor creates a SharedWorker object that executes the 
-script at the specified URL. This script must obey the same-origin policy.
+script at the specified WebApiURL. This script must obey the same-origin policy.
 
 ```res
 let shared: sharedWorker = SharedWorker.make("sharedworker.js", "name")
@@ -34,7 +34,7 @@ external makeWithName: (string, string) => Types.sharedWorker = "SharedWorker"
 `makeWithOptions(string, workerOptions)`
 
 The SharedWorker() constructor creates a SharedWorker object that executes the 
-script at the specified URL. This script must obey the same-origin policy.
+script at the specified WebApiURL. This script must obey the same-origin policy.
 
 ```res
 let shared: sharedWorker = SharedWorker.makeWithOptions("sharedworker.js", {
@@ -61,4 +61,4 @@ let port: WebAPI.ChannelMessagingAPI.messagePort = SharedWorker.port(myWorker)
 [Read more on MDN](https://developer.mozilla.org/en-US/docs/Web/API/SharedWorker/port)
 */
 @get
-external port: Types.sharedWorker => ChannelMessaging.Types.messagePort = "port"
+external port: Types.sharedWorker => WebApiChannelMessaging.Types.messagePort = "port"

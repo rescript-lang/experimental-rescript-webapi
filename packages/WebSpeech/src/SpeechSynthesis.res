@@ -1,4 +1,4 @@
-include Event.EventTarget.Impl({type t = Types.speechSynthesis})
+include WebApiEvent.EventTarget.Impl({type t = Types.speechSynthesis})
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/SpeechSynthesis/speak)

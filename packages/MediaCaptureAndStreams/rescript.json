@@ -1,5 +1,5 @@
 {
-  "name": "@rescript-webapi/media-capture-and-streams",
+  "name": "@rescript/webapi-media-capture-and-streams",
   "sources": [
     {
       "dir": "src",
@@ -12,7 +12,7 @@
   },
   "suffix": ".js",
   "dependencies": [
-    "@rescript-webapi/event"
+    "@rescript/webapi-event"
   ],
-  "namespace": "MediaCaptureAndStreams"
+  "namespace": "WebApiMediaCaptureAndStreams"
 }

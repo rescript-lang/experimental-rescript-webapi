@@ -1,36 +1,36 @@
 @@warning("-30")
 
 /**
-[See VisualViewport on MDN](https://developer.mozilla.org/docs/Web/API/VisualViewport)
+[See WebApiVisualViewport on MDN](https://developer.mozilla.org/docs/Web/API/WebApiVisualViewport)
 */
 type visualViewport = {
-  ...Event.Types.eventTarget,
+  ...WebApiEvent.Types.eventTarget,
   /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/VisualViewport/offsetLeft)
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/WebApiVisualViewport/offsetLeft)
     */
   offsetLeft: float,
   /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/VisualViewport/offsetTop)
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/WebApiVisualViewport/offsetTop)
     */
   offsetTop: float,
   /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/VisualViewport/pageLeft)
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/WebApiVisualViewport/pageLeft)
     */
   pageLeft: float,
   /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/VisualViewport/pageTop)
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/WebApiVisualViewport/pageTop)
     */
   pageTop: float,
   /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/VisualViewport/width)
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/WebApiVisualViewport/width)
     */
   width: float,
   /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/VisualViewport/height)
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/WebApiVisualViewport/height)
     */
   height: float,
   /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/VisualViewport/scale)
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/WebApiVisualViewport/scale)
     */
   scale: float,
 }

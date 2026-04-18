@@ -28,12 +28,12 @@ In the following code snippet, we make a request to open a database, and include
 type idbFactory = {}
 
 /**
-This IndexedDB API interface provides a connection to a database; you can use an IDBDatabase object to open a transaction on your database then create, manipulate, and delete objects (data) in that database. The interface provides the only way to get and manage versions of the database.
+This WebApiIndexedDB API interface provides a connection to a database; you can use an IDBDatabase object to open a transaction on your database then create, manipulate, and delete objects (data) in that database. The interface provides the only way to get and manage versions of the database.
 [See IDBDatabase on MDN](https://developer.mozilla.org/docs/Web/API/IDBDatabase)
 */
 @editor.completeFrom(IDBDatabase)
 type idbDatabase = {
-  ...Event.Types.eventTarget,
+  ...WebApiEvent.Types.eventTarget,
   /**
     Returns the name of the database.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/IDBDatabase/name)
@@ -48,7 +48,7 @@ type idbDatabase = {
     Returns a list of the names of object stores in the database.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/IDBDatabase/objectStoreNames)
     */
-  objectStoreNames: Prelude.Types.domStringList,
+  objectStoreNames: WebApiPrelude.Types.domStringList,
 }
 
 /**
@@ -56,12 +56,12 @@ type idbDatabase = {
 */
 @editor.completeFrom(IDBTransaction)
 type idbTransaction = {
-  ...Event.Types.eventTarget,
+  ...WebApiEvent.Types.eventTarget,
   /**
     Returns a list of the names of object stores in the transaction's scope. For an upgrade transaction this is all object stores in the database.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/IDBTransaction/objectStoreNames)
     */
-  objectStoreNames: Prelude.Types.domStringList,
+  objectStoreNames: WebApiPrelude.Types.domStringList,
   /**
     Returns the mode the transaction was created with ("readonly" or "readwrite"), or "versionchange" for an upgrade transaction.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/IDBTransaction/mode)
@@ -80,7 +80,7 @@ type idbTransaction = {
     If the transaction was aborted, returns the error (a DOMException) providing the reason.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/IDBTransaction/error)
     */
-  error: Null.t<Prelude.Types.domException>,
+  error: Null.t<WebApiPrelude.Types.domException>,
 }
 
 /**
@@ -88,7 +88,7 @@ The request object does not initially contain any information about the result o
 [See IDBRequest on MDN](https://developer.mozilla.org/docs/Web/API/IDBRequest)
 */
 type idbRequest<'t> = {
-  ...Event.Types.eventTarget,
+  ...WebApiEvent.Types.eventTarget,
   /**
     When a request is completed, returns the result, or undefined if the request failed. Throws a "InvalidStateError" DOMException if the request is still pending.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/IDBRequest/result)
@@ -98,7 +98,7 @@ type idbRequest<'t> = {
     When a request is completed, returns the error (a DOMException), or null if the request succeeded. Throws a "InvalidStateError" DOMException if the request is still pending.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/IDBRequest/error)
     */
-  error: Null.t<Prelude.Types.domException>,
+  error: Null.t<WebApiPrelude.Types.domException>,
   /**
     Returns the IDBObjectStore, IDBIndex, or IDBCursor the request was made against, or null if is was an open request.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/IDBRequest/source)
@@ -117,7 +117,7 @@ type idbRequest<'t> = {
 }
 
 /**
-Also inherits methods from its parents IDBRequest and Event.EventTarget.
+Also inherits methods from its parents IDBRequest and WebApiEvent.EventTarget.
 [See IDBOpenDBRequest on MDN](https://developer.mozilla.org/docs/Web/API/IDBOpenDBRequest)
 */
 type idbOpenDBRequest = {
@@ -144,7 +144,7 @@ type idbObjectStore = {
     Returns a list of the names of indexes in the store.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/IDBObjectStore/indexNames)
     */
-  indexNames: Prelude.Types.domStringList,
+  indexNames: WebApiPrelude.Types.domStringList,
   /**
     Returns the associated transaction.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/IDBObjectStore/transaction)
@@ -158,7 +158,7 @@ type idbObjectStore = {
 }
 
 /**
-IDBIndex interface of the IndexedDB API provides asynchronous access to an index in a database. An index is a kind of object store for looking up records in another object store, called the referenced object store. You use this interface to retrieve data.
+IDBIndex interface of the WebApiIndexedDB API provides asynchronous access to an index in a database. An index is a kind of object store for looking up records in another object store, called the referenced object store. You use this interface to retrieve data.
 [See IDBIndex on MDN](https://developer.mozilla.org/docs/Web/API/IDBIndex)
 */
 @editor.completeFrom(IDBIndex)

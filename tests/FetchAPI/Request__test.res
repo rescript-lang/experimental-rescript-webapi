@@ -1,10 +1,10 @@
-let req = Fetch.Request.fromURL("https://example.com")
+let req = WebApiFetch.Request.fromURL("https://example.com")
 
-let req1 = Fetch.Request.fromURL(
+let req1 = WebApiFetch.Request.fromURL(
   "https://example.com/api",
-  ~init={method: "POST", body: Fetch.BodyInit.fromString("hello")},
+  ~init={method: "POST", body: WebApiFetch.BodyInit.fromString("hello")},
 )
 
-let req2 = Fetch.Request.fromRequest(req1)
+let req2 = WebApiFetch.Request.fromRequest(req1)
 
-Console.log(await req2->Fetch.Request.text)
+Console.log(await req2->WebApiFetch.Request.text)

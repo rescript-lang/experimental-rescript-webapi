@@ -6,13 +6,13 @@ type remotePlaybackState =
   | @as("disconnected") Disconnected
 
 /**
-[See RemotePlayback on MDN](https://developer.mozilla.org/docs/Web/API/RemotePlayback)
+[See WebApiRemotePlayback on MDN](https://developer.mozilla.org/docs/Web/API/WebApiRemotePlayback)
 */
-@editor.completeFrom(RemotePlayback)
+@editor.completeFrom(WebApiRemotePlayback)
 type remotePlayback = {
-  ...Event.Types.eventTarget,
+  ...WebApiEvent.Types.eventTarget,
   /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/RemotePlayback/state)
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/WebApiRemotePlayback/state)
     */
   state: remotePlaybackState,
 }

@@ -4,7 +4,7 @@
 @new
 external make: (~width: int, ~height: int) => Types.offscreenCanvas = "OffscreenCanvas"
 
-include Event.EventTarget.Impl({type t = Types.offscreenCanvas})
+include WebApiEvent.EventTarget.Impl({type t = Types.offscreenCanvas})
 
 /**
 Returns an object that exposes an API for drawing on the OffscreenCanvas object. contextId specifies the desired API: "2d", "bitmaprenderer", "webgl", or "webgl2". options is handled by that API.
@@ -83,4 +83,4 @@ The argument, if provided, is a dictionary that controls the encoding options of
 external convertToBlob: (
   Types.offscreenCanvas,
   ~options: Types.imageEncodeOptions=?,
-) => promise<File.Types.blob> = "convertToBlob"
+) => promise<WebApiFile.Types.blob> = "convertToBlob"

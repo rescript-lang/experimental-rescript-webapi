@@ -295,7 +295,7 @@ external createAttributeNS: (
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Document/createEvent)
 */
 @send
-external createEvent: (Types.document, string) => Event.Types.event = "createEvent"
+external createEvent: (Types.document, string) => WebApiEvent.Types.event = "createEvent"
 
 /**
  Returns an empty range object that has both of its boundary points positioned at the beginning of the document.
@@ -340,8 +340,8 @@ external createTreeWalker: (
 @send
 external startViewTransition: (
   Types.document,
-  ~callbackOptions: ViewTransitions.Types.viewTransitionUpdateCallback=?,
-) => ViewTransitions.Types.viewTransition = "startViewTransition"
+  ~callbackOptions: WebApiViewTransitions.Types.viewTransitionUpdateCallback=?,
+) => WebApiViewTransitions.Types.viewTransition = "startViewTransition"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Document/caretPositionFromPoint)
@@ -377,7 +377,7 @@ external getElementsByName: (Types.document, string) => Types.nodeList<Types.htm
   "getElementsByName"
 
 /**
-Opens a new window and loads a document specified by a given URL. Also, opens a new window that uses the url parameter and the name parameter to collect the output of the write method and the writeln method.
+Opens a new window and loads a document specified by a given WebApiURL. Also, opens a new window that uses the url parameter and the name parameter to collect the output of the write method and the writeln method.
 @param url Specifies a MIME type for the document.
 @param name Specifies the name of the window. This name is used as the value for the TARGET attribute on a form or an anchor element.
 @param features Contains a list of items separated by commas. Each item consists of an option and a value, separated by an equals sign (for example, "fullscreen=yes, toolbar=yes"). The following values are supported.
@@ -388,7 +388,7 @@ Opens a new window and loads a document specified by a given URL. Also, opens a 
 external open_: (Types.document, ~unused1: string=?, ~unused2: string=?) => Types.document = "open"
 
 /**
-Opens a new window and loads a document specified by a given URL. Also, opens a new window that uses the url parameter and the name parameter to collect the output of the write method and the writeln method.
+Opens a new window and loads a document specified by a given WebApiURL. Also, opens a new window that uses the url parameter and the name parameter to collect the output of the write method and the writeln method.
 @param url Specifies a MIME type for the document.
 @param name Specifies the name of the window. This name is used as the value for the TARGET attribute on a form or an anchor element.
 @param features Contains a list of items separated by commas. Each item consists of an option and a value, separated by an equals sign (for example, "fullscreen=yes, toolbar=yes"). The following values are supported.

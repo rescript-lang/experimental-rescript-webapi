@@ -6,24 +6,24 @@
 type eventCounts = {}
 
 /**
-Provides access to performance-related information for the current page. It's part of the High Resolution Time API, but is enhanced by the Performance Timeline API, the Navigation Timing API, the User Timing API, and the Resource Timing API.
-[See Performance on MDN](https://developer.mozilla.org/docs/Web/API/Performance)
+Provides access to performance-related information for the current page. It's part of the High Resolution Time API, but is enhanced by the WebApiPerformance Timeline API, the Navigation Timing API, the User Timing API, and the Resource Timing API.
+[See WebApiPerformance on MDN](https://developer.mozilla.org/docs/Web/API/WebApiPerformance)
 */
-@editor.completeFrom(Performance)
+@editor.completeFrom(WebApiPerformance)
 type performance = {
-  ...Event.Types.eventTarget,
+  ...WebApiEvent.Types.eventTarget,
   /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Performance/timeOrigin)
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/WebApiPerformance/timeOrigin)
     */
   timeOrigin: float,
   /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Performance/eventCounts)
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/WebApiPerformance/eventCounts)
     */
   eventCounts: eventCounts,
 }
 
 /**
-Encapsulates a single performance metric that is part of the performance timeline. A performance entry can be directly created by making a performance mark or measure (for example by calling the mark() method) at an explicit point in an application. Performance entries are also created in indirect ways such as loading a resource (such as an image).
+Encapsulates a single performance metric that is part of the performance timeline. A performance entry can be directly created by making a performance mark or measure (for example by calling the mark() method) at an explicit point in an application. WebApiPerformance entries are also created in indirect ways such as loading a resource (such as an image).
 [See PerformanceEntry on MDN](https://developer.mozilla.org/docs/Web/API/PerformanceEntry)
 */
 @editor.completeFrom(PerformanceEntry)

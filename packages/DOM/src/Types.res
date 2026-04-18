@@ -1,88 +1,88 @@
 @@warning("-30")
 
-type domStringList = Prelude.Types.domStringList
-type eventTarget = Event.Types.eventTarget
-type eventType = Event.Types.eventType
-type file = File.Types.file
-type blob = File.Types.blob
-type fileSystemEntry = FileAndDirectoryEntries.Types.fileSystemEntry
-type remotePlayback = RemotePlayback.Types.remotePlayback
-type fontFaceSet = CSSFontLoading.Types.fontFaceSet
-type structuredSerializeOptions = ChannelMessaging.Types.structuredSerializeOptions
+type domStringList = WebApiPrelude.Types.domStringList
+type eventTarget = WebApiEvent.Types.eventTarget
+type eventType = WebApiEvent.Types.eventType
+type file = WebApiFile.Types.file
+type blob = WebApiFile.Types.blob
+type fileSystemEntry = WebApiFileAndDirectoryEntries.Types.fileSystemEntry
+type remotePlayback = WebApiRemotePlayback.Types.remotePlayback
+type fontFaceSet = WebApiCSSFontLoading.Types.fontFaceSet
+type structuredSerializeOptions = WebApiChannelMessaging.Types.structuredSerializeOptions
 
-type htmlElement = Prelude.Types.htmlElement
-type mediaError = Prelude.Types.mediaError
-type timeRanges = Prelude.Types.timeRanges
-type textTrackList = Prelude.Types.textTrackList
-type htmlFormElement = Prelude.Types.htmlFormElement
-type htmlCollection<'a> = Prelude.Types.htmlCollection<'a>
-type element = Prelude.Types.element
-type validityState = Prelude.Types.validityState
-type document = Prelude.Types.document
-type cssStyleSheet = Prelude.Types.cssStyleSheet
-type nodeList<'a> = Prelude.Types.nodeList<'a>
-type htmlLabelElement = Prelude.Types.htmlLabelElement
-type documentFragment = Prelude.Types.documentFragment
-type node = Prelude.Types.node
-type cssStyleDeclaration = Prelude.Types.cssStyleDeclaration
-type domRectReadOnly = Prelude.Types.domRectReadOnly
-type shadowRoot = Prelude.Types.shadowRoot
-type styleSheet = Prelude.Types.styleSheet
-type mediaQueryList = Prelude.Types.mediaQueryList
-type domRect = Prelude.Types.domRect
-type range = Prelude.Types.range
-type documentType = Prelude.Types.documentType
-type cssStyleValue = Prelude.Types.cssStyleValue
-type treeWalker = Prelude.Types.treeWalker
-type selection = Prelude.Types.selection
-type abstractRange = Prelude.Types.abstractRange
-type htmlOptionsCollection = Prelude.Types.htmlOptionsCollection
-type styleSheetList = Prelude.Types.styleSheetList
-type elementInternals = Prelude.Types.elementInternals
-type nodeFilter = Prelude.Types.nodeFilter
-type fileList = Prelude.Types.fileList
-type cssRule = Prelude.Types.cssRule
-type attr = Prelude.Types.attr
-type domRectList = Prelude.Types.domRectList
-type htmlFormControlsCollection = Prelude.Types.htmlFormControlsCollection
-type domImplementation = Prelude.Types.domImplementation
-type nodeIterator = Prelude.Types.nodeIterator
-type xmlDocument = Prelude.Types.xmlDocument
-type characterData = Prelude.Types.characterData
-type text = Prelude.Types.text
-type cdataSection = Prelude.Types.cdataSection
-type comment = Prelude.Types.comment
-type processingInstruction = Prelude.Types.processingInstruction
-type caretPosition = Prelude.Types.caretPosition
-type htmlTableElement = Prelude.Types.htmlTableElement
-type htmlOutputElement = Prelude.Types.htmlOutputElement
-type htmlTableCellElement = Prelude.Types.htmlTableCellElement
-type htmlHeadElement = Prelude.Types.htmlHeadElement
-type htmlSelectElement = Prelude.Types.htmlSelectElement
-type htmlButtonElement = Prelude.Types.htmlButtonElement
-type htmlTableSectionElement = Prelude.Types.htmlTableSectionElement
-type htmlOptionElement = Prelude.Types.htmlOptionElement
-type htmlEmbedElement = Prelude.Types.htmlEmbedElement
-type htmlTextAreaElement = Prelude.Types.htmlTextAreaElement
-type htmlTableCaptionElement = Prelude.Types.htmlTableCaptionElement
-type htmlSlotElement = Prelude.Types.htmlSlotElement
-type htmlDataListElement = Prelude.Types.htmlDataListElement
-type htmlInputElement = Prelude.Types.htmlInputElement
-type htmlScriptElement = Prelude.Types.htmlScriptElement
-type htmlAnchorElement = Prelude.Types.htmlAnchorElement
-type htmlTableRowElement = Prelude.Types.htmlTableRowElement
-type htmlImageElement = Prelude.Types.htmlImageElement
-type htmlAreaElement = Prelude.Types.htmlAreaElement
-type videoPlaybackQuality = Prelude.Types.videoPlaybackQuality
-type idleDeadline = Prelude.Types.idleDeadline
-type cssRuleList = Prelude.Types.cssRuleList
-type mediaKeySystemConfiguration = Prelude.Types.mediaKeySystemConfiguration
+type htmlElement = WebApiPrelude.Types.htmlElement
+type mediaError = WebApiPrelude.Types.mediaError
+type timeRanges = WebApiPrelude.Types.timeRanges
+type textTrackList = WebApiPrelude.Types.textTrackList
+type htmlFormElement = WebApiPrelude.Types.htmlFormElement
+type htmlCollection<'a> = WebApiPrelude.Types.htmlCollection<'a>
+type element = WebApiPrelude.Types.element
+type validityState = WebApiPrelude.Types.validityState
+type document = WebApiPrelude.Types.document
+type cssStyleSheet = WebApiPrelude.Types.cssStyleSheet
+type nodeList<'a> = WebApiPrelude.Types.nodeList<'a>
+type htmlLabelElement = WebApiPrelude.Types.htmlLabelElement
+type documentFragment = WebApiPrelude.Types.documentFragment
+type node = WebApiPrelude.Types.node
+type cssStyleDeclaration = WebApiPrelude.Types.cssStyleDeclaration
+type domRectReadOnly = WebApiPrelude.Types.domRectReadOnly
+type shadowRoot = WebApiPrelude.Types.shadowRoot
+type styleSheet = WebApiPrelude.Types.styleSheet
+type mediaQueryList = WebApiPrelude.Types.mediaQueryList
+type domRect = WebApiPrelude.Types.domRect
+type range = WebApiPrelude.Types.range
+type documentType = WebApiPrelude.Types.documentType
+type cssStyleValue = WebApiPrelude.Types.cssStyleValue
+type treeWalker = WebApiPrelude.Types.treeWalker
+type selection = WebApiPrelude.Types.selection
+type abstractRange = WebApiPrelude.Types.abstractRange
+type htmlOptionsCollection = WebApiPrelude.Types.htmlOptionsCollection
+type styleSheetList = WebApiPrelude.Types.styleSheetList
+type elementInternals = WebApiPrelude.Types.elementInternals
+type nodeFilter = WebApiPrelude.Types.nodeFilter
+type fileList = WebApiPrelude.Types.fileList
+type cssRule = WebApiPrelude.Types.cssRule
+type attr = WebApiPrelude.Types.attr
+type domRectList = WebApiPrelude.Types.domRectList
+type htmlFormControlsCollection = WebApiPrelude.Types.htmlFormControlsCollection
+type domImplementation = WebApiPrelude.Types.domImplementation
+type nodeIterator = WebApiPrelude.Types.nodeIterator
+type xmlDocument = WebApiPrelude.Types.xmlDocument
+type characterData = WebApiPrelude.Types.characterData
+type text = WebApiPrelude.Types.text
+type cdataSection = WebApiPrelude.Types.cdataSection
+type comment = WebApiPrelude.Types.comment
+type processingInstruction = WebApiPrelude.Types.processingInstruction
+type caretPosition = WebApiPrelude.Types.caretPosition
+type htmlTableElement = WebApiPrelude.Types.htmlTableElement
+type htmlOutputElement = WebApiPrelude.Types.htmlOutputElement
+type htmlTableCellElement = WebApiPrelude.Types.htmlTableCellElement
+type htmlHeadElement = WebApiPrelude.Types.htmlHeadElement
+type htmlSelectElement = WebApiPrelude.Types.htmlSelectElement
+type htmlButtonElement = WebApiPrelude.Types.htmlButtonElement
+type htmlTableSectionElement = WebApiPrelude.Types.htmlTableSectionElement
+type htmlOptionElement = WebApiPrelude.Types.htmlOptionElement
+type htmlEmbedElement = WebApiPrelude.Types.htmlEmbedElement
+type htmlTextAreaElement = WebApiPrelude.Types.htmlTextAreaElement
+type htmlTableCaptionElement = WebApiPrelude.Types.htmlTableCaptionElement
+type htmlSlotElement = WebApiPrelude.Types.htmlSlotElement
+type htmlDataListElement = WebApiPrelude.Types.htmlDataListElement
+type htmlInputElement = WebApiPrelude.Types.htmlInputElement
+type htmlScriptElement = WebApiPrelude.Types.htmlScriptElement
+type htmlAnchorElement = WebApiPrelude.Types.htmlAnchorElement
+type htmlTableRowElement = WebApiPrelude.Types.htmlTableRowElement
+type htmlImageElement = WebApiPrelude.Types.htmlImageElement
+type htmlAreaElement = WebApiPrelude.Types.htmlAreaElement
+type videoPlaybackQuality = WebApiPrelude.Types.videoPlaybackQuality
+type idleDeadline = WebApiPrelude.Types.idleDeadline
+type cssRuleList = WebApiPrelude.Types.cssRuleList
+type mediaKeySystemConfiguration = WebApiPrelude.Types.mediaKeySystemConfiguration
 
 /**
-A window containing a DOM document; the document property points to the DOM document loaded in that window.
+A window containing a WebApiDOM document; the document property points to the WebApiDOM document loaded in that window.
 [See Window on MDN](https://developer.mozilla.org/docs/Web/API/Window)
 */
-@editor.completeFrom(Window) type window = Prelude.Types.window
+@editor.completeFrom(Window) type window = WebApiPrelude.Types.window
 
 type shadowRootMode =
   | @as("closed") Closed
@@ -254,11 +254,11 @@ type shareData = {
 }
 
 /**
-@editor.completeFrom(Window) The location (URL) of the object it is linked to. Changes done on it are reflected on the object it relates to. Both the Document and Window interface have such a linked Location, accessible via Document.location and Window.location respectively.
+@editor.completeFrom(Window) The location (WebApiURL) of the object it is linked to. Changes done on it are reflected on the object it relates to. Both the Document and Window interface have such a linked Location, accessible via Document.location and Window.location respectively.
 [See Location on MDN](https://developer.mozilla.org/docs/Web/API/Location)
 */
 @editor.completeFrom(Location)
-type location = Prelude.Types.location = {...Prelude.Types.location}
+type location = WebApiPrelude.Types.location = {...WebApiPrelude.Types.location}
 
 /**
 [See UserActivation on MDN](https://developer.mozilla.org/docs/Web/API/UserActivation)
@@ -279,7 +279,7 @@ The state and the identity of the user agent. It allows scripts to query it and 
 [See Navigator on MDN](https://developer.mozilla.org/docs/Web/API/Navigator)
 */
 @editor.completeFrom(Navigator)
-type navigator = Prelude.Types.navigator
+type navigator = WebApiPrelude.Types.navigator
 
 @editor.completeFrom(DOMTokenList)
 type domTokenList = {
@@ -469,7 +469,7 @@ type htmlMediaElement = {
     */
   error: Null.t<mediaError>,
   /**
-    The address or URL of the a media resource that is to be considered.
+    The address or WebApiURL of the a media resource that is to be considered.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLMediaElement/src)
     */
   mutable src: string,
@@ -478,7 +478,7 @@ type htmlMediaElement = {
     */
   mutable srcObject: Null.t<mediaProvider>,
   /**
-    Gets the address or URL of the current media resource that is selected by IHTMLMediaElement.
+    Gets the address or WebApiURL of the current media resource that is selected by IHTMLMediaElement.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLMediaElement/currentSrc)
     */
   currentSrc: string,
@@ -608,7 +608,7 @@ Contains the base URI for a document. This object inherits all of the propertie
 type htmlBaseElement = {
   ...htmlElement,
   /**
-    Gets or sets the baseline URL on which relative links are based.
+    Gets or sets the baseline WebApiURL on which relative links are based.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLBaseElement/href)
     */
   mutable href: string,
@@ -796,7 +796,7 @@ Provides special properties and methods (beyond those of the HTMLElement interfa
 type htmliFrameElement = {
   ...htmlElement,
   /**
-    Sets or retrieves a URL to be loaded by the object.
+    Sets or retrieves a WebApiURL to be loaded by the object.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLIFrameElement/src)
     */
   mutable src: string,
@@ -883,7 +883,7 @@ Reference information for external resources and the relationship of those resou
 type htmlLinkElement = {
   ...htmlElement,
   /**
-    Sets or retrieves a destination URL or an anchor point.
+    Sets or retrieves a destination WebApiURL or an anchor point.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLLinkElement/href)
     */
   mutable href: string,
@@ -1052,7 +1052,7 @@ Provides special properties and methods (beyond those on the HTMLElement interfa
 type htmlObjectElement = {
   ...htmlElement,
   /**
-    Sets or retrieves the URL that references the data of the object.
+    Sets or retrieves the WebApiURL that references the data of the object.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLObjectElement/data)
     */
   mutable data: string,
@@ -1377,7 +1377,7 @@ type htmlVideoElement = {
     */
   videoHeight: int,
   /**
-    Gets or sets a URL of an image to display, for example, like a movie poster. This can be a still frame from the video, or another image if no video data is available.
+    Gets or sets a WebApiURL of an image to display, for example, like a movie poster. This can be a still frame from the video, or another image if no video data is available.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLVideoElement/poster)
     */
   mutable poster: string,
@@ -1394,7 +1394,7 @@ type htmlVideoElement = {
 type animationEffect = {}
 
 /**
-This interface is a compiled XPath expression that can be evaluated on a document or specific node to return information its DOM tree.
+This interface is a compiled XPath expression that can be evaluated on a document or specific node to return information its WebApiDOM tree.
 [See XPathExpression on MDN](https://developer.mozilla.org/docs/Web/API/XPathExpression)
 */
 @editor.completeFrom(XPathExpression)
@@ -1465,7 +1465,7 @@ type svgAnimatedLength = {
 }
 
 /**
-All of the SVG DOM interfaces that correspond directly to elements in the SVG language derive from the SVGElement interface.
+All of the SVG WebApiDOM interfaces that correspond directly to elements in the SVG language derive from the SVGElement interface.
 [See SVGElement on MDN](https://developer.mozilla.org/docs/Web/API/SVGElement)
 */
 type svgElement = {
@@ -1775,7 +1775,7 @@ type canvasContext2DAttributes = {
 }
 
 /**
-The CanvasRenderingContext2D interface, part of the Canvas API, provides the 2D rendering context for the drawing surface of a <canvas> element. It is used for drawing shapes, text, images, and other objects.
+The CanvasRenderingContext2D interface, part of the WebApiCanvas API, provides the 2D rendering context for the drawing surface of a <canvas> element. It is used for drawing shapes, text, images, and other objects.
 [See CanvasRenderingContext2D on MDN](https://developer.mozilla.org/docs/Web/API/CanvasRenderingContext2D)
 */
 @editor.completeFrom(CanvasRenderingContext2D)

@@ -12,9 +12,9 @@ Provides the API for creating and managing a WebSocket connection to a server, a
 */
 @editor.completeFrom(WebSocket)
 type webSocket = {
-  ...Event.Types.eventTarget,
+  ...WebApiEvent.Types.eventTarget,
   /**
-    Returns the URL that was used to establish the WebSocket connection.
+    Returns the WebApiURL that was used to establish the WebSocket connection.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/WebSocket/url)
     */
   url: string,
@@ -50,12 +50,12 @@ Can be set, to change how binary data is returned. The default is "blob".
 }
 
 /**
-A CloseEvent is sent to clients using WebSockets when the connection is closed. This is delivered to the listener indicated by the WebSocket object's onclose attribute.
+A CloseEvent is sent to clients using WebApiWebSockets when the connection is closed. This is delivered to the listener indicated by the WebSocket object's onclose attribute.
 [See CloseEvent on MDN](https://developer.mozilla.org/docs/Web/API/CloseEvent)
 */
 @editor.completeFrom(CloseEvent)
 type closeEvent = {
-  ...Event.Types.event,
+  ...WebApiEvent.Types.event,
   /**
     Returns true if the connection closed cleanly; false otherwise.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CloseEvent/wasClean)
@@ -78,7 +78,7 @@ A message received by a target object.
 [See MessageEvent on MDN](https://developer.mozilla.org/docs/Web/API/MessageEvent)
 */
 type messageEvent<'t> = {
-  ...Event.Types.event,
+  ...WebApiEvent.Types.event,
   /**
     Returns the data of the message.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/MessageEvent/data)
@@ -103,21 +103,21 @@ type messageEvent<'t> = {
     Returns the MessagePort array sent with the message, for cross-document messaging and channel messaging.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/MessageEvent/ports)
     */
-  ports: array<ChannelMessaging.Types.messagePort>,
+  ports: array<WebApiChannelMessaging.Types.messagePort>,
 }
 
 type closeEventInit = {
-  ...Event.Types.eventInit,
+  ...WebApiEvent.Types.eventInit,
   mutable wasClean?: bool,
   mutable code?: int,
   mutable reason?: string,
 }
 
 type messageEventInit<'t> = {
-  ...Event.Types.eventInit,
+  ...WebApiEvent.Types.eventInit,
   mutable data?: 't,
   mutable origin?: string,
   mutable lastEventId?: string,
   mutable source?: Null.t<messageEventSource>,
-  mutable ports?: array<ChannelMessaging.Types.messagePort>,
+  mutable ports?: array<WebApiChannelMessaging.Types.messagePort>,
 }

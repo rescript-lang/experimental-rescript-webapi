@@ -31,47 +31,47 @@ type gamepadButton = {
 }
 
 /**
-This Gamepad API interface represents hardware in the controller designed to provide haptic feedback to the user (if available), most commonly vibration hardware.
+This WebApiGamepad API interface represents hardware in the controller designed to provide haptic feedback to the user (if available), most commonly vibration hardware.
 [See GamepadHapticActuator on MDN](https://developer.mozilla.org/docs/Web/API/GamepadHapticActuator)
 */
 @editor.completeFrom(GamepadHapticActuator)
 type gamepadHapticActuator = {}
 
 /**
-This Gamepad API interface defines an individual gamepad or other controller, allowing access to information such as button presses, axis positions, and id.
-[See Gamepad on MDN](https://developer.mozilla.org/docs/Web/API/Gamepad)
+This WebApiGamepad API interface defines an individual gamepad or other controller, allowing access to information such as button presses, axis positions, and id.
+[See WebApiGamepad on MDN](https://developer.mozilla.org/docs/Web/API/WebApiGamepad)
 */
 type gamepad = {
   /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Gamepad/id)
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/WebApiGamepad/id)
     */
   id: string,
   /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Gamepad/index)
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/WebApiGamepad/index)
     */
   index: int,
   /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Gamepad/connected)
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/WebApiGamepad/connected)
     */
   connected: bool,
   /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Gamepad/timestamp)
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/WebApiGamepad/timestamp)
     */
   timestamp: float,
   /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Gamepad/mapping)
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/WebApiGamepad/mapping)
     */
   mapping: gamepadMappingType,
   /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Gamepad/axes)
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/WebApiGamepad/axes)
     */
   axes: array<float>,
   /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Gamepad/buttons)
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/WebApiGamepad/buttons)
     */
   buttons: array<gamepadButton>,
   /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Gamepad/vibrationActuator)
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/WebApiGamepad/vibrationActuator)
     */
   vibrationActuator: gamepadHapticActuator,
 }

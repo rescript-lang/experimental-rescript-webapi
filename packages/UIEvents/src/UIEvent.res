@@ -11,7 +11,7 @@ module Impl = (
 ) => {
   external asUIEvent: T.t => Types.uiEvent = "%identity"
 
-  include Event.Event.Impl({type t = T.t})
+  include WebApiEvent.Event.Impl({type t = T.t})
 }
 
 include Impl({type t = Types.uiEvent})

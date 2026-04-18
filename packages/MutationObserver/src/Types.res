@@ -1,7 +1,7 @@
 /**
-[See MutationObserver on MDN](https://developer.mozilla.org/docs/Web/API/MutationObserver)
+[See WebApiMutationObserver on MDN](https://developer.mozilla.org/docs/Web/API/WebApiMutationObserver)
 */
-@editor.completeFrom(MutationObserver)
+@editor.completeFrom(WebApiMutationObserver)
 type mutationObserver
 
 type mutationObserverInit = {
@@ -14,4 +14,4 @@ type mutationObserverInit = {
   mutable attributeFilter?: array<string>,
 }
 
-type mutationObserverCallback = (array<Prelude.Types.mutationRecord>, mutationObserver) => unit
+type mutationObserverCallback = (array<WebApiPrelude.Types.mutationRecord>, mutationObserver) => unit

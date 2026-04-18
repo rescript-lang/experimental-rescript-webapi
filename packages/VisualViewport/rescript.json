@@ -1,5 +1,5 @@
 {
-  "name": "@rescript-webapi/visual-viewport",
+  "name": "@rescript/webapi-visual-viewport",
   "sources": [
     {
       "dir": "src",
@@ -12,7 +12,7 @@
   },
   "suffix": ".js",
   "dependencies": [
-    "@rescript-webapi/event"
+    "@rescript/webapi-event"
   ],
-  "namespace": "VisualViewport"
+  "namespace": "WebApiVisualViewport"
 }

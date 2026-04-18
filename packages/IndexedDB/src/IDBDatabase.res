@@ -1,4 +1,4 @@
-include Event.EventTarget.Impl({type t = Types.idbDatabase})
+include WebApiEvent.EventTarget.Impl({type t = Types.idbDatabase})
 
 /**
 Returns a new transaction with the given mode ("readonly" or "readwrite") and scope which can be a single object store name or an array of names.

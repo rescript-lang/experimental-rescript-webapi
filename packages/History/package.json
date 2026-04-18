@@ -1,5 +1,5 @@
 {
-  "name": "@rescript-webapi/history",
+  "name": "@rescript/webapi-history",
   "version": "0.1.0",
   "license": "MIT",
   "type": "module",

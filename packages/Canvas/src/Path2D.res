@@ -145,5 +145,5 @@ Adds to the path the path given by the argument.
 external addPath: (
   Types.path2D,
   ~path: Types.path2D,
-  ~transform: DOM.Types.domMatrix2DInit=?,
+  ~transform: WebApiDOM.Types.domMatrix2DInit=?,
 ) => unit = "addPath"

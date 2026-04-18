@@ -6,7 +6,7 @@ This Web Speech API interface is the controller interface for the speech service
 */
 @editor.completeFrom(SpeechSynthesis)
 type speechSynthesis = {
-  ...Event.Types.eventTarget,
+  ...WebApiEvent.Types.eventTarget,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/SpeechSynthesis/pending)
     */
@@ -54,7 +54,7 @@ This Web Speech API interface represents a speech request. It contains the conte
 */
 @editor.completeFrom(SpeechSynthesisUtterance)
 type speechSynthesisUtterance = {
-  ...Event.Types.eventTarget,
+  ...WebApiEvent.Types.eventTarget,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/SpeechSynthesisUtterance/text)
     */

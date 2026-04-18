@@ -26,7 +26,7 @@ external location: Types.location = "location"
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/history)
 */
-external history: History.Types.history = "history"
+external history: WebApiHistory.Types.history = "history"
 
 /**
 Defines a new custom element, mapping the given name to the given constructor as an autonomous custom element.
@@ -122,7 +122,7 @@ external screen: Types.screen = "screen"
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/visualViewport)
 */
-external visualViewport: VisualViewport.Types.visualViewport = "visualViewport"
+external visualViewport: WebApiVisualViewport.Types.visualViewport = "visualViewport"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/innerWidth)
@@ -182,7 +182,7 @@ external devicePixelRatio: float = "devicePixelRatio"
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/speechSynthesis)
 */
-external speechSynthesis: WebSpeech.Types.speechSynthesis = "speechSynthesis"
+external speechSynthesis: WebApiWebSpeech.Types.speechSynthesis = "speechSynthesis"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/origin)
@@ -202,32 +202,32 @@ external crossOriginIsolated: bool = "crossOriginIsolated"
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/indexedDB)
 */
-external indexedDB: IndexedDB.Types.idbFactory = "indexedDB"
+external indexedDB: WebApiIndexedDB.Types.idbFactory = "indexedDB"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/crypto)
 */
-external crypto: WebCrypto.Types.crypto = "crypto"
+external crypto: WebApiWebCrypto.Types.crypto = "crypto"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/performance)
 */
-external performance: Performance.Types.performance = "performance"
+external performance: WebApiPerformance.Types.performance = "performance"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/caches)
 */
-external caches: WebWorkers.Types.cacheStorage = "caches"
+external caches: WebApiWebWorkers.Types.cacheStorage = "caches"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/sessionStorage)
 */
-external sessionStorage: WebStorage.Types.storage = "sessionStorage"
+external sessionStorage: WebApiWebStorage.Types.storage = "sessionStorage"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/localStorage)
 */
-external localStorage: WebStorage.Types.storage = "localStorage"
+external localStorage: WebApiWebStorage.Types.storage = "localStorage"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/reportError)
@@ -283,7 +283,7 @@ external queueMicrotask: unit => unit => unit = "queueMicrotask"
 */
 external structuredClone: (
   't,
-  ~options: ChannelMessaging.Types.structuredSerializeOptions=?,
+  ~options: WebApiChannelMessaging.Types.structuredSerializeOptions=?,
 ) => 't = "structuredClone"
 
 /**
@@ -313,9 +313,9 @@ The event listener is appended to target's event listener list and is not append
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/EventTarget/addEventListener)
 */
 external addEventListener: (
-  Event.Types.eventType,
-  Event.Types.eventListener<'event>,
-  ~options: Event.Types.addEventListenerOptions=?,
+  WebApiEvent.Types.eventType,
+  WebApiEvent.Types.eventListener<'event>,
+  ~options: WebApiEvent.Types.addEventListenerOptions=?,
 ) => unit = "addEventListener"
 
 /**
@@ -335,8 +335,8 @@ The event listener is appended to target's event listener list and is not append
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/EventTarget/addEventListener)
 */
 external addEventListenerWithCapture: (
-  Event.Types.eventType,
-  Event.Types.eventListener<'event>,
+  WebApiEvent.Types.eventType,
+  WebApiEvent.Types.eventListener<'event>,
   @as(json`true`) _,
 ) => unit = "addEventListener"
 
@@ -345,9 +345,9 @@ Removes the event listener in target's event listener list with the same type, c
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/EventTarget/removeEventListener)
 */
 external removeEventListener: (
-  Event.Types.eventType,
-  Event.Types.eventListener<'event>,
-  ~options: Event.Types.eventListenerOptions=?,
+  WebApiEvent.Types.eventType,
+  WebApiEvent.Types.eventListener<'event>,
+  ~options: WebApiEvent.Types.eventListenerOptions=?,
 ) => unit = "removeEventListener"
 
 /**
@@ -355,8 +355,8 @@ Removes the event listener in target's event listener list with the same type, c
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/EventTarget/removeEventListener)
 */
 external removeEventListenerUseCapture: (
-  Event.Types.eventType,
-  Event.Types.eventListener<'event>,
+  WebApiEvent.Types.eventType,
+  WebApiEvent.Types.eventListener<'event>,
   @as(json`true`) _,
 ) => unit = "removeEventListener"
 
@@ -364,7 +364,7 @@ external removeEventListenerUseCapture: (
 Dispatches a synthetic event event to target and returns true if either event's cancelable attribute value is false or its preventDefault() method was not invoked, and false otherwise.
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/EventTarget/dispatchEvent)
 */
-external dispatchEvent: Event.Types.event => bool = "dispatchEvent"
+external dispatchEvent: WebApiEvent.Types.event => bool = "dispatchEvent"
 
 /**
 Closes the window.
@@ -415,7 +415,7 @@ external prompt: (~message: string=?, ~default: string=?) => string = "prompt"
 external print: unit => unit = "print"
 
 /**
-Posts a message to the given window. Messages can be structured objects, e.g. nested objects and arrays, can contain JavaScript values (strings, numbers, Date objects, etc), and can contain certain data objects such as File Blob, FileList, and ArrayBuffer objects.
+Posts a message to the given window. Messages can be structured objects, e.g. nested objects and arrays, can contain JavaScript values (strings, numbers, Date objects, etc), and can contain certain data objects such as WebApiFile Blob, FileList, and ArrayBuffer objects.
 
 Objects listed in the transfer member of options are transferred, not just cloned, meaning that they are no longer usable on the sending side.
 
@@ -433,7 +433,7 @@ external postMessage: (
 ) => unit = "postMessage"
 
 /**
-Posts a message to the given window. Messages can be structured objects, e.g. nested objects and arrays, can contain JavaScript values (strings, numbers, Date objects, etc), and can contain certain data objects such as File Blob, FileList, and ArrayBuffer objects.
+Posts a message to the given window. Messages can be structured objects, e.g. nested objects and arrays, can contain JavaScript values (strings, numbers, Date objects, etc), and can contain certain data objects such as WebApiFile Blob, FileList, and ArrayBuffer objects.
 
 Objects listed in the transfer member of options are transferred, not just cloned, meaning that they are no longer usable on the sending side.
 

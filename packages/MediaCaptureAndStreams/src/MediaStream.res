@@ -16,7 +16,7 @@ external make2: Types.mediaStream => Types.mediaStream = "MediaStream"
 @new
 external make3: array<Types.mediaStreamTrack> => Types.mediaStream = "MediaStream"
 
-include Event.EventTarget.Impl({type t = Types.mediaStream})
+include WebApiEvent.EventTarget.Impl({type t = Types.mediaStream})
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/MediaStream/getAudioTracks)

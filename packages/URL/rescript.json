@@ -1,5 +1,5 @@
 {
-  "name": "@rescript-webapi/url",
+  "name": "@rescript/webapi-url",
   "sources": [
     {
       "dir": "src",
@@ -12,5 +12,5 @@
   },
   "suffix": ".js",
   "dependencies": [],
-  "namespace": "URL"
+  "namespace": "WebApiURL"
 }

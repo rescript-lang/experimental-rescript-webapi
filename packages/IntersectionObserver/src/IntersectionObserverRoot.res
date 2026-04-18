@@ -1,19 +1,19 @@
-external fromDocument: DOM.Types.document => Types.root = "%identity"
-external fromElement: DOM.Types.element => Types.root = "%identity"
+external fromDocument: WebApiDOM.Types.document => Types.root = "%identity"
+external fromElement: WebApiDOM.Types.element => Types.root = "%identity"
 external fromNull: Types.root = "null"
 
-external toElement: Types.root => DOM.Types.element = "%identity"
-external toDocument: Types.root => DOM.Types.document = "%identity"
+external toElement: Types.root => WebApiDOM.Types.element = "%identity"
+external toDocument: Types.root => WebApiDOM.Types.document = "%identity"
 
 type decoded =
-  | Element(DOM.Types.element)
-  | Document(DOM.Types.document)
+  | Element(WebApiDOM.Types.element)
+  | Document(WebApiDOM.Types.document)
   | Null
 
 let decode = (t: Types.root): decoded => {
-  if DOM.Element.isInstanceOf(t) {
+  if WebApiDOM.Element.isInstanceOf(t) {
     Element(t->toElement)
-  } else if DOM.Document.isInstanceOf(t) {
+  } else if WebApiDOM.Document.isInstanceOf(t) {
     Document(t->toDocument)
   } else {
     Null

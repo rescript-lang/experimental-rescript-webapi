@@ -6,15 +6,15 @@ Invokes the callback with the string data as the argument, if the drag data item
 external getAsString: (Types.dataTransferItem, string => unit) => unit = "getAsString"
 
 /**
-Returns a File object, if the drag data item kind is File.File.
+Returns a WebApiFile object, if the drag data item kind is WebApiFile.File.
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/DataTransferItem/getAsFile)
 */
 @send
-external getAsFile: Types.dataTransferItem => File.Types.file = "getAsFile"
+external getAsFile: Types.dataTransferItem => WebApiFile.Types.file = "getAsFile"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/DataTransferItem/webkitGetAsEntry)
 */
 @send
-external webkitGetAsEntry: Types.dataTransferItem => FileAndDirectoryEntries.Types.fileSystemEntry =
+external webkitGetAsEntry: Types.dataTransferItem => WebApiFileAndDirectoryEntries.Types.fileSystemEntry =
   "webkitGetAsEntry"

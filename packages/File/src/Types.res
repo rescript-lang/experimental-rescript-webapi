@@ -16,11 +16,11 @@ type writeCommandType =
   | @as("write") Write
 
 /**
-A file-like object of immutable, raw data. Blobs represent data that isn't necessarily in a JavaScript-native format. The File interface is based on Blob, inheriting blob functionality and expanding it to support files on the user's system.
+A file-like object of immutable, raw data. Blobs represent data that isn't necessarily in a JavaScript-native format. The WebApiFile interface is based on Blob, inheriting blob functionality and expanding it to support files on the user's system.
 [See Blob on MDN](https://developer.mozilla.org/docs/Web/API/Blob)
 */
 @editor.completeFrom(Blob)
-type blob = Prelude.Types.blob = {
+type blob = WebApiPrelude.Types.blob = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Blob/size)
     */
@@ -33,7 +33,7 @@ type blob = Prelude.Types.blob = {
 }
 
 /**
-This Streams API interface represents a readable stream of byte data. The Fetch API offers a concrete instance of a ReadableStream through the body property of a Response object.
+This Streams API interface represents a readable stream of byte data. The WebApiFetch API offers a concrete instance of a ReadableStream through the body property of a Response object.
 [See ReadableStream on MDN](https://developer.mozilla.org/docs/Web/API/ReadableStream)
 */
 type readableStream<'r> = {
@@ -63,26 +63,26 @@ type writableStreamDefaultController = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/WritableStreamDefaultController/signal)
     */
-  signal: Event.Types.abortSignal,
+  signal: WebApiEvent.Types.abortSignal,
 }
 
 /**
 Provides information about files and allows JavaScript in a web page to access their content.
-[See File on MDN](https://developer.mozilla.org/docs/Web/API/File)
+[See WebApiFile on MDN](https://developer.mozilla.org/docs/Web/API/WebApiFile)
 */
-@editor.completeFrom(File)
-type file = Prelude.Types.file = {
+@editor.completeFrom(WebApiFile)
+type file = WebApiPrelude.Types.file = {
   ...blob,
   /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/File/name)
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/WebApiFile/name)
     */
   name: string,
   /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/File/lastModified)
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/WebApiFile/lastModified)
     */
   lastModified: int,
   /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/File/webkitRelativePath)
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/WebApiFile/webkitRelativePath)
     */
   webkitRelativePath: string,
 }
@@ -193,12 +193,12 @@ When this source readable stream closes, destination will be closed, unless prev
 
 If destination starts out closed or closing, this source readable stream will be canceled, unless preventCancel is true. The returned promise will be rejected with an error indicating piping to a closed stream failed, or with any error that occurs during canceling the source.
 
-The signal option can be set to an AbortSignal to allow aborting an ongoing pipe operation via the corresponding Event.Event.AbortController. In this case, this source readable stream will be canceled, and destination aborted, unless the respective options preventCancel or preventAbort are set.
+The signal option can be set to an AbortSignal to allow aborting an ongoing pipe operation via the corresponding WebApiEvent.Event.AbortController. In this case, this source readable stream will be canceled, and destination aborted, unless the respective options preventCancel or preventAbort are set.
     */
   mutable preventClose?: bool,
   mutable preventAbort?: bool,
   mutable preventCancel?: bool,
-  mutable signal?: Event.Types.abortSignal,
+  mutable signal?: WebApiEvent.Types.abortSignal,
 }
 
 type filePropertyBag = {

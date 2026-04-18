@@ -7,13 +7,13 @@ type fontDisplay =
   | @as("optional") Optional
   | @as("swap") Swap
 
-type fontFaceLoadStatus = Prelude.Types.fontFaceLoadStatus =
+type fontFaceLoadStatus = WebApiPrelude.Types.fontFaceLoadStatus =
   | @as("error") Error
   | @as("loaded") Loaded
   | @as("loading") Loading
   | @as("unloaded") Unloaded
 
-type fontFaceSetLoadStatus = Prelude.Types.fontFaceSetLoadStatus =
+type fontFaceSetLoadStatus = WebApiPrelude.Types.fontFaceSetLoadStatus =
   | @as("loaded") Loaded
   | @as("loading") Loading
 
@@ -76,7 +76,7 @@ type rec fontFace = {
 [See FontFaceSet on MDN](https://developer.mozilla.org/docs/Web/API/FontFaceSet)
 */
 @editor.completeFrom(FontFaceSet)
-type fontFaceSet = Prelude.Types.fontFaceSet
+type fontFaceSet = WebApiPrelude.Types.fontFaceSet
 
 type fontFaceDescriptors = {
   mutable style?: string,

@@ -1,5 +1,5 @@
 {
-  "name": "@rescript-webapi/web-crypto",
+  "name": "@rescript/webapi-web-crypto",
   "sources": [
     {
       "dir": "src",
@@ -12,7 +12,7 @@
   },
   "suffix": ".js",
   "dependencies": [
-    "@rescript-webapi/prelude"
+    "@rescript/webapi-prelude"
   ],
-  "namespace": "WebCrypto"
+  "namespace": "WebApiWebCrypto"
 }

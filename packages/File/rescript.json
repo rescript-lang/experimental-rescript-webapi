@@ -1,5 +1,5 @@
 {
-  "name": "@rescript-webapi/file",
+  "name": "@rescript/webapi-file",
   "sources": [
     {
       "dir": "src",
@@ -12,8 +12,8 @@
   },
   "suffix": ".js",
   "dependencies": [
-    "@rescript-webapi/event",
-    "@rescript-webapi/prelude"
+    "@rescript/webapi-event",
+    "@rescript/webapi-prelude"
   ],
-  "namespace": "File"
+  "namespace": "WebApiFile"
 }

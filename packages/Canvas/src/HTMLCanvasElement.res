@@ -1,4 +1,4 @@
-include DOM.HTMLElement.Impl({type t = DOM.Types.htmlCanvasElement})
+include WebApiDOM.HTMLElement.Impl({type t = WebApiDOM.Types.htmlCanvasElement})
 
 /**
 Returns an object that provides methods and properties for drawing and manipulating images and graphics on a canvas element in a document. A context object includes information about colors, line widths, fonts, and other graphic parameters that can be drawn on a canvas.
@@ -8,10 +8,10 @@ Creates a CanvasRenderingContext2D object representing a two-dimensional renderi
 */
 @send
 external getContext2D: (
-  DOM.Types.htmlCanvasElement,
+  WebApiDOM.Types.htmlCanvasElement,
   @as("2d") _,
   ~options: Types.canvasRenderingContext2DSettings=?,
-) => DOM.Types.canvasRenderingContext2D = "getContext"
+) => WebApiDOM.Types.canvasRenderingContext2D = "getContext"
 
 /**
 Returns an object that provides methods and properties for drawing and manipulating images and graphics on a canvas element in a document. A context object includes information about colors, line widths, fonts, and other graphic parameters that can be drawn on a canvas.
@@ -20,7 +20,7 @@ Returns an object that provides methods and properties for drawing and manipulat
 */
 @send
 external getContextWebGL: (
-  DOM.Types.htmlCanvasElement,
+  WebApiDOM.Types.htmlCanvasElement,
   @as("webgl") _,
   ~options: Types.webGLContextAttributes=?,
 ) => Types.webGLRenderingContext = "getContext"
@@ -32,7 +32,7 @@ Returns an object that provides methods and properties for drawing and manipulat
 */
 @send
 external getContextWebGL2: (
-  DOM.Types.htmlCanvasElement,
+  WebApiDOM.Types.htmlCanvasElement,
   @as("webgl2") _,
   ~options: Types.webGLContextAttributes=?,
 ) => Types.webGL2RenderingContext = "getContext"
@@ -44,7 +44,7 @@ Returns an object that provides methods and properties for drawing and manipulat
 */
 @send
 external getContextBitmapRenderer: (
-  DOM.Types.htmlCanvasElement,
+  WebApiDOM.Types.htmlCanvasElement,
   @as("bitmaprenderer") _,
   ~options: Types.imageBitmapRenderingContextSettings=?,
 ) => Types.imageBitmapRenderingContext = "getContext"
@@ -55,7 +55,7 @@ Returns the content of the current canvas as an image that you can use as a sour
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLCanvasElement/toDataURL)
 */
 @send
-external toDataURL: (DOM.Types.htmlCanvasElement, ~type_: string=?, ~quality: JSON.t=?) => string =
+external toDataURL: (WebApiDOM.Types.htmlCanvasElement, ~type_: string=?, ~quality: JSON.t=?) => string =
   "toDataURL"
 
 /**
@@ -63,8 +63,8 @@ external toDataURL: (DOM.Types.htmlCanvasElement, ~type_: string=?, ~quality: JS
 */
 @send
 external toBlob: (
-  DOM.Types.htmlCanvasElement,
-  ~callback: File.Types.blob => unit,
+  WebApiDOM.Types.htmlCanvasElement,
+  ~callback: WebApiFile.Types.blob => unit,
   ~type_: string=?,
   ~quality: JSON.t=?,
 ) => unit = "toBlob"
@@ -73,7 +73,7 @@ external toBlob: (
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLCanvasElement/transferControlToOffscreen)
 */
 @send
-external transferControlToOffscreen: DOM.Types.htmlCanvasElement => Types.offscreenCanvas =
+external transferControlToOffscreen: WebApiDOM.Types.htmlCanvasElement => Types.offscreenCanvas =
   "transferControlToOffscreen"
 
 /**
@@ -81,6 +81,6 @@ external transferControlToOffscreen: DOM.Types.htmlCanvasElement => Types.offscr
 */
 @send
 external captureStream: (
-  DOM.Types.htmlCanvasElement,
+  WebApiDOM.Types.htmlCanvasElement,
   ~frameRequestRate: float=?,
-) => MediaCaptureAndStreams.Types.mediaStream = "captureStream"
+) => WebApiMediaCaptureAndStreams.Types.mediaStream = "captureStream"

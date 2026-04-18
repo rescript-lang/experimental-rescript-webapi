@@ -34,20 +34,20 @@ external fromDataView: (DataView.t, ~init: Types.responseInit=?) => Types.respon
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Response)
 */
 @new
-external fromBlob: (File.Types.blob, ~init: Types.responseInit=?) => Types.response = "Response"
+external fromBlob: (WebApiFile.Types.blob, ~init: Types.responseInit=?) => Types.response = "Response"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Response)
 */
 @new
-external fromFile: (File.Types.file, ~init: Types.responseInit=?) => Types.response = "Response"
+external fromFile: (WebApiFile.Types.file, ~init: Types.responseInit=?) => Types.response = "Response"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Response)
 */
 @new
 external fromURLSearchParams: (
-  URL.Types.urlSearchParams,
+  WebApiURL.Types.urlSearchParams,
   ~init: Types.responseInit=?,
 ) => Types.response = "Response"
 
@@ -62,7 +62,7 @@ external fromFormData: (Types.formData, ~init: Types.responseInit=?) => Types.re
 */
 @new
 external fromReadableStream: (
-  File.Types.readableStream<'t>,
+  WebApiFile.Types.readableStream<'t>,
   ~init: Types.responseInit=?,
 ) => Types.response = "Response"
 
@@ -76,7 +76,7 @@ external arrayBuffer: Types.response => promise<ArrayBuffer.t> = "arrayBuffer"
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Request/blob)
 */
 @send
-external blob: Types.response => promise<File.Types.blob> = "blob"
+external blob: Types.response => promise<WebApiFile.Types.blob> = "blob"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Request/bytes)

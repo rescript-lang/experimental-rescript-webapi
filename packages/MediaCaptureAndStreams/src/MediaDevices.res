@@ -1,4 +1,4 @@
-include Event.EventTarget.Impl({type t = Types.mediaDevices})
+include WebApiEvent.EventTarget.Impl({type t = Types.mediaDevices})
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/MediaDevices/enumerateDevices)

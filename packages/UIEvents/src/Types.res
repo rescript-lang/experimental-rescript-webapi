@@ -10,11 +10,11 @@ Simple user interface events.
 */
 @editor.completeFrom(UIEvent)
 type uiEvent = {
-  ...Event.Types.event,
+  ...WebApiEvent.Types.event,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/UIEvent/view)
     */
-  view: Null.t<Prelude.Types.window>,
+  view: Null.t<WebApiPrelude.Types.window>,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/UIEvent/detail)
     */
@@ -22,7 +22,7 @@ type uiEvent = {
 }
 
 /**
-The DOM CompositionEvent represents events that occur due to the user indirectly entering text.
+The WebApiDOM CompositionEvent represents events that occur due to the user indirectly entering text.
 [See CompositionEvent on MDN](https://developer.mozilla.org/docs/Web/API/CompositionEvent)
 */
 @editor.completeFrom(CompositionEvent)
@@ -44,7 +44,7 @@ type focusEvent = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/FocusEvent/relatedTarget)
     */
-  relatedTarget: Null.t<Event.Types.eventTarget>,
+  relatedTarget: Null.t<WebApiEvent.Types.eventTarget>,
 }
 
 /**
@@ -117,7 +117,7 @@ The possible values are "none", "copy", "copyLink", "copyMove", "link", "linkMov
     Returns a FileList of the files being dragged, if any.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/DataTransfer/files)
     */
-  files: DOM.Types.fileList,
+  files: WebApiDOM.Types.fileList,
 }
 
 /**
@@ -247,7 +247,7 @@ type mouseEvent = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/MouseEvent/relatedTarget)
     */
-  relatedTarget: Null.t<Event.Types.eventTarget>,
+  relatedTarget: Null.t<WebApiEvent.Types.eventTarget>,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/MouseEvent/pageX)
     */
@@ -320,7 +320,7 @@ type touch = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Touch/target)
     */
-  target: Event.Types.eventTarget,
+  target: WebApiEvent.Types.eventTarget,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Touch/screenX)
     */
@@ -413,7 +413,7 @@ type touchEvent = {
 }
 
 /**
-The state of a DOM event produced by a pointer such as the geometry of the contact point, the device type that generated the event, the amount of pressure that was applied on the contact surface, etc.
+The state of a WebApiDOM event produced by a pointer such as the geometry of the contact point, the device type that generated the event, the amount of pressure that was applied on the contact surface, etc.
 [See PointerEvent on MDN](https://developer.mozilla.org/docs/Web/API/PointerEvent)
 */
 @editor.completeFrom(PointerEvent)
@@ -470,8 +470,8 @@ type pointerEvent = {
 }
 
 type uiEventInit = {
-  ...Event.Types.eventInit,
-  mutable view?: Null.t<Prelude.Types.window>,
+  ...WebApiEvent.Types.eventInit,
+  mutable view?: Null.t<WebApiPrelude.Types.window>,
   mutable detail?: int,
   mutable which?: int,
 }
@@ -502,14 +502,14 @@ type mouseEventInit = {
   mutable clientY?: int,
   mutable button?: int,
   mutable buttons?: int,
-  mutable relatedTarget?: Null.t<Event.Types.eventTarget>,
+  mutable relatedTarget?: Null.t<WebApiEvent.Types.eventTarget>,
   mutable movementX?: float,
   mutable movementY?: float,
 }
 
 type focusEventInit = {
   ...uiEventInit,
-  mutable relatedTarget?: Null.t<Event.Types.eventTarget>,
+  mutable relatedTarget?: Null.t<WebApiEvent.Types.eventTarget>,
 }
 
 type compositionEventInit = {
@@ -542,12 +542,12 @@ type inputEventInit = {
   mutable isComposing?: bool,
   mutable inputType?: string,
   mutable dataTransfer?: Null.t<dataTransfer>,
-  mutable targetRanges?: array<Prelude.Types.staticRange>,
+  mutable targetRanges?: array<WebApiPrelude.Types.staticRange>,
 }
 
 type touchInit = {
   mutable identifier: int,
-  mutable target: Event.Types.eventTarget,
+  mutable target: WebApiEvent.Types.eventTarget,
   mutable clientX?: float,
   mutable clientY?: float,
   mutable screenX?: float,

@@ -1,5 +1,5 @@
 {
-  "name": "@rescript-webapi/web-sockets",
+  "name": "@rescript/webapi-web-sockets",
   "sources": [
     {
       "dir": "src",
@@ -12,9 +12,9 @@
   },
   "suffix": ".js",
   "dependencies": [
-    "@rescript-webapi/channel-messaging",
-    "@rescript-webapi/event",
-    "@rescript-webapi/file"
+    "@rescript/webapi-channel-messaging",
+    "@rescript/webapi-event",
+    "@rescript/webapi-file"
   ],
-  "namespace": "WebSockets"
+  "namespace": "WebApiWebSockets"
 }

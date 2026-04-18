@@ -1,14 +1,14 @@
 @@warning("-30")
 
 /**
-This Web Storage API interface provides access to a particular domain's session or local storage. It allows, for example, the addition, modification, or deletion of stored data items.
-[See Storage on MDN](https://developer.mozilla.org/docs/Web/API/Storage)
+This Web WebApiStorage API interface provides access to a particular domain's session or local storage. It allows, for example, the addition, modification, or deletion of stored data items.
+[See WebApiStorage on MDN](https://developer.mozilla.org/docs/Web/API/WebApiStorage)
 */
-@editor.completeFrom(Storage)
+@editor.completeFrom(WebApiStorage)
 type storage = {
   /**
     Returns the number of key/value pairs.
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Storage/length)
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/WebApiStorage/length)
     */
   length: int,
 }
@@ -19,7 +19,7 @@ A StorageEvent is sent to a window when a storage area it has access to is chang
 */
 @editor.completeFrom(StorageEvent)
 type storageEvent = {
-  ...Event.Types.event,
+  ...WebApiEvent.Types.event,
   /**
     Returns the key of the storage item being changed.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/StorageEvent/key)
@@ -36,19 +36,19 @@ type storageEvent = {
     */
   newValue: Null.t<string>,
   /**
-    Returns the URL of the document whose storage item changed.
+    Returns the WebApiURL of the document whose storage item changed.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/StorageEvent/url)
     */
   url: string,
   /**
-    Returns the Storage object that was affected.
+    Returns the WebApiStorage object that was affected.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/StorageEvent/storageArea)
     */
   storageArea: Null.t<storage>,
 }
 
 type storageEventInit = {
-  ...Event.Types.eventInit,
+  ...WebApiEvent.Types.eventInit,
   mutable key?: Null.t<string>,
   mutable oldValue?: Null.t<string>,
   mutable newValue?: Null.t<string>,

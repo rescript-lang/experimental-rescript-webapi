@@ -30,7 +30,7 @@ TextTrackCues represent a string of text that will be displayed for some duratio
 */
 @editor.completeFrom(TextTrack)
 type rec textTrackCue = {
-  ...Event.Types.eventTarget,
+  ...WebApiEvent.Types.eventTarget,
   /**
     Returns the TextTrack object to which this text track cue belongs, if any, or null otherwise.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/TextTrackCue/track)
@@ -67,11 +67,11 @@ Can be set.
 }
 
 /**
-This interface also inherits properties from Event.EventTarget.
+This interface also inherits properties from WebApiEvent.EventTarget.
 [See TextTrack on MDN](https://developer.mozilla.org/docs/Web/API/TextTrack)
 */
 @editor.completeFrom(TextTrack) and textTrack = {
-  ...Event.Types.eventTarget,
+  ...WebApiEvent.Types.eventTarget,
   /**
     Returns the text track kind string.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/TextTrack/kind)

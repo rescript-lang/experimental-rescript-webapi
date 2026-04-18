@@ -1,7 +1,7 @@
-include Event.EventTarget.Impl({type t = Types.textTrackList})
+include WebApiEvent.EventTarget.Impl({type t = Types.textTrackList})
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/TextTrackList/getTrackById)
 */
 @send
-external getTrackById: (Types.textTrackList, string) => WebVTT.Types.textTrack = "getTrackById"
+external getTrackById: (Types.textTrackList, string) => WebApiWebVTT.Types.textTrack = "getTrackById"

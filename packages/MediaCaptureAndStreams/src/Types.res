@@ -15,7 +15,7 @@ Provides access to connected media input devices like cameras and microphones, a
 */
 @editor.completeFrom(MediaDevices)
 type mediaDevices = {
-  ...Event.Types.eventTarget,
+  ...WebApiEvent.Types.eventTarget,
 }
 
 /**
@@ -48,7 +48,7 @@ A stream of media content. A stream consists of several tracks such as video or
 */
 @editor.completeFrom(MediaStream)
 type mediaStream = {
-  ...Event.Types.eventTarget,
+  ...WebApiEvent.Types.eventTarget,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/MediaStream/id)
     */
@@ -65,7 +65,7 @@ A single media track within a stream; typically, these are audio or video tracks
 */
 @editor.completeFrom(MediaStreamTrack)
 type mediaStreamTrack = {
-  ...Event.Types.eventTarget,
+  ...WebApiEvent.Types.eventTarget,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/MediaStreamTrack/kind)
     */

@@ -19,7 +19,7 @@ external matchAll: (Types.clients, ~options: clientQueryOptions=?) => promise<ar
   "matchAll"
 
 /**
-Opens a new browser window for a given URL and returns a `Promise` for the new `WindowClient`.
+Opens a new browser window for a given WebApiURL and returns a `Promise` for the new `WindowClient`.
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Clients/openWindow)
 */
 @send

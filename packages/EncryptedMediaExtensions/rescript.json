@@ -1,5 +1,5 @@
 {
-  "name": "@rescript-webapi/encrypted-media-extensions",
+  "name": "@rescript/webapi-encrypted-media-extensions",
   "sources": [
     {
       "dir": "src",
@@ -12,9 +12,9 @@
   },
   "suffix": ".js",
   "dependencies": [
-    "@rescript-webapi/dom",
-    "@rescript-webapi/event",
-    "@rescript-webapi/prelude"
+    "@rescript/webapi-dom",
+    "@rescript/webapi-event",
+    "@rescript/webapi-prelude"
   ],
-  "namespace": "EncryptedMediaExtensions"
+  "namespace": "WebApiEncryptedMediaExtensions"
 }

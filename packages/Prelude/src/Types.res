@@ -37,10 +37,10 @@ type domStringList = {
 type window
 
 /**
-EventTarget is a DOM interface implemented by objects that can receive events and may have listeners for them.
+EventTarget is a WebApiDOM interface implemented by objects that can receive events and may have listeners for them.
 [See EventTarget on MDN](https://developer.mozilla.org/docs/Web/API/EventTarget)
 */
-@editor.completeFrom(Event.EventTarget)
+@editor.completeFrom(WebApiEvent.EventTarget)
 type eventTarget = {}
 
 type fontFaceLoadStatus =
@@ -56,7 +56,7 @@ type fontFaceSetLoadStatus =
 /**
 [See FontFaceSet on MDN](https://developer.mozilla.org/docs/Web/API/FontFaceSet)
 */
-@editor.completeFrom(CSSFontLoading.FontFaceSet)
+@editor.completeFrom(WebApiCSSFontLoading.FontFaceSet)
 type rec fontFaceSet = {
   ...eventTarget,
   /**
@@ -72,7 +72,7 @@ type rec fontFaceSet = {
 /**
 [See FileSystemEntry on MDN](https://developer.mozilla.org/docs/Web/API/FileSystemEntry)
 */
-@editor.completeFrom(FileAndDirectoryEntries.FileSystemEntry)
+@editor.completeFrom(WebApiFileAndDirectoryEntries.FileSystemEntry)
 type rec fileSystemEntry = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/FileSystemEntry/isFile)
@@ -139,10 +139,10 @@ and fileSystem = {
 }
 
 /**
-A file-like object of immutable, raw data. Blobs represent data that isn't necessarily in a JavaScript-native format. The File interface is based on Blob, inheriting blob functionality and expanding it to support files on the user's system.
+A file-like object of immutable, raw data. Blobs represent data that isn't necessarily in a JavaScript-native format. The WebApiFile interface is based on Blob, inheriting blob functionality and expanding it to support files on the user's system.
 [See Blob on MDN](https://developer.mozilla.org/docs/Web/API/Blob)
 */
-@editor.completeFrom(DOM.DOM.File.Blob)
+@editor.completeFrom(WebApiDOM.DOM.File.Blob)
 type blob = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Blob/size)
@@ -157,21 +157,21 @@ type blob = {
 
 /**
 Provides information about files and allows JavaScript in a web page to access their content.
-[See File on MDN](https://developer.mozilla.org/docs/Web/API/File)
+[See WebApiFile on MDN](https://developer.mozilla.org/docs/Web/API/WebApiFile)
 */
-@editor.completeFrom(File.File)
+@editor.completeFrom(WebApiFile.File)
 type file = {
   ...blob,
   /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/File/name)
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/WebApiFile/name)
     */
   name: string,
   /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/File/lastModified)
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/WebApiFile/lastModified)
     */
   lastModified: int,
   /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/File/webkitRelativePath)
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/WebApiFile/webkitRelativePath)
     */
   webkitRelativePath: string,
 }
@@ -346,69 +346,69 @@ type shareData = {
 }
 
 /**
-The location (URL) of the object it is linked to. Changes done on it are reflected on the object it relates to. Both the Document and Window interface have such a linked Location, accessible via Document.location and Window.location respectively.
+The location (WebApiURL) of the object it is linked to. Changes done on it are reflected on the object it relates to. Both the Document and Window interface have such a linked Location, accessible via Document.location and Window.location respectively.
 [See Location on MDN](https://developer.mozilla.org/docs/Web/API/Location)
 */
-@editor.completeFrom(DOM.Location)
+@editor.completeFrom(WebApiDOM.Location)
 type location = {
   /**
-    Returns the Location object's URL.
+    Returns the Location object's WebApiURL.
 
-Can be set, to navigate to the given URL.
+Can be set, to navigate to the given WebApiURL.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Location/href)
     */
   mutable href: string,
   /**
-    Returns the Location object's URL's origin.
+    Returns the Location object's WebApiURL's origin.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Location/origin)
     */
   origin: string,
   /**
-    Returns the Location object's URL's scheme.
+    Returns the Location object's WebApiURL's scheme.
 
-Can be set, to navigate to the same URL with a changed scheme.
+Can be set, to navigate to the same WebApiURL with a changed scheme.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Location/protocol)
     */
   mutable protocol: string,
   /**
-    Returns the Location object's URL's host and port (if different from the default port for the scheme).
+    Returns the Location object's WebApiURL's host and port (if different from the default port for the scheme).
 
-Can be set, to navigate to the same URL with a changed host and port.
+Can be set, to navigate to the same WebApiURL with a changed host and port.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Location/host)
     */
   mutable host: string,
   /**
-    Returns the Location object's URL's host.
+    Returns the Location object's WebApiURL's host.
 
-Can be set, to navigate to the same URL with a changed host.
+Can be set, to navigate to the same WebApiURL with a changed host.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Location/hostname)
     */
   mutable hostname: string,
   /**
-    Returns the Location object's URL's port.
+    Returns the Location object's WebApiURL's port.
 
-Can be set, to navigate to the same URL with a changed port.
+Can be set, to navigate to the same WebApiURL with a changed port.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Location/port)
     */
   mutable port: string,
   /**
-    Returns the Location object's URL's path.
+    Returns the Location object's WebApiURL's path.
 
-Can be set, to navigate to the same URL with a changed path.
+Can be set, to navigate to the same WebApiURL with a changed path.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Location/pathname)
     */
   mutable pathname: string,
   /**
-    Returns the Location object's URL's query (includes leading "?" if non-empty).
+    Returns the Location object's WebApiURL's query (includes leading "?" if non-empty).
 
-Can be set, to navigate to the same URL with a changed query (ignores leading "?").
+Can be set, to navigate to the same WebApiURL with a changed query (ignores leading "?").
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Location/search)
     */
   mutable search: string,
   /**
-    Returns the Location object's URL's fragment (includes leading "#" if non-empty).
+    Returns the Location object's WebApiURL's fragment (includes leading "#" if non-empty).
 
-Can be set, to navigate to the same URL with a changed fragment (ignores leading "#").
+Can be set, to navigate to the same WebApiURL with a changed fragment (ignores leading "#").
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Location/hash)
     */
   mutable hash: string,
@@ -437,10 +437,10 @@ type userActivation = {
 The state and the identity of the user agent. It allows scripts to query it and to register themselves to carry on some activities.
 [See Navigator on MDN](https://developer.mozilla.org/docs/Web/API/Navigator)
 */
-@editor.completeFrom(DOM.Navigator)
+@editor.completeFrom(WebApiDOM.Navigator)
 type navigator
 
-@editor.completeFrom(DOM.DOMTokenList)
+@editor.completeFrom(WebApiDOM.DOMTokenList)
 type domTokenList = {
   /**
     Returns the number of tokens.
@@ -460,7 +460,7 @@ Can be set, to change the associated attribute.
 A collection of Attr objects. Objects inside a NamedNodeMap are not in any particular order, unlike NodeList, although they may be accessed by an index as in an array.
 [See NamedNodeMap on MDN](https://developer.mozilla.org/docs/Web/API/NamedNodeMap)
 */
-@editor.completeFrom(DOM.DOM.NamedNodeMap)
+@editor.completeFrom(WebApiDOM.DOM.NamedNodeMap)
 type namedNodeMap = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/NamedNodeMap/length)
@@ -476,7 +476,7 @@ type fragmentDirective = {}
 /**
 [See CustomElementRegistry on MDN](https://developer.mozilla.org/docs/Web/API/CustomElementRegistry)
 */
-@editor.completeFrom(DOM.DOM.CustomElementRegistry)
+@editor.completeFrom(WebApiDOM.DOM.CustomElementRegistry)
 type customElementRegistry = {}
 
 /**
@@ -492,7 +492,7 @@ type barProp = {
 /**
 [See ScreenOrientation on MDN](https://developer.mozilla.org/docs/Web/API/ScreenOrientation)
 */
-@editor.completeFrom(DOM.DOM.ScreenOrientation)
+@editor.completeFrom(WebApiDOM.DOM.ScreenOrientation)
 type screenOrientation = {
   ...eventTarget,
   /**
@@ -553,7 +553,7 @@ type offscreenRenderingContext = unknown
 /**
 [See AnimationTimeline on MDN](https://developer.mozilla.org/docs/Web/API/AnimationTimeline)
 */
-@editor.completeFrom(DOM.DOM.Animation)
+@editor.completeFrom(WebApiDOM.DOM.Animation)
 type rec animationTimeline = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/AnimationTimeline/currentTime)
@@ -564,7 +564,7 @@ type rec animationTimeline = {
 /**
 [See DocumentTimeline on MDN](https://developer.mozilla.org/docs/Web/API/DocumentTimeline)
 */
-@editor.completeFrom(DOM.DOM.DocumentTimeline) and documentTimeline = {
+@editor.completeFrom(WebApiDOM.DOM.DocumentTimeline) and documentTimeline = {
   // Base properties from AnimationTimeline
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/AnimationTimeline/currentTime)
@@ -576,7 +576,7 @@ type rec animationTimeline = {
 /**
 [See MediaList on MDN](https://developer.mozilla.org/docs/Web/API/MediaList)
 */
-@editor.completeFrom(DOM.DOM.MediaList)
+@editor.completeFrom(WebApiDOM.DOM.MediaList)
 type mediaList = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/MediaList/mediaText)
@@ -591,7 +591,7 @@ type mediaList = {
 /**
 [See StylePropertyMapReadOnly on MDN](https://developer.mozilla.org/docs/Web/API/StylePropertyMapReadOnly)
 */
-@editor.completeFrom(DOM.DOM.StylePropertyMapReadOnly)
+@editor.completeFrom(WebApiDOM.DOM.StylePropertyMapReadOnly)
 type stylePropertyMapReadOnly = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/StylePropertyMapReadOnly/size)
@@ -602,7 +602,7 @@ type stylePropertyMapReadOnly = {
 /**
 [See StylePropertyMap on MDN](https://developer.mozilla.org/docs/Web/API/StylePropertyMap)
 */
-@editor.completeFrom(DOM.DOM.StylePropertyMap)
+@editor.completeFrom(WebApiDOM.DOM.StylePropertyMap)
 type stylePropertyMap = {
   ...stylePropertyMapReadOnly,
 }
@@ -617,7 +617,7 @@ type domStringMap = {}
 A list of StyleSheet.
 [See StyleSheetList on MDN](https://developer.mozilla.org/docs/Web/API/StyleSheetList)
 */
-@editor.completeFrom(DOM.DOM.StyleSheetList)
+@editor.completeFrom(WebApiDOM.DOM.StyleSheetList)
 type rec styleSheetList = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/StyleSheetList/length)
@@ -665,7 +665,7 @@ and styleSheet = {
 A single CSS style sheet. It inherits properties and methods from its parent, StyleSheet.
 [See CSSStyleSheet on MDN](https://developer.mozilla.org/docs/Web/API/CSSStyleSheet)
 */
-@editor.completeFrom(DOM.DOM.CSSStyleSheet) and cssStyleSheet = {
+@editor.completeFrom(WebApiDOM.DOM.CSSStyleSheet) and cssStyleSheet = {
   // Base properties from StyleSheet
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/StyleSheet/type)
@@ -731,7 +731,7 @@ and cssRule = {
 A CSSRuleList is an (indirect-modify only) array-like object containing an ordered collection of CSSRule objects.
 [See CSSRuleList on MDN](https://developer.mozilla.org/docs/Web/API/CSSRuleList)
 */
-@editor.completeFrom(DOM.DOM.CSSRuleList) and cssRuleList = {
+@editor.completeFrom(WebApiDOM.DOM.CSSRuleList) and cssRuleList = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CSSRuleList/length)
     */
@@ -742,7 +742,7 @@ A CSSRuleList is an (indirect-modify only) array-like object containing an order
 An object that is a CSS declaration block, and exposes style information and various style-related methods and properties.
 [See CSSStyleDeclaration on MDN](https://developer.mozilla.org/docs/Web/API/CSSStyleDeclaration)
 */
-@editor.completeFrom(DOM.DOM.CSSStyleDeclaration) and cssStyleDeclaration = {
+@editor.completeFrom(WebApiDOM.DOM.CSSStyleDeclaration) and cssStyleDeclaration = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CSSStyleDeclaration/cssText)
     */
@@ -2446,10 +2446,10 @@ An object that is a CSS declaration block, and exposes style information and var
 }
 
 /**
-Node is an interface from which a number of DOM API object types inherit. It allows those types to be treated similarly; for example, inheriting the same set of methods, or being tested in the same way.
+Node is an interface from which a number of WebApiDOM API object types inherit. It allows those types to be treated similarly; for example, inheriting the same set of methods, or being tested in the same way.
 [See Node on MDN](https://developer.mozilla.org/docs/Web/API/Node)
 */
-@editor.completeFrom(DOM.DOM.Node)
+@editor.completeFrom(WebApiDOM.DOM.Node)
 type rec node = {
   ...eventTarget,
   /**
@@ -2463,7 +2463,7 @@ type rec node = {
     */
   nodeName: string,
   /**
-    Returns node's node document's document base URL.
+    Returns node's node document's document base WebApiURL.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/baseURI)
     */
   baseURI: string,
@@ -2526,7 +2526,7 @@ type rec node = {
 NodeList objects are collections of nodes, usually returned by properties such as Node.childNodes and methods such as document.querySelectorAll().
 [See NodeList on MDN](https://developer.mozilla.org/docs/Web/API/NodeList)
 */
-@editor.completeFrom(DOM.DOM.NodeList) and nodeList<'tNode> = {
+@editor.completeFrom(WebApiDOM.DOM.NodeList) and nodeList<'tNode> = {
   /**
     Returns the number of nodes in the collection.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/NodeList/length)
@@ -2538,7 +2538,7 @@ NodeList objects are collections of nodes, usually returned by properties such a
 Element is the most general base class from which all objects in a Document inherit. It only has methods and properties common to all kinds of elements. More specific classes inherit from Element.
 [See Element on MDN](https://developer.mozilla.org/docs/Web/API/Element)
 */
-@editor.completeFrom(DOM.DOM.Element) and element = {
+@editor.completeFrom(WebApiDOM.DOM.Element) and element = {
   // Base properties from Node
   /**
     Returns the type of node.
@@ -2551,7 +2551,7 @@ Element is the most general base class from which all objects in a Document inhe
     */
   nodeName: string,
   /**
-    Returns node's node document's document base URL.
+    Returns node's node document's document base WebApiURL.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/baseURI)
     */
   baseURI: string,
@@ -2909,7 +2909,7 @@ Element is the most general base class from which all objects in a Document inhe
 /**
 [See ShadowRoot on MDN](https://developer.mozilla.org/docs/Web/API/ShadowRoot)
 */
-@editor.completeFrom(DOM.DOM.ShadowRoot) and shadowRoot = {
+@editor.completeFrom(WebApiDOM.DOM.ShadowRoot) and shadowRoot = {
   // Base properties from DocumentFragment
   // End base properties from DocumentFragment
 
@@ -2925,7 +2925,7 @@ Element is the most general base class from which all objects in a Document inhe
     */
   nodeName: string,
   /**
-    Returns node's node document's document base URL.
+    Returns node's node document's document base WebApiURL.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/baseURI)
     */
   baseURI: string,
@@ -3049,7 +3049,7 @@ Similarly, when the focused element is in a different node tree than documentOrS
 A generic collection (array-like object similar to arguments) of elements (in document order) and offers methods and properties for selecting from the list.
 [See HTMLCollection on MDN](https://developer.mozilla.org/docs/Web/API/HTMLCollection)
 */
-@editor.completeFrom(DOM.DOM.HTMLCollection) and htmlCollection<'t> = {
+@editor.completeFrom(WebApiDOM.DOM.HTMLCollection) and htmlCollection<'t> = {
   /**
     Sets or retrieves the number of objects in a collection.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLCollection/length)
@@ -3061,7 +3061,7 @@ A generic collection (array-like object similar to arguments) of elements (in do
 A collection of HTML form control elements.
 [See HTMLFormControlsCollection on MDN](https://developer.mozilla.org/docs/Web/API/HTMLFormControlsCollection)
 */
-@editor.completeFrom(DOM.DOM.HTMLFormControlsCollection) and htmlFormControlsCollection = {
+@editor.completeFrom(WebApiDOM.DOM.HTMLFormControlsCollection) and htmlFormControlsCollection = {
   // Base properties from HTMLCollection
   /**
     Sets or retrieves the number of objects in a collection.
@@ -3075,7 +3075,7 @@ A collection of HTML form control elements.
 Any HTML element. Some elements directly implement this interface, while others implement it via an interface that inherits it.
 [See HTMLElement on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement)
 */
-@editor.completeFrom(DOM.DOM.HTMLElement) and htmlElement = {
+@editor.completeFrom(WebApiDOM.DOM.HTMLElement) and htmlElement = {
   // Base properties from Element
   /**
     Returns the namespace.
@@ -3188,7 +3188,7 @@ Any HTML element. Some elements directly implement this interface, while others 
     */
   nodeName: string,
   /**
-    Returns node's node document's document base URL.
+    Returns node's node document's document base WebApiURL.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/baseURI)
     */
   baseURI: string,
@@ -3369,7 +3369,7 @@ Any HTML element. Some elements directly implement this interface, while others 
 Contains the descriptive information, or metadata, for a document. This object inherits all of the properties and methods described in the HTMLElement interface.
 [See HTMLHeadElement on MDN](https://developer.mozilla.org/docs/Web/API/HTMLHeadElement)
 */
-@editor.completeFrom(DOM.DOM.HTMLHeadElement) and htmlHeadElement = {
+@editor.completeFrom(WebApiDOM.DOM.HTMLHeadElement) and htmlHeadElement = {
   // Base properties from HTMLElement
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/title)
@@ -3561,7 +3561,7 @@ Contains the descriptive information, or metadata, for a document. This object i
     */
   nodeName: string,
   /**
-    Returns node's node document's document base URL.
+    Returns node's node document's document base WebApiURL.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/baseURI)
     */
   baseURI: string,
@@ -3622,10 +3622,10 @@ Contains the descriptive information, or metadata, for a document. This object i
 }
 
 /**
-A <form> element in the DOM; it allows access to and in some cases modification of aspects of the form, as well as access to its component elements.
+A <form> element in the WebApiDOM; it allows access to and in some cases modification of aspects of the form, as well as access to its component elements.
 [See HTMLFormElement on MDN](https://developer.mozilla.org/docs/Web/API/HTMLFormElement)
 */
-@editor.completeFrom(DOM.DOM.HTMLFormElement) and htmlFormElement = {
+@editor.completeFrom(WebApiDOM.DOM.HTMLFormElement) and htmlFormElement = {
   // Base properties from HTMLElement
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/title)
@@ -3817,7 +3817,7 @@ A <form> element in the DOM; it allows access to and in some cases modification 
     */
   nodeName: string,
   /**
-    Returns node's node document's document base URL.
+    Returns node's node document's document base WebApiURL.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/baseURI)
     */
   baseURI: string,
@@ -3882,7 +3882,7 @@ A <form> element in the DOM; it allows access to and in some cases modification 
     */
   mutable acceptCharset: string,
   /**
-    Sets or retrieves the URL to which the form content is sent for processing.
+    Sets or retrieves the WebApiURL to which the form content is sent for processing.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLFormElement/action)
     */
   mutable action: string,
@@ -3932,7 +3932,7 @@ A <form> element in the DOM; it allows access to and in some cases modification 
 Provides special properties and methods for manipulating <img> elements.
 [See HTMLImageElement on MDN](https://developer.mozilla.org/docs/Web/API/HTMLImageElement)
 */
-@editor.completeFrom(DOM.DOM.HTMLImageElement) and htmlImageElement = {
+@editor.completeFrom(WebApiDOM.DOM.HTMLImageElement) and htmlImageElement = {
   // Base properties from HTMLElement
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/title)
@@ -4124,7 +4124,7 @@ Provides special properties and methods for manipulating <img> elements.
     */
   nodeName: string,
   /**
-    Returns node's node document's document base URL.
+    Returns node's node document's document base WebApiURL.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/baseURI)
     */
   baseURI: string,
@@ -4189,7 +4189,7 @@ Provides special properties and methods for manipulating <img> elements.
     */
   mutable alt: string,
   /**
-    The address or URL of the a media resource that is to be considered.
+    The address or WebApiURL of the a media resource that is to be considered.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLImageElement/src)
     */
   mutable src: string,
@@ -4206,7 +4206,7 @@ Provides special properties and methods for manipulating <img> elements.
     */
   mutable crossOrigin: Null.t<string>,
   /**
-    Sets or retrieves the URL, often with a bookmark extension (#name), to use as a client-side image map.
+    Sets or retrieves the WebApiURL, often with a bookmark extension (#name), to use as a client-side image map.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLImageElement/useMap)
     */
   mutable useMap: string,
@@ -4275,7 +4275,7 @@ Provides special properties and methods for manipulating <img> elements.
 Provides special properties (beyond the regular HTMLElement interface it also has available to it by inheritance) for manipulating <embed> elements.
 [See HTMLEmbedElement on MDN](https://developer.mozilla.org/docs/Web/API/HTMLEmbedElement)
 */
-@editor.completeFrom(DOM.DOM.HTMLEmbedElement) and htmlEmbedElement = {
+@editor.completeFrom(WebApiDOM.DOM.HTMLEmbedElement) and htmlEmbedElement = {
   // Base properties from HTMLElement
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/title)
@@ -4467,7 +4467,7 @@ Provides special properties (beyond the regular HTMLElement interface it also ha
     */
   nodeName: string,
   /**
-    Returns node's node document's document base URL.
+    Returns node's node document's document base WebApiURL.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/baseURI)
     */
   baseURI: string,
@@ -4527,7 +4527,7 @@ Provides special properties (beyond the regular HTMLElement interface it also ha
   // End base properties from Node
 
   /**
-    Sets or retrieves a URL to be loaded by the object.
+    Sets or retrieves a WebApiURL to be loaded by the object.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLEmbedElement/src)
     */
   mutable src: string,
@@ -4547,7 +4547,7 @@ Provides special properties (beyond the regular HTMLElement interface it also ha
 Hyperlink elements and provides special properties and methods (beyond those of the regular HTMLElement object interface that they inherit from) for manipulating the layout and presentation of such elements.
 [See HTMLAnchorElement on MDN](https://developer.mozilla.org/docs/Web/API/HTMLAnchorElement)
 */
-@editor.completeFrom(DOM.DOM.HTMLAnchorElement) and htmlAnchorElement = {
+@editor.completeFrom(WebApiDOM.DOM.HTMLAnchorElement) and htmlAnchorElement = {
   // Base properties from HTMLElement
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/title)
@@ -4739,7 +4739,7 @@ Hyperlink elements and provides special properties and methods (beyond those of 
     */
   nodeName: string,
   /**
-    Returns node's node document's document base URL.
+    Returns node's node document's document base WebApiURL.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/baseURI)
     */
   baseURI: string,
@@ -4840,77 +4840,77 @@ Hyperlink elements and provides special properties and methods (beyond those of 
     */
   mutable referrerPolicy: string,
   /**
-    Returns the hyperlink's URL.
+    Returns the hyperlink's WebApiURL.
 
-Can be set, to change the URL.
+Can be set, to change the WebApiURL.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLAnchorElement/href)
     */
   mutable href: string,
   /**
-    Returns the hyperlink's URL's origin.
+    Returns the hyperlink's WebApiURL's origin.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLAnchorElement/origin)
     */
   origin: string,
   /**
-    Returns the hyperlink's URL's scheme.
+    Returns the hyperlink's WebApiURL's scheme.
 
-Can be set, to change the URL's scheme.
+Can be set, to change the WebApiURL's scheme.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLAnchorElement/protocol)
     */
   mutable protocol: string,
   /**
-    Returns the hyperlink's URL's username.
+    Returns the hyperlink's WebApiURL's username.
 
-Can be set, to change the URL's username.
+Can be set, to change the WebApiURL's username.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLAnchorElement/username)
     */
   mutable username: string,
   /**
-    Returns the hyperlink's URL's password.
+    Returns the hyperlink's WebApiURL's password.
 
-Can be set, to change the URL's password.
+Can be set, to change the WebApiURL's password.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLAnchorElement/password)
     */
   mutable password: string,
   /**
-    Returns the hyperlink's URL's host and port (if different from the default port for the scheme).
+    Returns the hyperlink's WebApiURL's host and port (if different from the default port for the scheme).
 
-Can be set, to change the URL's host and port.
+Can be set, to change the WebApiURL's host and port.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLAnchorElement/host)
     */
   mutable host: string,
   /**
-    Returns the hyperlink's URL's host.
+    Returns the hyperlink's WebApiURL's host.
 
-Can be set, to change the URL's host.
+Can be set, to change the WebApiURL's host.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLAnchorElement/hostname)
     */
   mutable hostname: string,
   /**
-    Returns the hyperlink's URL's port.
+    Returns the hyperlink's WebApiURL's port.
 
-Can be set, to change the URL's port.
+Can be set, to change the WebApiURL's port.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLAnchorElement/port)
     */
   mutable port: string,
   /**
-    Returns the hyperlink's URL's path.
+    Returns the hyperlink's WebApiURL's path.
 
-Can be set, to change the URL's path.
+Can be set, to change the WebApiURL's path.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLAnchorElement/pathname)
     */
   mutable pathname: string,
   /**
-    Returns the hyperlink's URL's query (includes leading "?" if non-empty).
+    Returns the hyperlink's WebApiURL's query (includes leading "?" if non-empty).
 
-Can be set, to change the URL's query (ignores leading "?").
+Can be set, to change the WebApiURL's query (ignores leading "?").
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLAnchorElement/search)
     */
   mutable search: string,
   /**
-    Returns the hyperlink's URL's fragment (includes leading "#" if non-empty).
+    Returns the hyperlink's WebApiURL's fragment (includes leading "#" if non-empty).
 
-Can be set, to change the URL's fragment (ignores leading "#").
+Can be set, to change the WebApiURL's fragment (ignores leading "#").
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLAnchorElement/hash)
     */
   mutable hash: string,
@@ -4920,7 +4920,7 @@ Can be set, to change the URL's fragment (ignores leading "#").
 Provides special properties and methods (beyond those of the regular object HTMLElement interface it also has available to it by inheritance) for manipulating the layout and presentation of <area> elements.
 [See HTMLAreaElement on MDN](https://developer.mozilla.org/docs/Web/API/HTMLAreaElement)
 */
-@editor.completeFrom(DOM.DOM.HTMLAreaElement) and htmlAreaElement = {
+@editor.completeFrom(WebApiDOM.DOM.HTMLAreaElement) and htmlAreaElement = {
   // Base properties from HTMLElement
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/title)
@@ -5112,7 +5112,7 @@ Provides special properties and methods (beyond those of the regular object HTML
     */
   nodeName: string,
   /**
-    Returns node's node document's document base URL.
+    Returns node's node document's document base WebApiURL.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/baseURI)
     */
   baseURI: string,
@@ -5193,77 +5193,77 @@ Provides special properties and methods (beyond those of the regular object HTML
     */
   mutable referrerPolicy: string,
   /**
-    Returns the hyperlink's URL.
+    Returns the hyperlink's WebApiURL.
 
-Can be set, to change the URL.
+Can be set, to change the WebApiURL.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLAnchorElement/href)
     */
   mutable href: string,
   /**
-    Returns the hyperlink's URL's origin.
+    Returns the hyperlink's WebApiURL's origin.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLAnchorElement/origin)
     */
   origin: string,
   /**
-    Returns the hyperlink's URL's scheme.
+    Returns the hyperlink's WebApiURL's scheme.
 
-Can be set, to change the URL's scheme.
+Can be set, to change the WebApiURL's scheme.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLAnchorElement/protocol)
     */
   mutable protocol: string,
   /**
-    Returns the hyperlink's URL's username.
+    Returns the hyperlink's WebApiURL's username.
 
-Can be set, to change the URL's username.
+Can be set, to change the WebApiURL's username.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLAnchorElement/username)
     */
   mutable username: string,
   /**
-    Returns the hyperlink's URL's password.
+    Returns the hyperlink's WebApiURL's password.
 
-Can be set, to change the URL's password.
+Can be set, to change the WebApiURL's password.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLAnchorElement/password)
     */
   mutable password: string,
   /**
-    Returns the hyperlink's URL's host and port (if different from the default port for the scheme).
+    Returns the hyperlink's WebApiURL's host and port (if different from the default port for the scheme).
 
-Can be set, to change the URL's host and port.
+Can be set, to change the WebApiURL's host and port.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLAnchorElement/host)
     */
   mutable host: string,
   /**
-    Returns the hyperlink's URL's host.
+    Returns the hyperlink's WebApiURL's host.
 
-Can be set, to change the URL's host.
+Can be set, to change the WebApiURL's host.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLAnchorElement/hostname)
     */
   mutable hostname: string,
   /**
-    Returns the hyperlink's URL's port.
+    Returns the hyperlink's WebApiURL's port.
 
-Can be set, to change the URL's port.
+Can be set, to change the WebApiURL's port.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLAnchorElement/port)
     */
   mutable port: string,
   /**
-    Returns the hyperlink's URL's path.
+    Returns the hyperlink's WebApiURL's path.
 
-Can be set, to change the URL's path.
+Can be set, to change the WebApiURL's path.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLAnchorElement/pathname)
     */
   mutable pathname: string,
   /**
-    Returns the hyperlink's URL's query (includes leading "?" if non-empty).
+    Returns the hyperlink's WebApiURL's query (includes leading "?" if non-empty).
 
-Can be set, to change the URL's query (ignores leading "?").
+Can be set, to change the WebApiURL's query (ignores leading "?").
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLAnchorElement/search)
     */
   mutable search: string,
   /**
-    Returns the hyperlink's URL's fragment (includes leading "#" if non-empty).
+    Returns the hyperlink's WebApiURL's fragment (includes leading "#" if non-empty).
 
-Can be set, to change the URL's fragment (ignores leading "#").
+Can be set, to change the WebApiURL's fragment (ignores leading "#").
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLAnchorElement/hash)
     */
   mutable hash: string,
@@ -5273,7 +5273,7 @@ Can be set, to change the URL's fragment (ignores leading "#").
 HTML <script> elements expose the HTMLScriptElement interface, which provides special properties and methods for manipulating the behavior and execution of <script> elements (beyond the inherited HTMLElement interface).
 [See HTMLScriptElement on MDN](https://developer.mozilla.org/docs/Web/API/HTMLScriptElement)
 */
-@editor.completeFrom(DOM.DOM.HTMLScriptElement) and htmlScriptElement = {
+@editor.completeFrom(WebApiDOM.DOM.HTMLScriptElement) and htmlScriptElement = {
   // Base properties from HTMLElement
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/title)
@@ -5465,7 +5465,7 @@ HTML <script> elements expose the HTMLScriptElement interface, which provides sp
     */
   nodeName: string,
   /**
-    Returns node's node document's document base URL.
+    Returns node's node document's document base WebApiURL.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/baseURI)
     */
   baseURI: string,
@@ -5525,7 +5525,7 @@ HTML <script> elements expose the HTMLScriptElement interface, which provides sp
   // End base properties from Node
 
   /**
-    Retrieves the URL to an external file that contains the source code or data.
+    Retrieves the WebApiURL to an external file that contains the source code or data.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLScriptElement/src)
     */
   mutable src: string,
@@ -5575,7 +5575,7 @@ HTML <script> elements expose the HTMLScriptElement interface, which provides sp
 An object providing methods which are not dependent on any particular document. Such an object is returned by the Document.implementation property.
 [See DOMImplementation on MDN](https://developer.mozilla.org/docs/Web/API/DOMImplementation)
 */
-@editor.completeFrom(DOM.DOM.DOMImplementation) and domImplementation = {}
+@editor.completeFrom(WebApiDOM.DOM.DOMImplementation) and domImplementation = {}
 
 /**
 A Node containing a doctype.
@@ -5594,7 +5594,7 @@ and documentType = {
     */
   nodeName: string,
   /**
-    Returns node's node document's document base URL.
+    Returns node's node document's document base WebApiURL.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/baseURI)
     */
   baseURI: string,
@@ -5668,10 +5668,10 @@ and documentType = {
 }
 
 /**
-Any web page loaded in the browser and serves as an entry point into the web page's content, which is the DOM tree.
+Any web page loaded in the browser and serves as an entry point into the web page's content, which is the WebApiDOM tree.
 [See Document on MDN](https://developer.mozilla.org/docs/Web/API/Document)
 */
-@editor.completeFrom(DOM.DOM.Document) and document = {
+@editor.completeFrom(WebApiDOM.DOM.Document) and document = {
   // Base properties from Node
   /**
     Returns the type of node.
@@ -5684,7 +5684,7 @@ Any web page loaded in the browser and serves as an entry point into the web pag
     */
   nodeName: string,
   /**
-    Returns node's node document's document base URL.
+    Returns node's node document's document base WebApiURL.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/baseURI)
     */
   baseURI: string,
@@ -5749,13 +5749,13 @@ Any web page loaded in the browser and serves as an entry point into the web pag
     */
   implementation: domImplementation,
   /**
-    Sets or gets the URL for the current document.
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Document/URL)
+    Sets or gets the WebApiURL for the current document.
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Document/WebApiURL)
     */
-  @as("URL")
+  @as("WebApiURL")
   uRL: string,
   /**
-    Returns document's URL.
+    Returns document's WebApiURL.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Document/documentURI)
     */
   documentURI: string,
@@ -5794,12 +5794,12 @@ Any web page loaded in the browser and serves as an entry point into the web pag
     */
   fullscreenEnabled: bool,
   /**
-    Contains information about the current URL.
+    Contains information about the current WebApiURL.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Document/location)
     */
   mutable location: location,
   /**
-    Gets the URL of the location that referred the user to the current page.
+    Gets the WebApiURL of the location that referred the user to the current page.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Document/referrer)
     */
   referrer: string,
@@ -6015,7 +6015,7 @@ and mutationRecord = {
 }
 
 /**
-A DOM element's attribute as an object. In most DOM methods, you will probably directly retrieve the attribute as a string (e.g., Element.getAttribute(), but certain functions (e.g., Element.getAttributeNode()) or means of iterating give Attr types.
+A WebApiDOM element's attribute as an object. In most WebApiDOM methods, you will probably directly retrieve the attribute as a string (e.g., Element.getAttribute(), but certain functions (e.g., Element.getAttributeNode()) or means of iterating give Attr types.
 [See Attr on MDN](https://developer.mozilla.org/docs/Web/API/Attr)
 */
 and attr = {
@@ -6031,7 +6031,7 @@ and attr = {
     */
   nodeName: string,
   /**
-    Returns node's node document's document base URL.
+    Returns node's node document's document base WebApiURL.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/baseURI)
     */
   baseURI: string,
@@ -6120,7 +6120,7 @@ and attr = {
 The CharacterData abstract interface represents a Node object that contains characters. This is an abstract interface, meaning there aren't any object of type CharacterData: it is implemented by other interfaces, like Text, Comment, or ProcessingInstruction which aren't abstract.
 [See CharacterData on MDN](https://developer.mozilla.org/docs/Web/API/CharacterData)
 */
-@editor.completeFrom(DOM.DOM.CharacterData) and characterData = {
+@editor.completeFrom(WebApiDOM.DOM.CharacterData) and characterData = {
   // Base properties from Node
   /**
     Returns the type of node.
@@ -6133,7 +6133,7 @@ The CharacterData abstract interface represents a Node object that contains char
     */
   nodeName: string,
   /**
-    Returns node's node document's document base URL.
+    Returns node's node document's document base WebApiURL.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/baseURI)
     */
   baseURI: string,
@@ -6216,7 +6216,7 @@ The CharacterData abstract interface represents a Node object that contains char
 A minimal document object that has no parent. It is used as a lightweight version of Document that stores a segment of a document structure comprised of nodes just like a standard document. The key difference is that because the document fragment isn't part of the active document tree structure, changes made to the fragment don't affect the document, cause reflow, or incur any performance impact that can occur when changes are made.
 [See DocumentFragment on MDN](https://developer.mozilla.org/docs/Web/API/DocumentFragment)
 */
-@editor.completeFrom(DOM.DOM.DocumentFragment) and documentFragment = {
+@editor.completeFrom(WebApiDOM.DOM.DocumentFragment) and documentFragment = {
   // Base properties from Node
   /**
     Returns the type of node.
@@ -6229,7 +6229,7 @@ A minimal document object that has no parent. It is used as a lightweight versio
     */
   nodeName: string,
   /**
-    Returns node's node document's document base URL.
+    Returns node's node document's document base WebApiURL.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/baseURI)
     */
   baseURI: string,
@@ -6312,7 +6312,7 @@ A minimal document object that has no parent. It is used as a lightweight versio
 /**
 [See HTMLSlotElement on MDN](https://developer.mozilla.org/docs/Web/API/HTMLSlotElement)
 */
-@editor.completeFrom(DOM.DOM.HTMLSlotElement) and htmlSlotElement = {
+@editor.completeFrom(WebApiDOM.DOM.HTMLSlotElement) and htmlSlotElement = {
   // Base properties from HTMLElement
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/title)
@@ -6504,7 +6504,7 @@ A minimal document object that has no parent. It is used as a lightweight versio
     */
   nodeName: string,
   /**
-    Returns node's node document's document base URL.
+    Returns node's node document's document base WebApiURL.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/baseURI)
     */
   baseURI: string,
@@ -6572,7 +6572,7 @@ A minimal document object that has no parent. It is used as a lightweight versio
 /**
 [See DOMRectReadOnly on MDN](https://developer.mozilla.org/docs/Web/API/DOMRectReadOnly)
 */
-@editor.completeFrom(DOM.DOM.DOMRectReadOnly)
+@editor.completeFrom(WebApiDOM.DOM.DOMRectReadOnly)
 type domRectReadOnly = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/DOMRectReadOnly/x)
@@ -6611,12 +6611,12 @@ type domRectReadOnly = {
 /**
 [See DOMRect on MDN](https://developer.mozilla.org/docs/Web/API/DOMRect)
 */
-@editor.completeFrom(DOM.DOM.DOMRect)
+@editor.completeFrom(WebApiDOM.DOM.DOMRect)
 type domRect = {
   ...domRectReadOnly,
 }
 
-@editor.completeFrom(DOM.DOM.DOMRectList) type domRectList = {}
+@editor.completeFrom(WebApiDOM.DOM.DOMRectList) type domRectList = {}
 
 /**
 The validity states that an element can be in, with respect to constraint validation. Together, they help explain why an element's value fails to validate, if it's not valid.
@@ -6677,7 +6677,7 @@ type customStateSet = {}
 /**
 [See ElementInternals on MDN](https://developer.mozilla.org/docs/Web/API/ElementInternals)
 */
-@editor.completeFrom(DOM.DOM.ElementInternals)
+@editor.completeFrom(WebApiDOM.DOM.ElementInternals)
 type elementInternals = {
   /**
     Returns the ShadowRoot for internals's target element, if the target element is a shadow host, or null otherwise.
@@ -6888,10 +6888,10 @@ type xmlDocument = {
 }
 
 /**
-@editor.completeFrom(DOM.DOM.Text) The textual content of Element or Attr. If an element has no markup within its content, it has a single child implementing Text that contains the element's text. However, if the element contains markup, it is parsed into information items and Text nodes that form its children.
+@editor.completeFrom(WebApiDOM.DOM.Text) The textual content of Element or Attr. If an element has no markup within its content, it has a single child implementing Text that contains the element's text. However, if the element contains markup, it is parsed into information items and Text nodes that form its children.
 [See Text on MDN](https://developer.mozilla.org/docs/Web/API/Text)
 */
-@editor.completeFrom(DOM.DOM.Text)
+@editor.completeFrom(WebApiDOM.DOM.Text)
 type text = {
   ...characterData,
   /**
@@ -6917,7 +6917,7 @@ type cdataSection = {
 Textual notations within markup; although it is generally not visually shown, such comments are available to be read in the source view.
 [See Comment on MDN](https://developer.mozilla.org/docs/Web/API/Comment)
 */
-@editor.completeFrom(DOM.DOM.Comment)
+@editor.completeFrom(WebApiDOM.DOM.Comment)
 type comment = {
   ...characterData,
 }
@@ -6973,7 +6973,7 @@ type abstractRange = {
 A fragment of a document that can contain nodes and parts of text nodes.
 [See Range on MDN](https://developer.mozilla.org/docs/Web/API/Range)
 */
-@editor.completeFrom(DOM.DOM.Range)
+@editor.completeFrom(WebApiDOM.DOM.Range)
 type range = {
   ...abstractRange,
   /**
@@ -6990,13 +6990,13 @@ type staticRange = {
   ...abstractRange,
 }
 
-@editor.completeFrom(DOM.DOM.NodeFilter) type nodeFilter = {}
+@editor.completeFrom(WebApiDOM.DOM.NodeFilter) type nodeFilter = {}
 
 /**
-An iterator over the members of a list of the nodes in a subtree of the DOM. The nodes will be returned in document order.
+An iterator over the members of a list of the nodes in a subtree of the WebApiDOM. The nodes will be returned in document order.
 [See NodeIterator on MDN](https://developer.mozilla.org/docs/Web/API/NodeIterator)
 */
-@editor.completeFrom(DOM.DOM.NodeIterator)
+@editor.completeFrom(WebApiDOM.DOM.NodeIterator)
 type nodeIterator = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/NodeIterator/root)
@@ -7024,7 +7024,7 @@ type nodeIterator = {
 The nodes of a document subtree and a position within them.
 [See TreeWalker on MDN](https://developer.mozilla.org/docs/Web/API/TreeWalker)
 */
-@editor.completeFrom(DOM.DOM.TreeWalker)
+@editor.completeFrom(WebApiDOM.DOM.TreeWalker)
 type treeWalker = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/TreeWalker/root)
@@ -7047,14 +7047,14 @@ type treeWalker = {
 /**
 [See CaretPosition on MDN](https://developer.mozilla.org/docs/Web/API/CaretPosition)
 */
-@editor.completeFrom(DOM.DOM.CaretPosition)
+@editor.completeFrom(WebApiDOM.DOM.CaretPosition)
 type caretPosition = {}
 
 /**
 A Selection object represents the range of text selected by the user or the current position of the caret. To obtain a Selection object for examination or modification, call Window.getSelection().
 [See Selection on MDN](https://developer.mozilla.org/docs/Web/API/Selection)
 */
-@editor.completeFrom(DOM.DOM.Selection)
+@editor.completeFrom(WebApiDOM.DOM.Selection)
 type selection = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Selection/anchorNode)
@@ -7095,7 +7095,7 @@ type selection = {
 Stores information on a media query applied to a document, and handles sending notifications to listeners when the media query state change (i.e. when the media query test starts or stops evaluating to true).
 [See MediaQueryList on MDN](https://developer.mozilla.org/docs/Web/API/MediaQueryList)
 */
-@editor.completeFrom(DOM.DOM.MediaQueryList)
+@editor.completeFrom(WebApiDOM.DOM.MediaQueryList)
 type mediaQueryList = {
   ...eventTarget,
   /**
@@ -7111,7 +7111,7 @@ type mediaQueryList = {
 /**
 [See IdleDeadline on MDN](https://developer.mozilla.org/docs/Web/API/IdleDeadline)
 */
-@editor.completeFrom(DOM.DOM.IdleDeadline)
+@editor.completeFrom(WebApiDOM.DOM.IdleDeadline)
 type idleDeadline = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/IdleDeadline/didTimeout)
@@ -7122,14 +7122,14 @@ type idleDeadline = {
 /**
 [See CSSStyleValue on MDN](https://developer.mozilla.org/docs/Web/API/CSSStyleValue)
 */
-@editor.completeFrom(DOM.DOM.CSSStyleValue)
+@editor.completeFrom(WebApiDOM.DOM.CSSStyleValue)
 type cssStyleValue = {}
 
 /**
 An object of this type is returned by the files property of the HTML <input> element; this lets you access the list of files selected with the <input type="file"> element. It's also used for a list of files dropped into web content when using the drag and drop API; see the DataTransfer object for details on this usage.
 [See FileList on MDN](https://developer.mozilla.org/docs/Web/API/FileList)
 */
-@editor.completeFrom(DOM.DOM.FileList)
+@editor.completeFrom(WebApiDOM.DOM.FileList)
 type fileList = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/FileList/length)
@@ -7156,7 +7156,7 @@ type mediaError = {
 Used to represent a set of time ranges, primarily for the purpose of tracking which portions of media have been buffered when loading it for use by the <audio> and <video> elements.
 [See TimeRanges on MDN](https://developer.mozilla.org/docs/Web/API/TimeRanges)
 */
-@editor.completeFrom(DOM.DOM.TimeRanges)
+@editor.completeFrom(WebApiDOM.DOM.TimeRanges)
 type timeRanges = {
   /**
     Returns the number of ranges in the object.
@@ -7168,7 +7168,7 @@ type timeRanges = {
 /**
 [See TextTrackList on MDN](https://developer.mozilla.org/docs/Web/API/TextTrackList)
 */
-@editor.completeFrom(DOM.DOM.TextTrackList)
+@editor.completeFrom(WebApiDOM.DOM.TextTrackList)
 type textTrackList = {
   ...eventTarget,
   /**
@@ -7200,7 +7200,7 @@ type videoPlaybackQuality = {
 Provides special properties and methods (beyond the regular HTMLElement object interface it also has available to it by inheritance) for manipulating the layout and presentation of tables in an HTML document.
 [See HTMLTableElement on MDN](https://developer.mozilla.org/docs/Web/API/HTMLTableElement)
 */
-@editor.completeFrom(DOM.DOM.HTMLTableElement)
+@editor.completeFrom(WebApiDOM.DOM.HTMLTableElement)
 type rec htmlTableElement = {
   ...htmlElement,
   /**
@@ -7234,7 +7234,7 @@ type rec htmlTableElement = {
 Special properties (beyond the regular HTMLElement interface it also has available to it by inheritance) for manipulating table caption elements.
 [See HTMLTableCaptionElement on MDN](https://developer.mozilla.org/docs/Web/API/HTMLTableCaptionElement)
 */
-@editor.completeFrom(DOM.DOM.HTMLTableCaptionElement) and htmlTableCaptionElement = {
+@editor.completeFrom(WebApiDOM.DOM.HTMLTableCaptionElement) and htmlTableCaptionElement = {
   ...htmlElement,
 }
 
@@ -7242,7 +7242,7 @@ Special properties (beyond the regular HTMLElement interface it also has availab
 Provides special properties and methods (beyond the HTMLElement interface it also has available to it by inheritance) for manipulating the layout and presentation of sections, that is headers, footers and bodies, in an HTML table.
 [See HTMLTableSectionElement on MDN](https://developer.mozilla.org/docs/Web/API/HTMLTableSectionElement)
 */
-@editor.completeFrom(DOM.DOM.HTMLTableSectionElement) and htmlTableSectionElement = {
+@editor.completeFrom(WebApiDOM.DOM.HTMLTableSectionElement) and htmlTableSectionElement = {
   ...htmlElement,
   /**
     Sets or retrieves the number of horizontal rows contained in the object.
@@ -7255,7 +7255,7 @@ Provides special properties and methods (beyond the HTMLElement interface it als
 Provides special properties and methods (beyond the regular HTMLElement interface it also has available to it by inheritance) for manipulating the layout and presentation of table cells, either header or data cells, in an HTML document.
 [See HTMLTableCellElement on MDN](https://developer.mozilla.org/docs/Web/API/HTMLTableCellElement)
 */
-@editor.completeFrom(DOM.DOM.HTMLTableCellElement) and htmlTableCellElement = {
+@editor.completeFrom(WebApiDOM.DOM.HTMLTableCellElement) and htmlTableCellElement = {
   ...htmlElement,
   /**
     Sets or retrieves the number columns in the table that the object should span.
@@ -7293,7 +7293,7 @@ Provides special properties and methods (beyond the regular HTMLElement interfac
 Provides special properties and methods (beyond the HTMLElement interface it also has available to it by inheritance) for manipulating the layout and presentation of rows in an HTML table.
 [See HTMLTableRowElement on MDN](https://developer.mozilla.org/docs/Web/API/HTMLTableRowElement)
 */
-@editor.completeFrom(DOM.DOM.HTMLTableRowElement) and htmlTableRowElement = {
+@editor.completeFrom(WebApiDOM.DOM.HTMLTableRowElement) and htmlTableRowElement = {
   ...htmlElement,
   /**
     Retrieves the position of the object in the rows collection for the table.
@@ -7316,7 +7316,7 @@ Provides special properties and methods (beyond the HTMLElement interface it als
 Provides properties and methods (beyond the regular HTMLElement interface it also has available to it by inheritance) for manipulating <button> elements.
 [See HTMLButtonElement on MDN](https://developer.mozilla.org/docs/Web/API/HTMLButtonElement)
 */
-@editor.completeFrom(DOM.DOM.HTMLButtonElement)
+@editor.completeFrom(WebApiDOM.DOM.HTMLButtonElement)
 type rec htmlButtonElement = {
   ...htmlElement,
   /**
@@ -7392,7 +7392,7 @@ type rec htmlButtonElement = {
 Gives access to properties specific to <label> elements. It inherits methods and properties from the base HTMLElement interface.
 [See HTMLLabelElement on MDN](https://developer.mozilla.org/docs/Web/API/HTMLLabelElement)
 */
-@editor.completeFrom(DOM.DOM.HTMLLabelElement) and htmlLabelElement = {
+@editor.completeFrom(WebApiDOM.DOM.HTMLLabelElement) and htmlLabelElement = {
   ...htmlElement,
   /**
     Retrieves a reference to the form that the object is embedded in.
@@ -7415,7 +7415,7 @@ Gives access to properties specific to <label> elements. It inherits methods and
 Provides special properties and methods for manipulating the layout and presentation of <textarea> elements.
 [See HTMLTextAreaElement on MDN](https://developer.mozilla.org/docs/Web/API/HTMLTextAreaElement)
 */
-@editor.completeFrom(DOM.DOM.HTMLTextAreaElement) and htmlTextAreaElement = {
+@editor.completeFrom(WebApiDOM.DOM.HTMLTextAreaElement) and htmlTextAreaElement = {
   ...htmlElement,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLTextAreaElement/autocomplete)
@@ -7533,7 +7533,7 @@ Provides special properties and methods for manipulating the layout and presenta
 Provides properties and methods (beyond those inherited from HTMLElement) for manipulating the layout and presentation of <output> elements.
 [See HTMLOutputElement on MDN](https://developer.mozilla.org/docs/Web/API/HTMLOutputElement)
 */
-@editor.completeFrom(DOM.DOM.HTMLOutputElement) and htmlOutputElement = {
+@editor.completeFrom(WebApiDOM.DOM.HTMLOutputElement) and htmlOutputElement = {
   ...htmlElement,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLOutputElement/htmlFor)
@@ -7586,7 +7586,7 @@ Can be set, to change the value.
 Provides special properties and methods for manipulating the options, layout, and presentation of <input> elements.
 [See HTMLInputElement on MDN](https://developer.mozilla.org/docs/Web/API/HTMLInputElement)
 */
-@editor.completeFrom(DOM.DOM.HTMLInputElement) and htmlInputElement = {
+@editor.completeFrom(WebApiDOM.DOM.HTMLInputElement) and htmlInputElement = {
   ...htmlElement,
   /**
     Sets or retrieves a comma-separated list of content types.
@@ -7710,7 +7710,7 @@ Provides special properties and methods for manipulating the options, layout, an
     */
   mutable size: int,
   /**
-    The address or URL of the a media resource that is to be considered.
+    The address or WebApiURL of the a media resource that is to be considered.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLInputElement/src)
     */
   mutable src: string,
@@ -7809,7 +7809,7 @@ Provides special properties and methods for manipulating the options, layout, an
 Provides special properties (beyond the HTMLElement object interface it also has available to it by inheritance) to manipulate <datalist> elements and their content.
 [See HTMLDataListElement on MDN](https://developer.mozilla.org/docs/Web/API/HTMLDataListElement)
 */
-@editor.completeFrom(DOM.DOM.HTMLDataListElement) and htmlDataListElement = {
+@editor.completeFrom(WebApiDOM.DOM.HTMLDataListElement) and htmlDataListElement = {
   ...htmlElement,
   /**
     Returns an HTMLCollection of the option elements of the datalist element.
@@ -7822,7 +7822,7 @@ Provides special properties (beyond the HTMLElement object interface it also has
 A <select> HTML Element. These elements also share all of the properties and methods of other HTML elements via the HTMLElement interface.
 [See HTMLSelectElement on MDN](https://developer.mozilla.org/docs/Web/API/HTMLSelectElement)
 */
-@editor.completeFrom(DOM.DOM.HTMLSelectElement) and htmlSelectElement = {
+@editor.completeFrom(WebApiDOM.DOM.HTMLSelectElement) and htmlSelectElement = {
   ...htmlElement,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLSelectElement/disabled)
@@ -7908,7 +7908,7 @@ A <select> HTML Element. These elements also share all of the properties and met
 <option> elements and inherits all classes and methods of the HTMLElement interface.
 [See HTMLOptionElement on MDN](https://developer.mozilla.org/docs/Web/API/HTMLOptionElement)
 */
-@editor.completeFrom(DOM.DOM.HTMLOptionElement) and htmlOptionElement = {
+@editor.completeFrom(WebApiDOM.DOM.HTMLOptionElement) and htmlOptionElement = {
   ...htmlElement,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLOptionElement/disabled)
@@ -7955,7 +7955,7 @@ A <select> HTML Element. These elements also share all of the properties and met
 HTMLOptionsCollection is an interface representing a collection of HTML option elements (in document order) and offers methods and properties for traversing the list as well as optionally altering its items. This type is returned solely by the "options" property of select.
 [See HTMLOptionsCollection on MDN](https://developer.mozilla.org/docs/Web/API/HTMLOptionsCollection)
 */
-@editor.completeFrom(DOM.DOM.HTMLOptionsCollection) and htmlOptionsCollection = {
+@editor.completeFrom(WebApiDOM.DOM.HTMLOptionsCollection) and htmlOptionsCollection = {
   ...htmlCollection<htmlOptionElement>,
   /**
     Returns the index of the first selected item, if any, or −1 if there is no selected item.
@@ -7993,7 +7993,7 @@ type mediaKeyStatus =
   | @as("usable-in-future") UsableInFuture
 
 /**
-This EncryptedMediaExtensions API interface provides access to a Key System for decryption and/or a content protection provider. You can request an instance of this object using the Navigator.requestMediaKeySystemAccess method.
+This WebApiEncryptedMediaExtensions API interface provides access to a Key System for decryption and/or a content protection provider. You can request an instance of this object using the Navigator.requestMediaKeySystemAccess method.
 [See MediaKeySystemAccess on MDN](https://developer.mozilla.org/docs/Web/API/MediaKeySystemAccess)
 */
 @editor.completeFrom(MediaKeySystemAccess)
@@ -8005,14 +8005,14 @@ type mediaKeySystemAccess = {
 }
 
 /**
-This EncryptedMediaExtensions API interface the represents a set of keys that an associated HTMLMediaElement can use for decryption of media data during playback.
+This WebApiEncryptedMediaExtensions API interface the represents a set of keys that an associated HTMLMediaElement can use for decryption of media data during playback.
 [See MediaKeys on MDN](https://developer.mozilla.org/docs/Web/API/MediaKeys)
 */
 @editor.completeFrom(MediaKeys)
 type mediaKeys = {}
 
 /**
-This EncryptedMediaExtensions API interface is a read-only map of media key statuses by key IDs.
+This WebApiEncryptedMediaExtensions API interface is a read-only map of media key statuses by key IDs.
 [See MediaKeyStatusMap on MDN](https://developer.mozilla.org/docs/Web/API/MediaKeyStatusMap)
 */
 @editor.completeFrom(MediaKeyStatusMap)
@@ -8024,7 +8024,7 @@ type mediaKeyStatusMap = {
 }
 
 /**
-This EncryptedMediaExtensions API interface represents a context for message exchange with a content decryption module (CDM).
+This WebApiEncryptedMediaExtensions API interface represents a context for message exchange with a content decryption module (CDM).
 [See MediaKeySession on MDN](https://developer.mozilla.org/docs/Web/API/MediaKeySession)
 */
 @editor.completeFrom(MediaKeySession)

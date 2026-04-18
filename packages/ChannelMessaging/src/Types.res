@@ -6,7 +6,7 @@ This Channel Messaging API interface represents one of the two ports of a Messag
 */
 @editor.completeFrom(MessagePort)
 type messagePort = {
-  ...Event.Types.eventTarget,
+  ...WebApiEvent.Types.eventTarget,
 }
 
 type structuredSerializeOptions = {mutable transfer?: array<Dict.t<string>>}

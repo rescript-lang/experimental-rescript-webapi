@@ -1,5 +1,5 @@
 {
-  "name": "@rescript-webapi/picture-in-picture",
+  "name": "@rescript/webapi-picture-in-picture",
   "sources": [
     {
       "dir": "src",
@@ -12,7 +12,7 @@
   },
   "suffix": ".js",
   "dependencies": [
-    "@rescript-webapi/event"
+    "@rescript/webapi-event"
   ],
-  "namespace": "PictureInPicture"
+  "namespace": "WebApiPictureInPicture"
 }

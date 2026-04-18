@@ -18,18 +18,18 @@ type workerType =
   | @as("module") Module
 
 /**
-This ServiceWorker API interface provides a reference to a service worker. Multiple browsing contexts (e.g. pages, workers, etc.) can be associated with the same service worker, each through a unique ServiceWorker object.
-[See ServiceWorker on MDN](https://developer.mozilla.org/docs/Web/API/ServiceWorker)
+This WebApiServiceWorker API interface provides a reference to a service worker. Multiple browsing contexts (e.g. pages, workers, etc.) can be associated with the same service worker, each through a unique WebApiServiceWorker object.
+[See WebApiServiceWorker on MDN](https://developer.mozilla.org/docs/Web/API/WebApiServiceWorker)
 */
-@editor.completeFrom(ServiceWorker)
+@editor.completeFrom(WebApiServiceWorker)
 type serviceWorker = {
-  ...Event.Types.eventTarget,
+  ...WebApiEvent.Types.eventTarget,
   /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/ServiceWorker/scriptURL)
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/WebApiServiceWorker/scriptURL)
     */
   scriptURL: string,
   /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/ServiceWorker/state)
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/WebApiServiceWorker/state)
     */
   state: serviceWorkerState,
 }
@@ -41,12 +41,12 @@ type serviceWorker = {
 type navigationPreloadManager = {}
 
 /**
-This ServiceWorker API interface represents the service worker registration. You register a service worker to control one or more pages that share the same origin.
+This WebApiServiceWorker API interface represents the service worker registration. You register a service worker to control one or more pages that share the same origin.
 [See ServiceWorkerRegistration on MDN](https://developer.mozilla.org/docs/Web/API/ServiceWorkerRegistration)
 */
 @editor.completeFrom(ServiceWorkerRegistration)
 type serviceWorkerRegistration = {
-  ...Event.Types.eventTarget,
+  ...WebApiEvent.Types.eventTarget,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/ServiceWorkerRegistration/installing)
     */
@@ -74,16 +74,16 @@ type serviceWorkerRegistration = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/ServiceWorkerRegistration/pushManager)
     */
-  pushManager: Push.Types.pushManager,
+  pushManager: WebApiPush.Types.pushManager,
 }
 
 /**
-The ServiceWorkerContainer interface of the ServiceWorker API provides an object representing the service worker as an overall unit in the network ecosystem, including facilities to register, unregister and update service workers, and access the state of service workers and their registrations.
+The ServiceWorkerContainer interface of the WebApiServiceWorker API provides an object representing the service worker as an overall unit in the network ecosystem, including facilities to register, unregister and update service workers, and access the state of service workers and their registrations.
 [See ServiceWorkerContainer on MDN](https://developer.mozilla.org/docs/Web/API/ServiceWorkerContainer)
 */
 @editor.completeFrom(ServiceWorkerContainer)
 type serviceWorkerContainer = {
-  ...Event.Types.eventTarget,
+  ...WebApiEvent.Types.eventTarget,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/ServiceWorkerContainer/controller)
     */
@@ -101,7 +101,7 @@ type navigationPreloadState = {
 
 type registrationOptions = {
   mutable scope?: string,
-  @as("type") mutable type_?: WebWorkers.Types.workerType,
+  @as("type") mutable type_?: WebApiWebWorkers.Types.workerType,
   mutable updateViaCache?: serviceWorkerUpdateViaCache,
 }
 
@@ -120,7 +120,7 @@ The ServiceWorkerGlobalScope interface of the Service Worker API represents the 
  */
 @editor.completeFrom(ServiceWorkerGlobalScope)
 type serviceWorkerGlobalScope = {
-  ...WebWorkers.Types.workerGlobalScope,
+  ...WebApiWebWorkers.Types.workerGlobalScope,
   /**
     [Read more on MDN](https://developer.mozilla.org/en-US/docs/Web/API/ServiceWorkerGlobalScope/clients)
   */
@@ -132,7 +132,7 @@ type serviceWorkerGlobalScope = {
 }
 
 /**
-The Client interface represents an executable context such as a Worker, or a WebWorkers.SharedWorker. Window clients are represented by the more-specific WindowClient.
+The Client interface represents an executable context such as a Worker, or a WebApiWebWorkers.SharedWorker. Window clients are represented by the more-specific WindowClient.
 [See Client on MDN](https://developer.mozilla.org/en-US/docs/Web/API/Client)
 */
 type client = {
@@ -145,7 +145,7 @@ type client = {
 }
 
 /**
-The WindowClient interface of the ServiceWorker API represents the scope of a service worker client that is a document in a browsing context, controlled by an active worker.
+The WindowClient interface of the WebApiServiceWorker API represents the scope of a service worker client that is a document in a browsing context, controlled by an active worker.
 [See WindowClient on MDN](https://developer.mozilla.org/en-US/docs/Web/API/WindowClient)
 */
 type windowClient = {

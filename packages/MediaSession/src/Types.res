@@ -46,16 +46,16 @@ type mediaMetadata = {
 }
 
 /**
-[See MediaSession on MDN](https://developer.mozilla.org/docs/Web/API/MediaSession)
+[See WebApiMediaSession on MDN](https://developer.mozilla.org/docs/Web/API/WebApiMediaSession)
 */
-@editor.completeFrom(MediaSession)
+@editor.completeFrom(WebApiMediaSession)
 type mediaSession = {
   /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/MediaSession/metadata)
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/WebApiMediaSession/metadata)
     */
   mutable metadata: Null.t<mediaMetadata>,
   /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/MediaSession/playbackState)
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/WebApiMediaSession/playbackState)
     */
   mutable playbackState: mediaSessionPlaybackState,
 }

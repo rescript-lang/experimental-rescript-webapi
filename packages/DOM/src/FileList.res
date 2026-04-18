@@ -1,5 +1,5 @@
 /**
-Returns the `File` at the specified index.
+Returns the `WebApiFile` at the specified index.
 
 `FileList` is not an array, so you need to iterate manually using `length` and `item`:
 
@@ -13,4 +13,4 @@ for i in 0 to fileList.length - 1 {
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/FileList/item)
 */
 @send
-external item: (Types.fileList, int) => File.Types.file = "item"
+external item: (Types.fileList, int) => WebApiFile.Types.file = "item"

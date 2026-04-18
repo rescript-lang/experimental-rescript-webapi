@@ -1,5 +1,5 @@
 /**
-[Read more on MDN](https://developer.mozilla.org/docs/Web/API/MediaSession/setActionHandler)
+[Read more on MDN](https://developer.mozilla.org/docs/Web/API/WebApiMediaSession/setActionHandler)
 */
 @send
 external setActionHandler: (
@@ -9,7 +9,7 @@ external setActionHandler: (
 ) => unit = "setActionHandler"
 
 /**
-[Read more on MDN](https://developer.mozilla.org/docs/Web/API/MediaSession/setPositionState)
+[Read more on MDN](https://developer.mozilla.org/docs/Web/API/WebApiMediaSession/setPositionState)
 */
 @send
 external setPositionState: (Types.mediaSession, ~state: Types.mediaPositionState=?) => unit =

@@ -1,5 +1,5 @@
 {
-  "name": "@rescript-webapi/media-capabilities",
+  "name": "@rescript/webapi-media-capabilities",
   "sources": [
     {
       "dir": "src",
@@ -12,5 +12,5 @@
   },
   "suffix": ".js",
   "dependencies": [],
-  "namespace": "MediaCapabilities"
+  "namespace": "WebApiMediaCapabilities"
 }

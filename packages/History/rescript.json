@@ -1,5 +1,5 @@
 {
-  "name": "@rescript-webapi/history",
+  "name": "@rescript/webapi-history",
   "sources": [
     {
       "dir": "src",
@@ -12,5 +12,5 @@
   },
   "suffix": ".js",
   "dependencies": [],
-  "namespace": "History"
+  "namespace": "WebApiHistory"
 }

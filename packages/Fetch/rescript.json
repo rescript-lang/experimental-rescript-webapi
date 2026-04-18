@@ -1,5 +1,5 @@
 {
-  "name": "@rescript-webapi/fetch",
+  "name": "@rescript/webapi-fetch",
   "sources": [
     {
       "dir": "src",
@@ -12,10 +12,10 @@
   },
   "suffix": ".js",
   "dependencies": [
-    "@rescript-webapi/event",
-    "@rescript-webapi/file",
-    "@rescript-webapi/prelude",
-    "@rescript-webapi/url"
+    "@rescript/webapi-event",
+    "@rescript/webapi-file",
+    "@rescript/webapi-prelude",
+    "@rescript/webapi-url"
   ],
-  "namespace": "Fetch"
+  "namespace": "WebApiFetch"
 }
