@@ -13,3 +13,5 @@ docs/public/llm.txt
 .DS_Store
 
 rescript.lock
+
+**/*.res.js
