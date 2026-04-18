@@ -1,11 +1,12 @@
 module Types = FileTypes
 
-type t = Types.fileSystemDirectoryHandle
-type fileSystemHandle = Types.fileSystemHandle
-type fileSystemFileHandle = Types.fileSystemFileHandle
-type fileSystemGetFileOptions = Types.fileSystemGetFileOptions
-type fileSystemGetDirectoryOptions = Types.fileSystemGetDirectoryOptions
-type fileSystemRemoveOptions = Types.fileSystemRemoveOptions
+type t = Types.fileSystemDirectoryHandle = {...Types.fileSystemDirectoryHandle}
+type fileSystemHandle = Types.fileSystemHandle = {...Types.fileSystemHandle}
+type fileSystemFileHandle = Types.fileSystemFileHandle = {...Types.fileSystemFileHandle}
+type fileSystemGetFileOptions = Types.fileSystemGetFileOptions = {...Types.fileSystemGetFileOptions}
+type fileSystemGetDirectoryOptions =
+  Types.fileSystemGetDirectoryOptions = {...Types.fileSystemGetDirectoryOptions}
+type fileSystemRemoveOptions = Types.fileSystemRemoveOptions = {...Types.fileSystemRemoveOptions}
 
 external asFileSystemHandle: t => fileSystemHandle = "%identity"
 /**

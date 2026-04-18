@@ -1,6 +1,6 @@
 module Types = FileTypes
 
-type t<'w> = Types.writableStream<'w>
+type t<'w> = Types.writableStream<'w> = {...Types.writableStream<'w>}
 type queuingStrategy<'t> = Types.queuingStrategy<'t>
 type underlyingSink<'t> = Types.underlyingSink<'t>
 type writableStreamDefaultWriter<'t> = Types.writableStreamDefaultWriter<'t>

@@ -1,9 +1,9 @@
 module Types = WebSocketsTypes
 
-type t = Types.webSocket
+type t = Types.webSocket = {...Types.webSocket}
 type binaryType = Types.binaryType
-type messageEvent<'t> = Types.messageEvent<'t>
-type closeEvent = Types.closeEvent
+type messageEvent<'t> = Types.messageEvent<'t> = {...Types.messageEvent<'t>}
+type closeEvent = Types.closeEvent = {...Types.closeEvent}
 type messageEventSource = Types.messageEventSource
 
 /**

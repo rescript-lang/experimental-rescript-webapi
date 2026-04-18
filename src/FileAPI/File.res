@@ -1,8 +1,8 @@
 module Types = FileTypes
 
-type t = Types.file
+type t = Types.file = {...Types.file}
 type blobPart = Types.blobPart
-type filePropertyBag = Types.filePropertyBag
+type filePropertyBag = Types.filePropertyBag = {...Types.filePropertyBag}
 
 include Blob.Impl({type t = t})
 

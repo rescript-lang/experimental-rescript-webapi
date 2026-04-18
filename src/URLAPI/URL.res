@@ -1,6 +1,6 @@
 module Types = URLTypes
 
-type t = Types.url
+type t = Types.url = {...Types.url}
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/URL)

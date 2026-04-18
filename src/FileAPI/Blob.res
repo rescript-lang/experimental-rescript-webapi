@@ -4,10 +4,10 @@ module Types = FileTypes
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Blob)
 */
 @new
-type t = Types.blob
+type t = Types.blob = {...Types.blob}
 type blobPart = Types.blobPart
-type blobPropertyBag = Types.blobPropertyBag
-type readableStream<'r> = Types.readableStream<'r>
+type blobPropertyBag = Types.blobPropertyBag = {...Types.blobPropertyBag}
+type readableStream<'r> = Types.readableStream<'r> = {...Types.readableStream<'r>}
 
 external make: (~blobParts: array<blobPart>=?, ~options: blobPropertyBag=?) => t = "Blob"
 

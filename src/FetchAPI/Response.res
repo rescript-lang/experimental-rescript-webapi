@@ -1,7 +1,7 @@
 module Types = FetchTypes
 
-type t = Types.response
-type responseInit = Types.responseInit
+type t = Types.response = {...Types.response}
+type responseInit = Types.responseInit = {...Types.responseInit}
 type bodyInit = Types.bodyInit
 type headersInit = Types.headersInit
 

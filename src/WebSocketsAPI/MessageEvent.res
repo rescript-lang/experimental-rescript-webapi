@@ -1,7 +1,7 @@
 module Types = WebSocketsTypes
 
-type t<'t> = Types.messageEvent<'t>
-type messageEventInit<'t> = Types.messageEventInit<'t>
+type t<'t> = Types.messageEvent<'t> = {...Types.messageEvent<'t>}
+type messageEventInit<'t> = Types.messageEventInit<'t> = {...Types.messageEventInit<'t>}
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/MessageEvent)

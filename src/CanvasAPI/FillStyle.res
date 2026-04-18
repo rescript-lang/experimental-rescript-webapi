@@ -3,8 +3,8 @@ open Prelude
 module Types = CanvasTypes
 
 type t = Types.fillStyle
-type canvasGradient = Types.canvasGradient
-type canvasPattern = Types.canvasPattern
+type canvasGradient = Types.canvasGradient = {...Types.canvasGradient}
+type canvasPattern = Types.canvasPattern = {...Types.canvasPattern}
 
 external fromString: string => t = "%identity"
 external fromCanvasGradient: canvasGradient => t = "%identity"

@@ -1,6 +1,6 @@
 module Types = CanvasTypes
 
-type t = Types.path2D
+type t = Types.path2D = {...Types.path2D}
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Path2D)

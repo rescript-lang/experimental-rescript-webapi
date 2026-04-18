@@ -1,6 +1,6 @@
 module Types = CanvasTypes
 
-type t = Types.imageBitmap
+type t = Types.imageBitmap = {...Types.imageBitmap}
 
 /**
 Releases imageBitmap's underlying bitmap data.

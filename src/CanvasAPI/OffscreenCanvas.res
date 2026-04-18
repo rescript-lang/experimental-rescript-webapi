@@ -4,15 +4,18 @@ module Types = CanvasTypes
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/OffscreenCanvas)
 */
 @new
-type t = Types.offscreenCanvas
-type imageBitmap = Types.imageBitmap
-type offscreenCanvasRenderingContext2D = Types.offscreenCanvasRenderingContext2D
-type webGLRenderingContext = Types.webGLRenderingContext
-type webGL2RenderingContext = Types.webGL2RenderingContext
-type webGLContextAttributes = Types.webGLContextAttributes
-type imageBitmapRenderingContext = Types.imageBitmapRenderingContext
-type imageBitmapRenderingContextSettings = Types.imageBitmapRenderingContextSettings
-type imageEncodeOptions = Types.imageEncodeOptions
+type t = Types.offscreenCanvas = {...Types.offscreenCanvas}
+type imageBitmap = Types.imageBitmap = {...Types.imageBitmap}
+type offscreenCanvasRenderingContext2D =
+  Types.offscreenCanvasRenderingContext2D = {...Types.offscreenCanvasRenderingContext2D}
+type webGLRenderingContext = Types.webGLRenderingContext = {...Types.webGLRenderingContext}
+type webGL2RenderingContext = Types.webGL2RenderingContext = {...Types.webGL2RenderingContext}
+type webGLContextAttributes = Types.webGLContextAttributes = {...Types.webGLContextAttributes}
+type imageBitmapRenderingContext =
+  Types.imageBitmapRenderingContext = {...Types.imageBitmapRenderingContext}
+type imageBitmapRenderingContextSettings =
+  Types.imageBitmapRenderingContextSettings = {...Types.imageBitmapRenderingContextSettings}
+type imageEncodeOptions = Types.imageEncodeOptions = {...Types.imageEncodeOptions}
 
 external make: (~width: int, ~height: int) => t = "OffscreenCanvas"
 

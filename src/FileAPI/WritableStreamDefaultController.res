@@ -1,6 +1,6 @@
 module Types = FileTypes
 
-type t = Types.writableStreamDefaultController
+type t = Types.writableStreamDefaultController = {...Types.writableStreamDefaultController}
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/WritableStreamDefaultController/error)

@@ -1,6 +1,6 @@
 module Types = CanvasTypes
 
-type t = Types.canvasGradient
+type t = Types.canvasGradient = {...Types.canvasGradient}
 
 /**
 Adds a color stop with the given color to the gradient at the given offset. 0.0 is the offset at one end of the gradient, 1.0 is the offset at the other end.

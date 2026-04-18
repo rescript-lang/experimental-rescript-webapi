@@ -1,7 +1,7 @@
 module Types = WebSocketsTypes
 
-type t = Types.closeEvent
-type closeEventInit = Types.closeEventInit
+type t = Types.closeEvent = {...Types.closeEvent}
+type closeEventInit = Types.closeEventInit = {...Types.closeEventInit}
 
 include Event.Impl({type t = t})
 

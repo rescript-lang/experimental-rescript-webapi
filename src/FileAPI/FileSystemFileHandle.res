@@ -1,10 +1,12 @@
 module Types = FileTypes
 
-type t = Types.fileSystemFileHandle
-type fileSystemHandle = Types.fileSystemHandle
-type file = Types.file
-type fileSystemCreateWritableOptions = Types.fileSystemCreateWritableOptions
-type fileSystemWritableFileStream = Types.fileSystemWritableFileStream
+type t = Types.fileSystemFileHandle = {...Types.fileSystemFileHandle}
+type fileSystemHandle = Types.fileSystemHandle = {...Types.fileSystemHandle}
+type file = Types.file = {...Types.file}
+type fileSystemCreateWritableOptions =
+  Types.fileSystemCreateWritableOptions = {...Types.fileSystemCreateWritableOptions}
+type fileSystemWritableFileStream =
+  Types.fileSystemWritableFileStream = {...Types.fileSystemWritableFileStream}
 
 external asFileSystemHandle: t => fileSystemHandle = "%identity"
 /**

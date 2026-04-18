@@ -1,6 +1,6 @@
 module Types = CanvasTypes
 
-type t = Types.canvasPattern
+type t = Types.canvasPattern = {...Types.canvasPattern}
 
 /**
 Sets the transformation matrix that will be used when rendering the pattern during a fill or stroke painting operation.

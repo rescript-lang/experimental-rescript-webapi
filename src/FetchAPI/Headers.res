@@ -1,6 +1,6 @@
 module Types = FetchTypes
 
-type t = Types.headers
+type t = Types.headers = {...Types.headers}
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Headers)

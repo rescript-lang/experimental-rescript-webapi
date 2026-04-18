@@ -4,7 +4,7 @@ module Types = FetchTypes
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/FormData)
  */
 @new
-type t = Types.formData
+type t = Types.formData = {...Types.formData}
 type formDataEntryValue = Types.formDataEntryValue
 
 external make: (~form: DOMTypes.htmlFormElement=?, ~submitter: DOMTypes.htmlElement=?) => t =
