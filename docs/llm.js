@@ -32,8 +32,11 @@ async function getDocJson(filePath) {
 
 async function processFile(filePath) {
   const json = await getDocJson(filePath);
-
-  const moduleName = "WebAPI." + json.name.replace("-WebAPI", "");
+  const relativePath = path.relative(path.join(import.meta.dirname, ".."), filePath);
+  const parts = relativePath.split(path.sep);
+  const packageName = parts[1];
+  const leafName = path.basename(filePath, ".res");
+  const moduleName = leafName === "Types" ? packageName : `${packageName}.${leafName}`;
 
   const types = [];
   const functions = [];
@@ -94,7 +97,7 @@ Module: ${moduleName}${typeString}${functionString}
 `;
 }
 
-const pattern = "../src/**/*.res";
+const pattern = "../packages/*/src/**/*.res";
 const files = [];
 for await (const file of fs.glob(pattern, { recursive: true, cwd: import.meta.dirname })) {
   files.push(path.join(import.meta.dirname, file));
