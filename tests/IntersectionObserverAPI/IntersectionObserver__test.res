@@ -1,10 +1,10 @@
-let observer = IntersectionObserver.make(~callback=(entry, observer) => {
+let observer: IntersectionObserver.t = IntersectionObserver.make(~callback=(entry, observer) => {
   Console.log2(entry, observer)
 })
 
-let root = Global.document->Document.querySelector("#root")->Null.getUnsafe
+let root = Window.current.document->Document.querySelector("#root")->Null.getUnsafe
 
-let observer2 = IntersectionObserver.make(
+let observer2: IntersectionObserver.t = IntersectionObserver.make(
   ~callback=(entry, observer) => {
     Console.log2(entry, observer)
   },
@@ -22,7 +22,7 @@ switch observer2.root->IntersectionObserverRoot.decode {
 }
 let rootMargin2 = observer2.rootMargin
 
-let targetElement = Global.document->Document.querySelector("#targetElement")->Null.toOption
+let targetElement = Window.current.document->Document.querySelector("#targetElement")->Null.toOption
 switch targetElement {
 | Some(e) => {
     observer2->IntersectionObserver.observe(e)

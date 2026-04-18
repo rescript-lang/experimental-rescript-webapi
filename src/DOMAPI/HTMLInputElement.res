@@ -1,5 +1,7 @@
 open DOMTypes
 
+type t = htmlInputElement = {...htmlInputElement}
+
 include HTMLElement.Impl({type t = htmlInputElement})
 
 /**
@@ -56,7 +58,7 @@ external setRangeText: (htmlInputElement, string) => unit = "setRangeText"
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLInputElement/setRangeText)
 */
 @send
-external setRangeText2: (
+external setRangeTextWithRange: (
   htmlInputElement,
   ~replacement: string,
   ~start: int,

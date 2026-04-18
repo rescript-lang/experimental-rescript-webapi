@@ -26,4 +26,4 @@ external assign: (htmlSlotElement, element) => unit = "assign"
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLSlotElement/assign)
 */
 @send
-external assign2: (htmlSlotElement, text) => unit = "assign"
+external assignText: (htmlSlotElement, text) => unit = "assign"

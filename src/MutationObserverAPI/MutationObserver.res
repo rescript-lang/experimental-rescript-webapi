@@ -1,6 +1,8 @@
 open DOMTypes
 open MutationObserverTypes
 
+type t = mutationObserver
+
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/MutationObserver)
 */

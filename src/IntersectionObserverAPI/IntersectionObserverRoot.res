@@ -1,6 +1,8 @@
 open DOMTypes
 open IntersectionObserverTypes
 
+type t = root
+
 external fromDocument: document => root = "%identity"
 external fromElement: element => root = "%identity"
 external fromNull: root = "null"

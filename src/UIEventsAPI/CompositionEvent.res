@@ -1,5 +1,7 @@
 open UIEventsTypes
 
+type t = compositionEvent = {...compositionEvent}
+
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CompositionEvent)
 */

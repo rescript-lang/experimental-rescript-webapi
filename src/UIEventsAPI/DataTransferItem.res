@@ -2,6 +2,8 @@ open UIEventsTypes
 open FileTypes
 open FileAndDirectoryEntriesTypes
 
+type t = dataTransferItem = {...dataTransferItem}
+
 /**
 Invokes the callback with the string data as the argument, if the drag data item kind is text.
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/DataTransferItem/getAsString)

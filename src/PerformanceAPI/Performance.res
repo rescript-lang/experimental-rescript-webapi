@@ -80,7 +80,7 @@ external measure: (
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Performance/measure)
 */
 @send
-external measure2: (
+external measureWithOptions: (
   t,
   ~measureName: string,
   ~startOrMeasureOptions: performanceMeasureOptions=?,
