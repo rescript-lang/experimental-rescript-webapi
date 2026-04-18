@@ -29,7 +29,7 @@ let response3 = await Fetch.Global.fetchWithRequest(
 DOM.Global.removeEventListener(Event.Types.Mousedown, UIEvents.MouseEvent.preventDefault, ~options={capture: false})
 
 let registrationResult = await DOM.Global.navigator
-->ServiceWorker.Navigator.serviceWorker
+->DOM.Navigator.serviceWorker
 ->ServiceWorker.ServiceWorkerContainer.register(
   "/sw.js",
 )
