@@ -1,7 +1,7 @@
 module Types = CSSFontLoadingTypes
 
-type t = Types.fontFaceSet
-type fontFace = Types.fontFace
+type t = Types.fontFaceSet = {...Types.fontFaceSet}
+type fontFace = Types.fontFace = {...Types.fontFace}
 type fontFaceSetLoadStatus = Types.fontFaceSetLoadStatus
 
 include EventTarget.Impl({type t = t})

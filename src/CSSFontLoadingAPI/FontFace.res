@@ -1,6 +1,6 @@
 module Types = CSSFontLoadingTypes
 
-type t = Types.fontFace
+type t = Types.fontFace = {...Types.fontFace}
 type fontDisplay = Types.fontDisplay
 type fontFaceLoadStatus = Types.fontFaceLoadStatus
 type fontFaceDescriptors = Types.fontFaceDescriptors = {...Types.fontFaceDescriptors}
