@@ -1,6 +1,8 @@
 open DOMTypes
 open ResizeObserverTypes
 
+type t = resizeObserver
+
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/ResizeObserver)
 */

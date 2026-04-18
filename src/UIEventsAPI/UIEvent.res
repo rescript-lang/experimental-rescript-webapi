@@ -1,5 +1,7 @@
 open UIEventsTypes
 
+type t = uiEvent
+
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/UIEvent)
 */

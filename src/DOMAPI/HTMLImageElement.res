@@ -1,5 +1,7 @@
 open DOMTypes
 
+type t = htmlImageElement
+
 include HTMLElement.Impl({type t = htmlImageElement})
 
 /**

@@ -1,5 +1,7 @@
 open DOMTypes
 
+type t = node
+
 module Impl = (
   T: {
     type t

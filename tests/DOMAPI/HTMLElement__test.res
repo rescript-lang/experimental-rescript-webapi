@@ -1,7 +1,6 @@
 open WebAPI
-open WebAPI.Global
 
-document
+Window.current.document
 ->Document.querySelector("form")
 ->Null.toOption
 ->Option.forEach(form => {

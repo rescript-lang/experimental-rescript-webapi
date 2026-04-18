@@ -1,5 +1,7 @@
 open DOMTypes
 
+type t = htmlInputElement
+
 include HTMLElement.Impl({type t = htmlInputElement})
 
 /**

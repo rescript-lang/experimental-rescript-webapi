@@ -1,5 +1,7 @@
 open EventTypes
 
+type t = extendableEvent
+
 module Impl = (
   T: {
     type t

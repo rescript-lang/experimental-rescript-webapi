@@ -1,6 +1,8 @@
 open UIEventsTypes
 open FileTypes
 
+type t = dataTransferItemList
+
 /**
 Adds a new entry for the given data to the drag data store. If the data is plain text then a type string has to be provided also.
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/DataTransferItemList/add)
