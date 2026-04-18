@@ -6,7 +6,7 @@ open EncryptedMediaExtensionsTypes
 open GamepadTypes
 open WebMIDITypes
 
-type t = DOMTypes.navigator = { ...DOMTypes.navigator }
+type t = DOMTypes.navigator = {...DOMTypes.navigator}
 
 external current: t = "navigator"
 

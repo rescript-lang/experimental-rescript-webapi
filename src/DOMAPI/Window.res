@@ -4,7 +4,7 @@ open FileTypes
 open ChannelMessagingTypes
 open FetchTypes
 
-type t = DOMTypes.window = { ...DOMTypes.window }
+type t = DOMTypes.window = {...DOMTypes.window}
 
 external current: t = "window"
 
