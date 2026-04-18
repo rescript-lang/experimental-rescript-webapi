@@ -1,6 +1,282 @@
 include Event.EventTarget.Impl({type t = Types.window})
 
 /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/window)
+    */
+@get
+external window: Types.window => Types.window = "window"
+
+/**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/self)
+    */
+@get
+external self: Types.window => Types.window = "self"
+
+/**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/document)
+    */
+@get
+external document: Types.window => Types.document = "document"
+
+/**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/name)
+    */
+@get
+external name: Types.window => string = "name"
+
+/**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/location)
+    */
+@get
+external location: Types.window => Types.location = "location"
+
+/**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/history)
+    */
+@get
+external history: Types.window => History.Types.history = "history"
+
+/**
+    Defines a new custom element, mapping the given name to the given constructor as an autonomous custom element.
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/customElements)
+    */
+@get
+external customElements: Types.window => Types.customElementRegistry = "customElements"
+
+/**
+    Returns true if the location bar is visible; otherwise, returns false.
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/locationbar)
+    */
+@get
+external locationbar: Types.window => Types.barProp = "locationbar"
+
+/**
+    Returns true if the menu bar is visible; otherwise, returns false.
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/menubar)
+    */
+@get
+external menubar: Types.window => Types.barProp = "menubar"
+
+/**
+    Returns true if the personal bar is visible; otherwise, returns false.
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/personalbar)
+    */
+@get
+external personalbar: Types.window => Types.barProp = "personalbar"
+
+/**
+    Returns true if the scrollbars are visible; otherwise, returns false.
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/scrollbars)
+    */
+@get
+external scrollbars: Types.window => Types.barProp = "scrollbars"
+
+/**
+    Returns true if the status bar is visible; otherwise, returns false.
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/statusbar)
+    */
+@get
+external statusbar: Types.window => Types.barProp = "statusbar"
+
+/**
+    Returns true if the toolbar is visible; otherwise, returns false.
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/toolbar)
+    */
+@get
+external toolbar: Types.window => Types.barProp = "toolbar"
+
+/**
+    Returns true if the window has been closed, false otherwise.
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/closed)
+    */
+@get
+external closed: Types.window => bool = "closed"
+
+/**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/frames)
+    */
+@get
+external frames: Types.window => Types.window = "frames"
+
+/**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/length)
+    */
+@get
+external length: Types.window => int = "length"
+
+/**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/top)
+    */
+@get
+external top: Types.window => Null.t<Types.window> = "top"
+
+/**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/opener)
+    */
+@get
+external opener: Types.window => JSON.t = "opener"
+
+/**
+    Refers to either the parent WindowProxy, or itself.
+
+It can rarely be null e.g. for contentWindow of an iframe that is already removed from the parent.
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/parent)
+    */
+@get
+external parent: Types.window => Types.window = "parent"
+
+/**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/frameElement)
+    */
+@get
+external frameElement: Types.window => Null.t<Types.element> = "frameElement"
+
+/**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/navigator)
+    */
+@get
+external navigator: Types.window => Types.navigator = "navigator"
+
+/**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/screen)
+    */
+@get
+external screen: Types.window => Types.screen = "screen"
+
+/**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/visualViewport)
+    */
+@get
+external visualViewport: Types.window => Null.t<VisualViewport.Types.visualViewport> =
+  "visualViewport"
+
+/**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/innerWidth)
+    */
+@get
+external innerWidth: Types.window => int = "innerWidth"
+
+/**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/innerHeight)
+    */
+@get
+external innerHeight: Types.window => int = "innerHeight"
+
+/**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/scrollX)
+    */
+@get
+external scrollX: Types.window => float = "scrollX"
+
+/**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/scrollY)
+    */
+@get
+external scrollY: Types.window => float = "scrollY"
+
+/**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/screenX)
+    */
+@get
+external screenX: Types.window => int = "screenX"
+
+/**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/screenLeft)
+    */
+@get
+external screenLeft: Types.window => int = "screenLeft"
+
+/**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/screenY)
+    */
+@get
+external screenY: Types.window => int = "screenY"
+
+/**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/screenTop)
+    */
+@get
+external screenTop: Types.window => int = "screenTop"
+
+/**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/outerWidth)
+    */
+@get
+external outerWidth: Types.window => int = "outerWidth"
+
+/**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/outerHeight)
+    */
+@get
+external outerHeight: Types.window => int = "outerHeight"
+
+/**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/devicePixelRatio)
+    */
+@get
+external devicePixelRatio: Types.window => float = "devicePixelRatio"
+
+/**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/speechSynthesis)
+    */
+@get
+external speechSynthesis: Types.window => WebSpeech.Types.speechSynthesis = "speechSynthesis"
+
+/**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/origin)
+    */
+@get
+external origin: Types.window => string = "origin"
+
+/**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/isSecureContext)
+    */
+@get
+external isSecureContext: Types.window => bool = "isSecureContext"
+
+/**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/crossOriginIsolated)
+    */
+@get
+external crossOriginIsolated: Types.window => bool = "crossOriginIsolated"
+
+/**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/indexedDB)
+    */
+@get
+external indexedDB: Types.window => IndexedDB.Types.idbFactory = "indexedDB"
+
+/**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/crypto)
+    */
+@get
+external crypto: Types.window => WebCrypto.Types.crypto = "crypto"
+
+/**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/performance)
+    */
+@get
+external performance: Types.window => Performance.Types.performance = "performance"
+
+/**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/caches)
+    */
+@get
+external caches: Types.window => WebWorkers.Types.cacheStorage = "caches"
+
+/**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/sessionStorage)
+    */
+@get
+external sessionStorage: Types.window => WebStorage.Types.storage = "sessionStorage"
+
+/**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/localStorage)
+    */
+@get
+external localStorage: Types.window => WebStorage.Types.storage = "localStorage"
+
+/**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/reportError)
 */
 @send
