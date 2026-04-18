@@ -3,10 +3,10 @@ name: CI
 on:
   push:
     branches:
-      - experimental
+      - pre-alpha
   pull_request:
     branches:
-      - experimental
+      - pre-alpha
 
 permissions:
   contents: read
@@ -39,14 +39,16 @@ jobs:
       - name: Run tests
         run: npm test
 
-      - name: Build documentation
-        run: npm run build:docs
+      # Pre-alpha should skip docs build/publish until the docs pipeline is ready.
+      # - name: Build documentation
+      #   run: npm run build:docs
 
-      - name: Upload documentation
-        uses: actions/upload-pages-artifact@v4
-        if: github.ref == 'refs/heads/experimental' && github.event_name == 'push'
-        with:
-          path: ./dist
+      # Pre-alpha should not publish docs.
+      # - name: Upload documentation
+      #   uses: actions/upload-pages-artifact@v4
+      #   if: github.ref == 'refs/heads/pre-alpha' && github.event_name == 'push'
+      #   with:
+      #     path: ./dist
 
       - name: get-npm-version
         id: package-version
@@ -57,7 +59,7 @@ jobs:
         run: echo "COMMIT_HASH=$(git rev-parse --short HEAD)" >> $GITHUB_ENV
 
       - name: Update version to -<commit-hash>
-        run: npm version --no-git-tag-version "${{ steps.package-version.outputs.current-version }}-experimental-${{ env.COMMIT_HASH }}"
+        run: npm version --no-git-tag-version "${{ steps.package-version.outputs.current-version }}-pre-alpha-${{ env.COMMIT_HASH }}"
 
       - name: Package npm project
         run: npm pack
@@ -69,19 +71,19 @@ jobs:
           path: "*.tgz"
 
       - name: Publish to npm
-        if: github.ref == 'refs/heads/experimental' && github.event_name == 'push'
+        if: github.ref == 'refs/heads/pre-alpha' && github.event_name == 'push'
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NODE_AUTH_TOKEN }}
-        run: npm publish --access public ./*.tgz --tag experimental
+        run: npm publish --access public ./*.tgz --tag pre-alpha
 
-  deploy-docs:
-    needs: build
-    runs-on: ubuntu-latest
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-    if: github.ref == 'refs/heads/experimental' && github.event_name == 'push'
-    steps:
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v5
+  # deploy-docs:
+  #   needs: build
+  #   runs-on: ubuntu-latest
+  #   environment:
+  #     name: github-pages
+  #     url: ${{ steps.deployment.outputs.page_url }}
+  #   if: github.ref == 'refs/heads/pre-alpha' && github.event_name == 'push'
+  #   steps:
+  #     - name: Deploy to GitHub Pages
+  #       id: deployment
+  #       uses: actions/deploy-pages@v5
