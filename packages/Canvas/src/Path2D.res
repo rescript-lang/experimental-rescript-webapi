@@ -1,3 +1,5 @@
+type domMatrix2DInit = WebApiDOM.Types.domMatrix2DInit
+
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Path2D)
 */
@@ -145,5 +147,5 @@ Adds to the path the path given by the argument.
 external addPath: (
   Types.path2D,
   ~path: Types.path2D,
-  ~transform: WebApiDOM.Types.domMatrix2DInit=?,
+  ~transform: domMatrix2DInit=?,
 ) => unit = "addPath"

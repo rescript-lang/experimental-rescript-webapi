@@ -1,40 +1,45 @@
-include WebApiEvent.EventTarget.Impl({type t = Types.mediaStreamTrack})
+type t = Types.mediaStreamTrack = {...Types.mediaStreamTrack}
+type mediaTrackCapabilities = Types.mediaTrackCapabilities = {...Types.mediaTrackCapabilities}
+type mediaTrackConstraints = Types.mediaTrackConstraints = {...Types.mediaTrackConstraints}
+type mediaTrackSettings = Types.mediaTrackSettings = {...Types.mediaTrackSettings}
+
+include WebApiEvent.EventTarget.Impl({type t = t})
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/MediaStreamTrack/clone)
 */
 @send
-external clone: Types.mediaStreamTrack => Types.mediaStreamTrack = "clone"
+external clone: t => t = "clone"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/MediaStreamTrack/stop)
 */
 @send
-external stop: Types.mediaStreamTrack => unit = "stop"
+external stop: t => unit = "stop"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/MediaStreamTrack/getCapabilities)
 */
 @send
-external getCapabilities: Types.mediaStreamTrack => Types.mediaTrackCapabilities = "getCapabilities"
+external getCapabilities: t => mediaTrackCapabilities = "getCapabilities"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/MediaStreamTrack/getConstraints)
 */
 @send
-external getConstraints: Types.mediaStreamTrack => Types.mediaTrackConstraints = "getConstraints"
+external getConstraints: t => mediaTrackConstraints = "getConstraints"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/MediaStreamTrack/getSettings)
 */
 @send
-external getSettings: Types.mediaStreamTrack => Types.mediaTrackSettings = "getSettings"
+external getSettings: t => mediaTrackSettings = "getSettings"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/MediaStreamTrack/applyConstraints)
 */
 @send
 external applyConstraints: (
-  Types.mediaStreamTrack,
-  ~constraints: Types.mediaTrackConstraints=?,
+  t,
+  ~constraints: mediaTrackConstraints=?,
 ) => promise<unit> = "applyConstraints"

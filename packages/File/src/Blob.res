@@ -1,29 +1,33 @@
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Blob)
 */
+type t = Types.blob
+type blobPart = Types.blobPart
+type blobPropertyBag = Types.blobPropertyBag
+
 @new
 external make: (
-  ~blobParts: array<Types.blobPart>=?,
-  ~options: Types.blobPropertyBag=?,
-) => Types.blob = "Blob"
+  ~blobParts: array<blobPart>=?,
+  ~options: blobPropertyBag=?,
+) => t = "Blob"
 
 module Impl = (
   T: {
     type t
   },
 ) => {
-  external asBlob: T.t => Types.blob = "%identity"
+  external asBlob: T.t => t = "%identity"
   /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Blob/slice)
 */
   @send
-  external slice: (T.t, ~start: int=?, ~end: int=?, ~contentType: string=?) => Types.blob = "slice"
+  external slice: (T.t, ~start: int=?, ~end: int=?, ~contentType: string=?) => t = "slice"
 
   /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Blob/stream)
 */
   @send
-  external stream: T.t => Types.readableStream<array<int>> = "stream"
+  external stream: T.t => WebApiFile.ReadableStream.t<array<int>> = "stream"
 
   /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Blob/text)
@@ -44,4 +48,4 @@ module Impl = (
   external bytes: T.t => promise<array<int>> = "bytes"
 }
 
-include Impl({type t = Types.blob})
+include Impl({type t = t})
