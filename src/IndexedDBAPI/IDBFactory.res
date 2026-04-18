@@ -1,6 +1,6 @@
 open IndexedDBTypes
 
-type t = IndexedDBTypes.idbFactory = {}
+type t = IndexedDBTypes.idbFactory = {...IndexedDBTypes.idbFactory}
 
 external current: t = "indexedDB"
 

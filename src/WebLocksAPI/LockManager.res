@@ -1,6 +1,6 @@
 open WebLocksTypes
 
-type t = WebLocksTypes.lockManager = {}
+type t = WebLocksTypes.lockManager = {...WebLocksTypes.lockManager}
 
 external current: t = "locks"
 

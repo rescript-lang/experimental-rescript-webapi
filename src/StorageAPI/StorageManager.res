@@ -1,7 +1,7 @@
 open StorageTypes
 open FileTypes
 
-type t = StorageTypes.storageManager = {}
+type t = StorageTypes.storageManager = {...StorageTypes.storageManager}
 
 external current: t = "storage"
 

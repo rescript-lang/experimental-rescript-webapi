@@ -1,6 +1,6 @@
 open ScreenWakeLockTypes
 
-type t = ScreenWakeLockTypes.wakeLock = {}
+type t = ScreenWakeLockTypes.wakeLock = {...ScreenWakeLockTypes.wakeLock}
 
 external current: t = "wakeLock"
 

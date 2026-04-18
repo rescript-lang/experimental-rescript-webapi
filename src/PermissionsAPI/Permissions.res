@@ -1,6 +1,6 @@
 open PermissionsTypes
 
-type t = PermissionsTypes.permissions = {}
+type t = PermissionsTypes.permissions = {...PermissionsTypes.permissions}
 
 external current: t = "permissions"
 

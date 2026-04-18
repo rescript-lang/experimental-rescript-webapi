@@ -1,6 +1,9 @@
 open CredentialManagementTypes
 
-type t = CredentialManagementTypes.credentialsContainer = {}
+type t =
+  CredentialManagementTypes.credentialsContainer = {
+    ...CredentialManagementTypes.credentialsContainer,
+  }
 
 external current: t = "credentials"
 
