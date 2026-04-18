@@ -5,4 +5,8 @@
 dist/
 tmp/
 docs/public/llm.txt
+# ReScript generated in-source outputs
+/src/**/*.js
+/tests/**/*.js
+!/tests/index.js
 *~
