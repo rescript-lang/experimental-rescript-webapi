@@ -4,7 +4,9 @@ open MediaCaptureAndStreamsTypes
 
 type t = audioContext = {...audioContext}
 type baseAudioContext = WebAudioTypes.baseAudioContext = {...WebAudioTypes.baseAudioContext}
-type audioContextOptions = WebAudioTypes.audioContextOptions = {...WebAudioTypes.audioContextOptions}
+type audioContextOptions = WebAudioTypes.audioContextOptions = {
+  ...WebAudioTypes.audioContextOptions,
+}
 type audioTimestamp = WebAudioTypes.audioTimestamp = {...WebAudioTypes.audioTimestamp}
 
 include BaseAudioContext.Impl({type t = t})
