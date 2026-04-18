@@ -30,7 +30,18 @@ let response3 = await fetchWithRequest(
 
 removeEventListener(Mousedown, MouseEvent.preventDefault, ~options={capture: false})
 
-let registrationResult = await navigator.serviceWorker->ServiceWorkerContainer.register("/sw.js")
+let _history = History.current
+let _performance = Performance.current
+let _crypto = Crypto.current
+let _indexedDB = IDBFactory.current
+let _clipboard = Clipboard.current
+let _permissions = Permissions.current
+let _credentials = CredentialsContainer.current
+let _wakeLock = WakeLock.current
+let _locks = LockManager.current
+let _storageManager = StorageManager.current
+
+let registrationResult = await ServiceWorkerContainer.current->ServiceWorkerContainer.register("/sw.js")
 let subscription = await registrationResult.pushManager->PushManager.subscribe(
   ~options={
     userVisibleOnly: true,

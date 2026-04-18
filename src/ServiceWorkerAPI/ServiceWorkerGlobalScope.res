@@ -1,10 +1,12 @@
 open ServiceWorkerTypes
 
-include WorkerGlobalScope.Impl({type t = serviceWorkerGlobalScope})
+type t = ServiceWorkerTypes.serviceWorkerGlobalScope = {...ServiceWorkerTypes.serviceWorkerGlobalScope}
+
+include WorkerGlobalScope.Impl({type t = t})
 
 /**
 Forces the waiting service worker to become the active service worker.
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/ServiceWorkerGlobalScope/skipWaiting)
 */
 @send
-external skipWaiting: serviceWorkerGlobalScope => promise<unit> = "skipWaiting"
+external skipWaiting: t => promise<unit> = "skipWaiting"

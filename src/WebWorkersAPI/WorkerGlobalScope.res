@@ -1,12 +1,16 @@
 open WebWorkersTypes
 open FetchTypes
 
+type t = WebWorkersTypes.workerGlobalScope = {...WebWorkersTypes.workerGlobalScope}
+
 module Impl = (
   T: {
     type t
   },
 ) => {
   include EventTarget.Impl({type t = T.t})
+
+  external current: T.t = "self"
 
   /**
 `fetch(workerGlobalScope, string, init)`
@@ -38,4 +42,4 @@ let response = await self->WorkerGlobalScope.fetch(myRequest)
   external fetchWithRequest: (T.t, request, ~init: requestInit=?) => promise<response> = "fetch"
 }
 
-include Impl({type t = workerGlobalScope})
+include Impl({type t = t})

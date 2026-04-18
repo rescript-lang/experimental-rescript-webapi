@@ -1,56 +1,60 @@
 open PerformanceTypes
 
-include EventTarget.Impl({type t = performance})
+type t = PerformanceTypes.performance = {...PerformanceTypes.performance}
+
+external current: t = "performance"
+
+include EventTarget.Impl({type t = t})
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Performance/now)
 */
 @send
-external now: performance => float = "now"
+external now: t => float = "now"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Performance/toJSON)
 */
 @send
-external toJSON: performance => Dict.t<string> = "toJSON"
+external toJSON: t => Dict.t<string> = "toJSON"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Performance/getEntries)
 */
 @send
-external getEntries: performance => performanceEntryList = "getEntries"
+external getEntries: t => performanceEntryList = "getEntries"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Performance/getEntriesByType)
 */
 @send
-external getEntriesByType: (performance, string) => performanceEntryList = "getEntriesByType"
+external getEntriesByType: (t, string) => performanceEntryList = "getEntriesByType"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Performance/getEntriesByName)
 */
 @send
-external getEntriesByName: (performance, ~name: string, ~type_: string=?) => performanceEntryList =
+external getEntriesByName: (t, ~name: string, ~type_: string=?) => performanceEntryList =
   "getEntriesByName"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Performance/clearResourceTimings)
 */
 @send
-external clearResourceTimings: performance => unit = "clearResourceTimings"
+external clearResourceTimings: t => unit = "clearResourceTimings"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Performance/setResourceTimingBufferSize)
 */
 @send
-external setResourceTimingBufferSize: (performance, int) => unit = "setResourceTimingBufferSize"
+external setResourceTimingBufferSize: (t, int) => unit = "setResourceTimingBufferSize"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Performance/mark)
 */
 @send
 external mark: (
-  performance,
+  t,
   ~markName: string,
   ~markOptions: performanceMarkOptions=?,
 ) => performanceMark = "mark"
@@ -59,14 +63,14 @@ external mark: (
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Performance/clearMarks)
 */
 @send
-external clearMarks: (performance, ~markName: string=?) => unit = "clearMarks"
+external clearMarks: (t, ~markName: string=?) => unit = "clearMarks"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Performance/measure)
 */
 @send
 external measure: (
-  performance,
+  t,
   ~measureName: string,
   ~startOrMeasureOptions: string=?,
   ~endMark: string=?,
@@ -77,7 +81,7 @@ external measure: (
 */
 @send
 external measure2: (
-  performance,
+  t,
   ~measureName: string,
   ~startOrMeasureOptions: performanceMeasureOptions=?,
   ~endMark: string=?,
@@ -87,4 +91,4 @@ external measure2: (
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Performance/clearMeasures)
 */
 @send
-external clearMeasures: (performance, ~measureName: string=?) => unit = "clearMeasures"
+external clearMeasures: (t, ~measureName: string=?) => unit = "clearMeasures"

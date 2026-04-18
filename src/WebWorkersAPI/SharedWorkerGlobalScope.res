@@ -1,5 +1,7 @@
 open WebWorkersTypes
 
+type t = WebWorkersTypes.sharedWorkerGlobalScope = {...WebWorkersTypes.sharedWorkerGlobalScope}
+
 module Impl = (
   T: {
     type t
@@ -24,4 +26,4 @@ self -> SharedWorkerGlobalScope.close
   external close: T.t => unit = "close"
 }
 
-include Impl({type t = sharedWorkerGlobalScope})
+include Impl({type t = t})

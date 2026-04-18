@@ -1,7 +1,4 @@
-open Global
-
-// Note that this only works when you added the `-open Global` bsc flag.
-let location = window.location
+let location = Window.current.location
 
 // Access properties using `.`
 let href = location.href

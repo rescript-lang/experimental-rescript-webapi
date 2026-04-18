@@ -14,11 +14,6 @@ open FetchTypes
 open EventTypes
 
 /**
-[Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/window)
-*/
-external window: window = "window"
-
-/**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/self)
 */
 external self: window = "self"
@@ -123,11 +118,6 @@ external parent: window = "parent"
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/frameElement)
 */
 external frameElement: element = "frameElement"
-
-/**
-[Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/navigator)
-*/
-external navigator: navigator = "navigator"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/screen)

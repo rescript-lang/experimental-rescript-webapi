@@ -1,13 +1,17 @@
 open ServiceWorkerTypes
 
-include EventTarget.Impl({type t = serviceWorkerContainer})
+type t = ServiceWorkerTypes.serviceWorkerContainer = {...ServiceWorkerTypes.serviceWorkerContainer}
+
+external current: t = "serviceWorker"
+
+include EventTarget.Impl({type t = t})
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/ServiceWorkerContainer/register)
 */
 @send
 external register: (
-  serviceWorkerContainer,
+  t,
   string,
   ~options: registrationOptions=?,
 ) => promise<serviceWorkerRegistration> = "register"
@@ -17,7 +21,7 @@ external register: (
 */
 @send
 external getRegistration: (
-  serviceWorkerContainer,
+  t,
   ~clientURL: string=?,
 ) => Nullable.t<serviceWorkerRegistration> = "getRegistration"
 
@@ -25,11 +29,11 @@ external getRegistration: (
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/ServiceWorkerContainer/getRegistrations)
 */
 @send
-external getRegistrations: serviceWorkerContainer => promise<array<serviceWorkerRegistration>> =
+external getRegistrations: t => promise<array<serviceWorkerRegistration>> =
   "getRegistrations"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/ServiceWorkerContainer/startMessages)
 */
 @send
-external startMessages: serviceWorkerContainer => unit = "startMessages"
+external startMessages: t => unit = "startMessages"

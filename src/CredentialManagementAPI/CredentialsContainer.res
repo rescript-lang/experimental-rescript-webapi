@@ -1,24 +1,28 @@
 open CredentialManagementTypes
 
+type t = CredentialManagementTypes.credentialsContainer = {}
+
+external current: t = "credentials"
+
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CredentialsContainer/get)
 */
 @send
-external get: (credentialsContainer, ~options: credentialRequestOptions=?) => promise<credential> =
+external get: (t, ~options: credentialRequestOptions=?) => promise<credential> =
   "get"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CredentialsContainer/store)
 */
 @send
-external store: (credentialsContainer, credential) => promise<unit> = "store"
+external store: (t, credential) => promise<unit> = "store"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CredentialsContainer/create)
 */
 @send
 external create: (
-  credentialsContainer,
+  t,
   ~options: credentialCreationOptions=?,
 ) => promise<credential> = "create"
 
@@ -26,4 +30,4 @@ external create: (
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CredentialsContainer/preventSilentAccess)
 */
 @send
-external preventSilentAccess: credentialsContainer => promise<unit> = "preventSilentAccess"
+external preventSilentAccess: t => promise<unit> = "preventSilentAccess"

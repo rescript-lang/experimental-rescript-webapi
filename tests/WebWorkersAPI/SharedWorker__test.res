@@ -14,8 +14,6 @@ let shared3: sharedWorker = SharedWorker.makeWithOptions(
 
 let port: WebAPI.ChannelMessagingTypes.messagePort = SharedWorker.port(shared1)
 
-external getSelf: unit => sharedWorkerGlobalScope = "self"
-
-let self = getSelf()
+let self = SharedWorkerGlobalScope.current
 
 self->SharedWorkerGlobalScope.close
