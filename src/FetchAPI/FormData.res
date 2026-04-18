@@ -1,70 +1,73 @@
-open FetchTypes
-open FileTypes
-open DOMTypes
+module Types = FetchTypes
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/FormData)
-*/
+ */
 @new
-external make: (~form: htmlFormElement=?, ~submitter: htmlElement=?) => formData = "FormData"
+type t = Types.formData = {...Types.formData}
+type formDataEntryValue = Types.formDataEntryValue
+
+external make: (~form: DOMTypes.htmlFormElement=?, ~submitter: DOMTypes.htmlElement=?) => t =
+  "FormData"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/FormData/append)
 */
 @send
-external append: (formData, ~name: string, ~value: string) => unit = "append"
+external append: (t, ~name: string, ~value: string) => unit = "append"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/FormData/append)
 */
 @send
-external appendBlob: (formData, ~name: string, ~blobValue: blob, ~filename: string=?) => unit =
+external appendBlob: (t, ~name: string, ~blobValue: FileTypes.blob, ~filename: string=?) => unit =
   "append"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/FormData/delete)
 */
 @send
-external delete: (formData, string) => unit = "delete"
+external delete: (t, string) => unit = "delete"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/FormData/get)
 */
 @send
-external get: (formData, string) => null<formDataEntryValue> = "get"
+external get: (t, string) => null<formDataEntryValue> = "get"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/FormData/getAll)
 */
 @send
-external getAll: (formData, string) => array<formDataEntryValue> = "getAll"
+external getAll: (t, string) => array<formDataEntryValue> = "getAll"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/FormData/has)
 */
 @send
-external has: (formData, string) => bool = "has"
+external has: (t, string) => bool = "has"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/FormData/entries)
 */
 @send
-external entries: formData => Iterator.t<(string, formDataEntryValue)> = "entries"
+external entries: t => Iterator.t<(string, formDataEntryValue)> = "entries"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/FormData/keys)
 */
 @send
-external keys: formData => Iterator.t<string> = "keys"
+external keys: t => Iterator.t<string> = "keys"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/FormData/set)
 */
 @send
-external set: (formData, ~name: string, ~value: string) => unit = "set"
+external set: (t, ~name: string, ~value: string) => unit = "set"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/FormData/set)
 */
 @send
-external setBlob: (formData, ~name: string, ~blobValue: blob, ~filename: string=?) => unit = "set"
+external setBlob: (t, ~name: string, ~blobValue: FileTypes.blob, ~filename: string=?) => unit =
+  "set"

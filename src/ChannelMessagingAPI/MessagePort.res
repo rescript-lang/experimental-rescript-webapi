@@ -1,6 +1,11 @@
-open ChannelMessagingTypes
+module Types = ChannelMessagingTypes
 
-include EventTarget.Impl({type t = messagePort})
+type t = Types.messagePort = {...Types.messagePort}
+type structuredSerializeOptions = Types.structuredSerializeOptions = {
+  ...Types.structuredSerializeOptions,
+}
+
+include EventTarget.Impl({type t = t})
 
 /**
 Posts a message through the channel. Objects listed in transfer are transferred, not just cloned, meaning that they are no longer usable on the sending side.
@@ -9,7 +14,7 @@ Throws a "DataCloneError" DOMException if transfer contains duplicate objects or
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/MessagePort/postMessage)
 */
 @send
-external postMessage: (messagePort, ~message: JSON.t, ~transfer: array<Dict.t<string>>) => unit =
+external postMessage: (t, ~message: JSON.t, ~transfer: array<Dict.t<string>>) => unit =
   "postMessage"
 
 /**
@@ -20,7 +25,7 @@ Throws a "DataCloneError" DOMException if transfer contains duplicate objects or
 */
 @send
 external postMessageWithOptions: (
-  messagePort,
+  t,
   ~message: JSON.t,
   ~options: structuredSerializeOptions=?,
 ) => unit = "postMessage"
@@ -30,11 +35,11 @@ Begins dispatching messages received on the port.
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/MessagePort/start)
 */
 @send
-external start: messagePort => unit = "start"
+external start: t => unit = "start"
 
 /**
 Disconnects the port, so that it is no longer active.
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/MessagePort/close)
 */
 @send
-external close: messagePort => unit = "close"
+external close: t => unit = "close"

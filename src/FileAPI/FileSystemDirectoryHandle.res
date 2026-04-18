@@ -1,18 +1,27 @@
-open FileTypes
+module Types = FileTypes
 
-external asFileSystemHandle: fileSystemDirectoryHandle => fileSystemHandle = "%identity"
+type t = Types.fileSystemDirectoryHandle = {...Types.fileSystemDirectoryHandle}
+type fileSystemHandle = Types.fileSystemHandle = {...Types.fileSystemHandle}
+type fileSystemFileHandle = Types.fileSystemFileHandle = {...Types.fileSystemFileHandle}
+type fileSystemGetFileOptions = Types.fileSystemGetFileOptions = {...Types.fileSystemGetFileOptions}
+type fileSystemGetDirectoryOptions = Types.fileSystemGetDirectoryOptions = {
+  ...Types.fileSystemGetDirectoryOptions,
+}
+type fileSystemRemoveOptions = Types.fileSystemRemoveOptions = {...Types.fileSystemRemoveOptions}
+
+external asFileSystemHandle: t => fileSystemHandle = "%identity"
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/FileSystemHandle/isSameEntry)
 */
 @send
-external isSameEntry: (fileSystemDirectoryHandle, fileSystemHandle) => promise<bool> = "isSameEntry"
+external isSameEntry: (t, fileSystemHandle) => promise<bool> = "isSameEntry"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/FileSystemDirectoryHandle/getFileHandle)
 */
 @send
 external getFileHandle: (
-  fileSystemDirectoryHandle,
+  t,
   ~name: string,
   ~options: fileSystemGetFileOptions=?,
 ) => promise<fileSystemFileHandle> = "getFileHandle"
@@ -22,24 +31,20 @@ external getFileHandle: (
 */
 @send
 external getDirectoryHandle: (
-  fileSystemDirectoryHandle,
+  t,
   ~name: string,
   ~options: fileSystemGetDirectoryOptions=?,
-) => promise<fileSystemDirectoryHandle> = "getDirectoryHandle"
+) => promise<t> = "getDirectoryHandle"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/FileSystemDirectoryHandle/removeEntry)
 */
 @send
-external removeEntry: (
-  fileSystemDirectoryHandle,
-  ~name: string,
-  ~options: fileSystemRemoveOptions=?,
-) => promise<unit> = "removeEntry"
+external removeEntry: (t, ~name: string, ~options: fileSystemRemoveOptions=?) => promise<unit> =
+  "removeEntry"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/FileSystemDirectoryHandle/resolve)
 */
 @send
-external resolve: (fileSystemDirectoryHandle, fileSystemHandle) => promise<array<string>> =
-  "resolve"
+external resolve: (t, fileSystemHandle) => promise<array<string>> = "resolve"
