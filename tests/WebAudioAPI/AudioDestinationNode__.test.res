@@ -15,10 +15,8 @@ let gainOptions: GainNode.gainOptions = {
 let gain: GainNode.t = GainNode.make(~context, ~options=gainOptions)
 
 let _ = gain->GainNode.connect(~destinationNode)
-let _scheduledSource: AudioScheduledSourceNode.t =
-  osc->OscillatorNode.asAudioScheduledSourceNode
+let _scheduledSource: AudioScheduledSourceNode.t = osc->OscillatorNode.asAudioScheduledSourceNode
 let _ =
-  _scheduledSource
-  ->AudioScheduledSourceNode.connect(~destinationNode=gain->GainNode.asAudioNode)
+  _scheduledSource->AudioScheduledSourceNode.connect(~destinationNode=gain->GainNode.asAudioNode)
 
 osc->OscillatorNode.start
