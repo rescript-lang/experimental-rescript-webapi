@@ -2,8 +2,8 @@ module Types = FetchTypes
 
 type t = Types.request = {...Types.request}
 type requestInit = Types.requestInit = {...Types.requestInit}
-type bodyInit = Types.bodyInit
-type headersInit = Types.headersInit
+type bodyInit = BodyInit.t
+type headersInit = HeadersInit.t
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Request)
@@ -27,7 +27,7 @@ external arrayBuffer: t => promise<ArrayBuffer.t> = "arrayBuffer"
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Request/blob)
 */
 @send
-external blob: t => promise<FileTypes.blob> = "blob"
+external blob: t => promise<Blob.t> = "blob"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Request/bytes)
@@ -39,7 +39,7 @@ external bytes: t => promise<array<int>> = "bytes"
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Request/formData)
 */
 @send
-external formData: t => promise<Types.formData> = "formData"
+external formData: t => promise<FormData.t> = "formData"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Request/json)

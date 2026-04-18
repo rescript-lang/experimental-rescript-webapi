@@ -5,10 +5,11 @@ module Types = FetchTypes
  */
 @new
 type t = Types.formData = {...Types.formData}
-type formDataEntryValue = Types.formDataEntryValue
+type formDataEntryValue = FormDataEntryValue.t
+type htmlFormElement = HTMLFormElement.t
+type htmlElement = HTMLElement.t
 
-external make: (~form: DOMTypes.htmlFormElement=?, ~submitter: DOMTypes.htmlElement=?) => t =
-  "FormData"
+external make: (~form: htmlFormElement=?, ~submitter: htmlElement=?) => t = "FormData"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/FormData/append)
@@ -20,8 +21,7 @@ external append: (t, ~name: string, ~value: string) => unit = "append"
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/FormData/append)
 */
 @send
-external appendBlob: (t, ~name: string, ~blobValue: FileTypes.blob, ~filename: string=?) => unit =
-  "append"
+external appendBlob: (t, ~name: string, ~blobValue: Blob.t, ~filename: string=?) => unit = "append"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/FormData/delete)
@@ -69,5 +69,4 @@ external set: (t, ~name: string, ~value: string) => unit = "set"
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/FormData/set)
 */
 @send
-external setBlob: (t, ~name: string, ~blobValue: FileTypes.blob, ~filename: string=?) => unit =
-  "set"
+external setBlob: (t, ~name: string, ~blobValue: Blob.t, ~filename: string=?) => unit = "set"

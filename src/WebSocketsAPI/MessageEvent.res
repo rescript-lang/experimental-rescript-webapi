@@ -9,13 +9,13 @@ type messageEventInit<'t> = Types.messageEventInit<'t> = {...Types.messageEventI
 @new
 external make: (~type_: string, ~eventInitDict: messageEventInit<'t>=?) => t<'t> = "MessageEvent"
 
-external asEvent: t<'t> => EventTypes.event = "%identity"
+external asEvent: t<'t> => Event.t = "%identity"
 /**
 Returns the invocation target objects of event's path (objects on which listeners will be invoked), except for any nodes in shadow trees of which the shadow root's mode is "closed" that are not reachable from event's currentTarget.
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Event/composedPath)
 */
 @send
-external composedPath: t<'t> => array<EventTypes.eventTarget> = "composedPath"
+external composedPath: t<'t> => array<EventTarget.t> = "composedPath"
 
 /**
 When dispatched in a tree, invoking this method prevents event from reaching any objects other than the current object.

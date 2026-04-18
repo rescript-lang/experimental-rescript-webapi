@@ -1,6 +1,7 @@
 module Types = CanvasTypes
 
 type t = Types.path2D = {...Types.path2D}
+type domMatrix2DInit = DOMTypes.domMatrix2DInit = {...DOMTypes.domMatrix2DInit}
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Path2D)
@@ -114,4 +115,4 @@ Adds to the path the path given by the argument.
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Path2D/addPath)
 */
 @send
-external addPath: (t, ~path: t, ~transform: DOMTypes.domMatrix2DInit=?) => unit = "addPath"
+external addPath: (t, ~path: t, ~transform: domMatrix2DInit=?) => unit = "addPath"

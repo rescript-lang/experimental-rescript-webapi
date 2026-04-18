@@ -1,13 +1,14 @@
 open ServiceWorkerTypes
-open ChannelMessagingTypes
 
-include EventTarget.Impl({type t = serviceWorker})
+type t = serviceWorker = {...serviceWorker}
+
+include EventTarget.Impl({type t = t})
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/ServiceWorker/postMessage)
 */
 @send
-external postMessage: (serviceWorker, ~message: JSON.t, ~transfer: array<Dict.t<string>>) => unit =
+external postMessage: (t, ~message: JSON.t, ~transfer: array<Dict.t<string>>) => unit =
   "postMessage"
 
 /**
@@ -15,7 +16,7 @@ external postMessage: (serviceWorker, ~message: JSON.t, ~transfer: array<Dict.t<
 */
 @send
 external postMessageWithOptions: (
-  serviceWorker,
+  t,
   ~message: JSON.t,
-  ~options: structuredSerializeOptions=?,
+  ~options: MessagePort.structuredSerializeOptions=?,
 ) => unit = "postMessage"

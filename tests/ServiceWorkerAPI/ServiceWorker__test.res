@@ -1,8 +1,8 @@
-open WebAPI.ServiceWorkerTypes
+open WebAPI
 
 let self = ServiceWorkerGlobalScope.current
 
-self->ServiceWorkerGlobalScope.addEventListener(EventTypes.Push, (event: PushTypes.pushEvent) => {
+self->ServiceWorkerGlobalScope.addEventListener(EventTypes.Push, (event: PushEvent.t) => {
   Console.log("received push event")
 
   // Extract data
@@ -35,7 +35,7 @@ self->ServiceWorkerGlobalScope.addEventListener(EventTypes.Push, (event: PushTyp
 })
 
 self->ServiceWorkerGlobalScope.addEventListener(EventTypes.NotificationClick, (
-  event: NotificationTypes.notificationEvent,
+  event: Notification.notificationEvent,
 ) => {
   Console.log(`notification clicked: ${event.action}`)
   // Close the notification

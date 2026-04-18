@@ -1,4 +1,4 @@
-open WebAPI.WebWorkersTypes
+open WebAPI
 
 let self = SharedWorkerGlobalScope.current
 
