@@ -8,5 +8,4 @@ Transfers the underlying bitmap data from imageBitmap to context, and the bitmap
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/ImageBitmapRenderingContext/transferFromImageBitmap)
 */
 @send
-external transferFromImageBitmap: (t, imageBitmap) => unit =
-  "transferFromImageBitmap"
+external transferFromImageBitmap: (t, imageBitmap) => unit = "transferFromImageBitmap"

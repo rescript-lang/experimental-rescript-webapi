@@ -4,8 +4,9 @@ type t = Types.fileSystemDirectoryHandle = {...Types.fileSystemDirectoryHandle}
 type fileSystemHandle = Types.fileSystemHandle = {...Types.fileSystemHandle}
 type fileSystemFileHandle = Types.fileSystemFileHandle = {...Types.fileSystemFileHandle}
 type fileSystemGetFileOptions = Types.fileSystemGetFileOptions = {...Types.fileSystemGetFileOptions}
-type fileSystemGetDirectoryOptions =
-  Types.fileSystemGetDirectoryOptions = {...Types.fileSystemGetDirectoryOptions}
+type fileSystemGetDirectoryOptions = Types.fileSystemGetDirectoryOptions = {
+  ...Types.fileSystemGetDirectoryOptions,
+}
 type fileSystemRemoveOptions = Types.fileSystemRemoveOptions = {...Types.fileSystemRemoveOptions}
 
 external asFileSystemHandle: t => fileSystemHandle = "%identity"
@@ -39,15 +40,11 @@ external getDirectoryHandle: (
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/FileSystemDirectoryHandle/removeEntry)
 */
 @send
-external removeEntry: (
-  t,
-  ~name: string,
-  ~options: fileSystemRemoveOptions=?,
-) => promise<unit> = "removeEntry"
+external removeEntry: (t, ~name: string, ~options: fileSystemRemoveOptions=?) => promise<unit> =
+  "removeEntry"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/FileSystemDirectoryHandle/resolve)
 */
 @send
-external resolve: (t, fileSystemHandle) => promise<array<string>> =
-  "resolve"
+external resolve: (t, fileSystemHandle) => promise<array<string>> = "resolve"

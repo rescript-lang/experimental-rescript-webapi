@@ -6,15 +6,18 @@ module Types = CanvasTypes
 @new
 type t = Types.offscreenCanvas = {...Types.offscreenCanvas}
 type imageBitmap = Types.imageBitmap = {...Types.imageBitmap}
-type offscreenCanvasRenderingContext2D =
-  Types.offscreenCanvasRenderingContext2D = {...Types.offscreenCanvasRenderingContext2D}
+type offscreenCanvasRenderingContext2D = Types.offscreenCanvasRenderingContext2D = {
+  ...Types.offscreenCanvasRenderingContext2D,
+}
 type webGLRenderingContext = Types.webGLRenderingContext = {...Types.webGLRenderingContext}
 type webGL2RenderingContext = Types.webGL2RenderingContext = {...Types.webGL2RenderingContext}
 type webGLContextAttributes = Types.webGLContextAttributes = {...Types.webGLContextAttributes}
-type imageBitmapRenderingContext =
-  Types.imageBitmapRenderingContext = {...Types.imageBitmapRenderingContext}
-type imageBitmapRenderingContextSettings =
-  Types.imageBitmapRenderingContextSettings = {...Types.imageBitmapRenderingContextSettings}
+type imageBitmapRenderingContext = Types.imageBitmapRenderingContext = {
+  ...Types.imageBitmapRenderingContext,
+}
+type imageBitmapRenderingContextSettings = Types.imageBitmapRenderingContextSettings = {
+  ...Types.imageBitmapRenderingContextSettings,
+}
 type imageEncodeOptions = Types.imageEncodeOptions = {...Types.imageEncodeOptions}
 
 external make: (~width: int, ~height: int) => t = "OffscreenCanvas"
@@ -30,11 +33,8 @@ Returns null if the canvas has already been initialized with another context typ
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/OffscreenCanvas/getContext)
 */
 @send
-external getContext2D: (
-  t,
-  @as("2d") _,
-  ~options: JSON.t=?,
-) => offscreenCanvasRenderingContext2D = "getContext"
+external getContext2D: (t, @as("2d") _, ~options: JSON.t=?) => offscreenCanvasRenderingContext2D =
+  "getContext"
 
 /**
 Returns an object that exposes an API for drawing on the OffscreenCanvas object. contextId specifies the desired API: "2d", "bitmaprenderer", "webgl", or "webgl2". options is handled by that API.

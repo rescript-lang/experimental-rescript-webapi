@@ -2,10 +2,12 @@ module Types = FileTypes
 
 type t<'r> = Types.readableStream<'r> = {...Types.readableStream<'r>}
 type readableStreamReaderMode = Types.readableStreamReaderMode
-type readableStreamGetReaderOptions =
-  Types.readableStreamGetReaderOptions = {...Types.readableStreamGetReaderOptions}
-type readableWritablePair<'r, 'w> =
-  Types.readableWritablePair<'r, 'w> = {...Types.readableWritablePair<'r, 'w>}
+type readableStreamGetReaderOptions = Types.readableStreamGetReaderOptions = {
+  ...Types.readableStreamGetReaderOptions,
+}
+type readableWritablePair<'r, 'w> = Types.readableWritablePair<'r, 'w> = {
+  ...Types.readableWritablePair<'r, 'w>,
+}
 type streamPipeOptions = Types.streamPipeOptions = {...Types.streamPipeOptions}
 
 /**

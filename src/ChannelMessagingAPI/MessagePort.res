@@ -1,8 +1,9 @@
 module Types = ChannelMessagingTypes
 
 type t = Types.messagePort = {...Types.messagePort}
-type structuredSerializeOptions =
-  Types.structuredSerializeOptions = {...Types.structuredSerializeOptions}
+type structuredSerializeOptions = Types.structuredSerializeOptions = {
+  ...Types.structuredSerializeOptions,
+}
 
 include EventTarget.Impl({type t = t})
 

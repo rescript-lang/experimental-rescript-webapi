@@ -9,10 +9,8 @@ type writableStreamDefaultWriter<'t> = Types.writableStreamDefaultWriter<'t>
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/WritableStream)
 */
 @new
-external make: (
-  ~underlyingSink: underlyingSink<'w>=?,
-  ~strategy: queuingStrategy<'w>=?,
-) => t<'w> = "WritableStream"
+external make: (~underlyingSink: underlyingSink<'w>=?, ~strategy: queuingStrategy<'w>=?) => t<'w> =
+  "WritableStream"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/WritableStream/abort)
