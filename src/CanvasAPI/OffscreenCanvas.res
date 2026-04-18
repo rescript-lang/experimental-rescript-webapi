@@ -1,13 +1,22 @@
-open CanvasTypes
-open FileTypes
+module Types = CanvasTypes
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/OffscreenCanvas)
 */
 @new
-external make: (~width: int, ~height: int) => offscreenCanvas = "OffscreenCanvas"
+type t = Types.offscreenCanvas
+type imageBitmap = Types.imageBitmap
+type offscreenCanvasRenderingContext2D = Types.offscreenCanvasRenderingContext2D
+type webGLRenderingContext = Types.webGLRenderingContext
+type webGL2RenderingContext = Types.webGL2RenderingContext
+type webGLContextAttributes = Types.webGLContextAttributes
+type imageBitmapRenderingContext = Types.imageBitmapRenderingContext
+type imageBitmapRenderingContextSettings = Types.imageBitmapRenderingContextSettings
+type imageEncodeOptions = Types.imageEncodeOptions
 
-include EventTarget.Impl({type t = offscreenCanvas})
+external make: (~width: int, ~height: int) => t = "OffscreenCanvas"
+
+include EventTarget.Impl({type t = t})
 
 /**
 Returns an object that exposes an API for drawing on the OffscreenCanvas object. contextId specifies the desired API: "2d", "bitmaprenderer", "webgl", or "webgl2". options is handled by that API.
@@ -19,7 +28,7 @@ Returns null if the canvas has already been initialized with another context typ
 */
 @send
 external getContext2D: (
-  offscreenCanvas,
+  t,
   @as("2d") _,
   ~options: JSON.t=?,
 ) => offscreenCanvasRenderingContext2D = "getContext"
@@ -34,7 +43,7 @@ Returns null if the canvas has already been initialized with another context typ
 */
 @send
 external getContextWebGL: (
-  offscreenCanvas,
+  t,
   @as("webgl") _,
   ~options: webGLContextAttributes=?,
 ) => webGLRenderingContext = "getContext"
@@ -49,7 +58,7 @@ Returns null if the canvas has already been initialized with another context typ
 */
 @send
 external getContextWebGL2: (
-  offscreenCanvas,
+  t,
   @as("webgl2") _,
   ~options: webGLContextAttributes=?,
 ) => webGL2RenderingContext = "getContext"
@@ -64,7 +73,7 @@ Returns null if the canvas has already been initialized with another context typ
 */
 @send
 external getContextBitmapRenderer: (
-  offscreenCanvas,
+  t,
   @as("bitmaprenderer") _,
   ~options: imageBitmapRenderingContextSettings=?,
 ) => imageBitmapRenderingContext = "getContext"
@@ -74,7 +83,7 @@ Returns a newly created ImageBitmap object with the image in the OffscreenCanvas
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/OffscreenCanvas/transferToImageBitmap)
 */
 @send
-external transferToImageBitmap: offscreenCanvas => imageBitmap = "transferToImageBitmap"
+external transferToImageBitmap: t => imageBitmap = "transferToImageBitmap"
 
 /**
 Returns a promise that will fulfill with a new Blob object representing a file containing the image in the OffscreenCanvas object.
@@ -83,5 +92,5 @@ The argument, if provided, is a dictionary that controls the encoding options of
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/OffscreenCanvas/convertToBlob)
 */
 @send
-external convertToBlob: (offscreenCanvas, ~options: imageEncodeOptions=?) => promise<blob> =
+external convertToBlob: (t, ~options: imageEncodeOptions=?) => promise<FileTypes.blob> =
   "convertToBlob"

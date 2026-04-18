@@ -1,61 +1,63 @@
-open FetchTypes
+module Types = FetchTypes
+
+type t = Types.headers
+
+/**
+[Read more on MDN](https://developer.mozilla.org/docs/Web/API/Headers)
+ */
+@new
+external make: unit => t = "Headers"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Headers)
 */
 @new
-external make: unit => headers = "Headers"
+external fromDict: dict<string> => t = "Headers"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Headers)
 */
 @new
-external fromDict: dict<string> => headers = "Headers"
+external fromHeaders: t => t = "Headers"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Headers)
 */
 @new
-external fromHeaders: headers => headers = "Headers"
-
-/**
-[Read more on MDN](https://developer.mozilla.org/docs/Web/API/Headers)
-*/
-@new
-external fromKeyValueArray: array<(string, string)> => headers = "Headers"
+external fromKeyValueArray: array<(string, string)> => t = "Headers"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Headers/append)
 */
 @send
-external append: (headers, ~name: string, ~value: string) => unit = "append"
+external append: (t, ~name: string, ~value: string) => unit = "append"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Headers/delete)
 */
 @send
-external delete: (headers, string) => unit = "delete"
+external delete: (t, string) => unit = "delete"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Headers/get)
 */
 @send
-external get: (headers, string) => null<string> = "get"
+external get: (t, string) => null<string> = "get"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Headers/getSetCookie)
 */
 @send
-external getSetCookie: headers => array<string> = "getSetCookie"
+external getSetCookie: t => array<string> = "getSetCookie"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Headers/has)
 */
 @send
-external has: (headers, string) => bool = "has"
+external has: (t, string) => bool = "has"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Headers/set)
 */
 @send
-external set: (headers, ~name: string, ~value: string) => unit = "set"
+external set: (t, ~name: string, ~value: string) => unit = "set"

@@ -1,9 +1,14 @@
 open Prelude
-open CanvasTypes
 
-external fromString: string => fillStyle = "%identity"
-external fromCanvasGradient: canvasGradient => fillStyle = "%identity"
-external fromCanvasPattern: canvasGradient => fillStyle = "%identity"
+module Types = CanvasTypes
+
+type t = Types.fillStyle
+type canvasGradient = Types.canvasGradient
+type canvasPattern = Types.canvasPattern
+
+external fromString: string => t = "%identity"
+external fromCanvasGradient: canvasGradient => t = "%identity"
+external fromCanvasPattern: canvasPattern => t = "%identity"
 
 /**
 Represents a decoded version of the abstract `fillStyle` type, used in Context2D.
@@ -13,12 +18,12 @@ type decoded =
   | CanvasGradient(canvasGradient)
   | CanvasPattern(canvasPattern)
 
-let decode = (t: fillStyle): decoded => {
-  if CanvasGradient.isInstanceOf(t) {
-    CanvasGradient(unsafeConversation(t))
-  } else if CanvasPattern.isInstanceOf(t) {
-    CanvasPattern(unsafeConversation(t))
+let decode = (value: t): decoded => {
+  if CanvasGradient.isInstanceOf(value) {
+    CanvasGradient(unsafeConversation(value))
+  } else if CanvasPattern.isInstanceOf(value) {
+    CanvasPattern(unsafeConversation(value))
   } else {
-    String(unsafeConversation(t))
+    String(unsafeConversation(value))
   }
 }

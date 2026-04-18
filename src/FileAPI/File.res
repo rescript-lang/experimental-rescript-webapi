@@ -1,6 +1,10 @@
-open FileTypes
+module Types = FileTypes
 
-include Blob.Impl({type t = file})
+type t = Types.file
+type blobPart = Types.blobPart
+type filePropertyBag = Types.filePropertyBag
+
+include Blob.Impl({type t = t})
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/File)
@@ -10,6 +14,6 @@ external make: (
   ~fileBits: array<blobPart>,
   ~fileName: string,
   ~options: filePropertyBag=?,
-) => file = "File"
+) => t = "File"
 
 let isInstanceOf = (_: 't): bool => %raw(`param instanceof File`)
