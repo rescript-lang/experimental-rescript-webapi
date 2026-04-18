@@ -1,9 +1,9 @@
 open WebAudioTypes
 
 type t = oscillatorNode = {...oscillatorNode}
-type oscillatorOptions = WebAudioTypes.oscillatorOptions
+type oscillatorOptions = WebAudioTypes.oscillatorOptions = {...WebAudioTypes.oscillatorOptions}
 type oscillatorType = WebAudioTypes.oscillatorType
-type periodicWave = WebAudioTypes.periodicWave
+type periodicWave = WebAudioTypes.periodicWave = {...WebAudioTypes.periodicWave}
 
 include AudioScheduledSourceNode.Impl({type t = t})
 

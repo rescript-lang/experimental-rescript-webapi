@@ -4,11 +4,19 @@ type t = notification = {...notification}
 
 type notificationDirection = NotificationTypes.notificationDirection
 type notificationPermission = NotificationTypes.notificationPermission
-type notificationAction = NotificationTypes.notificationAction
-type notificationOptions = NotificationTypes.notificationOptions
-type getNotificationOptions = NotificationTypes.getNotificationOptions
+type notificationAction = NotificationTypes.notificationAction = {
+  ...NotificationTypes.notificationAction,
+}
+type notificationOptions = NotificationTypes.notificationOptions = {
+  ...NotificationTypes.notificationOptions,
+}
+type getNotificationOptions = NotificationTypes.getNotificationOptions = {
+  ...NotificationTypes.getNotificationOptions,
+}
 type notificationPermissionCallback = NotificationTypes.notificationPermissionCallback
-type notificationEvent = NotificationTypes.notificationEvent
+type notificationEvent = NotificationTypes.notificationEvent = {
+  ...NotificationTypes.notificationEvent,
+}
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Notification)

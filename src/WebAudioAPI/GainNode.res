@@ -1,7 +1,7 @@
 open WebAudioTypes
 
 type t = gainNode = {...gainNode}
-type gainOptions = WebAudioTypes.gainOptions
+type gainOptions = WebAudioTypes.gainOptions = {...WebAudioTypes.gainOptions}
 
 include AudioNode.Impl({type t = t})
 
