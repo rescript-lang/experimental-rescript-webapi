@@ -1,0 +1,21 @@
+{
+  "name": "@rescript-webapi/fetch",
+  "sources": [
+    {
+      "dir": "src",
+      "subdirs": true
+    }
+  ],
+  "package-specs": {
+    "module": "esmodule",
+    "in-source": true
+  },
+  "suffix": ".js",
+  "dependencies": [
+    "@rescript-webapi/event",
+    "@rescript-webapi/file",
+    "@rescript-webapi/prelude",
+    "@rescript-webapi/url"
+  ],
+  "namespace": "Fetch"
+}

@@ -1,14 +1,12 @@
-open WebAPI.ServiceWorkerAPI
+external self: ServiceWorker.Types.serviceWorkerGlobalScope = "self"
 
-external self: serviceWorkerGlobalScope = "self"
-
-self->ServiceWorkerGlobalScope.addEventListener(EventAPI.Push, (event: PushAPI.pushEvent) => {
+self->ServiceWorker.ServiceWorkerGlobalScope.addEventListener(Event.Types.Push, (event: Push.Types.pushEvent) => {
   Console.log("received push event")
 
   // Extract data
   let (title, body) = switch event.data {
   | Some(data) =>
-    switch data->PushMessageData.json {
+    switch data->Push.PushMessageData.json {
     | JSON.Object(dict{"title": JSON.String(title), "body": JSON.String(body)}) => (title, body)
     | _ => ("???", "???")
     }
@@ -16,11 +14,11 @@ self->ServiceWorkerGlobalScope.addEventListener(EventAPI.Push, (event: PushAPI.p
   }
 
   // Handle some data sync
-  event->PushEvent.waitUntil(self->ServiceWorkerGlobalScope.fetch("https://rescript-lang.org"))
+  event->Push.PushEvent.waitUntil(self->ServiceWorker.ServiceWorkerGlobalScope.fetch("https://rescript-lang.org"))
 
   // Show notification
   self.registration
-  ->ServiceWorkerRegistration.showNotification(
+  ->ServiceWorker.ServiceWorkerRegistration.showNotification(
     ~title,
     ~options={
       body,
@@ -34,12 +32,12 @@ self->ServiceWorkerGlobalScope.addEventListener(EventAPI.Push, (event: PushAPI.p
   ->Promise.ignore
 })
 
-self->ServiceWorkerGlobalScope.addEventListener(EventAPI.NotificationClick, (
-  event: NotificationAPI.notificationEvent,
+self->ServiceWorker.ServiceWorkerGlobalScope.addEventListener(Event.Types.NotificationClick, (
+  event: Notification.Types.notificationEvent,
 ) => {
   Console.log(`notification clicked: ${event.action}`)
   // Close the notification
-  event.notification->Notification.close
+  event.notification->Notification.Notification.close
 
   // Open a new window if that is relevant
   event.notification.data
@@ -51,7 +49,7 @@ self->ServiceWorkerGlobalScope.addEventListener(EventAPI.NotificationClick, (
   })
   ->Option.forEach(id => {
     self.clients
-    ->Clients.openWindow(`https://mywebsite.com/mydata/${id}`)
+    ->ServiceWorker.Clients.openWindow(`https://mywebsite.com/mydata/${id}`)
     ->Promise.ignore
   })
 })

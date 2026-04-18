@@ -1,11 +1,6 @@
 {
-  "name": "@rescript/webapi",
-  "namespace": "WebAPI",
+  "name": "experimental-rescript-webapi",
   "sources": [
-    {
-      "dir": "src",
-      "subdirs": true
-    },
     {
       "dir": "tests",
       "subdirs": true,
@@ -16,5 +11,51 @@
     "module": "esmodule",
     "in-source": true
   },
-  "suffix": ".js"
+  "suffix": ".js",
+  "dependencies": [
+    "@rescript-webapi/css-font-loading",
+    "@rescript-webapi/canvas",
+    "@rescript-webapi/channel-messaging",
+    "@rescript-webapi/clipboard",
+    "@rescript-webapi/credential-management",
+    "@rescript-webapi/dom",
+    "@rescript-webapi/encrypted-media-extensions",
+    "@rescript-webapi/event",
+    "@rescript-webapi/fetch",
+    "@rescript-webapi/file",
+    "@rescript-webapi/file-and-directory-entries",
+    "@rescript-webapi/gamepad",
+    "@rescript-webapi/geolocation",
+    "@rescript-webapi/history",
+    "@rescript-webapi/indexed-db",
+    "@rescript-webapi/intersection-observer",
+    "@rescript-webapi/media-capabilities",
+    "@rescript-webapi/media-capture-and-streams",
+    "@rescript-webapi/media-session",
+    "@rescript-webapi/mutation-observer",
+    "@rescript-webapi/notification",
+    "@rescript-webapi/performance",
+    "@rescript-webapi/permissions",
+    "@rescript-webapi/picture-in-picture",
+    "@rescript-webapi/prelude",
+    "@rescript-webapi/push",
+    "@rescript-webapi/remote-playback",
+    "@rescript-webapi/resize-observer",
+    "@rescript-webapi/screen-wake-lock",
+    "@rescript-webapi/service-worker",
+    "@rescript-webapi/storage",
+    "@rescript-webapi/ui-events",
+    "@rescript-webapi/url",
+    "@rescript-webapi/view-transitions",
+    "@rescript-webapi/visual-viewport",
+    "@rescript-webapi/web-audio",
+    "@rescript-webapi/web-crypto",
+    "@rescript-webapi/web-locks",
+    "@rescript-webapi/web-midi",
+    "@rescript-webapi/web-sockets",
+    "@rescript-webapi/web-speech",
+    "@rescript-webapi/web-storage",
+    "@rescript-webapi/web-vtt",
+    "@rescript-webapi/web-workers"
+  ]
 }

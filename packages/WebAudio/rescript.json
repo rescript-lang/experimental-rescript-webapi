@@ -1,0 +1,22 @@
+{
+  "name": "@rescript-webapi/web-audio",
+  "sources": [
+    {
+      "dir": "src",
+      "subdirs": true
+    }
+  ],
+  "package-specs": {
+    "module": "esmodule",
+    "in-source": true
+  },
+  "suffix": ".js",
+  "dependencies": [
+    "@rescript-webapi/channel-messaging",
+    "@rescript-webapi/dom",
+    "@rescript-webapi/event",
+    "@rescript-webapi/media-capture-and-streams",
+    "@rescript-webapi/prelude"
+  ],
+  "namespace": "WebAudio"
+}

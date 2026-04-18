@@ -1,6 +1,5 @@
-open Global
+external toHTMLInputElement: DOM.Types.element => DOM.Types.htmlInputElement = "%identity"
 
-external toHTMLInputElement: DOMAPI.element => DOMAPI.htmlInputElement = "%identity"
-
-let input: DOMAPI.htmlInputElement = document->Document.createElement("input")->toHTMLInputElement
+let input: DOM.Types.htmlInputElement =
+  DOM.Global.document->DOM.Document.createElement("input")->toHTMLInputElement
 let value = input.value

@@ -1,6 +1,6 @@
-let response = Response.fromNull(~init={status: 204})
+let response = Fetch.Response.fromNull(~init={status: 204})
 
-let response1 = Response.fromString(
+let response1 = Fetch.Response.fromString(
   "pong",
-  ~init={status: 200, headers: HeadersInit.fromDict(dict{"X-Fruit": "Peach"})},
+  ~init={status: 200, headers: Fetch.HeadersInit.fromDict(dict{"X-Fruit": "Peach"})},
 )

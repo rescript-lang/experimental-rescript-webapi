@@ -1,44 +1,46 @@
-open WebAPI.Global
+let response = await Fetch.Global.fetch("https://rescript-lang.org/")
 
-let response = await fetch("https://rescript-lang.org/")
-
-let response2 = await fetch(
+let response2 = await Fetch.Global.fetch(
   "https://rescript-lang.org/",
   ~init={
-    headers: HeadersInit.fromDict(
+    headers: Fetch.HeadersInit.fromDict(
       dict{
         "Content-Type": "application/json",
         "Authorization": "Bearer token",
       },
     ),
-    body: BodyInit.fromString(`secret=foo&response=bar`),
+    body: Fetch.BodyInit.fromString(`secret=foo&response=bar`),
   },
 )
 
-let response3 = await fetchWithRequest(
-  Request.fromURL("https://rescript-lang.org/"),
+let response3 = await Fetch.Global.fetchWithRequest(
+  Fetch.Request.fromURL("https://rescript-lang.org/"),
   ~init={
     method: "POST",
-    headers: HeadersInit.fromDict(
+    headers: Fetch.HeadersInit.fromDict(
       dict{
         "Content-Type": "application/x-www-form-urlencoded",
       },
     ),
-    body: BodyInit.fromString(`secret=foo&response=bar`),
+    body: Fetch.BodyInit.fromString(`secret=foo&response=bar`),
   },
 )
 
-removeEventListener(Mousedown, MouseEvent.preventDefault, ~options={capture: false})
+DOM.Global.removeEventListener(Event.Types.Mousedown, UIEvents.MouseEvent.preventDefault, ~options={capture: false})
 
-let registrationResult = await navigator.serviceWorker->ServiceWorkerContainer.register("/sw.js")
-let subscription = await registrationResult.pushManager->PushManager.subscribe(
+let registrationResult = await DOM.Global.navigator
+->ServiceWorker.Navigator.serviceWorker
+->ServiceWorker.ServiceWorkerContainer.register(
+  "/sw.js",
+)
+let subscription = await registrationResult.pushManager->Push.PushManager.subscribe(
   ~options={
     userVisibleOnly: true,
-    applicationServerKey: ApplicationServerKey.fromString("MyPublicKey"),
+    applicationServerKey: Push.ApplicationServerKey.fromString("MyPublicKey"),
   },
 )
 
-let pushSubscriptionJSON = subscription->PushSubscription.toJSON
+let pushSubscriptionJSON = subscription->Push.PushSubscription.toJSON
 let (auth, p256dh) = switch pushSubscriptionJSON.keys {
 | None => ("?", "?")
 | Some(keys) => (keys.auth, keys.p256dh)

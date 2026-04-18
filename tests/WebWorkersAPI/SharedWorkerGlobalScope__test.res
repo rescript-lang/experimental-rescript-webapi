@@ -1,7 +1,5 @@
-open WebAPI.WebWorkersAPI
-
-external getSelf: unit => sharedWorkerGlobalScope = "self"
+external getSelf: unit => WebWorkers.Types.sharedWorkerGlobalScope = "self"
 
 let self = getSelf()
 
-self->SharedWorkerGlobalScope.close
+self->WebWorkers.SharedWorkerGlobalScope.close

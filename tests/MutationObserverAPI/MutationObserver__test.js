@@ -21,7 +21,10 @@ console.log(records.length);
 
 observer.disconnect();
 
+let MObserver;
+
 export {
+  MObserver,
   observer,
   records,
 }

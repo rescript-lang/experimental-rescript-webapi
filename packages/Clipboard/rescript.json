@@ -1,0 +1,19 @@
+{
+  "name": "@rescript-webapi/clipboard",
+  "sources": [
+    {
+      "dir": "src",
+      "subdirs": true
+    }
+  ],
+  "package-specs": {
+    "module": "esmodule",
+    "in-source": true
+  },
+  "suffix": ".js",
+  "dependencies": [
+    "@rescript-webapi/event",
+    "@rescript-webapi/file"
+  ],
+  "namespace": "Clipboard"
+}

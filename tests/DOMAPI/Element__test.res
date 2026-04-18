@@ -1,6 +1,6 @@
-external myElement: DOMAPI.element = "myElement"
+external myElement: DOM.Types.element = "myElement"
 
-switch myElement->Element.getAttribute("foo") {
+switch myElement->DOM.Element.getAttribute("foo") {
 | Null.Value(value) => value->Console.log
 | Null => "nothing"->Console.log
 }
