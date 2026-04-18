@@ -10,8 +10,11 @@ external make: Types.offlineAudioContextOptions => Types.offlineAudioContext = "
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/OfflineAudioContext)
 */
 @new
-external make2: (~numberOfChannels: int, ~length: int, ~sampleRate: float) => Types.offlineAudioContext =
-  "OfflineAudioContext"
+external make2: (
+  ~numberOfChannels: int,
+  ~length: int,
+  ~sampleRate: float,
+) => Types.offlineAudioContext = "OfflineAudioContext"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/OfflineAudioContext/startRendering)

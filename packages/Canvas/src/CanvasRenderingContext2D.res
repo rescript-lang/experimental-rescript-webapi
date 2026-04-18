@@ -78,8 +78,10 @@ external setTransform: (
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CanvasRenderingContext2D/setTransform)
 */
 @send
-external setTransform2: (DOM.Types.canvasRenderingContext2D, ~transform: DOM.Types.domMatrix2DInit=?) => unit =
-  "setTransform"
+external setTransform2: (
+  DOM.Types.canvasRenderingContext2D,
+  ~transform: DOM.Types.domMatrix2DInit=?,
+) => unit = "setTransform"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CanvasRenderingContext2D/resetTransform)
@@ -198,15 +200,25 @@ external createPattern7: (
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CanvasRenderingContext2D/clearRect)
 */
 @send
-external clearRect: (DOM.Types.canvasRenderingContext2D, ~x: float, ~y: float, ~w: float, ~h: float) => unit =
-  "clearRect"
+external clearRect: (
+  DOM.Types.canvasRenderingContext2D,
+  ~x: float,
+  ~y: float,
+  ~w: float,
+  ~h: float,
+) => unit = "clearRect"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CanvasRenderingContext2D/fillRect)
 */
 @send
-external fillRect: (DOM.Types.canvasRenderingContext2D, ~x: float, ~y: float, ~w: float, ~h: float) => unit =
-  "fillRect"
+external fillRect: (
+  DOM.Types.canvasRenderingContext2D,
+  ~x: float,
+  ~y: float,
+  ~w: float,
+  ~h: float,
+) => unit = "fillRect"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CanvasRenderingContext2D/strokeRect)
@@ -230,14 +242,18 @@ external beginPath: DOM.Types.canvasRenderingContext2D => unit = "beginPath"
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CanvasRenderingContext2D/fill)
 */
 @send
-external fill: (DOM.Types.canvasRenderingContext2D, ~fillRule: Types.canvasFillRule=?) => unit = "fill"
+external fill: (DOM.Types.canvasRenderingContext2D, ~fillRule: Types.canvasFillRule=?) => unit =
+  "fill"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CanvasRenderingContext2D/fill)
 */
 @send
-external fill2: (DOM.Types.canvasRenderingContext2D, ~path: Types.path2D, ~fillRule: Types.canvasFillRule=?) => unit =
-  "fill"
+external fill2: (
+  DOM.Types.canvasRenderingContext2D,
+  ~path: Types.path2D,
+  ~fillRule: Types.canvasFillRule=?,
+) => unit = "fill"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CanvasRenderingContext2D/stroke)
@@ -255,14 +271,18 @@ external stroke2: (DOM.Types.canvasRenderingContext2D, Types.path2D) => unit = "
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CanvasRenderingContext2D/clip)
 */
 @send
-external clip: (DOM.Types.canvasRenderingContext2D, ~fillRule: Types.canvasFillRule=?) => unit = "clip"
+external clip: (DOM.Types.canvasRenderingContext2D, ~fillRule: Types.canvasFillRule=?) => unit =
+  "clip"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CanvasRenderingContext2D/clip)
 */
 @send
-external clip2: (DOM.Types.canvasRenderingContext2D, ~path: Types.path2D, ~fillRule: Types.canvasFillRule=?) => unit =
-  "clip"
+external clip2: (
+  DOM.Types.canvasRenderingContext2D,
+  ~path: Types.path2D,
+  ~fillRule: Types.canvasFillRule=?,
+) => unit = "clip"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CanvasRenderingContext2D/isPointInPath)
@@ -298,14 +318,19 @@ external isPointInStroke: (DOM.Types.canvasRenderingContext2D, ~x: float, ~y: fl
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CanvasRenderingContext2D/isPointInStroke)
 */
 @send
-external isPointInStroke2: (DOM.Types.canvasRenderingContext2D, ~path: Types.path2D, ~x: float, ~y: float) => bool =
-  "isPointInStroke"
+external isPointInStroke2: (
+  DOM.Types.canvasRenderingContext2D,
+  ~path: Types.path2D,
+  ~x: float,
+  ~y: float,
+) => bool = "isPointInStroke"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CanvasRenderingContext2D/drawFocusIfNeeded)
 */
 @send
-external drawFocusIfNeeded: (DOM.Types.canvasRenderingContext2D, DOM.Types.element) => unit = "drawFocusIfNeeded"
+external drawFocusIfNeeded: (DOM.Types.canvasRenderingContext2D, DOM.Types.element) => unit =
+  "drawFocusIfNeeded"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CanvasRenderingContext2D/drawFocusIfNeeded)
@@ -315,8 +340,7 @@ external drawFocusIfNeeded2: (
   DOM.Types.canvasRenderingContext2D,
   ~path: Types.path2D,
   ~element: DOM.Types.element,
-) => unit =
-  "drawFocusIfNeeded"
+) => unit = "drawFocusIfNeeded"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CanvasRenderingContext2D/fillText)
@@ -346,7 +370,8 @@ external strokeText: (
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CanvasRenderingContext2D/measureText)
 */
 @send
-external measureText: (DOM.Types.canvasRenderingContext2D, string) => Types.textMetrics = "measureText"
+external measureText: (DOM.Types.canvasRenderingContext2D, string) => Types.textMetrics =
+  "measureText"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CanvasRenderingContext2D/drawImage)
@@ -650,7 +675,10 @@ external createImageData: (
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CanvasRenderingContext2D/createImageData)
 */
 @send
-external createImageData2: (DOM.Types.canvasRenderingContext2D, DOM.Types.imageData) => DOM.Types.imageData = "createImageData"
+external createImageData2: (
+  DOM.Types.canvasRenderingContext2D,
+  DOM.Types.imageData,
+) => DOM.Types.imageData = "createImageData"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CanvasRenderingContext2D/getImageData)
@@ -764,8 +792,13 @@ external arcTo: (
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CanvasRenderingContext2D/rect)
 */
 @send
-external rect: (DOM.Types.canvasRenderingContext2D, ~x: float, ~y: float, ~w: float, ~h: float) => unit =
-  "rect"
+external rect: (
+  DOM.Types.canvasRenderingContext2D,
+  ~x: float,
+  ~y: float,
+  ~w: float,
+  ~h: float,
+) => unit = "rect"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CanvasRenderingContext2D/roundRect)

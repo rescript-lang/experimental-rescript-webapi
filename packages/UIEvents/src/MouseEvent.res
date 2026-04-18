@@ -2,7 +2,8 @@
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/MouseEvent)
 */
 @new
-external make: (~type_: string, ~eventInitDict: Types.mouseEventInit=?) => Types.mouseEvent = "MouseEvent"
+external make: (~type_: string, ~eventInitDict: Types.mouseEventInit=?) => Types.mouseEvent =
+  "MouseEvent"
 
 module Impl = (
   T: {

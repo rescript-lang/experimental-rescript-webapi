@@ -6,7 +6,8 @@ Creates a new row (tr) in the table, and adds the row to the rows collection.
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLTableSectionElement/insertRow)
 */
 @send
-external insertRow: (Types.htmlTableSectionElement, ~index: int=?) => Types.htmlTableRowElement = "insertRow"
+external insertRow: (Types.htmlTableSectionElement, ~index: int=?) => Types.htmlTableRowElement =
+  "insertRow"
 
 /**
 Removes the specified row (tr) from the element and from the rows collection.

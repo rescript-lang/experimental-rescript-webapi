@@ -23,8 +23,12 @@ external fromFloat64Array: Float64Array.t => Types.domMatrixReadOnly = "fromFloa
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/DOMMatrixReadOnly/translate)
 */
 @send
-external translate: (Types.domMatrixReadOnly, ~tx: float=?, ~ty: float=?, ~tz: float=?) => Types.domMatrix =
-  "translate"
+external translate: (
+  Types.domMatrixReadOnly,
+  ~tx: float=?,
+  ~ty: float=?,
+  ~tz: float=?,
+) => Types.domMatrix = "translate"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/DOMMatrixReadOnly/scale)
@@ -50,8 +54,12 @@ external scale3d: (
 ) => Types.domMatrix = "scale3d"
 
 @send
-external rotate: (Types.domMatrixReadOnly, ~rotX: float=?, ~rotY: float=?, ~rotZ: float=?) => Types.domMatrix =
-  "rotate"
+external rotate: (
+  Types.domMatrixReadOnly,
+  ~rotX: float=?,
+  ~rotY: float=?,
+  ~rotZ: float=?,
+) => Types.domMatrix = "rotate"
 
 @send
 external rotateFromVector: (Types.domMatrixReadOnly, ~x: float=?, ~y: float=?) => Types.domMatrix =
@@ -73,7 +81,8 @@ external skewX: (Types.domMatrixReadOnly, ~sx: float=?) => Types.domMatrix = "sk
 external skewY: (Types.domMatrixReadOnly, ~sy: float=?) => Types.domMatrix = "skewY"
 
 @send
-external multiply: (Types.domMatrixReadOnly, ~other: Types.domMatrixInit=?) => Types.domMatrix = "multiply"
+external multiply: (Types.domMatrixReadOnly, ~other: Types.domMatrixInit=?) => Types.domMatrix =
+  "multiply"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/DOMMatrixReadOnly/flipX)
@@ -88,7 +97,8 @@ external flipY: Types.domMatrixReadOnly => Types.domMatrix = "flipY"
 external inverse: Types.domMatrixReadOnly => Types.domMatrix = "inverse"
 
 @send
-external transformPoint: (Types.domMatrixReadOnly, ~point: Types.domPointInit=?) => Types.domPoint = "transformPoint"
+external transformPoint: (Types.domMatrixReadOnly, ~point: Types.domPointInit=?) => Types.domPoint =
+  "transformPoint"
 
 @send
 external toFloat32Array: Types.domMatrixReadOnly => array<float> = "toFloat32Array"

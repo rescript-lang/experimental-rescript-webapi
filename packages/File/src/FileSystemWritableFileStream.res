@@ -1,4 +1,5 @@
-external asWritableStream: Types.fileSystemWritableFileStream => Types.writableStream<'w> = "%identity"
+external asWritableStream: Types.fileSystemWritableFileStream => Types.writableStream<'w> =
+  "%identity"
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/WritableStream/abort)
 */
@@ -15,7 +16,8 @@ external close: Types.fileSystemWritableFileStream => promise<unit> = "close"
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/WritableStream/getWriter)
 */
 @send
-external getWriter: Types.fileSystemWritableFileStream => Types.writableStreamDefaultWriter<'w> = "getWriter"
+external getWriter: Types.fileSystemWritableFileStream => Types.writableStreamDefaultWriter<'w> =
+  "getWriter"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/FileSystemWritableFileStream/write)

@@ -3,7 +3,8 @@ external asFileSystemHandle: Types.fileSystemDirectoryHandle => Types.fileSystem
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/FileSystemHandle/isSameEntry)
 */
 @send
-external isSameEntry: (Types.fileSystemDirectoryHandle, Types.fileSystemHandle) => promise<bool> = "isSameEntry"
+external isSameEntry: (Types.fileSystemDirectoryHandle, Types.fileSystemHandle) => promise<bool> =
+  "isSameEntry"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/FileSystemDirectoryHandle/getFileHandle)
@@ -39,5 +40,7 @@ external removeEntry: (
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/FileSystemDirectoryHandle/resolve)
 */
 @send
-external resolve: (Types.fileSystemDirectoryHandle, Types.fileSystemHandle) => promise<array<string>> =
-  "resolve"
+external resolve: (
+  Types.fileSystemDirectoryHandle,
+  Types.fileSystemHandle,
+) => promise<array<string>> = "resolve"

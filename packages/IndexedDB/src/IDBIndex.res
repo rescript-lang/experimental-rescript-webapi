@@ -23,8 +23,11 @@ If successful, request's result will be an Array of the values.
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/IDBIndex/getAll)
 */
 @send
-external getAll: (Types.idbIndex, ~query: unknown=?, ~count: int=?) => Types.idbRequest<array<JSON.t>> =
-  "getAll"
+external getAll: (
+  Types.idbIndex,
+  ~query: unknown=?,
+  ~count: int=?,
+) => Types.idbRequest<array<JSON.t>> = "getAll"
 
 /**
 Retrieves the keys of records matching the given key or key range in query (up to count if given).

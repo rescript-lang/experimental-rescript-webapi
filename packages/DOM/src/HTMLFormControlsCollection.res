@@ -1,4 +1,5 @@
-external asHTMLCollection: Types.htmlFormControlsCollection => Types.htmlCollection<Types.element> = "%identity"
+external asHTMLCollection: Types.htmlFormControlsCollection => Types.htmlCollection<Types.element> =
+  "%identity"
 /**
 Retrieves an object from various collections.
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLCollection/item)

@@ -1,6 +1,8 @@
 external self: ServiceWorker.Types.serviceWorkerGlobalScope = "self"
 
-self->ServiceWorker.ServiceWorkerGlobalScope.addEventListener(Event.Types.Push, (event: Push.Types.pushEvent) => {
+self->ServiceWorker.ServiceWorkerGlobalScope.addEventListener(Event.Types.Push, (
+  event: Push.Types.pushEvent,
+) => {
   Console.log("received push event")
 
   // Extract data
@@ -14,7 +16,9 @@ self->ServiceWorker.ServiceWorkerGlobalScope.addEventListener(Event.Types.Push, 
   }
 
   // Handle some data sync
-  event->Push.PushEvent.waitUntil(self->ServiceWorker.ServiceWorkerGlobalScope.fetch("https://rescript-lang.org"))
+  event->Push.PushEvent.waitUntil(
+    self->ServiceWorker.ServiceWorkerGlobalScope.fetch("https://rescript-lang.org"),
+  )
 
   // Show notification
   self.registration

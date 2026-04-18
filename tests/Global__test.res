@@ -26,13 +26,15 @@ let response3 = await Fetch.Global.fetchWithRequest(
   },
 )
 
-DOM.Global.removeEventListener(Event.Types.Mousedown, UIEvents.MouseEvent.preventDefault, ~options={capture: false})
+DOM.Global.removeEventListener(
+  Event.Types.Mousedown,
+  UIEvents.MouseEvent.preventDefault,
+  ~options={capture: false},
+)
 
 let registrationResult = await DOM.Global.navigator
 ->DOM.Navigator.serviceWorker
-->ServiceWorker.ServiceWorkerContainer.register(
-  "/sw.js",
-)
+->ServiceWorker.ServiceWorkerContainer.register("/sw.js")
 let subscription = await registrationResult.pushManager->Push.PushManager.subscribe(
   ~options={
     userVisibleOnly: true,

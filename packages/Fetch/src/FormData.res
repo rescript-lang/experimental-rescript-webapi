@@ -14,8 +14,12 @@ external append: (Types.formData, ~name: string, ~value: string) => unit = "appe
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/FormData/append)
 */
 @send
-external appendBlob: (Types.formData, ~name: string, ~blobValue: File.Types.blob, ~filename: string=?) => unit =
-  "append"
+external appendBlob: (
+  Types.formData,
+  ~name: string,
+  ~blobValue: File.Types.blob,
+  ~filename: string=?,
+) => unit = "append"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/FormData/delete)
@@ -63,4 +67,9 @@ external set: (Types.formData, ~name: string, ~value: string) => unit = "set"
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/FormData/set)
 */
 @send
-external setBlob: (Types.formData, ~name: string, ~blobValue: File.Types.blob, ~filename: string=?) => unit = "set"
+external setBlob: (
+  Types.formData,
+  ~name: string,
+  ~blobValue: File.Types.blob,
+  ~filename: string=?,
+) => unit = "set"

@@ -2,8 +2,11 @@
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/FontFace)
 */
 @new
-external make: (~family: string, ~source: string, ~descriptors: Types.fontFaceDescriptors=?) => Types.fontFace =
-  "FontFace"
+external make: (
+  ~family: string,
+  ~source: string,
+  ~descriptors: Types.fontFaceDescriptors=?,
+) => Types.fontFace = "FontFace"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/FontFace)

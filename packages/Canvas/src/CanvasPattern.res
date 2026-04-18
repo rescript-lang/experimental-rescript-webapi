@@ -3,6 +3,7 @@ Sets the transformation matrix that will be used when rendering the pattern duri
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CanvasPattern/setTransform)
 */
 @send
-external setTransform: (Types.canvasPattern, ~transform: DOM.Types.domMatrix2DInit=?) => unit = "setTransform"
+external setTransform: (Types.canvasPattern, ~transform: DOM.Types.domMatrix2DInit=?) => unit =
+  "setTransform"
 
 let isInstanceOf = (_: 't): bool => %raw(`param instanceof CanvasPattern`)

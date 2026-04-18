@@ -34,15 +34,19 @@ external close: Types.audioContext => promise<unit> = "close"
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/AudioContext/createMediaElementSource)
 */
 @send
-external createMediaElementSource: (Types.audioContext, DOM.Types.htmlMediaElement) => Types.mediaElementAudioSourceNode =
-  "createMediaElementSource"
+external createMediaElementSource: (
+  Types.audioContext,
+  DOM.Types.htmlMediaElement,
+) => Types.mediaElementAudioSourceNode = "createMediaElementSource"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/AudioContext/createMediaStreamSource)
 */
 @send
-external createMediaStreamSource: (Types.audioContext, MediaCaptureAndStreams.Types.mediaStream) => Types.mediaStreamAudioSourceNode =
-  "createMediaStreamSource"
+external createMediaStreamSource: (
+  Types.audioContext,
+  MediaCaptureAndStreams.Types.mediaStream,
+) => Types.mediaStreamAudioSourceNode = "createMediaStreamSource"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/AudioContext/createMediaStreamDestination)

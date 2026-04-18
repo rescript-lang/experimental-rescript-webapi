@@ -97,5 +97,8 @@ external deleteFromDocument: Types.selection => unit = "deleteFromDocument"
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Selection/containsNode)
 */
 @send
-external containsNode: (Types.selection, ~node: Types.node, ~allowPartialContainment: bool=?) => bool =
-  "containsNode"
+external containsNode: (
+  Types.selection,
+  ~node: Types.node,
+  ~allowPartialContainment: bool=?,
+) => bool = "containsNode"

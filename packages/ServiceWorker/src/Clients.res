@@ -15,7 +15,8 @@ Returns a `Promise` for an array of `Client` objects matching the given options.
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Clients/matchAll)
 */
 @send
-external matchAll: (Types.clients, ~options: clientQueryOptions=?) => promise<array<Types.client>> = "matchAll"
+external matchAll: (Types.clients, ~options: clientQueryOptions=?) => promise<array<Types.client>> =
+  "matchAll"
 
 /**
 Opens a new browser window for a given URL and returns a `Promise` for the new `WindowClient`.

@@ -80,5 +80,7 @@ The argument, if provided, is a dictionary that controls the encoding options of
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/OffscreenCanvas/convertToBlob)
 */
 @send
-external convertToBlob: (Types.offscreenCanvas, ~options: Types.imageEncodeOptions=?) => promise<File.Types.blob> =
-  "convertToBlob"
+external convertToBlob: (
+  Types.offscreenCanvas,
+  ~options: Types.imageEncodeOptions=?,
+) => promise<File.Types.blob> = "convertToBlob"

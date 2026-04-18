@@ -11,7 +11,8 @@ external submit: Types.htmlFormElement => unit = "submit"
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLFormElement/requestSubmit)
 */
 @send
-external requestSubmit: (Types.htmlFormElement, ~submitter: Types.htmlElement=?) => unit = "requestSubmit"
+external requestSubmit: (Types.htmlFormElement, ~submitter: Types.htmlElement=?) => unit =
+  "requestSubmit"
 
 /**
 Fires when the user resets a form.

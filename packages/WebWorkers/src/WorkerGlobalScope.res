@@ -18,7 +18,8 @@ let response = await self->WorkerGlobalScope.fetch("https://rescript-lang.org")
 [Read more on MDN](https://developer.mozilla.org/en-US/docs/Web/API/WorkerGlobalScope/fetch)
 */
   @send
-  external fetch: (T.t, string, ~init: Fetch.Types.requestInit=?) => promise<Fetch.Types.response> = "fetch"
+  external fetch: (T.t, string, ~init: Fetch.Types.requestInit=?) => promise<Fetch.Types.response> =
+    "fetch"
 
   /**
 `fetchWithRequest(workerGlobalScope, request, init)`
@@ -32,7 +33,11 @@ let response = await self->WorkerGlobalScope.fetch(myRequest)
 
 [Read more on MDN](https://developer.mozilla.org/en-US/docs/Web/API/WorkerGlobalScope/fetch)
 */
-  external fetchWithRequest: (T.t, Fetch.Types.request, ~init: Fetch.Types.requestInit=?) => promise<Fetch.Types.response> = "fetch"
+  external fetchWithRequest: (
+    T.t,
+    Fetch.Types.request,
+    ~init: Fetch.Types.requestInit=?,
+  ) => promise<Fetch.Types.response> = "fetch"
 }
 
 include Impl({type t = Types.workerGlobalScope})

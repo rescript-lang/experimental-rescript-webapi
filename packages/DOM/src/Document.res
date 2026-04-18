@@ -85,7 +85,8 @@ Returns all element descendants of node that match selectors.
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Document/querySelectorAll)
 */
 @send
-external querySelectorAll: (Types.document, string) => Types.nodeList<Types.element> = "querySelectorAll"
+external querySelectorAll: (Types.document, string) => Types.nodeList<Types.element> =
+  "querySelectorAll"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Document/createExpression)
@@ -150,7 +151,8 @@ Creates an instance of the element for the specified tag.
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Document/createElement)
 */
 @send
-external createElement: (Types.document, string, ~options: string=?) => Types.element = "createElement"
+external createElement: (Types.document, string, ~options: string=?) => Types.element =
+  "createElement"
 
 /**
 Creates an instance of the element for the specified tag.
@@ -283,8 +285,11 @@ external createAttribute: (Types.document, string) => Types.attr = "createAttrib
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Document/createAttributeNS)
 */
 @send
-external createAttributeNS: (Types.document, ~namespace: string, ~qualifiedName: string) => Types.attr =
-  "createAttributeNS"
+external createAttributeNS: (
+  Types.document,
+  ~namespace: string,
+  ~qualifiedName: string,
+) => Types.attr = "createAttributeNS"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Document/createEvent)
@@ -368,7 +373,8 @@ Gets a collection of objects based on the value of the NAME or ID attribute.
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Document/getElementsByName)
 */
 @send
-external getElementsByName: (Types.document, string) => Types.nodeList<Types.htmlElement> = "getElementsByName"
+external getElementsByName: (Types.document, string) => Types.nodeList<Types.htmlElement> =
+  "getElementsByName"
 
 /**
 Opens a new window and loads a document specified by a given URL. Also, opens a new window that uses the url parameter and the name parameter to collect the output of the write method and the writeln method.
@@ -390,7 +396,8 @@ Opens a new window and loads a document specified by a given URL. Also, opens a 
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Document/open)
 */
 @send
-external open2: (Types.document, ~url: string, ~name: string, ~features: string) => Types.window = "open"
+external open2: (Types.document, ~url: string, ~name: string, ~features: string) => Types.window =
+  "open"
 
 /**
 Closes an output stream and forces the sent data to display.

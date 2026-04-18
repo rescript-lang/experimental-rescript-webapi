@@ -53,8 +53,14 @@ external bezierCurveTo: (
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CanvasRenderingContext2D/arcTo)
 */
 @send
-external arcTo: (Types.path2D, ~x1: float, ~y1: float, ~x2: float, ~y2: float, ~radius: float) => unit =
-  "arcTo"
+external arcTo: (
+  Types.path2D,
+  ~x1: float,
+  ~y1: float,
+  ~x2: float,
+  ~y2: float,
+  ~radius: float,
+) => unit = "arcTo"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CanvasRenderingContext2D/rect)
@@ -136,4 +142,8 @@ Adds to the path the path given by the argument.
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Path2D/addPath)
 */
 @send
-external addPath: (Types.path2D, ~path: Types.path2D, ~transform: DOM.Types.domMatrix2DInit=?) => unit = "addPath"
+external addPath: (
+  Types.path2D,
+  ~path: Types.path2D,
+  ~transform: DOM.Types.domMatrix2DInit=?,
+) => unit = "addPath"

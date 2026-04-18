@@ -2,8 +2,10 @@
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Animation)
 */
 @new
-external make: (~effect: Types.animationEffect=?, ~timeline: Types.animationTimeline=?) => Types.animation =
-  "Animation"
+external make: (
+  ~effect: Types.animationEffect=?,
+  ~timeline: Types.animationTimeline=?,
+) => Types.animation = "Animation"
 
 include Event.EventTarget.Impl({type t = Types.animation})
 

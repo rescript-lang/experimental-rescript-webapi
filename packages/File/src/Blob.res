@@ -2,7 +2,10 @@
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Blob)
 */
 @new
-external make: (~blobParts: array<Types.blobPart>=?, ~options: Types.blobPropertyBag=?) => Types.blob = "Blob"
+external make: (
+  ~blobParts: array<Types.blobPart>=?,
+  ~options: Types.blobPropertyBag=?,
+) => Types.blob = "Blob"
 
 module Impl = (
   T: {

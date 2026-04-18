@@ -2,8 +2,10 @@
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/MessageEvent)
 */
 @new
-external make: (~type_: string, ~eventInitDict: Types.messageEventInit<'t>=?) => Types.messageEvent<'t> =
-  "MessageEvent"
+external make: (
+  ~type_: string,
+  ~eventInitDict: Types.messageEventInit<'t>=?,
+) => Types.messageEvent<'t> = "MessageEvent"
 
 external asEvent: Types.messageEvent<'t> => Event.Types.event = "%identity"
 /**

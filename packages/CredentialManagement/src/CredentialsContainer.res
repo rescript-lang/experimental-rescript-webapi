@@ -2,8 +2,10 @@
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CredentialsContainer/get)
 */
 @send
-external get: (Types.credentialsContainer, ~options: Types.credentialRequestOptions=?) => promise<Types.credential> =
-  "get"
+external get: (
+  Types.credentialsContainer,
+  ~options: Types.credentialRequestOptions=?,
+) => promise<Types.credential> = "get"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CredentialsContainer/store)

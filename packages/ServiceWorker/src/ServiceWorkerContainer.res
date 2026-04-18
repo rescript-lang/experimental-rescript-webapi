@@ -23,8 +23,9 @@ external getRegistration: (
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/ServiceWorkerContainer/getRegistrations)
 */
 @send
-external getRegistrations: Types.serviceWorkerContainer => promise<array<Types.serviceWorkerRegistration>> =
-  "getRegistrations"
+external getRegistrations: Types.serviceWorkerContainer => promise<
+  array<Types.serviceWorkerRegistration>,
+> = "getRegistrations"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/ServiceWorkerContainer/startMessages)

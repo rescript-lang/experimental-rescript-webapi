@@ -72,7 +72,8 @@ module Impl = (
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/BaseAudioContext/createDynamicsCompressor)
 */
   @send
-  external createDynamicsCompressor: T.t => Types.dynamicsCompressorNode = "createDynamicsCompressor"
+  external createDynamicsCompressor: T.t => Types.dynamicsCompressorNode =
+    "createDynamicsCompressor"
 
   /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/BaseAudioContext/createGain)

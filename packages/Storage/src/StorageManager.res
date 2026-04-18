@@ -20,4 +20,5 @@ external estimate: Types.storageManager => promise<Types.storageEstimate> = "est
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/StorageManager/getDirectory)
 */
 @send
-external getDirectory: Types.storageManager => promise<File.Types.fileSystemDirectoryHandle> = "getDirectory"
+external getDirectory: Types.storageManager => promise<File.Types.fileSystemDirectoryHandle> =
+  "getDirectory"

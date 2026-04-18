@@ -9,8 +9,11 @@ If successful, request's result will be the record's key.
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/IDBObjectStore/put)
 */
 @send
-external put: (Types.idbObjectStore, ~value: JSON.t, ~key: Types.idbValidKey=?) => Types.idbRequest<Types.idbValidKey> =
-  "put"
+external put: (
+  Types.idbObjectStore,
+  ~value: JSON.t,
+  ~key: Types.idbValidKey=?,
+) => Types.idbRequest<Types.idbValidKey> = "put"
 
 /**
 Adds or updates a record in store with the given value and key.
@@ -23,8 +26,11 @@ If successful, request's result will be the record's key.
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/IDBObjectStore/add)
 */
 @send
-external add: (Types.idbObjectStore, ~value: JSON.t, ~key: Types.idbValidKey=?) => Types.idbRequest<Types.idbValidKey> =
-  "add"
+external add: (
+  Types.idbObjectStore,
+  ~value: JSON.t,
+  ~key: Types.idbValidKey=?,
+) => Types.idbRequest<Types.idbValidKey> = "add"
 
 /**
 Deletes records in store with the given key or in the given key range in query.
@@ -69,8 +75,11 @@ If successful, request's result will be an Array of the values.
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/IDBObjectStore/getAll)
 */
 @send
-external getAll: (Types.idbObjectStore, ~query: unknown=?, ~count: int=?) => Types.idbRequest<array<JSON.t>> =
-  "getAll"
+external getAll: (
+  Types.idbObjectStore,
+  ~query: unknown=?,
+  ~count: int=?,
+) => Types.idbRequest<array<JSON.t>> = "getAll"
 
 /**
 Retrieves the keys of records matching the given key or key range in query (up to count if given).

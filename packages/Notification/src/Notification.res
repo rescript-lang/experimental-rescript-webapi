@@ -2,7 +2,8 @@
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Notification)
 */
 @new
-external make: (~title: string, ~options: Types.notificationOptions=?) => Types.notification = "Notification"
+external make: (~title: string, ~options: Types.notificationOptions=?) => Types.notification =
+  "Notification"
 
 include Event.EventTarget.Impl({type t = Types.notification})
 

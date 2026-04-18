@@ -6,7 +6,8 @@ Creates a new cell in the table row, and adds the cell to the cells collection.
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLTableRowElement/insertCell)
 */
 @send
-external insertCell: (Types.htmlTableRowElement, ~index: int=?) => Types.htmlTableCellElement = "insertCell"
+external insertCell: (Types.htmlTableRowElement, ~index: int=?) => Types.htmlTableCellElement =
+  "insertCell"
 
 /**
 Removes the specified cell from the table row, as well as from the cells collection.

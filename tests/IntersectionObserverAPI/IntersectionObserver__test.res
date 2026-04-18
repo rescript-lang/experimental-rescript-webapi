@@ -9,7 +9,7 @@ let root = DOM.Global.document->DOM.Document.querySelector("#root")->Null.getUns
 
 let observer2 = IObserver.make(
   ~callback=(entry, observer) => {
-  Console.log2(entry, observer)
+    Console.log2(entry, observer)
   },
   ~options={
     root: root->IRoot.fromElement,

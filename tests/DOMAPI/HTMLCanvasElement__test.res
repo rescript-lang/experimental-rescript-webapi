@@ -1,13 +1,16 @@
 external toHTMLCanvasElement: null<DOM.Types.element> => DOM.Types.htmlCanvasElement = "%identity"
 @set
-external setFillStyle: (DOM.Types.canvasRenderingContext2D, Canvas.Types.fillStyle) => unit = "fillStyle"
+external setFillStyle: (DOM.Types.canvasRenderingContext2D, Canvas.Types.fillStyle) => unit =
+  "fillStyle"
 @get
 external getFillStyle: DOM.Types.canvasRenderingContext2D => Canvas.Types.fillStyle = "fillStyle"
 @set
 external setFont: (DOM.Types.canvasRenderingContext2D, string) => unit = "font"
 @set
-external setTextBaseline: (DOM.Types.canvasRenderingContext2D, Canvas.Types.canvasTextBaseline) => unit =
-  "textBaseline"
+external setTextBaseline: (
+  DOM.Types.canvasRenderingContext2D,
+  Canvas.Types.canvasTextBaseline,
+) => unit = "textBaseline"
 
 let myCanvas: DOM.Types.htmlCanvasElement =
   DOM.Global.document->DOM.Document.getElementById("myCanvas")->toHTMLCanvasElement
@@ -27,7 +30,8 @@ switch ctx->getFillStyle->Canvas.FillStyle.decode {
 | Canvas.FillStyle.CanvasPattern(_) => Console.log("CanvasPattern")
 }
 
-let img: DOM.Types.htmlImageElement = DOM.Global.document->DOM.Document.createElement("img")->Obj.magic
+let img: DOM.Types.htmlImageElement =
+  DOM.Global.document->DOM.Document.createElement("img")->Obj.magic
 ctx->Canvas.CanvasRenderingContext2D.drawImageWithDimensions(
   ~image=img,
   ~dx=0.,

@@ -29,4 +29,5 @@ external disconnect: Types.intersectionObserver => unit = "disconnect"
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/IntersectionObserver/takeRecords)
 */
 @send
-external takeRecords: Types.intersectionObserver => array<Types.intersectionObserverEntry> = "takeRecords"
+external takeRecords: Types.intersectionObserver => array<Types.intersectionObserverEntry> =
+  "takeRecords"

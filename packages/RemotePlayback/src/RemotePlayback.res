@@ -4,8 +4,10 @@ include Event.EventTarget.Impl({type t = Types.remotePlayback})
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/RemotePlayback/watchAvailability)
 */
 @send
-external watchAvailability: (Types.remotePlayback, Types.remotePlaybackAvailabilityCallback) => promise<int> =
-  "watchAvailability"
+external watchAvailability: (
+  Types.remotePlayback,
+  Types.remotePlaybackAvailabilityCallback,
+) => promise<int> = "watchAvailability"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/RemotePlayback/cancelWatchAvailability)

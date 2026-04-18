@@ -1,6 +1,9 @@
 let shared1: WebWorkers.Types.sharedWorker = WebWorkers.SharedWorker.make("sharedworker.js")
 
-let shared2: WebWorkers.Types.sharedWorker = WebWorkers.SharedWorker.makeWithName("sharedworker.js", "name")
+let shared2: WebWorkers.Types.sharedWorker = WebWorkers.SharedWorker.makeWithName(
+  "sharedworker.js",
+  "name",
+)
 
 let shared3: WebWorkers.Types.sharedWorker = WebWorkers.SharedWorker.makeWithOptions(
   "sharedworker.js",

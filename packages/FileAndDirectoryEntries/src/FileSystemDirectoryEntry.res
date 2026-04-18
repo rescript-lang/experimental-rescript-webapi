@@ -13,7 +13,8 @@ external getParent: (
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/FileSystemDirectoryEntry/createReader)
 */
 @send
-external createReader: Types.fileSystemDirectoryEntry => Types.fileSystemDirectoryReader = "createReader"
+external createReader: Types.fileSystemDirectoryEntry => Types.fileSystemDirectoryReader =
+  "createReader"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/FileSystemDirectoryEntry/getFile)

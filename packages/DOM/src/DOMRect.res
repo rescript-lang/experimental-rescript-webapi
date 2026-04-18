@@ -2,7 +2,8 @@
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/DOMRect)
 */
 @new
-external make: (~x: float=?, ~y: float=?, ~width: float=?, ~height: float=?) => Types.domRect = "DOMRect"
+external make: (~x: float=?, ~y: float=?, ~width: float=?, ~height: float=?) => Types.domRect =
+  "DOMRect"
 
 external asDOMRectReadOnly: Types.domRect => Types.domRectReadOnly = "%identity"
 /**

@@ -35,8 +35,11 @@ Throws a "HierarchyRequestError" DOMException if the constraints of the node tre
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/animate)
 */
   @send
-  external animate2: (T.t, ~keyframes: unknown, ~options: Types.keyframeAnimationOptions=?) => Types.animation =
-    "animate"
+  external animate2: (
+    T.t,
+    ~keyframes: unknown,
+    ~options: Types.keyframeAnimationOptions=?,
+  ) => Types.animation = "animate"
 
   /**
 Inserts nodes after the last child of node, while replacing strings in nodes with equivalent Text nodes.
@@ -85,7 +88,8 @@ Throws a "HierarchyRequestError" DOMException if the constraints of the node tre
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/checkVisibility)
 */
   @send
-  external checkVisibility: (T.t, ~options: Types.checkVisibilityOptions=?) => bool = "checkVisibility"
+  external checkVisibility: (T.t, ~options: Types.checkVisibilityOptions=?) => bool =
+    "checkVisibility"
 
   /**
 Returns the first (starting at element) inclusive ancestor that matches selectors, and null otherwise.
@@ -166,7 +170,8 @@ Returns a HTMLCollection of the elements in the object on which the method was i
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/getElementsByTagName)
 */
   @send
-  external getElementsByTagName: (T.t, string) => Types.htmlCollection<Types.element> = "getElementsByTagName"
+  external getElementsByTagName: (T.t, string) => Types.htmlCollection<Types.element> =
+    "getElementsByTagName"
 
   /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/getElementsByTagNameNS)
@@ -215,8 +220,11 @@ Returns true if element has attributes, and false otherwise.
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/insertAdjacentElement)
 */
   @send
-  external insertAdjacentElement: (T.t, ~where: Types.insertPosition, ~element: Types.element) => Types.element =
-    "insertAdjacentElement"
+  external insertAdjacentElement: (
+    T.t,
+    ~where: Types.insertPosition,
+    ~element: Types.element,
+  ) => Types.element = "insertAdjacentElement"
 
   /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/insertAdjacentHTML)

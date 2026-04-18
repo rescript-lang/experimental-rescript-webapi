@@ -4,7 +4,8 @@ include Event.EventTarget.Impl({type t = Types.mediaDevices})
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/MediaDevices/enumerateDevices)
 */
 @send
-external enumerateDevices: Types.mediaDevices => promise<array<Types.mediaDeviceInfo>> = "enumerateDevices"
+external enumerateDevices: Types.mediaDevices => promise<array<Types.mediaDeviceInfo>> =
+  "enumerateDevices"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/MediaDevices/getSupportedConstraints)

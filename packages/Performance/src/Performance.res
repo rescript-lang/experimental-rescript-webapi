@@ -22,14 +22,18 @@ external getEntries: Types.performance => Types.performanceEntryList = "getEntri
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Performance/getEntriesByType)
 */
 @send
-external getEntriesByType: (Types.performance, string) => Types.performanceEntryList = "getEntriesByType"
+external getEntriesByType: (Types.performance, string) => Types.performanceEntryList =
+  "getEntriesByType"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Performance/getEntriesByName)
 */
 @send
-external getEntriesByName: (Types.performance, ~name: string, ~type_: string=?) => Types.performanceEntryList =
-  "getEntriesByName"
+external getEntriesByName: (
+  Types.performance,
+  ~name: string,
+  ~type_: string=?,
+) => Types.performanceEntryList = "getEntriesByName"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Performance/clearResourceTimings)
@@ -41,7 +45,8 @@ external clearResourceTimings: Types.performance => unit = "clearResourceTimings
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Performance/setResourceTimingBufferSize)
 */
 @send
-external setResourceTimingBufferSize: (Types.performance, int) => unit = "setResourceTimingBufferSize"
+external setResourceTimingBufferSize: (Types.performance, int) => unit =
+  "setResourceTimingBufferSize"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Performance/mark)

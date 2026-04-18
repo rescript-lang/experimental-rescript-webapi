@@ -22,7 +22,11 @@ external clear: Types.fontFaceSet => unit = "clear"
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/FontFaceSet/load)
 */
 @send
-external load: (Types.fontFaceSet, ~font: string, ~text: string=?) => promise<array<Types.fontFace>> = "load"
+external load: (
+  Types.fontFaceSet,
+  ~font: string,
+  ~text: string=?,
+) => promise<array<Types.fontFace>> = "load"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/FontFaceSet/check)

@@ -3,7 +3,11 @@ Adds a new entry for the given data to the drag data store. If the data is plain
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/DataTransferItemList/add)
 */
 @send
-external add: (Types.dataTransferItemList, ~data: string, ~type_: string) => Types.dataTransferItem = "add"
+external add: (
+  Types.dataTransferItemList,
+  ~data: string,
+  ~type_: string,
+) => Types.dataTransferItem = "add"
 
 /**
 Adds a new entry for the given data to the drag data store. If the data is plain text then a type string has to be provided also.

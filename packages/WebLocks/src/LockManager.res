@@ -2,8 +2,11 @@
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/LockManager/request)
 */
 @send
-external request: (Types.lockManager, ~name: string, ~callback: Types.lockGrantedCallback) => promise<JSON.t> =
-  "request"
+external request: (
+  Types.lockManager,
+  ~name: string,
+  ~callback: Types.lockGrantedCallback,
+) => promise<JSON.t> = "request"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/LockManager/request)

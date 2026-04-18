@@ -24,7 +24,8 @@ external fromFloat64Array: Float64Array.t => Types.domMatrixReadOnly = "fromFloa
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/DOMMatrixReadOnly/translate)
 */
 @send
-external translate: (Types.domMatrix, ~tx: float=?, ~ty: float=?, ~tz: float=?) => Types.domMatrix = "translate"
+external translate: (Types.domMatrix, ~tx: float=?, ~ty: float=?, ~tz: float=?) => Types.domMatrix =
+  "translate"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/DOMMatrixReadOnly/scale)
@@ -50,10 +51,16 @@ external scale3d: (
 ) => Types.domMatrix = "scale3d"
 
 @send
-external rotate: (Types.domMatrix, ~rotX: float=?, ~rotY: float=?, ~rotZ: float=?) => Types.domMatrix = "rotate"
+external rotate: (
+  Types.domMatrix,
+  ~rotX: float=?,
+  ~rotY: float=?,
+  ~rotZ: float=?,
+) => Types.domMatrix = "rotate"
 
 @send
-external rotateFromVector: (Types.domMatrix, ~x: float=?, ~y: float=?) => Types.domMatrix = "rotateFromVector"
+external rotateFromVector: (Types.domMatrix, ~x: float=?, ~y: float=?) => Types.domMatrix =
+  "rotateFromVector"
 
 @send
 external rotateAxisAngle: (
@@ -86,7 +93,8 @@ external flipY: Types.domMatrix => Types.domMatrix = "flipY"
 external inverse: Types.domMatrix => Types.domMatrix = "inverse"
 
 @send
-external transformPoint: (Types.domMatrix, ~point: Types.domPointInit=?) => Types.domPoint = "transformPoint"
+external transformPoint: (Types.domMatrix, ~point: Types.domPointInit=?) => Types.domPoint =
+  "transformPoint"
 
 @send
 external toFloat32Array: Types.domMatrix => array<float> = "toFloat32Array"
@@ -107,14 +115,20 @@ external fromFloat32ArrayD: array<float> => Types.domMatrix = "fromFloat32Array"
 external fromFloat64ArrayD: Float64Array.t => Types.domMatrix = "fromFloat64Array"
 
 @send
-external multiplySelf: (Types.domMatrix, ~other: Types.domMatrixInit=?) => Types.domMatrix = "multiplySelf"
+external multiplySelf: (Types.domMatrix, ~other: Types.domMatrixInit=?) => Types.domMatrix =
+  "multiplySelf"
 
 @send
-external preMultiplySelf: (Types.domMatrix, ~other: Types.domMatrixInit=?) => Types.domMatrix = "preMultiplySelf"
+external preMultiplySelf: (Types.domMatrix, ~other: Types.domMatrixInit=?) => Types.domMatrix =
+  "preMultiplySelf"
 
 @send
-external translateSelf: (Types.domMatrix, ~tx: float=?, ~ty: float=?, ~tz: float=?) => Types.domMatrix =
-  "translateSelf"
+external translateSelf: (
+  Types.domMatrix,
+  ~tx: float=?,
+  ~ty: float=?,
+  ~tz: float=?,
+) => Types.domMatrix = "translateSelf"
 
 @send
 external scaleSelf: (
@@ -137,8 +151,12 @@ external scale3dSelf: (
 ) => Types.domMatrix = "scale3dSelf"
 
 @send
-external rotateSelf: (Types.domMatrix, ~rotX: float=?, ~rotY: float=?, ~rotZ: float=?) => Types.domMatrix =
-  "rotateSelf"
+external rotateSelf: (
+  Types.domMatrix,
+  ~rotX: float=?,
+  ~rotY: float=?,
+  ~rotZ: float=?,
+) => Types.domMatrix = "rotateSelf"
 
 @send
 external rotateFromVectorSelf: (Types.domMatrix, ~x: float=?, ~y: float=?) => Types.domMatrix =

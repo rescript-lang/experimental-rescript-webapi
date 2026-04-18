@@ -14,13 +14,15 @@ external fromString: (string, ~init: Types.responseInit=?) => Types.response = "
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Response)
 */
 @new
-external fromArrayBuffer: (ArrayBuffer.t, ~init: Types.responseInit=?) => Types.response = "Response"
+external fromArrayBuffer: (ArrayBuffer.t, ~init: Types.responseInit=?) => Types.response =
+  "Response"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Response)
 */
 @new
-external fromTypedArray: (TypedArray.t<'t>, ~init: Types.responseInit=?) => Types.response = "Response"
+external fromTypedArray: (TypedArray.t<'t>, ~init: Types.responseInit=?) => Types.response =
+  "Response"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Response)
@@ -44,7 +46,10 @@ external fromFile: (File.Types.file, ~init: Types.responseInit=?) => Types.respo
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Response)
 */
 @new
-external fromURLSearchParams: (URL.Types.urlSearchParams, ~init: Types.responseInit=?) => Types.response = "Response"
+external fromURLSearchParams: (
+  URL.Types.urlSearchParams,
+  ~init: Types.responseInit=?,
+) => Types.response = "Response"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Response)
@@ -56,7 +61,10 @@ external fromFormData: (Types.formData, ~init: Types.responseInit=?) => Types.re
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Response)
 */
 @new
-external fromReadableStream: (File.Types.readableStream<'t>, ~init: Types.responseInit=?) => Types.response = "Response"
+external fromReadableStream: (
+  File.Types.readableStream<'t>,
+  ~init: Types.responseInit=?,
+) => Types.response = "Response"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Request/arrayBuffer)
