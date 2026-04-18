@@ -1,4 +1,4 @@
-open DOMAPI
+open DOMTypes
 
 /**
 Returns the node with index index from the collection. The nodes are sorted in tree order.

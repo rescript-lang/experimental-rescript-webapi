@@ -1,4 +1,4 @@
-open IndexedDBAPI
+open IndexedDBTypes
 
 include EventTarget.Impl({type t = idbDatabase})
 
@@ -19,7 +19,7 @@ Returns a new transaction with the given mode ("readonly" or "readwrite") and sc
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/IDBDatabase/transaction)
 */
 @send
-external transaction2: (
+external transactionWithStoreNames: (
   idbDatabase,
   ~storeNames: array<string>,
   ~mode: idbTransactionMode=?,

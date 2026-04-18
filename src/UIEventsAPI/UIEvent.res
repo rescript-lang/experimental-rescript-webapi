@@ -1,4 +1,6 @@
-open UIEventsAPI
+open UIEventsTypes
+
+type t = uiEvent = {...uiEvent}
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/UIEvent)

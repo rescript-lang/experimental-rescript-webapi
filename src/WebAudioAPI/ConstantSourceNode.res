@@ -1,4 +1,4 @@
-open WebAudioAPI
+open WebAudioTypes
 
 include AudioScheduledSourceNode.Impl({type t = constantSourceNode})
 

@@ -1,4 +1,6 @@
-open DOMAPI
+open DOMTypes
+
+type t = htmlFormElement = {...htmlFormElement}
 
 include HTMLElement.Impl({type t = htmlFormElement})
 

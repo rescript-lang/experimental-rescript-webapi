@@ -1,3 +1,3 @@
 open WebAPI
 
-let url = URL.make(~url="/foo", ~base="https://bar.com")
+let url: URL.t = URL.make(~url="/foo", ~base="https://bar.com")

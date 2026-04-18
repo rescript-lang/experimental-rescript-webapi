@@ -1,5 +1,7 @@
-open DOMAPI
-open ResizeObserverAPI
+open DOMTypes
+open ResizeObserverTypes
+
+type t = resizeObserver = {...resizeObserver}
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/ResizeObserver)

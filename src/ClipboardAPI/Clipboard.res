@@ -1,27 +1,31 @@
-open ClipboardAPI
+open ClipboardTypes
 
-include EventTarget.Impl({type t = clipboard})
+type t = ClipboardTypes.clipboard = {...ClipboardTypes.clipboard}
+
+external current: t = "clipboard"
+
+include EventTarget.Impl({type t = t})
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Clipboard/read)
 */
 @send
-external read: clipboard => promise<array<clipboardItem>> = "read"
+external read: t => promise<array<clipboardItem>> = "read"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Clipboard/readText)
 */
 @send
-external readText: clipboard => promise<string> = "readText"
+external readText: t => promise<string> = "readText"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Clipboard/write)
 */
 @send
-external write: (clipboard, array<clipboardItem>) => promise<unit> = "write"
+external write: (t, array<clipboardItem>) => promise<unit> = "write"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Clipboard/writeText)
 */
 @send
-external writeText: (clipboard, string) => promise<unit> = "writeText"
+external writeText: (t, string) => promise<unit> = "writeText"

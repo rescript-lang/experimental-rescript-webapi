@@ -1,4 +1,4 @@
-open DOMAPI
+open DOMTypes
 
 include HTMLElement.Impl({type t = htmlTextAreaElement})
 
@@ -40,7 +40,7 @@ external setRangeText: (htmlTextAreaElement, string) => unit = "setRangeText"
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLTextAreaElement/setRangeText)
 */
 @send
-external setRangeText2: (
+external setRangeTextWithRange: (
   htmlTextAreaElement,
   ~replacement: string,
   ~start: int,

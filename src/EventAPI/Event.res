@@ -1,4 +1,6 @@
-open EventAPI
+open EventTypes
+
+type t = event = {...event}
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Event)

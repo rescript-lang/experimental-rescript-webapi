@@ -1,5 +1,5 @@
-open DOMAPI
-open PictureInPictureAPI
+open DOMTypes
+open PictureInPictureTypes
 
 include HTMLMediaElement.Impl({type t = htmlVideoElement})
 

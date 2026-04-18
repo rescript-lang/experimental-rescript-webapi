@@ -1,7 +1,11 @@
-open ScreenWakeLockAPI
+open ScreenWakeLockTypes
+
+type t = ScreenWakeLockTypes.wakeLock = {...ScreenWakeLockTypes.wakeLock}
+
+external current: t = "wakeLock"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/WakeLock/request)
 */
 @send
-external request: (wakeLock, ~type_: wakeLockType=?) => promise<wakeLockSentinel> = "request"
+external request: (t, ~type_: wakeLockType=?) => promise<wakeLockSentinel> = "request"

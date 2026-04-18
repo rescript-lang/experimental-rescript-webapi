@@ -1,4 +1,4 @@
-open DOMAPI
+open DOMTypes
 
 /**
 Returns the token with index index.

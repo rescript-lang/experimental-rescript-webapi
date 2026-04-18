@@ -1,4 +1,4 @@
-open WebStorageAPI
+open WebStorageTypes
 
 include Event.Impl({type t = storageEvent})
 

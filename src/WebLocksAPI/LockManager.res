@@ -1,18 +1,21 @@
-open WebLocksAPI
+open WebLocksTypes
+
+type t = WebLocksTypes.lockManager = {...WebLocksTypes.lockManager}
+
+external current: t = "locks"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/LockManager/request)
 */
 @send
-external request: (lockManager, ~name: string, ~callback: lockGrantedCallback) => promise<JSON.t> =
-  "request"
+external request: (t, ~name: string, ~callback: lockGrantedCallback) => promise<JSON.t> = "request"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/LockManager/request)
 */
 @send
-external request2: (
-  lockManager,
+external requestWithOptions: (
+  t,
   ~name: string,
   ~options: lockOptions,
   ~callback: lockGrantedCallback,
@@ -22,4 +25,4 @@ external request2: (
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/LockManager/query)
 */
 @send
-external query: lockManager => promise<lockManagerSnapshot> = "query"
+external query: t => promise<lockManagerSnapshot> = "query"

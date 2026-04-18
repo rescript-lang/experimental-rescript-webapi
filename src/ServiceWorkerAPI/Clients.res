@@ -1,4 +1,4 @@
-open ServiceWorkerAPI
+open ServiceWorkerTypes
 
 type clientQueryOptions = {
   mutable includeUncontrolled?: bool,

@@ -1,4 +1,4 @@
-open DOMAPI
+open DOMTypes
 
 external asStylePropertyMapReadOnly: stylePropertyMap => stylePropertyMapReadOnly = "%identity"
 /**
@@ -23,7 +23,7 @@ external set: (stylePropertyMap, ~property: string, ~values: cssStyleValue) => u
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/StylePropertyMap/set)
 */
 @send
-external set2: (stylePropertyMap, ~property: string, ~values: string) => unit = "set"
+external setString: (stylePropertyMap, ~property: string, ~values: string) => unit = "set"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/StylePropertyMap/append)
@@ -35,7 +35,7 @@ external append: (stylePropertyMap, ~property: string, ~values: cssStyleValue) =
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/StylePropertyMap/append)
 */
 @send
-external append2: (stylePropertyMap, ~property: string, ~values: string) => unit = "append"
+external appendString: (stylePropertyMap, ~property: string, ~values: string) => unit = "append"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/StylePropertyMap/delete)

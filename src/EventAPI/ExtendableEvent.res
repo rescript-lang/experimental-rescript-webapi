@@ -1,4 +1,6 @@
-open EventAPI
+open EventTypes
+
+type t = extendableEvent = {...extendableEvent}
 
 module Impl = (
   T: {

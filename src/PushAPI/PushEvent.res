@@ -1,3 +1,5 @@
-open PushAPI
+open PushTypes
 
-include ExtendableEvent.Impl({type t = pushEvent})
+type t = pushEvent = {...pushEvent}
+
+include ExtendableEvent.Impl({type t = t})

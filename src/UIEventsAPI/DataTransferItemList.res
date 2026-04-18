@@ -1,5 +1,7 @@
-open UIEventsAPI
-open FileAPI
+open UIEventsTypes
+open FileTypes
+
+type t = dataTransferItemList = {...dataTransferItemList}
 
 /**
 Adds a new entry for the given data to the drag data store. If the data is plain text then a type string has to be provided also.

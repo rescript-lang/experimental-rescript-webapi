@@ -1,4 +1,6 @@
-open DOMAPI
+open DOMTypes
+
+type t = node = {...node}
 
 module Impl = (
   T: {

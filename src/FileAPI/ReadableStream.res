@@ -1,55 +1,53 @@
-open FileAPI
+module Types = FileTypes
+
+type t<'r> = Types.readableStream<'r> = {...Types.readableStream<'r>}
+type readableStreamReaderMode = Types.readableStreamReaderMode
+type readableStreamGetReaderOptions = Types.readableStreamGetReaderOptions = {
+  ...Types.readableStreamGetReaderOptions,
+}
+type readableWritablePair<'r, 'w> = Types.readableWritablePair<'r, 'w> = {
+  ...Types.readableWritablePair<'r, 'w>,
+}
+type streamPipeOptions = Types.streamPipeOptions = {...Types.streamPipeOptions}
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/ReadableStream)
 */
 @new
-external make: unit => readableStream<array<int>> = "ReadableStream"
-
-/**
-[Read more on MDN](https://developer.mozilla.org/docs/Web/API/ReadableStream)
-*/
-@new
-external make2: unit => unknown = "ReadableStream"
-
-/**
-[Read more on MDN](https://developer.mozilla.org/docs/Web/API/ReadableStream)
-*/
-@new
-external make3: unit => unknown = "ReadableStream"
+external make: unit => t<array<int>> = "ReadableStream"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/ReadableStream/cancel)
 */
 @send
-external cancel: (readableStream<'r>, ~reason: JSON.t=?) => promise<unit> = "cancel"
+external cancel: (t<'r>, ~reason: JSON.t=?) => promise<unit> = "cancel"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/ReadableStream/getReader)
 */
 @send
 external getReader: (
-  readableStream<'r>,
+  t<'r>,
   ~options: readableStreamGetReaderOptions=?,
-) => readableStreamReader<'r> = "getReader"
+) => Types.readableStreamReader<'r> = "getReader"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/ReadableStream/pipeThrough)
 */
 @send
 external pipeThrough: (
-  readableStream<'r>,
+  t<'r>,
   ~transform: readableWritablePair<'t, 'r>,
   ~options: streamPipeOptions=?,
-) => readableStream<'t> = "pipeThrough"
+) => t<'t> = "pipeThrough"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/ReadableStream/pipeTo)
 */
 @send
 external pipeTo: (
-  readableStream<'r>,
-  ~destination: writableStream<'r>,
+  t<'r>,
+  ~destination: WritableStream.t<'r>,
   ~options: streamPipeOptions=?,
 ) => promise<unit> = "pipeTo"
 
@@ -57,4 +55,4 @@ external pipeTo: (
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/ReadableStream/tee)
 */
 @send
-external tee: readableStream<'r> => array<readableStream<unit>> = "tee"
+external tee: t<'r> => array<t<unit>> = "tee"

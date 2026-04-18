@@ -1,4 +1,6 @@
-open DOMAPI
+open DOMTypes
+
+type t = location = {...location}
 
 /**
 Navigates to the given URL.

@@ -1,4 +1,6 @@
-open WebAudioAPI
+open WebAudioTypes
+
+type t = audioScheduledSourceNode = {...audioScheduledSourceNode}
 
 module Impl = (
   T: {
@@ -22,4 +24,4 @@ module Impl = (
   external stop: (T.t, ~when_: float=?) => unit = "stop"
 }
 
-include Impl({type t = audioScheduledSourceNode})
+include Impl({type t = t})

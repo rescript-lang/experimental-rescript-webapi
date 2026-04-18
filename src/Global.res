@@ -1,22 +1,17 @@
-open DOMAPI
-open HistoryAPI
-open VisualViewportAPI
-open WebSpeechAPI
-open IndexedDBAPI
-open WebCryptoAPI
-open PerformanceAPI
-open WebWorkersAPI
-open WebStorageAPI
-open CanvasAPI
-open FileAPI
-open ChannelMessagingAPI
-open FetchAPI
-open EventAPI
-
-/**
-[Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/window)
-*/
-external window: window = "window"
+open DOMTypes
+open HistoryTypes
+open VisualViewportTypes
+open WebSpeechTypes
+open IndexedDBTypes
+open WebCryptoTypes
+open PerformanceTypes
+open WebWorkersTypes
+open WebStorageTypes
+open CanvasTypes
+open FileTypes
+open ChannelMessagingTypes
+open FetchTypes
+open EventTypes
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/self)
@@ -123,11 +118,6 @@ external parent: window = "parent"
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/frameElement)
 */
 external frameElement: element = "frameElement"
-
-/**
-[Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/navigator)
-*/
-external navigator: navigator = "navigator"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/screen)
@@ -281,7 +271,7 @@ external setInterval: (~handler: string, ~timeout: int=?) => int = "setInterval"
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/setInterval)
 */
-external setInterval2: (~handler: unit => unit, ~timeout: int=?) => int = "setInterval"
+external setIntervalWithCallback: (~handler: unit => unit, ~timeout: int=?) => int = "setInterval"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/clearInterval)
@@ -304,7 +294,7 @@ external createImageBitmap: (
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/createImageBitmap)
 */
-external createImageBitmap2: (
+external createImageBitmapFromSvg: (
   ~image: svgImageElement,
   ~options: imageBitmapOptions=?,
 ) => promise<imageBitmap> = "createImageBitmap"
@@ -312,7 +302,7 @@ external createImageBitmap2: (
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/createImageBitmap)
 */
-external createImageBitmap3: (
+external createImageBitmapFromVideo: (
   ~image: htmlVideoElement,
   ~options: imageBitmapOptions=?,
 ) => promise<imageBitmap> = "createImageBitmap"
@@ -320,7 +310,7 @@ external createImageBitmap3: (
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/createImageBitmap)
 */
-external createImageBitmap4: (
+external createImageBitmapFromCanvas: (
   ~image: htmlCanvasElement,
   ~options: imageBitmapOptions=?,
 ) => promise<imageBitmap> = "createImageBitmap"
@@ -328,7 +318,7 @@ external createImageBitmap4: (
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/createImageBitmap)
 */
-external createImageBitmap5: (
+external createImageBitmapFromImageBitmap: (
   ~image: imageBitmap,
   ~options: imageBitmapOptions=?,
 ) => promise<imageBitmap> = "createImageBitmap"
@@ -336,7 +326,7 @@ external createImageBitmap5: (
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/createImageBitmap)
 */
-external createImageBitmap6: (
+external createImageBitmapFromOffscreenCanvas: (
   ~image: offscreenCanvas,
   ~options: imageBitmapOptions=?,
 ) => promise<imageBitmap> = "createImageBitmap"
@@ -344,7 +334,7 @@ external createImageBitmap6: (
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/createImageBitmap)
 */
-external createImageBitmap7: (
+external createImageBitmapFromVideoFrame: (
   ~image: videoFrame,
   ~options: imageBitmapOptions=?,
 ) => promise<imageBitmap> = "createImageBitmap"
@@ -352,7 +342,7 @@ external createImageBitmap7: (
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/createImageBitmap)
 */
-external createImageBitmap8: (
+external createImageBitmapFromBlob: (
   ~image: blob,
   ~options: imageBitmapOptions=?,
 ) => promise<imageBitmap> = "createImageBitmap"
@@ -360,7 +350,7 @@ external createImageBitmap8: (
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/createImageBitmap)
 */
-external createImageBitmap9: (
+external createImageBitmapFromImageData: (
   ~image: imageData,
   ~options: imageBitmapOptions=?,
 ) => promise<imageBitmap> = "createImageBitmap"
@@ -368,7 +358,7 @@ external createImageBitmap9: (
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/createImageBitmap)
 */
-external createImageBitmap10: (
+external createImageBitmapWithCrop: (
   ~image: htmlImageElement,
   ~sx: int,
   ~sy: int,
@@ -380,7 +370,7 @@ external createImageBitmap10: (
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/createImageBitmap)
 */
-external createImageBitmap11: (
+external createImageBitmapFromSvgWithCrop: (
   ~image: svgImageElement,
   ~sx: int,
   ~sy: int,
@@ -392,7 +382,7 @@ external createImageBitmap11: (
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/createImageBitmap)
 */
-external createImageBitmap12: (
+external createImageBitmapFromVideoWithCrop: (
   ~image: htmlVideoElement,
   ~sx: int,
   ~sy: int,
@@ -404,7 +394,7 @@ external createImageBitmap12: (
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/createImageBitmap)
 */
-external createImageBitmap13: (
+external createImageBitmapFromCanvasWithCrop: (
   ~image: htmlCanvasElement,
   ~sx: int,
   ~sy: int,
@@ -416,7 +406,7 @@ external createImageBitmap13: (
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/createImageBitmap)
 */
-external createImageBitmap14: (
+external createImageBitmapFromImageBitmapWithCrop: (
   ~image: imageBitmap,
   ~sx: int,
   ~sy: int,
@@ -428,7 +418,7 @@ external createImageBitmap14: (
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/createImageBitmap)
 */
-external createImageBitmap15: (
+external createImageBitmapFromOffscreenCanvasWithCrop: (
   ~image: offscreenCanvas,
   ~sx: int,
   ~sy: int,
@@ -440,7 +430,7 @@ external createImageBitmap15: (
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/createImageBitmap)
 */
-external createImageBitmap16: (
+external createImageBitmapFromVideoFrameWithCrop: (
   ~image: videoFrame,
   ~sx: int,
   ~sy: int,
@@ -452,7 +442,7 @@ external createImageBitmap16: (
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/createImageBitmap)
 */
-external createImageBitmap17: (
+external createImageBitmapFromBlobWithCrop: (
   ~image: blob,
   ~sx: int,
   ~sy: int,
@@ -464,7 +454,7 @@ external createImageBitmap17: (
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/createImageBitmap)
 */
-external createImageBitmap18: (
+external createImageBitmapFromImageDataWithCrop: (
   ~image: imageData,
   ~sx: int,
   ~sy: int,
@@ -617,7 +607,7 @@ external alert: unit => unit = "alert"
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/alert)
 */
-external alert2: string => unit = "alert"
+external alertWithMessage: string => unit = "alert"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/confirm)
@@ -664,7 +654,7 @@ If the origin of the target window doesn't match the given target origin, the me
 Throws a "DataCloneError" DOMException if transfer array contains duplicate objects or if message could not be cloned.
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/postMessage)
 */
-external postMessage2: (~message: JSON.t, ~options: windowPostMessageOptions=?) => unit =
+external postMessageWithOptions: (~message: JSON.t, ~options: windowPostMessageOptions=?) => unit =
   "postMessage"
 
 /**
@@ -700,7 +690,7 @@ external scroll: (~options: scrollToOptions=?) => unit = "scroll"
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/scroll)
 */
-external scroll2: (~x: float, ~y: float) => unit = "scroll"
+external scrollXY: (~x: float, ~y: float) => unit = "scroll"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/scrollTo)
@@ -710,7 +700,7 @@ external scrollTo: (~options: scrollToOptions=?) => unit = "scrollTo"
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/scrollTo)
 */
-external scrollTo2: (~x: float, ~y: float) => unit = "scrollTo"
+external scrollToXY: (~x: float, ~y: float) => unit = "scrollTo"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/scrollBy)
@@ -720,7 +710,7 @@ external scrollBy: (~options: scrollToOptions=?) => unit = "scrollBy"
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/scrollBy)
 */
-external scrollBy2: (~x: float, ~y: float) => unit = "scrollBy"
+external scrollByXY: (~x: float, ~y: float) => unit = "scrollBy"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/getComputedStyle)

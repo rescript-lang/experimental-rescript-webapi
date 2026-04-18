@@ -1,5 +1,7 @@
-open UIEventsAPI
-open DOMAPI
+open UIEventsTypes
+open DOMTypes
+
+type t = inputEvent = {...inputEvent}
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/InputEvent)

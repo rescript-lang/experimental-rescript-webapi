@@ -1,4 +1,4 @@
-open WebSpeechAPI
+open WebSpeechTypes
 
 include EventTarget.Impl({type t = speechSynthesisUtterance})
 

@@ -1,4 +1,4 @@
-open DOMAPI
+open DOMTypes
 
 external asHTMLCollection: htmlFormControlsCollection => htmlCollection<element> = "%identity"
 /**

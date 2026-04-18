@@ -1,4 +1,4 @@
-open DOMAPI
+open DOMTypes
 open Prelude
 
 /**
@@ -11,7 +11,7 @@ external make: (~init: string=?) => domMatrix = "DOMMatrix"
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/DOMMatrix)
 */
 @new
-external make2: (~init: array<float>=?) => domMatrix = "DOMMatrix"
+external fromFloatArray: (~init: array<float>=?) => domMatrix = "DOMMatrix"
 
 external asDOMMatrixReadOnly: domMatrix => domMatrixReadOnly = "%identity"
 @scope("DOMMatrix")

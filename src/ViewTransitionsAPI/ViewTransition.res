@@ -1,4 +1,6 @@
-open ViewTransitionsAPI
+open ViewTransitionsTypes
+
+type t = viewTransition = {...viewTransition}
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/ViewTransition/skipTransition)

@@ -1,4 +1,4 @@
-open DOMAPI
+open DOMTypes
 
 include CharacterData.Impl({type t = comment})
 

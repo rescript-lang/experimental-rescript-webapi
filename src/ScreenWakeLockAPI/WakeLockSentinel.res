@@ -1,4 +1,4 @@
-open ScreenWakeLockAPI
+open ScreenWakeLockTypes
 
 include EventTarget.Impl({type t = wakeLockSentinel})
 

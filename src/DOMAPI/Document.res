@@ -1,6 +1,8 @@
-open DOMAPI
-open EventAPI
-open ViewTransitionsAPI
+open DOMTypes
+open EventTypes
+open ViewTransitionsTypes
+
+type t = document = {...document}
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Document)
@@ -39,7 +41,7 @@ Throws a "HierarchyRequestError" DOMException if the constraints of the node tre
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Document/prepend)
 */
 @send
-external prepend2: (document, string) => unit = "prepend"
+external prependText: (document, string) => unit = "prepend"
 
 /**
 Inserts nodes after the last child of node, while replacing strings in nodes with equivalent Text nodes.
@@ -57,7 +59,7 @@ Throws a "HierarchyRequestError" DOMException if the constraints of the node tre
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Document/append)
 */
 @send
-external append2: (document, string) => unit = "append"
+external appendText: (document, string) => unit = "append"
 
 /**
 Replace all children of node with nodes, while replacing strings in nodes with equivalent Text nodes.
@@ -75,7 +77,7 @@ Throws a "HierarchyRequestError" DOMException if the constraints of the node tre
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Document/replaceChildren)
 */
 @send
-external replaceChildren2: (document, string) => unit = "replaceChildren"
+external replaceChildrenText: (document, string) => unit = "replaceChildren"
 
 /**
 Returns the first element that is a descendant of node that matches selectors.
@@ -162,7 +164,7 @@ Creates an instance of the element for the specified tag.
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Document/createElement)
 */
 @send
-external createElement2: (
+external createElementWithOptions: (
   document,
   ~localName: string,
   ~options: elementCreationOptions=?,
@@ -209,7 +211,7 @@ When supplied, options's is can be used to create a customized built-in element.
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Document/createElementNS)
 */
 @send
-external createElementNS2: (
+external createElementNSWithOptions: (
   document,
   ~namespace: string,
   ~qualifiedName: string,
@@ -394,7 +396,7 @@ Opens a new window and loads a document specified by a given URL. Also, opens a 
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Document/open)
 */
 @send
-external open2: (document, ~url: string, ~name: string, ~features: string) => window = "open"
+external openWindow: (document, ~url: string, ~name: string, ~features: string) => window = "open"
 
 /**
 Closes an output stream and forces the sent data to display.

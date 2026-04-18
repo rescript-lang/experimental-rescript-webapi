@@ -1,48 +1,48 @@
-open FileAPI
-open FetchAPI
-open URLAPI
+module Types = FetchTypes
 
 /**
 [Read more on MDN](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch#setting_a_body)
  */
-external fromString: string => bodyInit = "%identity"
+type t = Types.bodyInit
+
+external fromString: string => t = "%identity"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch#setting_a_body)
  */
-external fromArrayBuffer: ArrayBuffer.t => bodyInit = "%identity"
+external fromArrayBuffer: ArrayBuffer.t => t = "%identity"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch#setting_a_body)
  */
-external fromTypedArray: TypedArray.t<'t> => bodyInit = "%identity"
+external fromTypedArray: TypedArray.t<'t> => t = "%identity"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch#setting_a_body)
  */
-external fromDataView: DataView.t => bodyInit = "%identity"
+external fromDataView: DataView.t => t = "%identity"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch#setting_a_body)
  */
-external fromBlob: blob => bodyInit = "%identity"
+external fromBlob: Blob.t => t = "%identity"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch#setting_a_body)
  */
-external fromFile: file => bodyInit = "%identity"
+external fromFile: File.t => t = "%identity"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch#setting_a_body)
  */
-external fromURLSearchParams: urlSearchParams => bodyInit = "%identity"
+external fromURLSearchParams: URLSearchParams.t => t = "%identity"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch#setting_a_body)
  */
-external fromFormData: formData => bodyInit = "%identity"
+external fromFormData: FormData.t => t = "%identity"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch#setting_a_body)
  */
-external fromReadableStream: readableStream<'t> => bodyInit = "%identity"
+external fromReadableStream: ReadableStream.t<'t> => t = "%identity"

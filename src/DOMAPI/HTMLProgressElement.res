@@ -1,3 +1,3 @@
-open DOMAPI
+open DOMTypes
 
 include HTMLElement.Impl({type t = htmlProgressElement})

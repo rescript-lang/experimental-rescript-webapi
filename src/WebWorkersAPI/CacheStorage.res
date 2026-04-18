@@ -1,5 +1,5 @@
-open FetchAPI
-open WebWorkersAPI
+open FetchTypes
+open WebWorkersTypes
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CacheStorage/match)
@@ -15,7 +15,7 @@ external match: (
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CacheStorage/match)
 */
 @send
-external match2: (
+external matchByUrl: (
   cacheStorage,
   ~request: string,
   ~options: multiCacheQueryOptions=?,

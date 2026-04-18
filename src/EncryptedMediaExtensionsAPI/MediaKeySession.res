@@ -1,4 +1,4 @@
-open EncryptedMediaExtensionsAPI
+open EncryptedMediaExtensionsTypes
 
 include EventTarget.Impl({type t = mediaKeySession})
 
@@ -16,7 +16,7 @@ external generateRequest: (
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/MediaKeySession/generateRequest)
 */
 @send
-external generateRequest2: (
+external generateRequestWithArrayBuffer: (
   mediaKeySession,
   ~initDataType: string,
   ~initData: ArrayBuffer.t,
@@ -38,7 +38,7 @@ external update: (mediaKeySession, DataView.t) => promise<unit> = "update"
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/MediaKeySession/update)
 */
 @send
-external update2: (mediaKeySession, ArrayBuffer.t) => promise<unit> = "update"
+external updateWithArrayBuffer: (mediaKeySession, ArrayBuffer.t) => promise<unit> = "update"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/MediaKeySession/close)
