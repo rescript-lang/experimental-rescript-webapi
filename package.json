@@ -1,6 +1,7 @@
 {
   "name": "experimental-rescript-webapi",
   "version": "0.1.0",
+  "private": true,
   "description": "Experimental successor to [rescript-webapi](https://github.com/TheSpyder/rescript-webapi)",
   "keywords": [
     "dom",
@@ -22,11 +23,10 @@
     "type": "git",
     "url": "git+https://github.com/rescript-lang/experimental-rescript-webapi.git"
   },
-  "private": true,
-  "type": "module",
   "workspaces": [
     "packages/*"
   ],
+  "type": "module",
   "publishConfig": {
     "access": "public",
     "provenance": true
