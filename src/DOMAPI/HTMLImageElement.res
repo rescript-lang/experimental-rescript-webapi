@@ -1,6 +1,6 @@
 open DOMTypes
 
-type t = htmlImageElement
+type t = htmlImageElement = {...htmlImageElement}
 
 include HTMLElement.Impl({type t = htmlImageElement})
 

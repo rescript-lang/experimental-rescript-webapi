@@ -2,7 +2,7 @@ open DOMTypes
 open CanvasTypes
 open MediaCaptureAndStreamsTypes
 
-type t = htmlCanvasElement
+type t = htmlCanvasElement = {...htmlCanvasElement}
 
 include HTMLElement.Impl({type t = htmlCanvasElement})
 

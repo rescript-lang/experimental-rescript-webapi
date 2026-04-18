@@ -1,6 +1,6 @@
 open DOMTypes
 
-type t = htmlInputElement
+type t = htmlInputElement = {...htmlInputElement}
 
 include HTMLElement.Impl({type t = htmlInputElement})
 

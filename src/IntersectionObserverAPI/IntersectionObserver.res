@@ -1,7 +1,7 @@
 open DOMTypes
 open IntersectionObserverTypes
 
-type t = intersectionObserver
+type t = intersectionObserver = {...intersectionObserver}
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/IntersectionObserver)

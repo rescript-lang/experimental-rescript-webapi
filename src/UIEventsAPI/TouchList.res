@@ -1,6 +1,6 @@
 open UIEventsTypes
 
-type t = touchList
+type t = touchList = {...touchList}
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/TouchList/item)

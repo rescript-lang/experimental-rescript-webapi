@@ -1,6 +1,6 @@
 open EventTypes
 
-type t = abortSignal
+type t = abortSignal = {...abortSignal}
 
 include EventTarget.Impl({type t = abortSignal})
 

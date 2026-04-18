@@ -1,7 +1,7 @@
 open DOMTypes
 open Prelude
 
-type t = element
+type t = element = {...element}
 
 module Impl = (
   T: {

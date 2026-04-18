@@ -1,6 +1,6 @@
 open DOMTypes
 
-type t = location
+type t = location = {...location}
 
 /**
 Navigates to the given URL.

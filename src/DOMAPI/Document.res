@@ -2,7 +2,7 @@ open DOMTypes
 open EventTypes
 open ViewTransitionsTypes
 
-type t = document
+type t = document = {...document}
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Document)

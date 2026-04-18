@@ -1,6 +1,6 @@
 open UIEventsTypes
 
-type t = mouseEvent
+type t = mouseEvent = {...mouseEvent}
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/MouseEvent)

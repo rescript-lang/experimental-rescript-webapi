@@ -1,6 +1,6 @@
 open UIEventsTypes
 
-type t = wheelEvent
+type t = wheelEvent = {...wheelEvent}
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/WheelEvent)

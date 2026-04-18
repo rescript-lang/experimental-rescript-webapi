@@ -1,6 +1,6 @@
 open DOMTypes
 
-type t = htmlElement
+type t = htmlElement = {...htmlElement}
 
 module Impl = (
   T: {

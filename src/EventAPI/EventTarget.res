@@ -1,6 +1,6 @@
 open EventTypes
 
-type t = eventTarget
+type t = eventTarget = {...eventTarget}
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/EventTarget)
