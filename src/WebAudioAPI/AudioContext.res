@@ -2,55 +2,60 @@ open WebAudioTypes
 open DOMTypes
 open MediaCaptureAndStreamsTypes
 
-include BaseAudioContext.Impl({type t = audioContext})
+type t = audioContext = {...audioContext}
+type baseAudioContext = WebAudioTypes.baseAudioContext
+type audioContextOptions = WebAudioTypes.audioContextOptions
+type audioTimestamp = WebAudioTypes.audioTimestamp
+
+include BaseAudioContext.Impl({type t = t})
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/AudioContext)
 */
 @new
-external make: (~contextOptions: audioContextOptions=?) => audioContext = "AudioContext"
+external make: (~contextOptions: audioContextOptions=?) => t = "AudioContext"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/AudioContext/getOutputTimestamp)
 */
 @send
-external getOutputTimestamp: audioContext => audioTimestamp = "getOutputTimestamp"
+external getOutputTimestamp: t => audioTimestamp = "getOutputTimestamp"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/AudioContext/resume)
 */
 @send
-external resume: audioContext => promise<unit> = "resume"
+external resume: t => promise<unit> = "resume"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/AudioContext/suspend)
 */
 @send
-external suspend: audioContext => promise<unit> = "suspend"
+external suspend: t => promise<unit> = "suspend"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/AudioContext/close)
 */
 @send
-external close: audioContext => promise<unit> = "close"
+external close: t => promise<unit> = "close"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/AudioContext/createMediaElementSource)
 */
 @send
-external createMediaElementSource: (audioContext, htmlMediaElement) => mediaElementAudioSourceNode =
+external createMediaElementSource: (t, htmlMediaElement) => mediaElementAudioSourceNode =
   "createMediaElementSource"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/AudioContext/createMediaStreamSource)
 */
 @send
-external createMediaStreamSource: (audioContext, mediaStream) => mediaStreamAudioSourceNode =
+external createMediaStreamSource: (t, mediaStream) => mediaStreamAudioSourceNode =
   "createMediaStreamSource"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/AudioContext/createMediaStreamDestination)
 */
 @send
-external createMediaStreamDestination: audioContext => mediaStreamAudioDestinationNode =
+external createMediaStreamDestination: t => mediaStreamAudioDestinationNode =
   "createMediaStreamDestination"

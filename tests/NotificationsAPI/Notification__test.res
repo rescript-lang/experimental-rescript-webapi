@@ -1,9 +1,9 @@
-open WebAPI.NotificationTypes
+let current: Notification.notificationPermission = Notification.permission
 
-let current = Notification.permission
+let _notification: Notification.t = Notification.make(~title="Testing notifications")
 
 Notification.requestPermission()
-->Promise.thenResolve(notificationPermission => {
+->Promise.thenResolve((notificationPermission: Notification.notificationPermission) => {
   switch notificationPermission {
   | Granted => Console.log("Permission granted")
   | Denied => Console.log("Permission denied")

@@ -1,5 +1,7 @@
 open WebAudioTypes
 
+type t = audioNode = {...audioNode}
+
 module Impl = (
   T: {
     type t
@@ -65,3 +67,5 @@ module Impl = (
   @send
   external disconnect7: (T.t, ~destinationParam: audioParam, ~output: int) => unit = "disconnect"
 }
+
+include Impl({type t = t})
