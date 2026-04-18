@@ -3,10 +3,10 @@ name: CI
 on:
   push:
     branches:
-      - main
+      - experimental
   pull_request:
     branches:
-      - main
+      - experimental
 
 permissions:
   contents: read
@@ -44,7 +44,7 @@ jobs:
 
       - name: Upload documentation
         uses: actions/upload-pages-artifact@v4
-        if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+        if: github.ref == 'refs/heads/experimental' && github.event_name == 'push'
         with:
           path: ./dist
 
@@ -69,7 +69,7 @@ jobs:
           path: "*.tgz"
 
       - name: Publish to npm
-        if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+        if: github.ref == 'refs/heads/experimental' && github.event_name == 'push'
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NODE_AUTH_TOKEN }}
         run: npm publish --access public ./*.tgz --tag experimental
@@ -80,7 +80,7 @@ jobs:
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
-    if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+    if: github.ref == 'refs/heads/experimental' && github.event_name == 'push'
     steps:
       - name: Deploy to GitHub Pages
         id: deployment
