@@ -1,27 +1,27 @@
-open WebAudioAPI
+let ctx = WebApiWebAudio.AudioContext.make()
 
-let ctx = AudioContext.make()
+let destinationNode = ctx.destination->WebApiWebAudio.AudioDestinationNode.asAudioNode
+let context = WebApiWebAudio.AudioContext.asBaseAudioContext(ctx)
 
-let destinationNode = ctx.destination->AudioDestinationNode.asAudioNode
-let context = AudioContext.asBaseAudioContext(ctx)
-
-let osc = OscillatorNode.make(
+let osc = WebApiWebAudio.OscillatorNode.make(
   ~context,
   ~options={
-    type_: Sine,
+    type_: WebApiWebAudio.Types.Sine,
     frequency: 440.0,
   },
 )
-let gain = GainNode.make(
+let gain = WebApiWebAudio.GainNode.make(
   ~context,
   ~options={
     gain: 0.3,
   },
 )
-let _ = gain->GainNode.connect(~destinationNode)
+let _ = gain->WebApiWebAudio.GainNode.connect(~destinationNode)
 let _ =
   osc
-  ->OscillatorNode.asAudioScheduledSourceNode
-  ->AudioScheduledSourceNode.connect(~destinationNode=gain->GainNode.asAudioNode)
+  ->WebApiWebAudio.OscillatorNode.asAudioScheduledSourceNode
+  ->WebApiWebAudio.AudioScheduledSourceNode.connect(
+    ~destinationNode=gain->WebApiWebAudio.GainNode.asAudioNode,
+  )
 
-osc->OscillatorNode.start
+osc->WebApiWebAudio.OscillatorNode.start

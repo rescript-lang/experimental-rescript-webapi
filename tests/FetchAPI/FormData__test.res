@@ -1,42 +1,53 @@
 /* This works when your form has an id of "myForm" */
 @scope(("document", "forms"))
-external myForm: DOMAPI.htmlFormElement = "myForm"
+external myForm: WebApiDOM.HTMLFormElement.t = "myForm"
 
-let formData = FormData.make(~form=myForm)
+module FormData = WebApiFetch.FormData
+module EntryValue = WebApiFetch.FormDataEntryValue
 
-// Get a form field - returns formDataEntryValue which could be string or File
-let phoneEntry: null<FetchAPI.formDataEntryValue> = formData->FormData.get("phone")
+open EntryValue
 
-// Decode the entry to handle both string and File cases
+let logEntry = (~stringPrefix: string, ~filePrefix: string, entry: EntryValue.t) =>
+  switch entry {
+  | String(value) => Console.log(`${stringPrefix}${value}`)
+  | File(file) => Console.log(`${filePrefix}${file.name}`)
+  }
+
+let formData: FormData.t = FormData.make(~form=myForm)
+
+// Get a form field - returns formDataEntryValue which could be string or WebApiFile
+let phoneEntry: null<EntryValue.t> = formData->FormData.get("phone")
+
+// Decode the entry to handle both string and WebApiFile cases
 let _ = switch phoneEntry->Null.toOption {
 | None => Console.log("No phone field")
-| Some(entry) =>
-  switch entry->FormDataEntryValue.decode {
-  | FormDataEntryValue.String(value) => Console.log(`Phone: ${value}`)
-  | FormDataEntryValue.File(file) => Console.log(`Unexpected file: ${file.name}`)
-  }
+| Some(entry) => logEntry(~stringPrefix="Phone: ", ~filePrefix="Unexpected file: ", entry)
 }
 
 // Get all values for a field (useful for multi-select or multiple file inputs)
-let allImages: array<FetchAPI.formDataEntryValue> = formData->FormData.getAll("images")
-
-// Process all entries
-let _ = allImages->Array.forEach(entry => {
-  switch entry->FormDataEntryValue.decode {
-  | FormDataEntryValue.String(value) => Console.log(`String value: ${value}`)
-  | FormDataEntryValue.File(file) => Console.log(`File: ${file.name}`)
-  }
-})
+let allImages: array<EntryValue.t> = formData->FormData.getAll("images")
+let _ =
+  allImages->Array.forEach(entry =>
+    logEntry(~stringPrefix="String value: ", ~filePrefix="WebApiFile: ", entry)
+  )
 
 // Create formDataEntryValue from string or file
-let stringEntry = FormDataEntryValue.fromString("test value")
-let fileEntry = FormDataEntryValue.fromFile(File.make(~fileBits=[], ~fileName="test.txt"))
+let stringEntry = EntryValue.String("test value")
+let blob: WebApiFile.Blob.t = WebApiFile.Blob.make(~blobParts=[])
+let file: WebApiFile.File.t = WebApiFile.File.make(~fileBits=[], ~fileName="test.txt")
+let fileEntry = EntryValue.File(file)
+
+formData->FormData.appendBlob(~name="avatar", ~blobValue=blob)
+
+logEntry(~stringPrefix="String entry: ", ~filePrefix="Unexpected file entry: ", stringEntry)
+
+logEntry(~stringPrefix="Unexpected string entry: ", ~filePrefix="File entry: ", fileEntry)
 
 // Iterate over all entries in the FormData
-let entries: Iterator.t<(string, FetchAPI.formDataEntryValue)> = formData->FormData.entries
+let entries: Iterator.t<(string, EntryValue.t)> = formData->FormData.entries
 let _ = entries->Iterator.forEach(((key, value)) => {
-  switch value->FormDataEntryValue.decode {
-  | FormDataEntryValue.String(s) => Console.log(`${key}: ${s}`)
-  | FormDataEntryValue.File(f) => Console.log(`${key}: [File] ${f.name}`)
+  switch value {
+  | String(s) => Console.log(`${key}: ${s}`)
+  | File(f) => Console.log(`${key}: [WebApiFile] ${f.name}`)
   }
 })

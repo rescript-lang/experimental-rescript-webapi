@@ -1,21 +1,23 @@
-let observer = MutationObserver.make((mutations, obs) => {
-  let button = Global.document->Document.querySelector("button")
+module MObserver = WebApiMutationObserver.MutationObserver
+
+let observer = MObserver.make((mutations, obs) => {
+  let button = WebApiDOM.Global.document->WebApiDOM.Document.querySelector("button")
   switch button->Null.toOption {
   | Some(button) => {
       Console.log(button)
-      obs->MutationObserver.disconnect
+      obs->MObserver.disconnect
     }
   | None => ()
   }
   Console.log(mutations)
 })
 
-observer->MutationObserver.observe(
-  ~target=Global.document->Document.asNode,
+observer->MObserver.observe(
+  ~target=WebApiDOM.Global.document->WebApiDOM.Document.asNode,
   ~options={childList: true, subtree: true},
 )
 
-let records = observer->MutationObserver.takeRecords
+let records = observer->MObserver.takeRecords
 Console.log(records->Array.length)
 
-observer->MutationObserver.disconnect
+observer->MObserver.disconnect

@@ -24,7 +24,7 @@ export function createTypeModuleLink(parentModuleLink, typeName) {
 }
 
 function mapTypeModules(parentModuleLink, file) {
-  const folder = file.replace(".res", "");
+  const folder = path.dirname(file);
 
   if (!existsSync(folder)) {
     return [];
@@ -32,11 +32,11 @@ function mapTypeModules(parentModuleLink, file) {
 
   const files = readdirSync(folder);
   return files
-    .filter((f) => f.endsWith(".res"))
+    .filter((f) => f.endsWith(".res") && f !== "Types.res")
     .map((file) => {
       const filePath = path.join(folder, file);
 
-      const moduleName = file.replace("$", "").replace(folder, "").replace(".res", "");
+      const moduleName = file.replace("$", "").replace(".res", "");
       const apiRouteParameter = toKebabCase(moduleName);
       const link = createTypeModuleLink(parentModuleLink, moduleName);
       const typeName = moduleName[0].toLocaleLowerCase() + moduleName.slice(1);
@@ -54,8 +54,8 @@ function mapTypeModules(parentModuleLink, file) {
 }
 
 function mapRescriptFile(srcDir, file) {
-  const moduleName = path.basename(file, ".res").replace("$", "");
   const filePath = path.join(srcDir, file);
+  const moduleName = path.basename(path.dirname(srcDir)).replace("$", "");
   const link = createAPIModuleLink(moduleName);
   const items = Object.fromEntries(mapTypeModules(link, filePath));
 
@@ -68,10 +68,13 @@ function mapRescriptFile(srcDir, file) {
   };
 }
 
-const srcDir = path.resolve(process.cwd(), "src");
-export const apiModules = readdirSync(srcDir)
-  .filter((f) => f.endsWith(".res"))
-  .map((r) => mapRescriptFile(srcDir, r));
+const packagesDir = path.resolve(process.cwd(), "packages");
+export const apiModules = readdirSync(packagesDir, { withFileTypes: true })
+  .filter((entry) => entry.isDirectory())
+  .map((entry) => path.join(packagesDir, entry.name, "src"))
+  .filter((srcDir) => existsSync(path.join(srcDir, "Types.res")))
+  .map((srcDir) => mapRescriptFile(srcDir, "Types.res"))
+  .sort((a, b) => a.moduleName.localeCompare(b.moduleName));
 
 async function getRescriptDoc(absoluteFilePath) {
   const { stdout, stderr } = await execAsync(`rescript-tools doc ${absoluteFilePath}`, {
@@ -149,11 +152,11 @@ export const testFiles = readdirSync(testDir, { recursive: true })
   .map((tf) => {
     const sourcePath = path.join(testDir, tf);
     const source = readFileSync(sourcePath, "utf-8");
-    const outputPath = sourcePath.replace(".res", ".js");
+    const outputPath = sourcePath.replace(".res", ".res.js");
     const output = readFileSync(outputPath, "utf-8");
 
     const parts = tf.split(path.sep);
-    const name = parts[parts.length - 1].replace("__tests.res", "");
+    const name = parts[parts.length - 1].replace(".res", "");
 
     return {
       sourcePath: sourcePath.replace(testDir, ""),
