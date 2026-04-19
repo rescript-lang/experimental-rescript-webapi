@@ -183,8 +183,5 @@ Adds to the path the path given by the argument.
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Path2D/addPath)
 */
 @send
-external addPath: (
-  Types.path2D,
-  ~path: Types.path2D,
-  ~transform: domMatrix2DInit=?,
-) => unit = "addPath"
+external addPath: (Types.path2D, ~path: Types.path2D, ~transform: domMatrix2DInit=?) => unit =
+  "addPath"
