@@ -17,21 +17,21 @@ type blob = private {
 
 /**
 Provides information about files and allows JavaScript in a web page to access their content.
-[See WebApiFile on MDN](https://developer.mozilla.org/docs/Web/API/WebApiFile)
+[See WebApiFile on MDN](https://developer.mozilla.org/docs/Web/API/File)
 */
 @editor.completeFrom(WebApiFile.File)
 type file = private {
   ...blob,
   /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/WebApiFile/name)
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/File/name)
     */
   name: string,
   /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/WebApiFile/lastModified)
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/File/lastModified)
     */
   lastModified: int,
   /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/WebApiFile/webkitRelativePath)
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/File/webkitRelativePath)
     */
   webkitRelativePath: string,
 }

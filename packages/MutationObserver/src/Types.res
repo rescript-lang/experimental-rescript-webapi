@@ -1,5 +1,5 @@
 /**
-[See WebApiMutationObserver on MDN](https://developer.mozilla.org/docs/Web/API/WebApiMutationObserver)
+[See WebApiMutationObserver on MDN](https://developer.mozilla.org/docs/Web/API/MutationObserver)
 */
 @editor.completeFrom(WebApiMutationObserver)
 type mutationObserver

@@ -15,7 +15,7 @@ type permissionState =
   | @as("prompt") Prompt
 
 /**
-[See WebApiPermissions on MDN](https://developer.mozilla.org/docs/Web/API/WebApiPermissions)
+[See WebApiPermissions on MDN](https://developer.mozilla.org/docs/Web/API/Permissions)
 */
 @editor.completeFrom(WebApiPermissions)
 type permissions = private {}

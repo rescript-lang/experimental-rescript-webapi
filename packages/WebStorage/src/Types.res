@@ -2,13 +2,13 @@
 
 /**
 This Web WebApiStorage API interface provides access to a particular domain's session or local storage. It allows, for example, the addition, modification, or deletion of stored data items.
-[See WebApiStorage on MDN](https://developer.mozilla.org/docs/Web/API/WebApiStorage)
+[See WebApiStorage on MDN](https://developer.mozilla.org/docs/Web/API/Storage)
 */
 @editor.completeFrom(WebApiStorage)
 type storage = private {
   /**
     Returns the number of key/value pairs.
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/WebApiStorage/length)
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Storage/length)
     */
   length: int,
 }

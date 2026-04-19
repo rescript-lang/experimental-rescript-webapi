@@ -7,17 +7,17 @@ type eventCounts = {}
 
 /**
 Provides access to performance-related information for the current page. It's part of the High Resolution Time API, but is enhanced by the WebApiPerformance Timeline API, the Navigation Timing API, the User Timing API, and the Resource Timing API.
-[See WebApiPerformance on MDN](https://developer.mozilla.org/docs/Web/API/WebApiPerformance)
+[See WebApiPerformance on MDN](https://developer.mozilla.org/docs/Web/API/Performance)
 */
 @editor.completeFrom(WebApiPerformance)
 type performance = private {
   ...WebApiEvent.Types.eventTarget,
   /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/WebApiPerformance/timeOrigin)
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Performance/timeOrigin)
     */
   timeOrigin: float,
   /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/WebApiPerformance/eventCounts)
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Performance/eventCounts)
     */
   eventCounts: eventCounts,
 }

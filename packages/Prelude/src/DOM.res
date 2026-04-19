@@ -5621,13 +5621,13 @@ TODO: mark as private once mutating fields of private records is allowed
     */
   implementation: domImplementation,
   /**
-    Sets or gets the WebApiURL for the current document.
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Document/WebApiURL)
+    Sets or gets the URL for the current document.
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Document/URL)
     */
-  @as("WebApiURL")
-  uRL: string,
+  @as("URL")
+  url: string,
   /**
-    Returns document's WebApiURL.
+    Returns document's URL.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Document/documentURI)
     */
   documentURI: string,

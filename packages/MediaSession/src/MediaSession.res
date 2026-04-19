@@ -4,7 +4,7 @@ type mediaPositionState = Types.mediaPositionState = {...Types.mediaPositionStat
 type mediaSessionActionHandler = Types.mediaSessionActionHandler
 
 /**
-[Read more on MDN](https://developer.mozilla.org/docs/Web/API/WebApiMediaSession/setActionHandler)
+[Read more on MDN](https://developer.mozilla.org/docs/Web/API/MediaSession/setActionHandler)
 */
 @send
 external setActionHandler: (
@@ -14,7 +14,7 @@ external setActionHandler: (
 ) => unit = "setActionHandler"
 
 /**
-[Read more on MDN](https://developer.mozilla.org/docs/Web/API/WebApiMediaSession/setPositionState)
+[Read more on MDN](https://developer.mozilla.org/docs/Web/API/MediaSession/setPositionState)
 */
 @send
 external setPositionState: (t, ~state: mediaPositionState=?) => unit = "setPositionState"

@@ -13,57 +13,57 @@ type urlSearchParams = private {
 
 /**
 The WebApiURL interface represents an object providing static methods used for creating object URLs.
-[See WebApiURL on MDN](https://developer.mozilla.org/docs/Web/API/WebApiURL)
+[See WebApiURL on MDN](https://developer.mozilla.org/docs/Web/API/URL)
 TODO: mark as private once mutating fields of private records is allowed
 */
 @editor.completeFrom(WebApiURL)
 type url = {
   /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/WebApiURL/href)
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/URL/href)
     */
   mutable href: string,
   /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/WebApiURL/origin)
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/URL/origin)
     */
   origin: string,
   /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/WebApiURL/protocol)
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/URL/protocol)
     */
   mutable protocol: string,
   /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/WebApiURL/username)
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/URL/username)
     */
   mutable username: string,
   /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/WebApiURL/password)
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/URL/password)
     */
   mutable password: string,
   /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/WebApiURL/host)
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/URL/host)
     */
   mutable host: string,
   /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/WebApiURL/hostname)
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/URL/hostname)
     */
   mutable hostname: string,
   /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/WebApiURL/port)
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/URL/port)
     */
   mutable port: string,
   /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/WebApiURL/pathname)
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/URL/pathname)
     */
   mutable pathname: string,
   /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/WebApiURL/search)
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/URL/search)
     */
   mutable search: string,
   /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/WebApiURL/searchParams)
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/URL/searchParams)
     */
   searchParams: urlSearchParams,
   /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/WebApiURL/hash)
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/URL/hash)
     */
   mutable hash: string,
 }

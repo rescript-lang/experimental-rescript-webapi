@@ -1,11 +1,11 @@
 /**
-[Read more on MDN](https://developer.mozilla.org/docs/Web/API/WebApiResizeObserver)
+[Read more on MDN](https://developer.mozilla.org/docs/Web/API/ResizeObserver)
 */
 @new
-external make: Types.resizeObserverCallback => Types.resizeObserver = "WebApiResizeObserver"
+external make: Types.resizeObserverCallback => Types.resizeObserver = "ResizeObserver"
 
 /**
-[Read more on MDN](https://developer.mozilla.org/docs/Web/API/WebApiResizeObserver/observe)
+[Read more on MDN](https://developer.mozilla.org/docs/Web/API/ResizeObserver/observe)
 */
 @send
 external observe: (
@@ -15,13 +15,13 @@ external observe: (
 ) => unit = "observe"
 
 /**
-[Read more on MDN](https://developer.mozilla.org/docs/Web/API/WebApiResizeObserver/unobserve)
+[Read more on MDN](https://developer.mozilla.org/docs/Web/API/ResizeObserver/unobserve)
 */
 @send
 external unobserve: (Types.resizeObserver, WebApiDOM.Types.element) => unit = "unobserve"
 
 /**
-[Read more on MDN](https://developer.mozilla.org/docs/Web/API/WebApiResizeObserver/disconnect)
+[Read more on MDN](https://developer.mozilla.org/docs/Web/API/ResizeObserver/disconnect)
 */
 @send
 external disconnect: Types.resizeObserver => unit = "disconnect"
