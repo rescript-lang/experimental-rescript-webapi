@@ -1,17 +1,17 @@
 let req = WebApiFetch.Request.fromURL("https://example.com")
 
-let blob: WebApiFile.Blob.t = WebApiFile.Blob.make(~blobParts=[])
-let file: WebApiFile.File.t = WebApiFile.File.make(~fileBits=[], ~fileName="hello.txt")
-let params: WebApiURL.URLSearchParams.t = WebApiURL.URLSearchParams.fromString("greeting=hello")
-let formData: WebApiFetch.FormData.t = WebApiFetch.FormData.make()
-let stream: WebApiFile.ReadableStream.t<array<int>> = WebApiFile.ReadableStream.make()
+let blob = WebApiFile.Blob.make(~blobParts=[])
+let file = WebApiFile.File.make(~fileBits=[], ~fileName="hello.txt")
+let params = WebApiURL.URLSearchParams.fromString("greeting=hello")
+let formData = WebApiFetch.FormData.make()
+let stream = WebApiFile.ReadableStream.make()
 
-let stringBody: WebApiFetch.BodyInit.t = WebApiFetch.BodyInit.fromString("hello")
-let blobBody: WebApiFetch.BodyInit.t = WebApiFetch.BodyInit.fromBlob(blob)
-let fileBody: WebApiFetch.BodyInit.t = WebApiFetch.BodyInit.fromFile(file)
-let paramsBody: WebApiFetch.BodyInit.t = WebApiFetch.BodyInit.fromURLSearchParams(params)
-let formDataBody: WebApiFetch.BodyInit.t = WebApiFetch.BodyInit.fromFormData(formData)
-let streamBody: WebApiFetch.BodyInit.t = WebApiFetch.BodyInit.fromReadableStream(stream)
+let stringBody = WebApiFetch.BodyInit.fromString("hello")
+let blobBody = WebApiFetch.BodyInit.fromBlob(blob)
+let fileBody = WebApiFetch.BodyInit.fromFile(file)
+let paramsBody = WebApiFetch.BodyInit.fromURLSearchParams(params)
+let formDataBody = WebApiFetch.BodyInit.fromFormData(formData)
+let streamBody = WebApiFetch.BodyInit.fromReadableStream(stream)
 
 let req1 = WebApiFetch.Request.fromURL(
   "https://example.com/api",

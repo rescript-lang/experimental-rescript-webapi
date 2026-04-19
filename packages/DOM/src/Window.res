@@ -412,12 +412,6 @@ external alert: Types.window => unit = "alert"
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/alert)
 */
 @send
-external alert2: (Types.window, string) => unit = "alert"
-
-/**
-[Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/alert)
-*/
-@send
 external alertWithMessage: (Types.window, string) => unit = "alert"
 
 /**
@@ -536,12 +530,6 @@ external scroll: (Types.window, ~options: Types.scrollToOptions=?) => unit = "sc
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/scroll)
 */
 @send
-external scroll2: (Types.window, ~x: float, ~y: float) => unit = "scroll"
-
-/**
-[Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/scroll)
-*/
-@send
 external scrollXY: (Types.window, ~x: float, ~y: float) => unit = "scroll"
 
 /**
@@ -554,12 +542,6 @@ external scrollTo: (Types.window, ~options: Types.scrollToOptions=?) => unit = "
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/scrollTo)
 */
 @send
-external scrollTo2: (Types.window, ~x: float, ~y: float) => unit = "scrollTo"
-
-/**
-[Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/scrollTo)
-*/
-@send
 external scrollToXY: (Types.window, ~x: float, ~y: float) => unit = "scrollTo"
 
 /**
@@ -567,12 +549,6 @@ external scrollToXY: (Types.window, ~x: float, ~y: float) => unit = "scrollTo"
 */
 @send
 external scrollBy: (Types.window, ~options: Types.scrollToOptions=?) => unit = "scrollBy"
-
-/**
-[Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/scrollBy)
-*/
-@send
-external scrollBy2: (Types.window, ~x: float, ~y: float) => unit = "scrollBy"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/scrollBy)
