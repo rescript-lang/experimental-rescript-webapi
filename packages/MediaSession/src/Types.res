@@ -47,17 +47,17 @@ type mediaMetadata = {
 }
 
 /**
-[See WebApiMediaSession on MDN](https://developer.mozilla.org/docs/Web/API/WebApiMediaSession)
+[See WebApiMediaSession on MDN](https://developer.mozilla.org/docs/Web/API/MediaSession)
 TODO: mark as private once mutating fields of private records is allowed
 */
 @editor.completeFrom(WebApiMediaSession)
 type mediaSession = {
   /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/WebApiMediaSession/metadata)
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/MediaSession/metadata)
     */
   mutable metadata: Null.t<mediaMetadata>,
   /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/WebApiMediaSession/playbackState)
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/MediaSession/playbackState)
     */
   mutable playbackState: mediaSessionPlaybackState,
 }

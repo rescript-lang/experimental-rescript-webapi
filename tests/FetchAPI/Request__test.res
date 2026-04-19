@@ -20,7 +20,12 @@ let req1 = WebApiFetch.Request.fromURL(
 
 let req2 = WebApiFetch.Request.fromRequest(req1)
 
-let _blobPromise: promise<WebApiFile.Blob.t> = req2->WebApiFetch.Request.blob
-let _formDataPromise: promise<WebApiFetch.FormData.t> = req2->WebApiFetch.Request.formData
+let _blob: WebApiFile.Blob.t = await req2->WebApiFetch.Request.clone->WebApiFetch.Request.blob
+
+let formDataReq = WebApiFetch.Request.fromURL(
+  "https://example.com/form",
+  ~init={method: "POST", body: formDataBody},
+)
+let _formData: WebApiFetch.FormData.t = await formDataReq->WebApiFetch.Request.formData
 
 Console.log(await req2->WebApiFetch.Request.text)

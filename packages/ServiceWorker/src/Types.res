@@ -19,17 +19,17 @@ type workerType =
 
 /**
 This WebApiServiceWorker API interface provides a reference to a service worker. Multiple browsing contexts (e.g. pages, workers, etc.) can be associated with the same service worker, each through a unique WebApiServiceWorker object.
-[See WebApiServiceWorker on MDN](https://developer.mozilla.org/docs/Web/API/WebApiServiceWorker)
+[See WebApiServiceWorker on MDN](https://developer.mozilla.org/docs/Web/API/ServiceWorker)
 */
 @editor.completeFrom(WebApiServiceWorker)
 type serviceWorker = private {
   ...WebApiEvent.Types.eventTarget,
   /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/WebApiServiceWorker/scriptURL)
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/ServiceWorker/scriptURL)
     */
   scriptURL: string,
   /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/WebApiServiceWorker/state)
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/ServiceWorker/state)
     */
   state: serviceWorkerState,
 }

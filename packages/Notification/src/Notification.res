@@ -8,29 +8,29 @@ type notificationPermissionCallback = Types.notificationPermissionCallback
 type notificationEvent = Types.notificationEvent = {...Types.notificationEvent}
 
 /**
-[Read more on MDN](https://developer.mozilla.org/docs/Web/API/WebApiNotification)
+[Read more on MDN](https://developer.mozilla.org/docs/Web/API/Notification)
 */
 @new
-external make: (~title: string, ~options: notificationOptions=?) => t = "WebApiNotification"
+external make: (~title: string, ~options: notificationOptions=?) => t = "Notification"
 
 include WebApiEvent.EventTarget.Impl({type t = t})
 
 /**
-[Read more on MDN](https://developer.mozilla.org/docs/Web/API/WebApiNotification/requestPermission_static)
+[Read more on MDN](https://developer.mozilla.org/docs/Web/API/Notification/requestPermission_static)
 */
-@scope("WebApiNotification")
+@scope("Notification")
 external requestPermission: (
   ~deprecatedCallback: notificationPermissionCallback=?,
 ) => promise<notificationPermission> = "requestPermission"
 
 /**
-[Read more on MDN](https://developer.mozilla.org/docs/Web/API/WebApiNotification/close)
+[Read more on MDN](https://developer.mozilla.org/docs/Web/API/Notification/close)
 */
 @send
 external close: t => unit = "close"
 
 /**
-[Read more on MDN](https://developer.mozilla.org/en-US/docs/Web/API/WebApiNotification/permission_static)
+[Read more on MDN](https://developer.mozilla.org/en-US/docs/Web/API/Notification/permission_static)
 */
-@scope("WebApiNotification") @val
+@scope("Notification") @val
 external permission: notificationPermission = "permission"

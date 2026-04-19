@@ -24,7 +24,7 @@ type mediaEncodingType =
   | @as("webrtc") Webrtc
 
 /**
-[See WebApiMediaCapabilities on MDN](https://developer.mozilla.org/docs/Web/API/WebApiMediaCapabilities)
+[See WebApiMediaCapabilities on MDN](https://developer.mozilla.org/docs/Web/API/MediaCapabilities)
 */
 @editor.completeFrom(WebApiMediaCapabilities)
 type mediaCapabilities = private {}

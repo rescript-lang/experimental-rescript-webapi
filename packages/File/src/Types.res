@@ -20,7 +20,7 @@ A file-like object of immutable, raw data. Blobs represent data that isn't neces
 [See Blob on MDN](https://developer.mozilla.org/docs/Web/API/Blob)
 */
 @editor.completeFrom(Blob)
-type blob = WebApiPrelude.Types.blob = private {
+type blob = WebApiBase.File.blob = private {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Blob/size)
     */
@@ -68,21 +68,21 @@ type writableStreamDefaultController = private {
 
 /**
 Provides information about files and allows JavaScript in a web page to access their content.
-[See WebApiFile on MDN](https://developer.mozilla.org/docs/Web/API/WebApiFile)
+[See WebApiFile on MDN](https://developer.mozilla.org/docs/Web/API/File)
 */
 @editor.completeFrom(WebApiFile)
-type file = WebApiPrelude.Types.file = private {
+type file = WebApiBase.File.file = private {
   ...blob,
   /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/WebApiFile/name)
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/File/name)
     */
   name: string,
   /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/WebApiFile/lastModified)
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/File/lastModified)
     */
   lastModified: int,
   /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/WebApiFile/webkitRelativePath)
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/File/webkitRelativePath)
     */
   webkitRelativePath: string,
 }

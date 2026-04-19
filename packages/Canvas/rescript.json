@@ -1,5 +1,5 @@
 {
-  "name": "@rescript/webapi-canvas",
+  "name": "@rescript-webapi/canvas",
   "sources": [
     {
       "dir": "src",
@@ -12,11 +12,11 @@
   },
   "suffix": ".js",
   "dependencies": [
-    "@rescript/webapi-dom",
-    "@rescript/webapi-event",
-    "@rescript/webapi-file",
-    "@rescript/webapi-media-capture-and-streams",
-    "@rescript/webapi-prelude"
+    "@rescript-webapi/dom",
+    "@rescript-webapi/event",
+    "@rescript-webapi/file",
+    "@rescript-webapi/media-capture-and-streams",
+    "@rescript-webapi/base"
   ],
   "namespace": "WebApiCanvas"
 }
