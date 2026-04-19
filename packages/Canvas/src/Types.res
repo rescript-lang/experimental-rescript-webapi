@@ -118,6 +118,7 @@ type webGLPowerPreference =
 
 /**
 [See OffscreenCanvas on MDN](https://developer.mozilla.org/docs/Web/API/OffscreenCanvas)
+TODO: mark as private once mutating fields of private records is allowed
 */
 @editor.completeFrom(OffscreenCanvas)
 type offscreenCanvas = {
@@ -142,7 +143,7 @@ They can be set, to replace the bitmap with a new, transparent black bitmap of t
 [See ImageBitmap on MDN](https://developer.mozilla.org/docs/Web/API/ImageBitmap)
 */
 @editor.completeFrom(ImageBitmap)
-type imageBitmap = {
+type imageBitmap = private {
   /**
     Returns the intrinsic width of the image, in CSS pixels.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/ImageBitmap/width)
@@ -273,7 +274,7 @@ type offscreenCanvasRenderingContext2D = {
 [See ImageBitmapRenderingContext on MDN](https://developer.mozilla.org/docs/Web/API/ImageBitmapRenderingContext)
 */
 @editor.completeFrom(ImageBitmapRenderingContext)
-type imageBitmapRenderingContext = {
+type imageBitmapRenderingContext = private {
   /**
     Returns the canvas element that the context is bound to.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/ImageBitmapRenderingContext/canvas)
@@ -339,21 +340,21 @@ An opaque object describing a gradient. It is returned by the methods CanvasRend
 [See CanvasGradient on MDN](https://developer.mozilla.org/docs/Web/API/CanvasGradient)
 */
 @editor.completeFrom(CanvasGradient)
-type canvasGradient = {}
+type canvasGradient = private {}
 
 /**
 An opaque object describing a pattern, based on an image, a canvas, or a video, created by the CanvasRenderingContext2D.createPattern() method.
 [See CanvasPattern on MDN](https://developer.mozilla.org/docs/Web/API/CanvasPattern)
 */
 @editor.completeFrom(CanvasPattern)
-type canvasPattern = {}
+type canvasPattern = private {}
 
 /**
 This WebApiCanvas 2D API interface is used to declare a path that can then be used on a CanvasRenderingContext2D object. The path methods of the CanvasRenderingContext2D interface are also present on this interface, which gives you the convenience of being able to retain and replay your path whenever desired.
 [See Path2D on MDN](https://developer.mozilla.org/docs/Web/API/Path2D)
 */
 @editor.completeFrom(Path2D)
-type path2D = {}
+type path2D = private {}
 
 /**
 The dimensions of a piece of text in the canvas, as created by the CanvasRenderingContext2D.measureText() method.

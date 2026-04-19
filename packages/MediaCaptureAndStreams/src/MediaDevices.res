@@ -1,4 +1,4 @@
-type t = Types.mediaDevices = {...Types.mediaDevices}
+type t = Types.mediaDevices = private {...Types.mediaDevices}
 type mediaTrackSupportedConstraints = Types.mediaTrackSupportedConstraints = {
   ...Types.mediaTrackSupportedConstraints,
 }

@@ -1,4 +1,4 @@
-type t = Types.notification
+type t = Types.notification = private {...Types.notification}
 type notificationDirection = Types.notificationDirection
 type notificationPermission = Types.notificationPermission
 type notificationAction = Types.notificationAction = {...Types.notificationAction}

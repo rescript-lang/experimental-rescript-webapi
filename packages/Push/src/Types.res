@@ -14,7 +14,7 @@ This WebApiPush API interface provides a way to receive notifications from third
 [See PushManager on MDN](https://developer.mozilla.org/docs/Web/API/PushManager)
 */
 @editor.completeFrom(PushManager)
-type pushManager = {
+type pushManager = private {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/PushManager/supportedContentEncodings_static)
     */
@@ -42,7 +42,7 @@ This WebApiPush API interface provides a subcription's WebApiURL endpoint and al
 [See PushSubscription on MDN](https://developer.mozilla.org/docs/Web/API/PushSubscription)
 */
 @editor.completeFrom(PushSubscription)
-type pushSubscription = {
+type pushSubscription = private {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/PushSubscription/endpoint)
     */
@@ -79,7 +79,7 @@ type pushSubscriptionJSON = {
 type pushMessageData
 
 @editor.completeFrom(PushEvent)
-type pushEvent = {
+type pushEvent = private {
   ...WebApiEvent.Types.extendableEvent,
   /**
    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/PushEvent/data)

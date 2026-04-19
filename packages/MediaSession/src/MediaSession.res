@@ -1,4 +1,4 @@
-type t = Types.mediaSession = {...Types.mediaSession}
+type t = Types.mediaSession = private {...Types.mediaSession}
 type mediaSessionAction = Types.mediaSessionAction
 type mediaPositionState = Types.mediaPositionState = {...Types.mediaPositionState}
 type mediaSessionActionHandler = Types.mediaSessionActionHandler

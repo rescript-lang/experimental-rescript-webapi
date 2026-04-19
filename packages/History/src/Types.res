@@ -7,6 +7,7 @@ type scrollRestoration =
 /**
 Allows manipulation of the browser session history, that is the pages visited in the tab or frame that the current page is loaded in.
 [See WebApiHistory on MDN](https://developer.mozilla.org/docs/Web/API/WebApiHistory)
+TODO: mark as private once mutating fields of private records is allowed
 */
 @editor.completeFrom(WebApiHistory)
 type history = {

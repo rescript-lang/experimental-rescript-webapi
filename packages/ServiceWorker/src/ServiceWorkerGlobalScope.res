@@ -1,4 +1,4 @@
-type t = Types.serviceWorkerGlobalScope
+type t = Types.serviceWorkerGlobalScope = private {...Types.serviceWorkerGlobalScope}
 
 include WebApiWebWorkers.WorkerGlobalScope.Impl({type t = t})
 

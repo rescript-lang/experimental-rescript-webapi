@@ -19,6 +19,7 @@ type fontFaceSetLoadStatus = WebApiPrelude.Types.fontFaceSetLoadStatus =
 
 /**
 [See FontFace on MDN](https://developer.mozilla.org/docs/Web/API/FontFace)
+TODO: mark as private once mutating fields of private records is allowed
 */
 @editor.completeFrom(FontFace)
 type rec fontFace = {

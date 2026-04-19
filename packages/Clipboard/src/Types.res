@@ -9,7 +9,7 @@ type presentationStyle =
 [See ClipboardItem on MDN](https://developer.mozilla.org/docs/Web/API/ClipboardItem)
 */
 @editor.completeFrom(ClipboardItem)
-type clipboardItem = {
+type clipboardItem = private {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/ClipboardItem/presentationStyle)
     */
@@ -24,7 +24,7 @@ type clipboardItem = {
 [See WebApiClipboard on MDN](https://developer.mozilla.org/docs/Web/API/WebApiClipboard)
 */
 @editor.completeFrom(WebApiClipboard)
-type clipboard = {
+type clipboard = private {
   ...WebApiEvent.Types.eventTarget,
 }
 

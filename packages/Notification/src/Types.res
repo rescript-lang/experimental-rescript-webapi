@@ -15,7 +15,7 @@ This Notifications API interface is used to configure and display desktop notifi
 [See WebApiNotification on MDN](https://developer.mozilla.org/docs/Web/API/WebApiNotification)
 */
 @editor.completeFrom(WebApiNotification)
-type notification = {
+type notification = private {
   ...WebApiEvent.Types.eventTarget,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/WebApiNotification/permission_static)

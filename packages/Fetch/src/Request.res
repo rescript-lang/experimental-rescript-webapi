@@ -1,7 +1,7 @@
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Request)
 */
-type t = Types.request
+type t = Types.request = private {...Types.request}
 type requestInit = Types.requestInit
 type bodyInit = BodyInit.t
 type headersInit = HeadersInit.t

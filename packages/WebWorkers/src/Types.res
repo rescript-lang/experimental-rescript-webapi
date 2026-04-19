@@ -3,14 +3,14 @@ Provides a storage mechanism for Request / Response object pairs that are cached
 [See Cache on MDN](https://developer.mozilla.org/docs/Web/API/Cache)
 */
 @editor.completeFrom(Cache)
-type cache = {}
+type cache = private {}
 
 /**
 The storage for Cache objects.
 [See CacheStorage on MDN](https://developer.mozilla.org/docs/Web/API/CacheStorage)
 */
 @editor.completeFrom(CacheStorage)
-type cacheStorage = {}
+type cacheStorage = private {}
 
 type cacheQueryOptions = {
   mutable ignoreSearch?: bool,
@@ -33,7 +33,7 @@ Each WorkerGlobalScope has its own event loop.
 [See WorkerGlobalScope on MDN](https://developer.mozilla.org/en-US/docs/Web/API/WorkerGlobalScope)
 */
 @editor.completeFrom(WorkerGlobalScope)
-type workerGlobalScope = {
+type workerGlobalScope = private {
   ...WebApiEvent.Types.eventTarget,
   /**
     [Read more on MDN](https://developer.mozilla.org/en-US/docs/Web/API/WorkerGlobalScope/caches)
@@ -65,7 +65,7 @@ global scope, but available on it, are listed in the JavaScript Reference. See
 the complete list of functions available to workers.
 */
 @editor.completeFrom(SharedWorkerGlobalScope)
-type sharedWorkerGlobalScope = {
+type sharedWorkerGlobalScope = private {
   ...workerGlobalScope,
   name: option<string>,
 }

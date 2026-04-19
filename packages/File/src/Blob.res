@@ -1,7 +1,7 @@
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Blob)
 */
-type t = Types.blob
+type t = Types.blob = private {...Types.blob}
 type blobPart = Types.blobPart
 type blobPropertyBag = Types.blobPropertyBag
 

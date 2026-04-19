@@ -1,4 +1,4 @@
-type t = Types.mediaStream = {...Types.mediaStream}
+type t = Types.mediaStream = private {...Types.mediaStream}
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/MediaStream)

@@ -20,7 +20,7 @@ A file-like object of immutable, raw data. Blobs represent data that isn't neces
 [See Blob on MDN](https://developer.mozilla.org/docs/Web/API/Blob)
 */
 @editor.completeFrom(Blob)
-type blob = WebApiPrelude.Types.blob = {
+type blob = WebApiPrelude.Types.blob = private {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Blob/size)
     */
@@ -59,7 +59,7 @@ This Streams API interface represents a controller allowing control of a Writab
 [See WritableStreamDefaultController on MDN](https://developer.mozilla.org/docs/Web/API/WritableStreamDefaultController)
 */
 @editor.completeFrom(WritableStreamDefaultController)
-type writableStreamDefaultController = {
+type writableStreamDefaultController = private {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/WritableStreamDefaultController/signal)
     */
@@ -71,7 +71,7 @@ Provides information about files and allows JavaScript in a web page to access t
 [See WebApiFile on MDN](https://developer.mozilla.org/docs/Web/API/WebApiFile)
 */
 @editor.completeFrom(WebApiFile)
-type file = WebApiPrelude.Types.file = {
+type file = WebApiPrelude.Types.file = private {
   ...blob,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/WebApiFile/name)
@@ -91,7 +91,7 @@ type file = WebApiPrelude.Types.file = {
 [See FileSystemHandle on MDN](https://developer.mozilla.org/docs/Web/API/FileSystemHandle)
 */
 @editor.completeFrom(FileSystemHandle)
-type fileSystemHandle = {
+type fileSystemHandle = private {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/FileSystemHandle/kind)
     */
@@ -106,7 +106,7 @@ type fileSystemHandle = {
 [See FileSystemDirectoryHandle on MDN](https://developer.mozilla.org/docs/Web/API/FileSystemDirectoryHandle)
 */
 @editor.completeFrom(FileSystemDirectoryHandle)
-type fileSystemDirectoryHandle = {
+type fileSystemDirectoryHandle = private {
   ...fileSystemHandle,
 }
 
@@ -114,7 +114,7 @@ type fileSystemDirectoryHandle = {
 [See FileSystemFileHandle on MDN](https://developer.mozilla.org/docs/Web/API/FileSystemFileHandle)
 */
 @editor.completeFrom(FileSystemFileHandle)
-type fileSystemFileHandle = {
+type fileSystemFileHandle = private {
   ...fileSystemHandle,
 }
 
@@ -122,7 +122,7 @@ type fileSystemFileHandle = {
 [See FileSystemWritableFileStream on MDN](https://developer.mozilla.org/docs/Web/API/FileSystemWritableFileStream)
 */
 @editor.completeFrom(FileSystemWritableFileStream)
-type fileSystemWritableFileStream = {
+type fileSystemWritableFileStream = private {
   ...writableStream<unknown>,
 }
 

@@ -25,14 +25,14 @@ In the following code snippet, we make a request to open a database, and include
 [See IDBFactory on MDN](https://developer.mozilla.org/docs/Web/API/IDBFactory)
 */
 @editor.completeFrom(IDBFactory)
-type idbFactory = {}
+type idbFactory = private {}
 
 /**
 This WebApiIndexedDB API interface provides a connection to a database; you can use an IDBDatabase object to open a transaction on your database then create, manipulate, and delete objects (data) in that database. The interface provides the only way to get and manage versions of the database.
 [See IDBDatabase on MDN](https://developer.mozilla.org/docs/Web/API/IDBDatabase)
 */
 @editor.completeFrom(IDBDatabase)
-type idbDatabase = {
+type idbDatabase = private {
   ...WebApiEvent.Types.eventTarget,
   /**
     Returns the name of the database.
@@ -55,7 +55,7 @@ type idbDatabase = {
 [See IDBTransaction on MDN](https://developer.mozilla.org/docs/Web/API/IDBTransaction)
 */
 @editor.completeFrom(IDBTransaction)
-type idbTransaction = {
+type idbTransaction = private {
   ...WebApiEvent.Types.eventTarget,
   /**
     Returns a list of the names of object stores in the transaction's scope. For an upgrade transaction this is all object stores in the database.
@@ -127,6 +127,7 @@ type idbOpenDBRequest = {
 /**
 This example shows a variety of different uses of object stores, from updating the data structure with IDBObjectStore.createIndex inside an onupgradeneeded function, to adding a new item to our object store with IDBObjectStore.add. For a full working example, see our To-do Notifications app (view example live.)
 [See IDBObjectStore on MDN](https://developer.mozilla.org/docs/Web/API/IDBObjectStore)
+TODO: mark as private once mutating fields of private records is allowed
 */
 @editor.completeFrom(IDBObjectStore)
 type idbObjectStore = {
@@ -160,6 +161,7 @@ type idbObjectStore = {
 /**
 IDBIndex interface of the WebApiIndexedDB API provides asynchronous access to an index in a database. An index is a kind of object store for looking up records in another object store, called the referenced object store. You use this interface to retrieve data.
 [See IDBIndex on MDN](https://developer.mozilla.org/docs/Web/API/IDBIndex)
+TODO: mark as private once mutating fields of private records is allowed
 */
 @editor.completeFrom(IDBIndex)
 type idbIndex = {

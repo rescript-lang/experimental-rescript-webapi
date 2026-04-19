@@ -9,7 +9,7 @@ Simple user interface events.
 [See UIEvent on MDN](https://developer.mozilla.org/docs/Web/API/UIEvent)
 */
 @editor.completeFrom(UIEvent)
-type uiEvent = {
+type uiEvent = private {
   ...WebApiEvent.Types.event,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/UIEvent/view)
@@ -26,7 +26,7 @@ The WebApiDOM CompositionEvent represents events that occur due to the user indi
 [See CompositionEvent on MDN](https://developer.mozilla.org/docs/Web/API/CompositionEvent)
 */
 @editor.completeFrom(CompositionEvent)
-type compositionEvent = {
+type compositionEvent = private {
   ...uiEvent,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CompositionEvent/data)
@@ -39,7 +39,7 @@ Focus-related events like focus, blur, focusin, or focusout.
 [See FocusEvent on MDN](https://developer.mozilla.org/docs/Web/API/FocusEvent)
 */
 @editor.completeFrom(FocusEvent)
-type focusEvent = {
+type focusEvent = private {
   ...uiEvent,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/FocusEvent/relatedTarget)
@@ -52,7 +52,7 @@ One drag data item. During a drag operation, each drag event has a dataTransfer 
 [See DataTransferItem on MDN](https://developer.mozilla.org/docs/Web/API/DataTransferItem)
 */
 @editor.completeFrom(DataTransferItem)
-type dataTransferItem = {
+type dataTransferItem = private {
   /**
     Returns the drag data item kind, one of: "string", "file".
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/DataTransferItem/kind)
@@ -71,7 +71,7 @@ A list of DataTransferItem objects representing items being dragged. During a dr
 [See DataTransferItemList on MDN](https://developer.mozilla.org/docs/Web/API/DataTransferItemList)
 */
 @editor.completeFrom(DataTransferItemList)
-type dataTransferItemList = {
+type dataTransferItemList = private {
   /**
     Returns the number of items in the drag data store.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/DataTransferItemList/length)
@@ -82,6 +82,7 @@ type dataTransferItemList = {
 /**
 Used to hold the data that is being dragged during a drag and drop operation. It may hold one or more data items, each of one or more data types. For more information about drag and drop, see HTML Drag and Drop API.
 [See DataTransfer on MDN](https://developer.mozilla.org/docs/Web/API/DataTransfer)
+TODO: mark as private once mutating fields of private records is allowed
 */
 @editor.completeFrom(DataTransfer)
 type dataTransfer = {
@@ -124,7 +125,7 @@ The possible values are "none", "copy", "copyLink", "copyMove", "link", "linkMov
 [See InputEvent on MDN](https://developer.mozilla.org/docs/Web/API/InputEvent)
 */
 @editor.completeFrom(InputEvent)
-type inputEvent = {
+type inputEvent = private {
   ...uiEvent,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/InputEvent/data)
@@ -149,7 +150,7 @@ KeyboardEvent objects describe a user interaction with the keyboard; each event 
 [See KeyboardEvent on MDN](https://developer.mozilla.org/docs/Web/API/KeyboardEvent)
 */
 @editor.completeFrom(KeyboardEvent)
-type keyboardEvent = {
+type keyboardEvent = private {
   ...uiEvent,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/KeyboardEvent/key)
@@ -194,7 +195,7 @@ Events that occur due to the user interacting with a pointing device (such as a 
 [See MouseEvent on MDN](https://developer.mozilla.org/docs/Web/API/MouseEvent)
 */
 @editor.completeFrom(MouseEvent)
-type mouseEvent = {
+type mouseEvent = private {
   ...uiEvent,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/MouseEvent/screenX)
@@ -287,7 +288,7 @@ Events that occur due to the user moving a mouse wheel or similar input device.
 [See WheelEvent on MDN](https://developer.mozilla.org/docs/Web/API/WheelEvent)
 */
 @editor.completeFrom(WheelEvent)
-type wheelEvent = {
+type wheelEvent = private {
   ...mouseEvent,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/WheelEvent/deltaX)
@@ -312,7 +313,7 @@ A single contact point on a touch-sensitive device. The contact point is commonl
 [See Touch on MDN](https://developer.mozilla.org/docs/Web/API/Touch)
 */
 @editor.completeFrom(Touch)
-type touch = {
+type touch = private {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Touch/identifier)
     */
@@ -368,7 +369,7 @@ A list of contact points on a touch surface. For example, if the user has three 
 [See TouchList on MDN](https://developer.mozilla.org/docs/Web/API/TouchList)
 */
 @editor.completeFrom(TouchList)
-type touchList = {
+type touchList = private {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/TouchList/length)
     */
@@ -380,7 +381,7 @@ An event sent when the state of contacts with a touch-sensitive surface changes.
 [See TouchEvent on MDN](https://developer.mozilla.org/docs/Web/API/TouchEvent)
 */
 @editor.completeFrom(TouchEvent)
-type touchEvent = {
+type touchEvent = private {
   ...uiEvent,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/TouchEvent/touches)
@@ -417,7 +418,7 @@ The state of a WebApiDOM event produced by a pointer such as the geometry of the
 [See PointerEvent on MDN](https://developer.mozilla.org/docs/Web/API/PointerEvent)
 */
 @editor.completeFrom(PointerEvent)
-type pointerEvent = {
+type pointerEvent = private {
   ...mouseEvent,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/PointerEvent/pointerId)

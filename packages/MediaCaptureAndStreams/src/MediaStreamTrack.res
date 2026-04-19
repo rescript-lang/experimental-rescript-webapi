@@ -1,4 +1,4 @@
-type t = Types.mediaStreamTrack = {...Types.mediaStreamTrack}
+type t = Types.mediaStreamTrack = private {...Types.mediaStreamTrack}
 type mediaTrackCapabilities = Types.mediaTrackCapabilities = {...Types.mediaTrackCapabilities}
 type mediaTrackConstraints = Types.mediaTrackConstraints = {...Types.mediaTrackConstraints}
 type mediaTrackSettings = Types.mediaTrackSettings = {...Types.mediaTrackSettings}

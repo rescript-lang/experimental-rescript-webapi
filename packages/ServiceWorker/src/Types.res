@@ -22,7 +22,7 @@ This WebApiServiceWorker API interface provides a reference to a service worker.
 [See WebApiServiceWorker on MDN](https://developer.mozilla.org/docs/Web/API/WebApiServiceWorker)
 */
 @editor.completeFrom(WebApiServiceWorker)
-type serviceWorker = {
+type serviceWorker = private {
   ...WebApiEvent.Types.eventTarget,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/WebApiServiceWorker/scriptURL)
@@ -38,14 +38,14 @@ type serviceWorker = {
 [See NavigationPreloadManager on MDN](https://developer.mozilla.org/docs/Web/API/NavigationPreloadManager)
 */
 @editor.completeFrom(NavigationPreloadManager)
-type navigationPreloadManager = {}
+type navigationPreloadManager = private {}
 
 /**
 This WebApiServiceWorker API interface represents the service worker registration. You register a service worker to control one or more pages that share the same origin.
 [See ServiceWorkerRegistration on MDN](https://developer.mozilla.org/docs/Web/API/ServiceWorkerRegistration)
 */
 @editor.completeFrom(ServiceWorkerRegistration)
-type serviceWorkerRegistration = {
+type serviceWorkerRegistration = private {
   ...WebApiEvent.Types.eventTarget,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/ServiceWorkerRegistration/installing)
@@ -82,7 +82,7 @@ The ServiceWorkerContainer interface of the WebApiServiceWorker API provides
 [See ServiceWorkerContainer on MDN](https://developer.mozilla.org/docs/Web/API/ServiceWorkerContainer)
 */
 @editor.completeFrom(ServiceWorkerContainer)
-type serviceWorkerContainer = {
+type serviceWorkerContainer = private {
   ...WebApiEvent.Types.eventTarget,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/ServiceWorkerContainer/controller)
@@ -119,7 +119,7 @@ The ServiceWorkerGlobalScope interface of the Service Worker API represents the 
 [See ServiceWorkerGlobalScope on MDN](https://developer.mozilla.org/en-US/docs/Web/API/ServiceWorkerGlobalScope)
  */
 @editor.completeFrom(ServiceWorkerGlobalScope)
-type serviceWorkerGlobalScope = {
+type serviceWorkerGlobalScope = private {
   ...WebApiWebWorkers.Types.workerGlobalScope,
   /**
     [Read more on MDN](https://developer.mozilla.org/en-US/docs/Web/API/ServiceWorkerGlobalScope/clients)

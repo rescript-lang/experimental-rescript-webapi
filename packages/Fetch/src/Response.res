@@ -1,7 +1,7 @@
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Response)
 */
-type t = Types.response
+type t = Types.response = private {...Types.response}
 type responseInit = Types.responseInit
 type bodyInit = BodyInit.t
 type headersInit = HeadersInit.t

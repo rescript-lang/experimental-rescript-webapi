@@ -1,4 +1,4 @@
-type t = Types.remotePlayback = {...Types.remotePlayback}
+type t = Types.remotePlayback = private {...Types.remotePlayback}
 type remotePlaybackAvailabilityCallback = Types.remotePlaybackAvailabilityCallback
 
 include WebApiEvent.EventTarget.Impl({type t = t})

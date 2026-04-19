@@ -1,4 +1,4 @@
-type t = Types.sharedWorkerGlobalScope
+type t = Types.sharedWorkerGlobalScope = private {...Types.sharedWorkerGlobalScope}
 
 module Impl = (
   T: {

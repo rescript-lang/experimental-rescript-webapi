@@ -1,4 +1,4 @@
-type t = Types.messagePort
+type t = Types.messagePort = private {...Types.messagePort}
 type structuredSerializeOptions = Types.structuredSerializeOptions
 
 include WebApiEvent.EventTarget.Impl({type t = t})

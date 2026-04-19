@@ -1,4 +1,4 @@
-type t = Types.file
+type t = Types.file = private {...Types.file}
 
 include Blob.Impl({type t = t})
 

@@ -1,9 +1,9 @@
 module Blob = WebApiFile.Blob
 
-type t = Types.webSocket
+type t = Types.webSocket = private {...Types.webSocket}
 type binaryType = Types.binaryType
 type messageEvent<'t> = Types.messageEvent<'t> = {...Types.messageEvent<'t>}
-type closeEvent = Types.closeEvent = {...Types.closeEvent}
+type closeEvent = Types.closeEvent = private {...Types.closeEvent}
 type messageEventSource = Types.messageEventSource
 
 /**

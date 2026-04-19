@@ -4,7 +4,7 @@
 [See ViewTransition on MDN](https://developer.mozilla.org/docs/Web/API/ViewTransition)
 */
 @editor.completeFrom(ViewTransition)
-type viewTransition = {
+type viewTransition = private {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/ViewTransition/updateCallbackDone)
     */

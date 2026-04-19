@@ -1,4 +1,4 @@
-type t = Types.serviceWorker
+type t = Types.serviceWorker = private {...Types.serviceWorker}
 
 include WebApiEvent.EventTarget.Impl({type t = t})
 

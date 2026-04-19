@@ -1,7 +1,7 @@
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/URLSearchParams)
 */
-type t = Types.urlSearchParams
+type t = Types.urlSearchParams = private {...Types.urlSearchParams}
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/URLSearchParams)

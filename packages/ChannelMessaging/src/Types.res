@@ -5,7 +5,7 @@ This Channel Messaging API interface represents one of the two ports of a Messag
 [See MessagePort on MDN](https://developer.mozilla.org/docs/Web/API/MessagePort)
 */
 @editor.completeFrom(MessagePort)
-type messagePort = {
+type messagePort = private {
   ...WebApiEvent.Types.eventTarget,
 }
 
