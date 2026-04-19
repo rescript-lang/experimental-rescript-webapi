@@ -2,23 +2,8 @@ type event = WebApiEvent.Types.event
 type eventTarget = WebApiEvent.Types.eventTarget
 type messageEventSource = Types.messageEventSource
 
-type messageEvent<'t> = {
-  ...event,
-  data: 't,
-  origin: string,
-  lastEventId: string,
-  source: Null.t<messageEventSource>,
-  ports: array<WebApiChannelMessaging.Types.messagePort>,
-}
-
-type messageEventInit<'t> = {
-  ...WebApiEvent.Types.eventInit,
-  mutable data?: 't,
-  mutable origin?: string,
-  mutable lastEventId?: string,
-  mutable source?: Null.t<messageEventSource>,
-  mutable ports?: array<WebApiChannelMessaging.Types.messagePort>,
-}
+type messageEvent<'t> = Types.messageEvent<'t>
+type messageEventInit<'t> = Types.messageEventInit<'t>
 
 type t<'t> = messageEvent<'t>
 

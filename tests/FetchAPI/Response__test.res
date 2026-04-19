@@ -1,9 +1,9 @@
-let headers: WebApiFetch.HeadersInit.t = WebApiFetch.HeadersInit.fromDict(dict{"X-Fruit": "Peach"})
-let blob: WebApiFile.Blob.t = WebApiFile.Blob.make(~blobParts=[])
-let file: WebApiFile.File.t = WebApiFile.File.make(~fileBits=[], ~fileName="pong.txt")
-let params: WebApiURL.URLSearchParams.t = WebApiURL.URLSearchParams.fromString("fruit=peach")
-let formData: WebApiFetch.FormData.t = WebApiFetch.FormData.make()
-let stream: WebApiFile.ReadableStream.t<array<int>> = WebApiFile.ReadableStream.make()
+let headers = WebApiFetch.HeadersInit.fromDict(dict{"X-Fruit": "Peach"})
+let blob = WebApiFile.Blob.make(~blobParts=[])
+let file = WebApiFile.File.make(~fileBits=[], ~fileName="pong.txt")
+let params = WebApiURL.URLSearchParams.fromString("fruit=peach")
+let formData = WebApiFetch.FormData.make()
+let stream = WebApiFile.ReadableStream.make()
 
 let response = WebApiFetch.Response.fromNull(~init={status: 204, headers})
 

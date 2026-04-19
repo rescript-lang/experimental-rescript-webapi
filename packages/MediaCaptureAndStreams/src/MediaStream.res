@@ -10,13 +10,13 @@ external make: unit => t = "MediaStream"
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/MediaStream)
 */
 @new
-external make2: t => t = "MediaStream"
+external makeFromMediaStream: t => t = "MediaStream"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/MediaStream)
 */
 @new
-external make3: array<MediaStreamTrack.t> => t = "MediaStream"
+external makeFromMediaStreams: array<MediaStreamTrack.t> => t = "MediaStream"
 
 include WebApiEvent.EventTarget.Impl({type t = t})
 

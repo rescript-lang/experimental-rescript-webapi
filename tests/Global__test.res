@@ -50,9 +50,3 @@ let (auth, p256dh) = switch pushSubscriptionJSON.keys {
 }
 Console.log(`For subscription ${subscription.endpoint}, auth is ${auth} and p256dh is ${p256dh}`)
 
-let _setIntervalWithCallback = WebApiDOM.Window.setIntervalWithCallback
-let _alertWithMessage = WebApiDOM.Window.alertWithMessage
-let _postMessageWithOptions = WebApiDOM.Window.postMessageWithOptions
-let _scrollXY = WebApiDOM.Window.scrollXY
-let _scrollToXY = WebApiDOM.Window.scrollToXY
-let _scrollByXY = WebApiDOM.Window.scrollByXY
