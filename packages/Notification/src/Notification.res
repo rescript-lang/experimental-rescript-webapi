@@ -11,8 +11,7 @@ type notificationEvent = Types.notificationEvent = {...Types.notificationEvent}
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/WebApiNotification)
 */
 @new
-external make: (~title: string, ~options: notificationOptions=?) => t =
-  "WebApiNotification"
+external make: (~title: string, ~options: notificationOptions=?) => t = "WebApiNotification"
 
 include WebApiEvent.EventTarget.Impl({type t = t})
 

@@ -20,6 +20,8 @@ let _ = gain->WebApiWebAudio.GainNode.connect(~destinationNode)
 let _ =
   osc
   ->WebApiWebAudio.OscillatorNode.asAudioScheduledSourceNode
-  ->WebApiWebAudio.AudioScheduledSourceNode.connect(~destinationNode=gain->WebApiWebAudio.GainNode.asAudioNode)
+  ->WebApiWebAudio.AudioScheduledSourceNode.connect(
+    ~destinationNode=gain->WebApiWebAudio.GainNode.asAudioNode,
+  )
 
 osc->WebApiWebAudio.OscillatorNode.start

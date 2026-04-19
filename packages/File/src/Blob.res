@@ -6,10 +6,7 @@ type blobPart = Types.blobPart
 type blobPropertyBag = Types.blobPropertyBag
 
 @new
-external make: (
-  ~blobParts: array<blobPart>=?,
-  ~options: blobPropertyBag=?,
-) => t = "Blob"
+external make: (~blobParts: array<blobPart>=?, ~options: blobPropertyBag=?) => t = "Blob"
 
 module Impl = (
   T: {

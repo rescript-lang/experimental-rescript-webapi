@@ -7,10 +7,8 @@ include WebApiEvent.EventTarget.Impl({type t = t})
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/WebApiRemotePlayback/watchAvailability)
 */
 @send
-external watchAvailability: (
-  t,
-  remotePlaybackAvailabilityCallback,
-) => promise<int> = "watchAvailability"
+external watchAvailability: (t, remotePlaybackAvailabilityCallback) => promise<int> =
+  "watchAvailability"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/WebApiRemotePlayback/cancelWatchAvailability)

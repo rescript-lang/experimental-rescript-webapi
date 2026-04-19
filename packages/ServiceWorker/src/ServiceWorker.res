@@ -6,11 +6,8 @@ include WebApiEvent.EventTarget.Impl({type t = t})
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/WebApiServiceWorker/postMessage)
 */
 @send
-external postMessage: (
-  t,
-  ~message: JSON.t,
-  ~transfer: array<Dict.t<string>>,
-) => unit = "postMessage"
+external postMessage: (t, ~message: JSON.t, ~transfer: array<Dict.t<string>>) => unit =
+  "postMessage"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/WebApiServiceWorker/postMessage)

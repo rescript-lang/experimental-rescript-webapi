@@ -1,9 +1,13 @@
-external toHTMLCanvasElement: null<WebApiDOM.Types.element> => WebApiDOM.Types.htmlCanvasElement = "%identity"
+external toHTMLCanvasElement: null<WebApiDOM.Types.element> => WebApiDOM.Types.htmlCanvasElement =
+  "%identity"
 @set
-external setFillStyle: (WebApiDOM.Types.canvasRenderingContext2D, WebApiCanvas.Types.fillStyle) => unit =
-  "fillStyle"
+external setFillStyle: (
+  WebApiDOM.Types.canvasRenderingContext2D,
+  WebApiCanvas.Types.fillStyle,
+) => unit = "fillStyle"
 @get
-external getFillStyle: WebApiDOM.Types.canvasRenderingContext2D => WebApiCanvas.Types.fillStyle = "fillStyle"
+external getFillStyle: WebApiDOM.Types.canvasRenderingContext2D => WebApiCanvas.Types.fillStyle =
+  "fillStyle"
 @set
 external setFont: (WebApiDOM.Types.canvasRenderingContext2D, string) => unit = "font"
 @set

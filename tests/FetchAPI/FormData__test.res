@@ -26,9 +26,10 @@ let _ = switch phoneEntry->Null.toOption {
 
 // Get all values for a field (useful for multi-select or multiple file inputs)
 let allImages: array<EntryValue.t> = formData->FormData.getAll("images")
-let _ = allImages->Array.forEach(entry =>
-  logEntry(~stringPrefix="String value: ", ~filePrefix="WebApiFile: ", entry)
-)
+let _ =
+  allImages->Array.forEach(entry =>
+    logEntry(~stringPrefix="String value: ", ~filePrefix="WebApiFile: ", entry)
+  )
 
 // Create formDataEntryValue from string or file
 let stringEntry = EntryValue.fromString("test value")

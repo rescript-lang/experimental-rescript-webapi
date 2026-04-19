@@ -1256,7 +1256,9 @@ type audioContextOptions = {
 
 type mediaElementAudioSourceOptions = {mutable mediaElement: WebApiDOM.Types.htmlMediaElement}
 
-type mediaStreamAudioSourceOptions = {mutable mediaStream: WebApiMediaCaptureAndStreams.Types.mediaStream}
+type mediaStreamAudioSourceOptions = {
+  mutable mediaStream: WebApiMediaCaptureAndStreams.Types.mediaStream,
+}
 
 type audioWorkletNodeOptions = {
   ...audioNodeOptions,

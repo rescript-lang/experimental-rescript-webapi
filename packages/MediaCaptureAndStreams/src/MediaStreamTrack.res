@@ -39,7 +39,5 @@ external getSettings: t => mediaTrackSettings = "getSettings"
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/MediaStreamTrack/applyConstraints)
 */
 @send
-external applyConstraints: (
-  t,
-  ~constraints: mediaTrackConstraints=?,
-) => promise<unit> = "applyConstraints"
+external applyConstraints: (t, ~constraints: mediaTrackConstraints=?) => promise<unit> =
+  "applyConstraints"

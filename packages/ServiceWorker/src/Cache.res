@@ -54,8 +54,10 @@ external add2: (WebApiWebWorkers.Types.cache, string) => promise<unit> = "add"
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Cache/addAll)
 */
 @send
-external addAll: (WebApiWebWorkers.Types.cache, array<WebApiFetch.Types.requestInfo>) => promise<unit> =
-  "addAll"
+external addAll: (
+  WebApiWebWorkers.Types.cache,
+  array<WebApiFetch.Types.requestInfo>,
+) => promise<unit> = "addAll"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Cache/put)

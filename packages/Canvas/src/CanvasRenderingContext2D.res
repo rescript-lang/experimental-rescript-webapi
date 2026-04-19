@@ -38,7 +38,8 @@ external rotate: (WebApiDOM.Types.canvasRenderingContext2D, float) => unit = "ro
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CanvasRenderingContext2D/translate)
 */
 @send
-external translate: (WebApiDOM.Types.canvasRenderingContext2D, ~x: float, ~y: float) => unit = "translate"
+external translate: (WebApiDOM.Types.canvasRenderingContext2D, ~x: float, ~y: float) => unit =
+  "translate"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CanvasRenderingContext2D/transform)
@@ -58,7 +59,8 @@ external transform: (
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CanvasRenderingContext2D/getTransform)
 */
 @send
-external getTransform: WebApiDOM.Types.canvasRenderingContext2D => WebApiDOM.Types.domMatrix = "getTransform"
+external getTransform: WebApiDOM.Types.canvasRenderingContext2D => WebApiDOM.Types.domMatrix =
+  "getTransform"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CanvasRenderingContext2D/setTransform)
@@ -242,8 +244,10 @@ external beginPath: WebApiDOM.Types.canvasRenderingContext2D => unit = "beginPat
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CanvasRenderingContext2D/fill)
 */
 @send
-external fill: (WebApiDOM.Types.canvasRenderingContext2D, ~fillRule: Types.canvasFillRule=?) => unit =
-  "fill"
+external fill: (
+  WebApiDOM.Types.canvasRenderingContext2D,
+  ~fillRule: Types.canvasFillRule=?,
+) => unit = "fill"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CanvasRenderingContext2D/fill)
@@ -271,8 +275,10 @@ external stroke2: (WebApiDOM.Types.canvasRenderingContext2D, Types.path2D) => un
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CanvasRenderingContext2D/clip)
 */
 @send
-external clip: (WebApiDOM.Types.canvasRenderingContext2D, ~fillRule: Types.canvasFillRule=?) => unit =
-  "clip"
+external clip: (
+  WebApiDOM.Types.canvasRenderingContext2D,
+  ~fillRule: Types.canvasFillRule=?,
+) => unit = "clip"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CanvasRenderingContext2D/clip)
@@ -329,8 +335,10 @@ external isPointInStroke2: (
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CanvasRenderingContext2D/drawFocusIfNeeded)
 */
 @send
-external drawFocusIfNeeded: (WebApiDOM.Types.canvasRenderingContext2D, WebApiDOM.Types.element) => unit =
-  "drawFocusIfNeeded"
+external drawFocusIfNeeded: (
+  WebApiDOM.Types.canvasRenderingContext2D,
+  WebApiDOM.Types.element,
+) => unit = "drawFocusIfNeeded"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CanvasRenderingContext2D/drawFocusIfNeeded)
@@ -723,7 +731,8 @@ external putImageData2: (
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CanvasRenderingContext2D/setLineDash)
 */
 @send
-external setLineDash: (WebApiDOM.Types.canvasRenderingContext2D, array<float>) => unit = "setLineDash"
+external setLineDash: (WebApiDOM.Types.canvasRenderingContext2D, array<float>) => unit =
+  "setLineDash"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CanvasRenderingContext2D/getLineDash)

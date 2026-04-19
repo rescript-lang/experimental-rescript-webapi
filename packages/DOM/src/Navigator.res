@@ -38,8 +38,11 @@ external sendBeacon5: (Types.navigator, ~url: string, ~data: WebApiFetch.Types.f
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Navigator/sendBeacon)
 */
 @send
-external sendBeacon6: (Types.navigator, ~url: string, ~data: WebApiURL.Types.urlSearchParams=?) => bool =
-  "sendBeacon"
+external sendBeacon6: (
+  Types.navigator,
+  ~url: string,
+  ~data: WebApiURL.Types.urlSearchParams=?,
+) => bool = "sendBeacon"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Navigator/sendBeacon)

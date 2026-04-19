@@ -330,11 +330,8 @@ external setInterval2: (Types.window, ~handler: unit => unit, ~timeout: int=?) =
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/setInterval)
 */
 @send
-external setIntervalWithCallback: (
-  Types.window,
-  ~handler: unit => unit,
-  ~timeout: int=?,
-) => int = "setInterval"
+external setIntervalWithCallback: (Types.window, ~handler: unit => unit, ~timeout: int=?) => int =
+  "setInterval"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/clearInterval)
