@@ -15,5 +15,7 @@ let response4 = WebApiFetch.Response.fromURLSearchParams(params)
 let response5 = WebApiFetch.Response.fromFormData(formData)
 let response6 = WebApiFetch.Response.fromReadableStream(stream)
 
-let _blob: WebApiFile.Blob.t = await response1->WebApiFetch.Response.clone->WebApiFetch.Response.blob
+let _blob: WebApiFile.Blob.t = await response1
+->WebApiFetch.Response.clone
+->WebApiFetch.Response.blob
 let _formData: WebApiFetch.FormData.t = await response5->WebApiFetch.Response.formData
