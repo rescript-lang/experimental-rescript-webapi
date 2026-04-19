@@ -1,3 +1,5 @@
+@@warning("-30")
+
 /**
 [See FileSystemEntry on MDN](https://developer.mozilla.org/docs/Web/API/FileSystemEntry)
 */
