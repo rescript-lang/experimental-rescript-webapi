@@ -1,3 +1,5 @@
+type sharedArrayBuffer = unknown
+
 /**
 `fromHTMLImageElement(~image: HTMLImageElement.t, ~init: videoFrameInit=?)`
 
@@ -173,7 +175,7 @@ external fromArrayBuffer: (
 The VideoFrame() constructor creates a new VideoFrame from SharedArrayBuffer-backed pixel data.
 
 Source shape:
-- `data`: local [`sharedArrayBuffer`](../prelude#sharedArrayBuffer) aligned with MDN [SharedArrayBuffer](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/SharedArrayBuffer).
+- `data`: opaque SharedArrayBuffer-aligned data accepted by MDN [SharedArrayBuffer](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/SharedArrayBuffer).
 - `init`: local [`videoFrameBufferInit`](../dom#videoFrameBufferInit) values describing the buffer-backed frame layout.
 
 ```res
@@ -188,7 +190,7 @@ let frame =
 */
 @new
 external fromSharedArrayBuffer: (
-  ~data: WebApiPrelude.Types.sharedArrayBuffer,
+  ~data: sharedArrayBuffer,
   ~init: WebApiDOM.Types.videoFrameBufferInit,
 ) => WebApiDOM.Types.videoFrame = "VideoFrame"
 
