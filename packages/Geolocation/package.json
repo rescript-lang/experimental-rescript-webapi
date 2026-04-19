@@ -1,5 +1,5 @@
 {
-  "name": "@rescript/webapi-geolocation",
+  "name": "@rescript-webapi/geolocation",
   "version": "0.1.0",
   "license": "MIT",
   "type": "module",

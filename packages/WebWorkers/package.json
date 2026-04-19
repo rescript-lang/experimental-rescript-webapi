@@ -1,5 +1,5 @@
 {
-  "name": "@rescript/webapi-web-workers",
+  "name": "@rescript-webapi/web-workers",
   "version": "0.1.0",
   "license": "MIT",
   "type": "module",
@@ -18,9 +18,9 @@
     "rescript": ">=12.0.0 <13"
   },
   "dependencies": {
-    "@rescript/webapi-channel-messaging": "0.1.0",
-    "@rescript/webapi-event": "0.1.0",
-    "@rescript/webapi-fetch": "0.1.0",
-    "@rescript/webapi-url": "0.1.0"
+    "@rescript-webapi/channel-messaging": "0.1.0",
+    "@rescript-webapi/event": "0.1.0",
+    "@rescript-webapi/fetch": "0.1.0",
+    "@rescript-webapi/url": "0.1.0"
   }
 }

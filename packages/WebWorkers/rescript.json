@@ -1,5 +1,5 @@
 {
-  "name": "@rescript/webapi-web-workers",
+  "name": "@rescript-webapi/web-workers",
   "sources": [
     {
       "dir": "src",
@@ -12,10 +12,10 @@
   },
   "suffix": ".js",
   "dependencies": [
-    "@rescript/webapi-channel-messaging",
-    "@rescript/webapi-event",
-    "@rescript/webapi-fetch",
-    "@rescript/webapi-url"
+    "@rescript-webapi/channel-messaging",
+    "@rescript-webapi/event",
+    "@rescript-webapi/fetch",
+    "@rescript-webapi/url"
   ],
   "namespace": "WebApiWebWorkers"
 }

@@ -1,5 +1,5 @@
 {
-  "name": "@rescript/webapi-intersection-observer",
+  "name": "@rescript-webapi/intersection-observer",
   "version": "0.1.0",
   "license": "MIT",
   "type": "module",
@@ -18,6 +18,6 @@
     "rescript": ">=12.0.0 <13"
   },
   "dependencies": {
-    "@rescript/webapi-dom": "0.1.0"
+    "@rescript-webapi/dom": "0.1.0"
   }
 }

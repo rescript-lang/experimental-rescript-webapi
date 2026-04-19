@@ -1,5 +1,5 @@
 {
-  "name": "@rescript/webapi-service-worker",
+  "name": "@rescript-webapi/service-worker",
   "version": "0.1.0",
   "license": "MIT",
   "type": "module",
@@ -18,12 +18,12 @@
     "rescript": ">=12.0.0 <13"
   },
   "dependencies": {
-    "@rescript/webapi-channel-messaging": "0.1.0",
-    "@rescript/webapi-event": "0.1.0",
-    "@rescript/webapi-fetch": "0.1.0",
-    "@rescript/webapi-notification": "0.1.0",
-    "@rescript/webapi-prelude": "0.1.0",
-    "@rescript/webapi-push": "0.1.0",
-    "@rescript/webapi-web-workers": "0.1.0"
+    "@rescript-webapi/channel-messaging": "0.1.0",
+    "@rescript-webapi/event": "0.1.0",
+    "@rescript-webapi/fetch": "0.1.0",
+    "@rescript-webapi/notification": "0.1.0",
+    "@rescript-webapi/prelude": "0.1.0",
+    "@rescript-webapi/push": "0.1.0",
+    "@rescript-webapi/web-workers": "0.1.0"
   }
 }

@@ -1,5 +1,5 @@
 {
-  "name": "@rescript/webapi-media-session",
+  "name": "@rescript-webapi/media-session",
   "sources": [
     {
       "dir": "src",

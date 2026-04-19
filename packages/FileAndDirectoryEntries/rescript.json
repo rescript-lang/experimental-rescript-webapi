@@ -1,5 +1,5 @@
 {
-  "name": "@rescript/webapi-file-and-directory-entries",
+  "name": "@rescript-webapi/file-and-directory-entries",
   "sources": [
     {
       "dir": "src",
@@ -12,7 +12,7 @@
   },
   "suffix": ".js",
   "dependencies": [
-    "@rescript/webapi-prelude"
+    "@rescript-webapi/prelude"
   ],
   "namespace": "WebApiFileAndDirectoryEntries"
 }

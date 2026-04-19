@@ -1,5 +1,5 @@
 {
-  "name": "@rescript/webapi-credential-management",
+  "name": "@rescript-webapi/credential-management",
   "version": "0.1.0",
   "license": "MIT",
   "type": "module",
@@ -18,7 +18,7 @@
     "rescript": ">=12.0.0 <13"
   },
   "dependencies": {
-    "@rescript/webapi-event": "0.1.0",
-    "@rescript/webapi-prelude": "0.1.0"
+    "@rescript-webapi/event": "0.1.0",
+    "@rescript-webapi/prelude": "0.1.0"
   }
 }

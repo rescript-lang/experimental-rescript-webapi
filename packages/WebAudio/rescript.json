@@ -1,5 +1,5 @@
 {
-  "name": "@rescript/webapi-web-audio",
+  "name": "@rescript-webapi/web-audio",
   "sources": [
     {
       "dir": "src",
@@ -12,11 +12,11 @@
   },
   "suffix": ".js",
   "dependencies": [
-    "@rescript/webapi-channel-messaging",
-    "@rescript/webapi-dom",
-    "@rescript/webapi-event",
-    "@rescript/webapi-media-capture-and-streams",
-    "@rescript/webapi-prelude"
+    "@rescript-webapi/channel-messaging",
+    "@rescript-webapi/dom",
+    "@rescript-webapi/event",
+    "@rescript-webapi/media-capture-and-streams",
+    "@rescript-webapi/prelude"
   ],
   "namespace": "WebApiWebAudio"
 }

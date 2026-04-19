@@ -1,5 +1,5 @@
 {
-  "name": "@rescript/webapi-intersection-observer",
+  "name": "@rescript-webapi/intersection-observer",
   "sources": [
     {
       "dir": "src",
@@ -12,7 +12,7 @@
   },
   "suffix": ".js",
   "dependencies": [
-    "@rescript/webapi-dom"
+    "@rescript-webapi/dom"
   ],
   "namespace": "WebApiIntersectionObserver"
 }

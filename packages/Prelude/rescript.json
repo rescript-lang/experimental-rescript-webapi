@@ -1,5 +1,5 @@
 {
-  "name": "@rescript/webapi-prelude",
+  "name": "@rescript-webapi/prelude",
   "namespace": "WebApiPrelude",
   "sources": [
     {
