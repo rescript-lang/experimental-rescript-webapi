@@ -56,8 +56,42 @@ jobs:
         id: vars
         run: echo "COMMIT_HASH=$(git rev-parse --short HEAD)" >> $GITHUB_ENV
 
-      - name: Update version to -<commit-hash>
-        run: npm version --workspaces --include-workspace-root=false --no-git-tag-version "${{ steps.package-version.outputs.current-version }}-experimental-${{ env.COMMIT_HASH }}"
+      - name: Update workspace versions to -<commit-hash>
+        env:
+          PACKAGE_VERSION: ${{ steps.package-version.outputs.current-version }}-experimental-${{ env.COMMIT_HASH }}
+        run: |
+          node <<'NODE'
+          const fs = require("node:fs");
+          const path = require("node:path");
+
+          const packagesDir = path.join(process.cwd(), "packages");
+          const version = process.env.PACKAGE_VERSION;
+          const packages = fs
+            .readdirSync(packagesDir)
+            .filter((dir) => fs.existsSync(path.join(packagesDir, dir, "package.json")))
+            .map((dir) => {
+              const packageJsonPath = path.join(packagesDir, dir, "package.json");
+              const packageJson = JSON.parse(fs.readFileSync(packageJsonPath, "utf8"));
+              return { packageJsonPath, packageJson };
+            });
+          const workspaceNames = new Set(packages.map(({ packageJson }) => packageJson.name));
+
+          for (const { packageJsonPath, packageJson } of packages) {
+            packageJson.version = version;
+
+            for (const field of ["dependencies", "peerDependencies", "devDependencies"]) {
+              if (!packageJson[field]) continue;
+
+              for (const dependencyName of Object.keys(packageJson[field])) {
+                if (workspaceNames.has(dependencyName)) {
+                  packageJson[field][dependencyName] = version;
+                }
+              }
+            }
+
+            fs.writeFileSync(packageJsonPath, `${JSON.stringify(packageJson, null, 2)}\n`);
+          }
+          NODE
 
       - name: Package npm workspaces
         run: npm pack --workspaces
@@ -66,7 +100,7 @@ jobs:
         uses: actions/upload-artifact@v7
         with:
           name: npm-packages
-          path: packages/*/*.tgz
+          path: "*.tgz"
 
       - name: Publish npm packages
         if: github.ref == 'refs/heads/main' && github.event_name == 'push'
