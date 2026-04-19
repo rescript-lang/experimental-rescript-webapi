@@ -1,4 +1,8 @@
-include WebApiEvent.EventTarget.Impl({type t = Types.sharedWorker})
+type t = Types.sharedWorker
+type workerType = Types.workerType
+type workerOptions = Types.workerOptions = {...Types.workerOptions}
+
+include WebApiEvent.EventTarget.Impl({type t = t})
 
 /**
 `make(string)`
@@ -7,13 +11,13 @@ The SharedWorker() constructor creates a SharedWorker object that executes the
 script at the specified WebApiURL. This script must obey the same-origin policy.
 
 ```res
-let shared: sharedWorker = SharedWorker.make("sharedworker.js")
+let shared: SharedWorker.t = SharedWorker.make("sharedworker.js")
 ```
 
 [Read more on MDN](https://developer.mozilla.org/en-US/docs/Web/API/SharedWorker/)
 */
 @new
-external make: string => Types.sharedWorker = "SharedWorker"
+external make: string => t = "SharedWorker"
 
 /**
 `makeWithName(string, string)`
@@ -22,13 +26,13 @@ The SharedWorker() constructor creates a SharedWorker object that executes the
 script at the specified WebApiURL. This script must obey the same-origin policy.
 
 ```res
-let shared: sharedWorker = SharedWorker.make("sharedworker.js", "name")
+let shared: SharedWorker.t = SharedWorker.makeWithName("sharedworker.js", "name")
 ```
 
 [Read more on MDN](https://developer.mozilla.org/en-US/docs/Web/API/SharedWorker/)
 */
 @new
-external makeWithName: (string, string) => Types.sharedWorker = "SharedWorker"
+external makeWithName: (string, string) => t = "SharedWorker"
 
 /**
 `makeWithOptions(string, workerOptions)`
@@ -37,16 +41,16 @@ The SharedWorker() constructor creates a SharedWorker object that executes the
 script at the specified WebApiURL. This script must obey the same-origin policy.
 
 ```res
-let shared: sharedWorker = SharedWorker.makeWithOptions("sharedworker.js", {
+let shared: SharedWorker.t = SharedWorker.makeWithOptions("sharedworker.js", {
   name: "workerName",
-  type_: Module
+  type_: Module,
 })
 ```
 
 [Read more on MDN](https://developer.mozilla.org/en-US/docs/Web/API/SharedWorker/)
 */
 @new
-external makeWithOptions: (string, Types.workerOptions) => Types.sharedWorker = "SharedWorker"
+external makeWithOptions: (string, workerOptions) => t = "SharedWorker"
 
 /**
 `port(sharedWorker)`
@@ -55,10 +59,10 @@ The port property of the SharedWorker interface returns a MessagePort object
 used to communicate and control the shared worker.
 
 ```res
-let port: WebAPI.ChannelMessagingAPI.messagePort = SharedWorker.port(myWorker)
+let port: MessagePort.t = SharedWorker.port(myWorker)
 ```
 
 [Read more on MDN](https://developer.mozilla.org/en-US/docs/Web/API/SharedWorker/port)
 */
 @get
-external port: Types.sharedWorker => WebApiChannelMessaging.Types.messagePort = "port"
+external port: t => WebApiChannelMessaging.MessagePort.t = "port"

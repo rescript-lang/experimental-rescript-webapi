@@ -1,7 +1,7 @@
-external self: WebApiServiceWorker.Types.serviceWorkerGlobalScope = "self"
+let self = WebApiServiceWorker.ServiceWorkerGlobalScope.current
 
 self->WebApiServiceWorker.ServiceWorkerGlobalScope.addEventListener(WebApiEvent.Types.Push, (
-  event: WebApiPush.Types.pushEvent,
+  event: WebApiPush.PushEvent.t,
 ) => {
   Console.log("received push event")
 
@@ -37,7 +37,7 @@ self->WebApiServiceWorker.ServiceWorkerGlobalScope.addEventListener(WebApiEvent.
 })
 
 self->WebApiServiceWorker.ServiceWorkerGlobalScope.addEventListener(WebApiEvent.Types.NotificationClick, (
-  event: WebApiNotification.Types.notificationEvent,
+  event: WebApiNotification.Notification.notificationEvent,
 ) => {
   Console.log(`notification clicked: ${event.action}`)
   // Close the notification

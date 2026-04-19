@@ -1,3 +1,5 @@
+type t = Types.htmlElement
+
 module Impl = (
   T: {
     type t
@@ -5,7 +7,7 @@ module Impl = (
 ) => {
   include Element.Impl({type t = T.t})
 
-  external asHTMLElement: T.t => Types.htmlElement = "%identity"
+  external asHTMLElement: T.t => t = "%identity"
 
   /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/attachInternals)
@@ -50,4 +52,4 @@ module Impl = (
   external togglePopover: (T.t, ~force: bool=?) => bool = "togglePopover"
 }
 
-include Impl({type t = Types.htmlElement})
+include Impl({type t = t})

@@ -1,17 +1,23 @@
-include WebApiEvent.EventTarget.Impl({type t = Types.mediaDevices})
+type t = Types.mediaDevices = {...Types.mediaDevices}
+type mediaTrackSupportedConstraints =
+  Types.mediaTrackSupportedConstraints = {...Types.mediaTrackSupportedConstraints}
+type mediaStreamConstraints = Types.mediaStreamConstraints = {...Types.mediaStreamConstraints}
+type displayMediaStreamOptions =
+  Types.displayMediaStreamOptions = {...Types.displayMediaStreamOptions}
+
+include WebApiEvent.EventTarget.Impl({type t = t})
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/MediaDevices/enumerateDevices)
 */
 @send
-external enumerateDevices: Types.mediaDevices => promise<array<Types.mediaDeviceInfo>> =
-  "enumerateDevices"
+external enumerateDevices: t => promise<array<MediaDeviceInfo.t>> = "enumerateDevices"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/MediaDevices/getSupportedConstraints)
 */
 @send
-external getSupportedConstraints: Types.mediaDevices => Types.mediaTrackSupportedConstraints =
+external getSupportedConstraints: t => mediaTrackSupportedConstraints =
   "getSupportedConstraints"
 
 /**
@@ -19,15 +25,15 @@ external getSupportedConstraints: Types.mediaDevices => Types.mediaTrackSupporte
 */
 @send
 external getUserMedia: (
-  Types.mediaDevices,
-  ~constraints: Types.mediaStreamConstraints=?,
-) => promise<Types.mediaStream> = "getUserMedia"
+  t,
+  ~constraints: mediaStreamConstraints=?,
+) => promise<MediaStream.t> = "getUserMedia"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/MediaDevices/getDisplayMedia)
 */
 @send
 external getDisplayMedia: (
-  Types.mediaDevices,
-  ~options: Types.displayMediaStreamOptions=?,
-) => promise<Types.mediaStream> = "getDisplayMedia"
+  t,
+  ~options: displayMediaStreamOptions=?,
+) => promise<MediaStream.t> = "getDisplayMedia"

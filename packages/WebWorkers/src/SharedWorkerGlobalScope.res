@@ -1,3 +1,5 @@
+type t = Types.sharedWorkerGlobalScope
+
 module Impl = (
   T: {
     type t
@@ -22,4 +24,4 @@ self -> SharedWorkerGlobalScope.close
   external close: T.t => unit = "close"
 }
 
-include Impl({type t = Types.sharedWorkerGlobalScope})
+include Impl({type t = t})

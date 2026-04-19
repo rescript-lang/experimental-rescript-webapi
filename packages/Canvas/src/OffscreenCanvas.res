@@ -83,4 +83,4 @@ The argument, if provided, is a dictionary that controls the encoding options of
 external convertToBlob: (
   Types.offscreenCanvas,
   ~options: Types.imageEncodeOptions=?,
-) => promise<WebApiFile.Types.blob> = "convertToBlob"
+) => promise<WebApiFile.Blob.t> = "convertToBlob"

@@ -32,7 +32,8 @@ WebApiDOM.Global.removeEventListener(
   ~options={capture: false},
 )
 
-let registrationResult = await WebApiDOM.Global.navigator
+let registrationResult = await WebApiDOM.Window.current
+->WebApiDOM.Window.navigator
 ->WebApiDOM.Navigator.serviceWorker
 ->WebApiServiceWorker.ServiceWorkerContainer.register("/sw.js")
 let subscription = await registrationResult.pushManager->WebApiPush.PushManager.subscribe(
@@ -48,3 +49,4 @@ let (auth, p256dh) = switch pushSubscriptionJSON.keys {
 | Some(keys) => (keys.auth, keys.p256dh)
 }
 Console.log(`For subscription ${subscription.endpoint}, auth is ${auth} and p256dh is ${p256dh}`)
+

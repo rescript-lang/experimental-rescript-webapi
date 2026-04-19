@@ -1,5 +1,7 @@
 include WebApiEvent.EventTarget.Impl({type t = Types.window})
 
+external current: Types.window = "window"
+
 /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/window)
     */
@@ -325,6 +327,16 @@ external setInterval2: (Types.window, ~handler: unit => unit, ~timeout: int=?) =
   "setInterval"
 
 /**
+[Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/setInterval)
+*/
+@send
+external setIntervalWithCallback: (
+  Types.window,
+  ~handler: unit => unit,
+  ~timeout: int=?,
+) => int = "setInterval"
+
+/**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/clearInterval)
 */
 @send
@@ -400,7 +412,7 @@ external alert: Types.window => unit = "alert"
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/alert)
 */
 @send
-external alert2: (Types.window, string) => unit = "alert"
+external alertWithMessage: (Types.window, string) => unit = "alert"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/confirm)
@@ -460,6 +472,25 @@ external postMessage2: (
 ) => unit = "postMessage"
 
 /**
+Posts a message to the given window. Messages can be structured objects, e.g. nested objects and arrays, can contain JavaScript values (strings, numbers, Date objects, etc), and can contain certain data objects such as WebApiFile Blob, FileList, and ArrayBuffer objects.
+
+Objects listed in the transfer member of options are transferred, not just cloned, meaning that they are no longer usable on the sending side.
+
+A target origin can be specified using the targetOrigin member of options. If not provided, it defaults to "/". This default restricts the message to same-origin targets only.
+
+If the origin of the target window doesn't match the given target origin, the message is discarded, to avoid information leakage. To send the message to the target regardless of origin, set the target origin to "*".
+
+Throws a "DataCloneError" DOMException if transfer array contains duplicate objects or if message could not be cloned.
+[Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/postMessage)
+*/
+@send
+external postMessageWithOptions: (
+  Types.window,
+  ~message: JSON.t,
+  ~options: Types.windowPostMessageOptions=?,
+) => unit = "postMessage"
+
+/**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/matchMedia)
 */
 @send
@@ -499,7 +530,7 @@ external scroll: (Types.window, ~options: Types.scrollToOptions=?) => unit = "sc
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/scroll)
 */
 @send
-external scroll2: (Types.window, ~x: float, ~y: float) => unit = "scroll"
+external scrollXY: (Types.window, ~x: float, ~y: float) => unit = "scroll"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/scrollTo)
@@ -511,7 +542,7 @@ external scrollTo: (Types.window, ~options: Types.scrollToOptions=?) => unit = "
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/scrollTo)
 */
 @send
-external scrollTo2: (Types.window, ~x: float, ~y: float) => unit = "scrollTo"
+external scrollToXY: (Types.window, ~x: float, ~y: float) => unit = "scrollTo"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/scrollBy)
@@ -523,7 +554,7 @@ external scrollBy: (Types.window, ~options: Types.scrollToOptions=?) => unit = "
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/scrollBy)
 */
 @send
-external scrollBy2: (Types.window, ~x: float, ~y: float) => unit = "scrollBy"
+external scrollByXY: (Types.window, ~x: float, ~y: float) => unit = "scrollBy"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/getComputedStyle)

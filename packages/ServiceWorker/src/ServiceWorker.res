@@ -1,11 +1,13 @@
-include WebApiEvent.EventTarget.Impl({type t = Types.serviceWorker})
+type t = Types.serviceWorker
+
+include WebApiEvent.EventTarget.Impl({type t = t})
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/WebApiServiceWorker/postMessage)
 */
 @send
 external postMessage: (
-  Types.serviceWorker,
+  t,
   ~message: JSON.t,
   ~transfer: array<Dict.t<string>>,
 ) => unit = "postMessage"
@@ -15,7 +17,17 @@ external postMessage: (
 */
 @send
 external postMessage2: (
-  Types.serviceWorker,
+  t,
   ~message: JSON.t,
-  ~options: WebApiChannelMessaging.Types.structuredSerializeOptions=?,
+  ~options: WebApiChannelMessaging.MessagePort.structuredSerializeOptions=?,
+) => unit = "postMessage"
+
+/**
+[Read more on MDN](https://developer.mozilla.org/docs/Web/API/WebApiServiceWorker/postMessage)
+*/
+@send
+external postMessageWithOptions: (
+  t,
+  ~message: JSON.t,
+  ~options: WebApiChannelMessaging.MessagePort.structuredSerializeOptions=?,
 ) => unit = "postMessage"

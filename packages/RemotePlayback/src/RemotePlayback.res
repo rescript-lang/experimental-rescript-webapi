@@ -1,23 +1,25 @@
-include WebApiEvent.EventTarget.Impl({type t = Types.remotePlayback})
+type t = Types.remotePlayback = {...Types.remotePlayback}
+type remotePlaybackAvailabilityCallback = Types.remotePlaybackAvailabilityCallback
+
+include WebApiEvent.EventTarget.Impl({type t = t})
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/WebApiRemotePlayback/watchAvailability)
 */
 @send
 external watchAvailability: (
-  Types.remotePlayback,
-  Types.remotePlaybackAvailabilityCallback,
+  t,
+  remotePlaybackAvailabilityCallback,
 ) => promise<int> = "watchAvailability"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/WebApiRemotePlayback/cancelWatchAvailability)
 */
 @send
-external cancelWatchAvailability: (Types.remotePlayback, ~id: int=?) => promise<unit> =
-  "cancelWatchAvailability"
+external cancelWatchAvailability: (t, ~id: int=?) => promise<unit> = "cancelWatchAvailability"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/WebApiRemotePlayback/prompt)
 */
 @send
-external prompt: Types.remotePlayback => promise<unit> = "prompt"
+external prompt: t => promise<unit> = "prompt"
