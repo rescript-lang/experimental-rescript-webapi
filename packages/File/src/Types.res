@@ -20,7 +20,7 @@ A file-like object of immutable, raw data. Blobs represent data that isn't neces
 [See Blob on MDN](https://developer.mozilla.org/docs/Web/API/Blob)
 */
 @editor.completeFrom(Blob)
-type blob = WebApiPrelude.File.blob = private {
+type blob = WebApiBase.File.blob = private {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Blob/size)
     */
@@ -71,7 +71,7 @@ Provides information about files and allows JavaScript in a web page to access t
 [See WebApiFile on MDN](https://developer.mozilla.org/docs/Web/API/File)
 */
 @editor.completeFrom(WebApiFile)
-type file = WebApiPrelude.File.file = private {
+type file = WebApiBase.File.file = private {
   ...blob,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/File/name)

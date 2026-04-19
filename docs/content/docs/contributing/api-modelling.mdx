@@ -88,9 +88,8 @@ mutable fillStyle: fillStyle
 When we wish to read and write the `fillStyle` property, we can use a helper module to lift the type to an actual ReScript variant:
 
 export const fillStyleModule = `
-open Prelude
-open CanvasAPI
-open DOMAPI
+open WebApiCanvas
+open WebApiDOM
 
 external fromString: string => fillStyle = "%identity"
 external fromCanvasGradient: canvasGradient => fillStyle = "%identity"

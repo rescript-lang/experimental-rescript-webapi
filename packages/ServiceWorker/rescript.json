@@ -16,7 +16,7 @@
     "@rescript-webapi/event",
     "@rescript-webapi/fetch",
     "@rescript-webapi/notification",
-    "@rescript-webapi/prelude",
+    "@rescript-webapi/base",
     "@rescript-webapi/push",
     "@rescript-webapi/web-workers"
   ],

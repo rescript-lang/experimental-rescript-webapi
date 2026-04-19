@@ -37,7 +37,7 @@
     "@rescript-webapi/performance",
     "@rescript-webapi/permissions",
     "@rescript-webapi/picture-in-picture",
-    "@rescript-webapi/prelude",
+    "@rescript-webapi/base",
     "@rescript-webapi/push",
     "@rescript-webapi/remote-playback",
     "@rescript-webapi/resize-observer",

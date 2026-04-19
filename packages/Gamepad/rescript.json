@@ -12,7 +12,7 @@
   },
   "suffix": ".js",
   "dependencies": [
-    "@rescript-webapi/prelude"
+    "@rescript-webapi/base"
   ],
   "namespace": "WebApiGamepad"
 }

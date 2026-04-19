@@ -22,6 +22,6 @@
     "@rescript-webapi/event": "0.1.0",
     "@rescript-webapi/file": "0.1.0",
     "@rescript-webapi/media-capture-and-streams": "0.1.0",
-    "@rescript-webapi/prelude": "0.1.0"
+    "@rescript-webapi/base": "0.1.0"
   }
 }

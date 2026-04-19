@@ -16,7 +16,7 @@
     "@rescript-webapi/event",
     "@rescript-webapi/file-and-directory-entries",
     "@rescript-webapi/file",
-    "@rescript-webapi/prelude"
+    "@rescript-webapi/base"
   ],
   "namespace": "WebApiUIEvents"
 }

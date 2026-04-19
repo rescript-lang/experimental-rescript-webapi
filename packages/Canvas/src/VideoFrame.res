@@ -75,7 +75,7 @@ external make8: (
 */
 @new
 external make9: (
-  ~data: WebApiPrelude.ArrayBufferTypedArrayOrDataView.t,
+  ~data: WebApiBase.ArrayBufferTypedArrayOrDataView.t,
   ~init: WebApiDOM.Types.videoFrameBufferInit,
 ) => WebApiDOM.Types.videoFrame = "VideoFrame"
 
@@ -113,7 +113,7 @@ external copyTo: (
 @send
 external copyTo2: (
   WebApiDOM.Types.videoFrame,
-  ~destination: WebApiPrelude.ArrayBufferTypedArrayOrDataView.t,
+  ~destination: WebApiBase.ArrayBufferTypedArrayOrDataView.t,
   ~options: WebApiDOM.Types.videoFrameCopyToOptions=?,
 ) => promise<array<WebApiDOM.Types.planeLayout>> = "copyTo"
 

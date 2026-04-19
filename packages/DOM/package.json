@@ -36,7 +36,7 @@
     "@rescript-webapi/performance": "0.1.0",
     "@rescript-webapi/permissions": "0.1.0",
     "@rescript-webapi/picture-in-picture": "0.1.0",
-    "@rescript-webapi/prelude": "0.1.0",
+    "@rescript-webapi/base": "0.1.0",
     "@rescript-webapi/remote-playback": "0.1.0",
     "@rescript-webapi/screen-wake-lock": "0.1.0",
     "@rescript-webapi/service-worker": "0.1.0",

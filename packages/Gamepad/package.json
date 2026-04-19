@@ -18,6 +18,6 @@
     "rescript": ">=12.0.0 <13"
   },
   "dependencies": {
-    "@rescript-webapi/prelude": "0.1.0"
+    "@rescript-webapi/base": "0.1.0"
   }
 }

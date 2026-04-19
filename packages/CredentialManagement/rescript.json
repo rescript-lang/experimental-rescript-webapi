@@ -13,7 +13,7 @@
   "suffix": ".js",
   "dependencies": [
     "@rescript-webapi/event",
-    "@rescript-webapi/prelude"
+    "@rescript-webapi/base"
   ],
   "namespace": "WebApiCredentialManagement"
 }

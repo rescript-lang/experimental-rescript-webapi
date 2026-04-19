@@ -14,7 +14,7 @@
   "dependencies": [
     "@rescript-webapi/event",
     "@rescript-webapi/file",
-    "@rescript-webapi/prelude",
+    "@rescript-webapi/base",
     "@rescript-webapi/url"
   ],
   "namespace": "WebApiFetch"

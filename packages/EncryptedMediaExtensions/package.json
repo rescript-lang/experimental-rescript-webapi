@@ -20,6 +20,6 @@
   "dependencies": {
     "@rescript-webapi/dom": "0.1.0",
     "@rescript-webapi/event": "0.1.0",
-    "@rescript-webapi/prelude": "0.1.0"
+    "@rescript-webapi/base": "0.1.0"
   }
 }

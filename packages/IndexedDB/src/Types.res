@@ -48,7 +48,7 @@ type idbDatabase = private {
     Returns a list of the names of object stores in the database.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/IDBDatabase/objectStoreNames)
     */
-  objectStoreNames: WebApiPrelude.DOM.domStringList,
+  objectStoreNames: WebApiBase.DOM.domStringList,
 }
 
 /**
@@ -61,7 +61,7 @@ type idbTransaction = private {
     Returns a list of the names of object stores in the transaction's scope. For an upgrade transaction this is all object stores in the database.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/IDBTransaction/objectStoreNames)
     */
-  objectStoreNames: WebApiPrelude.DOM.domStringList,
+  objectStoreNames: WebApiBase.DOM.domStringList,
   /**
     Returns the mode the transaction was created with ("readonly" or "readwrite"), or "versionchange" for an upgrade transaction.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/IDBTransaction/mode)
@@ -80,7 +80,7 @@ type idbTransaction = private {
     If the transaction was aborted, returns the error (a DOMException) providing the reason.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/IDBTransaction/error)
     */
-  error: Null.t<WebApiPrelude.DOM.domException>,
+  error: Null.t<WebApiBase.DOM.domException>,
 }
 
 /**
@@ -98,7 +98,7 @@ type idbRequest<'t> = {
     When a request is completed, returns the error (a DOMException), or null if the request succeeded. Throws a "InvalidStateError" DOMException if the request is still pending.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/IDBRequest/error)
     */
-  error: Null.t<WebApiPrelude.DOM.domException>,
+  error: Null.t<WebApiBase.DOM.domException>,
   /**
     Returns the IDBObjectStore, IDBIndex, or IDBCursor the request was made against, or null if is was an open request.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/IDBRequest/source)
@@ -145,7 +145,7 @@ type idbObjectStore = {
     Returns a list of the names of indexes in the store.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/IDBObjectStore/indexNames)
     */
-  indexNames: WebApiPrelude.DOM.domStringList,
+  indexNames: WebApiBase.DOM.domStringList,
   /**
     Returns the associated transaction.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/IDBObjectStore/transaction)

@@ -1,6 +1,6 @@
 {
-  "name": "@rescript-webapi/prelude",
-  "namespace": "WebApiPrelude",
+  "name": "@rescript-webapi/base",
+  "namespace": "WebApiBase",
   "sources": [
     {
       "dir": "src",

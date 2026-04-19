@@ -6,7 +6,7 @@ external encrypt: (
   Types.subtleCrypto,
   ~algorithm: Types.algorithmIdentifier,
   ~key: Types.cryptoKey,
-  ~data: WebApiPrelude.ArrayBufferTypedArrayOrDataView.t,
+  ~data: WebApiBase.ArrayBufferTypedArrayOrDataView.t,
 ) => promise<ArrayBuffer.t> = "encrypt"
 
 /**
@@ -17,7 +17,7 @@ external decrypt: (
   Types.subtleCrypto,
   ~algorithm: Types.algorithmIdentifier,
   ~key: Types.cryptoKey,
-  ~data: WebApiPrelude.ArrayBufferTypedArrayOrDataView.t,
+  ~data: WebApiBase.ArrayBufferTypedArrayOrDataView.t,
 ) => promise<ArrayBuffer.t> = "decrypt"
 
 /**
@@ -28,7 +28,7 @@ external sign: (
   Types.subtleCrypto,
   ~algorithm: Types.algorithmIdentifier,
   ~key: Types.cryptoKey,
-  ~data: WebApiPrelude.ArrayBufferTypedArrayOrDataView.t,
+  ~data: WebApiBase.ArrayBufferTypedArrayOrDataView.t,
 ) => promise<JSON.t> = "sign"
 
 /**
@@ -39,8 +39,8 @@ external verify: (
   Types.subtleCrypto,
   ~algorithm: Types.algorithmIdentifier,
   ~key: Types.cryptoKey,
-  ~signature: WebApiPrelude.ArrayBufferTypedArrayOrDataView.t,
-  ~data: WebApiPrelude.ArrayBufferTypedArrayOrDataView.t,
+  ~signature: WebApiBase.ArrayBufferTypedArrayOrDataView.t,
+  ~data: WebApiBase.ArrayBufferTypedArrayOrDataView.t,
 ) => promise<JSON.t> = "verify"
 
 /**
@@ -50,7 +50,7 @@ external verify: (
 external digest: (
   Types.subtleCrypto,
   ~algorithm: Types.algorithmIdentifier,
-  ~data: WebApiPrelude.ArrayBufferTypedArrayOrDataView.t,
+  ~data: WebApiBase.ArrayBufferTypedArrayOrDataView.t,
 ) => promise<JSON.t> = "digest"
 
 /**
@@ -117,7 +117,7 @@ external deriveBits2: (
 external importKey: (
   Types.subtleCrypto,
   ~format: unknown,
-  ~keyData: WebApiPrelude.ArrayBufferTypedArrayOrDataView.t,
+  ~keyData: WebApiBase.ArrayBufferTypedArrayOrDataView.t,
   ~algorithm: Types.algorithmIdentifier,
   ~extractable: bool,
   ~keyUsages: array<Types.keyUsage>,
@@ -164,7 +164,7 @@ external wrapKey2: (
 external unwrapKey: (
   Types.subtleCrypto,
   ~format: Types.keyFormat,
-  ~wrappedKey: WebApiPrelude.ArrayBufferTypedArrayOrDataView.t,
+  ~wrappedKey: WebApiBase.ArrayBufferTypedArrayOrDataView.t,
   ~unwrappingKey: Types.cryptoKey,
   ~unwrapAlgorithm: Types.algorithmIdentifier,
   ~unwrappedKeyAlgorithm: Types.algorithmIdentifier,

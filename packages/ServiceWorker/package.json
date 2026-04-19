@@ -22,7 +22,7 @@
     "@rescript-webapi/event": "0.1.0",
     "@rescript-webapi/fetch": "0.1.0",
     "@rescript-webapi/notification": "0.1.0",
-    "@rescript-webapi/prelude": "0.1.0",
+    "@rescript-webapi/base": "0.1.0",
     "@rescript-webapi/push": "0.1.0",
     "@rescript-webapi/web-workers": "0.1.0"
   }
