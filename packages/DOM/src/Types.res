@@ -281,8 +281,8 @@ The state and the identity of the user agent. It allows scripts to query it and 
 @editor.completeFrom(Navigator)
 type navigator = WebApiPrelude.Types.navigator
 
-@editor.completeFrom(DOMTokenList)
 // TODO: mark as private once mutating fields of private records is allowed
+@editor.completeFrom(DOMTokenList)
 type domTokenList = {
   /**
     Returns the number of tokens.

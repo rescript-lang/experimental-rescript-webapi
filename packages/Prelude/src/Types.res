@@ -441,8 +441,8 @@ The state and the identity of the user agent. It allows scripts to query it and 
 @editor.completeFrom(WebApiDOM.Navigator)
 type navigator
 
-@editor.completeFrom(WebApiDOM.DOMTokenList)
 // TODO: mark as private once mutating fields of private records is allowed
+@editor.completeFrom(WebApiDOM.DOMTokenList)
 type domTokenList = {
   /**
     Returns the number of tokens.
@@ -3069,7 +3069,9 @@ A generic collection (array-like object similar to arguments) of elements (in do
 A collection of HTML form control elements.
 [See HTMLFormControlsCollection on MDN](https://developer.mozilla.org/docs/Web/API/HTMLFormControlsCollection)
 */
-@editor.completeFrom(WebApiDOM.DOM.HTMLFormControlsCollection) and htmlFormControlsCollection = private {
+@editor.completeFrom(
+  WebApiDOM.DOM.HTMLFormControlsCollection
+) and htmlFormControlsCollection = private {
   // Base properties from HTMLCollection
   /**
     Sets or retrieves the number of objects in a collection.
