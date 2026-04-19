@@ -392,12 +392,7 @@ external open_: (~url: string=?, ~target: string=?, ~features: string=?) => Type
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/alert)
 */
-external alert: unit => unit = "alert"
-
-/**
-[Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/alert)
-*/
-external alert2: string => unit = "alert"
+external alert: (~message: string=?) => unit = "alert"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/confirm)
@@ -444,8 +439,10 @@ If the origin of the target window doesn't match the given target origin, the me
 Throws a "DataCloneError" DOMException if transfer array contains duplicate objects or if message could not be cloned.
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/postMessage)
 */
-external postMessage2: (~message: JSON.t, ~options: Types.windowPostMessageOptions=?) => unit =
-  "postMessage"
+external postMessageWithOptions: (
+  ~message: JSON.t,
+  ~options: Types.windowPostMessageOptions=?,
+) => unit = "postMessage"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/matchMedia)
