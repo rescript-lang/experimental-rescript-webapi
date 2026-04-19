@@ -9,7 +9,7 @@ external make: (~type_: string, ~eventInitDict: Types.inputEventInit=?) => Types
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/InputEvent/getTargetRanges)
 */
 @send
-external getTargetRanges: Types.inputEvent => array<WebApiPrelude.Types.staticRange> =
+external getTargetRanges: Types.inputEvent => array<WebApiPrelude.DOM.staticRange> =
   "getTargetRanges"
 
 include UIEvent.Impl({type t = Types.inputEvent})

@@ -1296,4 +1296,4 @@ type workletOptions = {mutable credentials?: requestCredentials}
 
 type decodeSuccessCallback = audioBuffer => unit
 
-type decodeErrorCallback = WebApiPrelude.Types.domException => unit
+type decodeErrorCallback = WebApiPrelude.DOM.domException => unit

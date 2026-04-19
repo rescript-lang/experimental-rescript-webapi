@@ -1,6 +1,6 @@
 @@warning("-30")
 
-type domStringList = WebApiPrelude.Types.domStringList
+type domStringList = WebApiPrelude.DOM.domStringList
 type eventTarget = WebApiEvent.Types.eventTarget
 type eventType = WebApiEvent.Types.eventType
 type file = WebApiFile.Types.file
@@ -10,79 +10,79 @@ type remotePlayback = WebApiRemotePlayback.Types.remotePlayback
 type fontFaceSet = WebApiCSSFontLoading.Types.fontFaceSet
 type structuredSerializeOptions = WebApiChannelMessaging.Types.structuredSerializeOptions
 
-type htmlElement = WebApiPrelude.Types.htmlElement
-type mediaError = WebApiPrelude.Types.mediaError
-type timeRanges = WebApiPrelude.Types.timeRanges
-type textTrackList = WebApiPrelude.Types.textTrackList
-type htmlFormElement = WebApiPrelude.Types.htmlFormElement
-type htmlCollection<'a> = WebApiPrelude.Types.htmlCollection<'a>
-type element = WebApiPrelude.Types.element
-type validityState = WebApiPrelude.Types.validityState
-type document = WebApiPrelude.Types.document
-type cssStyleSheet = WebApiPrelude.Types.cssStyleSheet
-type nodeList<'a> = WebApiPrelude.Types.nodeList<'a>
-type htmlLabelElement = WebApiPrelude.Types.htmlLabelElement
-type documentFragment = WebApiPrelude.Types.documentFragment
-type node = WebApiPrelude.Types.node
-type cssStyleDeclaration = WebApiPrelude.Types.cssStyleDeclaration
-type domRectReadOnly = WebApiPrelude.Types.domRectReadOnly
-type shadowRoot = WebApiPrelude.Types.shadowRoot
-type styleSheet = WebApiPrelude.Types.styleSheet
-type mediaQueryList = WebApiPrelude.Types.mediaQueryList
-type domRect = WebApiPrelude.Types.domRect
-type range = WebApiPrelude.Types.range
-type documentType = WebApiPrelude.Types.documentType
-type cssStyleValue = WebApiPrelude.Types.cssStyleValue
-type treeWalker = WebApiPrelude.Types.treeWalker
-type selection = WebApiPrelude.Types.selection
-type abstractRange = WebApiPrelude.Types.abstractRange
-type htmlOptionsCollection = WebApiPrelude.Types.htmlOptionsCollection
-type styleSheetList = WebApiPrelude.Types.styleSheetList
-type elementInternals = WebApiPrelude.Types.elementInternals
-type nodeFilter = WebApiPrelude.Types.nodeFilter
-type fileList = WebApiPrelude.Types.fileList
-type cssRule = WebApiPrelude.Types.cssRule
-type attr = WebApiPrelude.Types.attr
-type domRectList = WebApiPrelude.Types.domRectList
-type htmlFormControlsCollection = WebApiPrelude.Types.htmlFormControlsCollection
-type domImplementation = WebApiPrelude.Types.domImplementation
-type nodeIterator = WebApiPrelude.Types.nodeIterator
-type xmlDocument = WebApiPrelude.Types.xmlDocument
-type characterData = WebApiPrelude.Types.characterData
-type text = WebApiPrelude.Types.text
-type cdataSection = WebApiPrelude.Types.cdataSection
-type comment = WebApiPrelude.Types.comment
-type processingInstruction = WebApiPrelude.Types.processingInstruction
-type caretPosition = WebApiPrelude.Types.caretPosition
-type htmlTableElement = WebApiPrelude.Types.htmlTableElement
-type htmlOutputElement = WebApiPrelude.Types.htmlOutputElement
-type htmlTableCellElement = WebApiPrelude.Types.htmlTableCellElement
-type htmlHeadElement = WebApiPrelude.Types.htmlHeadElement
-type htmlSelectElement = WebApiPrelude.Types.htmlSelectElement
-type htmlButtonElement = WebApiPrelude.Types.htmlButtonElement
-type htmlTableSectionElement = WebApiPrelude.Types.htmlTableSectionElement
-type htmlOptionElement = WebApiPrelude.Types.htmlOptionElement
-type htmlEmbedElement = WebApiPrelude.Types.htmlEmbedElement
-type htmlTextAreaElement = WebApiPrelude.Types.htmlTextAreaElement
-type htmlTableCaptionElement = WebApiPrelude.Types.htmlTableCaptionElement
-type htmlSlotElement = WebApiPrelude.Types.htmlSlotElement
-type htmlDataListElement = WebApiPrelude.Types.htmlDataListElement
-type htmlInputElement = WebApiPrelude.Types.htmlInputElement
-type htmlScriptElement = WebApiPrelude.Types.htmlScriptElement
-type htmlAnchorElement = WebApiPrelude.Types.htmlAnchorElement
-type htmlTableRowElement = WebApiPrelude.Types.htmlTableRowElement
-type htmlImageElement = WebApiPrelude.Types.htmlImageElement
-type htmlAreaElement = WebApiPrelude.Types.htmlAreaElement
-type videoPlaybackQuality = WebApiPrelude.Types.videoPlaybackQuality
-type idleDeadline = WebApiPrelude.Types.idleDeadline
-type cssRuleList = WebApiPrelude.Types.cssRuleList
-type mediaKeySystemConfiguration = WebApiPrelude.Types.mediaKeySystemConfiguration
+type htmlElement = WebApiPrelude.DOM.htmlElement
+type mediaError = WebApiPrelude.DOM.mediaError
+type timeRanges = WebApiPrelude.DOM.timeRanges
+type textTrackList = WebApiPrelude.DOM.textTrackList
+type htmlFormElement = WebApiPrelude.DOM.htmlFormElement
+type htmlCollection<'a> = WebApiPrelude.DOM.htmlCollection<'a>
+type element = WebApiPrelude.DOM.element
+type validityState = WebApiPrelude.DOM.validityState
+type document = WebApiPrelude.DOM.document
+type cssStyleSheet = WebApiPrelude.DOM.cssStyleSheet
+type nodeList<'a> = WebApiPrelude.DOM.nodeList<'a>
+type htmlLabelElement = WebApiPrelude.DOM.htmlLabelElement
+type documentFragment = WebApiPrelude.DOM.documentFragment
+type node = WebApiPrelude.DOM.node
+type cssStyleDeclaration = WebApiPrelude.DOM.cssStyleDeclaration
+type domRectReadOnly = WebApiPrelude.DOM.domRectReadOnly
+type shadowRoot = WebApiPrelude.DOM.shadowRoot
+type styleSheet = WebApiPrelude.DOM.styleSheet
+type mediaQueryList = WebApiPrelude.DOM.mediaQueryList
+type domRect = WebApiPrelude.DOM.domRect
+type range = WebApiPrelude.DOM.range
+type documentType = WebApiPrelude.DOM.documentType
+type cssStyleValue = WebApiPrelude.DOM.cssStyleValue
+type treeWalker = WebApiPrelude.DOM.treeWalker
+type selection = WebApiPrelude.DOM.selection
+type abstractRange = WebApiPrelude.DOM.abstractRange
+type htmlOptionsCollection = WebApiPrelude.DOM.htmlOptionsCollection
+type styleSheetList = WebApiPrelude.DOM.styleSheetList
+type elementInternals = WebApiPrelude.DOM.elementInternals
+type nodeFilter = WebApiPrelude.DOM.nodeFilter
+type fileList = WebApiPrelude.DOM.fileList
+type cssRule = WebApiPrelude.DOM.cssRule
+type attr = WebApiPrelude.DOM.attr
+type domRectList = WebApiPrelude.DOM.domRectList
+type htmlFormControlsCollection = WebApiPrelude.DOM.htmlFormControlsCollection
+type domImplementation = WebApiPrelude.DOM.domImplementation
+type nodeIterator = WebApiPrelude.DOM.nodeIterator
+type xmlDocument = WebApiPrelude.DOM.xmlDocument
+type characterData = WebApiPrelude.DOM.characterData
+type text = WebApiPrelude.DOM.text
+type cdataSection = WebApiPrelude.DOM.cdataSection
+type comment = WebApiPrelude.DOM.comment
+type processingInstruction = WebApiPrelude.DOM.processingInstruction
+type caretPosition = WebApiPrelude.DOM.caretPosition
+type htmlTableElement = WebApiPrelude.DOM.htmlTableElement
+type htmlOutputElement = WebApiPrelude.DOM.htmlOutputElement
+type htmlTableCellElement = WebApiPrelude.DOM.htmlTableCellElement
+type htmlHeadElement = WebApiPrelude.DOM.htmlHeadElement
+type htmlSelectElement = WebApiPrelude.DOM.htmlSelectElement
+type htmlButtonElement = WebApiPrelude.DOM.htmlButtonElement
+type htmlTableSectionElement = WebApiPrelude.DOM.htmlTableSectionElement
+type htmlOptionElement = WebApiPrelude.DOM.htmlOptionElement
+type htmlEmbedElement = WebApiPrelude.DOM.htmlEmbedElement
+type htmlTextAreaElement = WebApiPrelude.DOM.htmlTextAreaElement
+type htmlTableCaptionElement = WebApiPrelude.DOM.htmlTableCaptionElement
+type htmlSlotElement = WebApiPrelude.DOM.htmlSlotElement
+type htmlDataListElement = WebApiPrelude.DOM.htmlDataListElement
+type htmlInputElement = WebApiPrelude.DOM.htmlInputElement
+type htmlScriptElement = WebApiPrelude.DOM.htmlScriptElement
+type htmlAnchorElement = WebApiPrelude.DOM.htmlAnchorElement
+type htmlTableRowElement = WebApiPrelude.DOM.htmlTableRowElement
+type htmlImageElement = WebApiPrelude.DOM.htmlImageElement
+type htmlAreaElement = WebApiPrelude.DOM.htmlAreaElement
+type videoPlaybackQuality = WebApiPrelude.DOM.videoPlaybackQuality
+type idleDeadline = WebApiPrelude.DOM.idleDeadline
+type cssRuleList = WebApiPrelude.DOM.cssRuleList
+type mediaKeySystemConfiguration = WebApiPrelude.EncryptedMediaExtensions.mediaKeySystemConfiguration
 
 /**
 A window containing a WebApiDOM document; the document property points to the WebApiDOM document loaded in that window.
 [See Window on MDN](https://developer.mozilla.org/docs/Web/API/Window)
 */
-@editor.completeFrom(Window) type window = WebApiPrelude.Types.window
+@editor.completeFrom(Window) type window = WebApiPrelude.DOM.window
 
 type shadowRootMode =
   | @as("closed") Closed
@@ -258,7 +258,7 @@ type shareData = {
 [See Location on MDN](https://developer.mozilla.org/docs/Web/API/Location)
 */
 @editor.completeFrom(Location)
-type location = WebApiPrelude.Types.location = private {...WebApiPrelude.Types.location}
+type location = WebApiPrelude.DOM.location = private {...WebApiPrelude.DOM.location}
 
 /**
 [See UserActivation on MDN](https://developer.mozilla.org/docs/Web/API/UserActivation)
@@ -279,7 +279,7 @@ The state and the identity of the user agent. It allows scripts to query it and 
 [See Navigator on MDN](https://developer.mozilla.org/docs/Web/API/Navigator)
 */
 @editor.completeFrom(Navigator)
-type navigator = WebApiPrelude.Types.navigator
+type navigator = WebApiPrelude.DOM.navigator
 
 // TODO: mark as private once mutating fields of private records is allowed
 @editor.completeFrom(DOMTokenList)
