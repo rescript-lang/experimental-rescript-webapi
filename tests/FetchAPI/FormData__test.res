@@ -8,7 +8,7 @@ module EntryValue = WebApiFetch.FormDataEntryValue
 open EntryValue
 
 let logEntry = (~stringPrefix: string, ~filePrefix: string, entry: EntryValue.t) =>
-  switch EntryValue.decode(entry) {
+  switch entry {
   | String(value) => Console.log(`${stringPrefix}${value}`)
   | File(file) => Console.log(`${filePrefix}${file.name}`)
   }
@@ -32,10 +32,10 @@ let _ =
   )
 
 // Create formDataEntryValue from string or file
-let stringEntry = EntryValue.fromString("test value")
+let stringEntry = EntryValue.String("test value")
 let blob: WebApiFile.Blob.t = WebApiFile.Blob.make(~blobParts=[])
 let file: WebApiFile.File.t = WebApiFile.File.make(~fileBits=[], ~fileName="test.txt")
-let fileEntry = EntryValue.fromFile(file)
+let fileEntry = EntryValue.File(file)
 
 formData->FormData.appendBlob(~name="avatar", ~blobValue=blob)
 
@@ -46,7 +46,7 @@ logEntry(~stringPrefix="Unexpected string entry: ", ~filePrefix="File entry: ", 
 // Iterate over all entries in the FormData
 let entries: Iterator.t<(string, EntryValue.t)> = formData->FormData.entries
 let _ = entries->Iterator.forEach(((key, value)) => {
-  switch EntryValue.decode(value) {
+  switch value {
   | String(s) => Console.log(`${key}: ${s}`)
   | File(f) => Console.log(`${key}: [WebApiFile] ${f.name}`)
   }
