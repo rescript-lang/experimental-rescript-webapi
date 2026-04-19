@@ -1,22 +1,55 @@
 type t = Types.mediaStream = {...Types.mediaStream}
 
 /**
+`make()`
+
+The MediaStream() constructor creates a new empty MediaStream.
+
+Source shape:
+- no source input; this constructor creates a fresh MDN [MediaStream](https://developer.mozilla.org/docs/Web/API/MediaStream).
+
+```res
+let stream = MediaStream.make()
+```
+
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/MediaStream)
 */
 @new
 external make: unit => t = "MediaStream"
 
 /**
+`fromMediaStream(mediaStream)`
+
+The MediaStream() constructor creates a new MediaStream by copying another MediaStream source.
+
+Source shape:
+- local [`MediaStream.t`](#t) mapped to MDN [MediaStream](https://developer.mozilla.org/docs/Web/API/MediaStream).
+
+```res
+let copiedStream = MediaStream.fromMediaStream(existingStream)
+```
+
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/MediaStream)
 */
 @new
-external makeFromMediaStream: t => t = "MediaStream"
+external fromMediaStream: t => t = "MediaStream"
 
 /**
+`fromTracks(array<MediaStreamTrack.t>)`
+
+The MediaStream() constructor creates a new MediaStream from an array of MediaStreamTrack values.
+
+Source shape:
+- ReScript [array](https://rescript-lang.org/docs/manual/api/stdlib/array) of local [`MediaStreamTrack.t`](./media-stream-track#t) values mapped to MDN [MediaStreamTrack](https://developer.mozilla.org/docs/Web/API/MediaStreamTrack).
+
+```res
+let stream = MediaStream.fromTracks([audioTrack, videoTrack])
+```
+
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/MediaStream)
 */
 @new
-external makeFromMediaStreams: array<MediaStreamTrack.t> => t = "MediaStream"
+external fromTracks: array<MediaStreamTrack.t> => t = "MediaStream"
 
 include WebApiEvent.EventTarget.Impl({type t = t})
 

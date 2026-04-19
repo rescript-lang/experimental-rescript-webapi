@@ -7,16 +7,44 @@ type closeEvent = Types.closeEvent = {...Types.closeEvent}
 type messageEventSource = Types.messageEventSource
 
 /**
+`fromURL(~url: string, ~protocols: string=?)`
+
+The WebSocket() constructor creates a new WebSocket connection from a URL string and an optional single protocol.
+
+Source shape:
+- `url`: ReScript [string](https://rescript-lang.org/docs/manual/primitive-types/#string) for the [WebSocket URL](https://developer.mozilla.org/docs/Web/API/WebSocket/WebSocket) to connect to.
+- `protocols`: optional ReScript [string](https://rescript-lang.org/docs/manual/primitive-types/#string) for a single WebSocket sub-protocol name.
+
+```res
+let socket = WebSocket.fromURL(~url="wss://example.com/socket")
+```
+
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/WebSocket)
 */
 @new
-external make: (~url: string, ~protocols: string=?) => t = "WebSocket"
+external fromURL: (~url: string, ~protocols: string=?) => t = "WebSocket"
 
 /**
+`fromURLWithProtocols(~url: string, ~protocols: array<string>)`
+
+The WebSocket() constructor creates a new WebSocket connection from a URL string and multiple protocol names.
+
+Source shape:
+- `url`: ReScript [string](https://rescript-lang.org/docs/manual/primitive-types/#string) for the [WebSocket URL](https://developer.mozilla.org/docs/Web/API/WebSocket/WebSocket) to connect to.
+- `protocols`: ReScript [array](https://rescript-lang.org/docs/manual/api/stdlib/array) of protocol names accepted by the MDN [WebSocket()](https://developer.mozilla.org/docs/Web/API/WebSocket/WebSocket) constructor.
+
+```res
+let socket =
+  WebSocket.fromURLWithProtocols(
+    ~url="wss://example.com/socket",
+    ~protocols=["chat", "superchat"],
+  )
+```
+
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/WebSocket)
 */
 @new
-external makeWithProtocols: (~url: string, ~protocols: array<string>=?) => t = "WebSocket"
+external fromURLWithProtocols: (~url: string, ~protocols: array<string>) => t = "WebSocket"
 
 include WebApiEvent.EventTarget.Impl({type t = t})
 

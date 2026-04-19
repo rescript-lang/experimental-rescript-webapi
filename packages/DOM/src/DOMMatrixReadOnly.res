@@ -1,14 +1,53 @@
 /**
+`make()`
+
+The DOMMatrixReadOnly() constructor creates a new identity DOMMatrixReadOnly value.
+
+Source shape:
+- no source input; this constructor creates a fresh MDN [DOMMatrixReadOnly](https://developer.mozilla.org/docs/Web/API/DOMMatrixReadOnly).
+
+```res
+let matrix = DOMMatrixReadOnly.make()
+```
+
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/DOMMatrixReadOnly)
 */
 @new
-external make: (~init: string=?) => Types.domMatrixReadOnly = "DOMMatrixReadOnly"
+external make: unit => Types.domMatrixReadOnly = "DOMMatrixReadOnly"
 
 /**
+`fromString(~init: string)`
+
+The DOMMatrixReadOnly() constructor creates a new DOMMatrixReadOnly value from a transform string.
+
+Source shape:
+- `init`: ReScript [string](https://rescript-lang.org/docs/manual/primitive-types/#string) accepted by MDN [DOMMatrixReadOnly()](https://developer.mozilla.org/docs/Web/API/DOMMatrixReadOnly/DOMMatrixReadOnly).
+
+```res
+let matrix = DOMMatrixReadOnly.fromString(~init="matrix(1, 0, 0, 1, 0, 0)")
+```
+
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/DOMMatrixReadOnly)
 */
 @new
-external make2: (~init: array<float>=?) => Types.domMatrixReadOnly = "DOMMatrixReadOnly"
+external fromString: (~init: string) => Types.domMatrixReadOnly = "DOMMatrixReadOnly"
+
+/**
+`fromArray(~init: array<float>)`
+
+The DOMMatrixReadOnly() constructor creates a new DOMMatrixReadOnly value from an array of matrix component values.
+
+Source shape:
+- `init`: ReScript [array](https://rescript-lang.org/docs/manual/api/stdlib/array) of numeric values accepted by MDN [DOMMatrixReadOnly()](https://developer.mozilla.org/docs/Web/API/DOMMatrixReadOnly/DOMMatrixReadOnly).
+
+```res
+let matrix = DOMMatrixReadOnly.fromArray(~init=[1., 0., 0., 1., 0., 0.])
+```
+
+[Read more on MDN](https://developer.mozilla.org/docs/Web/API/DOMMatrixReadOnly)
+*/
+@new
+external fromArray: (~init: array<float>) => Types.domMatrixReadOnly = "DOMMatrixReadOnly"
 
 @scope("DOMMatrixReadOnly")
 external fromMatrix: (~other: Types.domMatrixInit=?) => Types.domMatrixReadOnly = "fromMatrix"

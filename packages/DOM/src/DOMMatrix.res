@@ -1,14 +1,53 @@
 /**
+`make()`
+
+The DOMMatrix() constructor creates a new identity DOMMatrix.
+
+Source shape:
+- no source input; this constructor creates a fresh MDN [DOMMatrix](https://developer.mozilla.org/docs/Web/API/DOMMatrix).
+
+```res
+let matrix = DOMMatrix.make()
+```
+
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/DOMMatrix)
 */
 @new
-external make: (~init: string=?) => Types.domMatrix = "DOMMatrix"
+external make: unit => Types.domMatrix = "DOMMatrix"
 
 /**
+`fromString(~init: string)`
+
+The DOMMatrix() constructor creates a new DOMMatrix from a transform string.
+
+Source shape:
+- `init`: ReScript [string](https://rescript-lang.org/docs/manual/primitive-types/#string) accepted by MDN [DOMMatrix()](https://developer.mozilla.org/docs/Web/API/DOMMatrix/DOMMatrix).
+
+```res
+let matrix = DOMMatrix.fromString(~init="matrix(1, 0, 0, 1, 0, 0)")
+```
+
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/DOMMatrix)
 */
 @new
-external make2: (~init: array<float>=?) => Types.domMatrix = "DOMMatrix"
+external fromString: (~init: string) => Types.domMatrix = "DOMMatrix"
+
+/**
+`fromArray(~init: array<float>)`
+
+The DOMMatrix() constructor creates a new DOMMatrix from an array of matrix component values.
+
+Source shape:
+- `init`: ReScript [array](https://rescript-lang.org/docs/manual/api/stdlib/array) of numeric values accepted by MDN [DOMMatrix()](https://developer.mozilla.org/docs/Web/API/DOMMatrix/DOMMatrix).
+
+```res
+let matrix = DOMMatrix.fromArray(~init=[1., 0., 0., 1., 0., 0.])
+```
+
+[Read more on MDN](https://developer.mozilla.org/docs/Web/API/DOMMatrix)
+*/
+@new
+external fromArray: (~init: array<float>) => Types.domMatrix = "DOMMatrix"
 
 external asDOMMatrixReadOnly: Types.domMatrix => Types.domMatrixReadOnly = "%identity"
 @scope("DOMMatrix")
