@@ -1,5 +1,5 @@
 {
-  "name": "@rescript/webapi-web-speech",
+  "name": "@rescript-webapi/web-speech",
   "sources": [
     {
       "dir": "src",
@@ -12,7 +12,7 @@
   },
   "suffix": ".js",
   "dependencies": [
-    "@rescript/webapi-event"
+    "@rescript-webapi/event"
   ],
   "namespace": "WebApiWebSpeech"
 }

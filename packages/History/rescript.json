@@ -1,5 +1,5 @@
 {
-  "name": "@rescript/webapi-history",
+  "name": "@rescript-webapi/history",
   "sources": [
     {
       "dir": "src",

@@ -12,53 +12,53 @@ type notificationPermission =
 
 /**
 This Notifications API interface is used to configure and display desktop notifications to the user.
-[See WebApiNotification on MDN](https://developer.mozilla.org/docs/Web/API/WebApiNotification)
+[See WebApiNotification on MDN](https://developer.mozilla.org/docs/Web/API/Notification)
 */
 @editor.completeFrom(WebApiNotification)
 type notification = private {
   ...WebApiEvent.Types.eventTarget,
   /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/WebApiNotification/permission_static)
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Notification/permission_static)
     */
   permission: notificationPermission,
   /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/WebApiNotification/title)
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Notification/title)
     */
   title: string,
   /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/WebApiNotification/dir)
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Notification/dir)
     */
   dir: notificationDirection,
   /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/WebApiNotification/lang)
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Notification/lang)
     */
   lang: string,
   /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/WebApiNotification/body)
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Notification/body)
     */
   body: string,
   /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/WebApiNotification/tag)
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Notification/tag)
     */
   tag: string,
   /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/WebApiNotification/icon)
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Notification/icon)
     */
   icon: string,
   /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/WebApiNotification/badge)
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Notification/badge)
     */
   badge: string,
   /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/WebApiNotification/silent)
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Notification/silent)
     */
   silent: Null.t<bool>,
   /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/WebApiNotification/requireInteraction)
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Notification/requireInteraction)
     */
   requireInteraction: bool,
   /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/WebApiNotification/data)
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Notification/data)
     */
   data?: JSON.t,
 }

@@ -241,7 +241,7 @@ external copyTo: (
 @send
 external copyTo2: (
   WebApiDOM.Types.videoFrame,
-  ~destination: WebApiPrelude.Types.ArrayBufferTypedArrayOrDataView.t,
+  ~destination: WebApiBase.ArrayBufferTypedArrayOrDataView.t,
   ~options: WebApiDOM.Types.videoFrameCopyToOptions=?,
 ) => promise<array<WebApiDOM.Types.planeLayout>> = "copyTo"
 

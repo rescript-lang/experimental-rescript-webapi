@@ -21,7 +21,7 @@ type clipboardItem = private {
 }
 
 /**
-[See WebApiClipboard on MDN](https://developer.mozilla.org/docs/Web/API/WebApiClipboard)
+[See WebApiClipboard on MDN](https://developer.mozilla.org/docs/Web/API/Clipboard)
 */
 @editor.completeFrom(WebApiClipboard)
 type clipboard = private {

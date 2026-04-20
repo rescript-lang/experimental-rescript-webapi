@@ -39,39 +39,39 @@ type gamepadHapticActuator = private {}
 
 /**
 This WebApiGamepad API interface defines an individual gamepad or other controller, allowing access to information such as button presses, axis positions, and id.
-[See WebApiGamepad on MDN](https://developer.mozilla.org/docs/Web/API/WebApiGamepad)
+[See WebApiGamepad on MDN](https://developer.mozilla.org/docs/Web/API/Gamepad)
 */
 type gamepad = {
   /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/WebApiGamepad/id)
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Gamepad/id)
     */
   id: string,
   /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/WebApiGamepad/index)
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Gamepad/index)
     */
   index: int,
   /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/WebApiGamepad/connected)
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Gamepad/connected)
     */
   connected: bool,
   /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/WebApiGamepad/timestamp)
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Gamepad/timestamp)
     */
   timestamp: float,
   /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/WebApiGamepad/mapping)
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Gamepad/mapping)
     */
   mapping: gamepadMappingType,
   /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/WebApiGamepad/axes)
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Gamepad/axes)
     */
   axes: array<float>,
   /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/WebApiGamepad/buttons)
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Gamepad/buttons)
     */
   buttons: array<gamepadButton>,
   /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/WebApiGamepad/vibrationActuator)
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Gamepad/vibrationActuator)
     */
   vibrationActuator: gamepadHapticActuator,
 }

@@ -46,7 +46,7 @@ type resizeObserverEntry = {
 }
 
 /**
-[See WebApiResizeObserver on MDN](https://developer.mozilla.org/docs/Web/API/WebApiResizeObserver)
+[See WebApiResizeObserver on MDN](https://developer.mozilla.org/docs/Web/API/ResizeObserver)
 */
 @editor.completeFrom(WebApiResizeObserver)
 type resizeObserver = private {}

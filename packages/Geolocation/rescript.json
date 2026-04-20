@@ -1,5 +1,5 @@
 {
-  "name": "@rescript/webapi-geolocation",
+  "name": "@rescript-webapi/geolocation",
   "sources": [
     {
       "dir": "src",

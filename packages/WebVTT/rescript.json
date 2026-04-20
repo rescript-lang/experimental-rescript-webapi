@@ -1,5 +1,5 @@
 {
-  "name": "@rescript/webapi-web-vtt",
+  "name": "@rescript-webapi/web-vtt",
   "sources": [
     {
       "dir": "src",
@@ -12,7 +12,7 @@
   },
   "suffix": ".js",
   "dependencies": [
-    "@rescript/webapi-event"
+    "@rescript-webapi/event"
   ],
   "namespace": "WebApiWebVTT"
 }

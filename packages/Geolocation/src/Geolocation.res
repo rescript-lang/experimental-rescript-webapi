@@ -1,5 +1,5 @@
 /**
-[Read more on MDN](https://developer.mozilla.org/docs/Web/API/WebApiGeolocation/getCurrentPosition)
+[Read more on MDN](https://developer.mozilla.org/docs/Web/API/Geolocation/getCurrentPosition)
 */
 @send
 external getCurrentPosition: (
@@ -10,7 +10,7 @@ external getCurrentPosition: (
 ) => unit = "getCurrentPosition"
 
 /**
-[Read more on MDN](https://developer.mozilla.org/docs/Web/API/WebApiGeolocation/watchPosition)
+[Read more on MDN](https://developer.mozilla.org/docs/Web/API/Geolocation/watchPosition)
 */
 @send
 external watchPosition: (
@@ -21,7 +21,7 @@ external watchPosition: (
 ) => int = "watchPosition"
 
 /**
-[Read more on MDN](https://developer.mozilla.org/docs/Web/API/WebApiGeolocation/clearWatch)
+[Read more on MDN](https://developer.mozilla.org/docs/Web/API/Geolocation/clearWatch)
 */
 @send
 external clearWatch: (Types.geolocation, int) => unit = "clearWatch"

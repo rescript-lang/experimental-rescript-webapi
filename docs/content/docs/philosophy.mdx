@@ -50,12 +50,12 @@ let element: element = document->Document.createElement( ~localName = "div")
 let node: node = element->Element.asNode
 ```
 
-Any other conversions can be performed using the `Prelude.unsafeConversation` helper. This should be done with caution, as it can lead to runtime errors.
+Any other conversions can be performed using the `Base.unsafeConversation` helper. This should be done with caution, as it can lead to runtime errors.
 
 ```ReScript
 open WebAPI
 
 let element: element = document->Document.createElement( ~localName = "div")
 // This is potentially unsafe, as the type system cannot guarantee the conversion
-let divElement: htmlDivElement = element->Prelude.unsafeConversation
+let divElement: htmlDivElement = element->Base.unsafeConversation
 ```

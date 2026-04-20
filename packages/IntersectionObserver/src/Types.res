@@ -5,20 +5,20 @@ type root
 
 /**
 provides a way to asynchronously observe changes in the intersection of a target element with an ancestor element or with a top-level document's viewport.
-[See WebApiIntersectionObserver on MDN](https://developer.mozilla.org/docs/Web/API/WebApiIntersectionObserver)
+[See WebApiIntersectionObserver on MDN](https://developer.mozilla.org/docs/Web/API/IntersectionObserver)
 */
 @editor.completeFrom(WebApiIntersectionObserver)
 type intersectionObserver = private {
   /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/WebApiIntersectionObserver/root)
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/IntersectionObserver/root)
     */
   root: root,
   /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/WebApiIntersectionObserver/rootMargin)
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/IntersectionObserver/rootMargin)
     */
   rootMargin: string,
   /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/WebApiIntersectionObserver/thresholds)
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/IntersectionObserver/thresholds)
     */
   thresholds: array<float>,
 }

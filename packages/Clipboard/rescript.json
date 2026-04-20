@@ -1,5 +1,5 @@
 {
-  "name": "@rescript/webapi-clipboard",
+  "name": "@rescript-webapi/clipboard",
   "sources": [
     {
       "dir": "src",
@@ -12,8 +12,8 @@
   },
   "suffix": ".js",
   "dependencies": [
-    "@rescript/webapi-event",
-    "@rescript/webapi-file"
+    "@rescript-webapi/event",
+    "@rescript-webapi/file"
   ],
   "namespace": "WebApiClipboard"
 }

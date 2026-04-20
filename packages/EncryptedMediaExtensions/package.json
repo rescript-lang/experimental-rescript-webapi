@@ -1,5 +1,5 @@
 {
-  "name": "@rescript/webapi-encrypted-media-extensions",
+  "name": "@rescript-webapi/encrypted-media-extensions",
   "version": "0.1.0",
   "license": "MIT",
   "type": "module",
@@ -18,8 +18,8 @@
     "rescript": ">=12.0.0 <13"
   },
   "dependencies": {
-    "@rescript/webapi-dom": "0.1.0",
-    "@rescript/webapi-event": "0.1.0",
-    "@rescript/webapi-prelude": "0.1.0"
+    "@rescript-webapi/dom": "0.1.0",
+    "@rescript-webapi/event": "0.1.0",
+    "@rescript-webapi/base": "0.1.0"
   }
 }

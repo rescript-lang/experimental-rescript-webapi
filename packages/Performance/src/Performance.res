@@ -1,32 +1,32 @@
 include WebApiEvent.EventTarget.Impl({type t = Types.performance})
 
 /**
-[Read more on MDN](https://developer.mozilla.org/docs/Web/API/WebApiPerformance/now)
+[Read more on MDN](https://developer.mozilla.org/docs/Web/API/Performance/now)
 */
 @send
 external now: Types.performance => float = "now"
 
 /**
-[Read more on MDN](https://developer.mozilla.org/docs/Web/API/WebApiPerformance/toJSON)
+[Read more on MDN](https://developer.mozilla.org/docs/Web/API/Performance/toJSON)
 */
 @send
 external toJSON: Types.performance => Dict.t<string> = "toJSON"
 
 /**
-[Read more on MDN](https://developer.mozilla.org/docs/Web/API/WebApiPerformance/getEntries)
+[Read more on MDN](https://developer.mozilla.org/docs/Web/API/Performance/getEntries)
 */
 @send
 external getEntries: Types.performance => Types.performanceEntryList = "getEntries"
 
 /**
-[Read more on MDN](https://developer.mozilla.org/docs/Web/API/WebApiPerformance/getEntriesByType)
+[Read more on MDN](https://developer.mozilla.org/docs/Web/API/Performance/getEntriesByType)
 */
 @send
 external getEntriesByType: (Types.performance, string) => Types.performanceEntryList =
   "getEntriesByType"
 
 /**
-[Read more on MDN](https://developer.mozilla.org/docs/Web/API/WebApiPerformance/getEntriesByName)
+[Read more on MDN](https://developer.mozilla.org/docs/Web/API/Performance/getEntriesByName)
 */
 @send
 external getEntriesByName: (
@@ -36,20 +36,20 @@ external getEntriesByName: (
 ) => Types.performanceEntryList = "getEntriesByName"
 
 /**
-[Read more on MDN](https://developer.mozilla.org/docs/Web/API/WebApiPerformance/clearResourceTimings)
+[Read more on MDN](https://developer.mozilla.org/docs/Web/API/Performance/clearResourceTimings)
 */
 @send
 external clearResourceTimings: Types.performance => unit = "clearResourceTimings"
 
 /**
-[Read more on MDN](https://developer.mozilla.org/docs/Web/API/WebApiPerformance/setResourceTimingBufferSize)
+[Read more on MDN](https://developer.mozilla.org/docs/Web/API/Performance/setResourceTimingBufferSize)
 */
 @send
 external setResourceTimingBufferSize: (Types.performance, int) => unit =
   "setResourceTimingBufferSize"
 
 /**
-[Read more on MDN](https://developer.mozilla.org/docs/Web/API/WebApiPerformance/mark)
+[Read more on MDN](https://developer.mozilla.org/docs/Web/API/Performance/mark)
 */
 @send
 external mark: (
@@ -59,13 +59,13 @@ external mark: (
 ) => Types.performanceMark = "mark"
 
 /**
-[Read more on MDN](https://developer.mozilla.org/docs/Web/API/WebApiPerformance/clearMarks)
+[Read more on MDN](https://developer.mozilla.org/docs/Web/API/Performance/clearMarks)
 */
 @send
 external clearMarks: (Types.performance, ~markName: string=?) => unit = "clearMarks"
 
 /**
-[Read more on MDN](https://developer.mozilla.org/docs/Web/API/WebApiPerformance/measure)
+[Read more on MDN](https://developer.mozilla.org/docs/Web/API/Performance/measure)
 */
 @send
 external measure: (
@@ -76,7 +76,7 @@ external measure: (
 ) => Types.performanceMeasure = "measure"
 
 /**
-[Read more on MDN](https://developer.mozilla.org/docs/Web/API/WebApiPerformance/measure)
+[Read more on MDN](https://developer.mozilla.org/docs/Web/API/Performance/measure)
 */
 @send
 external measure2: (
@@ -87,7 +87,7 @@ external measure2: (
 ) => Types.performanceMeasure = "measure"
 
 /**
-[Read more on MDN](https://developer.mozilla.org/docs/Web/API/WebApiPerformance/clearMeasures)
+[Read more on MDN](https://developer.mozilla.org/docs/Web/API/Performance/clearMeasures)
 */
 @send
 external clearMeasures: (Types.performance, ~measureName: string=?) => unit = "clearMeasures"

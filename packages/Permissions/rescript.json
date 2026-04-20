@@ -1,5 +1,5 @@
 {
-  "name": "@rescript/webapi-permissions",
+  "name": "@rescript-webapi/permissions",
   "sources": [
     {
       "dir": "src",
@@ -12,7 +12,7 @@
   },
   "suffix": ".js",
   "dependencies": [
-    "@rescript/webapi-event"
+    "@rescript-webapi/event"
   ],
   "namespace": "WebApiPermissions"
 }
