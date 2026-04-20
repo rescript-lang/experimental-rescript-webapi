@@ -1,10 +1,7 @@
 /**
 `make()`
 
-The DOMMatrix() constructor creates a new identity DOMMatrix.
-
-Source shape:
-- no source input; this constructor creates a fresh MDN [DOMMatrix](https://developer.mozilla.org/docs/Web/API/DOMMatrix).
+Creates a new identity `DOMMatrix`.
 
 ```res
 let matrix = DOMMatrix.make()
@@ -18,10 +15,7 @@ external make: unit => Types.domMatrix = "DOMMatrix"
 /**
 `fromString(string)`
 
-The DOMMatrix() constructor creates a new DOMMatrix from a transform string.
-
-Source shape:
-- ReScript [string](https://rescript-lang.org/docs/manual/primitive-types/#string) accepted by MDN [DOMMatrix()](https://developer.mozilla.org/docs/Web/API/DOMMatrix/DOMMatrix).
+Creates a new `DOMMatrix` from a transform string.
 
 ```res
 let matrix = DOMMatrix.fromString("matrix(1, 0, 0, 1, 0, 0)")
@@ -35,10 +29,7 @@ external fromString: string => Types.domMatrix = "DOMMatrix"
 /**
 `fromArray(array<float>)`
 
-The DOMMatrix() constructor creates a new DOMMatrix from an array of matrix component values.
-
-Source shape:
-- ReScript [array](https://rescript-lang.org/docs/manual/api/stdlib/array) of numeric values accepted by MDN [DOMMatrix()](https://developer.mozilla.org/docs/Web/API/DOMMatrix/DOMMatrix).
+Creates a new `DOMMatrix` from an array of matrix component values.
 
 ```res
 let matrix = DOMMatrix.fromArray([1., 0., 0., 1., 0., 0.])

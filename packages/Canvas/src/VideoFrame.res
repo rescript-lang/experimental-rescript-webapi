@@ -3,11 +3,7 @@ type sharedArrayBuffer = unknown
 /**
 `fromHTMLImageElement(~image: HTMLImageElement.t, ~init: videoFrameInit=?)`
 
-The VideoFrame() constructor creates a new VideoFrame from an HTMLImageElement source.
-
-Source shape:
-- `image`: local [`HTMLImageElement.t`](../dom/html-image-element#t) mapped to MDN [HTMLImageElement](https://developer.mozilla.org/docs/Web/API/HTMLImageElement).
-- `init`: local [`videoFrameInit`](../dom#videoFrameInit) values for optional frame initialization.
+Creates a new `VideoFrame` from an `HTMLImageElement`.
 
 ```res
 let frame = VideoFrame.fromHTMLImageElement(~image=myImageElement)
@@ -24,11 +20,7 @@ external fromHTMLImageElement: (
 /**
 `fromSVGImageElement(~image: SVGImageElement.t, ~init: videoFrameInit=?)`
 
-The VideoFrame() constructor creates a new VideoFrame from an SVGImageElement source.
-
-Source shape:
-- `image`: local [`SVGImageElement.t`](../dom/svg-image-element#t) mapped to MDN [SVGImageElement](https://developer.mozilla.org/docs/Web/API/SVGImageElement).
-- `init`: local [`videoFrameInit`](../dom#videoFrameInit) values for optional frame initialization.
+Creates a new `VideoFrame` from an `SVGImageElement`.
 
 ```res
 let frame = VideoFrame.fromSVGImageElement(~image=mySvgImageElement)
@@ -45,11 +37,7 @@ external fromSVGImageElement: (
 /**
 `fromHTMLVideoElement(~image: HTMLVideoElement.t, ~init: videoFrameInit=?)`
 
-The VideoFrame() constructor creates a new VideoFrame from an HTMLVideoElement source.
-
-Source shape:
-- `image`: local [`HTMLVideoElement.t`](../dom/html-video-element#t) mapped to MDN [HTMLVideoElement](https://developer.mozilla.org/docs/Web/API/HTMLVideoElement).
-- `init`: local [`videoFrameInit`](../dom#videoFrameInit) values for optional frame initialization.
+Creates a new `VideoFrame` from an `HTMLVideoElement`.
 
 ```res
 let frame = VideoFrame.fromHTMLVideoElement(~image=myVideoElement)
@@ -66,11 +54,7 @@ external fromHTMLVideoElement: (
 /**
 `fromHTMLCanvasElement(~image: HTMLCanvasElement.t, ~init: videoFrameInit=?)`
 
-The VideoFrame() constructor creates a new VideoFrame from an HTMLCanvasElement source.
-
-Source shape:
-- `image`: local [`HTMLCanvasElement.t`](./html-canvas-element#t) mapped to MDN [HTMLCanvasElement](https://developer.mozilla.org/docs/Web/API/HTMLCanvasElement).
-- `init`: local [`videoFrameInit`](../dom#videoFrameInit) values for optional frame initialization.
+Creates a new `VideoFrame` from an `HTMLCanvasElement`.
 
 ```res
 let frame = VideoFrame.fromHTMLCanvasElement(~image=myCanvasElement)
@@ -87,11 +71,7 @@ external fromHTMLCanvasElement: (
 /**
 `fromImageBitmap(~image: ImageBitmap.t, ~init: videoFrameInit=?)`
 
-The VideoFrame() constructor creates a new VideoFrame from an ImageBitmap source.
-
-Source shape:
-- `image`: local [`ImageBitmap.t`](./image-bitmap#t) mapped to MDN [ImageBitmap](https://developer.mozilla.org/docs/Web/API/ImageBitmap).
-- `init`: local [`videoFrameInit`](../dom#videoFrameInit) values for optional frame initialization.
+Creates a new `VideoFrame` from an `ImageBitmap`.
 
 ```res
 let frame = VideoFrame.fromImageBitmap(~image=myImageBitmap)
@@ -108,11 +88,7 @@ external fromImageBitmap: (
 /**
 `fromOffscreenCanvas(~image: OffscreenCanvas.t, ~init: videoFrameInit=?)`
 
-The VideoFrame() constructor creates a new VideoFrame from an OffscreenCanvas source.
-
-Source shape:
-- `image`: local [`OffscreenCanvas.t`](./offscreen-canvas#t) mapped to MDN [OffscreenCanvas](https://developer.mozilla.org/docs/Web/API/OffscreenCanvas).
-- `init`: local [`videoFrameInit`](../dom#videoFrameInit) values for optional frame initialization.
+Creates a new `VideoFrame` from an `OffscreenCanvas`.
 
 ```res
 let frame = VideoFrame.fromOffscreenCanvas(~image=myOffscreenCanvas)
@@ -129,11 +105,7 @@ external fromOffscreenCanvas: (
 /**
 `fromVideoFrame(~image: VideoFrame.t, ~init: videoFrameInit=?)`
 
-The VideoFrame() constructor creates a new VideoFrame from an existing VideoFrame source.
-
-Source shape:
-- `image`: local [`VideoFrame.t`](#t) mapped to MDN [VideoFrame](https://developer.mozilla.org/docs/Web/API/VideoFrame).
-- `init`: local [`videoFrameInit`](../dom#videoFrameInit) values for optional frame initialization.
+Creates a new `VideoFrame` from another `VideoFrame`.
 
 ```res
 let frame = VideoFrame.fromVideoFrame(~image=otherFrame)
@@ -150,11 +122,7 @@ external fromVideoFrame: (
 /**
 `fromArrayBuffer(~data: ArrayBuffer.t, ~init: videoFrameBufferInit)`
 
-The VideoFrame() constructor creates a new VideoFrame from ArrayBuffer-backed pixel data.
-
-Source shape:
-- `data`: ReScript [`ArrayBuffer.t`](https://rescript-lang.org/docs/manual/api/stdlib/arraybuffer) mapped to MDN [ArrayBuffer](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/ArrayBuffer).
-- `init`: local [`videoFrameBufferInit`](../dom#videoFrameBufferInit) values describing the buffer-backed frame layout.
+Creates a new `VideoFrame` from `ArrayBuffer`-backed pixel data.
 
 ```res
 let frame =
@@ -172,11 +140,7 @@ external fromArrayBuffer: (
 /**
 `fromSharedArrayBuffer(~data: sharedArrayBuffer, ~init: videoFrameBufferInit)`
 
-The VideoFrame() constructor creates a new VideoFrame from SharedArrayBuffer-backed pixel data.
-
-Source shape:
-- `data`: opaque SharedArrayBuffer-aligned data accepted by MDN [SharedArrayBuffer](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/SharedArrayBuffer).
-- `init`: local [`videoFrameBufferInit`](../dom#videoFrameBufferInit) values describing the buffer-backed frame layout.
+Creates a new `VideoFrame` from `SharedArrayBuffer`-backed pixel data.
 
 ```res
 let frame =
@@ -197,11 +161,7 @@ external fromSharedArrayBuffer: (
 /**
 `fromDataView(~data: DataView.t, ~init: videoFrameBufferInit)`
 
-The VideoFrame() constructor creates a new VideoFrame from DataView-backed pixel data.
-
-Source shape:
-- `data`: ReScript [`DataView.t`](https://rescript-lang.org/docs/manual/api/stdlib/dataview) mapped to MDN [DataView](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/DataView).
-- `init`: local [`videoFrameBufferInit`](../dom#videoFrameBufferInit) values describing the buffer-backed frame layout.
+Creates a new `VideoFrame` from `DataView`-backed pixel data.
 
 ```res
 let frame =

@@ -6,10 +6,7 @@ type t<'r> = Types.readableStream<'r>
 /**
 `make()`
 
-The ReadableStream() constructor creates a new empty ReadableStream.
-
-Source shape:
-- no source input; this constructor creates a fresh MDN [ReadableStream](https://developer.mozilla.org/docs/Web/API/ReadableStream).
+Creates a new empty `ReadableStream`.
 
 ```res
 let stream: ReadableStream.t<string> = ReadableStream.make()
@@ -23,10 +20,7 @@ external make: unit => t<'t> = "ReadableStream"
 /**
 `fromUnderlyingSource(underlyingSource<'t>)`
 
-The ReadableStream() constructor creates a new ReadableStream from an underlying source definition.
-
-Source shape:
-- local [`underlyingSource<'t>`](../#underlyingSource) values accepted by MDN [ReadableStream()](https://developer.mozilla.org/docs/Web/API/ReadableStream/ReadableStream).
+Creates a new `ReadableStream` from an `underlyingSource`.
 
 ```res
 let stream = ReadableStream.fromUnderlyingSource(myUnderlyingSource)
@@ -40,11 +34,7 @@ external fromUnderlyingSource: Types.underlyingSource<'t> => t<'t> = "ReadableSt
 /**
 `fromUnderlyingSourceWithStrategy(~underlyingSource: underlyingSource<'t>, ~strategy: queuingStrategy<'t>)`
 
-The ReadableStream() constructor creates a new ReadableStream from an underlying source definition and a queuing strategy.
-
-Source shape:
-- local [`underlyingSource<'t>`](../#underlyingSource) values accepted by MDN [ReadableStream()](https://developer.mozilla.org/docs/Web/API/ReadableStream/ReadableStream).
-- local [`queuingStrategy<'t>`](../#queuingStrategy) values describing the stream queueing behavior.
+Creates a new `ReadableStream` from an `underlyingSource` and `queuingStrategy`.
 
 ```res
 let stream =

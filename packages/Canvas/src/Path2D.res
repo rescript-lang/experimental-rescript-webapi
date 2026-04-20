@@ -3,10 +3,7 @@ type domMatrix2DInit = WebApiDOM.Types.domMatrix2DInit
 /**
 `make()`
 
-The Path2D() constructor creates a new empty Path2D object.
-
-Source shape:
-- no source input; this constructor creates a fresh MDN [Path2D](https://developer.mozilla.org/docs/Web/API/Path2D).
+Creates a new empty `Path2D`.
 
 ```res
 let path = Path2D.make()
@@ -20,10 +17,7 @@ external make: unit => Types.path2D = "Path2D"
 /**
 `fromPath2D(path2D)`
 
-The Path2D() constructor creates a new Path2D object by copying another Path2D source.
-
-Source shape:
-- local [`Path2D.t`](#t) mapped to MDN [Path2D](https://developer.mozilla.org/docs/Web/API/Path2D).
+Creates a new `Path2D` by copying another `Path2D`.
 
 ```res
 let copiedPath = Path2D.fromPath2D(existingPath)
@@ -37,10 +31,7 @@ external fromPath2D: Types.path2D => Types.path2D = "Path2D"
 /**
 `fromString(string)`
 
-The Path2D() constructor creates a new Path2D object from SVG path data text.
-
-Source shape:
-- ReScript [string](https://rescript-lang.org/docs/manual/primitive-types/#string) containing SVG path data accepted by MDN [Path2D()](https://developer.mozilla.org/docs/Web/API/Path2D/Path2D).
+Creates a new `Path2D` from SVG path data text.
 
 ```res
 let path = Path2D.fromString("M0 0 L10 10")

@@ -1,12 +1,7 @@
 /**
 `fromString(~family: string, ~source: string, ~descriptors: fontFaceDescriptors=?)`
 
-The FontFace() constructor creates a new FontFace object from CSS source text.
-
-Source shape:
-- `family`: ReScript [string](https://rescript-lang.org/docs/manual/primitive-types/#string) for the font family name.
-- `source`: ReScript [string](https://rescript-lang.org/docs/manual/primitive-types/#string) containing CSS [`@font-face` `src`](https://developer.mozilla.org/docs/Web/CSS/@font-face/src) text.
-- `descriptors`: local [`fontFaceDescriptors`](../#fontFaceDescriptors) values for optional constructor descriptors.
+Creates a new `FontFace` from CSS source text.
 
 ```res
 let fontFace =
@@ -25,12 +20,7 @@ external fromString: (
 /**
 `fromDataView(~family: string, ~source: DataView.t, ~descriptors: fontFaceDescriptors=?)`
 
-The FontFace() constructor creates a new FontFace object from DataView-backed font data.
-
-Source shape:
-- `family`: ReScript [string](https://rescript-lang.org/docs/manual/primitive-types/#string) for the font family name.
-- `source`: ReScript [`DataView.t`](https://rescript-lang.org/docs/manual/api/stdlib/dataview) mapped to MDN [DataView](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/DataView).
-- `descriptors`: local [`fontFaceDescriptors`](../#fontFaceDescriptors) values for optional constructor descriptors.
+Creates a new `FontFace` from `DataView`-backed font data.
 
 ```res
 let fontFace =
@@ -49,12 +39,7 @@ external fromDataView: (
 /**
 `fromArrayBuffer(~family: string, ~source: ArrayBuffer.t, ~descriptors: fontFaceDescriptors=?)`
 
-The FontFace() constructor creates a new FontFace object from ArrayBuffer-backed font data.
-
-Source shape:
-- `family`: ReScript [string](https://rescript-lang.org/docs/manual/primitive-types/#string) for the font family name.
-- `source`: ReScript [`ArrayBuffer.t`](https://rescript-lang.org/docs/manual/api/stdlib/arraybuffer) mapped to MDN [ArrayBuffer](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/ArrayBuffer).
-- `descriptors`: local [`fontFaceDescriptors`](../#fontFaceDescriptors) values for optional constructor descriptors.
+Creates a new `FontFace` from `ArrayBuffer`-backed font data.
 
 ```res
 let fontFace =

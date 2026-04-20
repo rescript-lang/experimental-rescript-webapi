@@ -21,8 +21,7 @@ It keeps the user inside the IDE and avoids context switching.
 The documentation for each binding should roughly follow this structure:
 
 - signature
-- short description (tip: check MDN for inspiration)
-- `Source shape:` block with links for the overload-specific input types
+- short description focused on the ReScript side of the API
 - example usage
 - link to the MDN documentation
 
@@ -46,18 +45,15 @@ external fetch: (window, string, ~init: requestInit=?)
   => promise<response> = "fetch"
 ````
 
-Constructor overloads should use the same structure, but make the differentiating input shape explicit.
-Link ReScript stdlib types such as `string`, `array<'a>`, `ArrayBuffer.t`, and `DataView.t`, and link project-local records or aliases when the constructor takes one of those shapes.
+Constructor overloads should use the same structure, but keep the description concise and let the signature and example show the input shape.
+Use backticks for specific types and names.
 If a constructor variant has a single source input, show it as a direct unlabeled argument in both the signature and example.
 
 ````ReScript
 /*
 `fromArray(array<float>)`
 
-The DOMMatrix() constructor creates a new DOMMatrix from an array of matrix component values.
-
-Source shape:
-- ReScript [array](https://rescript-lang.org/docs/manual/api/stdlib/array) of numeric values accepted by MDN [DOMMatrix()](https://developer.mozilla.org/docs/Web/API/DOMMatrix/DOMMatrix).
+Creates a new `DOMMatrix` from an array of matrix component values.
 
 ```res
 let matrix = DOMMatrix.fromArray([1., 0., 0., 1., 0., 0.])

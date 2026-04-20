@@ -3,10 +3,7 @@ type t = Types.mediaStream = private {...Types.mediaStream}
 /**
 `make()`
 
-The MediaStream() constructor creates a new empty MediaStream.
-
-Source shape:
-- no source input; this constructor creates a fresh MDN [MediaStream](https://developer.mozilla.org/docs/Web/API/MediaStream).
+Creates a new empty `MediaStream`.
 
 ```res
 let stream = MediaStream.make()
@@ -20,10 +17,7 @@ external make: unit => t = "MediaStream"
 /**
 `fromMediaStream(mediaStream)`
 
-The MediaStream() constructor creates a new MediaStream by copying another MediaStream source.
-
-Source shape:
-- local [`MediaStream.t`](#t) mapped to MDN [MediaStream](https://developer.mozilla.org/docs/Web/API/MediaStream).
+Creates a new `MediaStream` by copying another `MediaStream`.
 
 ```res
 let copiedStream = MediaStream.fromMediaStream(existingStream)
@@ -37,10 +31,7 @@ external fromMediaStream: t => t = "MediaStream"
 /**
 `fromTracks(array<MediaStreamTrack.t>)`
 
-The MediaStream() constructor creates a new MediaStream from an array of MediaStreamTrack values.
-
-Source shape:
-- ReScript [array](https://rescript-lang.org/docs/manual/api/stdlib/array) of local [`MediaStreamTrack.t`](./media-stream-track#t) values mapped to MDN [MediaStreamTrack](https://developer.mozilla.org/docs/Web/API/MediaStreamTrack).
+Creates a new `MediaStream` from an array of `MediaStreamTrack.t` values.
 
 ```res
 let stream = MediaStream.fromTracks([audioTrack, videoTrack])

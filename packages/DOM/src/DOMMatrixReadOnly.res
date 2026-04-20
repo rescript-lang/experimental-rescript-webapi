@@ -1,10 +1,7 @@
 /**
 `make()`
 
-The DOMMatrixReadOnly() constructor creates a new identity DOMMatrixReadOnly value.
-
-Source shape:
-- no source input; this constructor creates a fresh MDN [DOMMatrixReadOnly](https://developer.mozilla.org/docs/Web/API/DOMMatrixReadOnly).
+Creates a new identity `DOMMatrixReadOnly`.
 
 ```res
 let matrix = DOMMatrixReadOnly.make()
@@ -18,10 +15,7 @@ external make: unit => Types.domMatrixReadOnly = "DOMMatrixReadOnly"
 /**
 `fromString(string)`
 
-The DOMMatrixReadOnly() constructor creates a new DOMMatrixReadOnly value from a transform string.
-
-Source shape:
-- ReScript [string](https://rescript-lang.org/docs/manual/primitive-types/#string) accepted by MDN [DOMMatrixReadOnly()](https://developer.mozilla.org/docs/Web/API/DOMMatrixReadOnly/DOMMatrixReadOnly).
+Creates a new `DOMMatrixReadOnly` from a transform string.
 
 ```res
 let matrix = DOMMatrixReadOnly.fromString("matrix(1, 0, 0, 1, 0, 0)")
@@ -35,10 +29,7 @@ external fromString: string => Types.domMatrixReadOnly = "DOMMatrixReadOnly"
 /**
 `fromArray(array<float>)`
 
-The DOMMatrixReadOnly() constructor creates a new DOMMatrixReadOnly value from an array of matrix component values.
-
-Source shape:
-- ReScript [array](https://rescript-lang.org/docs/manual/api/stdlib/array) of numeric values accepted by MDN [DOMMatrixReadOnly()](https://developer.mozilla.org/docs/Web/API/DOMMatrixReadOnly/DOMMatrixReadOnly).
+Creates a new `DOMMatrixReadOnly` from an array of matrix component values.
 
 ```res
 let matrix = DOMMatrixReadOnly.fromArray([1., 0., 0., 1., 0., 0.])
