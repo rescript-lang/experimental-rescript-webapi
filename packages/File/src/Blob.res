@@ -1,15 +1,12 @@
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Blob)
 */
-type t = Types.blob
+type t = Types.blob = private {...Types.blob}
 type blobPart = Types.blobPart
 type blobPropertyBag = Types.blobPropertyBag
 
 @new
-external make: (
-  ~blobParts: array<blobPart>=?,
-  ~options: blobPropertyBag=?,
-) => t = "Blob"
+external make: (~blobParts: array<blobPart>=?, ~options: blobPropertyBag=?) => t = "Blob"
 
 module Impl = (
   T: {
@@ -27,7 +24,7 @@ module Impl = (
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Blob/stream)
 */
   @send
-  external stream: T.t => WebApiFile.ReadableStream.t<array<int>> = "stream"
+  external stream: T.t => ReadableStream.t<array<int>> = "stream"
 
   /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Blob/text)

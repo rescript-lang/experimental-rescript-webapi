@@ -49,4 +49,3 @@ let (auth, p256dh) = switch pushSubscriptionJSON.keys {
 | Some(keys) => (keys.auth, keys.p256dh)
 }
 Console.log(`For subscription ${subscription.endpoint}, auth is ${auth} and p256dh is ${p256dh}`)
-

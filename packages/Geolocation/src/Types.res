@@ -4,13 +4,13 @@ An object able to programmatically obtain the position of the device. It gives W
 [See WebApiGeolocation on MDN](https://developer.mozilla.org/docs/Web/API/WebApiGeolocation)
 */
 @editor.completeFrom(WebApiGeolocation)
-type geolocation = {}
+type geolocation = private {}
 
 /**
 [See GeolocationCoordinates on MDN](https://developer.mozilla.org/docs/Web/API/GeolocationCoordinates)
 */
 @editor.completeFrom(GeolocationCoordinates)
-type geolocationCoordinates = {
+type geolocationCoordinates = private {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/GeolocationCoordinates/accuracy)
     */
@@ -45,7 +45,7 @@ type geolocationCoordinates = {
 [See GeolocationPosition on MDN](https://developer.mozilla.org/docs/Web/API/GeolocationPosition)
 */
 @editor.completeFrom(GeolocationPosition)
-type geolocationPosition = {
+type geolocationPosition = private {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/GeolocationPosition/coords)
     */

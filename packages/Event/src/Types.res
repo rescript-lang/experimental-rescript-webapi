@@ -116,14 +116,14 @@ EventTarget is a WebApiDOM interface implemented by objects that can receive eve
 [See EventTarget on MDN](https://developer.mozilla.org/docs/Web/API/EventTarget)
 */
 @editor.completeFrom(EventTarget)
-type eventTarget = WebApiPrelude.Types.eventTarget = {...WebApiPrelude.Types.eventTarget}
+type eventTarget = WebApiPrelude.Types.eventTarget = private {...WebApiPrelude.Types.eventTarget}
 
 /**
 An event which takes place in the WebApiDOM.
 [See WebApiEvent on MDN](https://developer.mozilla.org/docs/Web/API/WebApiEvent)
 */
 @editor.completeFrom(WebApiEvent)
-type event = {
+type event = private {
   /**
     Returns the type of event, e.g. "click", "hashchange", or "submit".
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/WebApiEvent/type)
@@ -182,7 +182,7 @@ A controller object that allows you to abort one or more WebApiDOM requests as a
 [See AbortController on MDN](https://developer.mozilla.org/docs/Web/API/AbortController)
 */
 @editor.completeFrom(AbortController)
-type rec abortController = {
+type rec abortController = private {
   /**
     Returns the AbortSignal object associated with this object.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/AbortController/signal)
@@ -194,7 +194,7 @@ type rec abortController = {
 A signal object that allows you to communicate with a WebApiDOM request (such as a WebApiFetch) and abort it if required via an AbortController object.
 [See AbortSignal on MDN](https://developer.mozilla.org/docs/Web/API/AbortSignal)
 */
-@editor.completeFrom(AbortSignal) and abortSignal = {
+@editor.completeFrom(AbortSignal) and abortSignal = private {
   ...eventTarget,
   /**
     Returns true if this AbortSignal's AbortController has signaled to abort, and false otherwise.
@@ -227,6 +227,6 @@ The ExtendableEvent interface extends the lifetime of the install and activate e
 [See ExtendableEvent on MDN](https://developer.mozilla.org/docs/Web/API/ExtendableEvent)
  */
 @editor.completeFrom(ExtendableEvent)
-type extendableEvent = {
+type extendableEvent = private {
   ...event,
 }

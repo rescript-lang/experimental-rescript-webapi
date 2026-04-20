@@ -8,7 +8,7 @@ provides a way to asynchronously observe changes in the intersection of a target
 [See WebApiIntersectionObserver on MDN](https://developer.mozilla.org/docs/Web/API/WebApiIntersectionObserver)
 */
 @editor.completeFrom(WebApiIntersectionObserver)
-type intersectionObserver = {
+type intersectionObserver = private {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/WebApiIntersectionObserver/root)
     */

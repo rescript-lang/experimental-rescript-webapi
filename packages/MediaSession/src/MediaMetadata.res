@@ -1,4 +1,4 @@
-type t = Types.mediaMetadata = {...Types.mediaMetadata}
+type t = Types.mediaMetadata = private {...Types.mediaMetadata}
 type mediaMetadataInit = Types.mediaMetadataInit = {...Types.mediaMetadataInit}
 
 /**

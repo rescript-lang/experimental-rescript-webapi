@@ -14,7 +14,7 @@ Provides access to connected media input devices like cameras and microphones, a
 [See MediaDevices on MDN](https://developer.mozilla.org/docs/Web/API/MediaDevices)
 */
 @editor.completeFrom(MediaDevices)
-type mediaDevices = {
+type mediaDevices = private {
   ...WebApiEvent.Types.eventTarget,
 }
 
@@ -23,7 +23,7 @@ The MediaDevicesInfo interface contains information that describes a single medi
 [See MediaDeviceInfo on MDN](https://developer.mozilla.org/docs/Web/API/MediaDeviceInfo)
 */
 @editor.completeFrom(MediaDeviceInfo)
-type mediaDeviceInfo = {
+type mediaDeviceInfo = private {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/MediaDeviceInfo/deviceId)
     */
@@ -47,7 +47,7 @@ A stream of media content. A stream consists of several tracks such as video or
 [See MediaStream on MDN](https://developer.mozilla.org/docs/Web/API/MediaStream)
 */
 @editor.completeFrom(MediaStream)
-type mediaStream = {
+type mediaStream = private {
   ...WebApiEvent.Types.eventTarget,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/MediaStream/id)
@@ -62,6 +62,7 @@ type mediaStream = {
 /**
 A single media track within a stream; typically, these are audio or video tracks, but other track types may exist as well.
 [See MediaStreamTrack on MDN](https://developer.mozilla.org/docs/Web/API/MediaStreamTrack)
+TODO: mark as private once mutating fields of private records is allowed
 */
 @editor.completeFrom(MediaStreamTrack)
 type mediaStreamTrack = {

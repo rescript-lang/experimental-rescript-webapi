@@ -1,7 +1,7 @@
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Response)
 */
-type t = Types.response
+type t = Types.response = private {...Types.response}
 type responseInit = Types.responseInit
 type bodyInit = BodyInit.t
 type headersInit = HeadersInit.t
@@ -22,15 +22,13 @@ external fromString: (string, ~init: responseInit=?) => t = "Response"
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Response)
 */
 @new
-external fromArrayBuffer: (ArrayBuffer.t, ~init: responseInit=?) => t =
-  "Response"
+external fromArrayBuffer: (ArrayBuffer.t, ~init: responseInit=?) => t = "Response"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Response)
 */
 @new
-external fromTypedArray: (TypedArray.t<'t>, ~init: responseInit=?) => t =
-  "Response"
+external fromTypedArray: (TypedArray.t<'t>, ~init: responseInit=?) => t = "Response"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Response)
@@ -54,10 +52,7 @@ external fromFile: (WebApiFile.File.t, ~init: responseInit=?) => t = "Response"
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Response)
 */
 @new
-external fromURLSearchParams: (
-  WebApiURL.URLSearchParams.t,
-  ~init: responseInit=?,
-) => t = "Response"
+external fromURLSearchParams: (WebApiURL.URLSearchParams.t, ~init: responseInit=?) => t = "Response"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Response)
@@ -69,10 +64,8 @@ external fromFormData: (FormData.t, ~init: responseInit=?) => t = "Response"
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Response)
 */
 @new
-external fromReadableStream: (
-  WebApiFile.ReadableStream.t<'t>,
-  ~init: responseInit=?,
-) => t = "Response"
+external fromReadableStream: (WebApiFile.ReadableStream.t<'t>, ~init: responseInit=?) => t =
+  "Response"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Request/arrayBuffer)

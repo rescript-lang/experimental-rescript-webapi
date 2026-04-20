@@ -41,7 +41,7 @@ EventTarget is a WebApiDOM interface implemented by objects that can receive eve
 [See EventTarget on MDN](https://developer.mozilla.org/docs/Web/API/EventTarget)
 */
 @editor.completeFrom(WebApiEvent.EventTarget)
-type eventTarget = {}
+type eventTarget = private {}
 
 type fontFaceLoadStatus =
   | @as("error") Error
@@ -57,7 +57,7 @@ type fontFaceSetLoadStatus =
 [See FontFaceSet on MDN](https://developer.mozilla.org/docs/Web/API/FontFaceSet)
 */
 @editor.completeFrom(WebApiCSSFontLoading.FontFaceSet)
-type rec fontFaceSet = {
+type rec fontFaceSet = private {
   ...eventTarget,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/FontFaceSet/ready)
@@ -73,7 +73,7 @@ type rec fontFaceSet = {
 [See FileSystemEntry on MDN](https://developer.mozilla.org/docs/Web/API/FileSystemEntry)
 */
 @editor.completeFrom(WebApiFileAndDirectoryEntries.FileSystemEntry)
-type rec fileSystemEntry = {
+type rec fileSystemEntry = private {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/FileSystemEntry/isFile)
     */
@@ -99,7 +99,7 @@ type rec fileSystemEntry = {
 /**
 [See FileSystemDirectoryEntry on MDN](https://developer.mozilla.org/docs/Web/API/FileSystemDirectoryEntry)
 */
-@editor.completeFrom(FileSystemDirectoryEntry) and fileSystemDirectoryEntry = {
+@editor.completeFrom(FileSystemDirectoryEntry) and fileSystemDirectoryEntry = private {
   // Base properties from FileSystemEntry
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/FileSystemEntry/isFile)
@@ -143,7 +143,7 @@ A file-like object of immutable, raw data. Blobs represent data that isn't neces
 [See Blob on MDN](https://developer.mozilla.org/docs/Web/API/Blob)
 */
 @editor.completeFrom(WebApiDOM.DOM.File.Blob)
-type blob = {
+type blob = private {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Blob/size)
     */
@@ -160,7 +160,7 @@ Provides information about files and allows JavaScript in a web page to access t
 [See WebApiFile on MDN](https://developer.mozilla.org/docs/Web/API/WebApiFile)
 */
 @editor.completeFrom(WebApiFile.File)
-type file = {
+type file = private {
   ...blob,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/WebApiFile/name)
@@ -348,6 +348,7 @@ type shareData = {
 /**
 The location (WebApiURL) of the object it is linked to. Changes done on it are reflected on the object it relates to. Both the Document and Window interface have such a linked Location, accessible via Document.location and Window.location respectively.
 [See Location on MDN](https://developer.mozilla.org/docs/Web/API/Location)
+TODO: mark as private once mutating fields of private records is allowed
 */
 @editor.completeFrom(WebApiDOM.Location)
 type location = {
@@ -440,6 +441,7 @@ The state and the identity of the user agent. It allows scripts to query it and 
 @editor.completeFrom(WebApiDOM.Navigator)
 type navigator
 
+// TODO: mark as private once mutating fields of private records is allowed
 @editor.completeFrom(WebApiDOM.DOMTokenList)
 type domTokenList = {
   /**
@@ -461,7 +463,7 @@ A collection of Attr objects. Objects inside a NamedNodeMap are not in any parti
 [See NamedNodeMap on MDN](https://developer.mozilla.org/docs/Web/API/NamedNodeMap)
 */
 @editor.completeFrom(WebApiDOM.DOM.NamedNodeMap)
-type namedNodeMap = {
+type namedNodeMap = private {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/NamedNodeMap/length)
     */
@@ -477,7 +479,7 @@ type fragmentDirective = {}
 [See CustomElementRegistry on MDN](https://developer.mozilla.org/docs/Web/API/CustomElementRegistry)
 */
 @editor.completeFrom(WebApiDOM.DOM.CustomElementRegistry)
-type customElementRegistry = {}
+type customElementRegistry = private {}
 
 /**
 [See BarProp on MDN](https://developer.mozilla.org/docs/Web/API/BarProp)
@@ -493,7 +495,7 @@ type barProp = {
 [See ScreenOrientation on MDN](https://developer.mozilla.org/docs/Web/API/ScreenOrientation)
 */
 @editor.completeFrom(WebApiDOM.DOM.ScreenOrientation)
-type screenOrientation = {
+type screenOrientation = private {
   ...eventTarget,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/ScreenOrientation/type)
@@ -554,7 +556,7 @@ type offscreenRenderingContext = unknown
 [See AnimationTimeline on MDN](https://developer.mozilla.org/docs/Web/API/AnimationTimeline)
 */
 @editor.completeFrom(WebApiDOM.DOM.Animation)
-type rec animationTimeline = {
+type rec animationTimeline = private {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/AnimationTimeline/currentTime)
     */
@@ -564,7 +566,7 @@ type rec animationTimeline = {
 /**
 [See DocumentTimeline on MDN](https://developer.mozilla.org/docs/Web/API/DocumentTimeline)
 */
-@editor.completeFrom(WebApiDOM.DOM.DocumentTimeline) and documentTimeline = {
+@editor.completeFrom(WebApiDOM.DOM.DocumentTimeline) and documentTimeline = private {
   // Base properties from AnimationTimeline
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/AnimationTimeline/currentTime)
@@ -575,6 +577,7 @@ type rec animationTimeline = {
 
 /**
 [See MediaList on MDN](https://developer.mozilla.org/docs/Web/API/MediaList)
+TODO: mark as private once mutating fields of private records is allowed
 */
 @editor.completeFrom(WebApiDOM.DOM.MediaList)
 type mediaList = {
@@ -592,7 +595,7 @@ type mediaList = {
 [See StylePropertyMapReadOnly on MDN](https://developer.mozilla.org/docs/Web/API/StylePropertyMapReadOnly)
 */
 @editor.completeFrom(WebApiDOM.DOM.StylePropertyMapReadOnly)
-type stylePropertyMapReadOnly = {
+type stylePropertyMapReadOnly = private {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/StylePropertyMapReadOnly/size)
     */
@@ -603,7 +606,7 @@ type stylePropertyMapReadOnly = {
 [See StylePropertyMap on MDN](https://developer.mozilla.org/docs/Web/API/StylePropertyMap)
 */
 @editor.completeFrom(WebApiDOM.DOM.StylePropertyMap)
-type stylePropertyMap = {
+type stylePropertyMap = private {
   ...stylePropertyMapReadOnly,
 }
 
@@ -618,7 +621,7 @@ A list of StyleSheet.
 [See StyleSheetList on MDN](https://developer.mozilla.org/docs/Web/API/StyleSheetList)
 */
 @editor.completeFrom(WebApiDOM.DOM.StyleSheetList)
-type rec styleSheetList = {
+type rec styleSheetList = private {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/StyleSheetList/length)
     */
@@ -664,6 +667,7 @@ and styleSheet = {
 /**
 A single CSS style sheet. It inherits properties and methods from its parent, StyleSheet.
 [See CSSStyleSheet on MDN](https://developer.mozilla.org/docs/Web/API/CSSStyleSheet)
+TODO: mark as private once mutating fields of private records is allowed
 */
 @editor.completeFrom(WebApiDOM.DOM.CSSStyleSheet) and cssStyleSheet = {
   // Base properties from StyleSheet
@@ -731,7 +735,7 @@ and cssRule = {
 A CSSRuleList is an (indirect-modify only) array-like object containing an ordered collection of CSSRule objects.
 [See CSSRuleList on MDN](https://developer.mozilla.org/docs/Web/API/CSSRuleList)
 */
-@editor.completeFrom(WebApiDOM.DOM.CSSRuleList) and cssRuleList = {
+@editor.completeFrom(WebApiDOM.DOM.CSSRuleList) and cssRuleList = private {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CSSRuleList/length)
     */
@@ -741,6 +745,7 @@ A CSSRuleList is an (indirect-modify only) array-like object containing an order
 /**
 An object that is a CSS declaration block, and exposes style information and various style-related methods and properties.
 [See CSSStyleDeclaration on MDN](https://developer.mozilla.org/docs/Web/API/CSSStyleDeclaration)
+TODO: mark as private once mutating fields of private records is allowed
 */
 @editor.completeFrom(WebApiDOM.DOM.CSSStyleDeclaration) and cssStyleDeclaration = {
   /**
@@ -2448,6 +2453,7 @@ An object that is a CSS declaration block, and exposes style information and var
 /**
 Node is an interface from which a number of WebApiDOM API object types inherit. It allows those types to be treated similarly; for example, inheriting the same set of methods, or being tested in the same way.
 [See Node on MDN](https://developer.mozilla.org/docs/Web/API/Node)
+TODO: mark as private once mutating fields of private records is allowed
 */
 @editor.completeFrom(WebApiDOM.DOM.Node)
 type rec node = {
@@ -2526,7 +2532,7 @@ type rec node = {
 NodeList objects are collections of nodes, usually returned by properties such as Node.childNodes and methods such as document.querySelectorAll().
 [See NodeList on MDN](https://developer.mozilla.org/docs/Web/API/NodeList)
 */
-@editor.completeFrom(WebApiDOM.DOM.NodeList) and nodeList<'tNode> = {
+@editor.completeFrom(WebApiDOM.DOM.NodeList) and nodeList<'tNode> = private {
   /**
     Returns the number of nodes in the collection.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/NodeList/length)
@@ -2537,6 +2543,7 @@ NodeList objects are collections of nodes, usually returned by properties such a
 /**
 Element is the most general base class from which all objects in a Document inherit. It only has methods and properties common to all kinds of elements. More specific classes inherit from Element.
 [See Element on MDN](https://developer.mozilla.org/docs/Web/API/Element)
+TODO: mark as private once mutating fields of private records is allowed
 */
 @editor.completeFrom(WebApiDOM.DOM.Element) and element = {
   // Base properties from Node
@@ -2908,6 +2915,7 @@ Element is the most general base class from which all objects in a Document inhe
 
 /**
 [See ShadowRoot on MDN](https://developer.mozilla.org/docs/Web/API/ShadowRoot)
+TODO: mark as private once mutating fields of private records is allowed
 */
 @editor.completeFrom(WebApiDOM.DOM.ShadowRoot) and shadowRoot = {
   // Base properties from DocumentFragment
@@ -3049,7 +3057,7 @@ Similarly, when the focused element is in a different node tree than documentOrS
 A generic collection (array-like object similar to arguments) of elements (in document order) and offers methods and properties for selecting from the list.
 [See HTMLCollection on MDN](https://developer.mozilla.org/docs/Web/API/HTMLCollection)
 */
-@editor.completeFrom(WebApiDOM.DOM.HTMLCollection) and htmlCollection<'t> = {
+@editor.completeFrom(WebApiDOM.DOM.HTMLCollection) and htmlCollection<'t> = private {
   /**
     Sets or retrieves the number of objects in a collection.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLCollection/length)
@@ -3061,7 +3069,9 @@ A generic collection (array-like object similar to arguments) of elements (in do
 A collection of HTML form control elements.
 [See HTMLFormControlsCollection on MDN](https://developer.mozilla.org/docs/Web/API/HTMLFormControlsCollection)
 */
-@editor.completeFrom(WebApiDOM.DOM.HTMLFormControlsCollection) and htmlFormControlsCollection = {
+@editor.completeFrom(
+  WebApiDOM.DOM.HTMLFormControlsCollection
+) and htmlFormControlsCollection = private {
   // Base properties from HTMLCollection
   /**
     Sets or retrieves the number of objects in a collection.
@@ -3074,6 +3084,7 @@ A collection of HTML form control elements.
 /**
 Any HTML element. Some elements directly implement this interface, while others implement it via an interface that inherits it.
 [See HTMLElement on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement)
+TODO: mark as private once mutating fields of private records is allowed
 */
 @editor.completeFrom(WebApiDOM.DOM.HTMLElement) and htmlElement = {
   // Base properties from Element
@@ -3368,6 +3379,7 @@ Any HTML element. Some elements directly implement this interface, while others 
 /**
 Contains the descriptive information, or metadata, for a document. This object inherits all of the properties and methods described in the HTMLElement interface.
 [See HTMLHeadElement on MDN](https://developer.mozilla.org/docs/Web/API/HTMLHeadElement)
+TODO: mark as private once mutating fields of private records is allowed
 */
 @editor.completeFrom(WebApiDOM.DOM.HTMLHeadElement) and htmlHeadElement = {
   // Base properties from HTMLElement
@@ -3624,6 +3636,7 @@ Contains the descriptive information, or metadata, for a document. This object i
 /**
 A <form> element in the WebApiDOM; it allows access to and in some cases modification of aspects of the form, as well as access to its component elements.
 [See HTMLFormElement on MDN](https://developer.mozilla.org/docs/Web/API/HTMLFormElement)
+TODO: mark as private once mutating fields of private records is allowed
 */
 @editor.completeFrom(WebApiDOM.DOM.HTMLFormElement) and htmlFormElement = {
   // Base properties from HTMLElement
@@ -3931,6 +3944,7 @@ A <form> element in the WebApiDOM; it allows access to and in some cases modific
 /**
 Provides special properties and methods for manipulating <img> elements.
 [See HTMLImageElement on MDN](https://developer.mozilla.org/docs/Web/API/HTMLImageElement)
+TODO: mark as private once mutating fields of private records is allowed
 */
 @editor.completeFrom(WebApiDOM.DOM.HTMLImageElement) and htmlImageElement = {
   // Base properties from HTMLElement
@@ -4274,6 +4288,7 @@ Provides special properties and methods for manipulating <img> elements.
 /**
 Provides special properties (beyond the regular HTMLElement interface it also has available to it by inheritance) for manipulating <embed> elements.
 [See HTMLEmbedElement on MDN](https://developer.mozilla.org/docs/Web/API/HTMLEmbedElement)
+TODO: mark as private once mutating fields of private records is allowed
 */
 @editor.completeFrom(WebApiDOM.DOM.HTMLEmbedElement) and htmlEmbedElement = {
   // Base properties from HTMLElement
@@ -4546,6 +4561,7 @@ Provides special properties (beyond the regular HTMLElement interface it also ha
 /**
 Hyperlink elements and provides special properties and methods (beyond those of the regular HTMLElement object interface that they inherit from) for manipulating the layout and presentation of such elements.
 [See HTMLAnchorElement on MDN](https://developer.mozilla.org/docs/Web/API/HTMLAnchorElement)
+TODO: mark as private once mutating fields of private records is allowed
 */
 @editor.completeFrom(WebApiDOM.DOM.HTMLAnchorElement) and htmlAnchorElement = {
   // Base properties from HTMLElement
@@ -4919,6 +4935,7 @@ Can be set, to change the WebApiURL's fragment (ignores leading "#").
 /**
 Provides special properties and methods (beyond those of the regular object HTMLElement interface it also has available to it by inheritance) for manipulating the layout and presentation of <area> elements.
 [See HTMLAreaElement on MDN](https://developer.mozilla.org/docs/Web/API/HTMLAreaElement)
+TODO: mark as private once mutating fields of private records is allowed
 */
 @editor.completeFrom(WebApiDOM.DOM.HTMLAreaElement) and htmlAreaElement = {
   // Base properties from HTMLElement
@@ -5272,6 +5289,7 @@ Can be set, to change the WebApiURL's fragment (ignores leading "#").
 /**
 HTML <script> elements expose the HTMLScriptElement interface, which provides special properties and methods for manipulating the behavior and execution of <script> elements (beyond the inherited HTMLElement interface).
 [See HTMLScriptElement on MDN](https://developer.mozilla.org/docs/Web/API/HTMLScriptElement)
+TODO: mark as private once mutating fields of private records is allowed
 */
 @editor.completeFrom(WebApiDOM.DOM.HTMLScriptElement) and htmlScriptElement = {
   // Base properties from HTMLElement
@@ -5575,7 +5593,7 @@ HTML <script> elements expose the HTMLScriptElement interface, which provides sp
 An object providing methods which are not dependent on any particular document. Such an object is returned by the Document.implementation property.
 [See DOMImplementation on MDN](https://developer.mozilla.org/docs/Web/API/DOMImplementation)
 */
-@editor.completeFrom(WebApiDOM.DOM.DOMImplementation) and domImplementation = {}
+@editor.completeFrom(WebApiDOM.DOM.DOMImplementation) and domImplementation = private {}
 
 /**
 A Node containing a doctype.
@@ -5670,6 +5688,7 @@ and documentType = {
 /**
 Any web page loaded in the browser and serves as an entry point into the web page's content, which is the WebApiDOM tree.
 [See Document on MDN](https://developer.mozilla.org/docs/Web/API/Document)
+TODO: mark as private once mutating fields of private records is allowed
 */
 @editor.completeFrom(WebApiDOM.DOM.Document) and document = {
   // Base properties from Node
@@ -6119,6 +6138,7 @@ and attr = {
 /**
 The CharacterData abstract interface represents a Node object that contains characters. This is an abstract interface, meaning there aren't any object of type CharacterData: it is implemented by other interfaces, like Text, Comment, or ProcessingInstruction which aren't abstract.
 [See CharacterData on MDN](https://developer.mozilla.org/docs/Web/API/CharacterData)
+TODO: mark as private once mutating fields of private records is allowed
 */
 @editor.completeFrom(WebApiDOM.DOM.CharacterData) and characterData = {
   // Base properties from Node
@@ -6215,6 +6235,7 @@ The CharacterData abstract interface represents a Node object that contains char
 /**
 A minimal document object that has no parent. It is used as a lightweight version of Document that stores a segment of a document structure comprised of nodes just like a standard document. The key difference is that because the document fragment isn't part of the active document tree structure, changes made to the fragment don't affect the document, cause reflow, or incur any performance impact that can occur when changes are made.
 [See DocumentFragment on MDN](https://developer.mozilla.org/docs/Web/API/DocumentFragment)
+TODO: mark as private once mutating fields of private records is allowed
 */
 @editor.completeFrom(WebApiDOM.DOM.DocumentFragment) and documentFragment = {
   // Base properties from Node
@@ -6311,6 +6332,7 @@ A minimal document object that has no parent. It is used as a lightweight versio
 
 /**
 [See HTMLSlotElement on MDN](https://developer.mozilla.org/docs/Web/API/HTMLSlotElement)
+TODO: mark as private once mutating fields of private records is allowed
 */
 @editor.completeFrom(WebApiDOM.DOM.HTMLSlotElement) and htmlSlotElement = {
   // Base properties from HTMLElement
@@ -6573,7 +6595,7 @@ A minimal document object that has no parent. It is used as a lightweight versio
 [See DOMRectReadOnly on MDN](https://developer.mozilla.org/docs/Web/API/DOMRectReadOnly)
 */
 @editor.completeFrom(WebApiDOM.DOM.DOMRectReadOnly)
-type domRectReadOnly = {
+type domRectReadOnly = private {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/DOMRectReadOnly/x)
     */
@@ -6612,11 +6634,11 @@ type domRectReadOnly = {
 [See DOMRect on MDN](https://developer.mozilla.org/docs/Web/API/DOMRect)
 */
 @editor.completeFrom(WebApiDOM.DOM.DOMRect)
-type domRect = {
+type domRect = private {
   ...domRectReadOnly,
 }
 
-@editor.completeFrom(WebApiDOM.DOM.DOMRectList) type domRectList = {}
+@editor.completeFrom(WebApiDOM.DOM.DOMRectList) type domRectList = private {}
 
 /**
 The validity states that an element can be in, with respect to constraint validation. Together, they help explain why an element's value fails to validate, if it's not valid.
@@ -6676,6 +6698,7 @@ type customStateSet = {}
 
 /**
 [See ElementInternals on MDN](https://developer.mozilla.org/docs/Web/API/ElementInternals)
+TODO: mark as private once mutating fields of private records is allowed
 */
 @editor.completeFrom(WebApiDOM.DOM.ElementInternals)
 type elementInternals = {
@@ -6892,7 +6915,7 @@ type xmlDocument = {
 [See Text on MDN](https://developer.mozilla.org/docs/Web/API/Text)
 */
 @editor.completeFrom(WebApiDOM.DOM.Text)
-type text = {
+type text = private {
   ...characterData,
   /**
     Returns the combined data of all direct Text node siblings.
@@ -6918,7 +6941,7 @@ Textual notations within markup; although it is generally not visually shown, su
 [See Comment on MDN](https://developer.mozilla.org/docs/Web/API/Comment)
 */
 @editor.completeFrom(WebApiDOM.DOM.Comment)
-type comment = {
+type comment = private {
   ...characterData,
 }
 
@@ -6974,7 +6997,7 @@ A fragment of a document that can contain nodes and parts of text nodes.
 [See Range on MDN](https://developer.mozilla.org/docs/Web/API/Range)
 */
 @editor.completeFrom(WebApiDOM.DOM.Range)
-type range = {
+type range = private {
   ...abstractRange,
   /**
     Returns the node, furthest away from the document, that is an ancestor of both range's start node and end node.
@@ -6990,14 +7013,14 @@ type staticRange = {
   ...abstractRange,
 }
 
-@editor.completeFrom(WebApiDOM.DOM.NodeFilter) type nodeFilter = {}
+@editor.completeFrom(WebApiDOM.DOM.NodeFilter) type nodeFilter = private {}
 
 /**
 An iterator over the members of a list of the nodes in a subtree of the WebApiDOM. The nodes will be returned in document order.
 [See NodeIterator on MDN](https://developer.mozilla.org/docs/Web/API/NodeIterator)
 */
 @editor.completeFrom(WebApiDOM.DOM.NodeIterator)
-type nodeIterator = {
+type nodeIterator = private {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/NodeIterator/root)
     */
@@ -7023,6 +7046,7 @@ type nodeIterator = {
 /**
 The nodes of a document subtree and a position within them.
 [See TreeWalker on MDN](https://developer.mozilla.org/docs/Web/API/TreeWalker)
+TODO: mark as private once mutating fields of private records is allowed
 */
 @editor.completeFrom(WebApiDOM.DOM.TreeWalker)
 type treeWalker = {
@@ -7048,14 +7072,14 @@ type treeWalker = {
 [See CaretPosition on MDN](https://developer.mozilla.org/docs/Web/API/CaretPosition)
 */
 @editor.completeFrom(WebApiDOM.DOM.CaretPosition)
-type caretPosition = {}
+type caretPosition = private {}
 
 /**
 A Selection object represents the range of text selected by the user or the current position of the caret. To obtain a Selection object for examination or modification, call Window.getSelection().
 [See Selection on MDN](https://developer.mozilla.org/docs/Web/API/Selection)
 */
 @editor.completeFrom(WebApiDOM.DOM.Selection)
-type selection = {
+type selection = private {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Selection/anchorNode)
     */
@@ -7096,7 +7120,7 @@ Stores information on a media query applied to a document, and handles sending n
 [See MediaQueryList on MDN](https://developer.mozilla.org/docs/Web/API/MediaQueryList)
 */
 @editor.completeFrom(WebApiDOM.DOM.MediaQueryList)
-type mediaQueryList = {
+type mediaQueryList = private {
   ...eventTarget,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/MediaQueryList/media)
@@ -7112,7 +7136,7 @@ type mediaQueryList = {
 [See IdleDeadline on MDN](https://developer.mozilla.org/docs/Web/API/IdleDeadline)
 */
 @editor.completeFrom(WebApiDOM.DOM.IdleDeadline)
-type idleDeadline = {
+type idleDeadline = private {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/IdleDeadline/didTimeout)
     */
@@ -7123,14 +7147,14 @@ type idleDeadline = {
 [See CSSStyleValue on MDN](https://developer.mozilla.org/docs/Web/API/CSSStyleValue)
 */
 @editor.completeFrom(WebApiDOM.DOM.CSSStyleValue)
-type cssStyleValue = {}
+type cssStyleValue = private {}
 
 /**
 An object of this type is returned by the files property of the HTML <input> element; this lets you access the list of files selected with the <input type="file"> element. It's also used for a list of files dropped into web content when using the drag and drop API; see the DataTransfer object for details on this usage.
 [See FileList on MDN](https://developer.mozilla.org/docs/Web/API/FileList)
 */
 @editor.completeFrom(WebApiDOM.DOM.FileList)
-type fileList = {
+type fileList = private {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/FileList/length)
     */
@@ -7157,7 +7181,7 @@ Used to represent a set of time ranges, primarily for the purpose of tracking wh
 [See TimeRanges on MDN](https://developer.mozilla.org/docs/Web/API/TimeRanges)
 */
 @editor.completeFrom(WebApiDOM.DOM.TimeRanges)
-type timeRanges = {
+type timeRanges = private {
   /**
     Returns the number of ranges in the object.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/TimeRanges/length)
@@ -7169,7 +7193,7 @@ type timeRanges = {
 [See TextTrackList on MDN](https://developer.mozilla.org/docs/Web/API/TextTrackList)
 */
 @editor.completeFrom(WebApiDOM.DOM.TextTrackList)
-type textTrackList = {
+type textTrackList = private {
   ...eventTarget,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/TextTrackList/length)
@@ -7199,6 +7223,7 @@ type videoPlaybackQuality = {
 /**
 Provides special properties and methods (beyond the regular HTMLElement object interface it also has available to it by inheritance) for manipulating the layout and presentation of tables in an HTML document.
 [See HTMLTableElement on MDN](https://developer.mozilla.org/docs/Web/API/HTMLTableElement)
+TODO: mark as private once mutating fields of private records is allowed
 */
 @editor.completeFrom(WebApiDOM.DOM.HTMLTableElement)
 type rec htmlTableElement = {
@@ -7234,7 +7259,7 @@ type rec htmlTableElement = {
 Special properties (beyond the regular HTMLElement interface it also has available to it by inheritance) for manipulating table caption elements.
 [See HTMLTableCaptionElement on MDN](https://developer.mozilla.org/docs/Web/API/HTMLTableCaptionElement)
 */
-@editor.completeFrom(WebApiDOM.DOM.HTMLTableCaptionElement) and htmlTableCaptionElement = {
+@editor.completeFrom(WebApiDOM.DOM.HTMLTableCaptionElement) and htmlTableCaptionElement = private {
   ...htmlElement,
 }
 
@@ -7242,7 +7267,7 @@ Special properties (beyond the regular HTMLElement interface it also has availab
 Provides special properties and methods (beyond the HTMLElement interface it also has available to it by inheritance) for manipulating the layout and presentation of sections, that is headers, footers and bodies, in an HTML table.
 [See HTMLTableSectionElement on MDN](https://developer.mozilla.org/docs/Web/API/HTMLTableSectionElement)
 */
-@editor.completeFrom(WebApiDOM.DOM.HTMLTableSectionElement) and htmlTableSectionElement = {
+@editor.completeFrom(WebApiDOM.DOM.HTMLTableSectionElement) and htmlTableSectionElement = private {
   ...htmlElement,
   /**
     Sets or retrieves the number of horizontal rows contained in the object.
@@ -7254,6 +7279,7 @@ Provides special properties and methods (beyond the HTMLElement interface it als
 /**
 Provides special properties and methods (beyond the regular HTMLElement interface it also has available to it by inheritance) for manipulating the layout and presentation of table cells, either header or data cells, in an HTML document.
 [See HTMLTableCellElement on MDN](https://developer.mozilla.org/docs/Web/API/HTMLTableCellElement)
+TODO: mark as private once mutating fields of private records is allowed
 */
 @editor.completeFrom(WebApiDOM.DOM.HTMLTableCellElement) and htmlTableCellElement = {
   ...htmlElement,
@@ -7293,7 +7319,7 @@ Provides special properties and methods (beyond the regular HTMLElement interfac
 Provides special properties and methods (beyond the HTMLElement interface it also has available to it by inheritance) for manipulating the layout and presentation of rows in an HTML table.
 [See HTMLTableRowElement on MDN](https://developer.mozilla.org/docs/Web/API/HTMLTableRowElement)
 */
-@editor.completeFrom(WebApiDOM.DOM.HTMLTableRowElement) and htmlTableRowElement = {
+@editor.completeFrom(WebApiDOM.DOM.HTMLTableRowElement) and htmlTableRowElement = private {
   ...htmlElement,
   /**
     Retrieves the position of the object in the rows collection for the table.
@@ -7315,6 +7341,7 @@ Provides special properties and methods (beyond the HTMLElement interface it als
 /**
 Provides properties and methods (beyond the regular HTMLElement interface it also has available to it by inheritance) for manipulating <button> elements.
 [See HTMLButtonElement on MDN](https://developer.mozilla.org/docs/Web/API/HTMLButtonElement)
+TODO: mark as private once mutating fields of private records is allowed
 */
 @editor.completeFrom(WebApiDOM.DOM.HTMLButtonElement)
 type rec htmlButtonElement = {
@@ -7391,6 +7418,7 @@ type rec htmlButtonElement = {
 /**
 Gives access to properties specific to <label> elements. It inherits methods and properties from the base HTMLElement interface.
 [See HTMLLabelElement on MDN](https://developer.mozilla.org/docs/Web/API/HTMLLabelElement)
+TODO: mark as private once mutating fields of private records is allowed
 */
 @editor.completeFrom(WebApiDOM.DOM.HTMLLabelElement) and htmlLabelElement = {
   ...htmlElement,
@@ -7414,6 +7442,7 @@ Gives access to properties specific to <label> elements. It inherits methods and
 /**
 Provides special properties and methods for manipulating the layout and presentation of <textarea> elements.
 [See HTMLTextAreaElement on MDN](https://developer.mozilla.org/docs/Web/API/HTMLTextAreaElement)
+TODO: mark as private once mutating fields of private records is allowed
 */
 @editor.completeFrom(WebApiDOM.DOM.HTMLTextAreaElement) and htmlTextAreaElement = {
   ...htmlElement,
@@ -7532,6 +7561,7 @@ Provides special properties and methods for manipulating the layout and presenta
 /**
 Provides properties and methods (beyond those inherited from HTMLElement) for manipulating the layout and presentation of <output> elements.
 [See HTMLOutputElement on MDN](https://developer.mozilla.org/docs/Web/API/HTMLOutputElement)
+TODO: mark as private once mutating fields of private records is allowed
 */
 @editor.completeFrom(WebApiDOM.DOM.HTMLOutputElement) and htmlOutputElement = {
   ...htmlElement,
@@ -7585,6 +7615,7 @@ Can be set, to change the value.
 /**
 Provides special properties and methods for manipulating the options, layout, and presentation of <input> elements.
 [See HTMLInputElement on MDN](https://developer.mozilla.org/docs/Web/API/HTMLInputElement)
+TODO: mark as private once mutating fields of private records is allowed
 */
 @editor.completeFrom(WebApiDOM.DOM.HTMLInputElement) and htmlInputElement = {
   ...htmlElement,
@@ -7809,7 +7840,7 @@ Provides special properties and methods for manipulating the options, layout, an
 Provides special properties (beyond the HTMLElement object interface it also has available to it by inheritance) to manipulate <datalist> elements and their content.
 [See HTMLDataListElement on MDN](https://developer.mozilla.org/docs/Web/API/HTMLDataListElement)
 */
-@editor.completeFrom(WebApiDOM.DOM.HTMLDataListElement) and htmlDataListElement = {
+@editor.completeFrom(WebApiDOM.DOM.HTMLDataListElement) and htmlDataListElement = private {
   ...htmlElement,
   /**
     Returns an HTMLCollection of the option elements of the datalist element.
@@ -7821,6 +7852,7 @@ Provides special properties (beyond the HTMLElement object interface it also has
 /**
 A <select> HTML Element. These elements also share all of the properties and methods of other HTML elements via the HTMLElement interface.
 [See HTMLSelectElement on MDN](https://developer.mozilla.org/docs/Web/API/HTMLSelectElement)
+TODO: mark as private once mutating fields of private records is allowed
 */
 @editor.completeFrom(WebApiDOM.DOM.HTMLSelectElement) and htmlSelectElement = {
   ...htmlElement,
@@ -7907,6 +7939,7 @@ A <select> HTML Element. These elements also share all of the properties and met
 /**
 <option> elements and inherits all classes and methods of the HTMLElement interface.
 [See HTMLOptionElement on MDN](https://developer.mozilla.org/docs/Web/API/HTMLOptionElement)
+TODO: mark as private once mutating fields of private records is allowed
 */
 @editor.completeFrom(WebApiDOM.DOM.HTMLOptionElement) and htmlOptionElement = {
   ...htmlElement,
@@ -7954,6 +7987,7 @@ A <select> HTML Element. These elements also share all of the properties and met
 /**
 HTMLOptionsCollection is an interface representing a collection of HTML option elements (in document order) and offers methods and properties for traversing the list as well as optionally altering its items. This type is returned solely by the "options" property of select.
 [See HTMLOptionsCollection on MDN](https://developer.mozilla.org/docs/Web/API/HTMLOptionsCollection)
+TODO: mark as private once mutating fields of private records is allowed
 */
 @editor.completeFrom(WebApiDOM.DOM.HTMLOptionsCollection) and htmlOptionsCollection = {
   ...htmlCollection<htmlOptionElement>,
@@ -7997,7 +8031,7 @@ This WebApiEncryptedMediaExtensions API interface provides access to a Key Syste
 [See MediaKeySystemAccess on MDN](https://developer.mozilla.org/docs/Web/API/MediaKeySystemAccess)
 */
 @editor.completeFrom(MediaKeySystemAccess)
-type mediaKeySystemAccess = {
+type mediaKeySystemAccess = private {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/MediaKeySystemAccess/keySystem)
     */
@@ -8009,14 +8043,14 @@ This WebApiEncryptedMediaExtensions API interface the represents a set of keys t
 [See MediaKeys on MDN](https://developer.mozilla.org/docs/Web/API/MediaKeys)
 */
 @editor.completeFrom(MediaKeys)
-type mediaKeys = {}
+type mediaKeys = private {}
 
 /**
 This WebApiEncryptedMediaExtensions API interface is a read-only map of media key statuses by key IDs.
 [See MediaKeyStatusMap on MDN](https://developer.mozilla.org/docs/Web/API/MediaKeyStatusMap)
 */
 @editor.completeFrom(MediaKeyStatusMap)
-type mediaKeyStatusMap = {
+type mediaKeyStatusMap = private {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/MediaKeyStatusMap/size)
     */
@@ -8028,7 +8062,7 @@ This WebApiEncryptedMediaExtensions API interface represents a context for mess
 [See MediaKeySession on MDN](https://developer.mozilla.org/docs/Web/API/MediaKeySession)
 */
 @editor.completeFrom(MediaKeySession)
-type mediaKeySession = {
+type mediaKeySession = private {
   ...eventTarget,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/MediaKeySession/sessionId)

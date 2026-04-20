@@ -258,7 +258,7 @@ type shareData = {
 [See Location on MDN](https://developer.mozilla.org/docs/Web/API/Location)
 */
 @editor.completeFrom(Location)
-type location = WebApiPrelude.Types.location = {...WebApiPrelude.Types.location}
+type location = WebApiPrelude.Types.location = private {...WebApiPrelude.Types.location}
 
 /**
 [See UserActivation on MDN](https://developer.mozilla.org/docs/Web/API/UserActivation)
@@ -281,6 +281,7 @@ The state and the identity of the user agent. It allows scripts to query it and 
 @editor.completeFrom(Navigator)
 type navigator = WebApiPrelude.Types.navigator
 
+// TODO: mark as private once mutating fields of private records is allowed
 @editor.completeFrom(DOMTokenList)
 type domTokenList = {
   /**
@@ -302,7 +303,7 @@ A collection of Attr objects. Objects inside a NamedNodeMap are not in any parti
 [See NamedNodeMap on MDN](https://developer.mozilla.org/docs/Web/API/NamedNodeMap)
 */
 @editor.completeFrom(NamedNodeMap)
-type namedNodeMap = {
+type namedNodeMap = private {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/NamedNodeMap/length)
     */
@@ -318,7 +319,7 @@ type fragmentDirective = {}
 [See CustomElementRegistry on MDN](https://developer.mozilla.org/docs/Web/API/CustomElementRegistry)
 */
 @editor.completeFrom(CustomElementRegistry)
-type customElementRegistry = {}
+type customElementRegistry = private {}
 
 /**
 [See BarProp on MDN](https://developer.mozilla.org/docs/Web/API/BarProp)
@@ -334,7 +335,7 @@ type barProp = {
 [See ScreenOrientation on MDN](https://developer.mozilla.org/docs/Web/API/ScreenOrientation)
 */
 @editor.completeFrom(ScreenOrientation)
-type screenOrientation = {
+type screenOrientation = private {
   ...eventTarget,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/ScreenOrientation/type)
@@ -395,7 +396,7 @@ type offscreenRenderingContext = unknown
 [See AnimationTimeline on MDN](https://developer.mozilla.org/docs/Web/API/AnimationTimeline)
 */
 @editor.completeFrom(Animation)
-type rec animationTimeline = {
+type rec animationTimeline = private {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/AnimationTimeline/currentTime)
     */
@@ -405,7 +406,7 @@ type rec animationTimeline = {
 /**
 [See DocumentTimeline on MDN](https://developer.mozilla.org/docs/Web/API/DocumentTimeline)
 */
-@editor.completeFrom(DocumentTimeline) and documentTimeline = {
+@editor.completeFrom(DocumentTimeline) and documentTimeline = private {
   // Base properties from AnimationTimeline
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/AnimationTimeline/currentTime)
@@ -416,6 +417,7 @@ type rec animationTimeline = {
 
 /**
 [See MediaList on MDN](https://developer.mozilla.org/docs/Web/API/MediaList)
+TODO: mark as private once mutating fields of private records is allowed
 */
 @editor.completeFrom(MediaList)
 type mediaList = {
@@ -433,7 +435,7 @@ type mediaList = {
 [See StylePropertyMapReadOnly on MDN](https://developer.mozilla.org/docs/Web/API/StylePropertyMapReadOnly)
 */
 @editor.completeFrom(StylePropertyMapReadOnly)
-type stylePropertyMapReadOnly = {
+type stylePropertyMapReadOnly = private {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/StylePropertyMapReadOnly/size)
     */
@@ -444,7 +446,7 @@ type stylePropertyMapReadOnly = {
 [See StylePropertyMap on MDN](https://developer.mozilla.org/docs/Web/API/StylePropertyMap)
 */
 @editor.completeFrom(StylePropertyMap)
-type stylePropertyMap = {
+type stylePropertyMap = private {
   ...stylePropertyMapReadOnly,
 }
 
@@ -459,6 +461,7 @@ type mediaProvider = unknown
 /**
 Adds to HTMLElement the properties and methods needed to support basic media-related capabilities that are common to audio and video.
 [See HTMLMediaElement on MDN](https://developer.mozilla.org/docs/Web/API/HTMLMediaElement)
+TODO: mark as private once mutating fields of private records is allowed
 */
 @editor.completeFrom(HTMLMediaElement)
 type htmlMediaElement = {
@@ -596,13 +599,14 @@ Provides access to the properties of <audio> elements, as well as methods to man
 [See HTMLAudioElement on MDN](https://developer.mozilla.org/docs/Web/API/HTMLAudioElement)
 */
 @editor.completeFrom(HTMLAudioElement)
-type htmlAudioElement = {
+type htmlAudioElement = private {
   ...htmlMediaElement,
 }
 
 /**
 Contains the base URI for a document. This object inherits all of the properties and methods as described in the HTMLElement interface.
 [See HTMLBaseElement on MDN](https://developer.mozilla.org/docs/Web/API/HTMLBaseElement)
+TODO: mark as private once mutating fields of private records is allowed
 */
 @editor.completeFrom(HTMLBaseElement)
 type htmlBaseElement = {
@@ -624,7 +628,7 @@ Provides special properties (beyond those inherited from the regular HTMLElement
 [See HTMLBodyElement on MDN](https://developer.mozilla.org/docs/Web/API/HTMLBodyElement)
 */
 @editor.completeFrom(HTMLBodyElement)
-type htmlBodyElement = {
+type htmlBodyElement = private {
   ...htmlElement,
 }
 
@@ -633,13 +637,14 @@ A HTML line break element (<br>). It inherits from HTMLElement.
 [See HTMLBRElement on MDN](https://developer.mozilla.org/docs/Web/API/HTMLBRElement)
 */
 @editor.completeFrom(HTMLBRElement)
-type htmlbrElement = {
+type htmlbrElement = private {
   ...htmlElement,
 }
 
 /**
 Provides properties and methods for manipulating the layout and presentation of <canvas> elements. The HTMLCanvasElement interface also inherits the properties and methods of the HTMLElement interface.
 [See HTMLCanvasElement on MDN](https://developer.mozilla.org/docs/Web/API/HTMLCanvasElement)
+TODO: mark as private once mutating fields of private records is allowed
 */
 @editor.completeFrom(HTMLCanvasElement)
 type htmlCanvasElement = {
@@ -659,6 +664,7 @@ type htmlCanvasElement = {
 /**
 Provides special properties (beyond the regular HTMLElement interface it also has available to it by inheritance) for manipulating <data> elements.
 [See HTMLDataElement on MDN](https://developer.mozilla.org/docs/Web/API/HTMLDataElement)
+TODO: mark as private once mutating fields of private records is allowed
 */
 @editor.completeFrom(HTMLDataElement)
 type htmlDataElement = {
@@ -671,6 +677,7 @@ type htmlDataElement = {
 
 /**
 [See HTMLDialogElement on MDN](https://developer.mozilla.org/docs/Web/API/HTMLDialogElement)
+TODO: mark as private once mutating fields of private records is allowed
 */
 @editor.completeFrom(HTMLDialogElement)
 type htmlDialogElement = {
@@ -691,7 +698,7 @@ Provides special properties (beyond the regular HTMLElement interface it also ha
 [See HTMLDivElement on MDN](https://developer.mozilla.org/docs/Web/API/HTMLDivElement)
 */
 @editor.completeFrom(HTMLDivElement)
-type htmlDivElement = {
+type htmlDivElement = private {
   ...htmlElement,
 }
 
@@ -700,13 +707,14 @@ Provides special properties (beyond those of the regular HTMLElement interface i
 [See HTMLDListElement on MDN](https://developer.mozilla.org/docs/Web/API/HTMLDListElement)
 */
 @editor.completeFrom(HTMLDListElement)
-type htmldListElement = {
+type htmldListElement = private {
   ...htmlElement,
 }
 
 /**
 Provides special properties and methods (beyond the regular HTMLElement interface it also has available to it by inheritance) for manipulating the layout and presentation of <fieldset> elements.
 [See HTMLFieldSetElement on MDN](https://developer.mozilla.org/docs/Web/API/HTMLFieldSetElement)
+TODO: mark as private once mutating fields of private records is allowed
 */
 @editor.completeFrom(HTMLFieldSetElement)
 type htmlFieldSetElement = {
@@ -757,7 +765,7 @@ Provides special properties (beyond those of the regular HTMLElement interface t
 [See HTMLFrameSetElement on MDN](https://developer.mozilla.org/docs/Web/API/HTMLFrameSetElement)
 */
 @editor.completeFrom(HTMLFrameSetElement)
-type htmlFrameSetElement = {
+type htmlFrameSetElement = private {
   ...htmlElement,
 }
 
@@ -766,7 +774,7 @@ The different heading elements. It inherits methods and properties from the HTML
 [See HTMLHeadingElement on MDN](https://developer.mozilla.org/docs/Web/API/HTMLHeadingElement)
 */
 @editor.completeFrom(HTMLHeadingElement)
-type htmlHeadingElement = {
+type htmlHeadingElement = private {
   ...htmlElement,
 }
 
@@ -775,7 +783,7 @@ Provides special properties (beyond those of the HTMLElement interface it also h
 [See HTMLHRElement on MDN](https://developer.mozilla.org/docs/Web/API/HTMLHRElement)
 */
 @editor.completeFrom(HTMLHRElement)
-type htmlhrElement = {
+type htmlhrElement = private {
   ...htmlElement,
 }
 
@@ -784,13 +792,14 @@ Serves as the root node for a given HTML document. This object inherits the prop
 [See HTMLHtmlElement on MDN](https://developer.mozilla.org/docs/Web/API/HTMLHtmlElement)
 */
 @editor.completeFrom(HTMLHtmlElement)
-type htmlHtmlElement = {
+type htmlHtmlElement = private {
   ...htmlElement,
 }
 
 /**
 Provides special properties and methods (beyond those of the HTMLElement interface it also has available to it by inheritance) for manipulating the layout and presentation of inline frame elements.
 [See HTMLIFrameElement on MDN](https://developer.mozilla.org/docs/Web/API/HTMLIFrameElement)
+TODO: mark as private once mutating fields of private records is allowed
 */
 @editor.completeFrom(HTMLIFrameElement)
 type htmliFrameElement = {
@@ -857,7 +866,7 @@ The HTMLLegendElement is an interface allowing to access properties of the <lege
 [See HTMLLegendElement on MDN](https://developer.mozilla.org/docs/Web/API/HTMLLegendElement)
 */
 @editor.completeFrom(HTMLLegendElement)
-type htmlLegendElement = {
+type htmlLegendElement = private {
   ...htmlElement,
   /**
     Retrieves a reference to the form that the object is embedded in.
@@ -871,13 +880,14 @@ Exposes specific properties and methods (beyond those defined by regular HTMLEle
 [See HTMLLIElement on MDN](https://developer.mozilla.org/docs/Web/API/HTMLLIElement)
 */
 @editor.completeFrom(HTMLLIElement)
-type htmlliElement = {
+type htmlliElement = private {
   ...htmlElement,
 }
 
 /**
 Reference information for external resources and the relationship of those resources to a document and vice-versa. This object inherits all of the properties and methods of the HTMLElement interface.
 [See HTMLLinkElement on MDN](https://developer.mozilla.org/docs/Web/API/HTMLLinkElement)
+TODO: mark as private once mutating fields of private records is allowed
 */
 @editor.completeFrom(HTMLLinkElement)
 type htmlLinkElement = {
@@ -946,6 +956,7 @@ type htmlLinkElement = {
 /**
 Provides special properties and methods (beyond those of the regular object HTMLElement interface it also has available to it by inheritance) for manipulating the layout and presentation of map elements.
 [See HTMLMapElement on MDN](https://developer.mozilla.org/docs/Web/API/HTMLMapElement)
+TODO: mark as private once mutating fields of private records is allowed
 */
 @editor.completeFrom(HTMLMapElement)
 type htmlMapElement = {
@@ -966,13 +977,14 @@ type htmlMapElement = {
 [See HTMLMenuElement on MDN](https://developer.mozilla.org/docs/Web/API/HTMLMenuElement)
 */
 @editor.completeFrom(HTMLMenuElement)
-type htmlMenuElement = {
+type htmlMenuElement = private {
   ...htmlElement,
 }
 
 /**
 Contains descriptive metadata about a document. It inherits all of the properties and methods described in the HTMLElement interface.
 [See HTMLMetaElement on MDN](https://developer.mozilla.org/docs/Web/API/HTMLMetaElement)
+TODO: mark as private once mutating fields of private records is allowed
 */
 @editor.completeFrom(HTMLMetaElement)
 type htmlMetaElement = {
@@ -1001,6 +1013,7 @@ type htmlMetaElement = {
 /**
 The HTML <meter> elements expose the HTMLMeterElement interface, which provides special properties and methods (beyond the HTMLElement object interface they also have available to them by inheritance) for manipulating the layout and presentation of <meter> elements.
 [See HTMLMeterElement on MDN](https://developer.mozilla.org/docs/Web/API/HTMLMeterElement)
+TODO: mark as private once mutating fields of private records is allowed
 */
 @editor.completeFrom(HTMLMeterElement)
 type htmlMeterElement = {
@@ -1040,13 +1053,14 @@ Provides special properties (beyond the regular methods and properties available
 [See HTMLModElement on MDN](https://developer.mozilla.org/docs/Web/API/HTMLModElement)
 */
 @editor.completeFrom(HTMLModElement)
-type htmlModElement = {
+type htmlModElement = private {
   ...htmlElement,
 }
 
 /**
 Provides special properties and methods (beyond those on the HTMLElement interface it also has available to it by inheritance) for manipulating the layout and presentation of <object> element, representing external resources.
 [See HTMLObjectElement on MDN](https://developer.mozilla.org/docs/Web/API/HTMLObjectElement)
+TODO: mark as private once mutating fields of private records is allowed
 */
 @editor.completeFrom(HTMLObjectElement)
 type htmlObjectElement = {
@@ -1111,6 +1125,7 @@ type htmlObjectElement = {
 /**
 Provides special properties (beyond those defined on the regular HTMLElement interface it also has available to it by inheritance) for manipulating ordered list elements.
 [See HTMLOListElement on MDN](https://developer.mozilla.org/docs/Web/API/HTMLOListElement)
+TODO: mark as private once mutating fields of private records is allowed
 */
 @editor.completeFrom(HTMLOListElement)
 type htmloListElement = {
@@ -1134,6 +1149,7 @@ type htmloListElement = {
 /**
 Provides special properties and methods (beyond the regular HTMLElement object interface they also have available to them by inheritance) for manipulating the layout and presentation of <optgroup> elements.
 [See HTMLOptGroupElement on MDN](https://developer.mozilla.org/docs/Web/API/HTMLOptGroupElement)
+TODO: mark as private once mutating fields of private records is allowed
 */
 @editor.completeFrom(HTMLOptGroupElement)
 type htmlOptGroupElement = {
@@ -1154,7 +1170,7 @@ Provides special properties (beyond those of the regular HTMLElement object inte
 [See HTMLParagraphElement on MDN](https://developer.mozilla.org/docs/Web/API/HTMLParagraphElement)
 */
 @editor.completeFrom(HTMLParagraphElement)
-type htmlParagraphElement = {
+type htmlParagraphElement = private {
   ...htmlElement,
 }
 
@@ -1163,7 +1179,7 @@ A <picture> HTML element. It doesn't implement specific properties or methods.
 [See HTMLPictureElement on MDN](https://developer.mozilla.org/docs/Web/API/HTMLPictureElement)
 */
 @editor.completeFrom(HTMLPictureElement)
-type htmlPictureElement = {
+type htmlPictureElement = private {
   ...htmlElement,
 }
 
@@ -1172,13 +1188,14 @@ Exposes specific properties and methods (beyond those of the HTMLElement interfa
 [See HTMLPreElement on MDN](https://developer.mozilla.org/docs/Web/API/HTMLPreElement)
 */
 @editor.completeFrom(HTMLPreElement)
-type htmlPreElement = {
+type htmlPreElement = private {
   ...htmlElement,
 }
 
 /**
 Provides special properties and methods (beyond the regular HTMLElement interface it also has available to it by inheritance) for manipulating the layout and presentation of <progress> elements.
 [See HTMLProgressElement on MDN](https://developer.mozilla.org/docs/Web/API/HTMLProgressElement)
+TODO: mark as private once mutating fields of private records is allowed
 */
 @editor.completeFrom(HTMLProgressElement)
 type htmlProgressElement = {
@@ -1209,13 +1226,14 @@ Provides special properties and methods (beyond the regular HTMLElement interfac
 [See HTMLQuoteElement on MDN](https://developer.mozilla.org/docs/Web/API/HTMLQuoteElement)
 */
 @editor.completeFrom(HTMLQuoteElement)
-type htmlQuoteElement = {
+type htmlQuoteElement = private {
   ...htmlElement,
 }
 
 /**
 Provides special properties (beyond the regular HTMLElement object interface it also has available to it by inheritance) for manipulating <source> elements.
 [See HTMLSourceElement on MDN](https://developer.mozilla.org/docs/Web/API/HTMLSourceElement)
+TODO: mark as private once mutating fields of private records is allowed
 */
 @editor.completeFrom(HTMLSourceElement)
 type htmlSourceElement = {
@@ -1235,13 +1253,14 @@ A <span> element and derives from the HTMLElement interface, but without impleme
 [See HTMLSpanElement on MDN](https://developer.mozilla.org/docs/Web/API/HTMLSpanElement)
 */
 @editor.completeFrom(HTMLSpanElement)
-type htmlSpanElement = {
+type htmlSpanElement = private {
   ...htmlElement,
 }
 
 /**
 A <style> element. It inherits properties and methods from its parent, HTMLElement, and from LinkStyle.
 [See HTMLStyleElement on MDN](https://developer.mozilla.org/docs/Web/API/HTMLStyleElement)
+TODO: mark as private once mutating fields of private records is allowed
 */
 @editor.completeFrom(HTMLStyleElement)
 type htmlStyleElement = {
@@ -1265,6 +1284,7 @@ type htmlStyleElement = {
 /**
 Enables access to the contents of an HTML <template> element.
 [See HTMLTemplateElement on MDN](https://developer.mozilla.org/docs/Web/API/HTMLTemplateElement)
+TODO: mark as private once mutating fields of private records is allowed
 */
 @editor.completeFrom(HTMLTemplateElement)
 type htmlTemplateElement = {
@@ -1295,6 +1315,7 @@ type htmlTemplateElement = {
 /**
 Provides special properties (beyond the regular HTMLElement interface it also has available to it by inheritance) for manipulating <time> elements.
 [See HTMLTimeElement on MDN](https://developer.mozilla.org/docs/Web/API/HTMLTimeElement)
+TODO: mark as private once mutating fields of private records is allowed
 */
 @editor.completeFrom(HTMLTimeElement)
 type htmlTimeElement = {
@@ -1308,6 +1329,7 @@ type htmlTimeElement = {
 /**
 Contains the title for a document. This element inherits all of the properties and methods of the HTMLElement interface.
 [See HTMLTitleElement on MDN](https://developer.mozilla.org/docs/Web/API/HTMLTitleElement)
+TODO: mark as private once mutating fields of private records is allowed
 */
 @editor.completeFrom(HTMLTitleElement)
 type htmlTitleElement = {
@@ -1322,6 +1344,7 @@ type htmlTitleElement = {
 /**
 The HTMLTrackElement
 [See HTMLTrackElement on MDN](https://developer.mozilla.org/docs/Web/API/HTMLTrackElement)
+TODO: mark as private once mutating fields of private records is allowed
 */
 @editor.completeFrom(HTMLTrackElement)
 type htmlTrackElement = {
@@ -1337,7 +1360,7 @@ Provides special properties (beyond those defined on the regular HTMLElement int
 [See HTMLUListElement on MDN](https://developer.mozilla.org/docs/Web/API/HTMLUListElement)
 */
 @editor.completeFrom(HTMLUListElement)
-type htmluListElement = {
+type htmluListElement = private {
   ...htmlElement,
 }
 
@@ -1352,6 +1375,7 @@ type htmlUnknownElement = {
 /**
 Provides special properties and methods for manipulating video objects. It also inherits properties and methods of HTMLMediaElement and HTMLElement.
 [See HTMLVideoElement on MDN](https://developer.mozilla.org/docs/Web/API/HTMLVideoElement)
+TODO: mark as private once mutating fields of private records is allowed
 */
 @editor.completeFrom(HTMLVideoElement)
 type htmlVideoElement = {
@@ -1391,21 +1415,21 @@ type htmlVideoElement = {
 [See AnimationEffect on MDN](https://developer.mozilla.org/docs/Web/API/AnimationEffect)
 */
 @editor.completeFrom(AnimationEffect)
-type animationEffect = {}
+type animationEffect = private {}
 
 /**
 This interface is a compiled XPath expression that can be evaluated on a document or specific node to return information its WebApiDOM tree.
 [See XPathExpression on MDN](https://developer.mozilla.org/docs/Web/API/XPathExpression)
 */
 @editor.completeFrom(XPathExpression)
-type xPathExpression = {}
+type xPathExpression = private {}
 
 /**
 The results generated by evaluating an XPath expression within the context of a given node.
 [See XPathResult on MDN](https://developer.mozilla.org/docs/Web/API/XPathResult)
 */
 @editor.completeFrom(XPathResult)
-type xPathResult = {
+type xPathResult = private {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/XPathResult/resultType)
     */
@@ -1447,7 +1471,7 @@ Correspond to the <length> basic data type.
 [See SVGLength on MDN](https://developer.mozilla.org/docs/Web/API/SVGLength)
 */
 @editor.completeFrom(SVGLength)
-type svgLength = {}
+type svgLength = private {}
 
 /**
 Used for attributes of basic type <length> which can be animated.
@@ -1501,7 +1525,7 @@ SVG elements whose primary purpose is to directly render graphics into a group.
 [See SVGGraphicsElement on MDN](https://developer.mozilla.org/docs/Web/API/SVGGraphicsElement)
 */
 @editor.completeFrom(SVGGraphicsElement)
-type svgGraphicsElement = {
+type svgGraphicsElement = private {
   ...svgElement,
 }
 
@@ -1537,7 +1561,7 @@ type svgImageElement = {
 [See DOMMatrixReadOnly on MDN](https://developer.mozilla.org/docs/Web/API/DOMMatrixReadOnly)
 */
 @editor.completeFrom(DOMMatrixReadOnly)
-type domMatrixReadOnly = {
+type domMatrixReadOnly = private {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/DOMMatrixReadOnly#instance_properties)
     */
@@ -1632,7 +1656,7 @@ type domMatrixReadOnly = {
 [See DOMMatrix on MDN](https://developer.mozilla.org/docs/Web/API/DOMMatrix)
 */
 @editor.completeFrom(DOMMatrix)
-type domMatrix = {
+type domMatrix = private {
   ...domMatrixReadOnly,
 }
 
@@ -1640,7 +1664,7 @@ type domMatrix = {
 [See VideoColorSpace on MDN](https://developer.mozilla.org/docs/Web/API/VideoColorSpace)
 */
 @editor.completeFrom(VideoColorSpace)
-type videoColorSpace = {
+type videoColorSpace = private {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/VideoColorSpace/primaries)
     */
@@ -1663,7 +1687,7 @@ type videoColorSpace = {
 [See VideoFrame on MDN](https://developer.mozilla.org/docs/Web/API/VideoFrame)
 */
 @editor.completeFrom(VideoFrame)
-type videoFrame = {
+type videoFrame = private {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/VideoFrame/format)
     */
@@ -1711,7 +1735,7 @@ The underlying pixel data of an area of a <canvas> element. It is created using 
 [See ImageData on MDN](https://developer.mozilla.org/docs/Web/API/ImageData)
 */
 @editor.completeFrom(ImageData)
-type imageData = {
+type imageData = private {
   /**
     Returns the actual dimensions of the data in the ImageData object, in pixels.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/ImageData/width)
@@ -1737,7 +1761,7 @@ type imageData = {
 [See DOMPointReadOnly on MDN](https://developer.mozilla.org/docs/Web/API/DOMPointReadOnly)
 */
 @editor.completeFrom(DOMPointReadOnly)
-type domPointReadOnly = {
+type domPointReadOnly = private {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/DOMPointReadOnly/x)
     */
@@ -1760,7 +1784,7 @@ type domPointReadOnly = {
 [See DOMPoint on MDN](https://developer.mozilla.org/docs/Web/API/DOMPoint)
 */
 @editor.completeFrom(DOMPoint)
-type domPoint = {
+type domPoint = private {
   ...domPointReadOnly,
 }
 

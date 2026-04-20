@@ -11,10 +11,7 @@ type t<'t> = messageEvent<'t>
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/MessageEvent)
 */
 @new
-external make: (
-  ~type_: string,
-  ~eventInitDict: messageEventInit<'t>=?,
-) => t<'t> = "MessageEvent"
+external make: (~type_: string, ~eventInitDict: messageEventInit<'t>=?) => t<'t> = "MessageEvent"
 
 external asEvent: t<'t> => event = "%identity"
 /**

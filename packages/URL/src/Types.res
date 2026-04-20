@@ -4,7 +4,7 @@
 [See URLSearchParams on MDN](https://developer.mozilla.org/docs/Web/API/URLSearchParams)
 */
 @editor.completeFrom(URLSearchParams)
-type urlSearchParams = {
+type urlSearchParams = private {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/URLSearchParams/size)
     */
@@ -14,6 +14,7 @@ type urlSearchParams = {
 /**
 The WebApiURL interface represents an object providing static methods used for creating object URLs.
 [See WebApiURL on MDN](https://developer.mozilla.org/docs/Web/API/WebApiURL)
+TODO: mark as private once mutating fields of private records is allowed
 */
 @editor.completeFrom(WebApiURL)
 type url = {

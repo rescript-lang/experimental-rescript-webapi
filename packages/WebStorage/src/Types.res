@@ -5,7 +5,7 @@ This Web WebApiStorage API interface provides access to a particular domain's se
 [See WebApiStorage on MDN](https://developer.mozilla.org/docs/Web/API/WebApiStorage)
 */
 @editor.completeFrom(WebApiStorage)
-type storage = {
+type storage = private {
   /**
     Returns the number of key/value pairs.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/WebApiStorage/length)
@@ -18,7 +18,7 @@ A StorageEvent is sent to a window when a storage area it has access to is chang
 [See StorageEvent on MDN](https://developer.mozilla.org/docs/Web/API/StorageEvent)
 */
 @editor.completeFrom(StorageEvent)
-type storageEvent = {
+type storageEvent = private {
   ...WebApiEvent.Types.event,
   /**
     Returns the key of the storage item being changed.

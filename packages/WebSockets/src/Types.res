@@ -9,6 +9,7 @@ type messageEventSource = unknown
 /**
 Provides the API for creating and managing a WebSocket connection to a server, as well as for sending and receiving data on the connection.
 [See WebSocket on MDN](https://developer.mozilla.org/docs/Web/API/WebSocket)
+TODO: mark as private once mutating fields of private records is allowed
 */
 @editor.completeFrom(WebSocket)
 type webSocket = {
@@ -54,7 +55,7 @@ A CloseEvent is sent to clients using WebApiWebSockets when the connection is cl
 [See CloseEvent on MDN](https://developer.mozilla.org/docs/Web/API/CloseEvent)
 */
 @editor.completeFrom(CloseEvent)
-type closeEvent = {
+type closeEvent = private {
   ...WebApiEvent.Types.event,
   /**
     Returns true if the connection closed cleanly; false otherwise.

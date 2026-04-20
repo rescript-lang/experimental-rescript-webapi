@@ -1,4 +1,4 @@
-type t = Types.mediaStreamTrack = {...Types.mediaStreamTrack}
+type t = Types.mediaStreamTrack = private {...Types.mediaStreamTrack}
 type mediaTrackCapabilities = Types.mediaTrackCapabilities = {...Types.mediaTrackCapabilities}
 type mediaTrackConstraints = Types.mediaTrackConstraints = {...Types.mediaTrackConstraints}
 type mediaTrackSettings = Types.mediaTrackSettings = {...Types.mediaTrackSettings}
@@ -39,7 +39,5 @@ external getSettings: t => mediaTrackSettings = "getSettings"
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/MediaStreamTrack/applyConstraints)
 */
 @send
-external applyConstraints: (
-  t,
-  ~constraints: mediaTrackConstraints=?,
-) => promise<unit> = "applyConstraints"
+external applyConstraints: (t, ~constraints: mediaTrackConstraints=?) => promise<unit> =
+  "applyConstraints"

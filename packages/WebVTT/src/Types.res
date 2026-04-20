@@ -16,7 +16,7 @@ type textTrackMode =
 [See TextTrackCueList on MDN](https://developer.mozilla.org/docs/Web/API/TextTrackCueList)
 */
 @editor.completeFrom(TextTrackCueList)
-type textTrackCueList = {
+type textTrackCueList = private {
   /**
     Returns the number of cues in the list.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/TextTrackCueList/length)
@@ -27,6 +27,7 @@ type textTrackCueList = {
 /**
 TextTrackCues represent a string of text that will be displayed for some duration of time on a TextTrack. This includes the start and end times that the cue will be displayed. A TextTrackCue cannot be used directly, instead one of the derived types (e.g. VTTCue) must be used.
 [See TextTrackCue on MDN](https://developer.mozilla.org/docs/Web/API/TextTrackCue)
+TODO: mark as private once mutating fields of private records is allowed
 */
 @editor.completeFrom(TextTrack)
 type rec textTrackCue = {
@@ -69,6 +70,7 @@ Can be set.
 /**
 This interface also inherits properties from WebApiEvent.EventTarget.
 [See TextTrack on MDN](https://developer.mozilla.org/docs/Web/API/TextTrack)
+TODO: mark as private once mutating fields of private records is allowed
 */
 @editor.completeFrom(TextTrack) and textTrack = {
   ...WebApiEvent.Types.eventTarget,

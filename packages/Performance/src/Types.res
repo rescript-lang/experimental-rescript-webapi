@@ -10,7 +10,7 @@ Provides access to performance-related information for the current page. It's pa
 [See WebApiPerformance on MDN](https://developer.mozilla.org/docs/Web/API/WebApiPerformance)
 */
 @editor.completeFrom(WebApiPerformance)
-type performance = {
+type performance = private {
   ...WebApiEvent.Types.eventTarget,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/WebApiPerformance/timeOrigin)
@@ -27,7 +27,7 @@ Encapsulates a single performance metric that is part of the performance timelin
 [See PerformanceEntry on MDN](https://developer.mozilla.org/docs/Web/API/PerformanceEntry)
 */
 @editor.completeFrom(PerformanceEntry)
-type performanceEntry = {
+type performanceEntry = private {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/PerformanceEntry/name)
     */
@@ -51,7 +51,7 @@ PerformanceMark is an abstract interface for PerformanceEntry objects with an e
 [See PerformanceMark on MDN](https://developer.mozilla.org/docs/Web/API/PerformanceMark)
 */
 @editor.completeFrom(PerformanceMark)
-type performanceMark = {
+type performanceMark = private {
   ...performanceEntry,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/PerformanceMark/detail)

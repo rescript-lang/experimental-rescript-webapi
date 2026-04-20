@@ -21,7 +21,7 @@ type fileSystem = WebApiPrelude.Types.fileSystem
 [See FileSystemDirectoryReader on MDN](https://developer.mozilla.org/docs/Web/API/FileSystemDirectoryReader)
 */
 @editor.completeFrom(FileSystemDirectoryReader)
-type fileSystemDirectoryReader = {}
+type fileSystemDirectoryReader = private {}
 
 type fileSystemFlags = {
   mutable create?: bool,

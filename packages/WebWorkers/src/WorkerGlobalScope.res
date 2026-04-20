@@ -24,8 +24,7 @@ let response = await self->WorkerGlobalScope.fetch("https://rescript-lang.org")
     T.t,
     string,
     ~init: WebApiFetch.Request.requestInit=?,
-  ) => promise<WebApiFetch.Response.t> =
-    "fetch"
+  ) => promise<WebApiFetch.Response.t> = "fetch"
 
   /**
 `fetchWithRequest(workerGlobalScope, request, init)`

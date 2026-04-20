@@ -55,7 +55,7 @@ A short audio asset residing in memory, created from an audio file using the Aud
 [See AudioBuffer on MDN](https://developer.mozilla.org/docs/Web/API/AudioBuffer)
 */
 @editor.completeFrom(AudioBuffer)
-type audioBuffer = {
+type audioBuffer = private {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/AudioBuffer/sampleRate)
     */
@@ -79,7 +79,7 @@ The Web Audio API events that occur when a ScriptProcessorNode input buffer is r
 [See AudioProcessingEvent on MDN](https://developer.mozilla.org/docs/Web/API/AudioProcessingEvent)
 */
 @editor.completeFrom(AudioProcessingEvent)
-type audioProcessingEvent = {
+type audioProcessingEvent = private {
   ...WebApiEvent.Types.event,
 }
 
@@ -88,7 +88,7 @@ The Web Audio API OfflineAudioCompletionEvent interface represents events that o
 [See OfflineAudioCompletionEvent on MDN](https://developer.mozilla.org/docs/Web/API/OfflineAudioCompletionEvent)
 */
 @editor.completeFrom(OfflineAudioCompletionEvent)
-type offlineAudioCompletionEvent = {
+type offlineAudioCompletionEvent = private {
   ...WebApiEvent.Types.event,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/OfflineAudioCompletionEvent/renderedBuffer)
@@ -100,11 +100,12 @@ type offlineAudioCompletionEvent = {
 [See Worklet on MDN](https://developer.mozilla.org/docs/Web/API/Worklet)
 */
 @editor.completeFrom(Worklet)
-type worklet = {}
+type worklet = private {}
 
 /**
 A generic interface for representing an audio processing module. Examples include:
 [See AudioNode on MDN](https://developer.mozilla.org/docs/Web/API/AudioNode)
+TODO: mark as private once mutating fields of private records is allowed
 */
 @editor.completeFrom(AudioNode)
 type rec audioNode = {
@@ -176,7 +177,7 @@ and audioDestinationNode = {
 /**
 [See BaseAudioContext on MDN](https://developer.mozilla.org/docs/Web/API/BaseAudioContext)
 */
-@editor.completeFrom(BaseAudioContext) and baseAudioContext = {
+@editor.completeFrom(BaseAudioContext) and baseAudioContext = private {
   ...WebApiEvent.Types.eventTarget,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/BaseAudioContext/destination)
@@ -207,6 +208,7 @@ and audioDestinationNode = {
 /**
 A simple low-order filter, and is created using the AudioContext.createBiquadFilter() method. It is an AudioNode that can represent different kinds of filters, tone control devices, and graphic equalizers.
 [See BiquadFilterNode on MDN](https://developer.mozilla.org/docs/Web/API/BiquadFilterNode)
+TODO: mark as private once mutating fields of private records is allowed
 */
 @editor.completeFrom(BiquadFilterNode) and biquadFilterNode = {
   // Base properties from AudioNode
@@ -313,6 +315,7 @@ and audioWorklet = {
 /**
 The Web Audio API's AudioParam interface represents an audio-related parameter, usually a parameter of an AudioNode (such as GainNode.gain).
 [See AudioParam on MDN](https://developer.mozilla.org/docs/Web/API/AudioParam)
+TODO: mark as private once mutating fields of private records is allowed
 */
 @editor.completeFrom(AudioParam) and audioParam = {
   /**
@@ -335,6 +338,7 @@ The Web Audio API's AudioParam interface represents an audio-related parameter, 
 
 /**
 [See AudioScheduledSourceNode on MDN](https://developer.mozilla.org/docs/Web/API/AudioScheduledSourceNode)
+TODO: mark as private once mutating fields of private records is allowed
 */
 @editor.completeFrom(AudioScheduledSourceNode) and audioScheduledSourceNode = {
   // Base properties from AudioNode
@@ -368,6 +372,7 @@ The Web Audio API's AudioParam interface represents an audio-related parameter, 
 /**
 An AudioScheduledSourceNode which represents an audio source consisting of in-memory audio data, stored in an AudioBuffer. It's especially useful for playing back audio which has particularly stringent timing accuracy requirements, such as for sounds that must match a specific rhythm and can be kept in memory rather than being played from disk or the network.
 [See AudioBufferSourceNode on MDN](https://developer.mozilla.org/docs/Web/API/AudioBufferSourceNode)
+TODO: mark as private once mutating fields of private records is allowed
 */
 @editor.completeFrom(AudioBufferSourceNode) and audioBufferSourceNode = {
   // Base properties from AudioScheduledSourceNode
@@ -429,6 +434,7 @@ An AudioScheduledSourceNode which represents an audio source consisting of in-me
 /**
 The ChannelMergerNode interface, often used in conjunction with its opposite, ChannelSplitterNode, reunites different mono inputs into a single output. Each input is used to fill a channel of the output. This is useful for accessing each channels separately, e.g. for performing channel mixing where gain must be separately controlled on each channel.
 [See ChannelMergerNode on MDN](https://developer.mozilla.org/docs/Web/API/ChannelMergerNode)
+TODO: mark as private once mutating fields of private records is allowed
 */
 @editor.completeFrom(ChannelMergerNode) and channelMergerNode = {
   // Base properties from AudioNode
@@ -462,6 +468,7 @@ The ChannelMergerNode interface, often used in conjunction with its opposite, Ch
 /**
 The ChannelSplitterNode interface, often used in conjunction with its opposite, ChannelMergerNode, separates the different channels of an audio source into a set of mono outputs. This is useful for accessing each channel separately, e.g. for performing channel mixing where gain must be separately controlled on each channel.
 [See ChannelSplitterNode on MDN](https://developer.mozilla.org/docs/Web/API/ChannelSplitterNode)
+TODO: mark as private once mutating fields of private records is allowed
 */
 @editor.completeFrom(ChannelSplitterNode) and channelSplitterNode = {
   // Base properties from AudioNode
@@ -494,6 +501,7 @@ The ChannelSplitterNode interface, often used in conjunction with its opposite, 
 
 /**
 [See ConstantSourceNode on MDN](https://developer.mozilla.org/docs/Web/API/ConstantSourceNode)
+TODO: mark as private once mutating fields of private records is allowed
 */
 @editor.completeFrom(ConstantSourceNode) and constantSourceNode = {
   // Base properties from AudioScheduledSourceNode
@@ -535,6 +543,7 @@ The ChannelSplitterNode interface, often used in conjunction with its opposite, 
 /**
 An AudioNode that performs a Linear Convolution on a given AudioBuffer, often used to achieve a reverb effect. A ConvolverNode always has exactly one input and one output.
 [See ConvolverNode on MDN](https://developer.mozilla.org/docs/Web/API/ConvolverNode)
+TODO: mark as private once mutating fields of private records is allowed
 */
 @editor.completeFrom(ConvolverNode) and convolverNode = {
   // Base properties from AudioNode
@@ -577,6 +586,7 @@ An AudioNode that performs a Linear Convolution on a given AudioBuffer, often us
 /**
 A delay-line; an AudioNode audio-processing module that causes a delay between the arrival of an input data and its propagation to the output.
 [See DelayNode on MDN](https://developer.mozilla.org/docs/Web/API/DelayNode)
+TODO: mark as private once mutating fields of private records is allowed
 */
 @editor.completeFrom(DelayNode) and delayNode = {
   // Base properties from AudioNode
@@ -615,6 +625,7 @@ A delay-line; an AudioNode audio-processing module that causes a delay between t
 /**
 Inherits properties from its parent, AudioNode.
 [See DynamicsCompressorNode on MDN](https://developer.mozilla.org/docs/Web/API/DynamicsCompressorNode)
+TODO: mark as private once mutating fields of private records is allowed
 */
 @editor.completeFrom(DynamicsCompressorNode) and dynamicsCompressorNode = {
   // Base properties from AudioNode
@@ -673,6 +684,7 @@ Inherits properties from its parent, AudioNode.
 /**
 A change in volume. It is an AudioNode audio-processing module that causes a given gain to be applied to the input data before its propagation to the output. A GainNode always has exactly one input and one output, both with the same number of channels.
 [See GainNode on MDN](https://developer.mozilla.org/docs/Web/API/GainNode)
+TODO: mark as private once mutating fields of private records is allowed
 */
 @editor.completeFrom(GainNode) and gainNode = {
   // Base properties from AudioNode
@@ -711,6 +723,7 @@ A change in volume. It is an AudioNode audio-processing module that causes a giv
 /**
 The IIRFilterNode interface of the Web Audio API is a AudioNode processor which implements a general infinite impulse response (IIR)  filter; this type of filter can be used to implement tone control devices and graphic equalizers as well. It lets the parameters of the filter response be specified, so that it can be tuned as needed.
 [See IIRFilterNode on MDN](https://developer.mozilla.org/docs/Web/API/IIRFilterNode)
+TODO: mark as private once mutating fields of private records is allowed
 */
 @editor.completeFrom(IIRFilterNode) and iirFilterNode = {
   // Base properties from AudioNode
@@ -744,6 +757,7 @@ The IIRFilterNode interface of the Web Audio API is a AudioNode processor wh
 /**
 The OscillatorNode interface represents a periodic waveform, such as a sine wave. It is an AudioScheduledSourceNode audio-processing module that causes a specified frequency of a given wave to be created—in effect, a constant tone.
 [See OscillatorNode on MDN](https://developer.mozilla.org/docs/Web/API/OscillatorNode)
+TODO: mark as private once mutating fields of private records is allowed
 */
 @editor.completeFrom(OscillatorNode) and oscillatorNode = {
   // Base properties from AudioScheduledSourceNode
@@ -794,6 +808,7 @@ The OscillatorNode interface represents a periodic waveform, such as a sine wav
 /**
 A PannerNode always has exactly one input and one output: the input can be mono or stereo but the output is always stereo (2 channels); you can't have panning effects without at least two audio channels!
 [See PannerNode on MDN](https://developer.mozilla.org/docs/Web/API/PannerNode)
+TODO: mark as private once mutating fields of private records is allowed
 */
 @editor.completeFrom(PannerNode) and pannerNode = {
   // Base properties from AudioNode
@@ -884,6 +899,7 @@ A PannerNode always has exactly one input and one output: the input can be mono 
 /**
 A node able to provide real-time frequency and time-domain analysis information. It is an AudioNode that passes the audio stream unchanged from the input to the output, but allows you to take the generated data, process it, and create audio visualizations.
 [See AnalyserNode on MDN](https://developer.mozilla.org/docs/Web/API/AnalyserNode)
+TODO: mark as private once mutating fields of private records is allowed
 */
 @editor.completeFrom(AnalyserNode)
 type analyserNode = {
@@ -915,14 +931,14 @@ PeriodicWave has no inputs or outputs; it is used to define custom oscillators w
 [See PeriodicWave on MDN](https://developer.mozilla.org/docs/Web/API/PeriodicWave)
 */
 @editor.completeFrom(PeriodicWave)
-type periodicWave = {}
+type periodicWave = private {}
 
 /**
 The pan property takes a unitless value between -1 (full left pan) and 1 (full right pan). This interface was introduced as a much simpler way to apply a simple panning effect than having to use a full PannerNode.
 [See StereoPannerNode on MDN](https://developer.mozilla.org/docs/Web/API/StereoPannerNode)
 */
 @editor.completeFrom(StereoPannerNode)
-type stereoPannerNode = {
+type stereoPannerNode = private {
   ...audioNode,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/StereoPannerNode/pan)
@@ -933,6 +949,7 @@ type stereoPannerNode = {
 /**
 A WaveShaperNode always has exactly one input and one output.
 [See WaveShaperNode on MDN](https://developer.mozilla.org/docs/Web/API/WaveShaperNode)
+TODO: mark as private once mutating fields of private records is allowed
 */
 @editor.completeFrom(WaveShaperNode)
 type waveShaperNode = {
@@ -952,7 +969,7 @@ An audio-processing graph built from audio modules linked together, each represe
 [See AudioContext on MDN](https://developer.mozilla.org/docs/Web/API/AudioContext)
 */
 @editor.completeFrom(AudioContext)
-type audioContext = {
+type audioContext = private {
   ...baseAudioContext,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/AudioContext/baseLatency)
@@ -969,7 +986,7 @@ A MediaElementSourceNode has no inputs and exactly one output, and is created us
 [See MediaElementAudioSourceNode on MDN](https://developer.mozilla.org/docs/Web/API/MediaElementAudioSourceNode)
 */
 @editor.completeFrom(MediaElementAudioSourceNode)
-type mediaElementAudioSourceNode = {
+type mediaElementAudioSourceNode = private {
   ...audioNode,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/MediaElementAudioSourceNode/mediaElement)
@@ -982,7 +999,7 @@ A type of AudioNode which operates as an audio source whose media is received fr
 [See MediaStreamAudioSourceNode on MDN](https://developer.mozilla.org/docs/Web/API/MediaStreamAudioSourceNode)
 */
 @editor.completeFrom(MediaStreamAudioSourceNode)
-type mediaStreamAudioSourceNode = {
+type mediaStreamAudioSourceNode = private {
   ...audioNode,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/MediaStreamAudioSourceNode/mediaStream)
@@ -994,7 +1011,7 @@ type mediaStreamAudioSourceNode = {
 [See MediaStreamAudioDestinationNode on MDN](https://developer.mozilla.org/docs/Web/API/MediaStreamAudioDestinationNode)
 */
 @editor.completeFrom(MediaStreamAudioDestinationNode)
-type mediaStreamAudioDestinationNode = {
+type mediaStreamAudioDestinationNode = private {
   ...audioNode,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/MediaStreamAudioDestinationNode/stream)
@@ -1011,7 +1028,7 @@ type audioParamMap = {}
 [See AudioWorkletNode on MDN](https://developer.mozilla.org/docs/Web/API/AudioWorkletNode)
 */
 @editor.completeFrom(AudioWorkletNode)
-type audioWorkletNode = {
+type audioWorkletNode = private {
   ...audioNode,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/AudioWorkletNode/parameters)
@@ -1028,7 +1045,7 @@ An AudioContext interface representing an audio-processing graph built from link
 [See OfflineAudioContext on MDN](https://developer.mozilla.org/docs/Web/API/OfflineAudioContext)
 */
 @editor.completeFrom(OfflineAudioContext)
-type offlineAudioContext = {
+type offlineAudioContext = private {
   ...baseAudioContext,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/OfflineAudioContext/length)
@@ -1256,7 +1273,9 @@ type audioContextOptions = {
 
 type mediaElementAudioSourceOptions = {mutable mediaElement: WebApiDOM.Types.htmlMediaElement}
 
-type mediaStreamAudioSourceOptions = {mutable mediaStream: WebApiMediaCaptureAndStreams.Types.mediaStream}
+type mediaStreamAudioSourceOptions = {
+  mutable mediaStream: WebApiMediaCaptureAndStreams.Types.mediaStream,
+}
 
 type audioWorkletNodeOptions = {
   ...audioNodeOptions,

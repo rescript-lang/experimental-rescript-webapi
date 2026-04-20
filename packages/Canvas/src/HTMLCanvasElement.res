@@ -55,8 +55,11 @@ Returns the content of the current canvas as an image that you can use as a sour
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLCanvasElement/toDataURL)
 */
 @send
-external toDataURL: (WebApiDOM.Types.htmlCanvasElement, ~type_: string=?, ~quality: JSON.t=?) => string =
-  "toDataURL"
+external toDataURL: (
+  WebApiDOM.Types.htmlCanvasElement,
+  ~type_: string=?,
+  ~quality: JSON.t=?,
+) => string = "toDataURL"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLCanvasElement/toBlob)

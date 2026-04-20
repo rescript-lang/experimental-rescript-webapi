@@ -73,14 +73,14 @@ type requestPriority =
 [See Headers on MDN](https://developer.mozilla.org/docs/Web/API/Headers)
 */
 @editor.completeFrom(Headers)
-type headers = {}
+type headers = private {}
 
 /**
 This WebApiFetch API interface represents a resource request.
 [See Request on MDN](https://developer.mozilla.org/docs/Web/API/Request)
 */
 @editor.completeFrom(Request)
-type request = {
+type request = private {
   /**
     Returns request's HTTP method, which is "GET" by default.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Request/method)
@@ -161,7 +161,7 @@ This WebApiFetch API interface represents the response to a request.
 [See Response on MDN](https://developer.mozilla.org/docs/Web/API/Response)
 */
 @editor.completeFrom(Response)
-type response = {
+type response = private {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Response/type)
     */
@@ -206,7 +206,7 @@ Provides a way to easily construct a set of key/value pairs representing form fi
 [See FormData on MDN](https://developer.mozilla.org/docs/Web/API/FormData)
 */
 @editor.completeFrom(FormData)
-type formData = {}
+type formData = private {}
 
 @editor.completeFrom(HeadersInit) type headersInit
 

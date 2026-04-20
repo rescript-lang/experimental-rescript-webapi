@@ -24,6 +24,7 @@ type mediaImage = {
 
 /**
 [See MediaMetadata on MDN](https://developer.mozilla.org/docs/Web/API/MediaMetadata)
+TODO: mark as private once mutating fields of private records is allowed
 */
 @editor.completeFrom(MediaMetadata)
 type mediaMetadata = {
@@ -47,6 +48,7 @@ type mediaMetadata = {
 
 /**
 [See WebApiMediaSession on MDN](https://developer.mozilla.org/docs/Web/API/WebApiMediaSession)
+TODO: mark as private once mutating fields of private records is allowed
 */
 @editor.completeFrom(WebApiMediaSession)
 type mediaSession = {

@@ -1,4 +1,4 @@
-type t = Types.messagePort
+type t = Types.messagePort = private {...Types.messagePort}
 type structuredSerializeOptions = Types.structuredSerializeOptions
 
 include WebApiEvent.EventTarget.Impl({type t = t})
@@ -10,11 +10,8 @@ Throws a "DataCloneError" DOMException if transfer contains duplicate objects or
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/MessagePort/postMessage)
 */
 @send
-external postMessage: (
-  t,
-  ~message: JSON.t,
-  ~transfer: array<Dict.t<string>>,
-) => unit = "postMessage"
+external postMessage: (t, ~message: JSON.t, ~transfer: array<Dict.t<string>>) => unit =
+  "postMessage"
 
 /**
 Posts a message through the channel. Objects listed in transfer are transferred, not just cloned, meaning that they are no longer usable on the sending side.
@@ -23,11 +20,8 @@ Throws a "DataCloneError" DOMException if transfer contains duplicate objects or
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/MessagePort/postMessage)
 */
 @send
-external postMessage2: (
-  t,
-  ~message: JSON.t,
-  ~options: structuredSerializeOptions=?,
-) => unit = "postMessage"
+external postMessage2: (t, ~message: JSON.t, ~options: structuredSerializeOptions=?) => unit =
+  "postMessage"
 
 /**
 Begins dispatching messages received on the port.

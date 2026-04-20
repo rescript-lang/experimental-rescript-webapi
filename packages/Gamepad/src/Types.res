@@ -35,7 +35,7 @@ This WebApiGamepad API interface represents hardware in the controller designed 
 [See GamepadHapticActuator on MDN](https://developer.mozilla.org/docs/Web/API/GamepadHapticActuator)
 */
 @editor.completeFrom(GamepadHapticActuator)
-type gamepadHapticActuator = {}
+type gamepadHapticActuator = private {}
 
 /**
 This WebApiGamepad API interface defines an individual gamepad or other controller, allowing access to information such as button presses, axis positions, and id.

@@ -1,7 +1,7 @@
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/FormData)
 */
-type t = Types.formData
+type t = Types.formData = private {...Types.formData}
 type formDataEntryValue = FormDataEntryValue.t
 
 /**
@@ -73,9 +73,5 @@ external set: (t, ~name: string, ~value: string) => unit = "set"
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/FormData/set)
 */
 @send
-external setBlob: (
-  t,
-  ~name: string,
-  ~blobValue: WebApiFile.Blob.t,
-  ~filename: string=?,
-) => unit = "set"
+external setBlob: (t, ~name: string, ~blobValue: WebApiFile.Blob.t, ~filename: string=?) => unit =
+  "set"

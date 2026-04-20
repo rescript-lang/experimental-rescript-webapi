@@ -9,8 +9,12 @@ Uses the given element to update the drag feedback, replacing any previously spe
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/DataTransfer/setDragImage)
 */
 @send
-external setDragImage: (Types.dataTransfer, ~image: WebApiDOM.Types.element, ~x: int, ~y: int) => unit =
-  "setDragImage"
+external setDragImage: (
+  Types.dataTransfer,
+  ~image: WebApiDOM.Types.element,
+  ~x: int,
+  ~y: int,
+) => unit = "setDragImage"
 
 /**
 Returns the specified data. If there is no such data, returns the empty string.

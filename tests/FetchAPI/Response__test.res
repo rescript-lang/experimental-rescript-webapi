@@ -7,10 +7,7 @@ let stream = WebApiFile.ReadableStream.make()
 
 let response = WebApiFetch.Response.fromNull(~init={status: 204, headers})
 
-let response1 = WebApiFetch.Response.fromString(
-  "pong",
-  ~init={status: 200, headers},
-)
+let response1 = WebApiFetch.Response.fromString("pong", ~init={status: 200, headers})
 
 let response2 = WebApiFetch.Response.fromBlob(blob)
 let response3 = WebApiFetch.Response.fromFile(file)

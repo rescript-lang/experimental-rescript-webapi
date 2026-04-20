@@ -25,7 +25,8 @@ switch observer2.root->IRoot.decode {
 }
 let rootMargin2 = observer2.rootMargin
 
-let targetElement = WebApiDOM.Global.document->WebApiDOM.Document.querySelector("#targetElement")->Null.toOption
+let targetElement =
+  WebApiDOM.Global.document->WebApiDOM.Document.querySelector("#targetElement")->Null.toOption
 switch targetElement {
 | Some(e) => {
     observer2->IObserver.observe(e)

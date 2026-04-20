@@ -36,24 +36,25 @@ self->WebApiServiceWorker.ServiceWorkerGlobalScope.addEventListener(WebApiEvent.
   ->Promise.ignore
 })
 
-self->WebApiServiceWorker.ServiceWorkerGlobalScope.addEventListener(WebApiEvent.Types.NotificationClick, (
-  event: WebApiNotification.Notification.notificationEvent,
-) => {
-  Console.log(`notification clicked: ${event.action}`)
-  // Close the notification
-  event.notification->WebApiNotification.Notification.close
+self->WebApiServiceWorker.ServiceWorkerGlobalScope.addEventListener(
+  WebApiEvent.Types.NotificationClick,
+  (event: WebApiNotification.Notification.notificationEvent) => {
+    Console.log(`notification clicked: ${event.action}`)
+    // Close the notification
+    event.notification->WebApiNotification.Notification.close
 
-  // Open a new window if that is relevant
-  event.notification.data
-  ->Option.flatMap(data => {
-    switch data {
-    | JSON.Number(id) => Some(Float.toString(id))
-    | _ => None
-    }
-  })
-  ->Option.forEach(id => {
-    self.clients
-    ->WebApiServiceWorker.Clients.openWindow(`https://mywebsite.com/mydata/${id}`)
-    ->Promise.ignore
-  })
-})
+    // Open a new window if that is relevant
+    event.notification.data
+    ->Option.flatMap(data => {
+      switch data {
+      | JSON.Number(id) => Some(Float.toString(id))
+      | _ => None
+      }
+    })
+    ->Option.forEach(id => {
+      self.clients
+      ->WebApiServiceWorker.Clients.openWindow(`https://mywebsite.com/mydata/${id}`)
+      ->Promise.ignore
+    })
+  },
+)

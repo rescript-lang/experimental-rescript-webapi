@@ -6,13 +6,13 @@ type wakeLockType = | @as("screen") Screen
 [See WakeLock on MDN](https://developer.mozilla.org/docs/Web/API/WakeLock)
 */
 @editor.completeFrom(WakeLock)
-type wakeLock = {}
+type wakeLock = private {}
 
 /**
 [See WakeLockSentinel on MDN](https://developer.mozilla.org/docs/Web/API/WakeLockSentinel)
 */
 @editor.completeFrom(WakeLockSentinel)
-type wakeLockSentinel = {
+type wakeLockSentinel = private {
   ...WebApiEvent.Types.eventTarget,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/WakeLockSentinel/released)
