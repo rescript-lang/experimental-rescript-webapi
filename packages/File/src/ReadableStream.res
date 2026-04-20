@@ -21,7 +21,7 @@ let stream: ReadableStream.t<string> = ReadableStream.make()
 external make: unit => t<'t> = "ReadableStream"
 
 /**
-`fromUnderlyingSource(~underlyingSource: underlyingSource<'t>)`
+`fromUnderlyingSource(underlyingSource<'t>)`
 
 The ReadableStream() constructor creates a new ReadableStream from an underlying source definition.
 
@@ -29,15 +29,13 @@ Source shape:
 - local [`underlyingSource<'t>`](../#underlyingSource) values accepted by MDN [ReadableStream()](https://developer.mozilla.org/docs/Web/API/ReadableStream/ReadableStream).
 
 ```res
-let stream =
-  ReadableStream.fromUnderlyingSource(~underlyingSource=myUnderlyingSource)
+let stream = ReadableStream.fromUnderlyingSource(myUnderlyingSource)
 ```
 
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/ReadableStream)
 */
 @new
-external fromUnderlyingSource: (~underlyingSource: Types.underlyingSource<'t>) => t<'t> =
-  "ReadableStream"
+external fromUnderlyingSource: Types.underlyingSource<'t> => t<'t> = "ReadableStream"
 
 /**
 `fromUnderlyingSourceWithStrategy(~underlyingSource: underlyingSource<'t>, ~strategy: queuingStrategy<'t>)`

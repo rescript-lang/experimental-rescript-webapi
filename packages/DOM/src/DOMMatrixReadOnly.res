@@ -16,38 +16,38 @@ let matrix = DOMMatrixReadOnly.make()
 external make: unit => Types.domMatrixReadOnly = "DOMMatrixReadOnly"
 
 /**
-`fromString(~init: string)`
+`fromString(string)`
 
 The DOMMatrixReadOnly() constructor creates a new DOMMatrixReadOnly value from a transform string.
 
 Source shape:
-- `init`: ReScript [string](https://rescript-lang.org/docs/manual/primitive-types/#string) accepted by MDN [DOMMatrixReadOnly()](https://developer.mozilla.org/docs/Web/API/DOMMatrixReadOnly/DOMMatrixReadOnly).
+- ReScript [string](https://rescript-lang.org/docs/manual/primitive-types/#string) accepted by MDN [DOMMatrixReadOnly()](https://developer.mozilla.org/docs/Web/API/DOMMatrixReadOnly/DOMMatrixReadOnly).
 
 ```res
-let matrix = DOMMatrixReadOnly.fromString(~init="matrix(1, 0, 0, 1, 0, 0)")
+let matrix = DOMMatrixReadOnly.fromString("matrix(1, 0, 0, 1, 0, 0)")
 ```
 
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/DOMMatrixReadOnly)
 */
 @new
-external fromString: (~init: string) => Types.domMatrixReadOnly = "DOMMatrixReadOnly"
+external fromString: string => Types.domMatrixReadOnly = "DOMMatrixReadOnly"
 
 /**
-`fromArray(~init: array<float>)`
+`fromArray(array<float>)`
 
 The DOMMatrixReadOnly() constructor creates a new DOMMatrixReadOnly value from an array of matrix component values.
 
 Source shape:
-- `init`: ReScript [array](https://rescript-lang.org/docs/manual/api/stdlib/array) of numeric values accepted by MDN [DOMMatrixReadOnly()](https://developer.mozilla.org/docs/Web/API/DOMMatrixReadOnly/DOMMatrixReadOnly).
+- ReScript [array](https://rescript-lang.org/docs/manual/api/stdlib/array) of numeric values accepted by MDN [DOMMatrixReadOnly()](https://developer.mozilla.org/docs/Web/API/DOMMatrixReadOnly/DOMMatrixReadOnly).
 
 ```res
-let matrix = DOMMatrixReadOnly.fromArray(~init=[1., 0., 0., 1., 0., 0.])
+let matrix = DOMMatrixReadOnly.fromArray([1., 0., 0., 1., 0., 0.])
 ```
 
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/DOMMatrixReadOnly)
 */
 @new
-external fromArray: (~init: array<float>) => Types.domMatrixReadOnly = "DOMMatrixReadOnly"
+external fromArray: array<float> => Types.domMatrixReadOnly = "DOMMatrixReadOnly"
 
 @scope("DOMMatrixReadOnly")
 external fromMatrix: (~other: Types.domMatrixInit=?) => Types.domMatrixReadOnly = "fromMatrix"

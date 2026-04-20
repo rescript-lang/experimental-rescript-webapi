@@ -88,11 +88,13 @@ And if a constructor really does have a default form, split it instead of hiding
 external make: unit => domMatrix = "DOMMatrix"
 
 @new
-external fromString: (~init: string) => domMatrix = "DOMMatrix"
+external fromString: string => domMatrix = "DOMMatrix"
 
 @new
-external fromArray: (~init: array<float>) => domMatrix = "DOMMatrix"
+external fromArray: array<float> => domMatrix = "DOMMatrix"
 ```
+
+Single-source constructor variants should take the source value directly without a label.
 
 Keep `makeWith*` names for non-default convenience constructors that are not part of a source-type overload family.
 

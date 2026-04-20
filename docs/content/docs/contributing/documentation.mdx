@@ -48,24 +48,25 @@ external fetch: (window, string, ~init: requestInit=?)
 
 Constructor overloads should use the same structure, but make the differentiating input shape explicit.
 Link ReScript stdlib types such as `string`, `array<'a>`, `ArrayBuffer.t`, and `DataView.t`, and link project-local records or aliases when the constructor takes one of those shapes.
+If a constructor variant has a single source input, show it as a direct unlabeled argument in both the signature and example.
 
 ````ReScript
 /*
-`fromArray(~init: array<float>)`
+`fromArray(array<float>)`
 
 The DOMMatrix() constructor creates a new DOMMatrix from an array of matrix component values.
 
 Source shape:
-- `init`: ReScript [array](https://rescript-lang.org/docs/manual/api/stdlib/array) of numeric values accepted by MDN [DOMMatrix()](https://developer.mozilla.org/docs/Web/API/DOMMatrix/DOMMatrix).
+- ReScript [array](https://rescript-lang.org/docs/manual/api/stdlib/array) of numeric values accepted by MDN [DOMMatrix()](https://developer.mozilla.org/docs/Web/API/DOMMatrix/DOMMatrix).
 
 ```res
-let matrix = DOMMatrix.fromArray(~init=[1., 0., 0., 1., 0., 0.])
+let matrix = DOMMatrix.fromArray([1., 0., 0., 1., 0., 0.])
 ```
 
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/DOMMatrix)
 */
 @new
-external fromArray: (~init: array<float>) => domMatrix = "DOMMatrix"
+external fromArray: array<float> => domMatrix = "DOMMatrix"
 ````
 
 For now, these examples stay compile-coverage oriented. Runtime verification of constructor behavior will be handled later via Vitest and happy-dom.

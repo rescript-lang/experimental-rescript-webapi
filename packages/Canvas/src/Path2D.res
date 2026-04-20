@@ -18,7 +18,7 @@ let path = Path2D.make()
 external make: unit => Types.path2D = "Path2D"
 
 /**
-`fromPath2D(~path: Path2D.t)`
+`fromPath2D(path2D)`
 
 The Path2D() constructor creates a new Path2D object by copying another Path2D source.
 
@@ -26,30 +26,30 @@ Source shape:
 - local [`Path2D.t`](#t) mapped to MDN [Path2D](https://developer.mozilla.org/docs/Web/API/Path2D).
 
 ```res
-let copiedPath = Path2D.fromPath2D(~path=existingPath)
+let copiedPath = Path2D.fromPath2D(existingPath)
 ```
 
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Path2D)
 */
 @new
-external fromPath2D: (~path: Types.path2D) => Types.path2D = "Path2D"
+external fromPath2D: Types.path2D => Types.path2D = "Path2D"
 
 /**
-`fromString(~path: string)`
+`fromString(string)`
 
 The Path2D() constructor creates a new Path2D object from SVG path data text.
 
 Source shape:
-- `path`: ReScript [string](https://rescript-lang.org/docs/manual/primitive-types/#string) containing SVG path data accepted by MDN [Path2D()](https://developer.mozilla.org/docs/Web/API/Path2D/Path2D).
+- ReScript [string](https://rescript-lang.org/docs/manual/primitive-types/#string) containing SVG path data accepted by MDN [Path2D()](https://developer.mozilla.org/docs/Web/API/Path2D/Path2D).
 
 ```res
-let path = Path2D.fromString(~path="M0 0 L10 10")
+let path = Path2D.fromString("M0 0 L10 10")
 ```
 
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Path2D)
 */
 @new
-external fromString: (~path: string) => Types.path2D = "Path2D"
+external fromString: string => Types.path2D = "Path2D"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CanvasRenderingContext2D/closePath)
