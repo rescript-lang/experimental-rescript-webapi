@@ -1,7 +1,7 @@
-include WebApi.Event.EventTarget.Impl({type t = Types.wakeLockSentinel})
+include Event.EventTarget.Impl({type t = ScreenWakeLockTypes.wakeLockSentinel})
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/WakeLockSentinel/release)
 */
 @send
-external release: Types.wakeLockSentinel => promise<unit> = "release"
+external release: ScreenWakeLockTypes.wakeLockSentinel => promise<unit> = "release"

@@ -2,18 +2,20 @@
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/AnimationEffect/getTiming)
 */
 @send
-external getTiming: Types.animationEffect => Types.effectTiming = "getTiming"
+external getTiming: DomTypes.animationEffect => DomTypes.effectTiming = "getTiming"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/AnimationEffect/getComputedTiming)
 */
 @send
-external getComputedTiming: Types.animationEffect => Types.computedEffectTiming =
+external getComputedTiming: DomTypes.animationEffect => DomTypes.computedEffectTiming =
   "getComputedTiming"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/AnimationEffect/updateTiming)
 */
 @send
-external updateTiming: (Types.animationEffect, ~timing: Types.optionalEffectTiming=?) => unit =
-  "updateTiming"
+external updateTiming: (
+  DomTypes.animationEffect,
+  ~timing: DomTypes.optionalEffectTiming=?,
+) => unit = "updateTiming"

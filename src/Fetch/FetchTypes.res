@@ -117,7 +117,7 @@ type request = private {
     */
   mode: requestMode,
   /**
-    Returns the credentials mode associated with request, which is a string indicating whether credentials will be sent with the request always, never, or only when sent to a same-origin WebApi.URL.
+    Returns the credentials mode associated with request, which is a string indicating whether credentials will be sent with the request always, never, or only when sent to a same-origin URL.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Request/credentials)
     */
   credentials: requestCredentials,
@@ -145,11 +145,11 @@ type request = private {
     Returns the signal associated with request, which is an AbortSignal object indicating whether or not request has been aborted, and its abort event handler.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Request/signal)
     */
-  signal: WebApi.Event.Types.abortSignal,
+  signal: Event.Types.abortSignal,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Request/body)
     */
-  body: Null.t<WebApi.File.Types.readableStream<array<int>>>,
+  body: Null.t<File.Types.readableStream<array<int>>>,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Request/bodyUsed)
     */
@@ -194,7 +194,7 @@ type response = private {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Request/body)
     */
-  body: Null.t<WebApi.File.Types.readableStream<array<int>>>,
+  body: Null.t<File.Types.readableStream<array<int>>>,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Request/bodyUsed)
     */
@@ -217,7 +217,7 @@ type requestInfo = unknown
 @editor.completeFrom(FormDataEntryValue) @unboxed
 type formDataEntryValue =
   | String(string)
-  | File(WebApi.File.Types.file)
+  | File(File.Types.file)
 
 type requestInit = {
   /**
@@ -245,7 +245,7 @@ type requestInit = {
     */
   mutable mode?: requestMode,
   /**
-    A string indicating whether credentials will be sent with the request always, never, or only when sent to a same-origin WebApi.URL. Sets request's credentials.
+    A string indicating whether credentials will be sent with the request always, never, or only when sent to a same-origin URL. Sets request's credentials.
     */
   mutable credentials?: requestCredentials,
   /**
@@ -267,7 +267,7 @@ type requestInit = {
   /**
     An AbortSignal to set request's signal.
     */
-  mutable signal?: Null.t<WebApi.Event.Types.abortSignal>,
+  mutable signal?: Null.t<Event.Types.abortSignal>,
   mutable priority?: requestPriority,
   /**
     Can only be null. Used to disassociate request from any Window.

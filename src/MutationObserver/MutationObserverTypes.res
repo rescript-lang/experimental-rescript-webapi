@@ -14,4 +14,4 @@ type mutationObserverInit = {
   mutable attributeFilter?: array<string>,
 }
 
-type mutationObserverCallback = (array<WebApi.Base.DOM.mutationRecord>, mutationObserver) => unit
+type mutationObserverCallback = (array<Base.DOM.mutationRecord>, mutationObserver) => unit

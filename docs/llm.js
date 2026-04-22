@@ -2,6 +2,7 @@ import * as path from "node:path";
 import { exec } from "node:child_process";
 import { promisify } from "node:util";
 import fs from "node:fs/promises";
+import { featureSpecs, publicNameForLeafModule } from "../scripts/unmonorepo/feature-spec.mjs";
 
 const execAsync = promisify(exec);
 
@@ -33,10 +34,7 @@ async function getDocJson(filePath) {
 async function processFile(filePath) {
   const json = await getDocJson(filePath);
   const relativePath = path.relative(path.join(import.meta.dirname, ".."), filePath);
-  const parts = relativePath.split(path.sep);
-  const packageName = parts[1];
-  const leafName = path.basename(filePath, ".res");
-  const moduleName = leafName === "Types" ? packageName : `${packageName}.${leafName}`;
+  const moduleName = moduleNameForFile(relativePath);
 
   const types = [];
   const functions = [];
@@ -97,7 +95,26 @@ Module: ${moduleName}${typeString}${functionString}
 `;
 }
 
-const pattern = "../packages/*/src/**/*.res";
+const specByDir = new Map(featureSpecs.map((spec) => [spec.dirName, spec]));
+
+function moduleNameForFile(relativePath) {
+  const [, dirName, fileName] = relativePath.split(path.sep);
+  const spec = specByDir.get(dirName);
+
+  if (!spec) {
+    throw new Error(`Unsupported source directory for documentation: ${relativePath}`);
+  }
+
+  const leafName = path.basename(fileName, ".res");
+
+  if (leafName === spec.publicModule) {
+    return `WebApi.${spec.publicModule}`;
+  }
+
+  return `WebApi.${spec.publicModule}.${publicNameForLeafModule(leafName, spec.internalPrefix)}`;
+}
+
+const pattern = "../src/*/**/*.res";
 const files = [];
 for await (const file of fs.glob(pattern, { recursive: true, cwd: import.meta.dirname })) {
   files.push(path.join(import.meta.dirname, file));
@@ -109,9 +126,9 @@ const packageJson = await fs.readFile(path.join(import.meta.dirname, "../package
 let version = JSON.parse(packageJson).version;
 const sha = await execAsync("git rev-parse --short HEAD").then(({ stdout }) => stdout.trim());
 const fullVersion = `${version}-experimental-${sha}`;
-const header = `Experimental Rescript WebAPI Documentation ${fullVersion}
+const header = `Experimental ReScript WebApi Documentation ${fullVersion}
 
-This is the API documentation for the experimental WebAPI module version ${fullVersion}.
+This is the API documentation for the experimental WebApi module version ${fullVersion}.
 More information can be found on https://rescript-lang.github.io/experimental-rescript-webapi/
 
 `;

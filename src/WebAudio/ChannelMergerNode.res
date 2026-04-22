@@ -1,10 +1,10 @@
-include AudioNode.Impl({type t = Types.channelMergerNode})
+include AudioNode.Impl({type t = WebAudioTypes.channelMergerNode})
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/ChannelMergerNode)
 */
 @new
 external make: (
-  ~context: Types.baseAudioContext,
-  ~options: Types.channelMergerOptions=?,
-) => Types.channelMergerNode = "ChannelMergerNode"
+  ~context: WebAudioTypes.baseAudioContext,
+  ~options: WebAudioTypes.channelMergerOptions=?,
+) => WebAudioTypes.channelMergerNode = "ChannelMergerNode"

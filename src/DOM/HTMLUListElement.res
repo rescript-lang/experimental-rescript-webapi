@@ -1,1 +1,1 @@
-include HTMLElement.Impl({type t = Types.htmluListElement})
+include HTMLElement.Impl({type t = DomTypes.htmluListElement})

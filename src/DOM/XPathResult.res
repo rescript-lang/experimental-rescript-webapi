@@ -2,10 +2,10 @@
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/XPathResult/iterateNext)
 */
 @send
-external iterateNext: Types.xPathResult => Types.node = "iterateNext"
+external iterateNext: DomTypes.xPathResult => DomTypes.node = "iterateNext"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/XPathResult/snapshotItem)
 */
 @send
-external snapshotItem: (Types.xPathResult, int) => Types.node = "snapshotItem"
+external snapshotItem: (DomTypes.xPathResult, int) => DomTypes.node = "snapshotItem"

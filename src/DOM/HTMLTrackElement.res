@@ -1,1 +1,1 @@
-include HTMLElement.Impl({type t = Types.htmlTrackElement})
+include HTMLElement.Impl({type t = DomTypes.htmlTrackElement})

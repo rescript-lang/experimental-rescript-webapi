@@ -1,22 +1,25 @@
-external asFileSystemHandle: Types.fileSystemFileHandle => Types.fileSystemHandle = "%identity"
+external asFileSystemHandle: FileTypes.fileSystemFileHandle => FileTypes.fileSystemHandle =
+  "%identity"
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/FileSystemHandle/isSameEntry)
 */
 @send
-external isSameEntry: (Types.fileSystemFileHandle, Types.fileSystemHandle) => promise<bool> =
-  "isSameEntry"
+external isSameEntry: (
+  FileTypes.fileSystemFileHandle,
+  FileTypes.fileSystemHandle,
+) => promise<bool> = "isSameEntry"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/FileSystemFileHandle/getFile)
 */
 @send
-external getFile: Types.fileSystemFileHandle => promise<Types.file> = "getFile"
+external getFile: FileTypes.fileSystemFileHandle => promise<FileTypes.file> = "getFile"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/FileSystemFileHandle/createWritable)
 */
 @send
 external createWritable: (
-  Types.fileSystemFileHandle,
-  ~options: Types.fileSystemCreateWritableOptions=?,
-) => promise<Types.fileSystemWritableFileStream> = "createWritable"
+  FileTypes.fileSystemFileHandle,
+  ~options: FileTypes.fileSystemCreateWritableOptions=?,
+) => promise<FileTypes.fileSystemWritableFileStream> = "createWritable"

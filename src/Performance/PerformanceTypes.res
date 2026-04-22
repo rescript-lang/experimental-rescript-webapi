@@ -11,7 +11,7 @@ Provides access to performance-related information for the current page. It's pa
 */
 @editor.completeFrom(WebApiPerformance)
 type performance = private {
-  ...WebApi.Event.Types.eventTarget,
+  ...Event.Types.eventTarget,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Performance/timeOrigin)
     */

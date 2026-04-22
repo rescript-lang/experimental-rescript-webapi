@@ -1,4 +1,4 @@
-type t = WebApi.Base.DOM.domStringList
+type t = Base.DOM.domStringList
 
 /**
 Returns the string with index index from strings.

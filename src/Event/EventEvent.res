@@ -2,21 +2,22 @@
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Event)
 */
 @new
-external make: (~type_: string, ~eventInitDict: Types.eventInit=?) => Types.event = "Event"
+external make: (~type_: string, ~eventInitDict: EventTypes.eventInit=?) => EventTypes.event =
+  "Event"
 
 module Impl = (
   T: {
     type t
   },
 ) => {
-  external asEvent: T.t => Types.event = "%identity"
+  external asEvent: T.t => EventTypes.event = "%identity"
 
   /**
 Returns the invocation target objects of event's path (objects on which listeners will be invoked), except for any nodes in shadow trees of which the shadow root's mode is "closed" that are not reachable from event's currentTarget.
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Event/composedPath)
 */
   @send
-  external composedPath: T.t => array<Types.eventTarget> = "composedPath"
+  external composedPath: T.t => array<EventTypes.eventTarget> = "composedPath"
 
   /**
 If invoked when the cancelable attribute value is true, and while executing a listener for the event with passive set to false, signals to the operation that caused event to be dispatched that it needs to be canceled.
@@ -40,4 +41,4 @@ When dispatched in a tree, invoking this method prevents event from reaching any
   external stopPropagation: T.t => unit = "stopPropagation"
 }
 
-include Impl({type t = Types.event})
+include Impl({type t = EventTypes.event})

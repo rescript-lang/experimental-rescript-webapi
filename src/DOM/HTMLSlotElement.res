@@ -1,31 +1,31 @@
-include HTMLElement.Impl({type t = Types.htmlSlotElement})
+include HTMLElement.Impl({type t = DomTypes.htmlSlotElement})
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLSlotElement/assignedNodes)
 */
 @send
 external assignedNodes: (
-  Types.htmlSlotElement,
-  ~options: Types.assignedNodesOptions=?,
-) => array<Types.node> = "assignedNodes"
+  DomTypes.htmlSlotElement,
+  ~options: DomTypes.assignedNodesOptions=?,
+) => array<DomTypes.node> = "assignedNodes"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLSlotElement/assignedElements)
 */
 @send
 external assignedElements: (
-  Types.htmlSlotElement,
-  ~options: Types.assignedNodesOptions=?,
-) => array<Types.element> = "assignedElements"
+  DomTypes.htmlSlotElement,
+  ~options: DomTypes.assignedNodesOptions=?,
+) => array<DomTypes.element> = "assignedElements"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLSlotElement/assign)
 */
 @send
-external assign: (Types.htmlSlotElement, Types.element) => unit = "assign"
+external assign: (DomTypes.htmlSlotElement, DomTypes.element) => unit = "assign"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLSlotElement/assign)
 */
 @send
-external assign2: (Types.htmlSlotElement, Types.text) => unit = "assign"
+external assign2: (DomTypes.htmlSlotElement, DomTypes.text) => unit = "assign"

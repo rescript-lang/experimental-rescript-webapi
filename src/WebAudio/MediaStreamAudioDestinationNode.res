@@ -1,10 +1,10 @@
-include AudioNode.Impl({type t = Types.mediaStreamAudioDestinationNode})
+include AudioNode.Impl({type t = WebAudioTypes.mediaStreamAudioDestinationNode})
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/MediaStreamAudioDestinationNode)
 */
 @new
 external make: (
-  ~context: Types.audioContext,
-  ~options: Types.audioNodeOptions=?,
-) => Types.mediaStreamAudioDestinationNode = "MediaStreamAudioDestinationNode"
+  ~context: WebAudioTypes.audioContext,
+  ~options: WebAudioTypes.audioNodeOptions=?,
+) => WebAudioTypes.mediaStreamAudioDestinationNode = "MediaStreamAudioDestinationNode"

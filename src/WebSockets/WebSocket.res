@@ -1,10 +1,10 @@
-module Blob = WebApi.File.Blob
+module Blob = File.Blob
 
-type t = Types.webSocket = private {...Types.webSocket}
-type binaryType = Types.binaryType
-type messageEvent<'t> = Types.messageEvent<'t> = {...Types.messageEvent<'t>}
-type closeEvent = Types.closeEvent = private {...Types.closeEvent}
-type messageEventSource = Types.messageEventSource
+type t = WebSocketsTypes.webSocket = private {...WebSocketsTypes.webSocket}
+type binaryType = WebSocketsTypes.binaryType
+type messageEvent<'t> = WebSocketsTypes.messageEvent<'t> = {...WebSocketsTypes.messageEvent<'t>}
+type closeEvent = WebSocketsTypes.closeEvent = private {...WebSocketsTypes.closeEvent}
+type messageEventSource = WebSocketsTypes.messageEventSource
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/WebSocket)
@@ -18,7 +18,7 @@ external make: (~url: string, ~protocols: string=?) => t = "WebSocket"
 @new
 external makeWithProtocols: (~url: string, ~protocols: array<string>=?) => t = "WebSocket"
 
-include WebApi.Event.EventTarget.Impl({type t = t})
+include Event.EventTarget.Impl({type t = t})
 
 /**
 Closes the WebSocket connection, optionally using code as the the WebSocket connection close code and reason as the the WebSocket connection close reason.

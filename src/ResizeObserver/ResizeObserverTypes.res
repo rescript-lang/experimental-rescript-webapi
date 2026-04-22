@@ -26,11 +26,11 @@ type resizeObserverEntry = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/ResizeObserverEntry/target)
     */
-  target: WebApi.DOM.Types.element,
+  target: DOM.Types.element,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/ResizeObserverEntry/contentRect)
     */
-  contentRect: WebApi.DOM.Types.domRectReadOnly,
+  contentRect: DOM.Types.domRectReadOnly,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/ResizeObserverEntry/borderBoxSize)
     */

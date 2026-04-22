@@ -2,24 +2,25 @@
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/NavigationPreloadManager/enable)
 */
 @send
-external enable: Types.navigationPreloadManager => promise<unit> = "enable"
+external enable: ServiceWorkerTypes.navigationPreloadManager => promise<unit> = "enable"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/NavigationPreloadManager/disable)
 */
 @send
-external disable: Types.navigationPreloadManager => promise<unit> = "disable"
+external disable: ServiceWorkerTypes.navigationPreloadManager => promise<unit> = "disable"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/NavigationPreloadManager/setHeaderValue)
 */
 @send
-external setHeaderValue: (Types.navigationPreloadManager, string) => promise<unit> =
+external setHeaderValue: (ServiceWorkerTypes.navigationPreloadManager, string) => promise<unit> =
   "setHeaderValue"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/NavigationPreloadManager/getState)
 */
 @send
-external getState: Types.navigationPreloadManager => promise<Types.navigationPreloadState> =
-  "getState"
+external getState: ServiceWorkerTypes.navigationPreloadManager => promise<
+  ServiceWorkerTypes.navigationPreloadState,
+> = "getState"

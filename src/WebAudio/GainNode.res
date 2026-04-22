@@ -1,8 +1,10 @@
-include AudioNode.Impl({type t = Types.gainNode})
+include AudioNode.Impl({type t = WebAudioTypes.gainNode})
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/GainNode)
 */
 @new
-external make: (~context: Types.baseAudioContext, ~options: Types.gainOptions=?) => Types.gainNode =
-  "GainNode"
+external make: (
+  ~context: WebAudioTypes.baseAudioContext,
+  ~options: WebAudioTypes.gainOptions=?,
+) => WebAudioTypes.gainNode = "GainNode"

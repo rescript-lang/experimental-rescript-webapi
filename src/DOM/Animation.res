@@ -3,56 +3,56 @@
 */
 @new
 external make: (
-  ~effect: Types.animationEffect=?,
-  ~timeline: Types.animationTimeline=?,
-) => Types.animation = "Animation"
+  ~effect: DomTypes.animationEffect=?,
+  ~timeline: DomTypes.animationTimeline=?,
+) => DomTypes.animation = "Animation"
 
-include WebApi.Event.EventTarget.Impl({type t = Types.animation})
+include Event.EventTarget.Impl({type t = DomTypes.animation})
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Animation/cancel)
 */
 @send
-external cancel: Types.animation => unit = "cancel"
+external cancel: DomTypes.animation => unit = "cancel"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Animation/finish)
 */
 @send
-external finish: Types.animation => unit = "finish"
+external finish: DomTypes.animation => unit = "finish"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Animation/play)
 */
 @send
-external play: Types.animation => unit = "play"
+external play: DomTypes.animation => unit = "play"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Animation/pause)
 */
 @send
-external pause: Types.animation => unit = "pause"
+external pause: DomTypes.animation => unit = "pause"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Animation/updatePlaybackRate)
 */
 @send
-external updatePlaybackRate: (Types.animation, float) => unit = "updatePlaybackRate"
+external updatePlaybackRate: (DomTypes.animation, float) => unit = "updatePlaybackRate"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Animation/reverse)
 */
 @send
-external reverse: Types.animation => unit = "reverse"
+external reverse: DomTypes.animation => unit = "reverse"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Animation/persist)
 */
 @send
-external persist: Types.animation => unit = "persist"
+external persist: DomTypes.animation => unit = "persist"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Animation/commitStyles)
 */
 @send
-external commitStyles: Types.animation => unit = "commitStyles"
+external commitStyles: DomTypes.animation => unit = "commitStyles"

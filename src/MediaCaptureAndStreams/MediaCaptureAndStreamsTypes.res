@@ -15,7 +15,7 @@ Provides access to connected media input devices like cameras and microphones, a
 */
 @editor.completeFrom(MediaDevices)
 type mediaDevices = private {
-  ...WebApi.Event.Types.eventTarget,
+  ...Event.Types.eventTarget,
 }
 
 /**
@@ -48,7 +48,7 @@ A stream of media content. A stream consists of several tracks such as video or
 */
 @editor.completeFrom(MediaStream)
 type mediaStream = private {
-  ...WebApi.Event.Types.eventTarget,
+  ...Event.Types.eventTarget,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/MediaStream/id)
     */
@@ -66,7 +66,7 @@ TODO: mark as private once mutating fields of private records is allowed
 */
 @editor.completeFrom(MediaStreamTrack)
 type mediaStreamTrack = {
-  ...WebApi.Event.Types.eventTarget,
+  ...Event.Types.eventTarget,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/MediaStreamTrack/kind)
     */

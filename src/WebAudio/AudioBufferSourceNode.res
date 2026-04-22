@@ -1,20 +1,20 @@
-include AudioScheduledSourceNode.Impl({type t = Types.audioBufferSourceNode})
+include AudioScheduledSourceNode.Impl({type t = WebAudioTypes.audioBufferSourceNode})
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/AudioBufferSourceNode)
 */
 @new
 external make: (
-  ~context: Types.baseAudioContext,
-  ~options: Types.audioBufferSourceOptions=?,
-) => Types.audioBufferSourceNode = "AudioBufferSourceNode"
+  ~context: WebAudioTypes.baseAudioContext,
+  ~options: WebAudioTypes.audioBufferSourceOptions=?,
+) => WebAudioTypes.audioBufferSourceNode = "AudioBufferSourceNode"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/AudioBufferSourceNode/start)
 */
 @send
 external startA: (
-  Types.audioBufferSourceNode,
+  WebAudioTypes.audioBufferSourceNode,
   ~when_: float=?,
   ~offset: float=?,
   ~duration: float=?,

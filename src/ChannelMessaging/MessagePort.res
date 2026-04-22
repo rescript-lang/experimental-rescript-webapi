@@ -1,7 +1,7 @@
-type t = Types.messagePort = private {...Types.messagePort}
-type structuredSerializeOptions = Types.structuredSerializeOptions
+type t = ChannelMessagingTypes.messagePort = private {...ChannelMessagingTypes.messagePort}
+type structuredSerializeOptions = ChannelMessagingTypes.structuredSerializeOptions
 
-include WebApi.Event.EventTarget.Impl({type t = t})
+include Event.EventTarget.Impl({type t = t})
 
 /**
 Posts a message through the channel. Objects listed in transfer are transferred, not just cloned, meaning that they are no longer usable on the sending side.

@@ -80,7 +80,7 @@ type pushMessageData
 
 @editor.completeFrom(PushEvent)
 type pushEvent = private {
-  ...WebApi.Event.Types.extendableEvent,
+  ...Event.Types.extendableEvent,
   /**
    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/PushEvent/data)
    */

@@ -13,7 +13,7 @@ type wakeLock = private {}
 */
 @editor.completeFrom(WakeLockSentinel)
 type wakeLockSentinel = private {
-  ...WebApi.Event.Types.eventTarget,
+  ...Event.Types.eventTarget,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/WakeLockSentinel/released)
     */

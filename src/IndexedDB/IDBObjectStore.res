@@ -10,10 +10,10 @@ If successful, request's result will be the record's key.
 */
 @send
 external put: (
-  Types.idbObjectStore,
+  IndexedDbTypes.idbObjectStore,
   ~value: JSON.t,
-  ~key: Types.idbValidKey=?,
-) => Types.idbRequest<Types.idbValidKey> = "put"
+  ~key: IndexedDbTypes.idbValidKey=?,
+) => IndexedDbTypes.idbRequest<IndexedDbTypes.idbValidKey> = "put"
 
 /**
 Adds or updates a record in store with the given value and key.
@@ -27,10 +27,10 @@ If successful, request's result will be the record's key.
 */
 @send
 external add: (
-  Types.idbObjectStore,
+  IndexedDbTypes.idbObjectStore,
   ~value: JSON.t,
-  ~key: Types.idbValidKey=?,
-) => Types.idbRequest<Types.idbValidKey> = "add"
+  ~key: IndexedDbTypes.idbValidKey=?,
+) => IndexedDbTypes.idbRequest<IndexedDbTypes.idbValidKey> = "add"
 
 /**
 Deletes records in store with the given key or in the given key range in query.
@@ -39,7 +39,8 @@ If successful, request's result will be undefined.
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/IDBObjectStore/delete)
 */
 @send
-external delete: (Types.idbObjectStore, unknown) => Types.idbRequest<unit> = "delete"
+external delete: (IndexedDbTypes.idbObjectStore, unknown) => IndexedDbTypes.idbRequest<unit> =
+  "delete"
 
 /**
 Deletes all records in store.
@@ -48,7 +49,7 @@ If successful, request's result will be undefined.
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/IDBObjectStore/clear)
 */
 @send
-external clear: Types.idbObjectStore => Types.idbRequest<unit> = "clear"
+external clear: IndexedDbTypes.idbObjectStore => IndexedDbTypes.idbRequest<unit> = "clear"
 
 /**
 Retrieves the value of the first record matching the given key or key range in query.
@@ -57,7 +58,7 @@ If successful, request's result will be the value, or undefined if there was no 
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/IDBObjectStore/get)
 */
 @send
-external get: (Types.idbObjectStore, unknown) => Types.idbRequest<JSON.t> = "get"
+external get: (IndexedDbTypes.idbObjectStore, unknown) => IndexedDbTypes.idbRequest<JSON.t> = "get"
 
 /**
 Retrieves the key of the first record matching the given key or key range in query.
@@ -66,7 +67,8 @@ If successful, request's result will be the key, or undefined if there was no ma
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/IDBObjectStore/getKey)
 */
 @send
-external getKey: (Types.idbObjectStore, unknown) => Types.idbRequest<unknown> = "getKey"
+external getKey: (IndexedDbTypes.idbObjectStore, unknown) => IndexedDbTypes.idbRequest<unknown> =
+  "getKey"
 
 /**
 Retrieves the values of the records matching the given key or key range in query (up to count if given).
@@ -76,10 +78,10 @@ If successful, request's result will be an Array of the values.
 */
 @send
 external getAll: (
-  Types.idbObjectStore,
+  IndexedDbTypes.idbObjectStore,
   ~query: unknown=?,
   ~count: int=?,
-) => Types.idbRequest<array<JSON.t>> = "getAll"
+) => IndexedDbTypes.idbRequest<array<JSON.t>> = "getAll"
 
 /**
 Retrieves the keys of records matching the given key or key range in query (up to count if given).
@@ -89,10 +91,10 @@ If successful, request's result will be an Array of the keys.
 */
 @send
 external getAllKeys: (
-  Types.idbObjectStore,
+  IndexedDbTypes.idbObjectStore,
   ~query: unknown=?,
   ~count: int=?,
-) => Types.idbRequest<array<Types.idbValidKey>> = "getAllKeys"
+) => IndexedDbTypes.idbRequest<array<IndexedDbTypes.idbValidKey>> = "getAllKeys"
 
 /**
 Retrieves the number of records matching the given key or key range in query.
@@ -101,7 +103,10 @@ If successful, request's result will be the count.
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/IDBObjectStore/count)
 */
 @send
-external count: (Types.idbObjectStore, ~query: unknown=?) => Types.idbRequest<int> = "count"
+external count: (
+  IndexedDbTypes.idbObjectStore,
+  ~query: unknown=?,
+) => IndexedDbTypes.idbRequest<int> = "count"
 
 /**
 Opens a cursor over the records matching query, ordered by direction. If query is null, all records in store are matched.
@@ -111,10 +116,10 @@ If successful, request's result will be an IDBCursorWithValue pointing at the fi
 */
 @send
 external openCursor: (
-  Types.idbObjectStore,
+  IndexedDbTypes.idbObjectStore,
   ~query: unknown=?,
-  ~direction: Types.idbCursorDirection=?,
-) => Types.idbRequest<unknown> = "openCursor"
+  ~direction: IndexedDbTypes.idbCursorDirection=?,
+) => IndexedDbTypes.idbRequest<unknown> = "openCursor"
 
 /**
 Opens a cursor with key only flag set over the records matching query, ordered by direction. If query is null, all records in store are matched.
@@ -124,16 +129,16 @@ If successful, request's result will be an IDBCursor pointing at the first match
 */
 @send
 external openKeyCursor: (
-  Types.idbObjectStore,
+  IndexedDbTypes.idbObjectStore,
   ~query: unknown=?,
-  ~direction: Types.idbCursorDirection=?,
-) => Types.idbRequest<unknown> = "openKeyCursor"
+  ~direction: IndexedDbTypes.idbCursorDirection=?,
+) => IndexedDbTypes.idbRequest<unknown> = "openKeyCursor"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/IDBObjectStore/index)
 */
 @send
-external index: (Types.idbObjectStore, string) => Types.idbIndex = "index"
+external index: (IndexedDbTypes.idbObjectStore, string) => IndexedDbTypes.idbIndex = "index"
 
 /**
 Creates a new index in store with the given name, keyPath and options and returns a new IDBIndex. If the keyPath and options define constraints that cannot be satisfied with the data already in store the upgrade transaction will abort with a "ConstraintError" DOMException.
@@ -143,11 +148,11 @@ Throws an "InvalidStateError" DOMException if not called within an upgrade trans
 */
 @send
 external createIndex: (
-  Types.idbObjectStore,
+  IndexedDbTypes.idbObjectStore,
   ~name: string,
   ~keyPath: string,
-  ~options: Types.idbIndexParameters=?,
-) => Types.idbIndex = "createIndex"
+  ~options: IndexedDbTypes.idbIndexParameters=?,
+) => IndexedDbTypes.idbIndex = "createIndex"
 
 /**
 Creates a new index in store with the given name, keyPath and options and returns a new IDBIndex. If the keyPath and options define constraints that cannot be satisfied with the data already in store the upgrade transaction will abort with a "ConstraintError" DOMException.
@@ -157,11 +162,11 @@ Throws an "InvalidStateError" DOMException if not called within an upgrade trans
 */
 @send
 external createIndex2: (
-  Types.idbObjectStore,
+  IndexedDbTypes.idbObjectStore,
   ~name: string,
   ~keyPath: array<string>,
-  ~options: Types.idbIndexParameters=?,
-) => Types.idbIndex = "createIndex"
+  ~options: IndexedDbTypes.idbIndexParameters=?,
+) => IndexedDbTypes.idbIndex = "createIndex"
 
 /**
 Deletes the index in store with the given name.
@@ -170,4 +175,4 @@ Throws an "InvalidStateError" DOMException if not called within an upgrade trans
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/IDBObjectStore/deleteIndex)
 */
 @send
-external deleteIndex: (Types.idbObjectStore, string) => unit = "deleteIndex"
+external deleteIndex: (IndexedDbTypes.idbObjectStore, string) => unit = "deleteIndex"

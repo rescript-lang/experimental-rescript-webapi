@@ -1,7 +1,7 @@
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/ReadableStream)
 */
-type t<'r> = Types.readableStream<'r>
+type t<'r> = FileTypes.readableStream<'r>
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/ReadableStream)
@@ -33,8 +33,8 @@ external cancel: (t<'r>, ~reason: JSON.t=?) => promise<unit> = "cancel"
 @send
 external getReader: (
   t<'r>,
-  ~options: Types.readableStreamGetReaderOptions=?,
-) => Types.readableStreamReader<'r> = "getReader"
+  ~options: FileTypes.readableStreamGetReaderOptions=?,
+) => FileTypes.readableStreamReader<'r> = "getReader"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/ReadableStream/pipeThrough)
@@ -42,8 +42,8 @@ external getReader: (
 @send
 external pipeThrough: (
   t<'r>,
-  ~transform: Types.readableWritablePair<'t, 'r>,
-  ~options: Types.streamPipeOptions=?,
+  ~transform: FileTypes.readableWritablePair<'t, 'r>,
+  ~options: FileTypes.streamPipeOptions=?,
 ) => t<'t> = "pipeThrough"
 
 /**
@@ -52,8 +52,8 @@ external pipeThrough: (
 @send
 external pipeTo: (
   t<'r>,
-  ~destination: Types.writableStream<'r>,
-  ~options: Types.streamPipeOptions=?,
+  ~destination: FileTypes.writableStream<'r>,
+  ~options: FileTypes.streamPipeOptions=?,
 ) => promise<unit> = "pipeTo"
 
 /**

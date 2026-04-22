@@ -1,6 +1,358 @@
 {
-  "name": "experimental-rescript-webapi",
+  "name": "@rescript/webapi",
   "sources": [
+    {
+      "dir": "src/Base",
+      "subdirs": true,
+      "feature": "WebApi.Base",
+      "public": [
+        "Base"
+      ]
+    },
+    {
+      "dir": "src/CSSFontLoading",
+      "subdirs": true,
+      "feature": "WebApi.CSSFontLoading",
+      "public": [
+        "CSSFontLoading"
+      ]
+    },
+    {
+      "dir": "src/Canvas",
+      "subdirs": true,
+      "feature": "WebApi.Canvas",
+      "public": [
+        "Canvas"
+      ]
+    },
+    {
+      "dir": "src/ChannelMessaging",
+      "subdirs": true,
+      "feature": "WebApi.ChannelMessaging",
+      "public": [
+        "ChannelMessaging"
+      ]
+    },
+    {
+      "dir": "src/Clipboard",
+      "subdirs": true,
+      "feature": "WebApi.Clipboard",
+      "public": [
+        "Clipboard"
+      ]
+    },
+    {
+      "dir": "src/CredentialManagement",
+      "subdirs": true,
+      "feature": "WebApi.CredentialManagement",
+      "public": [
+        "CredentialManagement"
+      ]
+    },
+    {
+      "dir": "src/DOM",
+      "subdirs": true,
+      "feature": "WebApi.DOM",
+      "public": [
+        "DOM"
+      ]
+    },
+    {
+      "dir": "src/EncryptedMediaExtensions",
+      "subdirs": true,
+      "feature": "WebApi.EncryptedMediaExtensions",
+      "public": [
+        "EncryptedMediaExtensions"
+      ]
+    },
+    {
+      "dir": "src/Event",
+      "subdirs": true,
+      "feature": "WebApi.Event",
+      "public": [
+        "Event"
+      ]
+    },
+    {
+      "dir": "src/Fetch",
+      "subdirs": true,
+      "feature": "WebApi.Fetch",
+      "public": [
+        "Fetch"
+      ]
+    },
+    {
+      "dir": "src/File",
+      "subdirs": true,
+      "feature": "WebApi.File",
+      "public": [
+        "File"
+      ]
+    },
+    {
+      "dir": "src/FileAndDirectoryEntries",
+      "subdirs": true,
+      "feature": "WebApi.FileAndDirectoryEntries",
+      "public": [
+        "FileAndDirectoryEntries"
+      ]
+    },
+    {
+      "dir": "src/Gamepad",
+      "subdirs": true,
+      "feature": "WebApi.Gamepad",
+      "public": [
+        "Gamepad"
+      ]
+    },
+    {
+      "dir": "src/Geolocation",
+      "subdirs": true,
+      "feature": "WebApi.Geolocation",
+      "public": [
+        "Geolocation"
+      ]
+    },
+    {
+      "dir": "src/History",
+      "subdirs": true,
+      "feature": "WebApi.History",
+      "public": [
+        "History"
+      ]
+    },
+    {
+      "dir": "src/IndexedDB",
+      "subdirs": true,
+      "feature": "WebApi.IndexedDB",
+      "public": [
+        "IndexedDB"
+      ]
+    },
+    {
+      "dir": "src/IntersectionObserver",
+      "subdirs": true,
+      "feature": "WebApi.IntersectionObserver",
+      "public": [
+        "IntersectionObserver"
+      ]
+    },
+    {
+      "dir": "src/MediaCapabilities",
+      "subdirs": true,
+      "feature": "WebApi.MediaCapabilities",
+      "public": [
+        "MediaCapabilities"
+      ]
+    },
+    {
+      "dir": "src/MediaCaptureAndStreams",
+      "subdirs": true,
+      "feature": "WebApi.MediaCaptureAndStreams",
+      "public": [
+        "MediaCaptureAndStreams"
+      ]
+    },
+    {
+      "dir": "src/MediaSession",
+      "subdirs": true,
+      "feature": "WebApi.MediaSession",
+      "public": [
+        "MediaSession"
+      ]
+    },
+    {
+      "dir": "src/MutationObserver",
+      "subdirs": true,
+      "feature": "WebApi.MutationObserver",
+      "public": [
+        "MutationObserver"
+      ]
+    },
+    {
+      "dir": "src/Notification",
+      "subdirs": true,
+      "feature": "WebApi.Notification",
+      "public": [
+        "Notification"
+      ]
+    },
+    {
+      "dir": "src/Performance",
+      "subdirs": true,
+      "feature": "WebApi.Performance",
+      "public": [
+        "Performance"
+      ]
+    },
+    {
+      "dir": "src/Permissions",
+      "subdirs": true,
+      "feature": "WebApi.Permissions",
+      "public": [
+        "Permissions"
+      ]
+    },
+    {
+      "dir": "src/PictureInPicture",
+      "subdirs": true,
+      "feature": "WebApi.PictureInPicture",
+      "public": [
+        "PictureInPicture"
+      ]
+    },
+    {
+      "dir": "src/Push",
+      "subdirs": true,
+      "feature": "WebApi.Push",
+      "public": [
+        "Push"
+      ]
+    },
+    {
+      "dir": "src/RemotePlayback",
+      "subdirs": true,
+      "feature": "WebApi.RemotePlayback",
+      "public": [
+        "RemotePlayback"
+      ]
+    },
+    {
+      "dir": "src/ResizeObserver",
+      "subdirs": true,
+      "feature": "WebApi.ResizeObserver",
+      "public": [
+        "ResizeObserver"
+      ]
+    },
+    {
+      "dir": "src/ScreenWakeLock",
+      "subdirs": true,
+      "feature": "WebApi.ScreenWakeLock",
+      "public": [
+        "ScreenWakeLock"
+      ]
+    },
+    {
+      "dir": "src/ServiceWorker",
+      "subdirs": true,
+      "feature": "WebApi.ServiceWorker",
+      "public": [
+        "ServiceWorker"
+      ]
+    },
+    {
+      "dir": "src/Storage",
+      "subdirs": true,
+      "feature": "WebApi.Storage",
+      "public": [
+        "Storage"
+      ]
+    },
+    {
+      "dir": "src/UIEvents",
+      "subdirs": true,
+      "feature": "WebApi.UIEvents",
+      "public": [
+        "UIEvents"
+      ]
+    },
+    {
+      "dir": "src/URL",
+      "subdirs": true,
+      "feature": "WebApi.URL",
+      "public": [
+        "URL"
+      ]
+    },
+    {
+      "dir": "src/ViewTransitions",
+      "subdirs": true,
+      "feature": "WebApi.ViewTransitions",
+      "public": [
+        "ViewTransitions"
+      ]
+    },
+    {
+      "dir": "src/VisualViewport",
+      "subdirs": true,
+      "feature": "WebApi.VisualViewport",
+      "public": [
+        "VisualViewport"
+      ]
+    },
+    {
+      "dir": "src/WebAudio",
+      "subdirs": true,
+      "feature": "WebApi.WebAudio",
+      "public": [
+        "WebAudio"
+      ]
+    },
+    {
+      "dir": "src/WebCrypto",
+      "subdirs": true,
+      "feature": "WebApi.WebCrypto",
+      "public": [
+        "WebCrypto"
+      ]
+    },
+    {
+      "dir": "src/WebLocks",
+      "subdirs": true,
+      "feature": "WebApi.WebLocks",
+      "public": [
+        "WebLocks"
+      ]
+    },
+    {
+      "dir": "src/WebMIDI",
+      "subdirs": true,
+      "feature": "WebApi.WebMIDI",
+      "public": [
+        "WebMIDI"
+      ]
+    },
+    {
+      "dir": "src/WebSockets",
+      "subdirs": true,
+      "feature": "WebApi.WebSockets",
+      "public": [
+        "WebSockets"
+      ]
+    },
+    {
+      "dir": "src/WebSpeech",
+      "subdirs": true,
+      "feature": "WebApi.WebSpeech",
+      "public": [
+        "WebSpeech"
+      ]
+    },
+    {
+      "dir": "src/WebStorage",
+      "subdirs": true,
+      "feature": "WebApi.WebStorage",
+      "public": [
+        "WebStorage"
+      ]
+    },
+    {
+      "dir": "src/WebVTT",
+      "subdirs": true,
+      "feature": "WebApi.WebVTT",
+      "public": [
+        "WebVTT"
+      ]
+    },
+    {
+      "dir": "src/WebWorkers",
+      "subdirs": true,
+      "feature": "WebApi.WebWorkers",
+      "public": [
+        "WebWorkers"
+      ]
+    },
     {
       "dir": "tests",
       "subdirs": true,
@@ -11,51 +363,6 @@
     "module": "esmodule",
     "in-source": true
   },
-  "suffix": ".res.js",
-  "dependencies": [
-    "@rescript-webapi/css-font-loading",
-    "@rescript-webapi/canvas",
-    "@rescript-webapi/channel-messaging",
-    "@rescript-webapi/clipboard",
-    "@rescript-webapi/credential-management",
-    "@rescript-webapi/dom",
-    "@rescript-webapi/encrypted-media-extensions",
-    "@rescript-webapi/event",
-    "@rescript-webapi/fetch",
-    "@rescript-webapi/file",
-    "@rescript-webapi/file-and-directory-entries",
-    "@rescript-webapi/gamepad",
-    "@rescript-webapi/geolocation",
-    "@rescript-webapi/history",
-    "@rescript-webapi/indexed-db",
-    "@rescript-webapi/intersection-observer",
-    "@rescript-webapi/media-capabilities",
-    "@rescript-webapi/media-capture-and-streams",
-    "@rescript-webapi/media-session",
-    "@rescript-webapi/mutation-observer",
-    "@rescript-webapi/notification",
-    "@rescript-webapi/performance",
-    "@rescript-webapi/permissions",
-    "@rescript-webapi/picture-in-picture",
-    "@rescript-webapi/base",
-    "@rescript-webapi/push",
-    "@rescript-webapi/remote-playback",
-    "@rescript-webapi/resize-observer",
-    "@rescript-webapi/screen-wake-lock",
-    "@rescript-webapi/service-worker",
-    "@rescript-webapi/storage",
-    "@rescript-webapi/ui-events",
-    "@rescript-webapi/url",
-    "@rescript-webapi/view-transitions",
-    "@rescript-webapi/visual-viewport",
-    "@rescript-webapi/web-audio",
-    "@rescript-webapi/web-crypto",
-    "@rescript-webapi/web-locks",
-    "@rescript-webapi/web-midi",
-    "@rescript-webapi/web-sockets",
-    "@rescript-webapi/web-speech",
-    "@rescript-webapi/web-storage",
-    "@rescript-webapi/web-vtt",
-    "@rescript-webapi/web-workers"
-  ]
+  "suffix": ".js",
+  "dependencies": []
 }

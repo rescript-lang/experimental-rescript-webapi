@@ -23,7 +23,7 @@ This WebApiServiceWorker API interface provides a reference to a service worker.
 */
 @editor.completeFrom(WebApiServiceWorker)
 type serviceWorker = private {
-  ...WebApi.Event.Types.eventTarget,
+  ...Event.Types.eventTarget,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/ServiceWorker/scriptURL)
     */
@@ -46,7 +46,7 @@ This WebApiServiceWorker API interface represents the service worker registratio
 */
 @editor.completeFrom(ServiceWorkerRegistration)
 type serviceWorkerRegistration = private {
-  ...WebApi.Event.Types.eventTarget,
+  ...Event.Types.eventTarget,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/ServiceWorkerRegistration/installing)
     */
@@ -74,7 +74,7 @@ type serviceWorkerRegistration = private {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/ServiceWorkerRegistration/pushManager)
     */
-  pushManager: WebApi.Push.Types.pushManager,
+  pushManager: Push.Types.pushManager,
 }
 
 /**
@@ -83,7 +83,7 @@ The ServiceWorkerContainer interface of the WebApiServiceWorker API provides
 */
 @editor.completeFrom(ServiceWorkerContainer)
 type serviceWorkerContainer = private {
-  ...WebApi.Event.Types.eventTarget,
+  ...Event.Types.eventTarget,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/ServiceWorkerContainer/controller)
     */
@@ -101,7 +101,7 @@ type navigationPreloadState = {
 
 type registrationOptions = {
   mutable scope?: string,
-  @as("type") mutable type_?: WebApi.WebWorkers.Types.workerType,
+  @as("type") mutable type_?: WebWorkers.Types.workerType,
   mutable updateViaCache?: serviceWorkerUpdateViaCache,
 }
 
@@ -120,7 +120,7 @@ The ServiceWorkerGlobalScope interface of the Service Worker API represents the 
  */
 @editor.completeFrom(ServiceWorkerGlobalScope)
 type serviceWorkerGlobalScope = private {
-  ...WebApi.WebWorkers.Types.workerGlobalScope,
+  ...WebWorkers.Types.workerGlobalScope,
   /**
     [Read more on MDN](https://developer.mozilla.org/en-US/docs/Web/API/ServiceWorkerGlobalScope/clients)
   */
@@ -132,7 +132,7 @@ type serviceWorkerGlobalScope = private {
 }
 
 /**
-The Client interface represents an executable context such as a Worker, or a WebApi.WebWorkers.SharedWorker. Window clients are represented by the more-specific WindowClient.
+The Client interface represents an executable context such as a Worker, or a WebWorkers.SharedWorker. Window clients are represented by the more-specific WindowClient.
 [See Client on MDN](https://developer.mozilla.org/en-US/docs/Web/API/Client)
 */
 type client = {

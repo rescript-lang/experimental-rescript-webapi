@@ -1,1 +1,1 @@
-include HTMLElement.Impl({type t = Types.htmlOptGroupElement})
+include HTMLElement.Impl({type t = DomTypes.htmlOptGroupElement})

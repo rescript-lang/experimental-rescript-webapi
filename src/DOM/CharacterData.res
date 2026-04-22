@@ -5,7 +5,7 @@ module Impl = (
 ) => {
   include Node.Impl({type t = T.t})
 
-  external asCharacterData: T.t => Types.characterData = "%identity"
+  external asCharacterData: T.t => DomTypes.characterData = "%identity"
 
   /**
 Inserts nodes just after node, while replacing strings in nodes with equivalent Text nodes.
@@ -14,7 +14,7 @@ Throws a "HierarchyRequestError" DOMException if the constraints of the node tre
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CharacterData/after)
 */
   @send
-  external after: (T.t, Types.node) => unit = "after"
+  external after: (T.t, DomTypes.node) => unit = "after"
 
   /**
 Inserts nodes just after node, while replacing strings in nodes with equivalent Text nodes.
@@ -38,7 +38,7 @@ Throws a "HierarchyRequestError" DOMException if the constraints of the node tre
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CharacterData/before)
 */
   @send
-  external before: (T.t, Types.node) => unit = "before"
+  external before: (T.t, DomTypes.node) => unit = "before"
 
   /**
 Inserts nodes just before node, while replacing strings in nodes with equivalent Text nodes.
@@ -81,7 +81,7 @@ Throws a "HierarchyRequestError" DOMException if the constraints of the node tre
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CharacterData/replaceWith)
 */
   @send
-  external replaceWith: (T.t, Types.node) => unit = "replaceWith"
+  external replaceWith: (T.t, DomTypes.node) => unit = "replaceWith"
 
   /**
 Replaces node with nodes, while replacing strings in nodes with equivalent Text nodes.
@@ -99,4 +99,4 @@ Throws a "HierarchyRequestError" DOMException if the constraints of the node tre
   external substringData: (T.t, ~offset: int, ~count: int) => string = "substringData"
 }
 
-include Impl({type t = Types.characterData})
+include Impl({type t = DomTypes.characterData})

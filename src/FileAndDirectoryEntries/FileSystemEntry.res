@@ -3,7 +3,7 @@
 */
 @send
 external getParent: (
-  Types.fileSystemEntry,
-  ~successCallback: Types.fileSystemEntryCallback=?,
-  ~errorCallback: Types.errorCallback=?,
+  FileAndDirectoryEntriesTypes.fileSystemEntry,
+  ~successCallback: FileAndDirectoryEntriesTypes.fileSystemEntryCallback=?,
+  ~errorCallback: FileAndDirectoryEntriesTypes.errorCallback=?,
 ) => unit = "getParent"

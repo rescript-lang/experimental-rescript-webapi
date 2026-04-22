@@ -34,7 +34,7 @@ Each WorkerGlobalScope has its own event loop.
 */
 @editor.completeFrom(WorkerGlobalScope)
 type workerGlobalScope = private {
-  ...WebApi.Event.Types.eventTarget,
+  ...Event.Types.eventTarget,
   /**
     [Read more on MDN](https://developer.mozilla.org/en-US/docs/Web/API/WorkerGlobalScope/caches)
     */
@@ -53,7 +53,7 @@ type workerType =
 object instance. */
 type workerOptions = {
   @as("type") mutable type_?: workerType,
-  mutable credentials?: WebApi.Fetch.Types.requestCredentials,
+  mutable credentials?: Fetch.Types.requestCredentials,
   mutable name?: string,
 }
 

@@ -2,16 +2,19 @@
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/UIEvent)
 */
 @new
-external make: (~type_: string, ~eventInitDict: Types.uiEventInit=?) => Types.uiEvent = "UIEvent"
+external make: (
+  ~type_: string,
+  ~eventInitDict: UiEventsTypes.uiEventInit=?,
+) => UiEventsTypes.uiEvent = "UIEvent"
 
 module Impl = (
   T: {
     type t
   },
 ) => {
-  external asUIEvent: T.t => Types.uiEvent = "%identity"
+  external asUIEvent: T.t => UiEventsTypes.uiEvent = "%identity"
 
-  include WebApi.Event.Event.Impl({type t = T.t})
+  include Event.Event.Impl({type t = T.t})
 }
 
-include Impl({type t = Types.uiEvent})
+include Impl({type t = UiEventsTypes.uiEvent})

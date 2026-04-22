@@ -3,21 +3,21 @@ module Impl = (
     type t
   },
 ) => {
-  include WebApi.Event.EventTarget.Impl({type t = T.t})
+  include Event.EventTarget.Impl({type t = T.t})
 
-  external asBaseAudioContext: T.t => Types.baseAudioContext = "%identity"
+  external asBaseAudioContext: T.t => WebAudioTypes.baseAudioContext = "%identity"
 
   /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/BaseAudioContext/createAnalyser)
 */
   @send
-  external createAnalyser: T.t => Types.analyserNode = "createAnalyser"
+  external createAnalyser: T.t => WebAudioTypes.analyserNode = "createAnalyser"
 
   /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/BaseAudioContext/createBiquadFilter)
 */
   @send
-  external createBiquadFilter: T.t => Types.biquadFilterNode = "createBiquadFilter"
+  external createBiquadFilter: T.t => WebAudioTypes.biquadFilterNode = "createBiquadFilter"
 
   /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/BaseAudioContext/createBuffer)
@@ -28,58 +28,60 @@ module Impl = (
     ~numberOfChannels: int,
     ~length: int,
     ~sampleRate: float,
-  ) => Types.audioBuffer = "createBuffer"
+  ) => WebAudioTypes.audioBuffer = "createBuffer"
 
   /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/BaseAudioContext/createBufferSource)
 */
   @send
-  external createBufferSource: T.t => Types.audioBufferSourceNode = "createBufferSource"
+  external createBufferSource: T.t => WebAudioTypes.audioBufferSourceNode = "createBufferSource"
 
   /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/BaseAudioContext/createChannelMerger)
 */
   @send
-  external createChannelMerger: (T.t, ~numberOfInputs: int=?) => Types.channelMergerNode =
+  external createChannelMerger: (T.t, ~numberOfInputs: int=?) => WebAudioTypes.channelMergerNode =
     "createChannelMerger"
 
   /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/BaseAudioContext/createChannelSplitter)
 */
   @send
-  external createChannelSplitter: (T.t, ~numberOfOutputs: int=?) => Types.channelSplitterNode =
-    "createChannelSplitter"
+  external createChannelSplitter: (
+    T.t,
+    ~numberOfOutputs: int=?,
+  ) => WebAudioTypes.channelSplitterNode = "createChannelSplitter"
 
   /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/BaseAudioContext/createConstantSource)
 */
   @send
-  external createConstantSource: T.t => Types.constantSourceNode = "createConstantSource"
+  external createConstantSource: T.t => WebAudioTypes.constantSourceNode = "createConstantSource"
 
   /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/BaseAudioContext/createConvolver)
 */
   @send
-  external createConvolver: T.t => Types.convolverNode = "createConvolver"
+  external createConvolver: T.t => WebAudioTypes.convolverNode = "createConvolver"
 
   /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/BaseAudioContext/createDelay)
 */
   @send
-  external createDelay: (T.t, ~maxDelayTime: float=?) => Types.delayNode = "createDelay"
+  external createDelay: (T.t, ~maxDelayTime: float=?) => WebAudioTypes.delayNode = "createDelay"
 
   /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/BaseAudioContext/createDynamicsCompressor)
 */
   @send
-  external createDynamicsCompressor: T.t => Types.dynamicsCompressorNode =
+  external createDynamicsCompressor: T.t => WebAudioTypes.dynamicsCompressorNode =
     "createDynamicsCompressor"
 
   /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/BaseAudioContext/createGain)
 */
   @send
-  external createGain: T.t => Types.gainNode = "createGain"
+  external createGain: T.t => WebAudioTypes.gainNode = "createGain"
 
   /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/BaseAudioContext/createIIRFilter)
@@ -89,19 +91,19 @@ module Impl = (
     T.t,
     ~feedforward: array<float>,
     ~feedback: array<float>,
-  ) => Types.iirFilterNode = "createIIRFilter"
+  ) => WebAudioTypes.iirFilterNode = "createIIRFilter"
 
   /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/BaseAudioContext/createOscillator)
 */
   @send
-  external createOscillator: T.t => Types.oscillatorNode = "createOscillator"
+  external createOscillator: T.t => WebAudioTypes.oscillatorNode = "createOscillator"
 
   /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/BaseAudioContext/createPanner)
 */
   @send
-  external createPanner: T.t => Types.pannerNode = "createPanner"
+  external createPanner: T.t => WebAudioTypes.pannerNode = "createPanner"
 
   /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/BaseAudioContext/createPeriodicWave)
@@ -111,20 +113,20 @@ module Impl = (
     T.t,
     ~real: array<float>,
     ~imag: array<float>,
-    ~constraints: Types.periodicWaveConstraints=?,
-  ) => Types.periodicWave = "createPeriodicWave"
+    ~constraints: WebAudioTypes.periodicWaveConstraints=?,
+  ) => WebAudioTypes.periodicWave = "createPeriodicWave"
 
   /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/BaseAudioContext/createStereoPanner)
 */
   @send
-  external createStereoPanner: T.t => Types.stereoPannerNode = "createStereoPanner"
+  external createStereoPanner: T.t => WebAudioTypes.stereoPannerNode = "createStereoPanner"
 
   /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/BaseAudioContext/createWaveShaper)
 */
   @send
-  external createWaveShaper: T.t => Types.waveShaperNode = "createWaveShaper"
+  external createWaveShaper: T.t => WebAudioTypes.waveShaperNode = "createWaveShaper"
 
   /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/BaseAudioContext/decodeAudioData)
@@ -133,7 +135,7 @@ module Impl = (
   external decodeAudioData: (
     T.t,
     ~audioData: ArrayBuffer.t,
-    ~successCallback: Types.decodeSuccessCallback=?,
-    ~errorCallback: Types.decodeErrorCallback=?,
-  ) => promise<Types.audioBuffer> = "decodeAudioData"
+    ~successCallback: WebAudioTypes.decodeSuccessCallback=?,
+    ~errorCallback: WebAudioTypes.decodeErrorCallback=?,
+  ) => promise<WebAudioTypes.audioBuffer> = "decodeAudioData"
 }

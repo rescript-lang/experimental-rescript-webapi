@@ -3,13 +3,14 @@
 */
 @send
 external playEffect: (
-  Types.gamepadHapticActuator,
-  ~type_: Types.gamepadHapticEffectType,
-  ~params: Types.gamepadEffectParameters=?,
-) => promise<Types.gamepadHapticsResult> = "playEffect"
+  GamepadTypes.gamepadHapticActuator,
+  ~type_: GamepadTypes.gamepadHapticEffectType,
+  ~params: GamepadTypes.gamepadEffectParameters=?,
+) => promise<GamepadTypes.gamepadHapticsResult> = "playEffect"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/GamepadHapticActuator/reset)
 */
 @send
-external reset: Types.gamepadHapticActuator => promise<Types.gamepadHapticsResult> = "reset"
+external reset: GamepadTypes.gamepadHapticActuator => promise<GamepadTypes.gamepadHapticsResult> =
+  "reset"

@@ -1,3 +1,3 @@
-type t = Types.pushEvent = private {...Types.pushEvent}
+type t = PushTypes.pushEvent = private {...PushTypes.pushEvent}
 
-include WebApi.Event.ExtendableEvent.Impl({type t = t})
+include Event.ExtendableEvent.Impl({type t = t})

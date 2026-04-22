@@ -1,39 +1,42 @@
-external asFileSystemHandle: Types.fileSystemDirectoryHandle => Types.fileSystemHandle = "%identity"
+external asFileSystemHandle: FileTypes.fileSystemDirectoryHandle => FileTypes.fileSystemHandle =
+  "%identity"
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/FileSystemHandle/isSameEntry)
 */
 @send
-external isSameEntry: (Types.fileSystemDirectoryHandle, Types.fileSystemHandle) => promise<bool> =
-  "isSameEntry"
+external isSameEntry: (
+  FileTypes.fileSystemDirectoryHandle,
+  FileTypes.fileSystemHandle,
+) => promise<bool> = "isSameEntry"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/FileSystemDirectoryHandle/getFileHandle)
 */
 @send
 external getFileHandle: (
-  Types.fileSystemDirectoryHandle,
+  FileTypes.fileSystemDirectoryHandle,
   ~name: string,
-  ~options: Types.fileSystemGetFileOptions=?,
-) => promise<Types.fileSystemFileHandle> = "getFileHandle"
+  ~options: FileTypes.fileSystemGetFileOptions=?,
+) => promise<FileTypes.fileSystemFileHandle> = "getFileHandle"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/FileSystemDirectoryHandle/getDirectoryHandle)
 */
 @send
 external getDirectoryHandle: (
-  Types.fileSystemDirectoryHandle,
+  FileTypes.fileSystemDirectoryHandle,
   ~name: string,
-  ~options: Types.fileSystemGetDirectoryOptions=?,
-) => promise<Types.fileSystemDirectoryHandle> = "getDirectoryHandle"
+  ~options: FileTypes.fileSystemGetDirectoryOptions=?,
+) => promise<FileTypes.fileSystemDirectoryHandle> = "getDirectoryHandle"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/FileSystemDirectoryHandle/removeEntry)
 */
 @send
 external removeEntry: (
-  Types.fileSystemDirectoryHandle,
+  FileTypes.fileSystemDirectoryHandle,
   ~name: string,
-  ~options: Types.fileSystemRemoveOptions=?,
+  ~options: FileTypes.fileSystemRemoveOptions=?,
 ) => promise<unit> = "removeEntry"
 
 /**
@@ -41,6 +44,6 @@ external removeEntry: (
 */
 @send
 external resolve: (
-  Types.fileSystemDirectoryHandle,
-  Types.fileSystemHandle,
+  FileTypes.fileSystemDirectoryHandle,
+  FileTypes.fileSystemHandle,
 ) => promise<array<string>> = "resolve"

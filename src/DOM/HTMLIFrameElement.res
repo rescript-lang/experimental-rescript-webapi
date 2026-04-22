@@ -1,4 +1,4 @@
-include HTMLElement.Impl({type t = Types.htmliFrameElement})
+include HTMLElement.Impl({type t = DomTypes.htmliFrameElement})
 
 @send
-external getSVGDocument: Types.htmliFrameElement => Types.document = "getSVGDocument"
+external getSVGDocument: DomTypes.htmliFrameElement => DomTypes.document = "getSVGDocument"

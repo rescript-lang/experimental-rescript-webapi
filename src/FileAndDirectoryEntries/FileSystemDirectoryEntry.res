@@ -1,19 +1,20 @@
-external asFileSystemEntry: Types.fileSystemDirectoryEntry => Types.fileSystemEntry = "%identity"
+external asFileSystemEntry: FileAndDirectoryEntriesTypes.fileSystemDirectoryEntry => FileAndDirectoryEntriesTypes.fileSystemEntry =
+  "%identity"
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/FileSystemEntry/getParent)
 */
 @send
 external getParent: (
-  Types.fileSystemDirectoryEntry,
-  ~successCallback: Types.fileSystemEntryCallback=?,
-  ~errorCallback: Types.errorCallback=?,
+  FileAndDirectoryEntriesTypes.fileSystemDirectoryEntry,
+  ~successCallback: FileAndDirectoryEntriesTypes.fileSystemEntryCallback=?,
+  ~errorCallback: FileAndDirectoryEntriesTypes.errorCallback=?,
 ) => unit = "getParent"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/FileSystemDirectoryEntry/createReader)
 */
 @send
-external createReader: Types.fileSystemDirectoryEntry => Types.fileSystemDirectoryReader =
+external createReader: FileAndDirectoryEntriesTypes.fileSystemDirectoryEntry => FileAndDirectoryEntriesTypes.fileSystemDirectoryReader =
   "createReader"
 
 /**
@@ -21,11 +22,11 @@ external createReader: Types.fileSystemDirectoryEntry => Types.fileSystemDirecto
 */
 @send
 external getFile: (
-  Types.fileSystemDirectoryEntry,
+  FileAndDirectoryEntriesTypes.fileSystemDirectoryEntry,
   ~path: string=?,
-  ~options: Types.fileSystemFlags=?,
-  ~successCallback: Types.fileSystemEntryCallback=?,
-  ~errorCallback: Types.errorCallback=?,
+  ~options: FileAndDirectoryEntriesTypes.fileSystemFlags=?,
+  ~successCallback: FileAndDirectoryEntriesTypes.fileSystemEntryCallback=?,
+  ~errorCallback: FileAndDirectoryEntriesTypes.errorCallback=?,
 ) => unit = "getFile"
 
 /**
@@ -33,9 +34,9 @@ external getFile: (
 */
 @send
 external getDirectory: (
-  Types.fileSystemDirectoryEntry,
+  FileAndDirectoryEntriesTypes.fileSystemDirectoryEntry,
   ~path: string=?,
-  ~options: Types.fileSystemFlags=?,
-  ~successCallback: Types.fileSystemEntryCallback=?,
-  ~errorCallback: Types.errorCallback=?,
+  ~options: FileAndDirectoryEntriesTypes.fileSystemFlags=?,
+  ~successCallback: FileAndDirectoryEntriesTypes.fileSystemEntryCallback=?,
+  ~errorCallback: FileAndDirectoryEntriesTypes.errorCallback=?,
 ) => unit = "getDirectory"

@@ -1,5 +1,7 @@
-type t = Types.mediaMetadata = private {...Types.mediaMetadata}
-type mediaMetadataInit = Types.mediaMetadataInit = {...Types.mediaMetadataInit}
+type t = MediaSessionTypes.mediaMetadata = private {...MediaSessionTypes.mediaMetadata}
+type mediaMetadataInit = MediaSessionTypes.mediaMetadataInit = {
+  ...MediaSessionTypes.mediaMetadataInit,
+}
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/MediaMetadata)

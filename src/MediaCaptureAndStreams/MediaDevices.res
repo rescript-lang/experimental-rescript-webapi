@@ -1,13 +1,17 @@
-type t = Types.mediaDevices = private {...Types.mediaDevices}
-type mediaTrackSupportedConstraints = Types.mediaTrackSupportedConstraints = {
-  ...Types.mediaTrackSupportedConstraints,
+type t = MediaCaptureAndStreamsTypes.mediaDevices = private {
+  ...MediaCaptureAndStreamsTypes.mediaDevices,
 }
-type mediaStreamConstraints = Types.mediaStreamConstraints = {...Types.mediaStreamConstraints}
-type displayMediaStreamOptions = Types.displayMediaStreamOptions = {
-  ...Types.displayMediaStreamOptions,
+type mediaTrackSupportedConstraints = MediaCaptureAndStreamsTypes.mediaTrackSupportedConstraints = {
+  ...MediaCaptureAndStreamsTypes.mediaTrackSupportedConstraints,
+}
+type mediaStreamConstraints = MediaCaptureAndStreamsTypes.mediaStreamConstraints = {
+  ...MediaCaptureAndStreamsTypes.mediaStreamConstraints,
+}
+type displayMediaStreamOptions = MediaCaptureAndStreamsTypes.displayMediaStreamOptions = {
+  ...MediaCaptureAndStreamsTypes.displayMediaStreamOptions,
 }
 
-include WebApi.Event.EventTarget.Impl({type t = t})
+include Event.EventTarget.Impl({type t = t})
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/MediaDevices/enumerateDevices)

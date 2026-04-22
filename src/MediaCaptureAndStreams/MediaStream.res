@@ -1,4 +1,6 @@
-type t = Types.mediaStream = private {...Types.mediaStream}
+type t = MediaCaptureAndStreamsTypes.mediaStream = private {
+  ...MediaCaptureAndStreamsTypes.mediaStream,
+}
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/MediaStream)
@@ -18,7 +20,7 @@ external makeFromMediaStream: t => t = "MediaStream"
 @new
 external makeFromMediaStreams: array<MediaStreamTrack.t> => t = "MediaStream"
 
-include WebApi.Event.EventTarget.Impl({type t = t})
+include Event.EventTarget.Impl({type t = t})
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/MediaStream/getAudioTracks)

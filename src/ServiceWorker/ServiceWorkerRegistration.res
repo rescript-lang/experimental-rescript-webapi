@@ -1,25 +1,25 @@
-include WebApi.Event.EventTarget.Impl({type t = Types.serviceWorkerRegistration})
+include Event.EventTarget.Impl({type t = ServiceWorkerTypes.serviceWorkerRegistration})
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/ServiceWorkerRegistration/update)
 */
 @send
-external update: Types.serviceWorkerRegistration => promise<unit> = "update"
+external update: ServiceWorkerTypes.serviceWorkerRegistration => promise<unit> = "update"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/ServiceWorkerRegistration/unregister)
 */
 @send
-external unregister: Types.serviceWorkerRegistration => promise<bool> = "unregister"
+external unregister: ServiceWorkerTypes.serviceWorkerRegistration => promise<bool> = "unregister"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/ServiceWorkerRegistration/showNotification)
 */
 @send
 external showNotification: (
-  Types.serviceWorkerRegistration,
+  ServiceWorkerTypes.serviceWorkerRegistration,
   ~title: string,
-  ~options: WebApi.Notification.Types.notificationOptions=?,
+  ~options: Notification.Types.notificationOptions=?,
 ) => promise<unit> = "showNotification"
 
 /**
@@ -27,6 +27,6 @@ external showNotification: (
 */
 @send
 external getNotifications: (
-  Types.serviceWorkerRegistration,
-  ~filter: WebApi.Notification.Types.getNotificationOptions=?,
-) => promise<array<WebApi.Notification.Types.notification>> = "getNotifications"
+  ServiceWorkerTypes.serviceWorkerRegistration,
+  ~filter: Notification.Types.getNotificationOptions=?,
+) => promise<array<Notification.Types.notification>> = "getNotifications"

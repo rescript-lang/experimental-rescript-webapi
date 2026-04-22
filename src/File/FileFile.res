@@ -1,4 +1,4 @@
-type t = Types.file = private {...Types.file}
+type t = FileTypes.file = private {...FileTypes.file}
 
 include Blob.Impl({type t = t})
 
@@ -7,9 +7,9 @@ include Blob.Impl({type t = t})
 */
 @new
 external make: (
-  ~fileBits: array<Types.blobPart>,
+  ~fileBits: array<FileTypes.blobPart>,
   ~fileName: string,
-  ~options: Types.filePropertyBag=?,
+  ~options: FileTypes.filePropertyBag=?,
 ) => t = "File"
 
 let isInstanceOf = (_: 't): bool => %raw(`param instanceof File`)

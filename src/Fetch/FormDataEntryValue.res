@@ -1,2 +1,2 @@
 @unboxed
-type t = Types.formDataEntryValue = | ...Types.formDataEntryValue
+type t = FetchTypes.formDataEntryValue = | ...FetchTypes.formDataEntryValue

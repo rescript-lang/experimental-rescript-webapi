@@ -3,21 +3,22 @@
 */
 @send
 external subscribe: (
-  Types.pushManager,
-  ~options: Types.pushSubscriptionOptionsInit=?,
-) => promise<Types.pushSubscription> = "subscribe"
+  PushTypes.pushManager,
+  ~options: PushTypes.pushSubscriptionOptionsInit=?,
+) => promise<PushTypes.pushSubscription> = "subscribe"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/PushManager/getSubscription)
 */
 @send
-external getSubscription: Types.pushManager => promise<Types.pushSubscription> = "getSubscription"
+external getSubscription: PushTypes.pushManager => promise<PushTypes.pushSubscription> =
+  "getSubscription"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/PushManager/permissionState)
 */
 @send
 external permissionState: (
-  Types.pushManager,
-  ~options: Types.pushSubscriptionOptionsInit=?,
-) => promise<Types.permissionState> = "permissionState"
+  PushTypes.pushManager,
+  ~options: PushTypes.pushSubscriptionOptionsInit=?,
+) => promise<PushTypes.permissionState> = "permissionState"

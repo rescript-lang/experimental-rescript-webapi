@@ -15,16 +15,16 @@ test("renders a feature entry module with public aliases", () => {
   );
 });
 
-test("preserves existing entry module contents and appends aliases", () => {
+test("rebuilds entry modules from aliases instead of preserving stale same-name leaf contents", () => {
   const output = renderEntryModule({
     publicModule: "WebMIDI",
     internalPrefix: "WebMidi",
-    existingSource: "type t = WebMidiTypes.midiAccess",
-    moduleLeaves: ["WebMidiTypes"],
+    existingSource: "type t = stale",
+    moduleLeaves: ["WebMidiTypes", "WebMidiWebMIDI"],
   });
 
   assert.equal(
     output.trim(),
-    ["type t = WebMidiTypes.midiAccess", "", "module Types = WebMidiTypes"].join("\n"),
+    ["module Types = WebMidiTypes", "module WebMIDI = WebMidiWebMIDI"].join("\n"),
   );
 });

@@ -3,14 +3,14 @@ Returns the token with index index.
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/DOMTokenList/item)
 */
 @send
-external item: (Types.domTokenList, int) => string = "item"
+external item: (DomTypes.domTokenList, int) => string = "item"
 
 /**
 Returns true if token is present, and false otherwise.
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/DOMTokenList/contains)
 */
 @send
-external contains: (Types.domTokenList, string) => bool = "contains"
+external contains: (DomTypes.domTokenList, string) => bool = "contains"
 
 /**
 Adds all arguments passed, except those already present.
@@ -21,7 +21,7 @@ Throws an "InvalidCharacterError" DOMException if one of the arguments contains 
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/DOMTokenList/add)
 */
 @send
-external add: (Types.domTokenList, string) => unit = "add"
+external add: (DomTypes.domTokenList, string) => unit = "add"
 
 /**
 Removes arguments passed, if they are present.
@@ -32,7 +32,7 @@ Throws an "InvalidCharacterError" DOMException if one of the arguments contains 
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/DOMTokenList/remove)
 */
 @send
-external remove: (Types.domTokenList, string) => unit = "remove"
+external remove: (DomTypes.domTokenList, string) => unit = "remove"
 
 /**
 If force is not given, "toggles" token, removing it if it's present and adding it if it's not present. If force is true, adds token (same as add()). If force is false, removes token (same as remove()).
@@ -45,7 +45,7 @@ Throws an "InvalidCharacterError" DOMException if token contains any spaces.
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/DOMTokenList/toggle)
 */
 @send
-external toggle: (Types.domTokenList, ~token: string, ~force: bool=?) => bool = "toggle"
+external toggle: (DomTypes.domTokenList, ~token: string, ~force: bool=?) => bool = "toggle"
 
 /**
 Replaces token with newToken.
@@ -58,7 +58,7 @@ Throws an "InvalidCharacterError" DOMException if one of the arguments contains 
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/DOMTokenList/replace)
 */
 @send
-external replace: (Types.domTokenList, ~token: string, ~newToken: string) => bool = "replace"
+external replace: (DomTypes.domTokenList, ~token: string, ~newToken: string) => bool = "replace"
 
 /**
 Returns true if token is in the associated attribute's supported tokens. Returns false otherwise.
@@ -67,4 +67,4 @@ Throws a TypeError if the associated attribute has no supported tokens defined.
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/DOMTokenList/supports)
 */
 @send
-external supports: (Types.domTokenList, string) => bool = "supports"
+external supports: (DomTypes.domTokenList, string) => bool = "supports"

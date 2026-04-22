@@ -5,6 +5,8 @@
 dist/
 tmp/
 docs/public/llm.txt
+.npm-cache/
+*.tgz
 *~
 .worktrees/
 
@@ -15,4 +17,6 @@ docs/public/llm.txt
 
 rescript.lock
 
+src/**/*.js
+tests/**/*.js
 **/*.res.js

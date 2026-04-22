@@ -1,1 +1,1 @@
-include AudioNode.Impl({type t = Types.audioDestinationNode})
+include AudioNode.Impl({type t = WebAudioTypes.audioDestinationNode})

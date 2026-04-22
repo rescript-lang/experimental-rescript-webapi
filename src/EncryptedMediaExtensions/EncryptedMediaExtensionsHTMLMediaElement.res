@@ -2,11 +2,14 @@
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLMediaElement/mediaKeys)
 */
 @get
-external mediaKeys: WebApi.DOM.Types.htmlMediaElement => Null.t<Types.mediaKeys> = "mediaKeys"
+external mediaKeys: DOM.Types.htmlMediaElement => Null.t<EncryptedMediaExtensionsTypes.mediaKeys> =
+  "mediaKeys"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLMediaElement/setMediaKeys)
 */
 @send
-external setMediaKeys: (WebApi.DOM.Types.htmlMediaElement, Types.mediaKeys) => promise<unit> =
-  "setMediaKeys"
+external setMediaKeys: (
+  DOM.Types.htmlMediaElement,
+  EncryptedMediaExtensionsTypes.mediaKeys,
+) => promise<unit> = "setMediaKeys"

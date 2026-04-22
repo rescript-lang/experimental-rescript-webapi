@@ -2,71 +2,72 @@
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Selection/getRangeAt)
 */
 @send
-external getRangeAt: (Types.selection, int) => Types.range = "getRangeAt"
+external getRangeAt: (DomTypes.selection, int) => DomTypes.range = "getRangeAt"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Selection/addRange)
 */
 @send
-external addRange: (Types.selection, Types.range) => unit = "addRange"
+external addRange: (DomTypes.selection, DomTypes.range) => unit = "addRange"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Selection/removeRange)
 */
 @send
-external removeRange: (Types.selection, Types.range) => unit = "removeRange"
+external removeRange: (DomTypes.selection, DomTypes.range) => unit = "removeRange"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Selection/removeAllRanges)
 */
 @send
-external removeAllRanges: Types.selection => unit = "removeAllRanges"
+external removeAllRanges: DomTypes.selection => unit = "removeAllRanges"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Selection/removeAllRanges)
 */
 @send
-external empty: Types.selection => unit = "empty"
+external empty: DomTypes.selection => unit = "empty"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Selection/collapse)
 */
 @send
-external collapse: (Types.selection, ~node: Types.node, ~offset: int=?) => unit = "collapse"
+external collapse: (DomTypes.selection, ~node: DomTypes.node, ~offset: int=?) => unit = "collapse"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Selection/collapse)
 */
 @send
-external setPosition: (Types.selection, ~node: Types.node, ~offset: int=?) => unit = "setPosition"
+external setPosition: (DomTypes.selection, ~node: DomTypes.node, ~offset: int=?) => unit =
+  "setPosition"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Selection/collapseToStart)
 */
 @send
-external collapseToStart: Types.selection => unit = "collapseToStart"
+external collapseToStart: DomTypes.selection => unit = "collapseToStart"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Selection/collapseToEnd)
 */
 @send
-external collapseToEnd: Types.selection => unit = "collapseToEnd"
+external collapseToEnd: DomTypes.selection => unit = "collapseToEnd"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Selection/extend)
 */
 @send
-external extend: (Types.selection, ~node: Types.node, ~offset: int=?) => unit = "extend"
+external extend: (DomTypes.selection, ~node: DomTypes.node, ~offset: int=?) => unit = "extend"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Selection/setBaseAndExtent)
 */
 @send
 external setBaseAndExtent: (
-  Types.selection,
-  ~anchorNode: Types.node,
+  DomTypes.selection,
+  ~anchorNode: DomTypes.node,
   ~anchorOffset: int,
-  ~focusNode: Types.node,
+  ~focusNode: DomTypes.node,
   ~focusOffset: int,
 ) => unit = "setBaseAndExtent"
 
@@ -74,14 +75,14 @@ external setBaseAndExtent: (
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Selection/selectAllChildren)
 */
 @send
-external selectAllChildren: (Types.selection, Types.node) => unit = "selectAllChildren"
+external selectAllChildren: (DomTypes.selection, DomTypes.node) => unit = "selectAllChildren"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Selection/modify)
 */
 @send
 external modify: (
-  Types.selection,
+  DomTypes.selection,
   ~alter: string=?,
   ~direction: string=?,
   ~granularity: string=?,
@@ -91,14 +92,14 @@ external modify: (
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Selection/deleteFromDocument)
 */
 @send
-external deleteFromDocument: Types.selection => unit = "deleteFromDocument"
+external deleteFromDocument: DomTypes.selection => unit = "deleteFromDocument"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Selection/containsNode)
 */
 @send
 external containsNode: (
-  Types.selection,
-  ~node: Types.node,
+  DomTypes.selection,
+  ~node: DomTypes.node,
   ~allowPartialContainment: bool=?,
 ) => bool = "containsNode"

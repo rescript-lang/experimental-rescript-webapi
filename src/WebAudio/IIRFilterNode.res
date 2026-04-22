@@ -1,20 +1,20 @@
-include AudioNode.Impl({type t = Types.iirFilterNode})
+include AudioNode.Impl({type t = WebAudioTypes.iirFilterNode})
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/IIRFilterNode)
 */
 @new
 external make: (
-  ~context: Types.baseAudioContext,
-  ~options: Types.iirFilterOptions,
-) => Types.iirFilterNode = "IIRFilterNode"
+  ~context: WebAudioTypes.baseAudioContext,
+  ~options: WebAudioTypes.iirFilterOptions,
+) => WebAudioTypes.iirFilterNode = "IIRFilterNode"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/IIRFilterNode/getFrequencyResponse)
 */
 @send
 external getFrequencyResponse: (
-  Types.iirFilterNode,
+  WebAudioTypes.iirFilterNode,
   ~frequencyHz: array<float>,
   ~magResponse: array<float>,
   ~phaseResponse: array<float>,

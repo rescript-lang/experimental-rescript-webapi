@@ -2,13 +2,16 @@
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/InputEvent)
 */
 @new
-external make: (~type_: string, ~eventInitDict: Types.inputEventInit=?) => Types.inputEvent =
-  "InputEvent"
+external make: (
+  ~type_: string,
+  ~eventInitDict: UiEventsTypes.inputEventInit=?,
+) => UiEventsTypes.inputEvent = "InputEvent"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/InputEvent/getTargetRanges)
 */
 @send
-external getTargetRanges: Types.inputEvent => array<WebApi.Base.DOM.staticRange> = "getTargetRanges"
+external getTargetRanges: UiEventsTypes.inputEvent => array<Base.DOM.staticRange> =
+  "getTargetRanges"
 
-include UIEvent.Impl({type t = Types.inputEvent})
+include UIEvent.Impl({type t = UiEventsTypes.inputEvent})

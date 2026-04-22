@@ -3,7 +3,7 @@
 */
 @send
 external readEntries: (
-  Types.fileSystemDirectoryReader,
-  ~successCallback: Types.fileSystemEntriesCallback,
-  ~errorCallback: Types.errorCallback=?,
+  FileAndDirectoryEntriesTypes.fileSystemDirectoryReader,
+  ~successCallback: FileAndDirectoryEntriesTypes.fileSystemEntriesCallback,
+  ~errorCallback: FileAndDirectoryEntriesTypes.errorCallback=?,
 ) => unit = "readEntries"

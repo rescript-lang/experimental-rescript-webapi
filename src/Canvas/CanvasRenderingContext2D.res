@@ -2,51 +2,50 @@
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CanvasRenderingContext2D/save)
 */
 @send
-external save: WebApi.DOM.Types.canvasRenderingContext2D => unit = "save"
+external save: DOM.Types.canvasRenderingContext2D => unit = "save"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CanvasRenderingContext2D/restore)
 */
 @send
-external restore: WebApi.DOM.Types.canvasRenderingContext2D => unit = "restore"
+external restore: DOM.Types.canvasRenderingContext2D => unit = "restore"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CanvasRenderingContext2D/reset)
 */
 @send
-external reset: WebApi.DOM.Types.canvasRenderingContext2D => unit = "reset"
+external reset: DOM.Types.canvasRenderingContext2D => unit = "reset"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CanvasRenderingContext2D/isContextLost)
 */
 @send
-external isContextLost: WebApi.DOM.Types.canvasRenderingContext2D => bool = "isContextLost"
+external isContextLost: DOM.Types.canvasRenderingContext2D => bool = "isContextLost"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CanvasRenderingContext2D/scale)
 */
 @send
-external scale: (WebApi.DOM.Types.canvasRenderingContext2D, ~x: float, ~y: float) => unit = "scale"
+external scale: (DOM.Types.canvasRenderingContext2D, ~x: float, ~y: float) => unit = "scale"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CanvasRenderingContext2D/rotate)
 */
 @send
-external rotate: (WebApi.DOM.Types.canvasRenderingContext2D, float) => unit = "rotate"
+external rotate: (DOM.Types.canvasRenderingContext2D, float) => unit = "rotate"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CanvasRenderingContext2D/translate)
 */
 @send
-external translate: (WebApi.DOM.Types.canvasRenderingContext2D, ~x: float, ~y: float) => unit =
-  "translate"
+external translate: (DOM.Types.canvasRenderingContext2D, ~x: float, ~y: float) => unit = "translate"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CanvasRenderingContext2D/transform)
 */
 @send
 external transform: (
-  WebApi.DOM.Types.canvasRenderingContext2D,
+  DOM.Types.canvasRenderingContext2D,
   ~a: float,
   ~b: float,
   ~c: float,
@@ -59,15 +58,14 @@ external transform: (
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CanvasRenderingContext2D/getTransform)
 */
 @send
-external getTransform: WebApi.DOM.Types.canvasRenderingContext2D => WebApi.DOM.Types.domMatrix =
-  "getTransform"
+external getTransform: DOM.Types.canvasRenderingContext2D => DOM.Types.domMatrix = "getTransform"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CanvasRenderingContext2D/setTransform)
 */
 @send
 external setTransform: (
-  WebApi.DOM.Types.canvasRenderingContext2D,
+  DOM.Types.canvasRenderingContext2D,
   ~a: float,
   ~b: float,
   ~c: float,
@@ -81,129 +79,129 @@ external setTransform: (
 */
 @send
 external setTransform2: (
-  WebApi.DOM.Types.canvasRenderingContext2D,
-  ~transform: WebApi.DOM.Types.domMatrix2DInit=?,
+  DOM.Types.canvasRenderingContext2D,
+  ~transform: DOM.Types.domMatrix2DInit=?,
 ) => unit = "setTransform"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CanvasRenderingContext2D/resetTransform)
 */
 @send
-external resetTransform: WebApi.DOM.Types.canvasRenderingContext2D => unit = "resetTransform"
+external resetTransform: DOM.Types.canvasRenderingContext2D => unit = "resetTransform"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CanvasRenderingContext2D/createLinearGradient)
 */
 @send
 external createLinearGradient: (
-  WebApi.DOM.Types.canvasRenderingContext2D,
+  DOM.Types.canvasRenderingContext2D,
   ~x0: float,
   ~y0: float,
   ~x1: float,
   ~y1: float,
-) => Types.canvasGradient = "createLinearGradient"
+) => CanvasTypes.canvasGradient = "createLinearGradient"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CanvasRenderingContext2D/createRadialGradient)
 */
 @send
 external createRadialGradient: (
-  WebApi.DOM.Types.canvasRenderingContext2D,
+  DOM.Types.canvasRenderingContext2D,
   ~x0: float,
   ~y0: float,
   ~r0: float,
   ~x1: float,
   ~y1: float,
   ~r1: float,
-) => Types.canvasGradient = "createRadialGradient"
+) => CanvasTypes.canvasGradient = "createRadialGradient"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CanvasRenderingContext2D/createConicGradient)
 */
 @send
 external createConicGradient: (
-  WebApi.DOM.Types.canvasRenderingContext2D,
+  DOM.Types.canvasRenderingContext2D,
   ~startAngle: float,
   ~x: float,
   ~y: float,
-) => Types.canvasGradient = "createConicGradient"
+) => CanvasTypes.canvasGradient = "createConicGradient"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CanvasRenderingContext2D/createPattern)
 */
 @send
 external createPattern: (
-  WebApi.DOM.Types.canvasRenderingContext2D,
-  ~image: WebApi.DOM.Types.htmlImageElement,
+  DOM.Types.canvasRenderingContext2D,
+  ~image: DOM.Types.htmlImageElement,
   ~repetition: string,
-) => Types.canvasPattern = "createPattern"
+) => CanvasTypes.canvasPattern = "createPattern"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CanvasRenderingContext2D/createPattern)
 */
 @send
 external createPattern2: (
-  WebApi.DOM.Types.canvasRenderingContext2D,
-  ~image: WebApi.DOM.Types.svgImageElement,
+  DOM.Types.canvasRenderingContext2D,
+  ~image: DOM.Types.svgImageElement,
   ~repetition: string,
-) => Types.canvasPattern = "createPattern"
+) => CanvasTypes.canvasPattern = "createPattern"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CanvasRenderingContext2D/createPattern)
 */
 @send
 external createPattern3: (
-  WebApi.DOM.Types.canvasRenderingContext2D,
-  ~image: WebApi.DOM.Types.htmlVideoElement,
+  DOM.Types.canvasRenderingContext2D,
+  ~image: DOM.Types.htmlVideoElement,
   ~repetition: string,
-) => Types.canvasPattern = "createPattern"
+) => CanvasTypes.canvasPattern = "createPattern"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CanvasRenderingContext2D/createPattern)
 */
 @send
 external createPattern4: (
-  WebApi.DOM.Types.canvasRenderingContext2D,
-  ~image: WebApi.DOM.Types.htmlCanvasElement,
+  DOM.Types.canvasRenderingContext2D,
+  ~image: DOM.Types.htmlCanvasElement,
   ~repetition: string,
-) => Types.canvasPattern = "createPattern"
+) => CanvasTypes.canvasPattern = "createPattern"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CanvasRenderingContext2D/createPattern)
 */
 @send
 external createPattern5: (
-  WebApi.DOM.Types.canvasRenderingContext2D,
-  ~image: Types.imageBitmap,
+  DOM.Types.canvasRenderingContext2D,
+  ~image: CanvasTypes.imageBitmap,
   ~repetition: string,
-) => Types.canvasPattern = "createPattern"
+) => CanvasTypes.canvasPattern = "createPattern"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CanvasRenderingContext2D/createPattern)
 */
 @send
 external createPattern6: (
-  WebApi.DOM.Types.canvasRenderingContext2D,
-  ~image: Types.offscreenCanvas,
+  DOM.Types.canvasRenderingContext2D,
+  ~image: CanvasTypes.offscreenCanvas,
   ~repetition: string,
-) => Types.canvasPattern = "createPattern"
+) => CanvasTypes.canvasPattern = "createPattern"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CanvasRenderingContext2D/createPattern)
 */
 @send
 external createPattern7: (
-  WebApi.DOM.Types.canvasRenderingContext2D,
-  ~image: WebApi.DOM.Types.videoFrame,
+  DOM.Types.canvasRenderingContext2D,
+  ~image: DOM.Types.videoFrame,
   ~repetition: string,
-) => Types.canvasPattern = "createPattern"
+) => CanvasTypes.canvasPattern = "createPattern"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CanvasRenderingContext2D/clearRect)
 */
 @send
 external clearRect: (
-  WebApi.DOM.Types.canvasRenderingContext2D,
+  DOM.Types.canvasRenderingContext2D,
   ~x: float,
   ~y: float,
   ~w: float,
@@ -215,7 +213,7 @@ external clearRect: (
 */
 @send
 external fillRect: (
-  WebApi.DOM.Types.canvasRenderingContext2D,
+  DOM.Types.canvasRenderingContext2D,
   ~x: float,
   ~y: float,
   ~w: float,
@@ -227,7 +225,7 @@ external fillRect: (
 */
 @send
 external strokeRect: (
-  WebApi.DOM.Types.canvasRenderingContext2D,
+  DOM.Types.canvasRenderingContext2D,
   ~x: float,
   ~y: float,
   ~w: float,
@@ -238,15 +236,15 @@ external strokeRect: (
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CanvasRenderingContext2D/beginPath)
 */
 @send
-external beginPath: WebApi.DOM.Types.canvasRenderingContext2D => unit = "beginPath"
+external beginPath: DOM.Types.canvasRenderingContext2D => unit = "beginPath"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CanvasRenderingContext2D/fill)
 */
 @send
 external fill: (
-  WebApi.DOM.Types.canvasRenderingContext2D,
-  ~fillRule: Types.canvasFillRule=?,
+  DOM.Types.canvasRenderingContext2D,
+  ~fillRule: CanvasTypes.canvasFillRule=?,
 ) => unit = "fill"
 
 /**
@@ -254,30 +252,30 @@ external fill: (
 */
 @send
 external fill2: (
-  WebApi.DOM.Types.canvasRenderingContext2D,
-  ~path: Types.path2D,
-  ~fillRule: Types.canvasFillRule=?,
+  DOM.Types.canvasRenderingContext2D,
+  ~path: CanvasTypes.path2D,
+  ~fillRule: CanvasTypes.canvasFillRule=?,
 ) => unit = "fill"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CanvasRenderingContext2D/stroke)
 */
 @send
-external stroke: WebApi.DOM.Types.canvasRenderingContext2D => unit = "stroke"
+external stroke: DOM.Types.canvasRenderingContext2D => unit = "stroke"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CanvasRenderingContext2D/stroke)
 */
 @send
-external stroke2: (WebApi.DOM.Types.canvasRenderingContext2D, Types.path2D) => unit = "stroke"
+external stroke2: (DOM.Types.canvasRenderingContext2D, CanvasTypes.path2D) => unit = "stroke"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CanvasRenderingContext2D/clip)
 */
 @send
 external clip: (
-  WebApi.DOM.Types.canvasRenderingContext2D,
-  ~fillRule: Types.canvasFillRule=?,
+  DOM.Types.canvasRenderingContext2D,
+  ~fillRule: CanvasTypes.canvasFillRule=?,
 ) => unit = "clip"
 
 /**
@@ -285,9 +283,9 @@ external clip: (
 */
 @send
 external clip2: (
-  WebApi.DOM.Types.canvasRenderingContext2D,
-  ~path: Types.path2D,
-  ~fillRule: Types.canvasFillRule=?,
+  DOM.Types.canvasRenderingContext2D,
+  ~path: CanvasTypes.path2D,
+  ~fillRule: CanvasTypes.canvasFillRule=?,
 ) => unit = "clip"
 
 /**
@@ -295,10 +293,10 @@ external clip2: (
 */
 @send
 external isPointInPath: (
-  WebApi.DOM.Types.canvasRenderingContext2D,
+  DOM.Types.canvasRenderingContext2D,
   ~x: float,
   ~y: float,
-  ~fillRule: Types.canvasFillRule=?,
+  ~fillRule: CanvasTypes.canvasFillRule=?,
 ) => bool = "isPointInPath"
 
 /**
@@ -306,18 +304,18 @@ external isPointInPath: (
 */
 @send
 external isPointInPath2: (
-  WebApi.DOM.Types.canvasRenderingContext2D,
-  ~path: Types.path2D,
+  DOM.Types.canvasRenderingContext2D,
+  ~path: CanvasTypes.path2D,
   ~x: float,
   ~y: float,
-  ~fillRule: Types.canvasFillRule=?,
+  ~fillRule: CanvasTypes.canvasFillRule=?,
 ) => bool = "isPointInPath"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CanvasRenderingContext2D/isPointInStroke)
 */
 @send
-external isPointInStroke: (WebApi.DOM.Types.canvasRenderingContext2D, ~x: float, ~y: float) => bool =
+external isPointInStroke: (DOM.Types.canvasRenderingContext2D, ~x: float, ~y: float) => bool =
   "isPointInStroke"
 
 /**
@@ -325,8 +323,8 @@ external isPointInStroke: (WebApi.DOM.Types.canvasRenderingContext2D, ~x: float,
 */
 @send
 external isPointInStroke2: (
-  WebApi.DOM.Types.canvasRenderingContext2D,
-  ~path: Types.path2D,
+  DOM.Types.canvasRenderingContext2D,
+  ~path: CanvasTypes.path2D,
   ~x: float,
   ~y: float,
 ) => bool = "isPointInStroke"
@@ -335,19 +333,17 @@ external isPointInStroke2: (
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CanvasRenderingContext2D/drawFocusIfNeeded)
 */
 @send
-external drawFocusIfNeeded: (
-  WebApi.DOM.Types.canvasRenderingContext2D,
-  WebApi.DOM.Types.element,
-) => unit = "drawFocusIfNeeded"
+external drawFocusIfNeeded: (DOM.Types.canvasRenderingContext2D, DOM.Types.element) => unit =
+  "drawFocusIfNeeded"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CanvasRenderingContext2D/drawFocusIfNeeded)
 */
 @send
 external drawFocusIfNeeded2: (
-  WebApi.DOM.Types.canvasRenderingContext2D,
-  ~path: Types.path2D,
-  ~element: WebApi.DOM.Types.element,
+  DOM.Types.canvasRenderingContext2D,
+  ~path: CanvasTypes.path2D,
+  ~element: DOM.Types.element,
 ) => unit = "drawFocusIfNeeded"
 
 /**
@@ -355,7 +351,7 @@ external drawFocusIfNeeded2: (
 */
 @send
 external fillText: (
-  WebApi.DOM.Types.canvasRenderingContext2D,
+  DOM.Types.canvasRenderingContext2D,
   ~text: string,
   ~x: float,
   ~y: float,
@@ -367,7 +363,7 @@ external fillText: (
 */
 @send
 external strokeText: (
-  WebApi.DOM.Types.canvasRenderingContext2D,
+  DOM.Types.canvasRenderingContext2D,
   ~text: string,
   ~x: float,
   ~y: float,
@@ -378,7 +374,7 @@ external strokeText: (
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CanvasRenderingContext2D/measureText)
 */
 @send
-external measureText: (WebApi.DOM.Types.canvasRenderingContext2D, string) => Types.textMetrics =
+external measureText: (DOM.Types.canvasRenderingContext2D, string) => CanvasTypes.textMetrics =
   "measureText"
 
 /**
@@ -386,8 +382,8 @@ external measureText: (WebApi.DOM.Types.canvasRenderingContext2D, string) => Typ
 */
 @send
 external drawImage: (
-  WebApi.DOM.Types.canvasRenderingContext2D,
-  ~image: WebApi.DOM.Types.htmlImageElement,
+  DOM.Types.canvasRenderingContext2D,
+  ~image: DOM.Types.htmlImageElement,
   ~dx: float,
   ~dy: float,
 ) => unit = "drawImage"
@@ -397,8 +393,8 @@ external drawImage: (
 */
 @send
 external drawImageWithSvg: (
-  WebApi.DOM.Types.canvasRenderingContext2D,
-  ~image: WebApi.DOM.Types.svgImageElement,
+  DOM.Types.canvasRenderingContext2D,
+  ~image: DOM.Types.svgImageElement,
   ~dx: float,
   ~dy: float,
 ) => unit = "drawImage"
@@ -408,8 +404,8 @@ external drawImageWithSvg: (
 */
 @send
 external drawImageWithVideo: (
-  WebApi.DOM.Types.canvasRenderingContext2D,
-  ~image: WebApi.DOM.Types.htmlVideoElement,
+  DOM.Types.canvasRenderingContext2D,
+  ~image: DOM.Types.htmlVideoElement,
   ~dx: float,
   ~dy: float,
 ) => unit = "drawImage"
@@ -419,8 +415,8 @@ external drawImageWithVideo: (
 */
 @send
 external drawImageWithCanvas: (
-  WebApi.DOM.Types.canvasRenderingContext2D,
-  ~image: WebApi.DOM.Types.htmlCanvasElement,
+  DOM.Types.canvasRenderingContext2D,
+  ~image: DOM.Types.htmlCanvasElement,
   ~dx: float,
   ~dy: float,
 ) => unit = "drawImage"
@@ -430,8 +426,8 @@ external drawImageWithCanvas: (
 */
 @send
 external drawImageWithImageBitmap: (
-  WebApi.DOM.Types.canvasRenderingContext2D,
-  ~image: Types.imageBitmap,
+  DOM.Types.canvasRenderingContext2D,
+  ~image: CanvasTypes.imageBitmap,
   ~dx: float,
   ~dy: float,
 ) => unit = "drawImage"
@@ -441,8 +437,8 @@ external drawImageWithImageBitmap: (
 */
 @send
 external drawImageWithOffscreenCanvas: (
-  WebApi.DOM.Types.canvasRenderingContext2D,
-  ~image: Types.offscreenCanvas,
+  DOM.Types.canvasRenderingContext2D,
+  ~image: CanvasTypes.offscreenCanvas,
   ~dx: float,
   ~dy: float,
 ) => unit = "drawImage"
@@ -452,8 +448,8 @@ external drawImageWithOffscreenCanvas: (
 */
 @send
 external drawImageWithVideoFrame: (
-  WebApi.DOM.Types.canvasRenderingContext2D,
-  ~image: WebApi.DOM.Types.videoFrame,
+  DOM.Types.canvasRenderingContext2D,
+  ~image: DOM.Types.videoFrame,
   ~dx: float,
   ~dy: float,
 ) => unit = "drawImage"
@@ -463,8 +459,8 @@ external drawImageWithVideoFrame: (
 */
 @send
 external drawImageWithDimensions: (
-  WebApi.DOM.Types.canvasRenderingContext2D,
-  ~image: WebApi.DOM.Types.htmlImageElement,
+  DOM.Types.canvasRenderingContext2D,
+  ~image: DOM.Types.htmlImageElement,
   ~dx: float,
   ~dy: float,
   ~dw: float,
@@ -476,8 +472,8 @@ external drawImageWithDimensions: (
 */
 @send
 external drawImageWithSvgDimensions: (
-  WebApi.DOM.Types.canvasRenderingContext2D,
-  ~image: WebApi.DOM.Types.svgImageElement,
+  DOM.Types.canvasRenderingContext2D,
+  ~image: DOM.Types.svgImageElement,
   ~dx: float,
   ~dy: float,
   ~dw: float,
@@ -489,8 +485,8 @@ external drawImageWithSvgDimensions: (
 */
 @send
 external drawImageWithVideoDimensions: (
-  WebApi.DOM.Types.canvasRenderingContext2D,
-  ~image: WebApi.DOM.Types.htmlVideoElement,
+  DOM.Types.canvasRenderingContext2D,
+  ~image: DOM.Types.htmlVideoElement,
   ~dx: float,
   ~dy: float,
   ~dw: float,
@@ -502,8 +498,8 @@ external drawImageWithVideoDimensions: (
 */
 @send
 external drawImageWithCanvasDimensions: (
-  WebApi.DOM.Types.canvasRenderingContext2D,
-  ~image: WebApi.DOM.Types.htmlCanvasElement,
+  DOM.Types.canvasRenderingContext2D,
+  ~image: DOM.Types.htmlCanvasElement,
   ~dx: float,
   ~dy: float,
   ~dw: float,
@@ -515,8 +511,8 @@ external drawImageWithCanvasDimensions: (
 */
 @send
 external drawImageWithImageBitmapDimensions: (
-  WebApi.DOM.Types.canvasRenderingContext2D,
-  ~image: Types.imageBitmap,
+  DOM.Types.canvasRenderingContext2D,
+  ~image: CanvasTypes.imageBitmap,
   ~dx: float,
   ~dy: float,
   ~dw: float,
@@ -528,8 +524,8 @@ external drawImageWithImageBitmapDimensions: (
 */
 @send
 external drawImageWithOffscreenCanvasDimensions: (
-  WebApi.DOM.Types.canvasRenderingContext2D,
-  ~image: Types.offscreenCanvas,
+  DOM.Types.canvasRenderingContext2D,
+  ~image: CanvasTypes.offscreenCanvas,
   ~dx: float,
   ~dy: float,
   ~dw: float,
@@ -541,8 +537,8 @@ external drawImageWithOffscreenCanvasDimensions: (
 */
 @send
 external drawImageWithVideoFrameDimensions: (
-  WebApi.DOM.Types.canvasRenderingContext2D,
-  ~image: WebApi.DOM.Types.videoFrame,
+  DOM.Types.canvasRenderingContext2D,
+  ~image: DOM.Types.videoFrame,
   ~dx: float,
   ~dy: float,
   ~dw: float,
@@ -554,8 +550,8 @@ external drawImageWithVideoFrameDimensions: (
 */
 @send
 external drawImageWithSubRectangle: (
-  WebApi.DOM.Types.canvasRenderingContext2D,
-  ~image: WebApi.DOM.Types.htmlImageElement,
+  DOM.Types.canvasRenderingContext2D,
+  ~image: DOM.Types.htmlImageElement,
   ~sx: float,
   ~sy: float,
   ~sw: float,
@@ -571,8 +567,8 @@ external drawImageWithSubRectangle: (
 */
 @send
 external drawImageWithSvgSubRectangle: (
-  WebApi.DOM.Types.canvasRenderingContext2D,
-  ~image: WebApi.DOM.Types.svgImageElement,
+  DOM.Types.canvasRenderingContext2D,
+  ~image: DOM.Types.svgImageElement,
   ~sx: float,
   ~sy: float,
   ~sw: float,
@@ -588,8 +584,8 @@ external drawImageWithSvgSubRectangle: (
 */
 @send
 external drawImageWithVideoSubRectangle: (
-  WebApi.DOM.Types.canvasRenderingContext2D,
-  ~image: WebApi.DOM.Types.htmlVideoElement,
+  DOM.Types.canvasRenderingContext2D,
+  ~image: DOM.Types.htmlVideoElement,
   ~sx: float,
   ~sy: float,
   ~sw: float,
@@ -605,8 +601,8 @@ external drawImageWithVideoSubRectangle: (
 */
 @send
 external drawImageWithCanvasSubRectangle: (
-  WebApi.DOM.Types.canvasRenderingContext2D,
-  ~image: WebApi.DOM.Types.htmlCanvasElement,
+  DOM.Types.canvasRenderingContext2D,
+  ~image: DOM.Types.htmlCanvasElement,
   ~sx: float,
   ~sy: float,
   ~sw: float,
@@ -622,8 +618,8 @@ external drawImageWithCanvasSubRectangle: (
 */
 @send
 external drawImageWithImageBitmapSubRectangle: (
-  WebApi.DOM.Types.canvasRenderingContext2D,
-  ~image: Types.imageBitmap,
+  DOM.Types.canvasRenderingContext2D,
+  ~image: CanvasTypes.imageBitmap,
   ~sx: float,
   ~sy: float,
   ~sw: float,
@@ -639,8 +635,8 @@ external drawImageWithImageBitmapSubRectangle: (
 */
 @send
 external drawImageWithOffscreenCanvasSubRectangle: (
-  WebApi.DOM.Types.canvasRenderingContext2D,
-  ~image: Types.offscreenCanvas,
+  DOM.Types.canvasRenderingContext2D,
+  ~image: CanvasTypes.offscreenCanvas,
   ~sx: float,
   ~sy: float,
   ~sw: float,
@@ -656,8 +652,8 @@ external drawImageWithOffscreenCanvasSubRectangle: (
 */
 @send
 external drawImageWithVideoFrameSubRectangle: (
-  WebApi.DOM.Types.canvasRenderingContext2D,
-  ~image: WebApi.DOM.Types.videoFrame,
+  DOM.Types.canvasRenderingContext2D,
+  ~image: DOM.Types.videoFrame,
   ~sx: float,
   ~sy: float,
   ~sw: float,
@@ -673,41 +669,41 @@ external drawImageWithVideoFrameSubRectangle: (
 */
 @send
 external createImageData: (
-  WebApi.DOM.Types.canvasRenderingContext2D,
+  DOM.Types.canvasRenderingContext2D,
   ~sw: int,
   ~sh: int,
-  ~settings: WebApi.DOM.Types.imageDataSettings=?,
-) => WebApi.DOM.Types.imageData = "createImageData"
+  ~settings: DOM.Types.imageDataSettings=?,
+) => DOM.Types.imageData = "createImageData"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CanvasRenderingContext2D/createImageData)
 */
 @send
 external createImageData2: (
-  WebApi.DOM.Types.canvasRenderingContext2D,
-  WebApi.DOM.Types.imageData,
-) => WebApi.DOM.Types.imageData = "createImageData"
+  DOM.Types.canvasRenderingContext2D,
+  DOM.Types.imageData,
+) => DOM.Types.imageData = "createImageData"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CanvasRenderingContext2D/getImageData)
 */
 @send
 external getImageData: (
-  WebApi.DOM.Types.canvasRenderingContext2D,
+  DOM.Types.canvasRenderingContext2D,
   ~sx: int,
   ~sy: int,
   ~sw: int,
   ~sh: int,
-  ~settings: WebApi.DOM.Types.imageDataSettings=?,
-) => WebApi.DOM.Types.imageData = "getImageData"
+  ~settings: DOM.Types.imageDataSettings=?,
+) => DOM.Types.imageData = "getImageData"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CanvasRenderingContext2D/putImageData)
 */
 @send
 external putImageData: (
-  WebApi.DOM.Types.canvasRenderingContext2D,
-  ~imagedata: WebApi.DOM.Types.imageData,
+  DOM.Types.canvasRenderingContext2D,
+  ~imagedata: DOM.Types.imageData,
   ~dx: int,
   ~dy: int,
 ) => unit = "putImageData"
@@ -717,8 +713,8 @@ external putImageData: (
 */
 @send
 external putImageData2: (
-  WebApi.DOM.Types.canvasRenderingContext2D,
-  ~imagedata: WebApi.DOM.Types.imageData,
+  DOM.Types.canvasRenderingContext2D,
+  ~imagedata: DOM.Types.imageData,
   ~dx: int,
   ~dy: int,
   ~dirtyX: int,
@@ -731,39 +727,38 @@ external putImageData2: (
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CanvasRenderingContext2D/setLineDash)
 */
 @send
-external setLineDash: (WebApi.DOM.Types.canvasRenderingContext2D, array<float>) => unit =
-  "setLineDash"
+external setLineDash: (DOM.Types.canvasRenderingContext2D, array<float>) => unit = "setLineDash"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CanvasRenderingContext2D/getLineDash)
 */
 @send
-external getLineDash: WebApi.DOM.Types.canvasRenderingContext2D => array<float> = "getLineDash"
+external getLineDash: DOM.Types.canvasRenderingContext2D => array<float> = "getLineDash"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CanvasRenderingContext2D/closePath)
 */
 @send
-external closePath: WebApi.DOM.Types.canvasRenderingContext2D => unit = "closePath"
+external closePath: DOM.Types.canvasRenderingContext2D => unit = "closePath"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CanvasRenderingContext2D/moveTo)
 */
 @send
-external moveTo: (WebApi.DOM.Types.canvasRenderingContext2D, ~x: float, ~y: float) => unit = "moveTo"
+external moveTo: (DOM.Types.canvasRenderingContext2D, ~x: float, ~y: float) => unit = "moveTo"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CanvasRenderingContext2D/lineTo)
 */
 @send
-external lineTo: (WebApi.DOM.Types.canvasRenderingContext2D, ~x: float, ~y: float) => unit = "lineTo"
+external lineTo: (DOM.Types.canvasRenderingContext2D, ~x: float, ~y: float) => unit = "lineTo"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CanvasRenderingContext2D/quadraticCurveTo)
 */
 @send
 external quadraticCurveTo: (
-  WebApi.DOM.Types.canvasRenderingContext2D,
+  DOM.Types.canvasRenderingContext2D,
   ~cpx: float,
   ~cpy: float,
   ~x: float,
@@ -775,7 +770,7 @@ external quadraticCurveTo: (
 */
 @send
 external bezierCurveTo: (
-  WebApi.DOM.Types.canvasRenderingContext2D,
+  DOM.Types.canvasRenderingContext2D,
   ~cp1x: float,
   ~cp1y: float,
   ~cp2x: float,
@@ -789,7 +784,7 @@ external bezierCurveTo: (
 */
 @send
 external arcTo: (
-  WebApi.DOM.Types.canvasRenderingContext2D,
+  DOM.Types.canvasRenderingContext2D,
   ~x1: float,
   ~y1: float,
   ~x2: float,
@@ -802,7 +797,7 @@ external arcTo: (
 */
 @send
 external rect: (
-  WebApi.DOM.Types.canvasRenderingContext2D,
+  DOM.Types.canvasRenderingContext2D,
   ~x: float,
   ~y: float,
   ~w: float,
@@ -814,7 +809,7 @@ external rect: (
 */
 @send
 external roundRect: (
-  WebApi.DOM.Types.canvasRenderingContext2D,
+  DOM.Types.canvasRenderingContext2D,
   ~x: float,
   ~y: float,
   ~w: float,
@@ -827,7 +822,7 @@ external roundRect: (
 */
 @send
 external roundRect2: (
-  WebApi.DOM.Types.canvasRenderingContext2D,
+  DOM.Types.canvasRenderingContext2D,
   ~x: float,
   ~y: float,
   ~w: float,
@@ -840,7 +835,7 @@ external roundRect2: (
 */
 @send
 external roundRect3: (
-  WebApi.DOM.Types.canvasRenderingContext2D,
+  DOM.Types.canvasRenderingContext2D,
   ~x: float,
   ~y: float,
   ~w: float,
@@ -853,7 +848,7 @@ external roundRect3: (
 */
 @send
 external arc: (
-  WebApi.DOM.Types.canvasRenderingContext2D,
+  DOM.Types.canvasRenderingContext2D,
   ~x: float,
   ~y: float,
   ~radius: float,
@@ -867,7 +862,7 @@ external arc: (
 */
 @send
 external ellipse: (
-  WebApi.DOM.Types.canvasRenderingContext2D,
+  DOM.Types.canvasRenderingContext2D,
   ~x: float,
   ~y: float,
   ~radiusX: float,
@@ -882,5 +877,5 @@ external ellipse: (
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CanvasRenderingContext2D/getContextAttributes)
 */
 @send
-external getContextAttributes: WebApi.DOM.Types.canvasRenderingContext2D => Types.canvasRenderingContext2DSettings =
+external getContextAttributes: DOM.Types.canvasRenderingContext2D => CanvasTypes.canvasRenderingContext2DSettings =
   "getContextAttributes"

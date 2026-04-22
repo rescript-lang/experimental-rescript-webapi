@@ -3,27 +3,31 @@
 */
 @send
 external get: (
-  Types.credentialsContainer,
-  ~options: Types.credentialRequestOptions=?,
-) => promise<Types.credential> = "get"
+  CredentialManagementTypes.credentialsContainer,
+  ~options: CredentialManagementTypes.credentialRequestOptions=?,
+) => promise<CredentialManagementTypes.credential> = "get"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CredentialsContainer/store)
 */
 @send
-external store: (Types.credentialsContainer, Types.credential) => promise<unit> = "store"
+external store: (
+  CredentialManagementTypes.credentialsContainer,
+  CredentialManagementTypes.credential,
+) => promise<unit> = "store"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CredentialsContainer/create)
 */
 @send
 external create: (
-  Types.credentialsContainer,
-  ~options: Types.credentialCreationOptions=?,
-) => promise<Types.credential> = "create"
+  CredentialManagementTypes.credentialsContainer,
+  ~options: CredentialManagementTypes.credentialCreationOptions=?,
+) => promise<CredentialManagementTypes.credential> = "create"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CredentialsContainer/preventSilentAccess)
 */
 @send
-external preventSilentAccess: Types.credentialsContainer => promise<unit> = "preventSilentAccess"
+external preventSilentAccess: CredentialManagementTypes.credentialsContainer => promise<unit> =
+  "preventSilentAccess"

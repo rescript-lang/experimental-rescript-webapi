@@ -23,7 +23,7 @@ export function migrateLayout(rootDir) {
 
       const leafName = path.basename(entry.name, ".res");
       const nextLeafName =
-        duplicateLeaves.has(leafName) || (reservedPublicModules.has(leafName) && leafName !== spec.publicModule)
+        duplicateLeaves.has(leafName) || reservedPublicModules.has(leafName)
         ? `${spec.internalPrefix}${leafName}`
         : leafName;
 

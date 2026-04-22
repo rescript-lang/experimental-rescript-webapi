@@ -3,6 +3,6 @@
 */
 @new
 external make: (
-  ~context: Types.baseAudioContext,
-  ~options: Types.periodicWaveOptions=?,
-) => Types.periodicWave = "PeriodicWave"
+  ~context: WebAudioTypes.baseAudioContext,
+  ~options: WebAudioTypes.periodicWaveOptions=?,
+) => WebAudioTypes.periodicWave = "PeriodicWave"

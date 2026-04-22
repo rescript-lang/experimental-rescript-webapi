@@ -1,9 +1,17 @@
-type t = Types.mediaStreamTrack = private {...Types.mediaStreamTrack}
-type mediaTrackCapabilities = Types.mediaTrackCapabilities = {...Types.mediaTrackCapabilities}
-type mediaTrackConstraints = Types.mediaTrackConstraints = {...Types.mediaTrackConstraints}
-type mediaTrackSettings = Types.mediaTrackSettings = {...Types.mediaTrackSettings}
+type t = MediaCaptureAndStreamsTypes.mediaStreamTrack = private {
+  ...MediaCaptureAndStreamsTypes.mediaStreamTrack,
+}
+type mediaTrackCapabilities = MediaCaptureAndStreamsTypes.mediaTrackCapabilities = {
+  ...MediaCaptureAndStreamsTypes.mediaTrackCapabilities,
+}
+type mediaTrackConstraints = MediaCaptureAndStreamsTypes.mediaTrackConstraints = {
+  ...MediaCaptureAndStreamsTypes.mediaTrackConstraints,
+}
+type mediaTrackSettings = MediaCaptureAndStreamsTypes.mediaTrackSettings = {
+  ...MediaCaptureAndStreamsTypes.mediaTrackSettings,
+}
 
-include WebApi.Event.EventTarget.Impl({type t = t})
+include Event.EventTarget.Impl({type t = t})
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/MediaStreamTrack/clone)

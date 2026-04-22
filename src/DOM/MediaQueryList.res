@@ -1,1 +1,1 @@
-include WebApi.Event.EventTarget.Impl({type t = Types.mediaQueryList})
+include Event.EventTarget.Impl({type t = DomTypes.mediaQueryList})

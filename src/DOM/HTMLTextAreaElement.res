@@ -1,17 +1,17 @@
-include HTMLElement.Impl({type t = Types.htmlTextAreaElement})
+include HTMLElement.Impl({type t = DomTypes.htmlTextAreaElement})
 
 /**
 Returns whether a form will validate when it is submitted, without having to submit it.
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLTextAreaElement/checkValidity)
 */
 @send
-external checkValidity: Types.htmlTextAreaElement => bool = "checkValidity"
+external checkValidity: DomTypes.htmlTextAreaElement => bool = "checkValidity"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLTextAreaElement/reportValidity)
 */
 @send
-external reportValidity: Types.htmlTextAreaElement => bool = "reportValidity"
+external reportValidity: DomTypes.htmlTextAreaElement => bool = "reportValidity"
 
 /**
 Sets a custom error message that is displayed when a form is submitted.
@@ -19,31 +19,31 @@ Sets a custom error message that is displayed when a form is submitted.
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLTextAreaElement/setCustomValidity)
 */
 @send
-external setCustomValidity: (Types.htmlTextAreaElement, string) => unit = "setCustomValidity"
+external setCustomValidity: (DomTypes.htmlTextAreaElement, string) => unit = "setCustomValidity"
 
 /**
 Highlights the input area of a form element.
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLTextAreaElement/select)
 */
 @send
-external select: Types.htmlTextAreaElement => unit = "select"
+external select: DomTypes.htmlTextAreaElement => unit = "select"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLTextAreaElement/setRangeText)
 */
 @send
-external setRangeText: (Types.htmlTextAreaElement, string) => unit = "setRangeText"
+external setRangeText: (DomTypes.htmlTextAreaElement, string) => unit = "setRangeText"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLTextAreaElement/setRangeText)
 */
 @send
 external setRangeText2: (
-  Types.htmlTextAreaElement,
+  DomTypes.htmlTextAreaElement,
   ~replacement: string,
   ~start: int,
   ~end: int,
-  ~selectionMode: Types.selectionMode=?,
+  ~selectionMode: DomTypes.selectionMode=?,
 ) => unit = "setRangeText"
 
 /**
@@ -55,7 +55,7 @@ Sets the start and end positions of a selection in a text field.
 */
 @send
 external setSelectionRange: (
-  Types.htmlTextAreaElement,
+  DomTypes.htmlTextAreaElement,
   ~start: int,
   ~end: int,
   ~direction: string=?,

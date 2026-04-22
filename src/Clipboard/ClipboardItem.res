@@ -2,14 +2,16 @@
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/ClipboardItem)
 */
 @new
-external make: (~items: unknown, ~options: Types.clipboardItemOptions=?) => Types.clipboardItem =
-  "ClipboardItem"
+external make: (
+  ~items: unknown,
+  ~options: ClipboardTypes.clipboardItemOptions=?,
+) => ClipboardTypes.clipboardItem = "ClipboardItem"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/ClipboardItem/getType)
 */
 @send
-external getType: (Types.clipboardItem, string) => promise<WebApi.File.Types.blob> = "getType"
+external getType: (ClipboardTypes.clipboardItem, string) => promise<File.Types.blob> = "getType"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/ClipboardItem/supports_static)

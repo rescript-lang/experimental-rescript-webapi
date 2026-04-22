@@ -1,1 +1,1 @@
-include HTMLElement.Impl({type t = Types.htmlSpanElement})
+include HTMLElement.Impl({type t = DomTypes.htmlSpanElement})

@@ -3,7 +3,7 @@ module Impl = (
     type t
   },
 ) => {
-  include WebApi.Event.EventTarget.Impl({type t = T.t})
+  include Event.EventTarget.Impl({type t = T.t})
 
   external current: T.t = "self"
 
@@ -20,11 +20,8 @@ let response = await self->WorkerGlobalScope.fetch("https://rescript-lang.org")
 [Read more on MDN](https://developer.mozilla.org/en-US/docs/Web/API/WorkerGlobalScope/fetch)
 */
   @send
-  external fetch: (
-    T.t,
-    string,
-    ~init: WebApi.Fetch.Request.requestInit=?,
-  ) => promise<WebApi.Fetch.Response.t> = "fetch"
+  external fetch: (T.t, string, ~init: Fetch.Request.requestInit=?) => promise<Fetch.Response.t> =
+    "fetch"
 
   /**
 `fetchWithRequest(workerGlobalScope, request, init)`
@@ -40,9 +37,9 @@ let response = await self->WorkerGlobalScope.fetch(myRequest)
 */
   external fetchWithRequest: (
     T.t,
-    WebApi.Fetch.Request.t,
-    ~init: WebApi.Fetch.Request.requestInit=?,
-  ) => promise<WebApi.Fetch.Response.t> = "fetch"
+    Fetch.Request.t,
+    ~init: Fetch.Request.requestInit=?,
+  ) => promise<Fetch.Response.t> = "fetch"
 }
 
-include Impl({type t = Types.workerGlobalScope})
+include Impl({type t = WebWorkersTypes.workerGlobalScope})

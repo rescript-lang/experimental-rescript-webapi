@@ -5,7 +5,7 @@ module Impl = (
 ) => {
   include AudioNode.Impl({type t = T.t})
 
-  external asAudioScheduledSourceNode: T.t => Types.audioScheduledSourceNode = "%identity"
+  external asAudioScheduledSourceNode: T.t => WebAudioTypes.audioScheduledSourceNode = "%identity"
 
   /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/AudioScheduledSourceNode/start)
@@ -20,4 +20,4 @@ module Impl = (
   external stop: (T.t, ~when_: float=?) => unit = "stop"
 }
 
-include Impl({type t = Types.audioScheduledSourceNode})
+include Impl({type t = WebAudioTypes.audioScheduledSourceNode})

@@ -39,7 +39,7 @@ type lockOptions = {
   mutable mode?: lockMode,
   mutable ifAvailable?: bool,
   mutable steal?: bool,
-  mutable signal?: WebApi.Event.Types.abortSignal,
+  mutable signal?: Event.Types.abortSignal,
 }
 
 type lockGrantedCallback = lock => promise<JSON.t>

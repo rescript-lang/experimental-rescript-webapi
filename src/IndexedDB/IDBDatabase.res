@@ -1,4 +1,4 @@
-include WebApi.Event.EventTarget.Impl({type t = Types.idbDatabase})
+include Event.EventTarget.Impl({type t = IndexedDbTypes.idbDatabase})
 
 /**
 Returns a new transaction with the given mode ("readonly" or "readwrite") and scope which can be a single object store name or an array of names.
@@ -6,11 +6,11 @@ Returns a new transaction with the given mode ("readonly" or "readwrite") and sc
 */
 @send
 external transaction: (
-  Types.idbDatabase,
+  IndexedDbTypes.idbDatabase,
   ~storeNames: string,
-  ~mode: Types.idbTransactionMode=?,
-  ~options: Types.idbTransactionOptions=?,
-) => Types.idbTransaction = "transaction"
+  ~mode: IndexedDbTypes.idbTransactionMode=?,
+  ~options: IndexedDbTypes.idbTransactionOptions=?,
+) => IndexedDbTypes.idbTransaction = "transaction"
 
 /**
 Returns a new transaction with the given mode ("readonly" or "readwrite") and scope which can be a single object store name or an array of names.
@@ -18,18 +18,18 @@ Returns a new transaction with the given mode ("readonly" or "readwrite") and sc
 */
 @send
 external transaction2: (
-  Types.idbDatabase,
+  IndexedDbTypes.idbDatabase,
   ~storeNames: array<string>,
-  ~mode: Types.idbTransactionMode=?,
-  ~options: Types.idbTransactionOptions=?,
-) => Types.idbTransaction = "transaction"
+  ~mode: IndexedDbTypes.idbTransactionMode=?,
+  ~options: IndexedDbTypes.idbTransactionOptions=?,
+) => IndexedDbTypes.idbTransaction = "transaction"
 
 /**
 Closes the connection once all running transactions have finished.
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/IDBDatabase/close)
 */
 @send
-external close: Types.idbDatabase => unit = "close"
+external close: IndexedDbTypes.idbDatabase => unit = "close"
 
 /**
 Creates a new object store with the given name and options and returns a new IDBObjectStore.
@@ -39,10 +39,10 @@ Throws a "InvalidStateError" DOMException if not called within an upgrade transa
 */
 @send
 external createObjectStore: (
-  Types.idbDatabase,
+  IndexedDbTypes.idbDatabase,
   ~name: string,
-  ~options: Types.idbObjectStoreParameters=?,
-) => Types.idbObjectStore = "createObjectStore"
+  ~options: IndexedDbTypes.idbObjectStoreParameters=?,
+) => IndexedDbTypes.idbObjectStore = "createObjectStore"
 
 /**
 Deletes the object store with the given name.
@@ -51,4 +51,4 @@ Throws a "InvalidStateError" DOMException if not called within an upgrade transa
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/IDBDatabase/deleteObjectStore)
 */
 @send
-external deleteObjectStore: (Types.idbDatabase, string) => unit = "deleteObjectStore"
+external deleteObjectStore: (IndexedDbTypes.idbDatabase, string) => unit = "deleteObjectStore"

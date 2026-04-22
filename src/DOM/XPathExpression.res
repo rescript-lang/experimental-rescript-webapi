@@ -3,8 +3,8 @@
 */
 @send
 external evaluate: (
-  Types.xPathExpression,
-  ~contextNode: Types.node,
+  DomTypes.xPathExpression,
+  ~contextNode: DomTypes.node,
   ~type_: int=?,
-  ~result: Types.xPathResult=?,
-) => Types.xPathResult = "evaluate"
+  ~result: DomTypes.xPathResult=?,
+) => DomTypes.xPathResult = "evaluate"

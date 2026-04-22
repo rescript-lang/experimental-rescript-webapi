@@ -1,48 +1,53 @@
-type domMatrix2DInit = WebApi.DOM.Types.domMatrix2DInit
+type domMatrix2DInit = DOM.Types.domMatrix2DInit
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Path2D)
 */
 @new
-external make: (~path: Types.path2D=?) => Types.path2D = "Path2D"
+external make: (~path: CanvasTypes.path2D=?) => CanvasTypes.path2D = "Path2D"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Path2D)
 */
 @new
-external make2: (~path: string=?) => Types.path2D = "Path2D"
+external make2: (~path: string=?) => CanvasTypes.path2D = "Path2D"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CanvasRenderingContext2D/closePath)
 */
 @send
-external closePath: Types.path2D => unit = "closePath"
+external closePath: CanvasTypes.path2D => unit = "closePath"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CanvasRenderingContext2D/moveTo)
 */
 @send
-external moveTo: (Types.path2D, ~x: float, ~y: float) => unit = "moveTo"
+external moveTo: (CanvasTypes.path2D, ~x: float, ~y: float) => unit = "moveTo"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CanvasRenderingContext2D/lineTo)
 */
 @send
-external lineTo: (Types.path2D, ~x: float, ~y: float) => unit = "lineTo"
+external lineTo: (CanvasTypes.path2D, ~x: float, ~y: float) => unit = "lineTo"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CanvasRenderingContext2D/quadraticCurveTo)
 */
 @send
-external quadraticCurveTo: (Types.path2D, ~cpx: float, ~cpy: float, ~x: float, ~y: float) => unit =
-  "quadraticCurveTo"
+external quadraticCurveTo: (
+  CanvasTypes.path2D,
+  ~cpx: float,
+  ~cpy: float,
+  ~x: float,
+  ~y: float,
+) => unit = "quadraticCurveTo"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CanvasRenderingContext2D/bezierCurveTo)
 */
 @send
 external bezierCurveTo: (
-  Types.path2D,
+  CanvasTypes.path2D,
   ~cp1x: float,
   ~cp1y: float,
   ~cp2x: float,
@@ -56,7 +61,7 @@ external bezierCurveTo: (
 */
 @send
 external arcTo: (
-  Types.path2D,
+  CanvasTypes.path2D,
   ~x1: float,
   ~y1: float,
   ~x2: float,
@@ -68,14 +73,14 @@ external arcTo: (
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CanvasRenderingContext2D/rect)
 */
 @send
-external rect: (Types.path2D, ~x: float, ~y: float, ~w: float, ~h: float) => unit = "rect"
+external rect: (CanvasTypes.path2D, ~x: float, ~y: float, ~w: float, ~h: float) => unit = "rect"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CanvasRenderingContext2D/roundRect)
 */
 @send
 external roundRect: (
-  Types.path2D,
+  CanvasTypes.path2D,
   ~x: float,
   ~y: float,
   ~w: float,
@@ -88,7 +93,7 @@ external roundRect: (
 */
 @send
 external roundRect2: (
-  Types.path2D,
+  CanvasTypes.path2D,
   ~x: float,
   ~y: float,
   ~w: float,
@@ -101,7 +106,7 @@ external roundRect2: (
 */
 @send
 external roundRect3: (
-  Types.path2D,
+  CanvasTypes.path2D,
   ~x: float,
   ~y: float,
   ~w: float,
@@ -114,7 +119,7 @@ external roundRect3: (
 */
 @send
 external arc: (
-  Types.path2D,
+  CanvasTypes.path2D,
   ~x: float,
   ~y: float,
   ~radius: float,
@@ -128,7 +133,7 @@ external arc: (
 */
 @send
 external ellipse: (
-  Types.path2D,
+  CanvasTypes.path2D,
   ~x: float,
   ~y: float,
   ~radiusX: float,
@@ -144,5 +149,8 @@ Adds to the path the path given by the argument.
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Path2D/addPath)
 */
 @send
-external addPath: (Types.path2D, ~path: Types.path2D, ~transform: domMatrix2DInit=?) => unit =
-  "addPath"
+external addPath: (
+  CanvasTypes.path2D,
+  ~path: CanvasTypes.path2D,
+  ~transform: domMatrix2DInit=?,
+) => unit = "addPath"

@@ -1,20 +1,20 @@
-external fromString: string => Types.fillStyle = "%identity"
-external fromCanvasGradient: Types.canvasGradient => Types.fillStyle = "%identity"
-external fromCanvasPattern: Types.canvasPattern => Types.fillStyle = "%identity"
+external fromString: string => CanvasTypes.fillStyle = "%identity"
+external fromCanvasGradient: CanvasTypes.canvasGradient => CanvasTypes.fillStyle = "%identity"
+external fromCanvasPattern: CanvasTypes.canvasPattern => CanvasTypes.fillStyle = "%identity"
 
-external toString: Types.fillStyle => string = "%identity"
-external toCanvasGradient: Types.fillStyle => Types.canvasGradient = "%identity"
-external toCanvasPattern: Types.fillStyle => Types.canvasPattern = "%identity"
+external toString: CanvasTypes.fillStyle => string = "%identity"
+external toCanvasGradient: CanvasTypes.fillStyle => CanvasTypes.canvasGradient = "%identity"
+external toCanvasPattern: CanvasTypes.fillStyle => CanvasTypes.canvasPattern = "%identity"
 
 /**
 Represents a decoded version of the abstract `fillStyle` type, used in Context2D.
  */
 type decoded =
   | String(string)
-  | CanvasGradient(Types.canvasGradient)
-  | CanvasPattern(Types.canvasPattern)
+  | CanvasGradient(CanvasTypes.canvasGradient)
+  | CanvasPattern(CanvasTypes.canvasPattern)
 
-let decode = (t: Types.fillStyle): decoded => {
+let decode = (t: CanvasTypes.fillStyle): decoded => {
   if CanvasGradient.isInstanceOf(t) {
     CanvasGradient(toCanvasGradient(t))
   } else if CanvasPattern.isInstanceOf(t) {

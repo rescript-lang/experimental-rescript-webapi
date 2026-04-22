@@ -1,17 +1,17 @@
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/window)
 */
-external window: Types.window = "window"
+external window: DomTypes.window = "window"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/self)
 */
-external self: Types.window = "self"
+external self: DomTypes.window = "self"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/document)
 */
-external document: Types.document = "document"
+external document: DomTypes.document = "document"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/name)
@@ -21,54 +21,54 @@ external name: string = "name"
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/location)
 */
-external location: Types.location = "location"
+external location: DomTypes.location = "location"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/history)
 */
-external history: WebApi.History.Types.history = "history"
+external history: History.Types.history = "history"
 
 /**
 Defines a new custom element, mapping the given name to the given constructor as an autonomous custom element.
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/customElements)
 */
-external customElements: Types.customElementRegistry = "customElements"
+external customElements: DomTypes.customElementRegistry = "customElements"
 
 /**
 Returns true if the location bar is visible; otherwise, returns false.
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/locationbar)
 */
-external locationbar: Types.barProp = "locationbar"
+external locationbar: DomTypes.barProp = "locationbar"
 
 /**
 Returns true if the menu bar is visible; otherwise, returns false.
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/menubar)
 */
-external menubar: Types.barProp = "menubar"
+external menubar: DomTypes.barProp = "menubar"
 
 /**
 Returns true if the personal bar is visible; otherwise, returns false.
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/personalbar)
 */
-external personalbar: Types.barProp = "personalbar"
+external personalbar: DomTypes.barProp = "personalbar"
 
 /**
 Returns true if the scrollbars are visible; otherwise, returns false.
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/scrollbars)
 */
-external scrollbars: Types.barProp = "scrollbars"
+external scrollbars: DomTypes.barProp = "scrollbars"
 
 /**
 Returns true if the status bar is visible; otherwise, returns false.
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/statusbar)
 */
-external statusbar: Types.barProp = "statusbar"
+external statusbar: DomTypes.barProp = "statusbar"
 
 /**
 Returns true if the toolbar is visible; otherwise, returns false.
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/toolbar)
 */
-external toolbar: Types.barProp = "toolbar"
+external toolbar: DomTypes.barProp = "toolbar"
 
 /**
 Returns true if the window has been closed, false otherwise.
@@ -79,7 +79,7 @@ external closed: bool = "closed"
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/frames)
 */
-external frames: Types.window = "frames"
+external frames: DomTypes.window = "frames"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/length)
@@ -89,7 +89,7 @@ external length: int = "length"
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/top)
 */
-external top: Types.window = "top"
+external top: DomTypes.window = "top"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/opener)
@@ -102,27 +102,27 @@ Refers to either the parent WindowProxy, or itself.
 It can rarely be null e.g. for contentWindow of an iframe that is already removed from the parent.
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/parent)
 */
-external parent: Types.window = "parent"
+external parent: DomTypes.window = "parent"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/frameElement)
 */
-external frameElement: Types.element = "frameElement"
+external frameElement: DomTypes.element = "frameElement"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/navigator)
 */
-external navigator: Types.navigator = "navigator"
+external navigator: DomTypes.navigator = "navigator"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/screen)
 */
-external screen: Types.screen = "screen"
+external screen: DomTypes.screen = "screen"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/visualViewport)
 */
-external visualViewport: WebApi.VisualViewport.Types.visualViewport = "visualViewport"
+external visualViewport: VisualViewport.Types.visualViewport = "visualViewport"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/innerWidth)
@@ -182,7 +182,7 @@ external devicePixelRatio: float = "devicePixelRatio"
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/speechSynthesis)
 */
-external speechSynthesis: WebApi.WebSpeech.Types.speechSynthesis = "speechSynthesis"
+external speechSynthesis: WebSpeech.Types.speechSynthesis = "speechSynthesis"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/origin)
@@ -202,32 +202,32 @@ external crossOriginIsolated: bool = "crossOriginIsolated"
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/indexedDB)
 */
-external indexedDB: WebApi.IndexedDB.Types.idbFactory = "indexedDB"
+external indexedDB: IndexedDB.Types.idbFactory = "indexedDB"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/crypto)
 */
-external crypto: WebApi.WebCrypto.Types.crypto = "crypto"
+external crypto: WebCrypto.Types.crypto = "crypto"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/performance)
 */
-external performance: WebApi.Performance.Types.performance = "performance"
+external performance: Performance.Types.performance = "performance"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/caches)
 */
-external caches: WebApi.WebWorkers.Types.cacheStorage = "caches"
+external caches: WebWorkers.Types.cacheStorage = "caches"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/sessionStorage)
 */
-external sessionStorage: WebApi.WebStorage.Types.storage = "sessionStorage"
+external sessionStorage: WebStorage.Types.storage = "sessionStorage"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/localStorage)
 */
-external localStorage: WebApi.WebStorage.Types.storage = "localStorage"
+external localStorage: WebStorage.Types.storage = "localStorage"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/reportError)
@@ -249,14 +249,14 @@ Executes a function after a delay given in milliseconds expires.
 
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/setTimeout)
 */
-external setTimeout: (~handler: unit => unit, ~timeout: int=?) => Types.timeoutId = "setTimeout"
+external setTimeout: (~handler: unit => unit, ~timeout: int=?) => DomTypes.timeoutId = "setTimeout"
 
 /**
 Cancels the execution of a timeout created with setTimeout.
 
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/clearTimeout)
 */
-external clearTimeout: Types.timeoutId => unit = "clearTimeout"
+external clearTimeout: DomTypes.timeoutId => unit = "clearTimeout"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/setInterval)
@@ -283,7 +283,7 @@ external queueMicrotask: unit => unit => unit = "queueMicrotask"
 */
 external structuredClone: (
   't,
-  ~options: WebApi.ChannelMessaging.Types.structuredSerializeOptions=?,
+  ~options: ChannelMessaging.Types.structuredSerializeOptions=?,
 ) => 't = "structuredClone"
 
 /**
@@ -313,9 +313,9 @@ The event listener is appended to target's event listener list and is not append
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/EventTarget/addEventListener)
 */
 external addEventListener: (
-  WebApi.Event.Types.eventType,
-  WebApi.Event.Types.eventListener<'event>,
-  ~options: WebApi.Event.Types.addEventListenerOptions=?,
+  Event.Types.eventType,
+  Event.Types.eventListener<'event>,
+  ~options: Event.Types.addEventListenerOptions=?,
 ) => unit = "addEventListener"
 
 /**
@@ -335,8 +335,8 @@ The event listener is appended to target's event listener list and is not append
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/EventTarget/addEventListener)
 */
 external addEventListenerWithCapture: (
-  WebApi.Event.Types.eventType,
-  WebApi.Event.Types.eventListener<'event>,
+  Event.Types.eventType,
+  Event.Types.eventListener<'event>,
   @as(json`true`) _,
 ) => unit = "addEventListener"
 
@@ -345,9 +345,9 @@ Removes the event listener in target's event listener list with the same type, c
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/EventTarget/removeEventListener)
 */
 external removeEventListener: (
-  WebApi.Event.Types.eventType,
-  WebApi.Event.Types.eventListener<'event>,
-  ~options: WebApi.Event.Types.eventListenerOptions=?,
+  Event.Types.eventType,
+  Event.Types.eventListener<'event>,
+  ~options: Event.Types.eventListenerOptions=?,
 ) => unit = "removeEventListener"
 
 /**
@@ -355,8 +355,8 @@ Removes the event listener in target's event listener list with the same type, c
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/EventTarget/removeEventListener)
 */
 external removeEventListenerUseCapture: (
-  WebApi.Event.Types.eventType,
-  WebApi.Event.Types.eventListener<'event>,
+  Event.Types.eventType,
+  Event.Types.eventListener<'event>,
   @as(json`true`) _,
 ) => unit = "removeEventListener"
 
@@ -364,7 +364,7 @@ external removeEventListenerUseCapture: (
 Dispatches a synthetic event event to target and returns true if either event's cancelable attribute value is false or its preventDefault() method was not invoked, and false otherwise.
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/EventTarget/dispatchEvent)
 */
-external dispatchEvent: WebApi.Event.Types.event => bool = "dispatchEvent"
+external dispatchEvent: Event.Types.event => bool = "dispatchEvent"
 
 /**
 Closes the window.
@@ -387,7 +387,7 @@ external focus: unit => unit = "focus"
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/open)
 */
-external open_: (~url: string=?, ~target: string=?, ~features: string=?) => Types.window = "open"
+external open_: (~url: string=?, ~target: string=?, ~features: string=?) => DomTypes.window = "open"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/alert)
@@ -441,13 +441,13 @@ Throws a "DataCloneError" DOMException if transfer array contains duplicate obje
 */
 external postMessageWithOptions: (
   ~message: JSON.t,
-  ~options: Types.windowPostMessageOptions=?,
+  ~options: DomTypes.windowPostMessageOptions=?,
 ) => unit = "postMessage"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/matchMedia)
 */
-external matchMedia: string => Types.mediaQueryList = "matchMedia"
+external matchMedia: string => DomTypes.mediaQueryList = "matchMedia"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/moveTo)
@@ -472,7 +472,7 @@ external resizeBy: (~x: int, ~y: int) => unit = "resizeBy"
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/scroll)
 */
-external scroll: (~options: Types.scrollToOptions=?) => unit = "scroll"
+external scroll: (~options: DomTypes.scrollToOptions=?) => unit = "scroll"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/scroll)
@@ -482,7 +482,7 @@ external scroll2: (~x: float, ~y: float) => unit = "scroll"
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/scrollTo)
 */
-external scrollTo: (~options: Types.scrollToOptions=?) => unit = "scrollTo"
+external scrollTo: (~options: DomTypes.scrollToOptions=?) => unit = "scrollTo"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/scrollTo)
@@ -492,7 +492,7 @@ external scrollTo2: (~x: float, ~y: float) => unit = "scrollTo"
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/scrollBy)
 */
-external scrollBy: (~options: Types.scrollToOptions=?) => unit = "scrollBy"
+external scrollBy: (~options: DomTypes.scrollToOptions=?) => unit = "scrollBy"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/scrollBy)
@@ -503,16 +503,16 @@ external scrollBy2: (~x: float, ~y: float) => unit = "scrollBy"
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/getComputedStyle)
 */
 external getComputedStyle: (
-  ~elt: Types.element,
+  ~elt: DomTypes.element,
   ~pseudoElt: string=?,
-) => Types.cssStyleDeclaration = "getComputedStyle"
+) => DomTypes.cssStyleDeclaration = "getComputedStyle"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/requestIdleCallback)
 */
 external requestIdleCallback: (
-  ~callback: Types.idleDeadline => unit,
-  ~options: Types.idleRequestOptions=?,
+  ~callback: DomTypes.idleDeadline => unit,
+  ~options: DomTypes.idleRequestOptions=?,
 ) => int = "requestIdleCallback"
 
 /**
@@ -523,4 +523,4 @@ external cancelIdleCallback: int => unit = "cancelIdleCallback"
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/getSelection)
 */
-external getSelection: unit => null<Types.selection> = "getSelection"
+external getSelection: unit => null<DomTypes.selection> = "getSelection"

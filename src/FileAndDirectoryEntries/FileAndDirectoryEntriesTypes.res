@@ -4,18 +4,18 @@
 [See FileSystemEntry on MDN](https://developer.mozilla.org/docs/Web/API/FileSystemEntry)
 */
 @editor.completeFrom(FileSystemEntry)
-type fileSystemEntry = WebApi.Base.FileAndDirectoryEntries.fileSystemEntry
+type fileSystemEntry = Base.FileAndDirectoryEntries.fileSystemEntry
 
 /**
 [See FileSystemDirectoryEntry on MDN](https://developer.mozilla.org/docs/Web/API/FileSystemDirectoryEntry)
 */
 @editor.completeFrom(FileSystemDirectoryEntry)
-type fileSystemDirectoryEntry = WebApi.Base.FileAndDirectoryEntries.fileSystemDirectoryEntry
+type fileSystemDirectoryEntry = Base.FileAndDirectoryEntries.fileSystemDirectoryEntry
 
 /**
 [See FileSystem on MDN](https://developer.mozilla.org/docs/Web/API/FileSystem)
 */
-type fileSystem = WebApi.Base.FileAndDirectoryEntries.fileSystem
+type fileSystem = Base.FileAndDirectoryEntries.fileSystem
 
 /**
 [See FileSystemDirectoryReader on MDN](https://developer.mozilla.org/docs/Web/API/FileSystemDirectoryReader)
@@ -30,6 +30,6 @@ type fileSystemFlags = {
 
 type fileSystemEntryCallback = fileSystemEntry => unit
 
-type errorCallback = WebApi.Base.DOM.domException => unit
+type errorCallback = Base.DOM.domException => unit
 
 type fileSystemEntriesCallback = array<fileSystemEntry> => unit

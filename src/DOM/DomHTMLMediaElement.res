@@ -3,9 +3,9 @@ module Impl = (
     type t
   },
 ) => {
-  include HTMLElement.Impl({type t = Types.htmlMediaElement})
+  include HTMLElement.Impl({type t = DomTypes.htmlMediaElement})
 
-  external asHTMLMediaElement: T.t => Types.htmlMediaElement = "%identity"
+  external asHTMLMediaElement: T.t => DomTypes.htmlMediaElement = "%identity"
 
   /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLMediaElement/addTextTrack)
@@ -13,17 +13,17 @@ module Impl = (
   @send
   external addTextTrack: (
     T.t,
-    ~kind: WebApi.WebVTT.Types.textTrackKind,
+    ~kind: WebVTT.Types.textTrackKind,
     ~label: string=?,
     ~language: string=?,
-  ) => WebApi.WebVTT.Types.textTrack = "addTextTrack"
+  ) => WebVTT.Types.textTrack = "addTextTrack"
 
   /**
 Returns a string that specifies whether the client can play a given media resource type.
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLMediaElement/canPlayType)
 */
   @send
-  external canPlayType: (T.t, string) => Types.canPlayTypeResult = "canPlayType"
+  external canPlayType: (T.t, string) => DomTypes.canPlayTypeResult = "canPlayType"
 
   /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLMediaElement/fastSeek)
@@ -59,4 +59,4 @@ Loads and starts playback of a media resource.
   external setSinkId: (T.t, string) => promise<unit> = "setSinkId"
 }
 
-include Impl({type t = Types.htmlMediaElement})
+include Impl({type t = DomTypes.htmlMediaElement})

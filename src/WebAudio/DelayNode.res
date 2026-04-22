@@ -1,10 +1,10 @@
-include AudioNode.Impl({type t = Types.delayNode})
+include AudioNode.Impl({type t = WebAudioTypes.delayNode})
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/DelayNode)
 */
 @new
 external make: (
-  ~context: Types.baseAudioContext,
-  ~options: Types.delayOptions=?,
-) => Types.delayNode = "DelayNode"
+  ~context: WebAudioTypes.baseAudioContext,
+  ~options: WebAudioTypes.delayOptions=?,
+) => WebAudioTypes.delayNode = "DelayNode"

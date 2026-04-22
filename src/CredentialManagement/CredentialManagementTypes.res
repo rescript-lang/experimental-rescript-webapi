@@ -58,13 +58,13 @@ type credential = {
 
 type publicKeyCredentialDescriptor = {
   @as("type") mutable type_: publicKeyCredentialType,
-  mutable id: WebApi.Base.ArrayBufferTypedArrayOrDataView.t,
+  mutable id: Base.ArrayBufferTypedArrayOrDataView.t,
   mutable transports?: array<authenticatorTransport>,
 }
 
 type authenticationExtensionsPRFValues = {
-  mutable first: WebApi.Base.ArrayBufferTypedArrayOrDataView.t,
-  mutable second?: WebApi.Base.ArrayBufferTypedArrayOrDataView.t,
+  mutable first: Base.ArrayBufferTypedArrayOrDataView.t,
+  mutable second?: Base.ArrayBufferTypedArrayOrDataView.t,
 }
 
 type authenticationExtensionsPRFInputs = {
@@ -81,7 +81,7 @@ type authenticationExtensionsClientInputs = {
 }
 
 type publicKeyCredentialRequestOptions = {
-  mutable challenge: WebApi.Base.ArrayBufferTypedArrayOrDataView.t,
+  mutable challenge: Base.ArrayBufferTypedArrayOrDataView.t,
   mutable timeout?: int,
   mutable rpId?: string,
   mutable allowCredentials?: array<publicKeyCredentialDescriptor>,
@@ -91,7 +91,7 @@ type publicKeyCredentialRequestOptions = {
 
 type credentialRequestOptions = {
   mutable mediation?: credentialMediationRequirement,
-  mutable signal?: WebApi.Event.Types.abortSignal,
+  mutable signal?: Event.Types.abortSignal,
   mutable publicKey?: publicKeyCredentialRequestOptions,
 }
 
@@ -104,7 +104,7 @@ type publicKeyCredentialRpEntity = {
 
 type publicKeyCredentialUserEntity = {
   ...publicKeyCredentialEntity,
-  mutable id: WebApi.Base.ArrayBufferTypedArrayOrDataView.t,
+  mutable id: Base.ArrayBufferTypedArrayOrDataView.t,
   mutable displayName: string,
 }
 
@@ -123,7 +123,7 @@ type authenticatorSelectionCriteria = {
 type publicKeyCredentialCreationOptions = {
   mutable rp: publicKeyCredentialRpEntity,
   mutable user: publicKeyCredentialUserEntity,
-  mutable challenge: WebApi.Base.ArrayBufferTypedArrayOrDataView.t,
+  mutable challenge: Base.ArrayBufferTypedArrayOrDataView.t,
   mutable pubKeyCredParams: array<publicKeyCredentialParameters>,
   mutable timeout?: int,
   mutable excludeCredentials?: array<publicKeyCredentialDescriptor>,
@@ -133,6 +133,6 @@ type publicKeyCredentialCreationOptions = {
 }
 
 type credentialCreationOptions = {
-  mutable signal?: WebApi.Event.Types.abortSignal,
+  mutable signal?: Event.Types.abortSignal,
   mutable publicKey?: publicKeyCredentialCreationOptions,
 }

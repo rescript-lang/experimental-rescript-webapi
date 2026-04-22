@@ -1,6 +1,8 @@
-type t = Types.serviceWorkerGlobalScope = private {...Types.serviceWorkerGlobalScope}
+type t = ServiceWorkerTypes.serviceWorkerGlobalScope = private {
+  ...ServiceWorkerTypes.serviceWorkerGlobalScope,
+}
 
-include WebApi.WebWorkers.WorkerGlobalScope.Impl({type t = t})
+include WebWorkers.WorkerGlobalScope.Impl({type t = t})
 
 /**
 Forces the waiting service worker to become the active service worker.

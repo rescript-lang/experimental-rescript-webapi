@@ -1,4 +1,4 @@
-type t = WebApi.Base.DOM.domException
+type t = Base.DOM.domException
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/DOMException)

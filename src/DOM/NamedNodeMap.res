@@ -2,48 +2,48 @@
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/NamedNodeMap/item)
 */
 @send
-external item: (Types.namedNodeMap, int) => Types.attr = "item"
+external item: (DomTypes.namedNodeMap, int) => DomTypes.attr = "item"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/NamedNodeMap/getNamedItem)
 */
 @send
-external getNamedItem: (Types.namedNodeMap, string) => Types.attr = "getNamedItem"
+external getNamedItem: (DomTypes.namedNodeMap, string) => DomTypes.attr = "getNamedItem"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/NamedNodeMap/getNamedItemNS)
 */
 @send
 external getNamedItemNS: (
-  Types.namedNodeMap,
+  DomTypes.namedNodeMap,
   ~namespace: string,
   ~localName: string,
-) => Types.attr = "getNamedItemNS"
+) => DomTypes.attr = "getNamedItemNS"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/NamedNodeMap/setNamedItem)
 */
 @send
-external setNamedItem: (Types.namedNodeMap, Types.attr) => Types.attr = "setNamedItem"
+external setNamedItem: (DomTypes.namedNodeMap, DomTypes.attr) => DomTypes.attr = "setNamedItem"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/NamedNodeMap/setNamedItemNS)
 */
 @send
-external setNamedItemNS: (Types.namedNodeMap, Types.attr) => Types.attr = "setNamedItemNS"
+external setNamedItemNS: (DomTypes.namedNodeMap, DomTypes.attr) => DomTypes.attr = "setNamedItemNS"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/NamedNodeMap/removeNamedItem)
 */
 @send
-external removeNamedItem: (Types.namedNodeMap, string) => Types.attr = "removeNamedItem"
+external removeNamedItem: (DomTypes.namedNodeMap, string) => DomTypes.attr = "removeNamedItem"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/NamedNodeMap/removeNamedItemNS)
 */
 @send
 external removeNamedItemNS: (
-  Types.namedNodeMap,
+  DomTypes.namedNodeMap,
   ~namespace: string,
   ~localName: string,
-) => Types.attr = "removeNamedItemNS"
+) => DomTypes.attr = "removeNamedItemNS"

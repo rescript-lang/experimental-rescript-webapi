@@ -13,7 +13,7 @@ TODO: mark as private once mutating fields of private records is allowed
 */
 @editor.completeFrom(WebSocket)
 type webSocket = {
-  ...WebApi.Event.Types.eventTarget,
+  ...Event.Types.eventTarget,
   /**
     Returns the WebApiURL that was used to establish the WebSocket connection.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/WebSocket/url)
@@ -56,7 +56,7 @@ A CloseEvent is sent to clients using WebApiWebSockets when the connection is cl
 */
 @editor.completeFrom(CloseEvent)
 type closeEvent = private {
-  ...WebApi.Event.Types.event,
+  ...Event.Types.event,
   /**
     Returns true if the connection closed cleanly; false otherwise.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CloseEvent/wasClean)
@@ -79,7 +79,7 @@ A message received by a target object.
 [See MessageEvent on MDN](https://developer.mozilla.org/docs/Web/API/MessageEvent)
 */
 type messageEvent<'t> = {
-  ...WebApi.Event.Types.event,
+  ...Event.Types.event,
   /**
     Returns the data of the message.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/MessageEvent/data)
@@ -104,21 +104,21 @@ type messageEvent<'t> = {
     Returns the MessagePort array sent with the message, for cross-document messaging and channel messaging.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/MessageEvent/ports)
     */
-  ports: array<WebApi.ChannelMessaging.Types.messagePort>,
+  ports: array<ChannelMessaging.Types.messagePort>,
 }
 
 type closeEventInit = {
-  ...WebApi.Event.Types.eventInit,
+  ...Event.Types.eventInit,
   mutable wasClean?: bool,
   mutable code?: int,
   mutable reason?: string,
 }
 
 type messageEventInit<'t> = {
-  ...WebApi.Event.Types.eventInit,
+  ...Event.Types.eventInit,
   mutable data?: 't,
   mutable origin?: string,
   mutable lastEventId?: string,
   mutable source?: Null.t<messageEventSource>,
-  mutable ports?: array<WebApi.ChannelMessaging.Types.messagePort>,
+  mutable ports?: array<ChannelMessaging.Types.messagePort>,
 }

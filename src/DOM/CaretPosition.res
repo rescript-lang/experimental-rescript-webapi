@@ -1,2 +1,2 @@
 @send
-external getClientRect: Types.caretPosition => Types.domRect = "getClientRect"
+external getClientRect: DomTypes.caretPosition => DomTypes.domRect = "getClientRect"

@@ -35,6 +35,11 @@ test("moves legacy sources into src/<Feature>, renames duplicate leaves, and rem
     "Headers.res": "type t",
   });
 
+  writePackage(root, "URL", "WebApiURL", {
+    "URL.res": "external make: unit => unit = \"URL\"",
+    "URLSearchParams.res": "type t",
+  });
+
   mkdirSync(path.join(root, "packages", "Prelude", "lib"), { recursive: true });
 
   migrateLayout(root);
@@ -56,6 +61,12 @@ test("moves legacy sources into src/<Feature>, renames duplicate leaves, and rem
     readFileSync(path.join(root, "src", "Fetch", "FetchTypes.res"), "utf8"),
     "type request",
   );
+  assert.equal(
+    readFileSync(path.join(root, "src", "URL", "UrlURL.res"), "utf8"),
+    "external make: unit => unit = \"URL\"",
+  );
+  assert.equal(readFileSync(path.join(root, "src", "URL", "URLSearchParams.res"), "utf8"), "type t");
+  assert.ok(!existsSync(path.join(root, "src", "URL", "URL.res")));
   assert.equal(readFileSync(path.join(root, "src", "Base", "BaseDOM.res"), "utf8"), "type dom = unit");
   assert.ok(!existsSync(path.join(root, "packages", "DOM", "rescript.json")));
   assert.ok(!existsSync(path.join(root, "packages", "DOM", "package.json")));

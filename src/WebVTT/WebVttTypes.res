@@ -31,7 +31,7 @@ TODO: mark as private once mutating fields of private records is allowed
 */
 @editor.completeFrom(TextTrack)
 type rec textTrackCue = {
-  ...WebApi.Event.Types.eventTarget,
+  ...Event.Types.eventTarget,
   /**
     Returns the TextTrack object to which this text track cue belongs, if any, or null otherwise.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/TextTrackCue/track)
@@ -68,12 +68,12 @@ Can be set.
 }
 
 /**
-This interface also inherits properties from WebApi.Event.EventTarget.
+This interface also inherits properties from Event.EventTarget.
 [See TextTrack on MDN](https://developer.mozilla.org/docs/Web/API/TextTrack)
 TODO: mark as private once mutating fields of private records is allowed
 */
 @editor.completeFrom(TextTrack) and textTrack = {
-  ...WebApi.Event.Types.eventTarget,
+  ...Event.Types.eventTarget,
   /**
     Returns the text track kind string.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/TextTrack/kind)

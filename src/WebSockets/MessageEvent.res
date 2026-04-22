@@ -1,9 +1,9 @@
-type event = WebApi.Event.Types.event
-type eventTarget = WebApi.Event.Types.eventTarget
-type messageEventSource = Types.messageEventSource
+type event = Event.Types.event
+type eventTarget = Event.Types.eventTarget
+type messageEventSource = WebSocketsTypes.messageEventSource
 
-type messageEvent<'t> = Types.messageEvent<'t>
-type messageEventInit<'t> = Types.messageEventInit<'t>
+type messageEvent<'t> = WebSocketsTypes.messageEvent<'t>
+type messageEventInit<'t> = WebSocketsTypes.messageEventInit<'t>
 
 type t<'t> = messageEvent<'t>
 

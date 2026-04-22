@@ -1,8 +1,8 @@
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Response)
 */
-type t = Types.response = private {...Types.response}
-type responseInit = Types.responseInit
+type t = FetchTypes.response = private {...FetchTypes.response}
+type responseInit = FetchTypes.responseInit
 type bodyInit = BodyInit.t
 type headersInit = HeadersInit.t
 
@@ -40,19 +40,19 @@ external fromDataView: (DataView.t, ~init: responseInit=?) => t = "Response"
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Response)
 */
 @new
-external fromBlob: (WebApi.File.Blob.t, ~init: responseInit=?) => t = "Response"
+external fromBlob: (File.Blob.t, ~init: responseInit=?) => t = "Response"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Response)
 */
 @new
-external fromFile: (WebApi.File.File.t, ~init: responseInit=?) => t = "Response"
+external fromFile: (File.File.t, ~init: responseInit=?) => t = "Response"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Response)
 */
 @new
-external fromURLSearchParams: (WebApi.URL.URLSearchParams.t, ~init: responseInit=?) => t = "Response"
+external fromURLSearchParams: (URL.URLSearchParams.t, ~init: responseInit=?) => t = "Response"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Response)
@@ -64,8 +64,7 @@ external fromFormData: (FormData.t, ~init: responseInit=?) => t = "Response"
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Response)
 */
 @new
-external fromReadableStream: (WebApi.File.ReadableStream.t<'t>, ~init: responseInit=?) => t =
-  "Response"
+external fromReadableStream: (File.ReadableStream.t<'t>, ~init: responseInit=?) => t = "Response"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Request/arrayBuffer)
@@ -77,7 +76,7 @@ external arrayBuffer: t => promise<ArrayBuffer.t> = "arrayBuffer"
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Request/blob)
 */
 @send
-external blob: t => promise<WebApi.File.Blob.t> = "blob"
+external blob: t => promise<File.Blob.t> = "blob"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Request/bytes)

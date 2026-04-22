@@ -1,88 +1,88 @@
 @@warning("-30")
 
-type domStringList = WebApi.Base.DOM.domStringList
-type eventTarget = WebApi.Event.Types.eventTarget
-type eventType = WebApi.Event.Types.eventType
-type file = WebApi.File.Types.file
-type blob = WebApi.File.Types.blob
-type fileSystemEntry = WebApi.FileAndDirectoryEntries.Types.fileSystemEntry
-type remotePlayback = WebApi.RemotePlayback.Types.remotePlayback
-type fontFaceSet = WebApi.CSSFontLoading.Types.fontFaceSet
-type structuredSerializeOptions = WebApi.ChannelMessaging.Types.structuredSerializeOptions
+type domStringList = Base.DOM.domStringList
+type eventTarget = Event.Types.eventTarget
+type eventType = Event.Types.eventType
+type file = File.Types.file
+type blob = File.Types.blob
+type fileSystemEntry = FileAndDirectoryEntries.Types.fileSystemEntry
+type remotePlayback = RemotePlayback.Types.remotePlayback
+type fontFaceSet = CSSFontLoading.Types.fontFaceSet
+type structuredSerializeOptions = ChannelMessaging.Types.structuredSerializeOptions
 
-type htmlElement = WebApi.Base.DOM.htmlElement
-type mediaError = WebApi.Base.DOM.mediaError
-type timeRanges = WebApi.Base.DOM.timeRanges
-type textTrackList = WebApi.Base.DOM.textTrackList
-type htmlFormElement = WebApi.Base.DOM.htmlFormElement
-type htmlCollection<'a> = WebApi.Base.DOM.htmlCollection<'a>
-type element = WebApi.Base.DOM.element
-type validityState = WebApi.Base.DOM.validityState
-type document = WebApi.Base.DOM.document
-type cssStyleSheet = WebApi.Base.DOM.cssStyleSheet
-type nodeList<'a> = WebApi.Base.DOM.nodeList<'a>
-type htmlLabelElement = WebApi.Base.DOM.htmlLabelElement
-type documentFragment = WebApi.Base.DOM.documentFragment
-type node = WebApi.Base.DOM.node
-type cssStyleDeclaration = WebApi.Base.DOM.cssStyleDeclaration
-type domRectReadOnly = WebApi.Base.DOM.domRectReadOnly
-type shadowRoot = WebApi.Base.DOM.shadowRoot
-type styleSheet = WebApi.Base.DOM.styleSheet
-type mediaQueryList = WebApi.Base.DOM.mediaQueryList
-type domRect = WebApi.Base.DOM.domRect
-type range = WebApi.Base.DOM.range
-type documentType = WebApi.Base.DOM.documentType
-type cssStyleValue = WebApi.Base.DOM.cssStyleValue
-type treeWalker = WebApi.Base.DOM.treeWalker
-type selection = WebApi.Base.DOM.selection
-type abstractRange = WebApi.Base.DOM.abstractRange
-type htmlOptionsCollection = WebApi.Base.DOM.htmlOptionsCollection
-type styleSheetList = WebApi.Base.DOM.styleSheetList
-type elementInternals = WebApi.Base.DOM.elementInternals
-type nodeFilter = WebApi.Base.DOM.nodeFilter
-type fileList = WebApi.Base.DOM.fileList
-type cssRule = WebApi.Base.DOM.cssRule
-type attr = WebApi.Base.DOM.attr
-type domRectList = WebApi.Base.DOM.domRectList
-type htmlFormControlsCollection = WebApi.Base.DOM.htmlFormControlsCollection
-type domImplementation = WebApi.Base.DOM.domImplementation
-type nodeIterator = WebApi.Base.DOM.nodeIterator
-type xmlDocument = WebApi.Base.DOM.xmlDocument
-type characterData = WebApi.Base.DOM.characterData
-type text = WebApi.Base.DOM.text
-type cdataSection = WebApi.Base.DOM.cdataSection
-type comment = WebApi.Base.DOM.comment
-type processingInstruction = WebApi.Base.DOM.processingInstruction
-type caretPosition = WebApi.Base.DOM.caretPosition
-type htmlTableElement = WebApi.Base.DOM.htmlTableElement
-type htmlOutputElement = WebApi.Base.DOM.htmlOutputElement
-type htmlTableCellElement = WebApi.Base.DOM.htmlTableCellElement
-type htmlHeadElement = WebApi.Base.DOM.htmlHeadElement
-type htmlSelectElement = WebApi.Base.DOM.htmlSelectElement
-type htmlButtonElement = WebApi.Base.DOM.htmlButtonElement
-type htmlTableSectionElement = WebApi.Base.DOM.htmlTableSectionElement
-type htmlOptionElement = WebApi.Base.DOM.htmlOptionElement
-type htmlEmbedElement = WebApi.Base.DOM.htmlEmbedElement
-type htmlTextAreaElement = WebApi.Base.DOM.htmlTextAreaElement
-type htmlTableCaptionElement = WebApi.Base.DOM.htmlTableCaptionElement
-type htmlSlotElement = WebApi.Base.DOM.htmlSlotElement
-type htmlDataListElement = WebApi.Base.DOM.htmlDataListElement
-type htmlInputElement = WebApi.Base.DOM.htmlInputElement
-type htmlScriptElement = WebApi.Base.DOM.htmlScriptElement
-type htmlAnchorElement = WebApi.Base.DOM.htmlAnchorElement
-type htmlTableRowElement = WebApi.Base.DOM.htmlTableRowElement
-type htmlImageElement = WebApi.Base.DOM.htmlImageElement
-type htmlAreaElement = WebApi.Base.DOM.htmlAreaElement
-type videoPlaybackQuality = WebApi.Base.DOM.videoPlaybackQuality
-type idleDeadline = WebApi.Base.DOM.idleDeadline
-type cssRuleList = WebApi.Base.DOM.cssRuleList
-type mediaKeySystemConfiguration = WebApi.Base.EncryptedMediaExtensions.mediaKeySystemConfiguration
+type htmlElement = Base.DOM.htmlElement
+type mediaError = Base.DOM.mediaError
+type timeRanges = Base.DOM.timeRanges
+type textTrackList = Base.DOM.textTrackList
+type htmlFormElement = Base.DOM.htmlFormElement
+type htmlCollection<'a> = Base.DOM.htmlCollection<'a>
+type element = Base.DOM.element
+type validityState = Base.DOM.validityState
+type document = Base.DOM.document
+type cssStyleSheet = Base.DOM.cssStyleSheet
+type nodeList<'a> = Base.DOM.nodeList<'a>
+type htmlLabelElement = Base.DOM.htmlLabelElement
+type documentFragment = Base.DOM.documentFragment
+type node = Base.DOM.node
+type cssStyleDeclaration = Base.DOM.cssStyleDeclaration
+type domRectReadOnly = Base.DOM.domRectReadOnly
+type shadowRoot = Base.DOM.shadowRoot
+type styleSheet = Base.DOM.styleSheet
+type mediaQueryList = Base.DOM.mediaQueryList
+type domRect = Base.DOM.domRect
+type range = Base.DOM.range
+type documentType = Base.DOM.documentType
+type cssStyleValue = Base.DOM.cssStyleValue
+type treeWalker = Base.DOM.treeWalker
+type selection = Base.DOM.selection
+type abstractRange = Base.DOM.abstractRange
+type htmlOptionsCollection = Base.DOM.htmlOptionsCollection
+type styleSheetList = Base.DOM.styleSheetList
+type elementInternals = Base.DOM.elementInternals
+type nodeFilter = Base.DOM.nodeFilter
+type fileList = Base.DOM.fileList
+type cssRule = Base.DOM.cssRule
+type attr = Base.DOM.attr
+type domRectList = Base.DOM.domRectList
+type htmlFormControlsCollection = Base.DOM.htmlFormControlsCollection
+type domImplementation = Base.DOM.domImplementation
+type nodeIterator = Base.DOM.nodeIterator
+type xmlDocument = Base.DOM.xmlDocument
+type characterData = Base.DOM.characterData
+type text = Base.DOM.text
+type cdataSection = Base.DOM.cdataSection
+type comment = Base.DOM.comment
+type processingInstruction = Base.DOM.processingInstruction
+type caretPosition = Base.DOM.caretPosition
+type htmlTableElement = Base.DOM.htmlTableElement
+type htmlOutputElement = Base.DOM.htmlOutputElement
+type htmlTableCellElement = Base.DOM.htmlTableCellElement
+type htmlHeadElement = Base.DOM.htmlHeadElement
+type htmlSelectElement = Base.DOM.htmlSelectElement
+type htmlButtonElement = Base.DOM.htmlButtonElement
+type htmlTableSectionElement = Base.DOM.htmlTableSectionElement
+type htmlOptionElement = Base.DOM.htmlOptionElement
+type htmlEmbedElement = Base.DOM.htmlEmbedElement
+type htmlTextAreaElement = Base.DOM.htmlTextAreaElement
+type htmlTableCaptionElement = Base.DOM.htmlTableCaptionElement
+type htmlSlotElement = Base.DOM.htmlSlotElement
+type htmlDataListElement = Base.DOM.htmlDataListElement
+type htmlInputElement = Base.DOM.htmlInputElement
+type htmlScriptElement = Base.DOM.htmlScriptElement
+type htmlAnchorElement = Base.DOM.htmlAnchorElement
+type htmlTableRowElement = Base.DOM.htmlTableRowElement
+type htmlImageElement = Base.DOM.htmlImageElement
+type htmlAreaElement = Base.DOM.htmlAreaElement
+type videoPlaybackQuality = Base.DOM.videoPlaybackQuality
+type idleDeadline = Base.DOM.idleDeadline
+type cssRuleList = Base.DOM.cssRuleList
+type mediaKeySystemConfiguration = Base.EncryptedMediaExtensions.mediaKeySystemConfiguration
 
 /**
 A window containing a WebApiDOM document; the document property points to the WebApiDOM document loaded in that window.
 [See Window on MDN](https://developer.mozilla.org/docs/Web/API/Window)
 */
-@editor.completeFrom(Window) type window = WebApi.Base.DOM.window
+@editor.completeFrom(Window) type window = Base.DOM.window
 
 type shadowRootMode =
   | @as("closed") Closed
@@ -258,7 +258,7 @@ type shareData = {
 [See Location on MDN](https://developer.mozilla.org/docs/Web/API/Location)
 */
 @editor.completeFrom(Location)
-type location = WebApi.Base.DOM.location = private {...WebApi.Base.DOM.location}
+type location = Base.DOM.location = private {...Base.DOM.location}
 
 /**
 [See UserActivation on MDN](https://developer.mozilla.org/docs/Web/API/UserActivation)
@@ -279,7 +279,7 @@ The state and the identity of the user agent. It allows scripts to query it and 
 [See Navigator on MDN](https://developer.mozilla.org/docs/Web/API/Navigator)
 */
 @editor.completeFrom(Navigator)
-type navigator = WebApi.Base.DOM.navigator
+type navigator = Base.DOM.navigator
 
 // TODO: mark as private once mutating fields of private records is allowed
 @editor.completeFrom(DOMTokenList)

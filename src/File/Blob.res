@@ -1,9 +1,9 @@
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Blob)
 */
-type t = Types.blob = private {...Types.blob}
-type blobPart = Types.blobPart
-type blobPropertyBag = Types.blobPropertyBag
+type t = FileTypes.blob = private {...FileTypes.blob}
+type blobPart = FileTypes.blobPart
+type blobPropertyBag = FileTypes.blobPropertyBag
 
 @new
 external make: (~blobParts: array<blobPart>=?, ~options: blobPropertyBag=?) => t = "Blob"

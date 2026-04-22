@@ -1,4 +1,4 @@
-type t = Types.htmlFormElement
+type t = DomTypes.htmlFormElement
 
 include HTMLElement.Impl({type t = t})
 

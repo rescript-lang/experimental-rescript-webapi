@@ -2,13 +2,15 @@
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/KeyboardEvent)
 */
 @new
-external make: (~type_: string, ~eventInitDict: Types.keyboardEventInit=?) => Types.keyboardEvent =
-  "KeyboardEvent"
+external make: (
+  ~type_: string,
+  ~eventInitDict: UiEventsTypes.keyboardEventInit=?,
+) => UiEventsTypes.keyboardEvent = "KeyboardEvent"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/KeyboardEvent/getModifierState)
 */
 @send
-external getModifierState: (Types.keyboardEvent, string) => bool = "getModifierState"
+external getModifierState: (UiEventsTypes.keyboardEvent, string) => bool = "getModifierState"
 
-include UIEvent.Impl({type t = Types.keyboardEvent})
+include UIEvent.Impl({type t = UiEventsTypes.keyboardEvent})

@@ -5,4 +5,5 @@ Returns null if none of the cues have the given identifier or if the argument is
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/TextTrackCueList/getCueById)
 */
 @send
-external getCueById: (Types.textTrackCueList, string) => Types.textTrackCue = "getCueById"
+external getCueById: (WebVttTypes.textTrackCueList, string) => WebVttTypes.textTrackCue =
+  "getCueById"

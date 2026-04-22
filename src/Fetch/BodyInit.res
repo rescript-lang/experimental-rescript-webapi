@@ -1,4 +1,4 @@
-type t = Types.bodyInit
+type t = FetchTypes.bodyInit
 
 /**
 [Read more on MDN](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch#setting_a_body)
@@ -23,17 +23,17 @@ external fromDataView: DataView.t => t = "%identity"
 /**
 [Read more on MDN](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch#setting_a_body)
  */
-external fromBlob: WebApi.File.Blob.t => t = "%identity"
+external fromBlob: File.Blob.t => t = "%identity"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch#setting_a_body)
  */
-external fromFile: WebApi.File.File.t => t = "%identity"
+external fromFile: File.File.t => t = "%identity"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch#setting_a_body)
  */
-external fromURLSearchParams: WebApi.URL.URLSearchParams.t => t = "%identity"
+external fromURLSearchParams: URL.URLSearchParams.t => t = "%identity"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch#setting_a_body)
@@ -43,4 +43,4 @@ external fromFormData: FormData.t => t = "%identity"
 /**
 [Read more on MDN](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch#setting_a_body)
  */
-external fromReadableStream: WebApi.File.ReadableStream.t<'t> => t = "%identity"
+external fromReadableStream: File.ReadableStream.t<'t> => t = "%identity"

@@ -1,18 +1,18 @@
-include Element.Impl({type t = Types.svgGraphicsElement})
+include Element.Impl({type t = DomTypes.svgGraphicsElement})
 
-external asSVGElement: Types.svgGraphicsElement => Types.svgElement = "%identity"
+external asSVGElement: DomTypes.svgGraphicsElement => DomTypes.svgElement = "%identity"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/SVGGraphicsElement/getBBox)
 */
 @send
 external getBBox: (
-  Types.svgGraphicsElement,
-  ~options: Types.svgBoundingBoxOptions=?,
-) => Types.domRect = "getBBox"
+  DomTypes.svgGraphicsElement,
+  ~options: DomTypes.svgBoundingBoxOptions=?,
+) => DomTypes.domRect = "getBBox"
 
 @send
-external getCTM: Types.svgGraphicsElement => Types.domMatrix = "getCTM"
+external getCTM: DomTypes.svgGraphicsElement => DomTypes.domMatrix = "getCTM"
 
 @send
-external getScreenCTM: Types.svgGraphicsElement => Types.domMatrix = "getScreenCTM"
+external getScreenCTM: DomTypes.svgGraphicsElement => DomTypes.domMatrix = "getScreenCTM"

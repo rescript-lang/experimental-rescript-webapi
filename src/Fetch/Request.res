@@ -1,8 +1,8 @@
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Request)
 */
-type t = Types.request = private {...Types.request}
-type requestInit = Types.requestInit
+type t = FetchTypes.request = private {...FetchTypes.request}
+type requestInit = FetchTypes.requestInit
 type bodyInit = BodyInit.t
 type headersInit = HeadersInit.t
 
@@ -28,7 +28,7 @@ external arrayBuffer: t => promise<ArrayBuffer.t> = "arrayBuffer"
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Request/blob)
 */
 @send
-external blob: t => promise<WebApi.File.Blob.t> = "blob"
+external blob: t => promise<File.Blob.t> = "blob"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Request/bytes)

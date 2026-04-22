@@ -2,7 +2,7 @@
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/DocumentTimeline)
 */
 @new
-external make: (~options: Types.documentTimelineOptions=?) => Types.documentTimeline =
+external make: (~options: DomTypes.documentTimelineOptions=?) => DomTypes.documentTimeline =
   "DocumentTimeline"
 
-external asAnimationTimeline: Types.documentTimeline => Types.animationTimeline = "%identity"
+external asAnimationTimeline: DomTypes.documentTimeline => DomTypes.animationTimeline = "%identity"

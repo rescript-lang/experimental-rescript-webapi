@@ -3,5 +3,7 @@ Transfers the underlying bitmap data from imageBitmap to context, and the bitmap
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/ImageBitmapRenderingContext/transferFromImageBitmap)
 */
 @send
-external transferFromImageBitmap: (Types.imageBitmapRenderingContext, Types.imageBitmap) => unit =
-  "transferFromImageBitmap"
+external transferFromImageBitmap: (
+  CanvasTypes.imageBitmapRenderingContext,
+  CanvasTypes.imageBitmap,
+) => unit = "transferFromImageBitmap"

@@ -2,11 +2,13 @@
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/MediaKeySystemAccess/getConfiguration)
 */
 @send
-external getConfiguration: Types.mediaKeySystemAccess => Types.mediaKeySystemConfiguration =
+external getConfiguration: EncryptedMediaExtensionsTypes.mediaKeySystemAccess => EncryptedMediaExtensionsTypes.mediaKeySystemConfiguration =
   "getConfiguration"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/MediaKeySystemAccess/createMediaKeys)
 */
 @send
-external createMediaKeys: Types.mediaKeySystemAccess => promise<Types.mediaKeys> = "createMediaKeys"
+external createMediaKeys: EncryptedMediaExtensionsTypes.mediaKeySystemAccess => promise<
+  EncryptedMediaExtensionsTypes.mediaKeys,
+> = "createMediaKeys"

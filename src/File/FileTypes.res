@@ -20,7 +20,7 @@ A file-like object of immutable, raw data. Blobs represent data that isn't neces
 [See Blob on MDN](https://developer.mozilla.org/docs/Web/API/Blob)
 */
 @editor.completeFrom(Blob)
-type blob = WebApi.Base.File.blob = private {
+type blob = Base.File.blob = private {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Blob/size)
     */
@@ -63,7 +63,7 @@ type writableStreamDefaultController = private {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/WritableStreamDefaultController/signal)
     */
-  signal: WebApi.Event.Types.abortSignal,
+  signal: Event.Types.abortSignal,
 }
 
 /**
@@ -71,7 +71,7 @@ Provides information about files and allows JavaScript in a web page to access t
 [See WebApiFile on MDN](https://developer.mozilla.org/docs/Web/API/File)
 */
 @editor.completeFrom(WebApiFile)
-type file = WebApi.Base.File.file = private {
+type file = Base.File.file = private {
   ...blob,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/File/name)
@@ -193,12 +193,12 @@ When this source readable stream closes, destination will be closed, unless prev
 
 If destination starts out closed or closing, this source readable stream will be canceled, unless preventCancel is true. The returned promise will be rejected with an error indicating piping to a closed stream failed, or with any error that occurs during canceling the source.
 
-The signal option can be set to an AbortSignal to allow aborting an ongoing pipe operation via the corresponding WebApi.Event.Event.AbortController. In this case, this source readable stream will be canceled, and destination aborted, unless the respective options preventCancel or preventAbort are set.
+The signal option can be set to an AbortSignal to allow aborting an ongoing pipe operation via the corresponding Event.Event.AbortController. In this case, this source readable stream will be canceled, and destination aborted, unless the respective options preventCancel or preventAbort are set.
     */
   mutable preventClose?: bool,
   mutable preventAbort?: bool,
   mutable preventCancel?: bool,
-  mutable signal?: WebApi.Event.Types.abortSignal,
+  mutable signal?: Event.Types.abortSignal,
 }
 
 type filePropertyBag = {

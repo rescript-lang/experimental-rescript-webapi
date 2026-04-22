@@ -1,2 +1,2 @@
 @send
-external item: (Types.domRectList, int) => Types.domRect = "item"
+external item: (DomTypes.domRectList, int) => DomTypes.domRect = "item"

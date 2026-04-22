@@ -1,5 +1,5 @@
 module ApplicationServerKey = ApplicationServerKey
-module Event = PushEvent
+module PushEvent = PushEvent
 module PushManager = PushManager
 module PushMessageData = PushMessageData
 module PushSubscription = PushSubscription

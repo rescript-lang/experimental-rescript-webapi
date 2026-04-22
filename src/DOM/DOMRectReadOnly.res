@@ -7,13 +7,13 @@ external make: (
   ~y: float=?,
   ~width: float=?,
   ~height: float=?,
-) => Types.domRectReadOnly = "DOMRectReadOnly"
+) => DomTypes.domRectReadOnly = "DOMRectReadOnly"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/DOMRectReadOnly/fromRect_static)
 */
 @scope("DOMRectReadOnly")
-external fromRect: (~other: Types.domRectInit=?) => Types.domRectReadOnly = "fromRect"
+external fromRect: (~other: DomTypes.domRectInit=?) => DomTypes.domRectReadOnly = "fromRect"
 
 @send
-external toJSON: Types.domRectReadOnly => Dict.t<string> = "toJSON"
+external toJSON: DomTypes.domRectReadOnly => Dict.t<string> = "toJSON"

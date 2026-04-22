@@ -1,11 +1,9 @@
-let button = WebApi.DOM.Global.document->WebApi.DOM.Document.querySelector("button")->Null.toOption
-let h2 = WebApi.DOM.Global.document->WebApi.DOM.Document.querySelector("h2")->Null.toOption
+let button = DOM.Global.document->DOM.Document.querySelector("button")->Null.toOption
+let h2 = DOM.Global.document->DOM.Document.querySelector("h2")->Null.toOption
 
 switch (button, h2) {
 | (Some(button), Some(h2)) =>
-  button->WebApi.DOM.Element.addEventListener(WebApi.Event.Types.Click, (
-    e: WebApi.UIEvents.Types.mouseEvent,
-  ) => {
+  button->DOM.Element.addEventListener(Event.Types.Click, (e: UIEvents.Types.mouseEvent) => {
     Console.log(`Button clicked, ${Int.toString(e.button)}`)
     switch h2.textContent {
     | Null => h2.textContent = Value("1")

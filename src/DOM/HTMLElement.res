@@ -1,4 +1,4 @@
-type t = Types.htmlElement
+type t = DomTypes.htmlElement
 
 module Impl = (
   T: {
@@ -13,7 +13,7 @@ module Impl = (
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/attachInternals)
 */
   @send
-  external attachInternals: T.t => Types.elementInternals = "attachInternals"
+  external attachInternals: T.t => DomTypes.elementInternals = "attachInternals"
 
   /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/blur)
@@ -31,7 +31,7 @@ module Impl = (
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/focus)
 */
   @send
-  external focus: (T.t, ~options: Types.focusOptions=?) => unit = "focus"
+  external focus: (T.t, ~options: DomTypes.focusOptions=?) => unit = "focus"
 
   /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/hidePopover)

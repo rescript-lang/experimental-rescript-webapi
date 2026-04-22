@@ -1,1 +1,1 @@
-include HTMLElement.Impl({type t = Types.htmlProgressElement})
+include HTMLElement.Impl({type t = DomTypes.htmlProgressElement})

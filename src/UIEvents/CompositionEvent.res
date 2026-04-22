@@ -4,7 +4,7 @@
 @new
 external make: (
   ~type_: string,
-  ~eventInitDict: Types.compositionEventInit=?,
-) => Types.compositionEvent = "CompositionEvent"
+  ~eventInitDict: UiEventsTypes.compositionEventInit=?,
+) => UiEventsTypes.compositionEvent = "CompositionEvent"
 
-include UIEvent.Impl({type t = Types.compositionEvent})
+include UIEvent.Impl({type t = UiEventsTypes.compositionEvent})

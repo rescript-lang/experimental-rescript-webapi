@@ -1,11 +1,11 @@
-include WebApi.Event.EventTarget.Impl({type t = Types.mediaKeySession})
+include Event.EventTarget.Impl({type t = EncryptedMediaExtensionsTypes.mediaKeySession})
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/MediaKeySession/generateRequest)
 */
 @send
 external generateRequest: (
-  Types.mediaKeySession,
+  EncryptedMediaExtensionsTypes.mediaKeySession,
   ~initDataType: string,
   ~initData: DataView.t,
 ) => promise<unit> = "generateRequest"
@@ -15,7 +15,7 @@ external generateRequest: (
 */
 @send
 external generateRequest2: (
-  Types.mediaKeySession,
+  EncryptedMediaExtensionsTypes.mediaKeySession,
   ~initDataType: string,
   ~initData: ArrayBuffer.t,
 ) => promise<unit> = "generateRequest"
@@ -24,28 +24,30 @@ external generateRequest2: (
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/MediaKeySession/load)
 */
 @send
-external load: (Types.mediaKeySession, string) => promise<bool> = "load"
+external load: (EncryptedMediaExtensionsTypes.mediaKeySession, string) => promise<bool> = "load"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/MediaKeySession/update)
 */
 @send
-external update: (Types.mediaKeySession, DataView.t) => promise<unit> = "update"
+external update: (EncryptedMediaExtensionsTypes.mediaKeySession, DataView.t) => promise<unit> =
+  "update"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/MediaKeySession/update)
 */
 @send
-external update2: (Types.mediaKeySession, ArrayBuffer.t) => promise<unit> = "update"
+external update2: (EncryptedMediaExtensionsTypes.mediaKeySession, ArrayBuffer.t) => promise<unit> =
+  "update"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/MediaKeySession/close)
 */
 @send
-external close: Types.mediaKeySession => promise<unit> = "close"
+external close: EncryptedMediaExtensionsTypes.mediaKeySession => promise<unit> = "close"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/MediaKeySession/remove)
 */
 @send
-external remove: Types.mediaKeySession => promise<unit> = "remove"
+external remove: EncryptedMediaExtensionsTypes.mediaKeySession => promise<unit> = "remove"

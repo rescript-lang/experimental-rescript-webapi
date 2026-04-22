@@ -3,26 +3,26 @@
 */
 @send
 external createDocumentType: (
-  Types.domImplementation,
+  DomTypes.domImplementation,
   ~qualifiedName: string,
   ~publicId: string,
   ~systemId: string,
-) => Types.documentType = "createDocumentType"
+) => DomTypes.documentType = "createDocumentType"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/DOMImplementation/createDocument)
 */
 @send
 external createDocument: (
-  Types.domImplementation,
+  DomTypes.domImplementation,
   ~namespace: string,
   ~qualifiedName: string,
-  ~doctype: Types.documentType=?,
-) => Types.xmlDocument = "createDocument"
+  ~doctype: DomTypes.documentType=?,
+) => DomTypes.xmlDocument = "createDocument"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/DOMImplementation/createHTMLDocument)
 */
 @send
-external createHTMLDocument: (Types.domImplementation, ~title: string=?) => Types.document =
+external createHTMLDocument: (DomTypes.domImplementation, ~title: string=?) => DomTypes.document =
   "createHTMLDocument"

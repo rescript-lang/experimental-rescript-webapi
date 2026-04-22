@@ -33,7 +33,7 @@ This WebApiIndexedDB API interface provides a connection to a database; you can 
 */
 @editor.completeFrom(IDBDatabase)
 type idbDatabase = private {
-  ...WebApi.Event.Types.eventTarget,
+  ...Event.Types.eventTarget,
   /**
     Returns the name of the database.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/IDBDatabase/name)
@@ -48,7 +48,7 @@ type idbDatabase = private {
     Returns a list of the names of object stores in the database.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/IDBDatabase/objectStoreNames)
     */
-  objectStoreNames: WebApi.Base.DOM.domStringList,
+  objectStoreNames: Base.DOM.domStringList,
 }
 
 /**
@@ -56,12 +56,12 @@ type idbDatabase = private {
 */
 @editor.completeFrom(IDBTransaction)
 type idbTransaction = private {
-  ...WebApi.Event.Types.eventTarget,
+  ...Event.Types.eventTarget,
   /**
     Returns a list of the names of object stores in the transaction's scope. For an upgrade transaction this is all object stores in the database.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/IDBTransaction/objectStoreNames)
     */
-  objectStoreNames: WebApi.Base.DOM.domStringList,
+  objectStoreNames: Base.DOM.domStringList,
   /**
     Returns the mode the transaction was created with ("readonly" or "readwrite"), or "versionchange" for an upgrade transaction.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/IDBTransaction/mode)
@@ -80,7 +80,7 @@ type idbTransaction = private {
     If the transaction was aborted, returns the error (a DOMException) providing the reason.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/IDBTransaction/error)
     */
-  error: Null.t<WebApi.Base.DOM.domException>,
+  error: Null.t<Base.DOM.domException>,
 }
 
 /**
@@ -88,7 +88,7 @@ The request object does not initially contain any information about the result o
 [See IDBRequest on MDN](https://developer.mozilla.org/docs/Web/API/IDBRequest)
 */
 type idbRequest<'t> = {
-  ...WebApi.Event.Types.eventTarget,
+  ...Event.Types.eventTarget,
   /**
     When a request is completed, returns the result, or undefined if the request failed. Throws a "InvalidStateError" DOMException if the request is still pending.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/IDBRequest/result)
@@ -98,7 +98,7 @@ type idbRequest<'t> = {
     When a request is completed, returns the error (a DOMException), or null if the request succeeded. Throws a "InvalidStateError" DOMException if the request is still pending.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/IDBRequest/error)
     */
-  error: Null.t<WebApi.Base.DOM.domException>,
+  error: Null.t<Base.DOM.domException>,
   /**
     Returns the IDBObjectStore, IDBIndex, or IDBCursor the request was made against, or null if is was an open request.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/IDBRequest/source)
@@ -117,7 +117,7 @@ type idbRequest<'t> = {
 }
 
 /**
-Also inherits methods from its parents IDBRequest and WebApi.Event.EventTarget.
+Also inherits methods from its parents IDBRequest and Event.EventTarget.
 [See IDBOpenDBRequest on MDN](https://developer.mozilla.org/docs/Web/API/IDBOpenDBRequest)
 */
 type idbOpenDBRequest = {
@@ -145,7 +145,7 @@ type idbObjectStore = {
     Returns a list of the names of indexes in the store.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/IDBObjectStore/indexNames)
     */
-  indexNames: WebApi.Base.DOM.domStringList,
+  indexNames: Base.DOM.domStringList,
   /**
     Returns the associated transaction.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/IDBObjectStore/transaction)

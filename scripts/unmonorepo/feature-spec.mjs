@@ -16,10 +16,15 @@ export function publicModuleToInternalPrefix(publicModule) {
 }
 
 export function publicNameForLeafModule(leafName, internalPrefix) {
+  const preservedPrefixedModules = new Set(["PushEvent"]);
   const duplicatedSuffixes = ["Types", "Global", "Event", "File", "HTMLMediaElement"];
   const featureSuffix = featureSpecs
     .map(({ publicModule }) => publicModule)
     .find((publicModule) => leafName === `${internalPrefix}${publicModule}`);
+
+  if (preservedPrefixedModules.has(leafName)) {
+    return leafName;
+  }
 
   for (const suffix of duplicatedSuffixes) {
     if (leafName === `${internalPrefix}${suffix}`) {

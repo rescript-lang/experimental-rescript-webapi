@@ -1,7 +1,7 @@
-type t = Types.window
-type windowPostMessageOptions = Types.windowPostMessageOptions
+type t = DomTypes.window
+type windowPostMessageOptions = DomTypes.windowPostMessageOptions
 
-include WebApi.Event.EventTarget.Impl({type t = t})
+include Event.EventTarget.Impl({type t = t})
 
 external current: t = "window"
 
@@ -21,7 +21,7 @@ external self: t => t = "self"
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/document)
     */
 @get
-external document: t => Types.document = "document"
+external document: t => DomTypes.document = "document"
 
 /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/name)
@@ -33,62 +33,62 @@ external name: t => string = "name"
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/location)
     */
 @get
-external location: t => Types.location = "location"
+external location: t => DomTypes.location = "location"
 
 /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/history)
     */
 @get
-external history: t => WebApi.History.Types.history = "history"
+external history: t => History.Types.history = "history"
 
 /**
     Defines a new custom element, mapping the given name to the given constructor as an autonomous custom element.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/customElements)
     */
 @get
-external customElements: t => Types.customElementRegistry = "customElements"
+external customElements: t => DomTypes.customElementRegistry = "customElements"
 
 /**
     Returns true if the location bar is visible; otherwise, returns false.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/locationbar)
     */
 @get
-external locationbar: t => Types.barProp = "locationbar"
+external locationbar: t => DomTypes.barProp = "locationbar"
 
 /**
     Returns true if the menu bar is visible; otherwise, returns false.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/menubar)
     */
 @get
-external menubar: t => Types.barProp = "menubar"
+external menubar: t => DomTypes.barProp = "menubar"
 
 /**
     Returns true if the personal bar is visible; otherwise, returns false.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/personalbar)
     */
 @get
-external personalbar: t => Types.barProp = "personalbar"
+external personalbar: t => DomTypes.barProp = "personalbar"
 
 /**
     Returns true if the scrollbars are visible; otherwise, returns false.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/scrollbars)
     */
 @get
-external scrollbars: t => Types.barProp = "scrollbars"
+external scrollbars: t => DomTypes.barProp = "scrollbars"
 
 /**
     Returns true if the status bar is visible; otherwise, returns false.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/statusbar)
     */
 @get
-external statusbar: t => Types.barProp = "statusbar"
+external statusbar: t => DomTypes.barProp = "statusbar"
 
 /**
     Returns true if the toolbar is visible; otherwise, returns false.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/toolbar)
     */
 @get
-external toolbar: t => Types.barProp = "toolbar"
+external toolbar: t => DomTypes.barProp = "toolbar"
 
 /**
     Returns true if the window has been closed, false otherwise.
@@ -134,25 +134,25 @@ external parent: t => t = "parent"
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/frameElement)
     */
 @get
-external frameElement: t => Null.t<Types.element> = "frameElement"
+external frameElement: t => Null.t<DomTypes.element> = "frameElement"
 
 /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/navigator)
     */
 @get
-external navigator: t => Types.navigator = "navigator"
+external navigator: t => DomTypes.navigator = "navigator"
 
 /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/screen)
     */
 @get
-external screen: t => Types.screen = "screen"
+external screen: t => DomTypes.screen = "screen"
 
 /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/visualViewport)
     */
 @get
-external visualViewport: t => Null.t<WebApi.VisualViewport.Types.visualViewport> = "visualViewport"
+external visualViewport: t => Null.t<VisualViewport.Types.visualViewport> = "visualViewport"
 
 /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/innerWidth)
@@ -224,7 +224,7 @@ external devicePixelRatio: t => float = "devicePixelRatio"
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/speechSynthesis)
     */
 @get
-external speechSynthesis: t => WebApi.WebSpeech.Types.speechSynthesis = "speechSynthesis"
+external speechSynthesis: t => WebSpeech.Types.speechSynthesis = "speechSynthesis"
 
 /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/origin)
@@ -248,37 +248,37 @@ external crossOriginIsolated: t => bool = "crossOriginIsolated"
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/indexedDB)
     */
 @get
-external indexedDB: t => WebApi.IndexedDB.Types.idbFactory = "indexedDB"
+external indexedDB: t => IndexedDB.Types.idbFactory = "indexedDB"
 
 /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/crypto)
     */
 @get
-external crypto: t => WebApi.WebCrypto.Types.crypto = "crypto"
+external crypto: t => WebCrypto.Types.crypto = "crypto"
 
 /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/performance)
     */
 @get
-external performance: t => WebApi.Performance.Types.performance = "performance"
+external performance: t => Performance.Types.performance = "performance"
 
 /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/caches)
     */
 @get
-external caches: t => WebApi.WebWorkers.Types.cacheStorage = "caches"
+external caches: t => WebWorkers.Types.cacheStorage = "caches"
 
 /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/sessionStorage)
     */
 @get
-external sessionStorage: t => WebApi.WebStorage.Types.storage = "sessionStorage"
+external sessionStorage: t => WebStorage.Types.storage = "sessionStorage"
 
 /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/localStorage)
     */
 @get
-external localStorage: t => WebApi.WebStorage.Types.storage = "localStorage"
+external localStorage: t => WebStorage.Types.storage = "localStorage"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/reportError)
@@ -304,7 +304,8 @@ Executes a function after a delay given in milliseconds expires.
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/setTimeout)
 */
 @send
-external setTimeout: (t, ~handler: unit => unit, ~timeout: int=?) => Types.timeoutId = "setTimeout"
+external setTimeout: (t, ~handler: unit => unit, ~timeout: int=?) => DomTypes.timeoutId =
+  "setTimeout"
 
 /**
 Cancels the execution of a timeout created with setTimeout.
@@ -312,7 +313,7 @@ Cancels the execution of a timeout created with setTimeout.
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/clearTimeout)
 */
 @send
-external clearTimeout: (t, Types.timeoutId) => unit = "clearTimeout"
+external clearTimeout: (t, DomTypes.timeoutId) => unit = "clearTimeout"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/setInterval)
@@ -352,7 +353,7 @@ external queueMicrotask: (t, unit => unit) => unit = "queueMicrotask"
 external structuredClone: (
   t,
   't,
-  ~options: WebApi.ChannelMessaging.Types.structuredSerializeOptions=?,
+  ~options: ChannelMessaging.Types.structuredSerializeOptions=?,
 ) => 't = "structuredClone"
 
 /**
@@ -461,7 +462,7 @@ external postMessageWithOptions: (
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/matchMedia)
 */
 @send
-external matchMedia: (t, string) => Types.mediaQueryList = "matchMedia"
+external matchMedia: (t, string) => DomTypes.mediaQueryList = "matchMedia"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/moveTo)
@@ -491,7 +492,7 @@ external resizeBy: (t, ~x: int, ~y: int) => unit = "resizeBy"
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/scroll)
 */
 @send
-external scroll: (t, ~options: Types.scrollToOptions=?) => unit = "scroll"
+external scroll: (t, ~options: DomTypes.scrollToOptions=?) => unit = "scroll"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/scroll)
@@ -503,7 +504,7 @@ external scrollXY: (t, ~x: float, ~y: float) => unit = "scroll"
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/scrollTo)
 */
 @send
-external scrollTo: (t, ~options: Types.scrollToOptions=?) => unit = "scrollTo"
+external scrollTo: (t, ~options: DomTypes.scrollToOptions=?) => unit = "scrollTo"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/scrollTo)
@@ -515,7 +516,7 @@ external scrollToXY: (t, ~x: float, ~y: float) => unit = "scrollTo"
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/scrollBy)
 */
 @send
-external scrollBy: (t, ~options: Types.scrollToOptions=?) => unit = "scrollBy"
+external scrollBy: (t, ~options: DomTypes.scrollToOptions=?) => unit = "scrollBy"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/scrollBy)
@@ -529,9 +530,9 @@ external scrollByXY: (t, ~x: float, ~y: float) => unit = "scrollBy"
 @send
 external getComputedStyle: (
   t,
-  ~elt: Types.element,
+  ~elt: DomTypes.element,
   ~pseudoElt: string=?,
-) => Types.cssStyleDeclaration = "getComputedStyle"
+) => DomTypes.cssStyleDeclaration = "getComputedStyle"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/requestIdleCallback)
@@ -539,8 +540,8 @@ external getComputedStyle: (
 @send
 external requestIdleCallback: (
   t,
-  ~callback: Types.idleDeadline => unit,
-  ~options: Types.idleRequestOptions=?,
+  ~callback: DomTypes.idleDeadline => unit,
+  ~options: DomTypes.idleRequestOptions=?,
 ) => int = "requestIdleCallback"
 
 /**
@@ -553,4 +554,4 @@ external cancelIdleCallback: (t, int) => unit = "cancelIdleCallback"
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/getSelection)
 */
 @send
-external getSelection: t => null<Types.selection> = "getSelection"
+external getSelection: t => null<DomTypes.selection> = "getSelection"

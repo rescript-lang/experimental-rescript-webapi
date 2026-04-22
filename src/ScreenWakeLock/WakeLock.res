@@ -3,6 +3,6 @@
 */
 @send
 external request: (
-  Types.wakeLock,
-  ~type_: Types.wakeLockType=?,
-) => promise<Types.wakeLockSentinel> = "request"
+  ScreenWakeLockTypes.wakeLock,
+  ~type_: ScreenWakeLockTypes.wakeLockType=?,
+) => promise<ScreenWakeLockTypes.wakeLockSentinel> = "request"

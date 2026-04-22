@@ -1,4 +1,4 @@
-include HTMLElement.Impl({type t = Types.htmlInputElement})
+include HTMLElement.Impl({type t = DomTypes.htmlInputElement})
 
 /**
 Increments a range input control's value by the value given by the Step attribute. If the optional parameter is used, will increment the input control's value by that value.
@@ -6,7 +6,7 @@ Increments a range input control's value by the value given by the Step attribut
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLInputElement/stepUp)
 */
 @send
-external stepUp: (Types.htmlInputElement, ~n: int=?) => unit = "stepUp"
+external stepUp: (DomTypes.htmlInputElement, ~n: int=?) => unit = "stepUp"
 
 /**
 Decrements a range input control's value by the value given by the Step attribute. If the optional parameter is used, it will decrement the input control's step value multiplied by the parameter's value.
@@ -14,20 +14,20 @@ Decrements a range input control's value by the value given by the Step attribut
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLInputElement/stepDown)
 */
 @send
-external stepDown: (Types.htmlInputElement, ~n: int=?) => unit = "stepDown"
+external stepDown: (DomTypes.htmlInputElement, ~n: int=?) => unit = "stepDown"
 
 /**
 Returns whether a form will validate when it is submitted, without having to submit it.
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLInputElement/checkValidity)
 */
 @send
-external checkValidity: Types.htmlInputElement => bool = "checkValidity"
+external checkValidity: DomTypes.htmlInputElement => bool = "checkValidity"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLInputElement/reportValidity)
 */
 @send
-external reportValidity: Types.htmlInputElement => bool = "reportValidity"
+external reportValidity: DomTypes.htmlInputElement => bool = "reportValidity"
 
 /**
 Sets a custom error message that is displayed when a form is submitted.
@@ -35,31 +35,31 @@ Sets a custom error message that is displayed when a form is submitted.
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLInputElement/setCustomValidity)
 */
 @send
-external setCustomValidity: (Types.htmlInputElement, string) => unit = "setCustomValidity"
+external setCustomValidity: (DomTypes.htmlInputElement, string) => unit = "setCustomValidity"
 
 /**
 Makes the selection equal to the current object.
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLInputElement/select)
 */
 @send
-external select: Types.htmlInputElement => unit = "select"
+external select: DomTypes.htmlInputElement => unit = "select"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLInputElement/setRangeText)
 */
 @send
-external setRangeText: (Types.htmlInputElement, string) => unit = "setRangeText"
+external setRangeText: (DomTypes.htmlInputElement, string) => unit = "setRangeText"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLInputElement/setRangeText)
 */
 @send
 external setRangeText2: (
-  Types.htmlInputElement,
+  DomTypes.htmlInputElement,
   ~replacement: string,
   ~start: int,
   ~end: int,
-  ~selectionMode: Types.selectionMode=?,
+  ~selectionMode: DomTypes.selectionMode=?,
 ) => unit = "setRangeText"
 
 /**
@@ -71,7 +71,7 @@ Sets the start and end positions of a selection in a text field.
 */
 @send
 external setSelectionRange: (
-  Types.htmlInputElement,
+  DomTypes.htmlInputElement,
   ~start: int,
   ~end: int,
   ~direction: string=?,
@@ -81,4 +81,4 @@ external setSelectionRange: (
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLInputElement/showPicker)
 */
 @send
-external showPicker: Types.htmlInputElement => unit = "showPicker"
+external showPicker: DomTypes.htmlInputElement => unit = "showPicker"

@@ -5,7 +5,7 @@ If successful, request's result will be the value, or undefined if there was no 
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/IDBIndex/get)
 */
 @send
-external get: (Types.idbIndex, unknown) => Types.idbRequest<JSON.t> = "get"
+external get: (IndexedDbTypes.idbIndex, unknown) => IndexedDbTypes.idbRequest<JSON.t> = "get"
 
 /**
 Retrieves the key of the first record matching the given key or key range in query.
@@ -14,7 +14,7 @@ If successful, request's result will be the key, or undefined if there was no ma
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/IDBIndex/getKey)
 */
 @send
-external getKey: (Types.idbIndex, unknown) => Types.idbRequest<unknown> = "getKey"
+external getKey: (IndexedDbTypes.idbIndex, unknown) => IndexedDbTypes.idbRequest<unknown> = "getKey"
 
 /**
 Retrieves the values of the records matching the given key or key range in query (up to count if given).
@@ -24,10 +24,10 @@ If successful, request's result will be an Array of the values.
 */
 @send
 external getAll: (
-  Types.idbIndex,
+  IndexedDbTypes.idbIndex,
   ~query: unknown=?,
   ~count: int=?,
-) => Types.idbRequest<array<JSON.t>> = "getAll"
+) => IndexedDbTypes.idbRequest<array<JSON.t>> = "getAll"
 
 /**
 Retrieves the keys of records matching the given key or key range in query (up to count if given).
@@ -37,10 +37,10 @@ If successful, request's result will be an Array of the keys.
 */
 @send
 external getAllKeys: (
-  Types.idbIndex,
+  IndexedDbTypes.idbIndex,
   ~query: unknown=?,
   ~count: int=?,
-) => Types.idbRequest<array<Types.idbValidKey>> = "getAllKeys"
+) => IndexedDbTypes.idbRequest<array<IndexedDbTypes.idbValidKey>> = "getAllKeys"
 
 /**
 Retrieves the number of records matching the given key or key range in query.
@@ -49,7 +49,8 @@ If successful, request's result will be the count.
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/IDBIndex/count)
 */
 @send
-external count: (Types.idbIndex, ~query: unknown=?) => Types.idbRequest<int> = "count"
+external count: (IndexedDbTypes.idbIndex, ~query: unknown=?) => IndexedDbTypes.idbRequest<int> =
+  "count"
 
 /**
 Opens a cursor over the records matching query, ordered by direction. If query is null, all records in index are matched.
@@ -59,10 +60,10 @@ If successful, request's result will be an IDBCursorWithValue, or null if there 
 */
 @send
 external openCursor: (
-  Types.idbIndex,
+  IndexedDbTypes.idbIndex,
   ~query: unknown=?,
-  ~direction: Types.idbCursorDirection=?,
-) => Types.idbRequest<unknown> = "openCursor"
+  ~direction: IndexedDbTypes.idbCursorDirection=?,
+) => IndexedDbTypes.idbRequest<unknown> = "openCursor"
 
 /**
 Opens a cursor with key only flag set over the records matching query, ordered by direction. If query is null, all records in index are matched.
@@ -72,7 +73,7 @@ If successful, request's result will be an IDBCursor, or null if there were no m
 */
 @send
 external openKeyCursor: (
-  Types.idbIndex,
+  IndexedDbTypes.idbIndex,
   ~query: unknown=?,
-  ~direction: Types.idbCursorDirection=?,
-) => Types.idbRequest<unknown> = "openKeyCursor"
+  ~direction: IndexedDbTypes.idbCursorDirection=?,
+) => IndexedDbTypes.idbRequest<unknown> = "openKeyCursor"

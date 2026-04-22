@@ -80,7 +80,7 @@ The Web Audio API events that occur when a ScriptProcessorNode input buffer is r
 */
 @editor.completeFrom(AudioProcessingEvent)
 type audioProcessingEvent = private {
-  ...WebApi.Event.Types.event,
+  ...Event.Types.event,
 }
 
 /**
@@ -89,7 +89,7 @@ The Web Audio API OfflineAudioCompletionEvent interface represents events that o
 */
 @editor.completeFrom(OfflineAudioCompletionEvent)
 type offlineAudioCompletionEvent = private {
-  ...WebApi.Event.Types.event,
+  ...Event.Types.event,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/OfflineAudioCompletionEvent/renderedBuffer)
     */
@@ -109,7 +109,7 @@ TODO: mark as private once mutating fields of private records is allowed
 */
 @editor.completeFrom(AudioNode)
 type rec audioNode = {
-  ...WebApi.Event.Types.eventTarget,
+  ...Event.Types.eventTarget,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/AudioNode/context)
     */
@@ -178,7 +178,7 @@ and audioDestinationNode = {
 [See BaseAudioContext on MDN](https://developer.mozilla.org/docs/Web/API/BaseAudioContext)
 */
 @editor.completeFrom(BaseAudioContext) and baseAudioContext = private {
-  ...WebApi.Event.Types.eventTarget,
+  ...Event.Types.eventTarget,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/BaseAudioContext/destination)
     */
@@ -991,7 +991,7 @@ type mediaElementAudioSourceNode = private {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/MediaElementAudioSourceNode/mediaElement)
     */
-  mediaElement: WebApi.DOM.Types.htmlMediaElement,
+  mediaElement: DOM.Types.htmlMediaElement,
 }
 
 /**
@@ -1004,7 +1004,7 @@ type mediaStreamAudioSourceNode = private {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/MediaStreamAudioSourceNode/mediaStream)
     */
-  mediaStream: WebApi.MediaCaptureAndStreams.Types.mediaStream,
+  mediaStream: MediaCaptureAndStreams.Types.mediaStream,
 }
 
 /**
@@ -1016,7 +1016,7 @@ type mediaStreamAudioDestinationNode = private {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/MediaStreamAudioDestinationNode/stream)
     */
-  stream: WebApi.MediaCaptureAndStreams.Types.mediaStream,
+  stream: MediaCaptureAndStreams.Types.mediaStream,
 }
 
 /**
@@ -1037,7 +1037,7 @@ type audioWorkletNode = private {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/AudioWorkletNode/port)
     */
-  port: WebApi.ChannelMessaging.Types.messagePort,
+  port: ChannelMessaging.Types.messagePort,
 }
 
 /**
@@ -1071,17 +1071,17 @@ type doubleRange = {
 }
 
 type mediaTrackCapabilities = {
-  mutable width?: WebApi.MediaCaptureAndStreams.Types.uLongRange,
-  mutable height?: WebApi.MediaCaptureAndStreams.Types.uLongRange,
-  mutable aspectRatio?: WebApi.MediaCaptureAndStreams.Types.doubleRange,
-  mutable frameRate?: WebApi.MediaCaptureAndStreams.Types.doubleRange,
+  mutable width?: MediaCaptureAndStreams.Types.uLongRange,
+  mutable height?: MediaCaptureAndStreams.Types.uLongRange,
+  mutable aspectRatio?: MediaCaptureAndStreams.Types.doubleRange,
+  mutable frameRate?: MediaCaptureAndStreams.Types.doubleRange,
   mutable facingMode?: array<string>,
-  mutable sampleRate?: WebApi.MediaCaptureAndStreams.Types.uLongRange,
-  mutable sampleSize?: WebApi.MediaCaptureAndStreams.Types.uLongRange,
+  mutable sampleRate?: MediaCaptureAndStreams.Types.uLongRange,
+  mutable sampleSize?: MediaCaptureAndStreams.Types.uLongRange,
   mutable echoCancellation?: array<bool>,
   mutable autoGainControl?: array<bool>,
   mutable noiseSuppression?: array<bool>,
-  mutable channelCount?: WebApi.MediaCaptureAndStreams.Types.uLongRange,
+  mutable channelCount?: MediaCaptureAndStreams.Types.uLongRange,
   mutable deviceId?: string,
   mutable groupId?: string,
   mutable backgroundBlur?: array<bool>,
@@ -1107,8 +1107,8 @@ type mediaTrackConstraintSet = {
 }
 
 type mediaTrackConstraints = {
-  ...WebApi.MediaCaptureAndStreams.Types.mediaTrackConstraintSet,
-  mutable advanced?: array<WebApi.MediaCaptureAndStreams.Types.mediaTrackConstraintSet>,
+  ...MediaCaptureAndStreams.Types.mediaTrackConstraintSet,
+  mutable advanced?: array<MediaCaptureAndStreams.Types.mediaTrackConstraintSet>,
 }
 
 type mediaTrackSettings = {
@@ -1136,14 +1136,14 @@ type audioBufferOptions = {
 }
 
 type audioProcessingEventInit = {
-  ...WebApi.Event.Types.eventInit,
+  ...Event.Types.eventInit,
   mutable playbackTime: float,
   mutable inputBuffer: audioBuffer,
   mutable outputBuffer: audioBuffer,
 }
 
 type offlineAudioCompletionEventInit = {
-  ...WebApi.Event.Types.eventInit,
+  ...Event.Types.eventInit,
   mutable renderedBuffer: audioBuffer,
 }
 
@@ -1271,10 +1271,10 @@ type audioContextOptions = {
   mutable sampleRate?: float,
 }
 
-type mediaElementAudioSourceOptions = {mutable mediaElement: WebApi.DOM.Types.htmlMediaElement}
+type mediaElementAudioSourceOptions = {mutable mediaElement: DOM.Types.htmlMediaElement}
 
 type mediaStreamAudioSourceOptions = {
-  mutable mediaStream: WebApi.MediaCaptureAndStreams.Types.mediaStream,
+  mutable mediaStream: MediaCaptureAndStreams.Types.mediaStream,
 }
 
 type audioWorkletNodeOptions = {
@@ -1296,4 +1296,4 @@ type workletOptions = {mutable credentials?: requestCredentials}
 
 type decodeSuccessCallback = audioBuffer => unit
 
-type decodeErrorCallback = WebApi.Base.DOM.domException => unit
+type decodeErrorCallback = Base.DOM.domException => unit

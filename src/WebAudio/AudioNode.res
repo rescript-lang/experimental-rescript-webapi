@@ -3,9 +3,9 @@ module Impl = (
     type t
   },
 ) => {
-  include WebApi.Event.EventTarget.Impl({type t = T.t})
+  include Event.EventTarget.Impl({type t = T.t})
 
-  external asAudioNode: T.t => Types.audioNode = "%identity"
+  external asAudioNode: T.t => WebAudioTypes.audioNode = "%identity"
 
   /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/AudioNode/connect)
@@ -13,16 +13,17 @@ module Impl = (
   @send
   external connect: (
     T.t,
-    ~destinationNode: Types.audioNode,
+    ~destinationNode: WebAudioTypes.audioNode,
     ~output: int=?,
     ~input: int=?,
-  ) => Types.audioNode = "connect"
+  ) => WebAudioTypes.audioNode = "connect"
 
   /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/AudioNode/connect)
 */
   @send
-  external connect2: (T.t, ~destinationParam: Types.audioParam, ~output: int=?) => unit = "connect"
+  external connect2: (T.t, ~destinationParam: WebAudioTypes.audioParam, ~output: int=?) => unit =
+    "connect"
 
   /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/AudioNode/disconnect)
@@ -40,13 +41,13 @@ module Impl = (
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/AudioNode/disconnect)
 */
   @send
-  external disconnect3: (T.t, Types.audioNode) => unit = "disconnect"
+  external disconnect3: (T.t, WebAudioTypes.audioNode) => unit = "disconnect"
 
   /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/AudioNode/disconnect)
 */
   @send
-  external disconnect4: (T.t, ~destinationNode: Types.audioNode, ~output: int) => unit =
+  external disconnect4: (T.t, ~destinationNode: WebAudioTypes.audioNode, ~output: int) => unit =
     "disconnect"
 
   /**
@@ -55,7 +56,7 @@ module Impl = (
   @send
   external disconnect5: (
     T.t,
-    ~destinationNode: Types.audioNode,
+    ~destinationNode: WebAudioTypes.audioNode,
     ~output: int,
     ~input: int,
   ) => unit = "disconnect"
@@ -64,12 +65,12 @@ module Impl = (
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/AudioNode/disconnect)
 */
   @send
-  external disconnect6: (T.t, Types.audioParam) => unit = "disconnect"
+  external disconnect6: (T.t, WebAudioTypes.audioParam) => unit = "disconnect"
 
   /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/AudioNode/disconnect)
 */
   @send
-  external disconnect7: (T.t, ~destinationParam: Types.audioParam, ~output: int) => unit =
+  external disconnect7: (T.t, ~destinationParam: WebAudioTypes.audioParam, ~output: int) => unit =
     "disconnect"
 }

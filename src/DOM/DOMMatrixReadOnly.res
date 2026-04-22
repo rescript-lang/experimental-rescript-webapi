@@ -2,109 +2,116 @@
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/DOMMatrixReadOnly)
 */
 @new
-external make: (~init: string=?) => Types.domMatrixReadOnly = "DOMMatrixReadOnly"
+external make: (~init: string=?) => DomTypes.domMatrixReadOnly = "DOMMatrixReadOnly"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/DOMMatrixReadOnly)
 */
 @new
-external make2: (~init: array<float>=?) => Types.domMatrixReadOnly = "DOMMatrixReadOnly"
+external make2: (~init: array<float>=?) => DomTypes.domMatrixReadOnly = "DOMMatrixReadOnly"
 
 @scope("DOMMatrixReadOnly")
-external fromMatrix: (~other: Types.domMatrixInit=?) => Types.domMatrixReadOnly = "fromMatrix"
+external fromMatrix: (~other: DomTypes.domMatrixInit=?) => DomTypes.domMatrixReadOnly = "fromMatrix"
 
 @scope("DOMMatrixReadOnly")
-external fromFloat32Array: array<float> => Types.domMatrixReadOnly = "fromFloat32Array"
+external fromFloat32Array: array<float> => DomTypes.domMatrixReadOnly = "fromFloat32Array"
 
 @scope("DOMMatrixReadOnly")
-external fromFloat64Array: Float64Array.t => Types.domMatrixReadOnly = "fromFloat64Array"
+external fromFloat64Array: Float64Array.t => DomTypes.domMatrixReadOnly = "fromFloat64Array"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/DOMMatrixReadOnly/translate)
 */
 @send
 external translate: (
-  Types.domMatrixReadOnly,
+  DomTypes.domMatrixReadOnly,
   ~tx: float=?,
   ~ty: float=?,
   ~tz: float=?,
-) => Types.domMatrix = "translate"
+) => DomTypes.domMatrix = "translate"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/DOMMatrixReadOnly/scale)
 */
 @send
 external scale: (
-  Types.domMatrixReadOnly,
+  DomTypes.domMatrixReadOnly,
   ~scaleX: float=?,
   ~scaleY: float=?,
   ~scaleZ: float=?,
   ~originX: float=?,
   ~originY: float=?,
   ~originZ: float=?,
-) => Types.domMatrix = "scale"
+) => DomTypes.domMatrix = "scale"
 
 @send
 external scale3d: (
-  Types.domMatrixReadOnly,
+  DomTypes.domMatrixReadOnly,
   ~scale: float=?,
   ~originX: float=?,
   ~originY: float=?,
   ~originZ: float=?,
-) => Types.domMatrix = "scale3d"
+) => DomTypes.domMatrix = "scale3d"
 
 @send
 external rotate: (
-  Types.domMatrixReadOnly,
+  DomTypes.domMatrixReadOnly,
   ~rotX: float=?,
   ~rotY: float=?,
   ~rotZ: float=?,
-) => Types.domMatrix = "rotate"
+) => DomTypes.domMatrix = "rotate"
 
 @send
-external rotateFromVector: (Types.domMatrixReadOnly, ~x: float=?, ~y: float=?) => Types.domMatrix =
-  "rotateFromVector"
+external rotateFromVector: (
+  DomTypes.domMatrixReadOnly,
+  ~x: float=?,
+  ~y: float=?,
+) => DomTypes.domMatrix = "rotateFromVector"
 
 @send
 external rotateAxisAngle: (
-  Types.domMatrixReadOnly,
+  DomTypes.domMatrixReadOnly,
   ~x: float=?,
   ~y: float=?,
   ~z: float=?,
   ~angle: float=?,
-) => Types.domMatrix = "rotateAxisAngle"
+) => DomTypes.domMatrix = "rotateAxisAngle"
 
 @send
-external skewX: (Types.domMatrixReadOnly, ~sx: float=?) => Types.domMatrix = "skewX"
+external skewX: (DomTypes.domMatrixReadOnly, ~sx: float=?) => DomTypes.domMatrix = "skewX"
 
 @send
-external skewY: (Types.domMatrixReadOnly, ~sy: float=?) => Types.domMatrix = "skewY"
+external skewY: (DomTypes.domMatrixReadOnly, ~sy: float=?) => DomTypes.domMatrix = "skewY"
 
 @send
-external multiply: (Types.domMatrixReadOnly, ~other: Types.domMatrixInit=?) => Types.domMatrix =
-  "multiply"
+external multiply: (
+  DomTypes.domMatrixReadOnly,
+  ~other: DomTypes.domMatrixInit=?,
+) => DomTypes.domMatrix = "multiply"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/DOMMatrixReadOnly/flipX)
 */
 @send
-external flipX: Types.domMatrixReadOnly => Types.domMatrix = "flipX"
+external flipX: DomTypes.domMatrixReadOnly => DomTypes.domMatrix = "flipX"
 
 @send
-external flipY: Types.domMatrixReadOnly => Types.domMatrix = "flipY"
+external flipY: DomTypes.domMatrixReadOnly => DomTypes.domMatrix = "flipY"
 
 @send
-external inverse: Types.domMatrixReadOnly => Types.domMatrix = "inverse"
+external inverse: DomTypes.domMatrixReadOnly => DomTypes.domMatrix = "inverse"
 
 @send
-external transformPoint: (Types.domMatrixReadOnly, ~point: Types.domPointInit=?) => Types.domPoint =
-  "transformPoint"
+external transformPoint: (
+  DomTypes.domMatrixReadOnly,
+  ~point: DomTypes.domPointInit=?,
+) => DomTypes.domPoint = "transformPoint"
 
 @send
-external toFloat32Array: Types.domMatrixReadOnly => array<float> = "toFloat32Array"
+external toFloat32Array: DomTypes.domMatrixReadOnly => array<float> = "toFloat32Array"
 
 @send
-external toFloat64Array: Types.domMatrixReadOnly => Float64Array.t = "toFloat64Array"
+external toFloat64Array: DomTypes.domMatrixReadOnly => Float64Array.t = "toFloat64Array"
 
 @send
-external toJSON: Types.domMatrixReadOnly => Dict.t<string> = "toJSON"
+external toJSON: DomTypes.domMatrixReadOnly => Dict.t<string> = "toJSON"

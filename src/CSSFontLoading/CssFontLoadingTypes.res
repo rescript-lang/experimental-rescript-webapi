@@ -7,13 +7,13 @@ type fontDisplay =
   | @as("optional") Optional
   | @as("swap") Swap
 
-type fontFaceLoadStatus = WebApi.Base.CSSFontLoading.fontFaceLoadStatus =
+type fontFaceLoadStatus = Base.CSSFontLoading.fontFaceLoadStatus =
   | @as("error") Error
   | @as("loaded") Loaded
   | @as("loading") Loading
   | @as("unloaded") Unloaded
 
-type fontFaceSetLoadStatus = WebApi.Base.CSSFontLoading.fontFaceSetLoadStatus =
+type fontFaceSetLoadStatus = Base.CSSFontLoading.fontFaceSetLoadStatus =
   | @as("loaded") Loaded
   | @as("loading") Loading
 
@@ -77,7 +77,7 @@ type rec fontFace = {
 [See FontFaceSet on MDN](https://developer.mozilla.org/docs/Web/API/FontFaceSet)
 */
 @editor.completeFrom(FontFaceSet)
-type fontFaceSet = WebApi.Base.CSSFontLoading.fontFaceSet
+type fontFaceSet = Base.CSSFontLoading.fontFaceSet
 
 type fontFaceDescriptors = {
   mutable style?: string,

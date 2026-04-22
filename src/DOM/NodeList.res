@@ -3,4 +3,4 @@ Returns the node with index index from the collection. The nodes are sorted in t
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/NodeList/item)
 */
 @send
-external item: (Types.nodeList<'tNode>, int) => 'tNode = "item"
+external item: (DomTypes.nodeList<'tNode>, int) => 'tNode = "item"

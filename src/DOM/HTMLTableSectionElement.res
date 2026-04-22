@@ -1,4 +1,4 @@
-include HTMLElement.Impl({type t = Types.htmlTableSectionElement})
+include HTMLElement.Impl({type t = DomTypes.htmlTableSectionElement})
 
 /**
 Creates a new row (tr) in the table, and adds the row to the rows collection.
@@ -6,8 +6,10 @@ Creates a new row (tr) in the table, and adds the row to the rows collection.
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLTableSectionElement/insertRow)
 */
 @send
-external insertRow: (Types.htmlTableSectionElement, ~index: int=?) => Types.htmlTableRowElement =
-  "insertRow"
+external insertRow: (
+  DomTypes.htmlTableSectionElement,
+  ~index: int=?,
+) => DomTypes.htmlTableRowElement = "insertRow"
 
 /**
 Removes the specified row (tr) from the element and from the rows collection.
@@ -15,4 +17,4 @@ Removes the specified row (tr) from the element and from the rows collection.
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLTableSectionElement/deleteRow)
 */
 @send
-external deleteRow: (Types.htmlTableSectionElement, int) => unit = "deleteRow"
+external deleteRow: (DomTypes.htmlTableSectionElement, int) => unit = "deleteRow"

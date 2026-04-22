@@ -8,7 +8,7 @@ Any failures in fetching the script or its dependencies will cause the returned 
 */
 @send
 external addModule: (
-  Types.worklet,
+  WebAudioTypes.worklet,
   ~moduleURL: string,
-  ~options: Types.workletOptions=?,
+  ~options: WebAudioTypes.workletOptions=?,
 ) => promise<unit> = "addModule"
