@@ -1,14 +1,44 @@
 /**
+`make()`
+
+Creates a new identity `DOMMatrix`.
+
+```res
+let matrix = DOMMatrix.make()
+```
+
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/DOMMatrix)
 */
 @new
-external make: (~init: string=?) => Types.domMatrix = "DOMMatrix"
+external make: unit => Types.domMatrix = "DOMMatrix"
 
 /**
+`fromString(string)`
+
+Creates a new `DOMMatrix` from a transform string.
+
+```res
+let matrix = DOMMatrix.fromString("matrix(1, 0, 0, 1, 0, 0)")
+```
+
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/DOMMatrix)
 */
 @new
-external make2: (~init: array<float>=?) => Types.domMatrix = "DOMMatrix"
+external fromString: string => Types.domMatrix = "DOMMatrix"
+
+/**
+`fromArray(array<float>)`
+
+Creates a new `DOMMatrix` from an array of matrix component values.
+
+```res
+let matrix = DOMMatrix.fromArray([1., 0., 0., 1., 0., 0.])
+```
+
+[Read more on MDN](https://developer.mozilla.org/docs/Web/API/DOMMatrix)
+*/
+@new
+external fromArray: array<float> => Types.domMatrix = "DOMMatrix"
 
 external asDOMMatrixReadOnly: Types.domMatrix => Types.domMatrixReadOnly = "%identity"
 @scope("DOMMatrix")

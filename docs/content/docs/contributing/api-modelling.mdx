@@ -58,6 +58,48 @@ external addEventListenerWithCapture: (
 
 When naming an overloaded function, we can use the `With` suffix to indicate that it is an overloaded function.
 
+### Constructor overloads
+
+Constructors follow a different naming rule than methods.
+
+- Keep singleton constructors named `make`.
+- Keep true default constructors named `make`, even when the constructor family also has typed overloads.
+- When a constructor family does not have a default constructor, use `from*` names for every overload, including the first one.
+- Base `from*` names on the source input type: `fromString`, `fromArrayBuffer`, `fromMediaStream`, `fromURLWithProtocols`, and so on.
+- If an optional labeled argument hides a real default constructor, split that binding into `make()` plus typed `from*` overloads instead of keeping the optional argument on `make`.
+
+For example, these constructor families are easier to understand than numbered overloads:
+
+```ReScript
+@new
+external fromString: (~family: string, ~source: string) => fontFace = "FontFace"
+
+@new
+external fromDataView: (~family: string, ~source: DataView.t) => fontFace = "FontFace"
+
+@new
+external fromArrayBuffer: (~family: string, ~source: ArrayBuffer.t) => fontFace = "FontFace"
+```
+
+And if a constructor really does have a default form, split it instead of hiding it:
+
+```ReScript
+@new
+external make: unit => domMatrix = "DOMMatrix"
+
+@new
+external fromString: string => domMatrix = "DOMMatrix"
+
+@new
+external fromArray: array<float> => domMatrix = "DOMMatrix"
+```
+
+Single-source constructor variants should take the source value directly without a label.
+
+Keep `makeWith*` names for non-default convenience constructors that are not part of a source-type overload family.
+
+Constructor naming is currently verified with compile-coverage tests. Runtime verification for these constructor families will be added later when the Vitest and happy-dom harness lands.
+
 ### Decoded variants
 
 We can be pragmatic with overloaded functions and use model them in various creative ways.  

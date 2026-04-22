@@ -1,22 +1,46 @@
 type t = Types.mediaStream = private {...Types.mediaStream}
 
 /**
+`make()`
+
+Creates a new empty `MediaStream`.
+
+```res
+let stream = MediaStream.make()
+```
+
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/MediaStream)
 */
 @new
 external make: unit => t = "MediaStream"
 
 /**
+`fromMediaStream(mediaStream)`
+
+Creates a new `MediaStream` by copying another `MediaStream`.
+
+```res
+let copiedStream = MediaStream.fromMediaStream(existingStream)
+```
+
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/MediaStream)
 */
 @new
-external makeFromMediaStream: t => t = "MediaStream"
+external fromMediaStream: t => t = "MediaStream"
 
 /**
+`fromTracks(array<MediaStreamTrack.t>)`
+
+Creates a new `MediaStream` from an array of `MediaStreamTrack.t` values.
+
+```res
+let stream = MediaStream.fromTracks([audioTrack, videoTrack])
+```
+
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/MediaStream)
 */
 @new
-external makeFromMediaStreams: array<MediaStreamTrack.t> => t = "MediaStream"
+external fromTracks: array<MediaStreamTrack.t> => t = "MediaStream"
 
 include WebApiEvent.EventTarget.Impl({type t = t})
 

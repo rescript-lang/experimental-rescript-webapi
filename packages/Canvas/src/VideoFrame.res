@@ -1,89 +1,177 @@
+type sharedArrayBuffer = unknown
+
 /**
+`fromHTMLImageElement(~image: HTMLImageElement.t, ~init: videoFrameInit=?)`
+
+Creates a new `VideoFrame` from an `HTMLImageElement`.
+
+```res
+let frame = VideoFrame.fromHTMLImageElement(~image=myImageElement)
+```
+
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/VideoFrame)
 */
 @new
-external make: (
+external fromHTMLImageElement: (
   ~image: WebApiDOM.Types.htmlImageElement,
   ~init: WebApiDOM.Types.videoFrameInit=?,
 ) => WebApiDOM.Types.videoFrame = "VideoFrame"
 
 /**
+`fromSVGImageElement(~image: SVGImageElement.t, ~init: videoFrameInit=?)`
+
+Creates a new `VideoFrame` from an `SVGImageElement`.
+
+```res
+let frame = VideoFrame.fromSVGImageElement(~image=mySvgImageElement)
+```
+
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/VideoFrame)
 */
 @new
-external make2: (
+external fromSVGImageElement: (
   ~image: WebApiDOM.Types.svgImageElement,
   ~init: WebApiDOM.Types.videoFrameInit=?,
 ) => WebApiDOM.Types.videoFrame = "VideoFrame"
 
 /**
+`fromHTMLVideoElement(~image: HTMLVideoElement.t, ~init: videoFrameInit=?)`
+
+Creates a new `VideoFrame` from an `HTMLVideoElement`.
+
+```res
+let frame = VideoFrame.fromHTMLVideoElement(~image=myVideoElement)
+```
+
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/VideoFrame)
 */
 @new
-external make3: (
+external fromHTMLVideoElement: (
   ~image: WebApiDOM.Types.htmlVideoElement,
   ~init: WebApiDOM.Types.videoFrameInit=?,
 ) => WebApiDOM.Types.videoFrame = "VideoFrame"
 
 /**
+`fromHTMLCanvasElement(~image: HTMLCanvasElement.t, ~init: videoFrameInit=?)`
+
+Creates a new `VideoFrame` from an `HTMLCanvasElement`.
+
+```res
+let frame = VideoFrame.fromHTMLCanvasElement(~image=myCanvasElement)
+```
+
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/VideoFrame)
 */
 @new
-external make4: (
+external fromHTMLCanvasElement: (
   ~image: WebApiDOM.Types.htmlCanvasElement,
   ~init: WebApiDOM.Types.videoFrameInit=?,
 ) => WebApiDOM.Types.videoFrame = "VideoFrame"
 
 /**
+`fromImageBitmap(~image: ImageBitmap.t, ~init: videoFrameInit=?)`
+
+Creates a new `VideoFrame` from an `ImageBitmap`.
+
+```res
+let frame = VideoFrame.fromImageBitmap(~image=myImageBitmap)
+```
+
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/VideoFrame)
 */
 @new
-external make5: (
+external fromImageBitmap: (
   ~image: Types.imageBitmap,
   ~init: WebApiDOM.Types.videoFrameInit=?,
 ) => WebApiDOM.Types.videoFrame = "VideoFrame"
 
 /**
+`fromOffscreenCanvas(~image: OffscreenCanvas.t, ~init: videoFrameInit=?)`
+
+Creates a new `VideoFrame` from an `OffscreenCanvas`.
+
+```res
+let frame = VideoFrame.fromOffscreenCanvas(~image=myOffscreenCanvas)
+```
+
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/VideoFrame)
 */
 @new
-external make6: (
+external fromOffscreenCanvas: (
   ~image: Types.offscreenCanvas,
   ~init: WebApiDOM.Types.videoFrameInit=?,
 ) => WebApiDOM.Types.videoFrame = "VideoFrame"
 
 /**
+`fromVideoFrame(~image: VideoFrame.t, ~init: videoFrameInit=?)`
+
+Creates a new `VideoFrame` from another `VideoFrame`.
+
+```res
+let frame = VideoFrame.fromVideoFrame(~image=otherFrame)
+```
+
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/VideoFrame)
 */
 @new
-external make7: (
+external fromVideoFrame: (
   ~image: WebApiDOM.Types.videoFrame,
   ~init: WebApiDOM.Types.videoFrameInit=?,
 ) => WebApiDOM.Types.videoFrame = "VideoFrame"
 
 /**
+`fromArrayBuffer(~data: ArrayBuffer.t, ~init: videoFrameBufferInit)`
+
+Creates a new `VideoFrame` from `ArrayBuffer`-backed pixel data.
+
+```res
+let frame =
+  VideoFrame.fromArrayBuffer(~data=myArrayBuffer, ~init=myVideoFrameBufferInit)
+```
+
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/VideoFrame)
 */
 @new
-external make8: (
+external fromArrayBuffer: (
   ~data: ArrayBuffer.t,
   ~init: WebApiDOM.Types.videoFrameBufferInit,
 ) => WebApiDOM.Types.videoFrame = "VideoFrame"
 
 /**
+`fromSharedArrayBuffer(~data: sharedArrayBuffer, ~init: videoFrameBufferInit)`
+
+Creates a new `VideoFrame` from `SharedArrayBuffer`-backed pixel data.
+
+```res
+let frame =
+  VideoFrame.fromSharedArrayBuffer(
+    ~data=mySharedArrayBuffer,
+    ~init=myVideoFrameBufferInit,
+  )
+```
+
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/VideoFrame)
 */
 @new
-external make9: (
-  ~data: WebApiBase.ArrayBufferTypedArrayOrDataView.t,
+external fromSharedArrayBuffer: (
+  ~data: sharedArrayBuffer,
   ~init: WebApiDOM.Types.videoFrameBufferInit,
 ) => WebApiDOM.Types.videoFrame = "VideoFrame"
 
 /**
+`fromDataView(~data: DataView.t, ~init: videoFrameBufferInit)`
+
+Creates a new `VideoFrame` from `DataView`-backed pixel data.
+
+```res
+let frame =
+  VideoFrame.fromDataView(~data=myDataView, ~init=myVideoFrameBufferInit)
+```
+
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/VideoFrame)
 */
 @new
-external make10: (
+external fromDataView: (
   ~data: DataView.t,
   ~init: WebApiDOM.Types.videoFrameBufferInit,
 ) => WebApiDOM.Types.videoFrame = "VideoFrame"

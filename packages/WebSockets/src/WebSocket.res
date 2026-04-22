@@ -7,16 +7,36 @@ type closeEvent = Types.closeEvent = private {...Types.closeEvent}
 type messageEventSource = Types.messageEventSource
 
 /**
+`fromURL(~url: string, ~protocols: string=?)`
+
+Creates a new `WebSocket` from a URL and an optional single protocol.
+
+```res
+let socket = WebSocket.fromURL(~url="wss://example.com/socket")
+```
+
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/WebSocket)
 */
 @new
-external make: (~url: string, ~protocols: string=?) => t = "WebSocket"
+external fromURL: (~url: string, ~protocols: string=?) => t = "WebSocket"
 
 /**
+`fromURLWithProtocols(~url: string, ~protocols: array<string>)`
+
+Creates a new `WebSocket` from a URL and multiple protocols.
+
+```res
+let socket =
+  WebSocket.fromURLWithProtocols(
+    ~url="wss://example.com/socket",
+    ~protocols=["chat", "superchat"],
+  )
+```
+
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/WebSocket)
 */
 @new
-external makeWithProtocols: (~url: string, ~protocols: array<string>=?) => t = "WebSocket"
+external fromURLWithProtocols: (~url: string, ~protocols: array<string>) => t = "WebSocket"
 
 include WebApiEvent.EventTarget.Impl({type t = t})
 

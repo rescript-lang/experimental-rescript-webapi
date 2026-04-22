@@ -1,16 +1,46 @@
 type domMatrix2DInit = WebApiDOM.Types.domMatrix2DInit
 
 /**
+`make()`
+
+Creates a new empty `Path2D`.
+
+```res
+let path = Path2D.make()
+```
+
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Path2D)
 */
 @new
-external make: (~path: Types.path2D=?) => Types.path2D = "Path2D"
+external make: unit => Types.path2D = "Path2D"
 
 /**
+`fromPath2D(path2D)`
+
+Creates a new `Path2D` by copying another `Path2D`.
+
+```res
+let copiedPath = Path2D.fromPath2D(existingPath)
+```
+
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Path2D)
 */
 @new
-external make2: (~path: string=?) => Types.path2D = "Path2D"
+external fromPath2D: Types.path2D => Types.path2D = "Path2D"
+
+/**
+`fromString(string)`
+
+Creates a new `Path2D` from SVG path data text.
+
+```res
+let path = Path2D.fromString("M0 0 L10 10")
+```
+
+[Read more on MDN](https://developer.mozilla.org/docs/Web/API/Path2D)
+*/
+@new
+external fromString: string => Types.path2D = "Path2D"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CanvasRenderingContext2D/closePath)
