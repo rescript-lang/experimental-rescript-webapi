@@ -17,11 +17,18 @@ export function publicModuleToInternalPrefix(publicModule) {
 
 export function publicNameForLeafModule(leafName, internalPrefix) {
   const duplicatedSuffixes = ["Types", "Global", "Event", "File", "HTMLMediaElement"];
+  const featureSuffix = featureSpecs
+    .map(({ publicModule }) => publicModule)
+    .find((publicModule) => leafName === `${internalPrefix}${publicModule}`);
 
   for (const suffix of duplicatedSuffixes) {
     if (leafName === `${internalPrefix}${suffix}`) {
       return suffix;
     }
+  }
+
+  if (featureSuffix) {
+    return featureSuffix;
   }
 
   return leafName;

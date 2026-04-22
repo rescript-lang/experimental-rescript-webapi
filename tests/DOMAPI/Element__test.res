@@ -1,6 +1,6 @@
-external myElement: WebApiDOM.Types.element = "myElement"
+external myElement: WebApi.DOM.Types.element = "myElement"
 
-switch myElement->WebApiDOM.Element.getAttribute("foo") {
+switch myElement->WebApi.DOM.Element.getAttribute("foo") {
 | Null.Value(value) => value->Console.log
 | Null => "nothing"->Console.log
 }

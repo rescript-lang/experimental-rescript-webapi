@@ -1,4 +1,4 @@
-let imageData = WebApiDOM.ImageData.makeWithData(
+let imageData = WebApi.DOM.ImageData.makeWithData(
   ~data=Uint8ClampedArray.fromArray([]),
   ~sw=100,
   ~sh=100,

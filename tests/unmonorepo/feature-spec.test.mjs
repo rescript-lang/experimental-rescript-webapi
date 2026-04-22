@@ -43,4 +43,6 @@ test("normalizes internal prefixes and public duplicate names", () => {
   assert.equal(publicModuleToInternalPrefix("URL"), "Url");
   assert.equal(publicNameForLeafModule("DomTypes", "Dom"), "Types");
   assert.equal(publicNameForLeafModule("Document", "Dom"), "Document");
+  assert.equal(publicNameForLeafModule("BaseDOM", "Base"), "DOM");
+  assert.equal(publicNameForLeafModule("WebStorageStorage", "WebStorage"), "Storage");
 });

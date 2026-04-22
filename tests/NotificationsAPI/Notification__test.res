@@ -1,6 +1,6 @@
-let current = WebApiNotification.Notification.permission
+let current = WebApi.Notification.Notification.permission
 
-WebApiNotification.Notification.requestPermission()
+WebApi.Notification.Notification.requestPermission()
 ->Promise.thenResolve(notificationPermission => {
   switch notificationPermission {
   | Granted => Console.log("Permission granted")

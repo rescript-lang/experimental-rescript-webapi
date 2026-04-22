@@ -9,6 +9,7 @@ function moveFile(fromPath, toPath) {
 
 export function migrateLayout(rootDir) {
   const duplicateLeaves = findDuplicateLeafModules(rootDir, featureSpecs);
+  const reservedPublicModules = new Set(featureSpecs.map((spec) => spec.publicModule));
 
   for (const spec of featureSpecs) {
     const legacySourceDir = path.join(rootDir, "packages", spec.dirName, "src");
@@ -21,7 +22,8 @@ export function migrateLayout(rootDir) {
       if (!entry.isFile() || !entry.name.endsWith(".res")) continue;
 
       const leafName = path.basename(entry.name, ".res");
-      const nextLeafName = duplicateLeaves.has(leafName)
+      const nextLeafName =
+        duplicateLeaves.has(leafName) || (reservedPublicModules.has(leafName) && leafName !== spec.publicModule)
         ? `${spec.internalPrefix}${leafName}`
         : leafName;
 

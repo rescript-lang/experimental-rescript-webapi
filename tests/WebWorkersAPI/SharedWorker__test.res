@@ -1,20 +1,20 @@
-let shared1: WebApiWebWorkers.SharedWorker.t = WebApiWebWorkers.SharedWorker.make("sharedworker.js")
+let shared1: WebApi.WebWorkers.SharedWorker.t = WebApi.WebWorkers.SharedWorker.make("sharedworker.js")
 
-let shared2: WebApiWebWorkers.SharedWorker.t = WebApiWebWorkers.SharedWorker.makeWithName(
+let shared2: WebApi.WebWorkers.SharedWorker.t = WebApi.WebWorkers.SharedWorker.makeWithName(
   "sharedworker.js",
   "name",
 )
 
-let shared3: WebApiWebWorkers.SharedWorker.t = WebApiWebWorkers.SharedWorker.makeWithOptions(
+let shared3: WebApi.WebWorkers.SharedWorker.t = WebApi.WebWorkers.SharedWorker.makeWithOptions(
   "sharedworker.js",
   {
     name: "workerName",
-    type_: WebApiWebWorkers.Types.Module,
+    type_: WebApi.WebWorkers.Types.Module,
   },
 )
 
-let port: WebApiChannelMessaging.MessagePort.t = WebApiWebWorkers.SharedWorker.port(shared1)
+let port: WebApi.ChannelMessaging.MessagePort.t = WebApi.WebWorkers.SharedWorker.port(shared1)
 
-let self = WebApiWebWorkers.SharedWorkerGlobalScope.current
+let self = WebApi.WebWorkers.SharedWorkerGlobalScope.current
 
-self->WebApiWebWorkers.SharedWorkerGlobalScope.close
+self->WebApi.WebWorkers.SharedWorkerGlobalScope.close

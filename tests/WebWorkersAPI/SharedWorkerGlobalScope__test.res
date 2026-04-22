@@ -1,3 +1,3 @@
-let self = WebApiWebWorkers.SharedWorkerGlobalScope.current
+let self = WebApi.WebWorkers.SharedWorkerGlobalScope.current
 
-self->WebApiWebWorkers.SharedWorkerGlobalScope.close
+self->WebApi.WebWorkers.SharedWorkerGlobalScope.close

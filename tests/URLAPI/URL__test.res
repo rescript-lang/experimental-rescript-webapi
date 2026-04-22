@@ -1,1 +1,1 @@
-let url = WebApiURL.URL.make(~url="/foo", ~base="https://bar.com")
+let url = WebApi.URL.URL.make(~url="/foo", ~base="https://bar.com")

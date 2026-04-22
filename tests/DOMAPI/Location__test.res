@@ -1,9 +1,9 @@
-let location = WebApiDOM.Global.document.location
+let location = WebApi.DOM.Global.document.location
 
 // Access properties using `.`
 let href = location.href
 
 // Invoke methods using the `->TypeModule`
-location->WebApiDOM.Location.reload
+location->WebApi.DOM.Location.reload
 
 let a = 0

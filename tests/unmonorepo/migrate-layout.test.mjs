@@ -25,6 +25,10 @@ test("moves legacy sources into src/<Feature>, renames duplicate leaves, and rem
     "Global.res": "let document = 1",
   });
 
+  writePackage(root, "Base", "WebApiBase", {
+    "DOM.res": "type dom = unit",
+  });
+
   writePackage(root, "Fetch", "WebApiFetch", {
     "Global.res": "let fetch = 1",
     "Types.res": "type request",
@@ -52,6 +56,7 @@ test("moves legacy sources into src/<Feature>, renames duplicate leaves, and rem
     readFileSync(path.join(root, "src", "Fetch", "FetchTypes.res"), "utf8"),
     "type request",
   );
+  assert.equal(readFileSync(path.join(root, "src", "Base", "BaseDOM.res"), "utf8"), "type dom = unit");
   assert.ok(!existsSync(path.join(root, "packages", "DOM", "rescript.json")));
   assert.ok(!existsSync(path.join(root, "packages", "DOM", "package.json")));
   assert.ok(!existsSync(path.join(root, "packages", "DOM")));
