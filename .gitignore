@@ -6,6 +6,7 @@ dist/
 tmp/
 docs/public/llm.txt
 *~
+.worktrees/
 
 **/lib/bs/
 **/lib/ocaml
