@@ -7,13 +7,13 @@ import {
 
 test("builds the unified root rescript.json and package.json", () => {
   const specs = [
-    { dirName: "Base", publicModule: "Base", featureName: "WebApi.Base" },
-    { dirName: "DOM", publicModule: "DOM", featureName: "WebApi.DOM" },
+    { dirName: "Base", publicModule: "Base", featureName: "WebAPI.Base" },
+    { dirName: "DOM", publicModule: "DOM", featureName: "WebAPI.DOM" },
   ];
 
   assert.deepEqual(buildRootRescriptJson(specs).sources, [
-    { dir: "src/Base", subdirs: true, feature: "WebApi.Base", public: ["Base"] },
-    { dir: "src/DOM", subdirs: true, feature: "WebApi.DOM", public: ["DOM"] },
+    { dir: "src/Base", subdirs: true, feature: "WebAPI.Base", public: ["Base"] },
+    { dir: "src/DOM", subdirs: true, feature: "WebAPI.DOM", public: ["DOM"] },
     { dir: "tests", subdirs: true, type: "dev" },
   ]);
 

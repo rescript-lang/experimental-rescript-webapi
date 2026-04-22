@@ -16,12 +16,13 @@ The bindings are generated from the [MDN Web API documentation](https://develope
 
 In other words, if you are searching for a specific JavaScript binding, begin your journey at the [MDN Web API documentation](https://developer.mozilla.org/en-US/docs/Web/API) and determine which module contains your sample. Ensure that the module is available in the bindings by checking the specific API. Please [open an issue](https://github.com/rescript-lang/experimental-rescript-webapi/issues/new/choose) if you require an API that is not yet present.
 
-Each feature is grouped under a `WebApi.<Feature>` module so related interfaces and helper modules stay together without relying on flat package-wide names.
+The bindings are exposed under the `WebAPI` namespace, with feature entry modules such as `WebAPI.DOM` available when you want to scope imports more narrowly.
 
 ```ReScript
-open WebApi.DOM.Global
+open WebAPI.Global
+// or WebAPI.DOM
 
-let myElement: WebApi.DOM.Types.element = document->WebApi.DOM.Document.createElement("div")
+let myElement: WebAPI.Element.t = document->WebAPI.Document.createElement("div")
 ```
 
 ## Interfaces
@@ -43,10 +44,11 @@ JavaScript supports function overloads, where a function can have multiple signa
 In some cases, type conversion will be required. Subtypes can safely be cast to their base type using conversion helpers within their module.
 
 ```ReScript
-open WebApi.DOM.Global
+open WebAPI.Global
+// or WebAPI.DOM
 
-let element: WebApi.DOM.Types.element = document->WebApi.DOM.Document.createElement("div")
-let node: WebApi.DOM.Types.node = element->WebApi.DOM.Element.asNode
+let element: WebAPI.Element.t = document->WebAPI.Document.createElement("div")
+let node: WebAPI.Node.t = element->WebAPI.Element.asNode
 ```
 
 Any other conversions should be treated as unsafe casts and used with caution, because the type system cannot guarantee they are valid at runtime.

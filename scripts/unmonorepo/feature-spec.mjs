@@ -91,7 +91,7 @@ export const featureSpecs = [
     dirName,
     legacyNamespace,
     publicModule,
-    featureName: `WebApi.${publicModule}`,
+    featureName: `WebAPI.${publicModule}`,
     internalPrefix: publicModuleToInternalPrefix(publicModule),
     sourceDir: `src/${dirName}`,
     entryModulePath: `src/${dirName}/${publicModule}.res`,

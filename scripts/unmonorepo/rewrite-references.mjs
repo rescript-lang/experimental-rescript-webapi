@@ -26,6 +26,7 @@ export function rewriteSourceText(source, { currentFeature, specs, localLeaves }
   for (const leaf of localLeaves) {
     const publicLeaf = publicNameForLeafModule(leaf, currentSpec.internalPrefix);
     next = next.replaceAll(`${currentSpec.legacyNamespace}.${publicLeaf}.`, `${leaf}.`);
+    next = next.replaceAll(`WebAPI.${currentSpec.publicModule}.${publicLeaf}.`, `${leaf}.`);
     next = next.replaceAll(`WebApi.${currentSpec.publicModule}.${publicLeaf}.`, `${leaf}.`);
     next = next.replaceAll(`${currentSpec.publicModule}.${publicLeaf}.`, `${leaf}.`);
 
@@ -36,6 +37,7 @@ export function rewriteSourceText(source, { currentFeature, specs, localLeaves }
 
   for (const spec of specs) {
     next = next.replaceAll(`${spec.legacyNamespace}.`, `${spec.publicModule}.`);
+    next = next.replaceAll(`WebAPI.${spec.publicModule}.`, `${spec.publicModule}.`);
     next = next.replaceAll(`WebApi.${spec.publicModule}.`, `${spec.publicModule}.`);
   }
 
@@ -47,6 +49,7 @@ export function rewriteTestText(source, specs = featureSpecs) {
 
   for (const spec of specs) {
     next = next.replaceAll(`${spec.legacyNamespace}.`, `${spec.publicModule}.`);
+    next = next.replaceAll(`WebAPI.${spec.publicModule}.`, `${spec.publicModule}.`);
     next = next.replaceAll(`WebApi.${spec.publicModule}.`, `${spec.publicModule}.`);
   }
 

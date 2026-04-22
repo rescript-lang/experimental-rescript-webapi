@@ -21,7 +21,7 @@ test("rewrites same-feature references to local modules and external namespaces 
 
   assert.equal(
     rewriteSourceText(
-      "let target: WebApi.DOM.Types.element = WebApi.DOM.Global.document->WebApi.Event.EventTarget.asEventTarget",
+      "let target: WebAPI.DOM.Types.element = WebAPI.DOM.Global.document->WebAPI.Event.EventTarget.asEventTarget",
       { currentFeature: "DOM", specs, localLeaves: ["Document", "DomGlobal", "DomTypes"] },
     ),
     "let target: DomTypes.element = DomGlobal.document->Event.EventTarget.asEventTarget",

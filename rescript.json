@@ -4,7 +4,7 @@
     {
       "dir": "src/Base",
       "subdirs": true,
-      "feature": "WebApi.Base",
+      "feature": "WebAPI.Base",
       "public": [
         "Base"
       ]
@@ -12,7 +12,7 @@
     {
       "dir": "src/CSSFontLoading",
       "subdirs": true,
-      "feature": "WebApi.CSSFontLoading",
+      "feature": "WebAPI.CSSFontLoading",
       "public": [
         "CSSFontLoading"
       ]
@@ -20,7 +20,7 @@
     {
       "dir": "src/Canvas",
       "subdirs": true,
-      "feature": "WebApi.Canvas",
+      "feature": "WebAPI.Canvas",
       "public": [
         "Canvas"
       ]
@@ -28,7 +28,7 @@
     {
       "dir": "src/ChannelMessaging",
       "subdirs": true,
-      "feature": "WebApi.ChannelMessaging",
+      "feature": "WebAPI.ChannelMessaging",
       "public": [
         "ChannelMessaging"
       ]
@@ -36,7 +36,7 @@
     {
       "dir": "src/Clipboard",
       "subdirs": true,
-      "feature": "WebApi.Clipboard",
+      "feature": "WebAPI.Clipboard",
       "public": [
         "Clipboard"
       ]
@@ -44,7 +44,7 @@
     {
       "dir": "src/CredentialManagement",
       "subdirs": true,
-      "feature": "WebApi.CredentialManagement",
+      "feature": "WebAPI.CredentialManagement",
       "public": [
         "CredentialManagement"
       ]
@@ -52,7 +52,7 @@
     {
       "dir": "src/DOM",
       "subdirs": true,
-      "feature": "WebApi.DOM",
+      "feature": "WebAPI.DOM",
       "public": [
         "DOM"
       ]
@@ -60,7 +60,7 @@
     {
       "dir": "src/EncryptedMediaExtensions",
       "subdirs": true,
-      "feature": "WebApi.EncryptedMediaExtensions",
+      "feature": "WebAPI.EncryptedMediaExtensions",
       "public": [
         "EncryptedMediaExtensions"
       ]
@@ -68,7 +68,7 @@
     {
       "dir": "src/Event",
       "subdirs": true,
-      "feature": "WebApi.Event",
+      "feature": "WebAPI.Event",
       "public": [
         "Event"
       ]
@@ -76,7 +76,7 @@
     {
       "dir": "src/Fetch",
       "subdirs": true,
-      "feature": "WebApi.Fetch",
+      "feature": "WebAPI.Fetch",
       "public": [
         "Fetch"
       ]
@@ -84,7 +84,7 @@
     {
       "dir": "src/File",
       "subdirs": true,
-      "feature": "WebApi.File",
+      "feature": "WebAPI.File",
       "public": [
         "File"
       ]
@@ -92,7 +92,7 @@
     {
       "dir": "src/FileAndDirectoryEntries",
       "subdirs": true,
-      "feature": "WebApi.FileAndDirectoryEntries",
+      "feature": "WebAPI.FileAndDirectoryEntries",
       "public": [
         "FileAndDirectoryEntries"
       ]
@@ -100,7 +100,7 @@
     {
       "dir": "src/Gamepad",
       "subdirs": true,
-      "feature": "WebApi.Gamepad",
+      "feature": "WebAPI.Gamepad",
       "public": [
         "Gamepad"
       ]
@@ -108,7 +108,7 @@
     {
       "dir": "src/Geolocation",
       "subdirs": true,
-      "feature": "WebApi.Geolocation",
+      "feature": "WebAPI.Geolocation",
       "public": [
         "Geolocation"
       ]
@@ -116,7 +116,7 @@
     {
       "dir": "src/History",
       "subdirs": true,
-      "feature": "WebApi.History",
+      "feature": "WebAPI.History",
       "public": [
         "History"
       ]
@@ -124,7 +124,7 @@
     {
       "dir": "src/IndexedDB",
       "subdirs": true,
-      "feature": "WebApi.IndexedDB",
+      "feature": "WebAPI.IndexedDB",
       "public": [
         "IndexedDB"
       ]
@@ -132,7 +132,7 @@
     {
       "dir": "src/IntersectionObserver",
       "subdirs": true,
-      "feature": "WebApi.IntersectionObserver",
+      "feature": "WebAPI.IntersectionObserver",
       "public": [
         "IntersectionObserver"
       ]
@@ -140,7 +140,7 @@
     {
       "dir": "src/MediaCapabilities",
       "subdirs": true,
-      "feature": "WebApi.MediaCapabilities",
+      "feature": "WebAPI.MediaCapabilities",
       "public": [
         "MediaCapabilities"
       ]
@@ -148,7 +148,7 @@
     {
       "dir": "src/MediaCaptureAndStreams",
       "subdirs": true,
-      "feature": "WebApi.MediaCaptureAndStreams",
+      "feature": "WebAPI.MediaCaptureAndStreams",
       "public": [
         "MediaCaptureAndStreams"
       ]
@@ -156,7 +156,7 @@
     {
       "dir": "src/MediaSession",
       "subdirs": true,
-      "feature": "WebApi.MediaSession",
+      "feature": "WebAPI.MediaSession",
       "public": [
         "MediaSession"
       ]
@@ -164,7 +164,7 @@
     {
       "dir": "src/MutationObserver",
       "subdirs": true,
-      "feature": "WebApi.MutationObserver",
+      "feature": "WebAPI.MutationObserver",
       "public": [
         "MutationObserver"
       ]
@@ -172,7 +172,7 @@
     {
       "dir": "src/Notification",
       "subdirs": true,
-      "feature": "WebApi.Notification",
+      "feature": "WebAPI.Notification",
       "public": [
         "Notification"
       ]
@@ -180,7 +180,7 @@
     {
       "dir": "src/Performance",
       "subdirs": true,
-      "feature": "WebApi.Performance",
+      "feature": "WebAPI.Performance",
       "public": [
         "Performance"
       ]
@@ -188,7 +188,7 @@
     {
       "dir": "src/Permissions",
       "subdirs": true,
-      "feature": "WebApi.Permissions",
+      "feature": "WebAPI.Permissions",
       "public": [
         "Permissions"
       ]
@@ -196,7 +196,7 @@
     {
       "dir": "src/PictureInPicture",
       "subdirs": true,
-      "feature": "WebApi.PictureInPicture",
+      "feature": "WebAPI.PictureInPicture",
       "public": [
         "PictureInPicture"
       ]
@@ -204,7 +204,7 @@
     {
       "dir": "src/Push",
       "subdirs": true,
-      "feature": "WebApi.Push",
+      "feature": "WebAPI.Push",
       "public": [
         "Push"
       ]
@@ -212,7 +212,7 @@
     {
       "dir": "src/RemotePlayback",
       "subdirs": true,
-      "feature": "WebApi.RemotePlayback",
+      "feature": "WebAPI.RemotePlayback",
       "public": [
         "RemotePlayback"
       ]
@@ -220,7 +220,7 @@
     {
       "dir": "src/ResizeObserver",
       "subdirs": true,
-      "feature": "WebApi.ResizeObserver",
+      "feature": "WebAPI.ResizeObserver",
       "public": [
         "ResizeObserver"
       ]
@@ -228,7 +228,7 @@
     {
       "dir": "src/ScreenWakeLock",
       "subdirs": true,
-      "feature": "WebApi.ScreenWakeLock",
+      "feature": "WebAPI.ScreenWakeLock",
       "public": [
         "ScreenWakeLock"
       ]
@@ -236,7 +236,7 @@
     {
       "dir": "src/ServiceWorker",
       "subdirs": true,
-      "feature": "WebApi.ServiceWorker",
+      "feature": "WebAPI.ServiceWorker",
       "public": [
         "ServiceWorker"
       ]
@@ -244,7 +244,7 @@
     {
       "dir": "src/Storage",
       "subdirs": true,
-      "feature": "WebApi.Storage",
+      "feature": "WebAPI.Storage",
       "public": [
         "Storage"
       ]
@@ -252,7 +252,7 @@
     {
       "dir": "src/UIEvents",
       "subdirs": true,
-      "feature": "WebApi.UIEvents",
+      "feature": "WebAPI.UIEvents",
       "public": [
         "UIEvents"
       ]
@@ -260,7 +260,7 @@
     {
       "dir": "src/URL",
       "subdirs": true,
-      "feature": "WebApi.URL",
+      "feature": "WebAPI.URL",
       "public": [
         "URL"
       ]
@@ -268,7 +268,7 @@
     {
       "dir": "src/ViewTransitions",
       "subdirs": true,
-      "feature": "WebApi.ViewTransitions",
+      "feature": "WebAPI.ViewTransitions",
       "public": [
         "ViewTransitions"
       ]
@@ -276,7 +276,7 @@
     {
       "dir": "src/VisualViewport",
       "subdirs": true,
-      "feature": "WebApi.VisualViewport",
+      "feature": "WebAPI.VisualViewport",
       "public": [
         "VisualViewport"
       ]
@@ -284,7 +284,7 @@
     {
       "dir": "src/WebAudio",
       "subdirs": true,
-      "feature": "WebApi.WebAudio",
+      "feature": "WebAPI.WebAudio",
       "public": [
         "WebAudio"
       ]
@@ -292,7 +292,7 @@
     {
       "dir": "src/WebCrypto",
       "subdirs": true,
-      "feature": "WebApi.WebCrypto",
+      "feature": "WebAPI.WebCrypto",
       "public": [
         "WebCrypto"
       ]
@@ -300,7 +300,7 @@
     {
       "dir": "src/WebLocks",
       "subdirs": true,
-      "feature": "WebApi.WebLocks",
+      "feature": "WebAPI.WebLocks",
       "public": [
         "WebLocks"
       ]
@@ -308,7 +308,7 @@
     {
       "dir": "src/WebMIDI",
       "subdirs": true,
-      "feature": "WebApi.WebMIDI",
+      "feature": "WebAPI.WebMIDI",
       "public": [
         "WebMIDI"
       ]
@@ -316,7 +316,7 @@
     {
       "dir": "src/WebSockets",
       "subdirs": true,
-      "feature": "WebApi.WebSockets",
+      "feature": "WebAPI.WebSockets",
       "public": [
         "WebSockets"
       ]
@@ -324,7 +324,7 @@
     {
       "dir": "src/WebSpeech",
       "subdirs": true,
-      "feature": "WebApi.WebSpeech",
+      "feature": "WebAPI.WebSpeech",
       "public": [
         "WebSpeech"
       ]
@@ -332,7 +332,7 @@
     {
       "dir": "src/WebStorage",
       "subdirs": true,
-      "feature": "WebApi.WebStorage",
+      "feature": "WebAPI.WebStorage",
       "public": [
         "WebStorage"
       ]
@@ -340,7 +340,7 @@
     {
       "dir": "src/WebVTT",
       "subdirs": true,
-      "feature": "WebApi.WebVTT",
+      "feature": "WebAPI.WebVTT",
       "public": [
         "WebVTT"
       ]
@@ -348,7 +348,7 @@
     {
       "dir": "src/WebWorkers",
       "subdirs": true,
-      "feature": "WebApi.WebWorkers",
+      "feature": "WebAPI.WebWorkers",
       "public": [
         "WebWorkers"
       ]

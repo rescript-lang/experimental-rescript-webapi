@@ -108,10 +108,10 @@ function moduleNameForFile(relativePath) {
   const leafName = path.basename(fileName, ".res");
 
   if (leafName === spec.publicModule) {
-    return `WebApi.${spec.publicModule}`;
+    return `WebAPI.${spec.publicModule}`;
   }
 
-  return `WebApi.${spec.publicModule}.${publicNameForLeafModule(leafName, spec.internalPrefix)}`;
+  return `WebAPI.${spec.publicModule}.${publicNameForLeafModule(leafName, spec.internalPrefix)}`;
 }
 
 const pattern = "../src/*/**/*.res";
@@ -126,9 +126,9 @@ const packageJson = await fs.readFile(path.join(import.meta.dirname, "../package
 let version = JSON.parse(packageJson).version;
 const sha = await execAsync("git rev-parse --short HEAD").then(({ stdout }) => stdout.trim());
 const fullVersion = `${version}-experimental-${sha}`;
-const header = `Experimental ReScript WebApi Documentation ${fullVersion}
+const header = `Experimental ReScript WebAPI Documentation ${fullVersion}
 
-This is the API documentation for the experimental WebApi module version ${fullVersion}.
+This is the API documentation for the experimental WebAPI module version ${fullVersion}.
 More information can be found on https://rescript-lang.github.io/experimental-rescript-webapi/
 
 `;

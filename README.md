@@ -20,9 +20,17 @@ and add `@rescript/webapi` to your `rescript.json`:
     "@rescript/webapi"
   ],
   "bsc-flags": [
-    "-open WebApi.DOM.Global"
+    "-open WebAPI.Global"
   ]
 }
+```
+
+## Usage
+
+```rescript
+let location = window.location
+let href = location.href
+location->WebAPI.Location.reload
 ```
 
 ## Documentation

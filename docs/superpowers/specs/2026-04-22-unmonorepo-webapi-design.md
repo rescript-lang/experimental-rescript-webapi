@@ -1,4 +1,4 @@
-# Unmonorepo WebApi Design
+# Unmonorepo WebAPI Design
 
 **Date:** 2026-04-22
 **Status:** Approved in conversation, written for review before implementation
@@ -7,7 +7,7 @@
 
 The repository was split into npm workspaces so each Web API area could build and publish independently from `packages/*`. The ReScript compiler now supports feature-gated source directories and feature-gated dependencies, so the package split is no longer required to support partial builds.
 
-The new target is a single published npm package, `@rescript/webapi`, with a unified internal build and an external API that still preserves feature-level boundaries such as `WebApi.DOM`, `WebApi.Fetch`, and `WebApi.Base`.
+The new target is a single published npm package, `@rescript/webapi`, with a unified internal build and an external API that still preserves feature-level boundaries such as `WebAPI.DOM`, `WebAPI.Fetch`, and `WebAPI.Base`.
 
 ## Goals
 
@@ -15,7 +15,7 @@ The new target is a single published npm package, `@rescript/webapi`, with a uni
 - Move all feature sources from `packages/<Pkg>/src` to `src/<Pkg>`.
 - Delete every subpackage `package.json` and `rescript.json`.
 - Make the root `rescript.json` the single source of truth for sources, features, and ReScript dependencies.
-- Preserve the logical public API boundaries as `WebApi.<Feature>`.
+- Preserve the logical public API boundaries as `WebAPI.<Feature>`.
 - Keep internal helper modules private through the new `public` source setting.
 - Publish one npm package: `@rescript/webapi`.
 - Let internal builds and downstream consumers compile only the features they need.
@@ -62,13 +62,13 @@ Each former package source directory is listed as its own source entry. Example 
     {
       "dir": "src/DOM",
       "subdirs": true,
-      "feature": "WebApi.DOM",
+      "feature": "WebAPI.DOM",
       "public": ["DOM"]
     },
     {
       "dir": "src/Fetch",
       "subdirs": true,
-      "feature": "WebApi.Fetch",
+      "feature": "WebAPI.Fetch",
       "public": ["Fetch"]
     },
     {
@@ -83,7 +83,7 @@ Each former package source directory is listed as its own source entry. Example 
 Rules:
 
 - Every former package gets one root source entry.
-- The `feature` value matches the public module name, for example `"WebApi.DOM"` and `"WebApi.Fetch"`.
+- The `feature` value matches the public module name, for example `"WebAPI.DOM"` and `"WebAPI.Fetch"`.
 - The `public` list exposes only the feature entry module for that source directory.
 - Helper modules such as `DomTypes` and `DomGlobal` stay internal because they are not listed in `public`.
 - `tests` remains a dev-only source.
@@ -102,7 +102,7 @@ Example:
 {
   "dependencies": [
     "@plain/dep",
-    { "name": "@other/heavy", "features": ["WebApi.WebCrypto"] }
+    { "name": "@other/heavy", "features": ["WebAPI.WebCrypto"] }
   ]
 }
 ```
@@ -117,10 +117,10 @@ Migration rule:
 
 The public API remains feature-oriented:
 
-- `WebApi.Base`
-- `WebApi.DOM`
-- `WebApi.Fetch`
-- `WebApi.WebCrypto`
+- `WebAPI.Base`
+- `WebAPI.DOM`
+- `WebAPI.Fetch`
+- `WebAPI.WebCrypto`
 - and the rest of the former package surfaces
 
 The unified build must not expose raw internal file modules as first-class public API. Consumers should interact with a curated surface through the feature entry modules only.
@@ -240,7 +240,7 @@ The most important regression risks are:
 
 - Use a single package instead of npm workspaces.
 - Preserve feature boundaries in the external API.
-- Use `WebApi.*` spelling, not `WebAPI.*`.
-- Map feature names to public module names such as `"WebApi.DOM"`.
+- Use `WebAPI.*` spelling, not `WebApi.*`.
+- Map feature names to public module names such as `"WebAPI.DOM"`.
 - Rename generic internal modules to feature-qualified names.
 - Use source-level `public` settings so only the feature entry module is exposed.
