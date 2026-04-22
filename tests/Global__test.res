@@ -1,49 +1,49 @@
-let response = await WebApiFetch.Global.fetch("https://rescript-lang.org/")
+let response = await Fetch.Global.fetch("https://rescript-lang.org/")
 
-let response2 = await WebApiFetch.Global.fetch(
+let response2 = await Fetch.Global.fetch(
   "https://rescript-lang.org/",
   ~init={
-    headers: WebApiFetch.HeadersInit.fromDict(
+    headers: Fetch.HeadersInit.fromDict(
       dict{
         "Content-Type": "application/json",
         "Authorization": "Bearer token",
       },
     ),
-    body: WebApiFetch.BodyInit.fromString(`secret=foo&response=bar`),
+    body: Fetch.BodyInit.fromString(`secret=foo&response=bar`),
   },
 )
 
-let response3 = await WebApiFetch.Global.fetchWithRequest(
-  WebApiFetch.Request.fromURL("https://rescript-lang.org/"),
+let response3 = await Fetch.Global.fetchWithRequest(
+  Fetch.Request.fromURL("https://rescript-lang.org/"),
   ~init={
     method: "POST",
-    headers: WebApiFetch.HeadersInit.fromDict(
+    headers: Fetch.HeadersInit.fromDict(
       dict{
         "Content-Type": "application/x-www-form-urlencoded",
       },
     ),
-    body: WebApiFetch.BodyInit.fromString(`secret=foo&response=bar`),
+    body: Fetch.BodyInit.fromString(`secret=foo&response=bar`),
   },
 )
 
-WebApiDOM.Global.removeEventListener(
-  WebApiEvent.Types.Mousedown,
-  WebApiUIEvents.MouseEvent.preventDefault,
+DOM.Global.removeEventListener(
+  Event.Types.Mousedown,
+  UIEvents.MouseEvent.preventDefault,
   ~options={capture: false},
 )
 
-let registrationResult = await WebApiDOM.Window.current
-->WebApiDOM.Window.navigator
-->WebApiDOM.Navigator.serviceWorker
-->WebApiServiceWorker.ServiceWorkerContainer.register("/sw.js")
-let subscription = await registrationResult.pushManager->WebApiPush.PushManager.subscribe(
+let registrationResult = await DOM.Window.current
+->DOM.Window.navigator
+->DOM.Navigator.serviceWorker
+->ServiceWorker.ServiceWorkerContainer.register("/sw.js")
+let subscription = await registrationResult.pushManager->Push.PushManager.subscribe(
   ~options={
     userVisibleOnly: true,
-    applicationServerKey: WebApiPush.ApplicationServerKey.fromString("MyPublicKey"),
+    applicationServerKey: Push.ApplicationServerKey.fromString("MyPublicKey"),
   },
 )
 
-let pushSubscriptionJSON = subscription->WebApiPush.PushSubscription.toJSON
+let pushSubscriptionJSON = subscription->Push.PushSubscription.toJSON
 let (auth, p256dh) = switch pushSubscriptionJSON.keys {
 | None => ("?", "?")
 | Some(keys) => (keys.auth, keys.p256dh)

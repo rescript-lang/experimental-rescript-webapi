@@ -39,7 +39,7 @@ and add `@rescript/webapi` to your `rescript.json`:
 export const rescriptJson = `
 {
   "bs-dependencies": [
-    "@rescript/webapi",
+    "@rescript/webapi"
   ],
   "bsc-flags": [
     "-open WebAPI.Global"
@@ -61,7 +61,7 @@ let location = window.location
 let href = location.href
 
 // Invoke methods using the \`->TypeModule.method\`
-location->Location.reload
+location->WebAPI.Location.reload
 `;
 
 export const compiledSample = `

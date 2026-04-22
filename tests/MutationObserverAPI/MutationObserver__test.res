@@ -1,7 +1,7 @@
-module MObserver = WebApiMutationObserver.MutationObserver
+module MObserver = MutationObserver.MutationObserver
 
 let observer = MObserver.make((mutations, obs) => {
-  let button = WebApiDOM.Global.document->WebApiDOM.Document.querySelector("button")
+  let button = DOM.Global.document->DOM.Document.querySelector("button")
   switch button->Null.toOption {
   | Some(button) => {
       Console.log(button)
@@ -13,7 +13,7 @@ let observer = MObserver.make((mutations, obs) => {
 })
 
 observer->MObserver.observe(
-  ~target=WebApiDOM.Global.document->WebApiDOM.Document.asNode,
+  ~target=DOM.Global.document->DOM.Document.asNode,
   ~options={childList: true, subtree: true},
 )
 

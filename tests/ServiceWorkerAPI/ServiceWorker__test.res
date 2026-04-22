@@ -1,14 +1,14 @@
-let self = WebApiServiceWorker.ServiceWorkerGlobalScope.current
+let self = ServiceWorker.ServiceWorkerGlobalScope.current
 
-self->WebApiServiceWorker.ServiceWorkerGlobalScope.addEventListener(WebApiEvent.Types.Push, (
-  event: WebApiPush.PushEvent.t,
+self->ServiceWorker.ServiceWorkerGlobalScope.addEventListener(Event.Types.Push, (
+  event: Push.PushEvent.t,
 ) => {
   Console.log("received push event")
 
   // Extract data
   let (title, body) = switch event.data {
   | Some(data) =>
-    switch data->WebApiPush.PushMessageData.json {
+    switch data->Push.PushMessageData.json {
     | JSON.Object(dict{"title": JSON.String(title), "body": JSON.String(body)}) => (title, body)
     | _ => ("???", "???")
     }
@@ -16,13 +16,13 @@ self->WebApiServiceWorker.ServiceWorkerGlobalScope.addEventListener(WebApiEvent.
   }
 
   // Handle some data sync
-  event->WebApiPush.PushEvent.waitUntil(
-    self->WebApiServiceWorker.ServiceWorkerGlobalScope.fetch("https://rescript-lang.org"),
+  event->Push.PushEvent.waitUntil(
+    self->ServiceWorker.ServiceWorkerGlobalScope.fetch("https://rescript-lang.org"),
   )
 
   // Show notification
   self.registration
-  ->WebApiServiceWorker.ServiceWorkerRegistration.showNotification(
+  ->ServiceWorker.ServiceWorkerRegistration.showNotification(
     ~title,
     ~options={
       body,
@@ -36,25 +36,24 @@ self->WebApiServiceWorker.ServiceWorkerGlobalScope.addEventListener(WebApiEvent.
   ->Promise.ignore
 })
 
-self->WebApiServiceWorker.ServiceWorkerGlobalScope.addEventListener(
-  WebApiEvent.Types.NotificationClick,
-  (event: WebApiNotification.Notification.notificationEvent) => {
-    Console.log(`notification clicked: ${event.action}`)
-    // Close the notification
-    event.notification->WebApiNotification.Notification.close
+self->ServiceWorker.ServiceWorkerGlobalScope.addEventListener(Event.Types.NotificationClick, (
+  event: Notification.Notification.notificationEvent,
+) => {
+  Console.log(`notification clicked: ${event.action}`)
+  // Close the notification
+  event.notification->Notification.Notification.close
 
-    // Open a new window if that is relevant
-    event.notification.data
-    ->Option.flatMap(data => {
-      switch data {
-      | JSON.Number(id) => Some(Float.toString(id))
-      | _ => None
-      }
-    })
-    ->Option.forEach(id => {
-      self.clients
-      ->WebApiServiceWorker.Clients.openWindow(`https://mywebsite.com/mydata/${id}`)
-      ->Promise.ignore
-    })
-  },
-)
+  // Open a new window if that is relevant
+  event.notification.data
+  ->Option.flatMap(data => {
+    switch data {
+    | JSON.Number(id) => Some(Float.toString(id))
+    | _ => None
+    }
+  })
+  ->Option.forEach(id => {
+    self.clients
+    ->ServiceWorker.Clients.openWindow(`https://mywebsite.com/mydata/${id}`)
+    ->Promise.ignore
+  })
+})

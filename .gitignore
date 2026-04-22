@@ -5,7 +5,10 @@
 dist/
 tmp/
 docs/public/llm.txt
+.npm-cache/
+*.tgz
 *~
+.worktrees/
 
 **/lib/bs/
 **/lib/ocaml
@@ -14,4 +17,6 @@ docs/public/llm.txt
 
 rescript.lock
 
+src/**/*.js
+tests/**/*.js
 **/*.res.js

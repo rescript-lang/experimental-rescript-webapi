@@ -1,0 +1,3 @@
+module IntersectionObserver = IntersectionObserverIntersectionObserver
+module IntersectionObserverRoot = IntersectionObserverRoot
+module Types = IntersectionObserverTypes

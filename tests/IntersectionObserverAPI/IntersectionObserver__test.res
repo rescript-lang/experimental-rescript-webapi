@@ -1,11 +1,11 @@
-module IObserver = WebApiIntersectionObserver.IntersectionObserver
-module IRoot = WebApiIntersectionObserver.IntersectionObserverRoot
+module IObserver = IntersectionObserver.IntersectionObserver
+module IRoot = IntersectionObserver.IntersectionObserverRoot
 
 let observer = IObserver.make(~callback=(entry, observer) => {
   Console.log2(entry, observer)
 })
 
-let root = WebApiDOM.Global.document->WebApiDOM.Document.querySelector("#root")->Null.getUnsafe
+let root = DOM.Global.document->DOM.Document.querySelector("#root")->Null.getUnsafe
 
 let observer2 = IObserver.make(
   ~callback=(entry, observer) => {
@@ -25,8 +25,7 @@ switch observer2.root->IRoot.decode {
 }
 let rootMargin2 = observer2.rootMargin
 
-let targetElement =
-  WebApiDOM.Global.document->WebApiDOM.Document.querySelector("#targetElement")->Null.toOption
+let targetElement = DOM.Global.document->DOM.Document.querySelector("#targetElement")->Null.toOption
 switch targetElement {
 | Some(e) => {
     observer2->IObserver.observe(e)

@@ -1,0 +1,2 @@
+module MediaCapabilities = MediaCapabilitiesMediaCapabilities
+module Types = MediaCapabilitiesTypes
