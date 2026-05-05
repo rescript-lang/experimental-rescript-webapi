@@ -4,7 +4,7 @@
 [See WebApiVisualViewport on MDN](https://developer.mozilla.org/docs/Web/API/VisualViewport)
 */
 type visualViewport = {
-  ...Event.Types.eventTarget,
+  ...EventTypes.eventTarget,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/VisualViewport/offsetLeft)
     */

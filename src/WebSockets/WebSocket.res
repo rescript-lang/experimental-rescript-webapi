@@ -1,5 +1,3 @@
-module Blob = File.Blob
-
 type t = WebSocketsTypes.webSocket = private {...WebSocketsTypes.webSocket}
 type binaryType = WebSocketsTypes.binaryType
 type messageEvent<'t> = WebSocketsTypes.messageEvent<'t> = {...WebSocketsTypes.messageEvent<'t>}
@@ -38,7 +36,7 @@ let socket =
 @new
 external fromURLWithProtocols: (~url: string, ~protocols: array<string>) => t = "WebSocket"
 
-include Event.EventTarget.Impl({type t = t})
+include EventTarget.Impl({type t = t})
 
 /**
 Closes the WebSocket connection, optionally using code as the the WebSocket connection close code and reason as the the WebSocket connection close reason.

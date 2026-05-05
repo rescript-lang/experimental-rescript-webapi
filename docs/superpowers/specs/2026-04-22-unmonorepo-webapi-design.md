@@ -7,7 +7,7 @@
 
 The repository was split into npm workspaces so each Web API area could build and publish independently from `packages/*`. The ReScript compiler now supports feature-gated source directories and feature-gated dependencies, so the package split is no longer required to support partial builds.
 
-The new target is a single published npm package, `@rescript/webapi`, with a unified internal build and an external API that still preserves feature-level boundaries such as `WebAPI.DOM`, `WebAPI.Fetch`, and `WebAPI.Base`.
+The new target is a single published npm package, `@rescript/webapi`, with a unified internal build and feature-gated source groups such as `WebAPI.DOM`, `WebAPI.Fetch`, and `WebAPI.Base`.
 
 ## Goals
 
@@ -15,8 +15,8 @@ The new target is a single published npm package, `@rescript/webapi`, with a uni
 - Move all feature sources from `packages/<Pkg>/src` to `src/<Pkg>`.
 - Delete every subpackage `package.json` and `rescript.json`.
 - Make the root `rescript.json` the single source of truth for sources, features, and ReScript dependencies.
-- Preserve the logical public API boundaries as `WebAPI.<Feature>`.
-- Keep internal helper modules private through the new `public` source setting.
+- Preserve the original flat public API module shape.
+- Keep feature boundaries in the build configuration rather than generated wrapper modules.
 - Publish one npm package: `@rescript/webapi`.
 - Let internal builds and downstream consumers compile only the features they need.
 
@@ -62,14 +62,12 @@ Each former package source directory is listed as its own source entry. Example 
     {
       "dir": "src/DOM",
       "subdirs": true,
-      "feature": "WebAPI.DOM",
-      "public": ["DOM"]
+      "feature": "WebAPI.DOM"
     },
     {
       "dir": "src/Fetch",
       "subdirs": true,
-      "feature": "WebAPI.Fetch",
-      "public": ["Fetch"]
+      "feature": "WebAPI.Fetch"
     },
     {
       "dir": "tests",
@@ -84,8 +82,7 @@ Rules:
 
 - Every former package gets one root source entry.
 - The `feature` value matches the public module name, for example `"WebAPI.DOM"` and `"WebAPI.Fetch"`.
-- The `public` list exposes only the feature entry module for that source directory.
-- Helper modules such as `DomTypes` and `DomGlobal` stay internal because they are not listed in `public`.
+- Source directories expose their modules directly, matching the original plain package structure.
 - `tests` remains a dev-only source.
 
 ### Dependencies
@@ -112,7 +109,7 @@ Migration rule:
 
 ## Public API Shape
 
-The public API remains feature-oriented:
+The build remains feature-oriented:
 
 - `WebAPI.Base`
 - `WebAPI.DOM`
@@ -120,15 +117,14 @@ The public API remains feature-oriented:
 - `WebAPI.WebCrypto`
 - and the rest of the former package surfaces
 
-The unified build must not expose raw internal file modules as first-class public API. Consumers should interact with a curated surface through the feature entry modules only.
+The unified build keeps the original flat module surface instead of adding generated feature entry modules. For example, consumers should use modules such as:
 
-Each feature directory therefore needs one public entry module whose filename matches the feature name:
+- `WebAPI.Document`
+- `WebAPI.Element`
+- `WebAPI.Headers`
+- `WebAPI.URL`
 
-- `src/DOM/DOM.res`
-- `src/Fetch/Fetch.res`
-- `src/Base/Base.res`
-
-Those entry modules are the only modules exported from their source directory through `public`.
+Shared DOM base types should be owned by `DOM`, so common references stay short, for example `DOM.element` instead of `BaseDOM.element` or `Base.DOM.element`.
 
 ## Internal Module Naming
 
@@ -144,6 +140,7 @@ In a unified package these names would collide, so the migration must rename gen
 
 Examples:
 
+- `src/Base/DOM.res` -> `src/Base/DOM.res`
 - `src/DOM/Types.res` -> `src/DOM/DomTypes.res`
 - `src/DOM/Global.res` -> `src/DOM/DomGlobal.res`
 - `src/Fetch/Global.res` -> `src/Fetch/FetchGlobal.res`
@@ -153,7 +150,7 @@ Examples:
 Naming rule:
 
 - Prefix internal modules with the feature’s public module stem.
-- Keep the public entry module itself unprefixed when it is the exported surface module, for example `DOM.res` and `Fetch.res`.
+- Keep legacy same-name public modules unprefixed when the feature owns that name, for example `src/URL/URL.res`, `src/Event/Event.res`, and `src/File/File.res`.
 
 This keeps the public API stable while making the unified internal module graph collision-free.
 
@@ -196,8 +193,7 @@ The build becomes unified at the repository level:
 1. ReScript reads the root `rescript.json`.
 2. Each feature source directory is included in the build graph.
 3. Feature gating determines which source directories and gated dependencies participate in a given build.
-4. Only the explicitly public feature entry modules are exposed to consumers.
-5. Internal helper modules remain compile-time implementation details.
+4. The original flat public modules are exposed directly to consumers.
 
 This provides one coherent package without losing the ability to compile narrower slices of the API surface.
 
@@ -240,4 +236,4 @@ The most important regression risks are:
 - Use `WebAPI.*` spelling, not `WebApi.*`.
 - Map feature names to public module names such as `"WebAPI.DOM"`.
 - Rename generic internal modules to feature-qualified names.
-- Use source-level `public` settings so only the feature entry module is exposed.
+- Keep feature-gated source directories, but do not generate feature entry modules.

@@ -1,20 +1,17 @@
-let shared1: WebWorkers.SharedWorker.t = WebWorkers.SharedWorker.make("sharedworker.js")
+let shared1: SharedWorker.t = SharedWorker.make("sharedworker.js")
 
-let shared2: WebWorkers.SharedWorker.t = WebWorkers.SharedWorker.makeWithName(
-  "sharedworker.js",
-  "name",
-)
+let shared2: SharedWorker.t = SharedWorker.makeWithName("sharedworker.js", "name")
 
-let shared3: WebWorkers.SharedWorker.t = WebWorkers.SharedWorker.makeWithOptions(
+let shared3: SharedWorker.t = SharedWorker.makeWithOptions(
   "sharedworker.js",
   {
     name: "workerName",
-    type_: WebWorkers.Types.Module,
+    type_: WebWorkersTypes.Module,
   },
 )
 
-let port: ChannelMessaging.MessagePort.t = WebWorkers.SharedWorker.port(shared1)
+let port: MessagePort.t = SharedWorker.port(shared1)
 
-let self = WebWorkers.SharedWorkerGlobalScope.current
+let self = SharedWorkerGlobalScope.current
 
-self->WebWorkers.SharedWorkerGlobalScope.close
+self->SharedWorkerGlobalScope.close

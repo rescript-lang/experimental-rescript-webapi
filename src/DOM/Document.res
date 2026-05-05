@@ -301,7 +301,7 @@ external createAttributeNS: (
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Document/createEvent)
 */
 @send
-external createEvent: (DomTypes.document, string) => Event.Types.event = "createEvent"
+external createEvent: (DomTypes.document, string) => EventTypes.event = "createEvent"
 
 /**
  Returns an empty range object that has both of its boundary points positioned at the beginning of the document.
@@ -346,8 +346,8 @@ external createTreeWalker: (
 @send
 external startViewTransition: (
   DomTypes.document,
-  ~callbackOptions: ViewTransitions.Types.viewTransitionUpdateCallback=?,
-) => ViewTransitions.Types.viewTransition = "startViewTransition"
+  ~callbackOptions: ViewTransitionsTypes.viewTransitionUpdateCallback=?,
+) => ViewTransitionsTypes.viewTransition = "startViewTransition"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Document/caretPositionFromPoint)

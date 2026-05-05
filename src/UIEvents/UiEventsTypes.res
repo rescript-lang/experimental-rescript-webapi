@@ -10,11 +10,11 @@ Simple user interface events.
 */
 @editor.completeFrom(UIEvent)
 type uiEvent = private {
-  ...Event.Types.event,
+  ...EventTypes.event,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/UIEvent/view)
     */
-  view: Null.t<Base.DOM.window>,
+  view: Null.t<DOM.window>,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/UIEvent/detail)
     */
@@ -44,7 +44,7 @@ type focusEvent = private {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/FocusEvent/relatedTarget)
     */
-  relatedTarget: Null.t<Event.Types.eventTarget>,
+  relatedTarget: Null.t<EventTypes.eventTarget>,
 }
 
 /**
@@ -118,7 +118,7 @@ The possible values are "none", "copy", "copyLink", "copyMove", "link", "linkMov
     Returns a FileList of the files being dragged, if any.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/DataTransfer/files)
     */
-  files: DOM.Types.fileList,
+  files: DomTypes.fileList,
 }
 
 /**
@@ -248,7 +248,7 @@ type mouseEvent = private {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/MouseEvent/relatedTarget)
     */
-  relatedTarget: Null.t<Event.Types.eventTarget>,
+  relatedTarget: Null.t<EventTypes.eventTarget>,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/MouseEvent/pageX)
     */
@@ -321,7 +321,7 @@ type touch = private {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Touch/target)
     */
-  target: Event.Types.eventTarget,
+  target: EventTypes.eventTarget,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Touch/screenX)
     */
@@ -471,8 +471,8 @@ type pointerEvent = private {
 }
 
 type uiEventInit = {
-  ...Event.Types.eventInit,
-  mutable view?: Null.t<Base.DOM.window>,
+  ...EventTypes.eventInit,
+  mutable view?: Null.t<DOM.window>,
   mutable detail?: int,
   mutable which?: int,
 }
@@ -503,14 +503,14 @@ type mouseEventInit = {
   mutable clientY?: int,
   mutable button?: int,
   mutable buttons?: int,
-  mutable relatedTarget?: Null.t<Event.Types.eventTarget>,
+  mutable relatedTarget?: Null.t<EventTypes.eventTarget>,
   mutable movementX?: float,
   mutable movementY?: float,
 }
 
 type focusEventInit = {
   ...uiEventInit,
-  mutable relatedTarget?: Null.t<Event.Types.eventTarget>,
+  mutable relatedTarget?: Null.t<EventTypes.eventTarget>,
 }
 
 type compositionEventInit = {
@@ -543,12 +543,12 @@ type inputEventInit = {
   mutable isComposing?: bool,
   mutable inputType?: string,
   mutable dataTransfer?: Null.t<dataTransfer>,
-  mutable targetRanges?: array<Base.DOM.staticRange>,
+  mutable targetRanges?: array<DOM.staticRange>,
 }
 
 type touchInit = {
   mutable identifier: int,
-  mutable target: Event.Types.eventTarget,
+  mutable target: EventTypes.eventTarget,
   mutable clientX?: float,
   mutable clientY?: float,
   mutable screenX?: float,

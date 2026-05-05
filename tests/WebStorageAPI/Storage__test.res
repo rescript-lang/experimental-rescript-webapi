@@ -1,11 +1,11 @@
-for i in 0 to DOM.Global.localStorage.length - 1 {
-  DOM.Global.localStorage->WebStorage.Storage.key(i)->Null.getOr("nothing")->Console.log
+for i in 0 to DomGlobal.localStorage.length - 1 {
+  DomGlobal.localStorage->Storage.key(i)->Null.getOr("nothing")->Console.log
 }
 
-let item1 = DOM.Global.localStorage->WebStorage.Storage.getItem("foo")->Null.getOr("nothing")
+let item1 = DomGlobal.localStorage->Storage.getItem("foo")->Null.getOr("nothing")
 
-DOM.Global.localStorage->WebStorage.Storage.setItem(~key="bar", ~value="...")
+DomGlobal.localStorage->Storage.setItem(~key="bar", ~value="...")
 
-DOM.Global.localStorage->WebStorage.Storage.removeItem("bar")
+DomGlobal.localStorage->Storage.removeItem("bar")
 
-DOM.Global.localStorage->WebStorage.Storage.clear
+DomGlobal.localStorage->Storage.clear

@@ -11,9 +11,9 @@ let frame = VideoFrame.fromHTMLImageElement(~image=myImageElement)
 */
 @new
 external fromHTMLImageElement: (
-  ~image: DOM.Types.htmlImageElement,
-  ~init: DOM.Types.videoFrameInit=?,
-) => DOM.Types.videoFrame = "VideoFrame"
+  ~image: DomTypes.htmlImageElement,
+  ~init: DomTypes.videoFrameInit=?,
+) => DomTypes.videoFrame = "VideoFrame"
 
 /**
 `fromSVGImageElement(~image: SVGImageElement.t, ~init: videoFrameInit=?)`
@@ -28,9 +28,9 @@ let frame = VideoFrame.fromSVGImageElement(~image=mySvgImageElement)
 */
 @new
 external fromSVGImageElement: (
-  ~image: DOM.Types.svgImageElement,
-  ~init: DOM.Types.videoFrameInit=?,
-) => DOM.Types.videoFrame = "VideoFrame"
+  ~image: DomTypes.svgImageElement,
+  ~init: DomTypes.videoFrameInit=?,
+) => DomTypes.videoFrame = "VideoFrame"
 
 /**
 `fromHTMLVideoElement(~image: HTMLVideoElement.t, ~init: videoFrameInit=?)`
@@ -45,9 +45,9 @@ let frame = VideoFrame.fromHTMLVideoElement(~image=myVideoElement)
 */
 @new
 external fromHTMLVideoElement: (
-  ~image: DOM.Types.htmlVideoElement,
-  ~init: DOM.Types.videoFrameInit=?,
-) => DOM.Types.videoFrame = "VideoFrame"
+  ~image: DomTypes.htmlVideoElement,
+  ~init: DomTypes.videoFrameInit=?,
+) => DomTypes.videoFrame = "VideoFrame"
 
 /**
 `fromHTMLCanvasElement(~image: HTMLCanvasElement.t, ~init: videoFrameInit=?)`
@@ -62,9 +62,9 @@ let frame = VideoFrame.fromHTMLCanvasElement(~image=myCanvasElement)
 */
 @new
 external fromHTMLCanvasElement: (
-  ~image: DOM.Types.htmlCanvasElement,
-  ~init: DOM.Types.videoFrameInit=?,
-) => DOM.Types.videoFrame = "VideoFrame"
+  ~image: DomTypes.htmlCanvasElement,
+  ~init: DomTypes.videoFrameInit=?,
+) => DomTypes.videoFrame = "VideoFrame"
 
 /**
 `fromImageBitmap(~image: ImageBitmap.t, ~init: videoFrameInit=?)`
@@ -80,8 +80,8 @@ let frame = VideoFrame.fromImageBitmap(~image=myImageBitmap)
 @new
 external fromImageBitmap: (
   ~image: CanvasTypes.imageBitmap,
-  ~init: DOM.Types.videoFrameInit=?,
-) => DOM.Types.videoFrame = "VideoFrame"
+  ~init: DomTypes.videoFrameInit=?,
+) => DomTypes.videoFrame = "VideoFrame"
 
 /**
 `fromOffscreenCanvas(~image: OffscreenCanvas.t, ~init: videoFrameInit=?)`
@@ -97,8 +97,8 @@ let frame = VideoFrame.fromOffscreenCanvas(~image=myOffscreenCanvas)
 @new
 external fromOffscreenCanvas: (
   ~image: CanvasTypes.offscreenCanvas,
-  ~init: DOM.Types.videoFrameInit=?,
-) => DOM.Types.videoFrame = "VideoFrame"
+  ~init: DomTypes.videoFrameInit=?,
+) => DomTypes.videoFrame = "VideoFrame"
 
 /**
 `fromVideoFrame(~image: VideoFrame.t, ~init: videoFrameInit=?)`
@@ -113,9 +113,9 @@ let frame = VideoFrame.fromVideoFrame(~image=otherFrame)
 */
 @new
 external fromVideoFrame: (
-  ~image: DOM.Types.videoFrame,
-  ~init: DOM.Types.videoFrameInit=?,
-) => DOM.Types.videoFrame = "VideoFrame"
+  ~image: DomTypes.videoFrame,
+  ~init: DomTypes.videoFrameInit=?,
+) => DomTypes.videoFrame = "VideoFrame"
 
 /**
 `fromArrayBuffer(~data: ArrayBuffer.t, ~init: videoFrameBufferInit)`
@@ -132,8 +132,8 @@ let frame =
 @new
 external fromArrayBuffer: (
   ~data: ArrayBuffer.t,
-  ~init: DOM.Types.videoFrameBufferInit,
-) => DOM.Types.videoFrame = "VideoFrame"
+  ~init: DomTypes.videoFrameBufferInit,
+) => DomTypes.videoFrame = "VideoFrame"
 
 /**
 `fromTypedArray(~data: TypedArray.t<'t>, ~init: videoFrameBufferInit)`
@@ -150,8 +150,8 @@ let frame =
 @new
 external fromTypedArray: (
   ~data: TypedArray.t<'t>,
-  ~init: DOM.Types.videoFrameBufferInit,
-) => DOM.Types.videoFrame = "VideoFrame"
+  ~init: DomTypes.videoFrameBufferInit,
+) => DomTypes.videoFrame = "VideoFrame"
 
 /**
 `fromDataView(~data: DataView.t, ~init: videoFrameBufferInit)`
@@ -168,16 +168,16 @@ let frame =
 @new
 external fromDataView: (
   ~data: DataView.t,
-  ~init: DOM.Types.videoFrameBufferInit,
-) => DOM.Types.videoFrame = "VideoFrame"
+  ~init: DomTypes.videoFrameBufferInit,
+) => DomTypes.videoFrame = "VideoFrame"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/VideoFrame/allocationSize)
 */
 @send
 external allocationSize: (
-  DOM.Types.videoFrame,
-  ~options: DOM.Types.videoFrameCopyToOptions=?,
+  DomTypes.videoFrame,
+  ~options: DomTypes.videoFrameCopyToOptions=?,
 ) => int = "allocationSize"
 
 /**
@@ -185,39 +185,39 @@ external allocationSize: (
 */
 @send
 external copyTo: (
-  DOM.Types.videoFrame,
+  DomTypes.videoFrame,
   ~destination: ArrayBuffer.t,
-  ~options: DOM.Types.videoFrameCopyToOptions=?,
-) => promise<array<DOM.Types.planeLayout>> = "copyTo"
+  ~options: DomTypes.videoFrameCopyToOptions=?,
+) => promise<array<DomTypes.planeLayout>> = "copyTo"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/VideoFrame/copyTo)
 */
 @send
 external copyTo2: (
-  DOM.Types.videoFrame,
-  ~destination: Base.ArrayBufferTypedArrayOrDataView.t,
-  ~options: DOM.Types.videoFrameCopyToOptions=?,
-) => promise<array<DOM.Types.planeLayout>> = "copyTo"
+  DomTypes.videoFrame,
+  ~destination: ArrayBufferTypedArrayOrDataView.t,
+  ~options: DomTypes.videoFrameCopyToOptions=?,
+) => promise<array<DomTypes.planeLayout>> = "copyTo"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/VideoFrame/copyTo)
 */
 @send
 external copyTo3: (
-  DOM.Types.videoFrame,
+  DomTypes.videoFrame,
   ~destination: DataView.t,
-  ~options: DOM.Types.videoFrameCopyToOptions=?,
-) => promise<array<DOM.Types.planeLayout>> = "copyTo"
+  ~options: DomTypes.videoFrameCopyToOptions=?,
+) => promise<array<DomTypes.planeLayout>> = "copyTo"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/VideoFrame/clone)
 */
 @send
-external clone: DOM.Types.videoFrame => DOM.Types.videoFrame = "clone"
+external clone: DomTypes.videoFrame => DomTypes.videoFrame = "clone"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/VideoFrame/close)
 */
 @send
-external close: DOM.Types.videoFrame => unit = "close"
+external close: DomTypes.videoFrame => unit = "close"

@@ -1,88 +1,88 @@
 @@warning("-30")
 
-type domStringList = Base.DOM.domStringList
-type eventTarget = Event.Types.eventTarget
-type eventType = Event.Types.eventType
-type file = File.Types.file
-type blob = File.Types.blob
-type fileSystemEntry = FileAndDirectoryEntries.Types.fileSystemEntry
-type remotePlayback = RemotePlayback.Types.remotePlayback
-type fontFaceSet = CSSFontLoading.Types.fontFaceSet
-type structuredSerializeOptions = ChannelMessaging.Types.structuredSerializeOptions
+type domStringList = DOM.domStringList
+type eventTarget = EventTypes.eventTarget
+type eventType = EventTypes.eventType
+type file = FileTypes.file
+type blob = FileTypes.blob
+type fileSystemEntry = FileAndDirectoryEntriesTypes.fileSystemEntry
+type remotePlayback = RemotePlaybackTypes.remotePlayback
+type fontFaceSet = CssFontLoadingTypes.fontFaceSet
+type structuredSerializeOptions = ChannelMessagingTypes.structuredSerializeOptions
 
-type htmlElement = Base.DOM.htmlElement
-type mediaError = Base.DOM.mediaError
-type timeRanges = Base.DOM.timeRanges
-type textTrackList = Base.DOM.textTrackList
-type htmlFormElement = Base.DOM.htmlFormElement
-type htmlCollection<'a> = Base.DOM.htmlCollection<'a>
-type element = Base.DOM.element
-type validityState = Base.DOM.validityState
-type document = Base.DOM.document
-type cssStyleSheet = Base.DOM.cssStyleSheet
-type nodeList<'a> = Base.DOM.nodeList<'a>
-type htmlLabelElement = Base.DOM.htmlLabelElement
-type documentFragment = Base.DOM.documentFragment
-type node = Base.DOM.node
-type cssStyleDeclaration = Base.DOM.cssStyleDeclaration
-type domRectReadOnly = Base.DOM.domRectReadOnly
-type shadowRoot = Base.DOM.shadowRoot
-type styleSheet = Base.DOM.styleSheet
-type mediaQueryList = Base.DOM.mediaQueryList
-type domRect = Base.DOM.domRect
-type range = Base.DOM.range
-type documentType = Base.DOM.documentType
-type cssStyleValue = Base.DOM.cssStyleValue
-type treeWalker = Base.DOM.treeWalker
-type selection = Base.DOM.selection
-type abstractRange = Base.DOM.abstractRange
-type htmlOptionsCollection = Base.DOM.htmlOptionsCollection
-type styleSheetList = Base.DOM.styleSheetList
-type elementInternals = Base.DOM.elementInternals
-type nodeFilter = Base.DOM.nodeFilter
-type fileList = Base.DOM.fileList
-type cssRule = Base.DOM.cssRule
-type attr = Base.DOM.attr
-type domRectList = Base.DOM.domRectList
-type htmlFormControlsCollection = Base.DOM.htmlFormControlsCollection
-type domImplementation = Base.DOM.domImplementation
-type nodeIterator = Base.DOM.nodeIterator
-type xmlDocument = Base.DOM.xmlDocument
-type characterData = Base.DOM.characterData
-type text = Base.DOM.text
-type cdataSection = Base.DOM.cdataSection
-type comment = Base.DOM.comment
-type processingInstruction = Base.DOM.processingInstruction
-type caretPosition = Base.DOM.caretPosition
-type htmlTableElement = Base.DOM.htmlTableElement
-type htmlOutputElement = Base.DOM.htmlOutputElement
-type htmlTableCellElement = Base.DOM.htmlTableCellElement
-type htmlHeadElement = Base.DOM.htmlHeadElement
-type htmlSelectElement = Base.DOM.htmlSelectElement
-type htmlButtonElement = Base.DOM.htmlButtonElement
-type htmlTableSectionElement = Base.DOM.htmlTableSectionElement
-type htmlOptionElement = Base.DOM.htmlOptionElement
-type htmlEmbedElement = Base.DOM.htmlEmbedElement
-type htmlTextAreaElement = Base.DOM.htmlTextAreaElement
-type htmlTableCaptionElement = Base.DOM.htmlTableCaptionElement
-type htmlSlotElement = Base.DOM.htmlSlotElement
-type htmlDataListElement = Base.DOM.htmlDataListElement
-type htmlInputElement = Base.DOM.htmlInputElement
-type htmlScriptElement = Base.DOM.htmlScriptElement
-type htmlAnchorElement = Base.DOM.htmlAnchorElement
-type htmlTableRowElement = Base.DOM.htmlTableRowElement
-type htmlImageElement = Base.DOM.htmlImageElement
-type htmlAreaElement = Base.DOM.htmlAreaElement
-type videoPlaybackQuality = Base.DOM.videoPlaybackQuality
-type idleDeadline = Base.DOM.idleDeadline
-type cssRuleList = Base.DOM.cssRuleList
-type mediaKeySystemConfiguration = Base.EncryptedMediaExtensions.mediaKeySystemConfiguration
+type htmlElement = DOM.htmlElement
+type mediaError = DOM.mediaError
+type timeRanges = DOM.timeRanges
+type textTrackList = DOM.textTrackList
+type htmlFormElement = DOM.htmlFormElement
+type htmlCollection<'a> = DOM.htmlCollection<'a>
+type element = DOM.element
+type validityState = DOM.validityState
+type document = DOM.document
+type cssStyleSheet = DOM.cssStyleSheet
+type nodeList<'a> = DOM.nodeList<'a>
+type htmlLabelElement = DOM.htmlLabelElement
+type documentFragment = DOM.documentFragment
+type node = DOM.node
+type cssStyleDeclaration = DOM.cssStyleDeclaration
+type domRectReadOnly = DOM.domRectReadOnly
+type shadowRoot = DOM.shadowRoot
+type styleSheet = DOM.styleSheet
+type mediaQueryList = DOM.mediaQueryList
+type domRect = DOM.domRect
+type range = DOM.range
+type documentType = DOM.documentType
+type cssStyleValue = DOM.cssStyleValue
+type treeWalker = DOM.treeWalker
+type selection = DOM.selection
+type abstractRange = DOM.abstractRange
+type htmlOptionsCollection = DOM.htmlOptionsCollection
+type styleSheetList = DOM.styleSheetList
+type elementInternals = DOM.elementInternals
+type nodeFilter = DOM.nodeFilter
+type fileList = DOM.fileList
+type cssRule = DOM.cssRule
+type attr = DOM.attr
+type domRectList = DOM.domRectList
+type htmlFormControlsCollection = DOM.htmlFormControlsCollection
+type domImplementation = DOM.domImplementation
+type nodeIterator = DOM.nodeIterator
+type xmlDocument = DOM.xmlDocument
+type characterData = DOM.characterData
+type text = DOM.text
+type cdataSection = DOM.cdataSection
+type comment = DOM.comment
+type processingInstruction = DOM.processingInstruction
+type caretPosition = DOM.caretPosition
+type htmlTableElement = DOM.htmlTableElement
+type htmlOutputElement = DOM.htmlOutputElement
+type htmlTableCellElement = DOM.htmlTableCellElement
+type htmlHeadElement = DOM.htmlHeadElement
+type htmlSelectElement = DOM.htmlSelectElement
+type htmlButtonElement = DOM.htmlButtonElement
+type htmlTableSectionElement = DOM.htmlTableSectionElement
+type htmlOptionElement = DOM.htmlOptionElement
+type htmlEmbedElement = DOM.htmlEmbedElement
+type htmlTextAreaElement = DOM.htmlTextAreaElement
+type htmlTableCaptionElement = DOM.htmlTableCaptionElement
+type htmlSlotElement = DOM.htmlSlotElement
+type htmlDataListElement = DOM.htmlDataListElement
+type htmlInputElement = DOM.htmlInputElement
+type htmlScriptElement = DOM.htmlScriptElement
+type htmlAnchorElement = DOM.htmlAnchorElement
+type htmlTableRowElement = DOM.htmlTableRowElement
+type htmlImageElement = DOM.htmlImageElement
+type htmlAreaElement = DOM.htmlAreaElement
+type videoPlaybackQuality = DOM.videoPlaybackQuality
+type idleDeadline = DOM.idleDeadline
+type cssRuleList = DOM.cssRuleList
+type mediaKeySystemConfiguration = BaseEncryptedMediaExtensions.mediaKeySystemConfiguration
 
 /**
 A window containing a WebApiDOM document; the document property points to the WebApiDOM document loaded in that window.
 [See Window on MDN](https://developer.mozilla.org/docs/Web/API/Window)
 */
-@editor.completeFrom(Window) type window = Base.DOM.window
+@editor.completeFrom(Window) type window = DOM.window
 
 type shadowRootMode =
   | @as("closed") Closed
@@ -258,7 +258,7 @@ type shareData = {
 [See Location on MDN](https://developer.mozilla.org/docs/Web/API/Location)
 */
 @editor.completeFrom(Location)
-type location = Base.DOM.location = private {...Base.DOM.location}
+type location = DOM.location = private {...DOM.location}
 
 /**
 [See UserActivation on MDN](https://developer.mozilla.org/docs/Web/API/UserActivation)
@@ -279,7 +279,7 @@ The state and the identity of the user agent. It allows scripts to query it and 
 [See Navigator on MDN](https://developer.mozilla.org/docs/Web/API/Navigator)
 */
 @editor.completeFrom(Navigator)
-type navigator = Base.DOM.navigator
+type navigator = DOM.navigator
 
 // TODO: mark as private once mutating fields of private records is allowed
 @editor.completeFrom(DOMTokenList)

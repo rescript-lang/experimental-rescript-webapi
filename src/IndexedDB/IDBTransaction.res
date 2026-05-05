@@ -1,4 +1,4 @@
-include Event.EventTarget.Impl({type t = IndexedDbTypes.idbTransaction})
+include EventTarget.Impl({type t = IndexedDbTypes.idbTransaction})
 
 /**
 Returns an IDBObjectStore in the transaction's scope.

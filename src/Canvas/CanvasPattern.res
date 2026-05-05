@@ -1,4 +1,4 @@
-type domMatrix2DInit = DOM.Types.domMatrix2DInit
+type domMatrix2DInit = DomTypes.domMatrix2DInit
 
 /**
 Sets the transformation matrix that will be used when rendering the pattern during a fill or stroke painting operation.

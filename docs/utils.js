@@ -3,7 +3,7 @@ import { exec } from "node:child_process";
 import { promisify } from "node:util";
 import { readdirSync, existsSync, readFileSync } from "fs";
 import { micromark } from "micromark";
-import { featureSpecs, publicNameForLeafModule } from "../scripts/unmonorepo/feature-spec.mjs";
+import { featureSpecs } from "../scripts/unmonorepo/feature-spec.mjs";
 
 const execAsync = promisify(exec);
 
@@ -32,15 +32,14 @@ function mapTypeModules(parentModuleLink, file, spec) {
   }
 
   const typesFileName = `${spec.internalPrefix}Types.res`;
-  const entryFileName = `${spec.publicModule}.res`;
   const files = readdirSync(folder);
   return files
-    .filter((f) => f.endsWith(".res") && f !== typesFileName && f !== entryFileName)
+    .filter((f) => f.endsWith(".res") && f !== typesFileName)
     .map((file) => {
       const filePath = path.join(folder, file);
 
       const leafName = file.replace("$", "").replace(".res", "");
-      const moduleName = publicNameForLeafModule(leafName, spec.internalPrefix);
+      const moduleName = leafName;
       const apiRouteParameter = toKebabCase(moduleName);
       const link = createTypeModuleLink(parentModuleLink, moduleName);
       const typeName = moduleName[0].toLocaleLowerCase() + moduleName.slice(1);

@@ -2,7 +2,7 @@ type t = WebWorkersTypes.sharedWorker
 type workerType = WebWorkersTypes.workerType
 type workerOptions = WebWorkersTypes.workerOptions = {...WebWorkersTypes.workerOptions}
 
-include Event.EventTarget.Impl({type t = t})
+include EventTarget.Impl({type t = t})
 
 /**
 `make(string)`
@@ -65,4 +65,4 @@ let port: MessagePort.t = SharedWorker.port(myWorker)
 [Read more on MDN](https://developer.mozilla.org/en-US/docs/Web/API/SharedWorker/port)
 */
 @get
-external port: t => ChannelMessaging.MessagePort.t = "port"
+external port: t => MessagePort.t = "port"

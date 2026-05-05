@@ -16,7 +16,7 @@ Adds a new entry for the given data to the drag data store. If the data is plain
 @send
 external addFile: (
   UiEventsTypes.dataTransferItemList,
-  File.Types.file,
+  FileTypes.file,
 ) => UiEventsTypes.dataTransferItem = "add"
 
 /**

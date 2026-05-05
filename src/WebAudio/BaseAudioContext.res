@@ -3,7 +3,7 @@ module Impl = (
     type t
   },
 ) => {
-  include Event.EventTarget.Impl({type t = T.t})
+  include EventTarget.Impl({type t = T.t})
 
   external asBaseAudioContext: T.t => WebAudioTypes.baseAudioContext = "%identity"
 

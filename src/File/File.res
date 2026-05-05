@@ -1,10 +1,15 @@
-module Blob = Blob
-module File = FileFile
-module FileSystemDirectoryHandle = FileSystemDirectoryHandle
-module FileSystemFileHandle = FileSystemFileHandle
-module FileSystemHandle = FileSystemHandle
-module FileSystemWritableFileStream = FileSystemWritableFileStream
-module Types = FileTypes
-module ReadableStream = ReadableStream
-module WritableStream = WritableStream
-module WritableStreamDefaultController = WritableStreamDefaultController
+type t = FileTypes.file = private {...FileTypes.file}
+
+include Blob.Impl({type t = t})
+
+/**
+[Read more on MDN](https://developer.mozilla.org/docs/Web/API/File)
+*/
+@new
+external make: (
+  ~fileBits: array<FileTypes.blobPart>,
+  ~fileName: string,
+  ~options: FileTypes.filePropertyBag=?,
+) => t = "File"
+
+let isInstanceOf = (_: 't): bool => %raw(`param instanceof File`)

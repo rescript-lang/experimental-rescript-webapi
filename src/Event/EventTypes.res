@@ -116,7 +116,7 @@ EventTarget is a WebApiDOM interface implemented by objects that can receive eve
 [See EventTarget on MDN](https://developer.mozilla.org/docs/Web/API/EventTarget)
 */
 @editor.completeFrom(EventTarget)
-type eventTarget = Base.Event.eventTarget = private {...Base.Event.eventTarget}
+type eventTarget = BaseEvent.eventTarget = private {...BaseEvent.eventTarget}
 
 /**
 An event which takes place in the DOM.

@@ -18,9 +18,6 @@ export function publicModuleToInternalPrefix(publicModule) {
 export function publicNameForLeafModule(leafName, internalPrefix) {
   const preservedPrefixedModules = new Set(["PushEvent"]);
   const duplicatedSuffixes = ["Types", "Global", "Event", "File", "HTMLMediaElement"];
-  const featureSuffix = featureSpecs
-    .map(({ publicModule }) => publicModule)
-    .find((publicModule) => leafName === `${internalPrefix}${publicModule}`);
 
   if (preservedPrefixedModules.has(leafName)) {
     return leafName;
@@ -30,10 +27,6 @@ export function publicNameForLeafModule(leafName, internalPrefix) {
     if (leafName === `${internalPrefix}${suffix}`) {
       return suffix;
     }
-  }
-
-  if (featureSuffix) {
-    return featureSuffix;
   }
 
   return leafName;
@@ -94,9 +87,24 @@ export const featureSpecs = [
     featureName: `WebAPI.${publicModule}`,
     internalPrefix: publicModuleToInternalPrefix(publicModule),
     sourceDir: `src/${dirName}`,
-    entryModulePath: `src/${dirName}/${publicModule}.res`,
   };
 });
+
+export function migratedLeafName({ spec, leafName, duplicateLeaves }) {
+  if (spec.dirName === "Base" && leafName === "DOM") {
+    return "DOM";
+  }
+
+  if (leafName === spec.publicModule) {
+    return leafName;
+  }
+
+  if (duplicateLeaves.has(leafName)) {
+    return `${spec.internalPrefix}${leafName}`;
+  }
+
+  return leafName;
+}
 
 export function findDuplicateLeafModules(rootDir, specs = featureSpecs) {
   const counts = new Map();

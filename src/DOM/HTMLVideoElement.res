@@ -12,7 +12,7 @@ external getVideoPlaybackQuality: DomTypes.htmlVideoElement => DomTypes.videoPla
 */
 @send
 external requestPictureInPicture: DomTypes.htmlVideoElement => promise<
-  PictureInPicture.Types.pictureInPictureWindow,
+  PictureInPictureTypes.pictureInPictureWindow,
 > = "requestPictureInPicture"
 
 /**

@@ -3,68 +3,67 @@
 */
 @send
 external match: (
-  WebWorkers.Types.cache,
-  ~request: Fetch.Types.request,
-  ~options: WebWorkers.Types.cacheQueryOptions=?,
-) => Nullable.t<Fetch.Types.response> = "match"
+  WebWorkersTypes.cache,
+  ~request: FetchTypes.request,
+  ~options: WebWorkersTypes.cacheQueryOptions=?,
+) => Nullable.t<FetchTypes.response> = "match"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Cache/match)
 */
 @send
 external match2: (
-  WebWorkers.Types.cache,
+  WebWorkersTypes.cache,
   ~request: string,
-  ~options: WebWorkers.Types.cacheQueryOptions=?,
-) => Nullable.t<Fetch.Types.response> = "match"
+  ~options: WebWorkersTypes.cacheQueryOptions=?,
+) => Nullable.t<FetchTypes.response> = "match"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Cache/matchAll)
 */
 @send
 external matchAll: (
-  WebWorkers.Types.cache,
-  ~request: Fetch.Types.request=?,
-  ~options: WebWorkers.Types.cacheQueryOptions=?,
-) => promise<array<Fetch.Types.response>> = "matchAll"
+  WebWorkersTypes.cache,
+  ~request: FetchTypes.request=?,
+  ~options: WebWorkersTypes.cacheQueryOptions=?,
+) => promise<array<FetchTypes.response>> = "matchAll"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Cache/matchAll)
 */
 @send
 external matchAll2: (
-  WebWorkers.Types.cache,
+  WebWorkersTypes.cache,
   ~request: string=?,
-  ~options: WebWorkers.Types.cacheQueryOptions=?,
-) => promise<array<Fetch.Types.response>> = "matchAll"
+  ~options: WebWorkersTypes.cacheQueryOptions=?,
+) => promise<array<FetchTypes.response>> = "matchAll"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Cache/add)
 */
 @send
-external add: (WebWorkers.Types.cache, Fetch.Types.request) => promise<unit> = "add"
+external add: (WebWorkersTypes.cache, FetchTypes.request) => promise<unit> = "add"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Cache/add)
 */
 @send
-external add2: (WebWorkers.Types.cache, string) => promise<unit> = "add"
+external add2: (WebWorkersTypes.cache, string) => promise<unit> = "add"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Cache/addAll)
 */
 @send
-external addAll: (WebWorkers.Types.cache, array<Fetch.Types.requestInfo>) => promise<unit> =
-  "addAll"
+external addAll: (WebWorkersTypes.cache, array<FetchTypes.requestInfo>) => promise<unit> = "addAll"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Cache/put)
 */
 @send
 external put: (
-  WebWorkers.Types.cache,
-  ~request: Fetch.Types.request,
-  ~response: Fetch.Types.response,
+  WebWorkersTypes.cache,
+  ~request: FetchTypes.request,
+  ~response: FetchTypes.response,
 ) => promise<unit> = "put"
 
 /**
@@ -72,9 +71,9 @@ external put: (
 */
 @send
 external put2: (
-  WebWorkers.Types.cache,
+  WebWorkersTypes.cache,
   ~request: string,
-  ~response: Fetch.Types.response,
+  ~response: FetchTypes.response,
 ) => promise<unit> = "put"
 
 /**
@@ -82,9 +81,9 @@ external put2: (
 */
 @send
 external delete: (
-  WebWorkers.Types.cache,
-  ~request: Fetch.Types.request,
-  ~options: WebWorkers.Types.cacheQueryOptions=?,
+  WebWorkersTypes.cache,
+  ~request: FetchTypes.request,
+  ~options: WebWorkersTypes.cacheQueryOptions=?,
 ) => promise<bool> = "delete"
 
 /**
@@ -92,9 +91,9 @@ external delete: (
 */
 @send
 external delete2: (
-  WebWorkers.Types.cache,
+  WebWorkersTypes.cache,
   ~request: string,
-  ~options: WebWorkers.Types.cacheQueryOptions=?,
+  ~options: WebWorkersTypes.cacheQueryOptions=?,
 ) => promise<bool> = "delete"
 
 /**
@@ -102,17 +101,17 @@ external delete2: (
 */
 @send
 external keys: (
-  WebWorkers.Types.cache,
-  ~request: Fetch.Types.request=?,
-  ~options: WebWorkers.Types.cacheQueryOptions=?,
-) => promise<array<Fetch.Types.request>> = "keys"
+  WebWorkersTypes.cache,
+  ~request: FetchTypes.request=?,
+  ~options: WebWorkersTypes.cacheQueryOptions=?,
+) => promise<array<FetchTypes.request>> = "keys"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Cache/keys)
 */
 @send
 external keys2: (
-  WebWorkers.Types.cache,
+  WebWorkersTypes.cache,
   ~request: string=?,
-  ~options: WebWorkers.Types.cacheQueryOptions=?,
-) => promise<array<Fetch.Types.request>> = "keys"
+  ~options: WebWorkersTypes.cacheQueryOptions=?,
+) => promise<array<FetchTypes.request>> = "keys"

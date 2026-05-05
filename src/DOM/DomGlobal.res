@@ -26,7 +26,7 @@ external location: DomTypes.location = "location"
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/history)
 */
-external history: History.Types.history = "history"
+external history: HistoryTypes.history = "history"
 
 /**
 Defines a new custom element, mapping the given name to the given constructor as an autonomous custom element.
@@ -122,7 +122,7 @@ external screen: DomTypes.screen = "screen"
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/visualViewport)
 */
-external visualViewport: VisualViewport.Types.visualViewport = "visualViewport"
+external visualViewport: VisualViewportTypes.visualViewport = "visualViewport"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/innerWidth)
@@ -182,7 +182,7 @@ external devicePixelRatio: float = "devicePixelRatio"
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/speechSynthesis)
 */
-external speechSynthesis: WebSpeech.Types.speechSynthesis = "speechSynthesis"
+external speechSynthesis: WebSpeechTypes.speechSynthesis = "speechSynthesis"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/origin)
@@ -202,32 +202,32 @@ external crossOriginIsolated: bool = "crossOriginIsolated"
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/indexedDB)
 */
-external indexedDB: IndexedDB.Types.idbFactory = "indexedDB"
+external indexedDB: IndexedDbTypes.idbFactory = "indexedDB"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/crypto)
 */
-external crypto: WebCrypto.Types.crypto = "crypto"
+external crypto: WebCryptoTypes.crypto = "crypto"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/performance)
 */
-external performance: Performance.Types.performance = "performance"
+external performance: PerformanceTypes.performance = "performance"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/caches)
 */
-external caches: WebWorkers.Types.cacheStorage = "caches"
+external caches: WebWorkersTypes.cacheStorage = "caches"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/sessionStorage)
 */
-external sessionStorage: WebStorage.Types.storage = "sessionStorage"
+external sessionStorage: WebStorageTypes.storage = "sessionStorage"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/localStorage)
 */
-external localStorage: WebStorage.Types.storage = "localStorage"
+external localStorage: WebStorageTypes.storage = "localStorage"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/reportError)
@@ -281,10 +281,8 @@ external queueMicrotask: unit => unit => unit = "queueMicrotask"
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/structuredClone)
 */
-external structuredClone: (
-  't,
-  ~options: ChannelMessaging.Types.structuredSerializeOptions=?,
-) => 't = "structuredClone"
+external structuredClone: ('t, ~options: ChannelMessagingTypes.structuredSerializeOptions=?) => 't =
+  "structuredClone"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/DedicatedWorkerGlobalScope/requestAnimationFrame)
@@ -313,9 +311,9 @@ The event listener is appended to target's event listener list and is not append
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/EventTarget/addEventListener)
 */
 external addEventListener: (
-  Event.Types.eventType,
-  Event.Types.eventListener<'event>,
-  ~options: Event.Types.addEventListenerOptions=?,
+  EventTypes.eventType,
+  EventTypes.eventListener<'event>,
+  ~options: EventTypes.addEventListenerOptions=?,
 ) => unit = "addEventListener"
 
 /**
@@ -335,8 +333,8 @@ The event listener is appended to target's event listener list and is not append
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/EventTarget/addEventListener)
 */
 external addEventListenerWithCapture: (
-  Event.Types.eventType,
-  Event.Types.eventListener<'event>,
+  EventTypes.eventType,
+  EventTypes.eventListener<'event>,
   @as(json`true`) _,
 ) => unit = "addEventListener"
 
@@ -345,9 +343,9 @@ Removes the event listener in target's event listener list with the same type, c
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/EventTarget/removeEventListener)
 */
 external removeEventListener: (
-  Event.Types.eventType,
-  Event.Types.eventListener<'event>,
-  ~options: Event.Types.eventListenerOptions=?,
+  EventTypes.eventType,
+  EventTypes.eventListener<'event>,
+  ~options: EventTypes.eventListenerOptions=?,
 ) => unit = "removeEventListener"
 
 /**
@@ -355,8 +353,8 @@ Removes the event listener in target's event listener list with the same type, c
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/EventTarget/removeEventListener)
 */
 external removeEventListenerUseCapture: (
-  Event.Types.eventType,
-  Event.Types.eventListener<'event>,
+  EventTypes.eventType,
+  EventTypes.eventListener<'event>,
   @as(json`true`) _,
 ) => unit = "removeEventListener"
 
@@ -364,7 +362,7 @@ external removeEventListenerUseCapture: (
 Dispatches a synthetic event event to target and returns true if either event's cancelable attribute value is false or its preventDefault() method was not invoked, and false otherwise.
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/EventTarget/dispatchEvent)
 */
-external dispatchEvent: Event.Types.event => bool = "dispatchEvent"
+external dispatchEvent: EventTypes.event => bool = "dispatchEvent"
 
 /**
 Closes the window.

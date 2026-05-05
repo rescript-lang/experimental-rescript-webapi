@@ -10,7 +10,6 @@ export function buildRootRescriptJson(specs) {
         dir: `src/${spec.dirName}`,
         subdirs: true,
         feature: spec.featureName,
-        public: [spec.publicModule],
       })),
       {
         dir: "tests",

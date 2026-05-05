@@ -40,19 +40,19 @@ external fromDataView: (DataView.t, ~init: responseInit=?) => t = "Response"
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Response)
 */
 @new
-external fromBlob: (File.Blob.t, ~init: responseInit=?) => t = "Response"
+external fromBlob: (Blob.t, ~init: responseInit=?) => t = "Response"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Response)
 */
 @new
-external fromFile: (File.File.t, ~init: responseInit=?) => t = "Response"
+external fromFile: (File.t, ~init: responseInit=?) => t = "Response"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Response)
 */
 @new
-external fromURLSearchParams: (URL.URLSearchParams.t, ~init: responseInit=?) => t = "Response"
+external fromURLSearchParams: (URLSearchParams.t, ~init: responseInit=?) => t = "Response"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Response)
@@ -64,7 +64,7 @@ external fromFormData: (FormData.t, ~init: responseInit=?) => t = "Response"
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Response)
 */
 @new
-external fromReadableStream: (File.ReadableStream.t<'t>, ~init: responseInit=?) => t = "Response"
+external fromReadableStream: (ReadableStream.t<'t>, ~init: responseInit=?) => t = "Response"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Request/arrayBuffer)
@@ -76,7 +76,7 @@ external arrayBuffer: t => promise<ArrayBuffer.t> = "arrayBuffer"
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Request/blob)
 */
 @send
-external blob: t => promise<File.Blob.t> = "blob"
+external blob: t => promise<Blob.t> = "blob"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Request/bytes)

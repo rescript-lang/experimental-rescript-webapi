@@ -13,10 +13,10 @@ module Impl = (
   @send
   external addTextTrack: (
     T.t,
-    ~kind: WebVTT.Types.textTrackKind,
+    ~kind: WebVttTypes.textTrackKind,
     ~label: string=?,
     ~language: string=?,
-  ) => WebVTT.Types.textTrack = "addTextTrack"
+  ) => WebVttTypes.textTrack = "addTextTrack"
 
   /**
 Returns a string that specifies whether the client can play a given media resource type.

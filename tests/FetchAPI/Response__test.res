@@ -1,21 +1,21 @@
-let headers = Fetch.HeadersInit.fromDict(dict{"X-Fruit": "Peach"})
-let blob = File.Blob.make(~blobParts=[])
-let file = File.File.make(~fileBits=[], ~fileName="pong.txt")
-let params = URL.URLSearchParams.fromString("fruit=peach")
-let formData = Fetch.FormData.make()
-let stream = File.ReadableStream.make()
+let headers = HeadersInit.fromDict(dict{"X-Fruit": "Peach"})
+let blob = Blob.make(~blobParts=[])
+let file = File.make(~fileBits=[], ~fileName="pong.txt")
+let params = URLSearchParams.fromString("fruit=peach")
+let formData = FormData.make()
+let stream = ReadableStream.make()
 
-let response = Fetch.Response.fromNull(~init={status: 204, headers})
+let response = Response.fromNull(~init={status: 204, headers})
 
-let response1 = Fetch.Response.fromString("pong", ~init={status: 200, headers})
+let response1 = Response.fromString("pong", ~init={status: 200, headers})
 
-let response2 = Fetch.Response.fromBlob(blob)
-let response3 = Fetch.Response.fromFile(file)
-let response4 = Fetch.Response.fromURLSearchParams(params)
-let response5 = Fetch.Response.fromFormData(formData)
-let response6 = Fetch.Response.fromReadableStream(stream)
+let response2 = Response.fromBlob(blob)
+let response3 = Response.fromFile(file)
+let response4 = Response.fromURLSearchParams(params)
+let response5 = Response.fromFormData(formData)
+let response6 = Response.fromReadableStream(stream)
 
-let _blob: File.Blob.t = await response1
-->Fetch.Response.clone
-->Fetch.Response.blob
-let _formData: Fetch.FormData.t = await response5->Fetch.Response.formData
+let _blob: Blob.t = await response1
+->Response.clone
+->Response.blob
+let _formData: FormData.t = await response5->Response.formData

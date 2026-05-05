@@ -6,7 +6,7 @@ external encrypt: (
   WebCryptoTypes.subtleCrypto,
   ~algorithm: WebCryptoTypes.algorithmIdentifier,
   ~key: WebCryptoTypes.cryptoKey,
-  ~data: Base.ArrayBufferTypedArrayOrDataView.t,
+  ~data: ArrayBufferTypedArrayOrDataView.t,
 ) => promise<ArrayBuffer.t> = "encrypt"
 
 /**
@@ -17,7 +17,7 @@ external decrypt: (
   WebCryptoTypes.subtleCrypto,
   ~algorithm: WebCryptoTypes.algorithmIdentifier,
   ~key: WebCryptoTypes.cryptoKey,
-  ~data: Base.ArrayBufferTypedArrayOrDataView.t,
+  ~data: ArrayBufferTypedArrayOrDataView.t,
 ) => promise<ArrayBuffer.t> = "decrypt"
 
 /**
@@ -28,7 +28,7 @@ external sign: (
   WebCryptoTypes.subtleCrypto,
   ~algorithm: WebCryptoTypes.algorithmIdentifier,
   ~key: WebCryptoTypes.cryptoKey,
-  ~data: Base.ArrayBufferTypedArrayOrDataView.t,
+  ~data: ArrayBufferTypedArrayOrDataView.t,
 ) => promise<JSON.t> = "sign"
 
 /**
@@ -39,8 +39,8 @@ external verify: (
   WebCryptoTypes.subtleCrypto,
   ~algorithm: WebCryptoTypes.algorithmIdentifier,
   ~key: WebCryptoTypes.cryptoKey,
-  ~signature: Base.ArrayBufferTypedArrayOrDataView.t,
-  ~data: Base.ArrayBufferTypedArrayOrDataView.t,
+  ~signature: ArrayBufferTypedArrayOrDataView.t,
+  ~data: ArrayBufferTypedArrayOrDataView.t,
 ) => promise<JSON.t> = "verify"
 
 /**
@@ -50,7 +50,7 @@ external verify: (
 external digest: (
   WebCryptoTypes.subtleCrypto,
   ~algorithm: WebCryptoTypes.algorithmIdentifier,
-  ~data: Base.ArrayBufferTypedArrayOrDataView.t,
+  ~data: ArrayBufferTypedArrayOrDataView.t,
 ) => promise<JSON.t> = "digest"
 
 /**
@@ -117,7 +117,7 @@ external deriveBits2: (
 external importKey: (
   WebCryptoTypes.subtleCrypto,
   ~format: unknown,
-  ~keyData: Base.ArrayBufferTypedArrayOrDataView.t,
+  ~keyData: ArrayBufferTypedArrayOrDataView.t,
   ~algorithm: WebCryptoTypes.algorithmIdentifier,
   ~extractable: bool,
   ~keyUsages: array<WebCryptoTypes.keyUsage>,
@@ -164,7 +164,7 @@ external wrapKey2: (
 external unwrapKey: (
   WebCryptoTypes.subtleCrypto,
   ~format: WebCryptoTypes.keyFormat,
-  ~wrappedKey: Base.ArrayBufferTypedArrayOrDataView.t,
+  ~wrappedKey: ArrayBufferTypedArrayOrDataView.t,
   ~unwrappingKey: WebCryptoTypes.cryptoKey,
   ~unwrapAlgorithm: WebCryptoTypes.algorithmIdentifier,
   ~unwrappedKeyAlgorithm: WebCryptoTypes.algorithmIdentifier,

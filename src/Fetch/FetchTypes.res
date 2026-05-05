@@ -145,11 +145,11 @@ type request = private {
     Returns the signal associated with request, which is an AbortSignal object indicating whether or not request has been aborted, and its abort event handler.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Request/signal)
     */
-  signal: Event.Types.abortSignal,
+  signal: EventTypes.abortSignal,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Request/body)
     */
-  body: Null.t<File.Types.readableStream<array<int>>>,
+  body: Null.t<FileTypes.readableStream<array<int>>>,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Request/bodyUsed)
     */
@@ -194,7 +194,7 @@ type response = private {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Request/body)
     */
-  body: Null.t<File.Types.readableStream<array<int>>>,
+  body: Null.t<FileTypes.readableStream<array<int>>>,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Request/bodyUsed)
     */
@@ -217,7 +217,7 @@ type requestInfo = unknown
 @editor.completeFrom(FormDataEntryValue) @unboxed
 type formDataEntryValue =
   | String(string)
-  | File(File.Types.file)
+  | File(FileTypes.file)
 
 type requestInit = {
   /**
@@ -267,7 +267,7 @@ type requestInit = {
   /**
     An AbortSignal to set request's signal.
     */
-  mutable signal?: Null.t<Event.Types.abortSignal>,
+  mutable signal?: Null.t<EventTypes.abortSignal>,
   mutable priority?: requestPriority,
   /**
     Can only be null. Used to disassociate request from any Window.

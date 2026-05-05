@@ -4,9 +4,9 @@
 @send
 external match: (
   WebWorkersTypes.cacheStorage,
-  ~request: Fetch.Types.request,
+  ~request: FetchTypes.request,
   ~options: WebWorkersTypes.multiCacheQueryOptions=?,
-) => Nullable.t<Fetch.Types.response> = "match"
+) => Nullable.t<FetchTypes.response> = "match"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CacheStorage/match)
@@ -16,7 +16,7 @@ external match2: (
   WebWorkersTypes.cacheStorage,
   ~request: string,
   ~options: WebWorkersTypes.multiCacheQueryOptions=?,
-) => Nullable.t<Fetch.Types.response> = "match"
+) => Nullable.t<FetchTypes.response> = "match"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CacheStorage/has)

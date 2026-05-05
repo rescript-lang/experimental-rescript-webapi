@@ -1,4 +1,4 @@
-type t = Base.DOM.domStringList
+type t = DOM.domStringList
 
 /**
 Returns the string with index index from strings.

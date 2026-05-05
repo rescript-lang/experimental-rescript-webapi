@@ -23,17 +23,17 @@ external fromDataView: DataView.t => t = "%identity"
 /**
 [Read more on MDN](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch#setting_a_body)
  */
-external fromBlob: File.Blob.t => t = "%identity"
+external fromBlob: Blob.t => t = "%identity"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch#setting_a_body)
  */
-external fromFile: File.File.t => t = "%identity"
+external fromFile: File.t => t = "%identity"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch#setting_a_body)
  */
-external fromURLSearchParams: URL.URLSearchParams.t => t = "%identity"
+external fromURLSearchParams: URLSearchParams.t => t = "%identity"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch#setting_a_body)
@@ -43,4 +43,4 @@ external fromFormData: FormData.t => t = "%identity"
 /**
 [Read more on MDN](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch#setting_a_body)
  */
-external fromReadableStream: File.ReadableStream.t<'t> => t = "%identity"
+external fromReadableStream: ReadableStream.t<'t> => t = "%identity"

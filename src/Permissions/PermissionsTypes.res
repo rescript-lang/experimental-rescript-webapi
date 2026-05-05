@@ -24,7 +24,7 @@ type permissions = private {}
 [See PermissionStatus on MDN](https://developer.mozilla.org/docs/Web/API/PermissionStatus)
 */
 type permissionStatus = {
-  ...Event.Types.eventTarget,
+  ...EventTypes.eventTarget,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/PermissionStatus/state)
     */

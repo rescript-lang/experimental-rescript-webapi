@@ -3,17 +3,17 @@ type t = DomTypes.navigator
 /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Navigator/clipboard)
     */
-@get external clipboard: t => Clipboard.Types.clipboard = "clipboard"
+@get external clipboard: t => ClipboardTypes.clipboard = "clipboard"
 
 /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Navigator/credentials)
     */
-@get external credentials: t => CredentialManagement.Types.credentialsContainer = "credentials"
+@get external credentials: t => CredentialManagementTypes.credentialsContainer = "credentials"
 
 /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Navigator/geolocation)
     */
-@get external geolocation: t => Geolocation.Types.geolocation = "geolocation"
+@get external geolocation: t => GeolocationTypes.geolocation = "geolocation"
 
 /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Navigator/userActivation)
@@ -23,23 +23,22 @@ type t = DomTypes.navigator
 /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Navigator/mediaCapabilities)
     */
-@get external mediaCapabilities: t => MediaCapabilities.Types.mediaCapabilities =
-  "mediaCapabilities"
+@get external mediaCapabilities: t => MediaCapabilitiesTypes.mediaCapabilities = "mediaCapabilities"
 
 /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Navigator/mediaDevices)
     */
-@get external mediaDevices: t => MediaCaptureAndStreams.Types.mediaDevices = "mediaDevices"
+@get external mediaDevices: t => MediaCaptureAndStreamsTypes.mediaDevices = "mediaDevices"
 
 /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Navigator/mediaSession)
     */
-@get external mediaSession: t => MediaSession.Types.mediaSession = "mediaSession"
+@get external mediaSession: t => MediaSessionTypes.mediaSession = "mediaSession"
 
 /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Navigator/permissions)
     */
-@get external permissions: t => Permissions.Types.permissions = "permissions"
+@get external permissions: t => PermissionsTypes.permissions = "permissions"
 
 /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Navigator/maxTouchPoints)
@@ -49,12 +48,12 @@ type t = DomTypes.navigator
 /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Navigator/wakeLock)
     */
-@get external wakeLock: t => ScreenWakeLock.Types.wakeLock = "wakeLock"
+@get external wakeLock: t => ScreenWakeLockTypes.wakeLock = "wakeLock"
 
 /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Navigator/serviceWorker)
     */
-@get external serviceWorker: t => ServiceWorker.Types.serviceWorkerContainer = "serviceWorker"
+@get external serviceWorker: t => ServiceWorkerTypes.serviceWorkerContainer = "serviceWorker"
 
 /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Navigator/userAgent)
@@ -88,11 +87,11 @@ type t = DomTypes.navigator
 /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Navigator/storage)
     */
-@get external storage: t => Storage.Types.storageManager = "storage"
+@get external storage: t => StorageTypes.storageManager = "storage"
 /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Navigator/locks)
     */
-@get external locks: t => WebLocks.Types.lockManager = "locks"
+@get external locks: t => WebLocksTypes.lockManager = "locks"
 /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Navigator/webdriver)
     */
@@ -102,14 +101,14 @@ type t = DomTypes.navigator
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Navigator/sendBeacon)
 */
 @send
-external sendBeacon: (t, ~url: string, ~data: File.Types.readableStream<unit>=?) => bool =
+external sendBeacon: (t, ~url: string, ~data: FileTypes.readableStream<unit>=?) => bool =
   "sendBeacon"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Navigator/sendBeacon)
 */
 @send
-external sendBeacon2: (t, ~url: string, ~data: File.Types.blob=?) => bool = "sendBeacon"
+external sendBeacon2: (t, ~url: string, ~data: FileTypes.blob=?) => bool = "sendBeacon"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Navigator/sendBeacon)
@@ -127,13 +126,13 @@ external sendBeacon4: (t, ~url: string, ~data: ArrayBuffer.t=?) => bool = "sendB
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Navigator/sendBeacon)
 */
 @send
-external sendBeacon5: (t, ~url: string, ~data: Fetch.Types.formData=?) => bool = "sendBeacon"
+external sendBeacon5: (t, ~url: string, ~data: FetchTypes.formData=?) => bool = "sendBeacon"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Navigator/sendBeacon)
 */
 @send
-external sendBeacon6: (t, ~url: string, ~data: URL.Types.urlSearchParams=?) => bool = "sendBeacon"
+external sendBeacon6: (t, ~url: string, ~data: UrlTypes.urlSearchParams=?) => bool = "sendBeacon"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Navigator/sendBeacon)
@@ -145,7 +144,7 @@ external sendBeacon7: (t, ~url: string, ~data: string=?) => bool = "sendBeacon"
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Navigator/getGamepads)
 */
 @send
-external getGamepads: t => array<Gamepad.Types.gamepad> = "getGamepads"
+external getGamepads: t => array<GamepadTypes.gamepad> = "getGamepads"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Navigator/requestMediaKeySystemAccess)
@@ -163,5 +162,5 @@ external requestMediaKeySystemAccess: (
 @send
 external requestMIDIAccess: (
   t,
-  ~options: WebMIDI.Types.midiOptions=?,
-) => promise<WebMIDI.Types.midiAccess> = "requestMIDIAccess"
+  ~options: WebMidiTypes.midiOptions=?,
+) => promise<WebMidiTypes.midiAccess> = "requestMIDIAccess"

@@ -19,9 +19,30 @@ function rewriteBareModuleReference(source, publicLeaf, leaf) {
   });
 }
 
-export function rewriteSourceText(source, { currentFeature, specs, localLeaves }) {
-  const currentSpec = specs.find((spec) => spec.publicModule === currentFeature);
+function rewriteNestedFeatureReferences(source, { specs, leavesByFeature }) {
   let next = source;
+
+  for (const spec of specs) {
+    const leaves = leavesByFeature.get(spec.publicModule) ?? [];
+
+    for (const leaf of leaves) {
+      const publicLeaf = publicNameForLeafModule(leaf, spec.internalPrefix);
+      next = next.replaceAll(`${spec.legacyNamespace}.${publicLeaf}.`, `${leaf}.`);
+      next = next.replaceAll(`WebAPI.${spec.publicModule}.${publicLeaf}.`, `${leaf}.`);
+      next = next.replaceAll(`WebApi.${spec.publicModule}.${publicLeaf}.`, `${leaf}.`);
+      next = next.replaceAll(`${spec.publicModule}.${publicLeaf}.`, `${leaf}.`);
+    }
+  }
+
+  return next;
+}
+
+export function rewriteSourceText(
+  source,
+  { currentFeature, specs, localLeaves, leavesByFeature = new Map([[currentFeature, localLeaves]]) },
+) {
+  const currentSpec = specs.find((spec) => spec.publicModule === currentFeature);
+  let next = rewriteNestedFeatureReferences(source, { specs, leavesByFeature });
 
   for (const leaf of localLeaves) {
     const publicLeaf = publicNameForLeafModule(leaf, currentSpec.internalPrefix);
@@ -35,42 +56,30 @@ export function rewriteSourceText(source, { currentFeature, specs, localLeaves }
     }
   }
 
-  for (const spec of specs) {
-    next = next.replaceAll(`${spec.legacyNamespace}.`, `${spec.publicModule}.`);
-    next = next.replaceAll(`WebAPI.${spec.publicModule}.`, `${spec.publicModule}.`);
-    next = next.replaceAll(`WebApi.${spec.publicModule}.`, `${spec.publicModule}.`);
-  }
-
   return next;
 }
 
-export function rewriteTestText(source, specs = featureSpecs) {
-  let next = source;
-
-  for (const spec of specs) {
-    next = next.replaceAll(`${spec.legacyNamespace}.`, `${spec.publicModule}.`);
-    next = next.replaceAll(`WebAPI.${spec.publicModule}.`, `${spec.publicModule}.`);
-    next = next.replaceAll(`WebApi.${spec.publicModule}.`, `${spec.publicModule}.`);
-  }
-
-  return next;
+export function rewriteTestText(source, specs = featureSpecs, leavesByFeature = new Map()) {
+  return rewriteNestedFeatureReferences(source, { specs, leavesByFeature });
 }
 
-function rewriteTestFilesInDirectory(directoryPath) {
+function rewriteTestFilesInDirectory(directoryPath, leavesByFeature) {
   for (const entry of fs.readdirSync(directoryPath, { withFileTypes: true })) {
     const entryPath = path.join(directoryPath, entry.name);
 
     if (entry.isDirectory()) {
-      rewriteTestFilesInDirectory(entryPath);
+      rewriteTestFilesInDirectory(entryPath, leavesByFeature);
       continue;
     }
 
     if (!entry.isFile() || !entry.name.endsWith(".res")) continue;
-    fs.writeFileSync(entryPath, rewriteTestText(fs.readFileSync(entryPath, "utf8")));
+    fs.writeFileSync(entryPath, rewriteTestText(fs.readFileSync(entryPath, "utf8"), featureSpecs, leavesByFeature));
   }
 }
 
 export function rewriteRepoReferences(rootDir) {
+  const leavesByFeature = new Map();
+
   for (const spec of featureSpecs) {
     const featureDir = path.join(rootDir, "src", spec.dirName);
     if (!fs.existsSync(featureDir)) continue;
@@ -79,6 +88,14 @@ export function rewriteRepoReferences(rootDir) {
       .readdirSync(featureDir)
       .filter((name) => name.endsWith(".res"))
       .map((name) => path.basename(name, ".res"));
+    leavesByFeature.set(spec.publicModule, localLeaves);
+  }
+
+  for (const spec of featureSpecs) {
+    const featureDir = path.join(rootDir, "src", spec.dirName);
+    if (!fs.existsSync(featureDir)) continue;
+
+    const localLeaves = leavesByFeature.get(spec.publicModule);
 
     for (const fileName of fs.readdirSync(featureDir)) {
       if (!fileName.endsWith(".res")) continue;
@@ -91,6 +108,7 @@ export function rewriteRepoReferences(rootDir) {
           currentFeature: spec.publicModule,
           specs: featureSpecs,
           localLeaves,
+          leavesByFeature,
         }),
       );
     }
@@ -98,7 +116,7 @@ export function rewriteRepoReferences(rootDir) {
 
   const testsDir = path.join(rootDir, "tests");
   if (fs.existsSync(testsDir)) {
-    rewriteTestFilesInDirectory(testsDir);
+    rewriteTestFilesInDirectory(testsDir, leavesByFeature);
   }
 }
 

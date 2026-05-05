@@ -1,4 +1,4 @@
-include Event.EventTarget.Impl({type t = WebVttTypes.textTrack})
+include EventTarget.Impl({type t = WebVttTypes.textTrack})
 
 /**
 Adds the given cue to textTrack's text track list of cues.

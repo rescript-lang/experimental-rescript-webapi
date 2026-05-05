@@ -12,8 +12,8 @@ test("builds the unified root rescript.json and package.json", () => {
   ];
 
   assert.deepEqual(buildRootRescriptJson(specs).sources, [
-    { dir: "src/Base", subdirs: true, feature: "WebAPI.Base", public: ["Base"] },
-    { dir: "src/DOM", subdirs: true, feature: "WebAPI.DOM", public: ["DOM"] },
+    { dir: "src/Base", subdirs: true, feature: "WebAPI.Base" },
+    { dir: "src/DOM", subdirs: true, feature: "WebAPI.DOM" },
     { dir: "tests", subdirs: true, type: "dev" },
   ]);
 

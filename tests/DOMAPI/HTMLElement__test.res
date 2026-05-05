@@ -1,6 +1,6 @@
-DOM.Global.document
-->DOM.Document.querySelector("form")
+DomGlobal.document
+->Document.querySelector("form")
 ->Null.toOption
 ->Option.forEach(form => {
-  form->DOM.Element.scrollIntoViewWithOptions({behavior: DOM.Types.Smooth})
+  form->Element.scrollIntoViewWithOptions({behavior: DomTypes.Smooth})
 })

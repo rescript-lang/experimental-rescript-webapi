@@ -1,9 +1,9 @@
-let location = DOM.Global.document.location
+let location = DomGlobal.document.location
 
 // Access properties using `.`
 let href = location.href
 
 // Invoke methods using the `->TypeModule`
-location->DOM.Location.reload
+location->Location.reload
 
 let a = 0

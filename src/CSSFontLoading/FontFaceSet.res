@@ -1,4 +1,4 @@
-include Event.EventTarget.Impl({type t = CssFontLoadingTypes.fontFaceSet})
+include EventTarget.Impl({type t = CssFontLoadingTypes.fontFaceSet})
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/FontFaceSet/add)

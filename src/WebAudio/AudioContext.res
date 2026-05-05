@@ -39,7 +39,7 @@ external close: WebAudioTypes.audioContext => promise<unit> = "close"
 @send
 external createMediaElementSource: (
   WebAudioTypes.audioContext,
-  DOM.Types.htmlMediaElement,
+  DomTypes.htmlMediaElement,
 ) => WebAudioTypes.mediaElementAudioSourceNode = "createMediaElementSource"
 
 /**
@@ -48,7 +48,7 @@ external createMediaElementSource: (
 @send
 external createMediaStreamSource: (
   WebAudioTypes.audioContext,
-  MediaCaptureAndStreams.Types.mediaStream,
+  MediaCaptureAndStreamsTypes.mediaStream,
 ) => WebAudioTypes.mediaStreamAudioSourceNode = "createMediaStreamSource"
 
 /**

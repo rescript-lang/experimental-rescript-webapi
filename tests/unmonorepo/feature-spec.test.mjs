@@ -2,6 +2,7 @@ import test from "node:test";
 import assert from "node:assert/strict";
 import {
   featureSpecs,
+  migratedLeafName,
   publicModuleToInternalPrefix,
   publicNameForLeafModule,
 } from "../../scripts/unmonorepo/feature-spec.mjs";
@@ -43,7 +44,36 @@ test("normalizes internal prefixes and public duplicate names", () => {
   assert.equal(publicModuleToInternalPrefix("URL"), "Url");
   assert.equal(publicNameForLeafModule("DomTypes", "Dom"), "Types");
   assert.equal(publicNameForLeafModule("Document", "Dom"), "Document");
-  assert.equal(publicNameForLeafModule("BaseDOM", "Base"), "DOM");
+  assert.equal(publicNameForLeafModule("DOM", "Base"), "DOM");
   assert.equal(publicNameForLeafModule("PushEvent", "Push"), "PushEvent");
-  assert.equal(publicNameForLeafModule("WebStorageStorage", "WebStorage"), "Storage");
+  assert.equal(publicNameForLeafModule("Storage", "WebStorage"), "Storage");
+});
+
+test("preserves direct public leaf modules while renaming duplicated internals", () => {
+  const duplicateLeaves = new Set(["Types", "Global", "File", "Event"]);
+
+  assert.equal(
+    migratedLeafName({
+      spec: { dirName: "Base", publicModule: "Base", internalPrefix: "Base" },
+      leafName: "DOM",
+      duplicateLeaves,
+    }),
+    "DOM",
+  );
+  assert.equal(
+    migratedLeafName({
+      spec: { dirName: "File", publicModule: "File", internalPrefix: "File" },
+      leafName: "File",
+      duplicateLeaves,
+    }),
+    "File",
+  );
+  assert.equal(
+    migratedLeafName({
+      spec: { dirName: "File", publicModule: "File", internalPrefix: "File" },
+      leafName: "Types",
+      duplicateLeaves,
+    }),
+    "FileTypes",
+  );
 });

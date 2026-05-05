@@ -7,7 +7,7 @@ external make: (
   ~timeline: DomTypes.animationTimeline=?,
 ) => DomTypes.animation = "Animation"
 
-include Event.EventTarget.Impl({type t = DomTypes.animation})
+include EventTarget.Impl({type t = DomTypes.animation})
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Animation/cancel)

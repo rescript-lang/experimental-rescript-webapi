@@ -16,7 +16,7 @@ This Notifications API interface is used to configure and display desktop notifi
 */
 @editor.completeFrom(WebApiNotification)
 type notification = private {
-  ...Event.Types.eventTarget,
+  ...EventTypes.eventTarget,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Notification/permission_static)
     */
@@ -95,7 +95,7 @@ type getNotificationOptions = {mutable tag?: string}
 type notificationPermissionCallback = notificationPermission => unit
 
 type notificationEvent = {
-  ...Event.Types.extendableEvent,
+  ...EventTypes.extendableEvent,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/NotificationEvent/action)
   */

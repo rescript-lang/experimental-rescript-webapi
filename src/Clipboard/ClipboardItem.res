@@ -11,7 +11,7 @@ external make: (
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/ClipboardItem/getType)
 */
 @send
-external getType: (ClipboardTypes.clipboardItem, string) => promise<File.Types.blob> = "getType"
+external getType: (ClipboardTypes.clipboardItem, string) => promise<FileTypes.blob> = "getType"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/ClipboardItem/supports_static)

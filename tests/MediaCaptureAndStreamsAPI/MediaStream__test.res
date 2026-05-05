@@ -1,8 +1,8 @@
-let mediaStream: MediaCaptureAndStreams.Types.mediaStream = Obj.magic()
-let mediaStreamTrack: MediaCaptureAndStreams.Types.mediaStreamTrack = Obj.magic()
+let mediaStream: MediaCaptureAndStreamsTypes.mediaStream = Obj.magic()
+let mediaStreamTrack: MediaCaptureAndStreamsTypes.mediaStreamTrack = Obj.magic()
 
-let _make = MediaCaptureAndStreams.MediaStream.make()
+let _make = MediaStream.make()
 
-let _fromMediaStream = MediaCaptureAndStreams.MediaStream.fromMediaStream(mediaStream)
+let _fromMediaStream = MediaStream.fromMediaStream(mediaStream)
 
-let _fromTracks = MediaCaptureAndStreams.MediaStream.fromTracks([mediaStreamTrack])
+let _fromTracks = MediaStream.fromTracks([mediaStreamTrack])

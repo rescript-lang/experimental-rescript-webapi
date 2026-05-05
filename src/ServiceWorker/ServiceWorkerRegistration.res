@@ -1,4 +1,4 @@
-include Event.EventTarget.Impl({type t = ServiceWorkerTypes.serviceWorkerRegistration})
+include EventTarget.Impl({type t = ServiceWorkerTypes.serviceWorkerRegistration})
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/ServiceWorkerRegistration/update)
@@ -19,7 +19,7 @@ external unregister: ServiceWorkerTypes.serviceWorkerRegistration => promise<boo
 external showNotification: (
   ServiceWorkerTypes.serviceWorkerRegistration,
   ~title: string,
-  ~options: Notification.Types.notificationOptions=?,
+  ~options: NotificationTypes.notificationOptions=?,
 ) => promise<unit> = "showNotification"
 
 /**
@@ -28,5 +28,5 @@ external showNotification: (
 @send
 external getNotifications: (
   ServiceWorkerTypes.serviceWorkerRegistration,
-  ~filter: Notification.Types.getNotificationOptions=?,
-) => promise<array<Notification.Types.notification>> = "getNotifications"
+  ~filter: NotificationTypes.getNotificationOptions=?,
+) => promise<array<NotificationTypes.notification>> = "getNotifications"

@@ -1,7 +1,7 @@
 type t = DomTypes.window
 type windowPostMessageOptions = DomTypes.windowPostMessageOptions
 
-include Event.EventTarget.Impl({type t = t})
+include EventTarget.Impl({type t = t})
 
 external current: t = "window"
 
@@ -39,7 +39,7 @@ external location: t => DomTypes.location = "location"
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/history)
     */
 @get
-external history: t => History.Types.history = "history"
+external history: t => HistoryTypes.history = "history"
 
 /**
     Defines a new custom element, mapping the given name to the given constructor as an autonomous custom element.
@@ -152,7 +152,7 @@ external screen: t => DomTypes.screen = "screen"
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/visualViewport)
     */
 @get
-external visualViewport: t => Null.t<VisualViewport.Types.visualViewport> = "visualViewport"
+external visualViewport: t => Null.t<VisualViewportTypes.visualViewport> = "visualViewport"
 
 /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/innerWidth)
@@ -224,7 +224,7 @@ external devicePixelRatio: t => float = "devicePixelRatio"
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/speechSynthesis)
     */
 @get
-external speechSynthesis: t => WebSpeech.Types.speechSynthesis = "speechSynthesis"
+external speechSynthesis: t => WebSpeechTypes.speechSynthesis = "speechSynthesis"
 
 /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/origin)
@@ -248,37 +248,37 @@ external crossOriginIsolated: t => bool = "crossOriginIsolated"
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/indexedDB)
     */
 @get
-external indexedDB: t => IndexedDB.Types.idbFactory = "indexedDB"
+external indexedDB: t => IndexedDbTypes.idbFactory = "indexedDB"
 
 /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/crypto)
     */
 @get
-external crypto: t => WebCrypto.Types.crypto = "crypto"
+external crypto: t => WebCryptoTypes.crypto = "crypto"
 
 /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/performance)
     */
 @get
-external performance: t => Performance.Types.performance = "performance"
+external performance: t => PerformanceTypes.performance = "performance"
 
 /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/caches)
     */
 @get
-external caches: t => WebWorkers.Types.cacheStorage = "caches"
+external caches: t => WebWorkersTypes.cacheStorage = "caches"
 
 /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/sessionStorage)
     */
 @get
-external sessionStorage: t => WebStorage.Types.storage = "sessionStorage"
+external sessionStorage: t => WebStorageTypes.storage = "sessionStorage"
 
 /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/localStorage)
     */
 @get
-external localStorage: t => WebStorage.Types.storage = "localStorage"
+external localStorage: t => WebStorageTypes.storage = "localStorage"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/reportError)
@@ -353,7 +353,7 @@ external queueMicrotask: (t, unit => unit) => unit = "queueMicrotask"
 external structuredClone: (
   t,
   't,
-  ~options: ChannelMessaging.Types.structuredSerializeOptions=?,
+  ~options: ChannelMessagingTypes.structuredSerializeOptions=?,
 ) => 't = "structuredClone"
 
 /**

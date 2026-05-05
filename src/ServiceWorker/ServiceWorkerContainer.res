@@ -1,4 +1,4 @@
-include Event.EventTarget.Impl({type t = ServiceWorkerTypes.serviceWorkerContainer})
+include EventTarget.Impl({type t = ServiceWorkerTypes.serviceWorkerContainer})
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/ServiceWorkerContainer/register)

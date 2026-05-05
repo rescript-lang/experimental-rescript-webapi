@@ -4,354 +4,222 @@
     {
       "dir": "src/Base",
       "subdirs": true,
-      "feature": "WebAPI.Base",
-      "public": [
-        "Base"
-      ]
+      "feature": "WebAPI.Base"
     },
     {
       "dir": "src/CSSFontLoading",
       "subdirs": true,
-      "feature": "WebAPI.CSSFontLoading",
-      "public": [
-        "CSSFontLoading"
-      ]
+      "feature": "WebAPI.CSSFontLoading"
     },
     {
       "dir": "src/Canvas",
       "subdirs": true,
-      "feature": "WebAPI.Canvas",
-      "public": [
-        "Canvas"
-      ]
+      "feature": "WebAPI.Canvas"
     },
     {
       "dir": "src/ChannelMessaging",
       "subdirs": true,
-      "feature": "WebAPI.ChannelMessaging",
-      "public": [
-        "ChannelMessaging"
-      ]
+      "feature": "WebAPI.ChannelMessaging"
     },
     {
       "dir": "src/Clipboard",
       "subdirs": true,
-      "feature": "WebAPI.Clipboard",
-      "public": [
-        "Clipboard"
-      ]
+      "feature": "WebAPI.Clipboard"
     },
     {
       "dir": "src/CredentialManagement",
       "subdirs": true,
-      "feature": "WebAPI.CredentialManagement",
-      "public": [
-        "CredentialManagement"
-      ]
+      "feature": "WebAPI.CredentialManagement"
     },
     {
       "dir": "src/DOM",
       "subdirs": true,
-      "feature": "WebAPI.DOM",
-      "public": [
-        "DOM"
-      ]
+      "feature": "WebAPI.DOM"
     },
     {
       "dir": "src/EncryptedMediaExtensions",
       "subdirs": true,
-      "feature": "WebAPI.EncryptedMediaExtensions",
-      "public": [
-        "EncryptedMediaExtensions"
-      ]
+      "feature": "WebAPI.EncryptedMediaExtensions"
     },
     {
       "dir": "src/Event",
       "subdirs": true,
-      "feature": "WebAPI.Event",
-      "public": [
-        "Event"
-      ]
+      "feature": "WebAPI.Event"
     },
     {
       "dir": "src/Fetch",
       "subdirs": true,
-      "feature": "WebAPI.Fetch",
-      "public": [
-        "Fetch"
-      ]
+      "feature": "WebAPI.Fetch"
     },
     {
       "dir": "src/File",
       "subdirs": true,
-      "feature": "WebAPI.File",
-      "public": [
-        "File"
-      ]
+      "feature": "WebAPI.File"
     },
     {
       "dir": "src/FileAndDirectoryEntries",
       "subdirs": true,
-      "feature": "WebAPI.FileAndDirectoryEntries",
-      "public": [
-        "FileAndDirectoryEntries"
-      ]
+      "feature": "WebAPI.FileAndDirectoryEntries"
     },
     {
       "dir": "src/Gamepad",
       "subdirs": true,
-      "feature": "WebAPI.Gamepad",
-      "public": [
-        "Gamepad"
-      ]
+      "feature": "WebAPI.Gamepad"
     },
     {
       "dir": "src/Geolocation",
       "subdirs": true,
-      "feature": "WebAPI.Geolocation",
-      "public": [
-        "Geolocation"
-      ]
+      "feature": "WebAPI.Geolocation"
     },
     {
       "dir": "src/History",
       "subdirs": true,
-      "feature": "WebAPI.History",
-      "public": [
-        "History"
-      ]
+      "feature": "WebAPI.History"
     },
     {
       "dir": "src/IndexedDB",
       "subdirs": true,
-      "feature": "WebAPI.IndexedDB",
-      "public": [
-        "IndexedDB"
-      ]
+      "feature": "WebAPI.IndexedDB"
     },
     {
       "dir": "src/IntersectionObserver",
       "subdirs": true,
-      "feature": "WebAPI.IntersectionObserver",
-      "public": [
-        "IntersectionObserver"
-      ]
+      "feature": "WebAPI.IntersectionObserver"
     },
     {
       "dir": "src/MediaCapabilities",
       "subdirs": true,
-      "feature": "WebAPI.MediaCapabilities",
-      "public": [
-        "MediaCapabilities"
-      ]
+      "feature": "WebAPI.MediaCapabilities"
     },
     {
       "dir": "src/MediaCaptureAndStreams",
       "subdirs": true,
-      "feature": "WebAPI.MediaCaptureAndStreams",
-      "public": [
-        "MediaCaptureAndStreams"
-      ]
+      "feature": "WebAPI.MediaCaptureAndStreams"
     },
     {
       "dir": "src/MediaSession",
       "subdirs": true,
-      "feature": "WebAPI.MediaSession",
-      "public": [
-        "MediaSession"
-      ]
+      "feature": "WebAPI.MediaSession"
     },
     {
       "dir": "src/MutationObserver",
       "subdirs": true,
-      "feature": "WebAPI.MutationObserver",
-      "public": [
-        "MutationObserver"
-      ]
+      "feature": "WebAPI.MutationObserver"
     },
     {
       "dir": "src/Notification",
       "subdirs": true,
-      "feature": "WebAPI.Notification",
-      "public": [
-        "Notification"
-      ]
+      "feature": "WebAPI.Notification"
     },
     {
       "dir": "src/Performance",
       "subdirs": true,
-      "feature": "WebAPI.Performance",
-      "public": [
-        "Performance"
-      ]
+      "feature": "WebAPI.Performance"
     },
     {
       "dir": "src/Permissions",
       "subdirs": true,
-      "feature": "WebAPI.Permissions",
-      "public": [
-        "Permissions"
-      ]
+      "feature": "WebAPI.Permissions"
     },
     {
       "dir": "src/PictureInPicture",
       "subdirs": true,
-      "feature": "WebAPI.PictureInPicture",
-      "public": [
-        "PictureInPicture"
-      ]
+      "feature": "WebAPI.PictureInPicture"
     },
     {
       "dir": "src/Push",
       "subdirs": true,
-      "feature": "WebAPI.Push",
-      "public": [
-        "Push"
-      ]
+      "feature": "WebAPI.Push"
     },
     {
       "dir": "src/RemotePlayback",
       "subdirs": true,
-      "feature": "WebAPI.RemotePlayback",
-      "public": [
-        "RemotePlayback"
-      ]
+      "feature": "WebAPI.RemotePlayback"
     },
     {
       "dir": "src/ResizeObserver",
       "subdirs": true,
-      "feature": "WebAPI.ResizeObserver",
-      "public": [
-        "ResizeObserver"
-      ]
+      "feature": "WebAPI.ResizeObserver"
     },
     {
       "dir": "src/ScreenWakeLock",
       "subdirs": true,
-      "feature": "WebAPI.ScreenWakeLock",
-      "public": [
-        "ScreenWakeLock"
-      ]
+      "feature": "WebAPI.ScreenWakeLock"
     },
     {
       "dir": "src/ServiceWorker",
       "subdirs": true,
-      "feature": "WebAPI.ServiceWorker",
-      "public": [
-        "ServiceWorker"
-      ]
+      "feature": "WebAPI.ServiceWorker"
     },
     {
       "dir": "src/Storage",
       "subdirs": true,
-      "feature": "WebAPI.Storage",
-      "public": [
-        "Storage"
-      ]
+      "feature": "WebAPI.Storage"
     },
     {
       "dir": "src/UIEvents",
       "subdirs": true,
-      "feature": "WebAPI.UIEvents",
-      "public": [
-        "UIEvents"
-      ]
+      "feature": "WebAPI.UIEvents"
     },
     {
       "dir": "src/URL",
       "subdirs": true,
-      "feature": "WebAPI.URL",
-      "public": [
-        "URL"
-      ]
+      "feature": "WebAPI.URL"
     },
     {
       "dir": "src/ViewTransitions",
       "subdirs": true,
-      "feature": "WebAPI.ViewTransitions",
-      "public": [
-        "ViewTransitions"
-      ]
+      "feature": "WebAPI.ViewTransitions"
     },
     {
       "dir": "src/VisualViewport",
       "subdirs": true,
-      "feature": "WebAPI.VisualViewport",
-      "public": [
-        "VisualViewport"
-      ]
+      "feature": "WebAPI.VisualViewport"
     },
     {
       "dir": "src/WebAudio",
       "subdirs": true,
-      "feature": "WebAPI.WebAudio",
-      "public": [
-        "WebAudio"
-      ]
+      "feature": "WebAPI.WebAudio"
     },
     {
       "dir": "src/WebCrypto",
       "subdirs": true,
-      "feature": "WebAPI.WebCrypto",
-      "public": [
-        "WebCrypto"
-      ]
+      "feature": "WebAPI.WebCrypto"
     },
     {
       "dir": "src/WebLocks",
       "subdirs": true,
-      "feature": "WebAPI.WebLocks",
-      "public": [
-        "WebLocks"
-      ]
+      "feature": "WebAPI.WebLocks"
     },
     {
       "dir": "src/WebMIDI",
       "subdirs": true,
-      "feature": "WebAPI.WebMIDI",
-      "public": [
-        "WebMIDI"
-      ]
+      "feature": "WebAPI.WebMIDI"
     },
     {
       "dir": "src/WebSockets",
       "subdirs": true,
-      "feature": "WebAPI.WebSockets",
-      "public": [
-        "WebSockets"
-      ]
+      "feature": "WebAPI.WebSockets"
     },
     {
       "dir": "src/WebSpeech",
       "subdirs": true,
-      "feature": "WebAPI.WebSpeech",
-      "public": [
-        "WebSpeech"
-      ]
+      "feature": "WebAPI.WebSpeech"
     },
     {
       "dir": "src/WebStorage",
       "subdirs": true,
-      "feature": "WebAPI.WebStorage",
-      "public": [
-        "WebStorage"
-      ]
+      "feature": "WebAPI.WebStorage"
     },
     {
       "dir": "src/WebVTT",
       "subdirs": true,
-      "feature": "WebAPI.WebVTT",
-      "public": [
-        "WebVTT"
-      ]
+      "feature": "WebAPI.WebVTT"
     },
     {
       "dir": "src/WebWorkers",
       "subdirs": true,
-      "feature": "WebAPI.WebWorkers",
-      "public": [
-        "WebWorkers"
-      ]
+      "feature": "WebAPI.WebWorkers"
     },
     {
       "dir": "tests",

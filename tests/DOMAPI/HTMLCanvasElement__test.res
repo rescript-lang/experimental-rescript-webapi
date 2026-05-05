@@ -1,38 +1,37 @@
-external toHTMLCanvasElement: null<DOM.Types.element> => DOM.Types.htmlCanvasElement = "%identity"
+external toHTMLCanvasElement: null<DomTypes.element> => DomTypes.htmlCanvasElement = "%identity"
 @set
-external setFillStyle: (DOM.Types.canvasRenderingContext2D, Canvas.Types.fillStyle) => unit =
+external setFillStyle: (DomTypes.canvasRenderingContext2D, CanvasTypes.fillStyle) => unit =
   "fillStyle"
 @get
-external getFillStyle: DOM.Types.canvasRenderingContext2D => Canvas.Types.fillStyle = "fillStyle"
+external getFillStyle: DomTypes.canvasRenderingContext2D => CanvasTypes.fillStyle = "fillStyle"
 @set
-external setFont: (DOM.Types.canvasRenderingContext2D, string) => unit = "font"
+external setFont: (DomTypes.canvasRenderingContext2D, string) => unit = "font"
 @set
 external setTextBaseline: (
-  DOM.Types.canvasRenderingContext2D,
-  Canvas.Types.canvasTextBaseline,
+  DomTypes.canvasRenderingContext2D,
+  CanvasTypes.canvasTextBaseline,
 ) => unit = "textBaseline"
 
-let myCanvas: DOM.Types.htmlCanvasElement =
-  DOM.Global.document->DOM.Document.getElementById("myCanvas")->toHTMLCanvasElement
-let ctx = myCanvas->Canvas.HTMLCanvasElement.getContext2D
+let myCanvas: DomTypes.htmlCanvasElement =
+  DomGlobal.document->Document.getElementById("myCanvas")->toHTMLCanvasElement
+let ctx = myCanvas->HTMLCanvasElement.getContext2D
 
-ctx->setFillStyle(Canvas.FillStyle.fromString("red"))
-ctx->Canvas.CanvasRenderingContext2D.fillRect(~x=50., ~y=50., ~w=200., ~h=200.)
+ctx->setFillStyle(FillStyle.fromString("red"))
+ctx->CanvasRenderingContext2D.fillRect(~x=50., ~y=50., ~w=200., ~h=200.)
 
-ctx->setFillStyle(Canvas.FillStyle.fromString("black"))
+ctx->setFillStyle(FillStyle.fromString("black"))
 ctx->setFont("2px Tahoma")
-ctx->setTextBaseline(Canvas.Types.Top)
-ctx->Canvas.CanvasRenderingContext2D.fillText(~text="MY TEXT", ~x=60., ~y=60.)
+ctx->setTextBaseline(CanvasTypes.Top)
+ctx->CanvasRenderingContext2D.fillText(~text="MY TEXT", ~x=60., ~y=60.)
 
-switch ctx->getFillStyle->Canvas.FillStyle.decode {
-| Canvas.FillStyle.String(color) => Console.log(`Color: ${color}`)
-| Canvas.FillStyle.CanvasGradient(_) => Console.log("CanvasGradient")
-| Canvas.FillStyle.CanvasPattern(_) => Console.log("CanvasPattern")
+switch ctx->getFillStyle->FillStyle.decode {
+| FillStyle.String(color) => Console.log(`Color: ${color}`)
+| FillStyle.CanvasGradient(_) => Console.log("CanvasGradient")
+| FillStyle.CanvasPattern(_) => Console.log("CanvasPattern")
 }
 
-let img: DOM.Types.htmlImageElement =
-  DOM.Global.document->DOM.Document.createElement("img")->Obj.magic
-ctx->Canvas.CanvasRenderingContext2D.drawImageWithDimensions(
+let img: DomTypes.htmlImageElement = DomGlobal.document->Document.createElement("img")->Obj.magic
+ctx->CanvasRenderingContext2D.drawImageWithDimensions(
   ~image=img,
   ~dx=0.,
   ~dy=0.,

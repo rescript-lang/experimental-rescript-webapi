@@ -1,4 +1,4 @@
-include Event.EventTarget.Impl({type t = IndexedDbTypes.idbDatabase})
+include EventTarget.Impl({type t = IndexedDbTypes.idbDatabase})
 
 /**
 Returns a new transaction with the given mode ("readonly" or "readwrite") and scope which can be a single object store name or an array of names.

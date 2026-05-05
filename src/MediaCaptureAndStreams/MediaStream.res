@@ -44,7 +44,7 @@ let stream = MediaStream.fromTracks([audioTrack, videoTrack])
 @new
 external fromTracks: array<MediaStreamTrack.t> => t = "MediaStream"
 
-include Event.EventTarget.Impl({type t = t})
+include EventTarget.Impl({type t = t})
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/MediaStream/getAudioTracks)

@@ -1,4 +1,4 @@
-include Event.EventTarget.Impl({type t = ScreenWakeLockTypes.wakeLockSentinel})
+include EventTarget.Impl({type t = ScreenWakeLockTypes.wakeLockSentinel})
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/WakeLockSentinel/release)

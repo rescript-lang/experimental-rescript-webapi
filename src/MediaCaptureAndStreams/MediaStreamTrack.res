@@ -11,7 +11,7 @@ type mediaTrackSettings = MediaCaptureAndStreamsTypes.mediaTrackSettings = {
   ...MediaCaptureAndStreamsTypes.mediaTrackSettings,
 }
 
-include Event.EventTarget.Impl({type t = t})
+include EventTarget.Impl({type t = t})
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/MediaStreamTrack/clone)

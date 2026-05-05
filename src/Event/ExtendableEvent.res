@@ -5,7 +5,7 @@ module Impl = (
 ) => {
   external asExtendableEvent: T.t => EventTypes.extendableEvent = "%identity"
 
-  include EventEvent.Impl({type t = T.t})
+  include Event.Impl({type t = T.t})
 
   @send
   external waitUntil: (T.t, promise<'a>) => unit = "waitUntil"

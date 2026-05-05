@@ -2,7 +2,7 @@ import * as path from "node:path";
 import { exec } from "node:child_process";
 import { promisify } from "node:util";
 import fs from "node:fs/promises";
-import { featureSpecs, publicNameForLeafModule } from "../scripts/unmonorepo/feature-spec.mjs";
+import { featureSpecs } from "../scripts/unmonorepo/feature-spec.mjs";
 
 const execAsync = promisify(exec);
 
@@ -107,11 +107,7 @@ function moduleNameForFile(relativePath) {
 
   const leafName = path.basename(fileName, ".res");
 
-  if (leafName === spec.publicModule) {
-    return `WebAPI.${spec.publicModule}`;
-  }
-
-  return `WebAPI.${spec.publicModule}.${publicNameForLeafModule(leafName, spec.internalPrefix)}`;
+  return `WebAPI.${leafName}`;
 }
 
 const pattern = "../src/*/**/*.res";

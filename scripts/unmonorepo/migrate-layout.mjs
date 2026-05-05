@@ -1,6 +1,6 @@
 import fs from "node:fs";
 import path from "node:path";
-import { featureSpecs, findDuplicateLeafModules } from "./feature-spec.mjs";
+import { featureSpecs, findDuplicateLeafModules, migratedLeafName } from "./feature-spec.mjs";
 
 function moveFile(fromPath, toPath) {
   fs.mkdirSync(path.dirname(toPath), { recursive: true });
@@ -9,7 +9,6 @@ function moveFile(fromPath, toPath) {
 
 export function migrateLayout(rootDir) {
   const duplicateLeaves = findDuplicateLeafModules(rootDir, featureSpecs);
-  const reservedPublicModules = new Set(featureSpecs.map((spec) => spec.publicModule));
 
   for (const spec of featureSpecs) {
     const legacySourceDir = path.join(rootDir, "packages", spec.dirName, "src");
@@ -22,10 +21,7 @@ export function migrateLayout(rootDir) {
       if (!entry.isFile() || !entry.name.endsWith(".res")) continue;
 
       const leafName = path.basename(entry.name, ".res");
-      const nextLeafName =
-        duplicateLeaves.has(leafName) || reservedPublicModules.has(leafName)
-        ? `${spec.internalPrefix}${leafName}`
-        : leafName;
+      const nextLeafName = migratedLeafName({ spec, leafName, duplicateLeaves });
 
       moveFile(
         path.join(legacySourceDir, entry.name),

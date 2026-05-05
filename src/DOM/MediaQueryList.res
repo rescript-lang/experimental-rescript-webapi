@@ -1,1 +1,1 @@
-include Event.EventTarget.Impl({type t = DomTypes.mediaQueryList})
+include EventTarget.Impl({type t = DomTypes.mediaQueryList})

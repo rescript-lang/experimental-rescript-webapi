@@ -28,7 +28,7 @@ external arrayBuffer: t => promise<ArrayBuffer.t> = "arrayBuffer"
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Request/blob)
 */
 @send
-external blob: t => promise<File.Blob.t> = "blob"
+external blob: t => promise<Blob.t> = "blob"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Request/bytes)

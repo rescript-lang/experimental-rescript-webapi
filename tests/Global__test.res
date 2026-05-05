@@ -1,49 +1,49 @@
-let response = await Fetch.Global.fetch("https://rescript-lang.org/")
+let response = await FetchGlobal.fetch("https://rescript-lang.org/")
 
-let response2 = await Fetch.Global.fetch(
+let response2 = await FetchGlobal.fetch(
   "https://rescript-lang.org/",
   ~init={
-    headers: Fetch.HeadersInit.fromDict(
+    headers: HeadersInit.fromDict(
       dict{
         "Content-Type": "application/json",
         "Authorization": "Bearer token",
       },
     ),
-    body: Fetch.BodyInit.fromString(`secret=foo&response=bar`),
+    body: BodyInit.fromString(`secret=foo&response=bar`),
   },
 )
 
-let response3 = await Fetch.Global.fetchWithRequest(
-  Fetch.Request.fromURL("https://rescript-lang.org/"),
+let response3 = await FetchGlobal.fetchWithRequest(
+  Request.fromURL("https://rescript-lang.org/"),
   ~init={
     method: "POST",
-    headers: Fetch.HeadersInit.fromDict(
+    headers: HeadersInit.fromDict(
       dict{
         "Content-Type": "application/x-www-form-urlencoded",
       },
     ),
-    body: Fetch.BodyInit.fromString(`secret=foo&response=bar`),
+    body: BodyInit.fromString(`secret=foo&response=bar`),
   },
 )
 
-DOM.Global.removeEventListener(
-  Event.Types.Mousedown,
-  UIEvents.MouseEvent.preventDefault,
+DomGlobal.removeEventListener(
+  EventTypes.Mousedown,
+  MouseEvent.preventDefault,
   ~options={capture: false},
 )
 
-let registrationResult = await DOM.Window.current
-->DOM.Window.navigator
-->DOM.Navigator.serviceWorker
-->ServiceWorker.ServiceWorkerContainer.register("/sw.js")
-let subscription = await registrationResult.pushManager->Push.PushManager.subscribe(
+let registrationResult = await Window.current
+->Window.navigator
+->Navigator.serviceWorker
+->ServiceWorkerContainer.register("/sw.js")
+let subscription = await registrationResult.pushManager->PushManager.subscribe(
   ~options={
     userVisibleOnly: true,
-    applicationServerKey: Push.ApplicationServerKey.fromString("MyPublicKey"),
+    applicationServerKey: ApplicationServerKey.fromString("MyPublicKey"),
   },
 )
 
-let pushSubscriptionJSON = subscription->Push.PushSubscription.toJSON
+let pushSubscriptionJSON = subscription->PushSubscription.toJSON
 let (auth, p256dh) = switch pushSubscriptionJSON.keys {
 | None => ("?", "?")
 | Some(keys) => (keys.auth, keys.p256dh)

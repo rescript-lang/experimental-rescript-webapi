@@ -25,7 +25,7 @@ type clipboardItem = private {
 */
 @editor.completeFrom(WebApiClipboard)
 type clipboard = private {
-  ...Event.Types.eventTarget,
+  ...EventTypes.eventTarget,
 }
 
 type clipboardItemOptions = {mutable presentationStyle?: presentationStyle}
