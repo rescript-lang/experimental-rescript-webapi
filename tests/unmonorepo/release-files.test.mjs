@@ -8,6 +8,7 @@ test("docs and CI point at the unified package layout", () => {
   const docsPhilosophy = fs.readFileSync("docs/content/docs/philosophy.mdx", "utf8");
   const docsContributing = fs.readFileSync("docs/content/docs/contributing/api-modelling.mdx", "utf8");
   const docsLlm = fs.readFileSync("docs/llm.js", "utf8");
+  const docsUtils = fs.readFileSync("docs/utils.js", "utf8");
   const designSpec = fs.readFileSync(
     "docs/superpowers/specs/2026-04-22-unmonorepo-webapi-design.md",
     "utf8",
@@ -28,6 +29,8 @@ test("docs and CI point at the unified package layout", () => {
   assert.match(designSpec, /Use `WebAPI\.\*` spelling, not `WebApi\.\*`\./);
   assert.match(docsLlm, /\.\.\/src\/\*\/\*\*\/\*\.res/);
   assert.match(docsLlm, /WebAPI\.\$\{spec\.publicModule\}/);
+  assert.match(docsUtils, /path\.resolve\(process\.cwd\(\), "src"\)/);
+  assert.doesNotMatch(docsUtils, /path\.resolve\(process\.cwd\(\), "packages"\)/);
   assert.match(workflow, /npm pack\b/);
   assert.match(workflow, /npm publish --access public --tag experimental/);
   assert.doesNotMatch(workflow, /--workspaces|publish --workspace|packages\/\*/);

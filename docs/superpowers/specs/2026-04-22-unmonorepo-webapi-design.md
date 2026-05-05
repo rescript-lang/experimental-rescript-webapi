@@ -100,10 +100,7 @@ Example:
 
 ```json
 {
-  "dependencies": [
-    "@plain/dep",
-    { "name": "@other/heavy", "features": ["WebAPI.WebCrypto"] }
-  ]
+  "dependencies": ["@plain/dep", { "name": "@other/heavy", "features": ["WebAPI.WebCrypto"] }]
 }
 ```
 

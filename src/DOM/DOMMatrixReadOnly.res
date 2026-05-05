@@ -1,14 +1,44 @@
 /**
+`make()`
+
+Creates a new identity `DOMMatrixReadOnly`.
+
+```res
+let matrix = DOMMatrixReadOnly.make()
+```
+
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/DOMMatrixReadOnly)
 */
 @new
-external make: (~init: string=?) => DomTypes.domMatrixReadOnly = "DOMMatrixReadOnly"
+external make: unit => DomTypes.domMatrixReadOnly = "DOMMatrixReadOnly"
 
 /**
+`fromString(string)`
+
+Creates a new `DOMMatrixReadOnly` from a transform string.
+
+```res
+let matrix = DOMMatrixReadOnly.fromString("matrix(1, 0, 0, 1, 0, 0)")
+```
+
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/DOMMatrixReadOnly)
 */
 @new
-external make2: (~init: array<float>=?) => DomTypes.domMatrixReadOnly = "DOMMatrixReadOnly"
+external fromString: string => DomTypes.domMatrixReadOnly = "DOMMatrixReadOnly"
+
+/**
+`fromArray(array<float>)`
+
+Creates a new `DOMMatrixReadOnly` from an array of matrix component values.
+
+```res
+let matrix = DOMMatrixReadOnly.fromArray([1., 0., 0., 1., 0., 0.])
+```
+
+[Read more on MDN](https://developer.mozilla.org/docs/Web/API/DOMMatrixReadOnly)
+*/
+@new
+external fromArray: array<float> => DomTypes.domMatrixReadOnly = "DOMMatrixReadOnly"
 
 @scope("DOMMatrixReadOnly")
 external fromMatrix: (~other: DomTypes.domMatrixInit=?) => DomTypes.domMatrixReadOnly = "fromMatrix"
