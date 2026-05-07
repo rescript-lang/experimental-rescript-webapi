@@ -16,10 +16,10 @@ and add `@rescript/webapi` to your `rescript.json`:
 
 ```json
 {
-  "bs-dependencies": [
+  "dependencies": [
     "@rescript/webapi"
   ],
-  "bsc-flags": [
+  "compiler-flags": [
     "-open WebAPI.Global"
   ]
 }
