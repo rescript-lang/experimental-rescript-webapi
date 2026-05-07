@@ -35,3 +35,19 @@ test("docs and CI point at the unified package layout", () => {
   assert.match(workflow, /npm publish --access public --tag experimental/);
   assert.doesNotMatch(workflow, /--workspaces|publish --workspace|packages\/\*/);
 });
+
+test("root rescript.json keeps generated type modules internal", () => {
+  const config = JSON.parse(fs.readFileSync("rescript.json", "utf8"));
+  const sourceEntries = config.sources.filter((source) => source.dir?.startsWith("src/"));
+
+  assert.ok(sourceEntries.length > 0);
+
+  for (const source of sourceEntries) {
+    assert.ok(Array.isArray(source.public), `${source.dir} should explicitly list public modules`);
+    assert.deepEqual(
+      source.public.filter((moduleName) => moduleName.endsWith("Types")),
+      [],
+      `${source.dir} should not expose *Types modules`,
+    );
+  }
+});
