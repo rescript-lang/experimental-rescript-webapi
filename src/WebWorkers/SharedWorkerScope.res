@@ -7,7 +7,7 @@ module Impl = (
     type t
   },
 ) => {
-  include WorkerGlobalScope.Impl({type t = T.t})
+  include Worker.Impl({type t = T.t})
 
   /**
 `close(sharedWorkerGlobalScope)`
@@ -17,7 +17,7 @@ queued in the SharedWorkerGlobalScope's event loop, effectively closing this
 particular scope.
 
 ```res
-self -> SharedWorkerGlobalScope.close
+self -> SharedWorkerScope.close
 ```
 
 [Read more on MDN](https://developer.mozilla.org/en-US/docs/Web/API/SharedWorkerGlobalScope/close)

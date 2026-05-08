@@ -35,6 +35,19 @@ test("moves legacy sources into src/<Feature>, renames duplicate leaves, and rem
     "Headers.res": "type t",
   });
 
+  writePackage(root, "Canvas", "WebApiCanvas", {
+    "Global.res": "let createImageBitmap = 1",
+  });
+
+  writePackage(root, "WebWorkers", "WebApiWebWorkers", {
+    "WorkerGlobalScope.res": "type worker",
+    "SharedWorkerGlobalScope.res": "type sharedWorker",
+  });
+
+  writePackage(root, "ServiceWorker", "WebApiServiceWorker", {
+    "ServiceWorkerGlobalScope.res": "type serviceWorker",
+  });
+
   writePackage(root, "URL", "WebApiURL", {
     "URL.res": "external make: unit => unit = \"URL\"",
     "URLSearchParams.res": "type t",
@@ -54,8 +67,24 @@ test("moves legacy sources into src/<Feature>, renames duplicate leaves, and rem
     "let document = 1",
   );
   assert.equal(
-    readFileSync(path.join(root, "src", "Fetch", "FetchGlobal.res"), "utf8"),
+    readFileSync(path.join(root, "src", "Fetch", "Fetch.res"), "utf8"),
     "let fetch = 1",
+  );
+  assert.equal(
+    readFileSync(path.join(root, "src", "Canvas", "Canvas.res"), "utf8"),
+    "let createImageBitmap = 1",
+  );
+  assert.equal(
+    readFileSync(path.join(root, "src", "WebWorkers", "Worker.res"), "utf8"),
+    "type worker",
+  );
+  assert.equal(
+    readFileSync(path.join(root, "src", "WebWorkers", "SharedWorkerScope.res"), "utf8"),
+    "type sharedWorker",
+  );
+  assert.equal(
+    readFileSync(path.join(root, "src", "ServiceWorker", "ServiceWorkerScope.res"), "utf8"),
+    "type serviceWorker",
   );
   assert.equal(
     readFileSync(path.join(root, "src", "Fetch", "FetchTypes.res"), "utf8"),

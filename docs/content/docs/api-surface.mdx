@@ -5,21 +5,20 @@ slug: "api-surface"
 ---
 
 The package exposes browser APIs under the `WebAPI` namespace. In normal application code,
-add the package to `rescript.json` and open the global module:
+add the package to `rescript.json`:
 
 ```json
 {
-  "dependencies": ["@rescript/webapi"],
-  "compiler-flags": ["-open WebAPI.Global"]
+  "dependencies": ["@rescript/webapi"]
 }
 ```
 
-With `WebAPI.Global` opened, browser globals are available directly. Interface-specific
-methods live on public modules such as `WebAPI.Location`, `WebAPI.Document`,
+Use `WebAPI.Window.current` for the browser `window`. Interface-specific methods live on
+public modules such as `WebAPI.Window`, `WebAPI.Location`, `WebAPI.Document`,
 `WebAPI.Element`, `WebAPI.Request`, and `WebAPI.Response`.
 
 ```ReScript
-let location = window.location
+let location = WebAPI.Window.current->WebAPI.Window.location
 let href = location.href
 
 location->WebAPI.Location.reload
@@ -33,6 +32,7 @@ helper modules.
 ```ReScript
 let req: WebAPI.Request.t = WebAPI.Request.fromURL("https://example.com")
 let headers = WebAPI.Headers.make()
+let document = WebAPI.Window.current->WebAPI.Window.document
 let element = document->WebAPI.Document.createElement("button")
 ```
 
@@ -43,11 +43,11 @@ the value type be inferred from constructors and accessors.
 
 ## Fetch
 
-Use `WebAPI.FetchGlobal.fetch` for string URLs and `WebAPI.FetchGlobal.fetchWithRequest`
+Use `WebAPI.Fetch.fetch` for string URLs and `WebAPI.Fetch.fetchWithRequest`
 when you already have a `WebAPI.Request.t`.
 
 ```ReScript
-let response = await WebAPI.FetchGlobal.fetch("https://example.com/api/users")
+let response = await WebAPI.Fetch.fetch("https://example.com/api/users")
 
 if response.ok {
   let body = await response->WebAPI.Response.json
@@ -62,7 +62,7 @@ For JSON-style POST requests, construct headers with `HeadersInit` and the body 
 `BodyInit`.
 
 ```ReScript
-let response = await WebAPI.FetchGlobal.fetch(
+let response = await WebAPI.Fetch.fetch(
   "https://example.com/api/users",
   ~init={
     method: "POST",
@@ -106,7 +106,7 @@ let initHeaders = WebAPI.HeadersInit.fromDict(
   },
 )
 
-let response = await WebAPI.FetchGlobal.fetch(
+let response = await WebAPI.Fetch.fetch(
   "https://example.com/api/users",
   ~init={headers: initHeaders},
 )
@@ -168,7 +168,7 @@ let req = WebAPI.Request.fromURL(
   },
 )
 
-let response = await WebAPI.FetchGlobal.fetchWithRequest(req)
+let response = await WebAPI.Fetch.fetchWithRequest(req)
 let cloned: WebAPI.Request.t = req->WebAPI.Request.clone
 let bodyText = await cloned->WebAPI.Request.text
 ```
@@ -188,7 +188,7 @@ let authenticatedReq = WebAPI.Request.fromRequest(
   ~init={headers: authenticatedHeaders},
 )
 
-let authenticatedResponse = await WebAPI.FetchGlobal.fetchWithRequest(authenticatedReq)
+let authenticatedResponse = await WebAPI.Fetch.fetchWithRequest(authenticatedReq)
 ```
 
 Request body readers mirror the browser API and return promises.
@@ -240,10 +240,11 @@ let redirect = WebAPI.Response.redirect(~url="/login", ~status=302)
 
 ## DOM
 
-DOM globals come from `WebAPI.Global`; DOM values are operated on through public interface
-modules.
+DOM values are operated on through public interface modules.
 
 ```ReScript
+let document = WebAPI.Window.current->WebAPI.Window.document
+
 let maybeButton = document
 ->WebAPI.Document.querySelector("button")
 ->Null.toOption
@@ -265,6 +266,23 @@ let element = document->WebAPI.Document.createElement("div")
 let node = element->WebAPI.Element.asNode
 ```
 
+## Visual Viewport
+
+`Window.visualViewport` returns a nullable `WebAPI.VisualViewport.t`.
+
+```ReScript
+let maybeViewport = WebAPI.Window.current
+->WebAPI.Window.visualViewport
+->Null.toOption
+
+switch maybeViewport {
+| Some(viewport) =>
+  Console.log(Float.toString(viewport.width))
+  Console.log(Float.toString(viewport.scale))
+| None => Console.log("visual viewport unavailable")
+}
+```
+
 ## URLs
 
 URL helpers expose constructors and static functions on the same public module.
@@ -279,7 +297,7 @@ let json = url->WebAPI.URL.toJSON
 
 ```ReScript
 let params = WebAPI.URLSearchParams.fromString("search=rescript")
-let response = await WebAPI.FetchGlobal.fetch(
+let response = await WebAPI.Fetch.fetch(
   "https://example.com/search",
   ~init={
     method: "POST",

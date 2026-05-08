@@ -2,7 +2,7 @@ type t = ServiceWorkerTypes.serviceWorkerGlobalScope = private {
   ...ServiceWorkerTypes.serviceWorkerGlobalScope,
 }
 
-include WorkerGlobalScope.Impl({type t = t})
+include Worker.Impl({type t = t})
 
 /**
 Forces the waiting service worker to become the active service worker.

@@ -152,7 +152,7 @@ external screen: t => DomTypes.screen = "screen"
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/visualViewport)
     */
 @get
-external visualViewport: t => Null.t<VisualViewportTypes.visualViewport> = "visualViewport"
+external visualViewport: t => Null.t<VisualViewport.t> = "visualViewport"
 
 /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/innerWidth)

@@ -18,9 +18,6 @@ and add `@rescript/webapi` to your `rescript.json`:
 {
   "dependencies": [
     "@rescript/webapi"
-  ],
-  "compiler-flags": [
-    "-open WebAPI.Global"
   ]
 }
 ```
@@ -28,7 +25,7 @@ and add `@rescript/webapi` to your `rescript.json`:
 ## Usage
 
 ```rescript
-let location = window.location
+let location = WebAPI.Window.current->WebAPI.Window.location
 let href = location.href
 location->WebAPI.Location.reload
 ```

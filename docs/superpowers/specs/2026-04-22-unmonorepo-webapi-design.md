@@ -143,13 +143,18 @@ Examples:
 - `src/Base/DOM.res` -> `src/Base/DOM.res`
 - `src/DOM/Types.res` -> `src/DOM/DomTypes.res`
 - `src/DOM/Global.res` -> `src/DOM/DomGlobal.res`
-- `src/Fetch/Global.res` -> `src/Fetch/FetchGlobal.res`
+- `src/Canvas/Global.res` -> `src/Canvas/Canvas.res`
+- `src/Fetch/Global.res` -> `src/Fetch/Fetch.res`
+- `src/ServiceWorker/ServiceWorkerGlobalScope.res` -> `src/ServiceWorker/ServiceWorkerScope.res`
+- `src/WebWorkers/SharedWorkerGlobalScope.res` -> `src/WebWorkers/SharedWorkerScope.res`
+- `src/WebWorkers/WorkerGlobalScope.res` -> `src/WebWorkers/Worker.res`
 - `src/Base/Event.res` -> `src/Base/BaseEvent.res`
 - `src/File/Types.res` -> `src/File/FileTypes.res`
 
 Naming rule:
 
 - Prefix internal modules with the feature’s public module stem.
+- Simplify global owner modules to the shortest collision-free public owner name.
 - Keep legacy same-name public modules unprefixed when the feature owns that name, for example `src/URL/URL.res`, `src/Event/Event.res`, and `src/File/File.res`.
 
 This keeps the public API stable while making the unified internal module graph collision-free.

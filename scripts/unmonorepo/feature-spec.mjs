@@ -32,6 +32,44 @@ export function publicNameForLeafModule(leafName, internalPrefix) {
   return leafName;
 }
 
+const simplifiedLegacyLeaves = new Map([
+  ["Canvas", new Map([["Global", "Canvas"]])],
+  ["Fetch", new Map([["Global", "Fetch"]])],
+  [
+    "ServiceWorker",
+    new Map([["ServiceWorkerGlobalScope", "ServiceWorkerScope"]]),
+  ],
+  [
+    "WebWorkers",
+    new Map([
+      ["SharedWorkerGlobalScope", "SharedWorkerScope"],
+      ["WorkerGlobalScope", "Worker"],
+    ]),
+  ],
+]);
+
+const legacyLeavesByCurrentLeaf = new Map(
+  [...simplifiedLegacyLeaves.entries()].map(([publicModule, leafMap]) => [
+    publicModule,
+    new Map([...leafMap.entries()].map(([legacyLeaf, currentLeaf]) => [currentLeaf, legacyLeaf])),
+  ]),
+);
+
+function simplifiedLeafName(spec, leafName) {
+  return simplifiedLegacyLeaves.get(spec.publicModule)?.get(leafName);
+}
+
+export function legacyPublicNamesForLeafModule(leafName, spec) {
+  const names = [publicNameForLeafModule(leafName, spec.internalPrefix)];
+  const legacyLeaf = legacyLeavesByCurrentLeaf.get(spec.publicModule)?.get(leafName);
+
+  if (legacyLeaf !== undefined && !names.includes(legacyLeaf)) {
+    names.push(legacyLeaf);
+  }
+
+  return names;
+}
+
 export const featureSpecs = [
   ["Base", "WebApiBase"],
   ["CSSFontLoading", "WebApiCSSFontLoading"],
@@ -93,6 +131,11 @@ export const featureSpecs = [
 export function migratedLeafName({ spec, leafName, duplicateLeaves }) {
   if (spec.dirName === "Base" && leafName === "DOM") {
     return "DOM";
+  }
+
+  const simplifiedName = simplifiedLeafName(spec, leafName);
+  if (simplifiedName !== undefined) {
+    return simplifiedName;
   }
 
   if (leafName === spec.publicModule) {

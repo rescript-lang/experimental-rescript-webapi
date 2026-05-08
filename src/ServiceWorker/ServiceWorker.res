@@ -33,6 +33,6 @@ module Cache = Cache
 module Clients = Clients
 module NavigationPreloadManager = NavigationPreloadManager
 module ServiceWorkerContainer = ServiceWorkerContainer
-module ServiceWorkerGlobalScope = ServiceWorkerGlobalScope
+module ServiceWorkerScope = ServiceWorkerScope
 module ServiceWorkerRegistration = ServiceWorkerRegistration
 module Types = ServiceWorkerTypes

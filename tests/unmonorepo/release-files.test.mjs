@@ -16,9 +16,11 @@ test("docs and CI point at the unified package layout", () => {
   const workflow = fs.readFileSync(".github/workflows/ci.yml", "utf8");
 
   assert.match(readme, /npm i @rescript\/webapi@experimental/);
-  assert.match(readme, /WebAPI\.Global/);
+  assert.match(readme, /WebAPI\.Window\.current/);
+  assert.doesNotMatch(readme, /WebAPI\.Global/);
   assert.match(docsIndex, /ReScript WebAPI/);
-  assert.match(docsIndex, /WebAPI\.Global/);
+  assert.match(docsIndex, /WebAPI\.Window\.current/);
+  assert.doesNotMatch(docsIndex, /WebAPI\.Global/);
   assert.match(docsIndex, /location->WebAPI\.Location\.reload/);
   assert.match(docsPhilosophy, /open WebAPI\.DOM/);
   assert.doesNotMatch(docsPhilosophy, /WebAPI\.DomGlobal/);
@@ -54,9 +56,21 @@ test("root rescript.json keeps generated type modules internal", () => {
       [],
       `${source.dir} should not expose *Types modules`,
     );
+    assert.deepEqual(
+      source.public.filter((moduleName) => moduleName.includes("Global")),
+      [],
+      `${source.dir} should not expose Global or GlobalScope modules`,
+    );
   }
 
   const domSource = sourceEntries.find((source) => source.dir === "src/DOM");
   assert.ok(domSource, "src/DOM source entry should exist");
   assert.ok(!domSource.public.includes("DomGlobal"), "src/DOM should keep DomGlobal internal");
+
+  const visualViewportSource = sourceEntries.find((source) => source.dir === "src/VisualViewport");
+  assert.ok(visualViewportSource, "src/VisualViewport source entry should exist");
+  assert.ok(
+    visualViewportSource.public.includes("VisualViewport"),
+    "src/VisualViewport should expose a public VisualViewport module",
+  );
 });

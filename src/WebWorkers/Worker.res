@@ -14,7 +14,7 @@ The fetch() method of the WorkerGlobalScope interface starts the process of fetc
 returning a promise that is fulfilled once the response is available.
 
 ```res
-let response = await self->WorkerGlobalScope.fetch("https://rescript-lang.org")
+let response = await self->Worker.fetch("https://rescript-lang.org")
 ```
 
 [Read more on MDN](https://developer.mozilla.org/en-US/docs/Web/API/WorkerGlobalScope/fetch)
@@ -29,7 +29,7 @@ The fetch() method of the WorkerGlobalScope interface starts the process of fetc
 returning a promise that is fulfilled once the response is available.
 
 ```res
-let response = await self->WorkerGlobalScope.fetch(myRequest)
+let response = await self->Worker.fetch(myRequest)
 ```
 
 [Read more on MDN](https://developer.mozilla.org/en-US/docs/Web/API/WorkerGlobalScope/fetch)

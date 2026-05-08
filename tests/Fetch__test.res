@@ -1,6 +1,6 @@
-let response = await FetchGlobal.fetch("https://rescript-lang.org/")
+let response = await Fetch.fetch("https://rescript-lang.org/")
 
-let response2 = await FetchGlobal.fetch(
+let response2 = await Fetch.fetch(
   "https://rescript-lang.org/",
   ~init={
     headers: HeadersInit.fromDict(
@@ -13,7 +13,7 @@ let response2 = await FetchGlobal.fetch(
   },
 )
 
-let response3 = await FetchGlobal.fetchWithRequest(
+let response3 = await Fetch.fetchWithRequest(
   Request.fromURL("https://rescript-lang.org/"),
   ~init={
     method: "POST",

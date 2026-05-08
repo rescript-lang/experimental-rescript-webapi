@@ -29,7 +29,7 @@
       "subdirs": true,
       "feature": "WebAPI.Canvas",
       "public": [
-        "CanvasGlobal",
+        "Canvas",
         "CanvasGradient",
         "CanvasPattern",
         "CanvasRenderingContext2D",
@@ -224,7 +224,7 @@
       "feature": "WebAPI.Fetch",
       "public": [
         "BodyInit",
-        "FetchGlobal",
+        "Fetch",
         "FormData",
         "FormDataEntryValue",
         "Headers",
@@ -423,8 +423,8 @@
         "NavigationPreloadManager",
         "ServiceWorker",
         "ServiceWorkerContainer",
-        "ServiceWorkerGlobalScope",
-        "ServiceWorkerRegistration"
+        "ServiceWorkerRegistration",
+        "ServiceWorkerScope"
       ]
     },
     {
@@ -477,7 +477,9 @@
       "dir": "src/VisualViewport",
       "subdirs": true,
       "feature": "WebAPI.VisualViewport",
-      "public": []
+      "public": [
+        "VisualViewport"
+      ]
     },
     {
       "dir": "src/WebAudio",
@@ -586,8 +588,8 @@
       "public": [
         "CacheStorage",
         "SharedWorker",
-        "SharedWorkerGlobalScope",
-        "WorkerGlobalScope"
+        "SharedWorkerScope",
+        "Worker"
       ]
     },
     {

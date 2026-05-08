@@ -122,7 +122,7 @@ external screen: DomTypes.screen = "screen"
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/visualViewport)
 */
-external visualViewport: VisualViewportTypes.visualViewport = "visualViewport"
+external visualViewport: VisualViewport.t = "visualViewport"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/innerWidth)

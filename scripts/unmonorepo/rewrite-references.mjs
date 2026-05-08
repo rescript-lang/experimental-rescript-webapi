@@ -1,6 +1,6 @@
 import fs from "node:fs";
 import path from "node:path";
-import { featureSpecs, publicNameForLeafModule } from "./feature-spec.mjs";
+import { featureSpecs, legacyPublicNamesForLeafModule } from "./feature-spec.mjs";
 
 function escapeRegExp(value) {
   return value.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
@@ -26,11 +26,12 @@ function rewriteNestedFeatureReferences(source, { specs, leavesByFeature }) {
     const leaves = leavesByFeature.get(spec.publicModule) ?? [];
 
     for (const leaf of leaves) {
-      const publicLeaf = publicNameForLeafModule(leaf, spec.internalPrefix);
-      next = next.replaceAll(`${spec.legacyNamespace}.${publicLeaf}.`, `${leaf}.`);
-      next = next.replaceAll(`WebAPI.${spec.publicModule}.${publicLeaf}.`, `${leaf}.`);
-      next = next.replaceAll(`WebApi.${spec.publicModule}.${publicLeaf}.`, `${leaf}.`);
-      next = next.replaceAll(`${spec.publicModule}.${publicLeaf}.`, `${leaf}.`);
+      for (const publicLeaf of legacyPublicNamesForLeafModule(leaf, spec)) {
+        next = next.replaceAll(`${spec.legacyNamespace}.${publicLeaf}.`, `${leaf}.`);
+        next = next.replaceAll(`WebAPI.${spec.publicModule}.${publicLeaf}.`, `${leaf}.`);
+        next = next.replaceAll(`WebApi.${spec.publicModule}.${publicLeaf}.`, `${leaf}.`);
+        next = next.replaceAll(`${spec.publicModule}.${publicLeaf}.`, `${leaf}.`);
+      }
     }
   }
 
@@ -45,14 +46,15 @@ export function rewriteSourceText(
   let next = rewriteNestedFeatureReferences(source, { specs, leavesByFeature });
 
   for (const leaf of localLeaves) {
-    const publicLeaf = publicNameForLeafModule(leaf, currentSpec.internalPrefix);
-    next = next.replaceAll(`${currentSpec.legacyNamespace}.${publicLeaf}.`, `${leaf}.`);
-    next = next.replaceAll(`WebAPI.${currentSpec.publicModule}.${publicLeaf}.`, `${leaf}.`);
-    next = next.replaceAll(`WebApi.${currentSpec.publicModule}.${publicLeaf}.`, `${leaf}.`);
-    next = next.replaceAll(`${currentSpec.publicModule}.${publicLeaf}.`, `${leaf}.`);
+    for (const publicLeaf of legacyPublicNamesForLeafModule(leaf, currentSpec)) {
+      next = next.replaceAll(`${currentSpec.legacyNamespace}.${publicLeaf}.`, `${leaf}.`);
+      next = next.replaceAll(`WebAPI.${currentSpec.publicModule}.${publicLeaf}.`, `${leaf}.`);
+      next = next.replaceAll(`WebApi.${currentSpec.publicModule}.${publicLeaf}.`, `${leaf}.`);
+      next = next.replaceAll(`${currentSpec.publicModule}.${publicLeaf}.`, `${leaf}.`);
 
-    if (leaf !== publicLeaf) {
-      next = rewriteBareModuleReference(next, publicLeaf, leaf);
+      if (leaf !== publicLeaf) {
+        next = rewriteBareModuleReference(next, publicLeaf, leaf);
+      }
     }
   }
 

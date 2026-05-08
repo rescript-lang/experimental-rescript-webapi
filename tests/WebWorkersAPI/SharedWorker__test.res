@@ -12,6 +12,6 @@ let shared3: SharedWorker.t = SharedWorker.makeWithOptions(
 
 let port: MessagePort.t = SharedWorker.port(shared1)
 
-let self = SharedWorkerGlobalScope.current
+let self = SharedWorkerScope.current
 
-self->SharedWorkerGlobalScope.close
+self->SharedWorkerScope.close

@@ -51,3 +51,63 @@ test("rewrites same-feature references to local modules and external namespaces 
     "let x = DomGlobal.document",
   );
 });
+
+test("rewrites legacy global module references to simplified public modules", () => {
+  const specs = [
+    { publicModule: "Fetch", legacyNamespace: "WebApiFetch", internalPrefix: "Fetch" },
+    { publicModule: "Canvas", legacyNamespace: "WebApiCanvas", internalPrefix: "Canvas" },
+    { publicModule: "WebWorkers", legacyNamespace: "WebApiWebWorkers", internalPrefix: "WebWorkers" },
+    {
+      publicModule: "ServiceWorker",
+      legacyNamespace: "WebApiServiceWorker",
+      internalPrefix: "ServiceWorker",
+    },
+  ];
+  const leavesByFeature = new Map([
+    ["Fetch", ["Fetch", "FetchTypes"]],
+    ["Canvas", ["Canvas", "CanvasTypes"]],
+    ["WebWorkers", ["Worker", "SharedWorkerScope", "SharedWorker", "WebWorkersTypes"]],
+    ["ServiceWorker", ["ServiceWorker", "ServiceWorkerScope", "ServiceWorkerTypes"]],
+  ]);
+
+  assert.equal(
+    rewriteTestText(
+      "let response = WebApiFetch.Global.fetch(url)",
+      specs,
+      leavesByFeature,
+    ),
+    "let response = Fetch.fetch(url)",
+  );
+  assert.equal(
+    rewriteTestText(
+      "let bitmap = WebAPI.Canvas.Global.createImageBitmap(image)",
+      specs,
+      leavesByFeature,
+    ),
+    "let bitmap = Canvas.createImageBitmap(image)",
+  );
+  assert.equal(
+    rewriteTestText(
+      "let self = WebAPI.WebWorkers.WorkerGlobalScope.current",
+      specs,
+      leavesByFeature,
+    ),
+    "let self = Worker.current",
+  );
+  assert.equal(
+    rewriteTestText(
+      "let self = WebAPI.WebWorkers.SharedWorkerGlobalScope.current",
+      specs,
+      leavesByFeature,
+    ),
+    "let self = SharedWorkerScope.current",
+  );
+  assert.equal(
+    rewriteTestText(
+      "let self = WebAPI.ServiceWorker.ServiceWorkerGlobalScope.current",
+      specs,
+      leavesByFeature,
+    ),
+    "let self = ServiceWorkerScope.current",
+  );
+});

@@ -76,4 +76,44 @@ test("preserves direct public leaf modules while renaming duplicated internals",
     }),
     "FileTypes",
   );
+  assert.equal(
+    migratedLeafName({
+      spec: { dirName: "Fetch", publicModule: "Fetch", internalPrefix: "Fetch" },
+      leafName: "Global",
+      duplicateLeaves,
+    }),
+    "Fetch",
+  );
+  assert.equal(
+    migratedLeafName({
+      spec: { dirName: "Canvas", publicModule: "Canvas", internalPrefix: "Canvas" },
+      leafName: "Global",
+      duplicateLeaves,
+    }),
+    "Canvas",
+  );
+  assert.equal(
+    migratedLeafName({
+      spec: { dirName: "WebWorkers", publicModule: "WebWorkers", internalPrefix: "WebWorkers" },
+      leafName: "WorkerGlobalScope",
+      duplicateLeaves,
+    }),
+    "Worker",
+  );
+  assert.equal(
+    migratedLeafName({
+      spec: { dirName: "WebWorkers", publicModule: "WebWorkers", internalPrefix: "WebWorkers" },
+      leafName: "SharedWorkerGlobalScope",
+      duplicateLeaves,
+    }),
+    "SharedWorkerScope",
+  );
+  assert.equal(
+    migratedLeafName({
+      spec: { dirName: "ServiceWorker", publicModule: "ServiceWorker", internalPrefix: "ServiceWorker" },
+      leafName: "ServiceWorkerGlobalScope",
+      duplicateLeaves,
+    }),
+    "ServiceWorkerScope",
+  );
 });

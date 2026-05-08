@@ -1,6 +1,6 @@
-let self = ServiceWorkerGlobalScope.current
+let self = ServiceWorkerScope.current
 
-self->ServiceWorkerGlobalScope.addEventListener(EventTypes.Push, (event: PushEvent.t) => {
+self->ServiceWorkerScope.addEventListener(EventTypes.Push, (event: PushEvent.t) => {
   Console.log("received push event")
 
   // Extract data
@@ -14,7 +14,7 @@ self->ServiceWorkerGlobalScope.addEventListener(EventTypes.Push, (event: PushEve
   }
 
   // Handle some data sync
-  event->PushEvent.waitUntil(self->ServiceWorkerGlobalScope.fetch("https://rescript-lang.org"))
+  event->PushEvent.waitUntil(self->ServiceWorkerScope.fetch("https://rescript-lang.org"))
 
   // Show notification
   self.registration
@@ -32,7 +32,7 @@ self->ServiceWorkerGlobalScope.addEventListener(EventTypes.Push, (event: PushEve
   ->Promise.ignore
 })
 
-self->ServiceWorkerGlobalScope.addEventListener(EventTypes.NotificationClick, (
+self->ServiceWorkerScope.addEventListener(EventTypes.NotificationClick, (
   event: Notification.notificationEvent,
 ) => {
   Console.log(`notification clicked: ${event.action}`)
