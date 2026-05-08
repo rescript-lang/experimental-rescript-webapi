@@ -96,7 +96,6 @@
         "Document",
         "DocumentFragment",
         "DocumentTimeline",
-        "DomGlobal",
         "DomHTMLMediaElement",
         "Element",
         "ElementInternals",

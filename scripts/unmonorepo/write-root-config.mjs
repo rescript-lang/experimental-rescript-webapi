@@ -2,7 +2,14 @@ import fs from "node:fs";
 import path from "node:path";
 import { featureSpecs } from "./feature-spec.mjs";
 
-export function publicModulesForSourceDir(sourceDir) {
+export function isPublicModuleName(spec, moduleName) {
+  if (moduleName.endsWith("Types")) return false;
+  if (spec.dirName === "DOM" && moduleName === "DomGlobal") return false;
+
+  return true;
+}
+
+export function publicModulesForSourceDir(sourceDir, spec) {
   if (!fs.existsSync(sourceDir)) return [];
 
   const publicModules = new Set();
@@ -14,7 +21,7 @@ export function publicModulesForSourceDir(sourceDir) {
     if (extension !== ".res" && extension !== ".resi") continue;
 
     const moduleName = path.basename(entry.name, extension);
-    if (moduleName.endsWith("Types")) continue;
+    if (!isPublicModuleName(spec, moduleName)) continue;
 
     publicModules.add(moduleName);
   }
@@ -30,7 +37,7 @@ export function buildRootRescriptJson(specs) {
         dir: `src/${spec.dirName}`,
         subdirs: true,
         feature: spec.featureName,
-        public: (spec.publicModules ?? []).filter((moduleName) => !moduleName.endsWith("Types")),
+        public: (spec.publicModules ?? []).filter((moduleName) => isPublicModuleName(spec, moduleName)),
       })),
       {
         dir: "tests",
@@ -67,7 +74,7 @@ export function writeRootConfig(rootDir) {
   const currentPackage = JSON.parse(fs.readFileSync(packagePath, "utf8"));
   const specsWithPublicModules = featureSpecs.map((spec) => ({
     ...spec,
-    publicModules: publicModulesForSourceDir(path.join(rootDir, spec.sourceDir)),
+    publicModules: publicModulesForSourceDir(path.join(rootDir, spec.sourceDir), spec),
   }));
 
   fs.writeFileSync(rescriptPath, `${JSON.stringify(buildRootRescriptJson(specsWithPublicModules), null, 2)}\n`);

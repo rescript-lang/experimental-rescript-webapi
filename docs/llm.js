@@ -96,6 +96,38 @@ Module: ${moduleName}${typeString}${functionString}
 }
 
 const specByDir = new Map(featureSpecs.map((spec) => [spec.dirName, spec]));
+const rootDir = path.join(import.meta.dirname, "..");
+const rootConfig = JSON.parse(await fs.readFile(path.join(rootDir, "rescript.json"), "utf-8"));
+const publicModulesBySourceDir = new Map(
+  rootConfig.sources
+    .filter((source) => typeof source === "object")
+    .filter((source) => source.dir?.startsWith("src/") && Array.isArray(source.public))
+    .map((source) => [source.dir, new Set(source.public)]),
+);
+
+function normalizeRelativePath(filePath) {
+  return path.relative(rootDir, filePath).split(path.sep).join("/");
+}
+
+function sourceDirForRelativePath(relativePath) {
+  for (const sourceDir of publicModulesBySourceDir.keys()) {
+    if (relativePath.startsWith(`${sourceDir}/`)) {
+      return sourceDir;
+    }
+  }
+}
+
+function isPublicFile(filePath) {
+  const relativePath = normalizeRelativePath(filePath);
+  const sourceDir = sourceDirForRelativePath(relativePath);
+
+  if (!sourceDir) {
+    return false;
+  }
+
+  const moduleName = path.basename(relativePath, ".res").replace("$", "");
+  return publicModulesBySourceDir.get(sourceDir).has(moduleName);
+}
 
 function moduleNameForFile(relativePath) {
   const [, dirName, fileName] = relativePath.split(path.sep);
@@ -113,7 +145,11 @@ function moduleNameForFile(relativePath) {
 const pattern = "../src/*/**/*.res";
 const files = [];
 for await (const file of fs.glob(pattern, { recursive: true, cwd: import.meta.dirname })) {
-  files.push(path.join(import.meta.dirname, file));
+  const filePath = path.join(import.meta.dirname, file);
+
+  if (isPublicFile(filePath)) {
+    files.push(filePath);
+  }
 }
 files.sort();
 

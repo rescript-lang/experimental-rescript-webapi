@@ -20,16 +20,21 @@ test("docs and CI point at the unified package layout", () => {
   assert.match(docsIndex, /ReScript WebAPI/);
   assert.match(docsIndex, /WebAPI\.Global/);
   assert.match(docsIndex, /location->WebAPI\.Location\.reload/);
-  assert.match(docsPhilosophy, /open WebAPI\.DomGlobal/);
+  assert.match(docsPhilosophy, /open WebAPI\.DOM/);
+  assert.doesNotMatch(docsPhilosophy, /WebAPI\.DomGlobal/);
   assert.match(docsPhilosophy, /let myElement: WebAPI\.Element\.t = document->WebAPI\.Document\.createElement/);
   assert.match(docsPhilosophy, /let node: WebAPI\.Node\.t = element->WebAPI\.Element\.asNode/);
   assert.match(docsContributing, /open WebAPI/);
   assert.doesNotMatch(docsContributing, /open WebAPI\.DOM/);
   assert.match(designSpec, /original flat public API module shape/);
   assert.match(designSpec, /Use `WebAPI\.\*` spelling, not `WebApi\.\*`\./);
-  assert.match(docsLlm, /\.\.\/src\/\*\/\*\*\/\*\.res/);
-  assert.match(docsLlm, /WebAPI\.\$\{leafName\}/);
+  assert.match(docsLlm, /rescript\.json/);
+  assert.match(docsLlm, /source\.public/);
+  assert.match(docsLlm, /isPublicFile\(filePath\)/);
   assert.match(docsUtils, /path\.resolve\(process\.cwd\(\), "src"\)/);
+  assert.match(docsUtils, /rescript\.json/);
+  assert.match(docsUtils, /source\.public/);
+  assert.match(docsUtils, /publicModules\.has/);
   assert.doesNotMatch(docsUtils, /path\.resolve\(process\.cwd\(\), "packages"\)/);
   assert.match(workflow, /npm pack\b/);
   assert.match(workflow, /npm publish --access public --tag experimental/);
@@ -50,4 +55,8 @@ test("root rescript.json keeps generated type modules internal", () => {
       `${source.dir} should not expose *Types modules`,
     );
   }
+
+  const domSource = sourceEntries.find((source) => source.dir === "src/DOM");
+  assert.ok(domSource, "src/DOM source entry should exist");
+  assert.ok(!domSource.public.includes("DomGlobal"), "src/DOM should keep DomGlobal internal");
 });

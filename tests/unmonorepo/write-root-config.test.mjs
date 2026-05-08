@@ -12,7 +12,7 @@ test("builds the unified root rescript.json and package.json", () => {
       dirName: "DOM",
       publicModule: "DOM",
       featureName: "WebAPI.DOM",
-      publicModules: ["Document", "DomTypes", "Element"],
+      publicModules: ["Document", "DomGlobal", "DomTypes", "Element"],
     },
   ];
 

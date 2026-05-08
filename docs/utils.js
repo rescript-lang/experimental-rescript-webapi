@@ -6,6 +6,14 @@ import { micromark } from "micromark";
 import { featureSpecs } from "../scripts/unmonorepo/feature-spec.mjs";
 
 const execAsync = promisify(exec);
+const rootDir = process.cwd();
+const rootConfig = JSON.parse(readFileSync(path.join(rootDir, "rescript.json"), "utf8"));
+const publicModulesBySourceDir = new Map(
+  rootConfig.sources
+    .filter((source) => typeof source === "object")
+    .filter((source) => source.dir?.startsWith("src/") && Array.isArray(source.public))
+    .map((source) => [source.dir, new Set(source.public)]),
+);
 
 function toKebabCase(input) {
   return input
@@ -31,10 +39,12 @@ function mapTypeModules(parentModuleLink, file, spec) {
     return [];
   }
 
+  const publicModules = publicModulesBySourceDir.get(spec.sourceDir) ?? new Set();
   const typesFileName = `${spec.internalPrefix}Types.res`;
   const files = readdirSync(folder);
   return files
     .filter((f) => f.endsWith(".res") && f !== typesFileName)
+    .filter((file) => publicModules.has(file.replace("$", "").replace(".res", "")))
     .map((file) => {
       const filePath = path.join(folder, file);
 
