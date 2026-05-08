@@ -56,6 +56,9 @@ export default defineConfig({
           slug: "design-philosophy",
         },
         {
+          slug: "api-surface",
+        },
+        {
           label: "Examples",
           link: "examples",
         },
