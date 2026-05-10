@@ -3,8 +3,17 @@ import { exec } from "node:child_process";
 import { promisify } from "node:util";
 import { readdirSync, existsSync, readFileSync } from "fs";
 import { micromark } from "micromark";
+import { featureSpecs } from "../scripts/unmonorepo/feature-spec.mjs";
 
 const execAsync = promisify(exec);
+const rootDir = process.cwd();
+const rootConfig = JSON.parse(readFileSync(path.join(rootDir, "rescript.json"), "utf8"));
+const publicModulesBySourceDir = new Map(
+  rootConfig.sources
+    .filter((source) => typeof source === "object")
+    .filter((source) => source.dir?.startsWith("src/") && Array.isArray(source.public))
+    .map((source) => [source.dir, new Set(source.public)]),
+);
 
 function toKebabCase(input) {
   return input
@@ -23,20 +32,24 @@ export function createTypeModuleLink(parentModuleLink, typeName) {
   return `${parentModuleLink}/${toKebabCase(typeName)}`;
 }
 
-function mapTypeModules(parentModuleLink, file) {
+function mapTypeModules(parentModuleLink, file, spec) {
   const folder = path.dirname(file);
 
   if (!existsSync(folder)) {
     return [];
   }
 
+  const publicModules = publicModulesBySourceDir.get(spec.sourceDir) ?? new Set();
+  const typesFileName = `${spec.internalPrefix}Types.res`;
   const files = readdirSync(folder);
   return files
-    .filter((f) => f.endsWith(".res") && f !== "Types.res")
+    .filter((f) => f.endsWith(".res") && f !== typesFileName)
+    .filter((file) => publicModules.has(file.replace("$", "").replace(".res", "")))
     .map((file) => {
       const filePath = path.join(folder, file);
 
-      const moduleName = file.replace("$", "").replace(".res", "");
+      const leafName = file.replace("$", "").replace(".res", "");
+      const moduleName = leafName;
       const apiRouteParameter = toKebabCase(moduleName);
       const link = createTypeModuleLink(parentModuleLink, moduleName);
       const typeName = moduleName[0].toLocaleLowerCase() + moduleName.slice(1);
@@ -53,11 +66,11 @@ function mapTypeModules(parentModuleLink, file) {
     });
 }
 
-function mapRescriptFile(srcDir, file) {
+function mapRescriptFile(srcDir, file, spec) {
   const filePath = path.join(srcDir, file);
-  const moduleName = path.basename(path.dirname(srcDir)).replace("$", "");
+  const moduleName = spec.publicModule;
   const link = createAPIModuleLink(moduleName);
-  const items = Object.fromEntries(mapTypeModules(link, filePath));
+  const items = Object.fromEntries(mapTypeModules(link, filePath, spec));
 
   return {
     filePath,
@@ -68,12 +81,15 @@ function mapRescriptFile(srcDir, file) {
   };
 }
 
-const packagesDir = path.resolve(process.cwd(), "packages");
-export const apiModules = readdirSync(packagesDir, { withFileTypes: true })
-  .filter((entry) => entry.isDirectory())
-  .map((entry) => path.join(packagesDir, entry.name, "src"))
-  .filter((srcDir) => existsSync(path.join(srcDir, "Types.res")))
-  .map((srcDir) => mapRescriptFile(srcDir, "Types.res"))
+const srcRoot = path.resolve(process.cwd(), "src");
+export const apiModules = featureSpecs
+  .map((spec) => ({
+    spec,
+    srcDir: path.join(srcRoot, spec.dirName),
+    typesFileName: `${spec.internalPrefix}Types.res`,
+  }))
+  .filter(({ srcDir, typesFileName }) => existsSync(path.join(srcDir, typesFileName)))
+  .map(({ spec, srcDir, typesFileName }) => mapRescriptFile(srcDir, typesFileName, spec))
   .sort((a, b) => a.moduleName.localeCompare(b.moduleName));
 
 async function getRescriptDoc(absoluteFilePath) {
@@ -152,7 +168,10 @@ export const testFiles = readdirSync(testDir, { recursive: true })
   .map((tf) => {
     const sourcePath = path.join(testDir, tf);
     const source = readFileSync(sourcePath, "utf-8");
-    const outputPath = sourcePath.replace(".res", ".res.js");
+    const jsOutputPath = sourcePath.replace(".res", ".js");
+    const outputPath = existsSync(jsOutputPath)
+      ? jsOutputPath
+      : sourcePath.replace(".res", ".res.js");
     const output = readFileSync(outputPath, "utf-8");
 
     const parts = tf.split(path.sep);

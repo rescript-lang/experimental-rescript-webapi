@@ -2,6 +2,7 @@ import * as path from "node:path";
 import { exec } from "node:child_process";
 import { promisify } from "node:util";
 import fs from "node:fs/promises";
+import { featureSpecs } from "../scripts/unmonorepo/feature-spec.mjs";
 
 const execAsync = promisify(exec);
 
@@ -33,10 +34,7 @@ async function getDocJson(filePath) {
 async function processFile(filePath) {
   const json = await getDocJson(filePath);
   const relativePath = path.relative(path.join(import.meta.dirname, ".."), filePath);
-  const parts = relativePath.split(path.sep);
-  const packageName = parts[1];
-  const leafName = path.basename(filePath, ".res");
-  const moduleName = leafName === "Types" ? packageName : `${packageName}.${leafName}`;
+  const moduleName = moduleNameForFile(relativePath);
 
   const types = [];
   const functions = [];
@@ -97,10 +95,61 @@ Module: ${moduleName}${typeString}${functionString}
 `;
 }
 
-const pattern = "../packages/*/src/**/*.res";
+const specByDir = new Map(featureSpecs.map((spec) => [spec.dirName, spec]));
+const rootDir = path.join(import.meta.dirname, "..");
+const rootConfig = JSON.parse(await fs.readFile(path.join(rootDir, "rescript.json"), "utf-8"));
+const publicModulesBySourceDir = new Map(
+  rootConfig.sources
+    .filter((source) => typeof source === "object")
+    .filter((source) => source.dir?.startsWith("src/") && Array.isArray(source.public))
+    .map((source) => [source.dir, new Set(source.public)]),
+);
+
+function normalizeRelativePath(filePath) {
+  return path.relative(rootDir, filePath).split(path.sep).join("/");
+}
+
+function sourceDirForRelativePath(relativePath) {
+  for (const sourceDir of publicModulesBySourceDir.keys()) {
+    if (relativePath.startsWith(`${sourceDir}/`)) {
+      return sourceDir;
+    }
+  }
+}
+
+function isPublicFile(filePath) {
+  const relativePath = normalizeRelativePath(filePath);
+  const sourceDir = sourceDirForRelativePath(relativePath);
+
+  if (!sourceDir) {
+    return false;
+  }
+
+  const moduleName = path.basename(relativePath, ".res").replace("$", "");
+  return publicModulesBySourceDir.get(sourceDir).has(moduleName);
+}
+
+function moduleNameForFile(relativePath) {
+  const [, dirName, fileName] = relativePath.split(path.sep);
+  const spec = specByDir.get(dirName);
+
+  if (!spec) {
+    throw new Error(`Unsupported source directory for documentation: ${relativePath}`);
+  }
+
+  const leafName = path.basename(fileName, ".res");
+
+  return `WebAPI.${leafName}`;
+}
+
+const pattern = "../src/*/**/*.res";
 const files = [];
 for await (const file of fs.glob(pattern, { recursive: true, cwd: import.meta.dirname })) {
-  files.push(path.join(import.meta.dirname, file));
+  const filePath = path.join(import.meta.dirname, file);
+
+  if (isPublicFile(filePath)) {
+    files.push(filePath);
+  }
 }
 files.sort();
 
@@ -109,7 +158,7 @@ const packageJson = await fs.readFile(path.join(import.meta.dirname, "../package
 let version = JSON.parse(packageJson).version;
 const sha = await execAsync("git rev-parse --short HEAD").then(({ stdout }) => stdout.trim());
 const fullVersion = `${version}-experimental-${sha}`;
-const header = `Experimental Rescript WebAPI Documentation ${fullVersion}
+const header = `Experimental ReScript WebAPI Documentation ${fullVersion}
 
 This is the API documentation for the experimental WebAPI module version ${fullVersion}.
 More information can be found on https://rescript-lang.github.io/experimental-rescript-webapi/

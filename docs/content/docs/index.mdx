@@ -40,28 +40,24 @@ export const rescriptJson = `
 {
   "dependencies": [
     "@rescript/webapi"
-  ],
-  "compiler-flags": [
-    "-open WebAPI.Global"
   ]
 }
 `;
 
-<Code lang="json" code={rescriptJson} ins={[3, 6]}></Code>
+<Code lang="json" code={rescriptJson} ins={[3]}></Code>
 
 ## Usage
 
 After installing the package , you can use bindings for the various Web APIs as defined in [MDN](https://developer.mozilla.org/en-US/docs/Web/API).
 
 export const rescriptSample = `
-// Note that this only works when you added the \`-open WebAPI.Global\` bsc flag.
-let location = window.location
+let location = WebAPI.Window.current->WebAPI.Window.location
 
 // Access properties using \`.\`
 let href = location.href
 
 // Invoke methods using the \`->TypeModule.method\`
-location->Location.reload
+location->WebAPI.Location.reload
 `;
 
 export const compiledSample = `

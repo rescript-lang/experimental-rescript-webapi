@@ -1,0 +1,330 @@
+---
+title: API Surface
+description: A practical summary of how to use the public @rescript/webapi modules.
+slug: "api-surface"
+---
+
+The package exposes browser APIs under the `WebAPI` namespace. In normal application code,
+add the package to `rescript.json`:
+
+```json
+{
+  "dependencies": ["@rescript/webapi"]
+}
+```
+
+Use `WebAPI.Window.current` for the browser `window`. Interface-specific methods live on
+public modules such as `WebAPI.Window`, `WebAPI.Location`, `WebAPI.Document`,
+`WebAPI.Element`, `WebAPI.Request`, and `WebAPI.Response`.
+
+```ReScript
+let location = WebAPI.Window.current->WebAPI.Window.location
+let href = location.href
+
+location->WebAPI.Location.reload
+```
+
+## Public module shape
+
+The public API is flat under `WebAPI`. Use owner modules directly rather than generated
+helper modules.
+
+```ReScript
+let req: WebAPI.Request.t = WebAPI.Request.fromURL("https://example.com")
+let headers = WebAPI.Headers.make()
+let document = WebAPI.Window.current->WebAPI.Window.document
+let element = document->WebAPI.Document.createElement("button")
+```
+
+Generated implementation modules such as `DomTypes`, `FetchTypes`, `EventTypes`, and
+`UiEventsTypes` are internal. If you need to name a public type, use the public interface
+module's `t` type when it has one, or use a dedicated public type module. Otherwise, let
+the value type be inferred from constructors and accessors.
+
+## Fetch
+
+Use `WebAPI.Fetch.fetch` for string URLs and `WebAPI.Fetch.fetchWithRequest`
+when you already have a `WebAPI.Request.t`.
+
+```ReScript
+let response = await WebAPI.Fetch.fetch("https://example.com/api/users")
+
+if response.ok {
+  let body = await response->WebAPI.Response.json
+  Console.log(body)
+} else {
+  Console.log("Request failed")
+  Console.log(response.status)
+}
+```
+
+For JSON-style POST requests, construct headers with `HeadersInit` and the body with
+`BodyInit`.
+
+```ReScript
+let response = await WebAPI.Fetch.fetch(
+  "https://example.com/api/users",
+  ~init={
+    method: "POST",
+    headers: WebAPI.HeadersInit.fromDict(
+      dict{
+        "Accept": "application/json",
+        "Content-Type": "application/json",
+      },
+    ),
+    body: WebAPI.BodyInit.fromString(`{"name":"ReScript"}`),
+  },
+)
+
+let text = await response->WebAPI.Response.text
+```
+
+`BodyInit` has constructors for the common JavaScript body shapes.
+
+```ReScript
+let params = WebAPI.URLSearchParams.fromString("q=rescript")
+let formData = WebAPI.FormData.make()
+let blob = WebAPI.Blob.make(~blobParts=[])
+
+let stringBody = WebAPI.BodyInit.fromString("plain text")
+let paramsBody = WebAPI.BodyInit.fromURLSearchParams(params)
+let formDataBody = WebAPI.BodyInit.fromFormData(formData)
+let blobBody = WebAPI.BodyInit.fromBlob(blob)
+```
+
+## Headers
+
+Use `WebAPI.HeadersInit` when a fetch, request, or response initializer expects the
+JavaScript `HeadersInit` shape. Use `WebAPI.Headers` when you want a mutable `Headers`
+object with methods.
+
+```ReScript
+let initHeaders = WebAPI.HeadersInit.fromDict(
+  dict{
+    "Accept": "application/json",
+    "X-Client": "web",
+  },
+)
+
+let response = await WebAPI.Fetch.fetch(
+  "https://example.com/api/users",
+  ~init={headers: initHeaders},
+)
+```
+
+Build and edit a `Headers` object directly when you need to append, set, inspect, or pass
+headers around.
+
+```ReScript
+let headers = WebAPI.Headers.fromDict(dict{"Accept": "application/json"})
+
+headers->WebAPI.Headers.set(~name="X-Request-ID", ~value="abc-123")
+headers->WebAPI.Headers.append(~name="X-Trace", ~value="enabled")
+
+switch headers->WebAPI.Headers.get("Accept") {
+| Null.Value(value) => Console.log(value)
+| Null => Console.log("missing")
+}
+
+let hasTrace = headers->WebAPI.Headers.has("X-Trace")
+```
+
+Headers can also be created from key-value arrays or copied from another `Headers` object.
+
+```ReScript
+let fromPairs = WebAPI.Headers.fromKeyValueArray([
+  ("Accept", "application/json"),
+  ("X-Client", "web"),
+])
+
+let clonedHeaders = WebAPI.Headers.fromHeaders(fromPairs)
+let initFromHeaders = WebAPI.HeadersInit.fromHeaders(clonedHeaders)
+```
+
+Response headers are normal `Headers` values.
+
+```ReScript
+let contentType = response.headers->WebAPI.Headers.get("Content-Type")
+
+switch contentType {
+| Null.Value(value) => Console.log(value)
+| Null => Console.log("unknown content type")
+}
+```
+
+## Requests
+
+Create requests from URLs, then pass them to fetch or clone/read them with request methods.
+
+```ReScript
+let req = WebAPI.Request.fromURL(
+  "https://example.com/form",
+  ~init={
+    method: "POST",
+    headers: WebAPI.HeadersInit.fromDict(
+      dict{"Content-Type": "application/x-www-form-urlencoded"},
+    ),
+    body: WebAPI.BodyInit.fromString("name=ReScript"),
+  },
+)
+
+let response = await WebAPI.Fetch.fetchWithRequest(req)
+let cloned: WebAPI.Request.t = req->WebAPI.Request.clone
+let bodyText = await cloned->WebAPI.Request.text
+```
+
+Use `fromRequest` to copy an existing request and override initializer fields.
+
+```ReScript
+let authenticatedHeaders = WebAPI.HeadersInit.fromDict(
+  dict{
+    "Accept": "application/json",
+    "Authorization": "Bearer token",
+  },
+)
+
+let authenticatedReq = WebAPI.Request.fromRequest(
+  req,
+  ~init={headers: authenticatedHeaders},
+)
+
+let authenticatedResponse = await WebAPI.Fetch.fetchWithRequest(authenticatedReq)
+```
+
+Request body readers mirror the browser API and return promises.
+
+```ReScript
+let requestText = await req->WebAPI.Request.text
+let requestJson = await req->WebAPI.Request.json
+let requestBlob = await req->WebAPI.Request.blob
+```
+
+## Responses
+
+Construct responses with the body constructor that matches the body value.
+
+```ReScript
+let created = WebAPI.Response.fromString(
+  "created",
+  ~init={
+    status: 201,
+    statusText: "Created",
+    headers: WebAPI.HeadersInit.fromDict(dict{"Content-Type": "text/plain"}),
+  },
+)
+
+let empty = WebAPI.Response.fromNull(~init={status: 204})
+```
+
+Responses expose record fields for status metadata and methods for cloning or reading
+the body.
+
+```ReScript
+if created.ok {
+  let text = await created->WebAPI.Response.text
+  Console.log(text)
+} else {
+  Console.log(created.statusText)
+}
+
+let copy = created->WebAPI.Response.clone
+let copyText = await copy->WebAPI.Response.text
+```
+
+Use the static helpers for browser response factories.
+
+```ReScript
+let failed = WebAPI.Response.error()
+let redirect = WebAPI.Response.redirect(~url="/login", ~status=302)
+```
+
+## DOM
+
+DOM values are operated on through public interface modules.
+
+```ReScript
+let document = WebAPI.Window.current->WebAPI.Window.document
+
+let maybeButton = document
+->WebAPI.Document.querySelector("button")
+->Null.toOption
+
+switch maybeButton {
+| Some(button) =>
+  switch button->WebAPI.Element.getAttribute("data-user-id") {
+  | Null.Value(id) => Console.log(id)
+  | Null => Console.log("anonymous")
+  }
+| None => Console.log("button not found")
+}
+```
+
+Use conversion helpers when moving between related DOM interface types.
+
+```ReScript
+let element = document->WebAPI.Document.createElement("div")
+let node = element->WebAPI.Element.asNode
+```
+
+## Visual Viewport
+
+`Window.visualViewport` returns a nullable `WebAPI.VisualViewport.t`.
+
+```ReScript
+let maybeViewport = WebAPI.Window.current
+->WebAPI.Window.visualViewport
+->Null.toOption
+
+switch maybeViewport {
+| Some(viewport) =>
+  Console.log(Float.toString(viewport.width))
+  Console.log(Float.toString(viewport.scale))
+| None => Console.log("visual viewport unavailable")
+}
+```
+
+## URLs
+
+URL helpers expose constructors and static functions on the same public module.
+
+```ReScript
+let url = WebAPI.URL.make(~url="/docs", ~base="https://rescript-lang.org")
+let canParse = WebAPI.URL.canParse(~url="/docs", ~base="https://rescript-lang.org")
+let json = url->WebAPI.URL.toJSON
+```
+
+`URLSearchParams` values can be used directly as fetch request bodies through `BodyInit`.
+
+```ReScript
+let params = WebAPI.URLSearchParams.fromString("search=rescript")
+let response = await WebAPI.Fetch.fetch(
+  "https://example.com/search",
+  ~init={
+    method: "POST",
+    body: WebAPI.BodyInit.fromURLSearchParams(params),
+  },
+)
+```
+
+## Canvas
+
+Canvas constructors use `make` and semantic `from*` names.
+
+```ReScript
+let path = WebAPI.Path2D.make()
+
+path->WebAPI.Path2D.moveTo(~x=0., ~y=0.)
+path->WebAPI.Path2D.lineTo(~x=100., ~y=100.)
+
+let copiedPath = WebAPI.Path2D.fromPath2D(path)
+let svgPath = WebAPI.Path2D.fromString("M0 0 L10 10")
+```
+
+## Streams
+
+Generic Web API types stay typed through their public owner modules.
+
+```ReScript
+let stream: WebAPI.ReadableStream.t<string> = WebAPI.ReadableStream.make()
+let reader = stream->WebAPI.ReadableStream.getReader
+```

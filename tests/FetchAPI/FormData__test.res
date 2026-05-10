@@ -1,9 +1,8 @@
 /* This works when your form has an id of "myForm" */
 @scope(("document", "forms"))
-external myForm: WebApiDOM.HTMLFormElement.t = "myForm"
+external myForm: HTMLFormElement.t = "myForm"
 
-module FormData = WebApiFetch.FormData
-module EntryValue = WebApiFetch.FormDataEntryValue
+module EntryValue = FormDataEntryValue
 
 open EntryValue
 
@@ -33,8 +32,8 @@ let _ =
 
 // Create formDataEntryValue from string or file
 let stringEntry = EntryValue.String("test value")
-let blob: WebApiFile.Blob.t = WebApiFile.Blob.make(~blobParts=[])
-let file: WebApiFile.File.t = WebApiFile.File.make(~fileBits=[], ~fileName="test.txt")
+let blob: Blob.t = Blob.make(~blobParts=[])
+let file: File.t = File.make(~fileBits=[], ~fileName="test.txt")
 let fileEntry = EntryValue.File(file)
 
 formData->FormData.appendBlob(~name="avatar", ~blobValue=blob)

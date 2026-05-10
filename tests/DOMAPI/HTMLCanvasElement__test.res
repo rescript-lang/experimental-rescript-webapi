@@ -1,42 +1,37 @@
-external toHTMLCanvasElement: null<WebApiDOM.Types.element> => WebApiDOM.Types.htmlCanvasElement =
-  "%identity"
+external toHTMLCanvasElement: null<DomTypes.element> => DomTypes.htmlCanvasElement = "%identity"
 @set
-external setFillStyle: (
-  WebApiDOM.Types.canvasRenderingContext2D,
-  WebApiCanvas.Types.fillStyle,
-) => unit = "fillStyle"
-@get
-external getFillStyle: WebApiDOM.Types.canvasRenderingContext2D => WebApiCanvas.Types.fillStyle =
+external setFillStyle: (DomTypes.canvasRenderingContext2D, CanvasTypes.fillStyle) => unit =
   "fillStyle"
+@get
+external getFillStyle: DomTypes.canvasRenderingContext2D => CanvasTypes.fillStyle = "fillStyle"
 @set
-external setFont: (WebApiDOM.Types.canvasRenderingContext2D, string) => unit = "font"
+external setFont: (DomTypes.canvasRenderingContext2D, string) => unit = "font"
 @set
 external setTextBaseline: (
-  WebApiDOM.Types.canvasRenderingContext2D,
-  WebApiCanvas.Types.canvasTextBaseline,
+  DomTypes.canvasRenderingContext2D,
+  CanvasTypes.canvasTextBaseline,
 ) => unit = "textBaseline"
 
-let myCanvas: WebApiDOM.Types.htmlCanvasElement =
-  WebApiDOM.Global.document->WebApiDOM.Document.getElementById("myCanvas")->toHTMLCanvasElement
-let ctx = myCanvas->WebApiCanvas.HTMLCanvasElement.getContext2D
+let myCanvas: DomTypes.htmlCanvasElement =
+  DomGlobal.document->Document.getElementById("myCanvas")->toHTMLCanvasElement
+let ctx = myCanvas->HTMLCanvasElement.getContext2D
 
-ctx->setFillStyle(WebApiCanvas.FillStyle.fromString("red"))
-ctx->WebApiCanvas.CanvasRenderingContext2D.fillRect(~x=50., ~y=50., ~w=200., ~h=200.)
+ctx->setFillStyle(FillStyle.fromString("red"))
+ctx->CanvasRenderingContext2D.fillRect(~x=50., ~y=50., ~w=200., ~h=200.)
 
-ctx->setFillStyle(WebApiCanvas.FillStyle.fromString("black"))
+ctx->setFillStyle(FillStyle.fromString("black"))
 ctx->setFont("2px Tahoma")
-ctx->setTextBaseline(WebApiCanvas.Types.Top)
-ctx->WebApiCanvas.CanvasRenderingContext2D.fillText(~text="MY TEXT", ~x=60., ~y=60.)
+ctx->setTextBaseline(CanvasTypes.Top)
+ctx->CanvasRenderingContext2D.fillText(~text="MY TEXT", ~x=60., ~y=60.)
 
-switch ctx->getFillStyle->WebApiCanvas.FillStyle.decode {
-| WebApiCanvas.FillStyle.String(color) => Console.log(`Color: ${color}`)
-| WebApiCanvas.FillStyle.CanvasGradient(_) => Console.log("CanvasGradient")
-| WebApiCanvas.FillStyle.CanvasPattern(_) => Console.log("CanvasPattern")
+switch ctx->getFillStyle->FillStyle.decode {
+| FillStyle.String(color) => Console.log(`Color: ${color}`)
+| FillStyle.CanvasGradient(_) => Console.log("CanvasGradient")
+| FillStyle.CanvasPattern(_) => Console.log("CanvasPattern")
 }
 
-let img: WebApiDOM.Types.htmlImageElement =
-  WebApiDOM.Global.document->WebApiDOM.Document.createElement("img")->Obj.magic
-ctx->WebApiCanvas.CanvasRenderingContext2D.drawImageWithDimensions(
+let img: DomTypes.htmlImageElement = DomGlobal.document->Document.createElement("img")->Obj.magic
+ctx->CanvasRenderingContext2D.drawImageWithDimensions(
   ~image=img,
   ~dx=0.,
   ~dy=0.,

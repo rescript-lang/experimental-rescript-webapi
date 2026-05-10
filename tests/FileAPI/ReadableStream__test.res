@@ -1,11 +1,11 @@
-let underlyingSource: WebApiFile.Types.underlyingSource<string> = Obj.magic()
-let strategy: WebApiFile.Types.queuingStrategy<string> = Obj.magic()
+let underlyingSource: FileTypes.underlyingSource<string> = Obj.magic()
+let strategy: FileTypes.queuingStrategy<string> = Obj.magic()
 
-let _make: WebApiFile.ReadableStream.t<string> = WebApiFile.ReadableStream.make()
+let _make: ReadableStream.t<string> = ReadableStream.make()
 
-let _fromUnderlyingSource = WebApiFile.ReadableStream.fromUnderlyingSource(underlyingSource)
+let _fromUnderlyingSource = ReadableStream.fromUnderlyingSource(underlyingSource)
 
-let _fromUnderlyingSourceWithStrategy = WebApiFile.ReadableStream.fromUnderlyingSource(
+let _fromUnderlyingSourceWithStrategy = ReadableStream.fromUnderlyingSource(
   underlyingSource,
   ~strategy,
 )
