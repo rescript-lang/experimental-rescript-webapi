@@ -11,8 +11,7 @@
         "BaseEncryptedMediaExtensions",
         "BaseEvent",
         "BaseFile",
-        "BaseFileAndDirectoryEntries",
-        "DOM"
+        "BaseFileAndDirectoryEntries"
       ]
     },
     {
@@ -82,6 +81,7 @@
         "CharacterData",
         "Comment",
         "CustomElementRegistry",
+        "DOM",
         "DOMException",
         "DOMImplementation",
         "DOMMatrix",
