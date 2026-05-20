@@ -479,8 +479,8 @@ external getComputedStyle: (
 @send
 external requestIdleCallback: (
   t,
-  ~callback: DomTypes.idleDeadline => unit,
-  ~options: DomTypes.idleRequestOptions=?,
+  ~callback: IdleDeadline.t => unit,
+  ~options: IdleDeadline.requestOptions=?,
 ) => int = "requestIdleCallback"
 
 /**

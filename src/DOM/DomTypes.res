@@ -74,7 +74,6 @@ type htmlTableRowElement = DOM.htmlTableRowElement
 type htmlImageElement = DOM.htmlImageElement
 type htmlAreaElement = DOM.htmlAreaElement
 type videoPlaybackQuality = DOM.videoPlaybackQuality
-type idleDeadline = DOM.idleDeadline
 type cssRuleList = DOM.cssRuleList
 type mediaKeySystemConfiguration = BaseEncryptedMediaExtensions.mediaKeySystemConfiguration
 
@@ -1871,8 +1870,6 @@ type getHTMLOptions = {
 type pointerLockOptions = {mutable unadjustedMovement?: bool}
 
 type caretPositionFromPointOptions = {mutable shadowRoots?: array<shadowRoot>}
-
-type idleRequestOptions = {mutable timeout?: int}
 
 type domRectInit = {
   mutable x?: float,

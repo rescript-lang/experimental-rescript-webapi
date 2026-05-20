@@ -6232,17 +6232,6 @@ type mediaQueryList = private {
 }
 
 /**
-[See IdleDeadline on MDN](https://developer.mozilla.org/docs/Web/API/IdleDeadline)
-*/
-@editor.completeFrom(DOM.IdleDeadline)
-type idleDeadline = private {
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/IdleDeadline/didTimeout)
-    */
-  didTimeout: bool,
-}
-
-/**
 [See CSSStyleValue on MDN](https://developer.mozilla.org/docs/Web/API/CSSStyleValue)
 */
 @editor.completeFrom(DOM.CSSStyleValue)

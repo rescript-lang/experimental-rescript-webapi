@@ -458,8 +458,8 @@ external getComputedStyle: (
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/requestIdleCallback)
 */
 external requestIdleCallback: (
-  ~callback: DomTypes.idleDeadline => unit,
-  ~options: DomTypes.idleRequestOptions=?,
+  ~callback: IdleDeadline.t => unit,
+  ~options: IdleDeadline.requestOptions=?,
 ) => int = "requestIdleCallback"
 
 /**

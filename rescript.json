@@ -8,6 +8,7 @@
       "WebAPI.Event",
       "WebAPI.File",
       "WebAPI.FileAndDirectoryEntries",
+      "WebAPI.IdleDeadline",
       "WebAPI.RemotePlayback",
       "WebAPI.ViewTransitions",
       "WebAPI.VisualViewport"
@@ -27,6 +28,7 @@
     "WebAPI.File": ["WebAPI.Base", "WebAPI.Event"],
     "WebAPI.FileList": ["WebAPI.DOM", "WebAPI.File"],
     "WebAPI.Geometry": ["WebAPI.DOM"],
+    "WebAPI.Location": ["WebAPI.DOM"],
     "WebAPI.HTML": [
       "WebAPI.DOM",
       "WebAPI.PictureInPicture",
@@ -62,7 +64,9 @@
     "WebAPI.Window": [
       "WebAPI.ChannelMessaging",
       "WebAPI.DOM",
-      "WebAPI.Event"
+      "WebAPI.Event",
+      "WebAPI.IdleDeadline",
+      "WebAPI.Location"
     ],
     "WebAPI.XPath": ["WebAPI.DOM"]
   },
@@ -281,6 +285,12 @@
       "public": ["History"]
     },
     {
+      "dir": "src/IdleDeadline",
+      "subdirs": true,
+      "feature": "WebAPI.IdleDeadline",
+      "public": ["IdleDeadline"]
+    },
+    {
       "dir": "src/HTML",
       "subdirs": true,
       "feature": "WebAPI.HTML",
@@ -352,6 +362,12 @@
         "HTMLVideoElement",
         "TimeRanges"
       ]
+    },
+    {
+      "dir": "src/Location",
+      "subdirs": true,
+      "feature": "WebAPI.Location",
+      "public": ["Location"]
     },
     {
       "dir": "src/IndexedDB",
@@ -627,7 +643,7 @@
       "dir": "src/Window",
       "subdirs": true,
       "feature": "WebAPI.Window",
-      "public": ["IdleDeadline", "Location", "Window"]
+      "public": ["Window"]
     },
     {
       "dir": "src/XPath",
