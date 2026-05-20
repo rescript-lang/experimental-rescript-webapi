@@ -1,7 +1,13 @@
-include EventTarget.Impl({type t = DomTypes.textTrackList})
+@editor.completeFrom(TextTrackList)
+type t = private {
+  ...EventTypes.eventTarget,
+  length: int,
+}
+
+include EventTarget.Impl({type t = t})
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/TextTrackList/getTrackById)
 */
 @send
-external getTrackById: (DomTypes.textTrackList, string) => WebVttTypes.textTrack = "getTrackById"
+external getTrackById: (t, string) => WebVttTypes.textTrack = "getTrackById"

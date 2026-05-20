@@ -1,4 +1,10 @@
 /**
+[See DOMMatrix on MDN](https://developer.mozilla.org/docs/Web/API/DOMMatrix)
+*/
+@editor.completeFrom(DOMMatrix)
+type t = GeometryTypes.domMatrix
+
+/**
 `make()`
 
 Creates a new identity `DOMMatrix`.
@@ -10,7 +16,7 @@ let matrix = DOMMatrix.make()
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/DOMMatrix)
 */
 @new
-external make: unit => DomTypes.domMatrix = "DOMMatrix"
+external make: unit => t = "DOMMatrix"
 
 /**
 `fromString(string)`
@@ -24,7 +30,7 @@ let matrix = DOMMatrix.fromString("matrix(1, 0, 0, 1, 0, 0)")
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/DOMMatrix)
 */
 @new
-external fromString: string => DomTypes.domMatrix = "DOMMatrix"
+external fromString: string => t = "DOMMatrix"
 
 /**
 `fromArray(array<float>)`
@@ -38,191 +44,148 @@ let matrix = DOMMatrix.fromArray([1., 0., 0., 1., 0., 0.])
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/DOMMatrix)
 */
 @new
-external fromArray: array<float> => DomTypes.domMatrix = "DOMMatrix"
+external fromArray: array<float> => t = "DOMMatrix"
 
-external asDOMMatrixReadOnly: DomTypes.domMatrix => DomTypes.domMatrixReadOnly = "%identity"
+external asDOMMatrixReadOnly: t => GeometryTypes.domMatrixReadOnly = "%identity"
 @scope("DOMMatrix")
-external fromMatrix: (~other: DomTypes.domMatrixInit=?) => DomTypes.domMatrixReadOnly = "fromMatrix"
-
-@scope("DOMMatrix")
-external fromFloat32Array: array<float> => DomTypes.domMatrixReadOnly = "fromFloat32Array"
+external fromMatrix: (~other: GeometryTypes.domMatrixInit=?) => GeometryTypes.domMatrixReadOnly =
+  "fromMatrix"
 
 @scope("DOMMatrix")
-external fromFloat64Array: Float64Array.t => DomTypes.domMatrixReadOnly = "fromFloat64Array"
+external fromFloat32Array: array<float> => GeometryTypes.domMatrixReadOnly = "fromFloat32Array"
+
+@scope("DOMMatrix")
+external fromFloat64Array: Float64Array.t => GeometryTypes.domMatrixReadOnly = "fromFloat64Array"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/DOMMatrixReadOnly/translate)
 */
 @send
-external translate: (
-  DomTypes.domMatrix,
-  ~tx: float=?,
-  ~ty: float=?,
-  ~tz: float=?,
-) => DomTypes.domMatrix = "translate"
+external translate: (t, ~tx: float=?, ~ty: float=?, ~tz: float=?) => t = "translate"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/DOMMatrixReadOnly/scale)
 */
 @send
 external scale: (
-  DomTypes.domMatrix,
+  t,
   ~scaleX: float=?,
   ~scaleY: float=?,
   ~scaleZ: float=?,
   ~originX: float=?,
   ~originY: float=?,
   ~originZ: float=?,
-) => DomTypes.domMatrix = "scale"
+) => t = "scale"
 
 @send
 external scale3d: (
-  DomTypes.domMatrix,
+  t,
   ~scale: float=?,
   ~originX: float=?,
   ~originY: float=?,
   ~originZ: float=?,
-) => DomTypes.domMatrix = "scale3d"
+) => t = "scale3d"
 
 @send
-external rotate: (
-  DomTypes.domMatrix,
-  ~rotX: float=?,
-  ~rotY: float=?,
-  ~rotZ: float=?,
-) => DomTypes.domMatrix = "rotate"
+external rotate: (t, ~rotX: float=?, ~rotY: float=?, ~rotZ: float=?) => t = "rotate"
 
 @send
-external rotateFromVector: (DomTypes.domMatrix, ~x: float=?, ~y: float=?) => DomTypes.domMatrix =
-  "rotateFromVector"
+external rotateFromVector: (t, ~x: float=?, ~y: float=?) => t = "rotateFromVector"
 
 @send
-external rotateAxisAngle: (
-  DomTypes.domMatrix,
-  ~x: float=?,
-  ~y: float=?,
-  ~z: float=?,
-  ~angle: float=?,
-) => DomTypes.domMatrix = "rotateAxisAngle"
+external rotateAxisAngle: (t, ~x: float=?, ~y: float=?, ~z: float=?, ~angle: float=?) => t =
+  "rotateAxisAngle"
 
 @send
-external skewX: (DomTypes.domMatrix, ~sx: float=?) => DomTypes.domMatrix = "skewX"
+external skewX: (t, ~sx: float=?) => t = "skewX"
 
 @send
-external skewY: (DomTypes.domMatrix, ~sy: float=?) => DomTypes.domMatrix = "skewY"
+external skewY: (t, ~sy: float=?) => t = "skewY"
 
 @send
-external multiply: (DomTypes.domMatrix, ~other: DomTypes.domMatrixInit=?) => DomTypes.domMatrix =
-  "multiply"
+external multiply: (t, ~other: GeometryTypes.domMatrixInit=?) => t = "multiply"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/DOMMatrixReadOnly/flipX)
 */
 @send
-external flipX: DomTypes.domMatrix => DomTypes.domMatrix = "flipX"
+external flipX: t => t = "flipX"
 
 @send
-external flipY: DomTypes.domMatrix => DomTypes.domMatrix = "flipY"
+external flipY: t => t = "flipY"
 
 @send
-external inverse: DomTypes.domMatrix => DomTypes.domMatrix = "inverse"
+external inverse: t => t = "inverse"
 
 @send
-external transformPoint: (
-  DomTypes.domMatrix,
-  ~point: DomTypes.domPointInit=?,
-) => DomTypes.domPoint = "transformPoint"
+external transformPoint: (t, ~point: GeometryTypes.domPointInit=?) => GeometryTypes.domPoint =
+  "transformPoint"
 
 @send
-external toFloat32Array: DomTypes.domMatrix => array<float> = "toFloat32Array"
+external toFloat32Array: t => array<float> = "toFloat32Array"
 
 @send
-external toFloat64Array: DomTypes.domMatrix => Float64Array.t = "toFloat64Array"
+external toFloat64Array: t => Float64Array.t = "toFloat64Array"
 
 @send
-external toJSON: DomTypes.domMatrix => Dict.t<string> = "toJSON"
+external toJSON: t => Dict.t<string> = "toJSON"
 
 @scope("DOMMatrix")
-external fromMatrixD: (~other: DomTypes.domMatrixInit=?) => DomTypes.domMatrix = "fromMatrix"
+external fromMatrixD: (~other: GeometryTypes.domMatrixInit=?) => t = "fromMatrix"
 
 @scope("DOMMatrix")
-external fromFloat32ArrayD: array<float> => DomTypes.domMatrix = "fromFloat32Array"
+external fromFloat32ArrayD: array<float> => t = "fromFloat32Array"
 
 @scope("DOMMatrix")
-external fromFloat64ArrayD: Float64Array.t => DomTypes.domMatrix = "fromFloat64Array"
+external fromFloat64ArrayD: Float64Array.t => t = "fromFloat64Array"
 
 @send
-external multiplySelf: (
-  DomTypes.domMatrix,
-  ~other: DomTypes.domMatrixInit=?,
-) => DomTypes.domMatrix = "multiplySelf"
+external multiplySelf: (t, ~other: GeometryTypes.domMatrixInit=?) => t = "multiplySelf"
 
 @send
-external preMultiplySelf: (
-  DomTypes.domMatrix,
-  ~other: DomTypes.domMatrixInit=?,
-) => DomTypes.domMatrix = "preMultiplySelf"
+external preMultiplySelf: (t, ~other: GeometryTypes.domMatrixInit=?) => t = "preMultiplySelf"
 
 @send
-external translateSelf: (
-  DomTypes.domMatrix,
-  ~tx: float=?,
-  ~ty: float=?,
-  ~tz: float=?,
-) => DomTypes.domMatrix = "translateSelf"
+external translateSelf: (t, ~tx: float=?, ~ty: float=?, ~tz: float=?) => t = "translateSelf"
 
 @send
 external scaleSelf: (
-  DomTypes.domMatrix,
+  t,
   ~scaleX: float=?,
   ~scaleY: float=?,
   ~scaleZ: float=?,
   ~originX: float=?,
   ~originY: float=?,
   ~originZ: float=?,
-) => DomTypes.domMatrix = "scaleSelf"
+) => t = "scaleSelf"
 
 @send
 external scale3dSelf: (
-  DomTypes.domMatrix,
+  t,
   ~scale: float=?,
   ~originX: float=?,
   ~originY: float=?,
   ~originZ: float=?,
-) => DomTypes.domMatrix = "scale3dSelf"
+) => t = "scale3dSelf"
 
 @send
-external rotateSelf: (
-  DomTypes.domMatrix,
-  ~rotX: float=?,
-  ~rotY: float=?,
-  ~rotZ: float=?,
-) => DomTypes.domMatrix = "rotateSelf"
+external rotateSelf: (t, ~rotX: float=?, ~rotY: float=?, ~rotZ: float=?) => t = "rotateSelf"
 
 @send
-external rotateFromVectorSelf: (
-  DomTypes.domMatrix,
-  ~x: float=?,
-  ~y: float=?,
-) => DomTypes.domMatrix = "rotateFromVectorSelf"
+external rotateFromVectorSelf: (t, ~x: float=?, ~y: float=?) => t = "rotateFromVectorSelf"
 
 @send
-external rotateAxisAngleSelf: (
-  DomTypes.domMatrix,
-  ~x: float=?,
-  ~y: float=?,
-  ~z: float=?,
-  ~angle: float=?,
-) => DomTypes.domMatrix = "rotateAxisAngleSelf"
+external rotateAxisAngleSelf: (t, ~x: float=?, ~y: float=?, ~z: float=?, ~angle: float=?) => t =
+  "rotateAxisAngleSelf"
 
 @send
-external skewXSelf: (DomTypes.domMatrix, ~sx: float=?) => DomTypes.domMatrix = "skewXSelf"
+external skewXSelf: (t, ~sx: float=?) => t = "skewXSelf"
 
 @send
-external skewYSelf: (DomTypes.domMatrix, ~sy: float=?) => DomTypes.domMatrix = "skewYSelf"
+external skewYSelf: (t, ~sy: float=?) => t = "skewYSelf"
 
 @send
-external invertSelf: DomTypes.domMatrix => DomTypes.domMatrix = "invertSelf"
+external invertSelf: t => t = "invertSelf"
 
 @send
-external setMatrixValue: (DomTypes.domMatrix, string) => DomTypes.domMatrix = "setMatrixValue"
+external setMatrixValue: (t, string) => t = "setMatrixValue"

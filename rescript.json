@@ -1,15 +1,24 @@
 {
   "name": "@rescript/webapi",
   "features": {
+    "WebAPI.Base": ["WebAPI.Location"],
     "WebAPI.DOM": [
       "WebAPI.Base",
       "WebAPI.CSSFontLoading",
       "WebAPI.ChannelMessaging",
+      "WebAPI.CSSTypedOM",
+      "WebAPI.DOMException",
+      "WebAPI.DOMStringList",
       "WebAPI.Event",
       "WebAPI.File",
       "WebAPI.FileAndDirectoryEntries",
+      "WebAPI.FileList",
+      "WebAPI.Geometry",
       "WebAPI.IdleDeadline",
+      "WebAPI.Location",
       "WebAPI.RemotePlayback",
+      "WebAPI.ScreenOrientation",
+      "WebAPI.VTT",
       "WebAPI.ViewTransitions",
       "WebAPI.VisualViewport"
     ],
@@ -21,13 +30,21 @@
       "WebAPI.MediaCaptureAndStreams"
     ],
     "WebAPI.CSSOM": ["WebAPI.DOM", "WebAPI.Event"],
-    "WebAPI.CSSTypedOM": ["WebAPI.DOM"],
     "WebAPI.CustomElements": ["WebAPI.DOM"],
     "WebAPI.Event": ["WebAPI.Base"],
     "WebAPI.Fetch": ["WebAPI.Event", "WebAPI.File", "WebAPI.URL"],
     "WebAPI.File": ["WebAPI.Base", "WebAPI.Event"],
-    "WebAPI.FileList": ["WebAPI.DOM", "WebAPI.File"],
-    "WebAPI.Geometry": ["WebAPI.DOM"],
+    "WebAPI.FileAndDirectoryEntries": [
+      "WebAPI.Base",
+      "WebAPI.DOMException"
+    ],
+    "WebAPI.FileList": ["WebAPI.File"],
+    "WebAPI.IndexedDB": [
+      "WebAPI.DOMException",
+      "WebAPI.DOMStringList",
+      "WebAPI.Event"
+    ],
+    "WebAPI.Location": ["WebAPI.DOMStringList"],
     "WebAPI.HTML": ["WebAPI.DOM", "WebAPI.PictureInPicture", "WebAPI.VTT"],
     "WebAPI.Navigator": [
       "WebAPI.Base",
@@ -38,11 +55,12 @@
       "WebAPI.URL",
       "WebAPI.MIDI"
     ],
-    "WebAPI.ScreenOrientation": ["WebAPI.DOM", "WebAPI.Event"],
+    "WebAPI.ScreenOrientation": ["WebAPI.Event"],
     "WebAPI.SVG": ["WebAPI.DOM", "WebAPI.Geometry"],
     "WebAPI.Animations": ["WebAPI.DOM", "WebAPI.Event"],
     "WebAPI.Audio": [
       "WebAPI.ChannelMessaging",
+      "WebAPI.DOMException",
       "WebAPI.DOM",
       "WebAPI.Event",
       "WebAPI.HTML",
@@ -58,7 +76,7 @@
     "WebAPI.Speech": ["WebAPI.Event"],
     "WebAPI.Storage": ["WebAPI.Event"],
     "WebAPI.StorageManager": ["WebAPI.File"],
-    "WebAPI.VTT": ["WebAPI.DOM", "WebAPI.Event"],
+    "WebAPI.VTT": ["WebAPI.Event"],
     "WebAPI.Workers": [
       "WebAPI.ChannelMessaging",
       "WebAPI.Event",
@@ -140,9 +158,7 @@
         "CharacterData",
         "Comment",
         "DOM",
-        "DOMException",
         "DOMImplementation",
-        "DOMStringList",
         "DOMTokenList",
         "Document",
         "DocumentFragment",
@@ -158,6 +174,18 @@
         "Text",
         "TreeWalker"
       ]
+    },
+    {
+      "dir": "src/DOMException",
+      "subdirs": true,
+      "feature": "WebAPI.DOMException",
+      "public": ["DOMException"]
+    },
+    {
+      "dir": "src/DOMStringList",
+      "subdirs": true,
+      "feature": "WebAPI.DOMStringList",
+      "public": ["DOMStringList"]
     },
     {
       "dir": "src/CSSOM",

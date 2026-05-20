@@ -1,2 +1,4 @@
+@editor.completeFrom(DOMRectList) type t = GeometryTypes.domRectList
+
 @send
-external item: (DomTypes.domRectList, int) => DomTypes.domRect = "item"
+external item: (t, int) => GeometryTypes.domRect = "item"

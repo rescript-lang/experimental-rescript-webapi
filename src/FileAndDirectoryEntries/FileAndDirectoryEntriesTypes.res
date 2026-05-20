@@ -30,6 +30,6 @@ type fileSystemFlags = {
 
 type fileSystemEntryCallback = fileSystemEntry => unit
 
-type errorCallback = DOM.domException => unit
+type errorCallback = DOMException.t => unit
 
 type fileSystemEntriesCallback = array<fileSystemEntry> => unit

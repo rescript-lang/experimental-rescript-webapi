@@ -1,6 +1,7 @@
 @@warning("-30")
 
-type domStringList = DOM.domStringList
+type domStringList = DOMStringList.t
+type domException = DOMException.t
 type eventTarget = EventTypes.eventTarget
 type eventType = EventTypes.eventType
 type file = FileTypes.file
@@ -13,7 +14,7 @@ type structuredSerializeOptions = ChannelMessagingTypes.structuredSerializeOptio
 type htmlElement = DOM.htmlElement
 type mediaError = DOM.mediaError
 type timeRanges = DOM.timeRanges
-type textTrackList = DOM.textTrackList
+type textTrackList = TextTrackList.t
 type htmlFormElement = DOM.htmlFormElement
 type htmlCollection<'a> = DOM.htmlCollection<'a>
 type element = Base.element
@@ -25,14 +26,14 @@ type htmlLabelElement = DOM.htmlLabelElement
 type documentFragment = DOM.documentFragment
 type node = DOM.node
 type cssStyleDeclaration = DOM.cssStyleDeclaration
-type domRectReadOnly = DOM.domRectReadOnly
+type domRectReadOnly = DOMRectReadOnly.t
 type shadowRoot = DOM.shadowRoot
 type styleSheet = DOM.styleSheet
 type mediaQueryList = DOM.mediaQueryList
-type domRect = DOM.domRect
+type domRect = DOMRect.t
 type range = DOM.range
 type documentType = DOM.documentType
-type cssStyleValue = DOM.cssStyleValue
+type cssStyleValue = CSSStyleValue.t
 type treeWalker = DOM.treeWalker
 type selection = DOM.selection
 type abstractRange = DOM.abstractRange
@@ -40,10 +41,10 @@ type htmlOptionsCollection = DOM.htmlOptionsCollection
 type styleSheetList = DOM.styleSheetList
 type elementInternals = DOM.elementInternals
 type nodeFilter = DOM.nodeFilter
-type fileList = DOM.fileList
+type fileList = FileList.t
 type cssRule = DOM.cssRule
 type attr = DOM.attr
-type domRectList = DOM.domRectList
+type domRectList = DOMRectList.t
 type htmlFormControlsCollection = DOM.htmlFormControlsCollection
 type domImplementation = DOM.domImplementation
 type nodeIterator = DOM.nodeIterator
@@ -104,11 +105,7 @@ type documentVisibilityState =
   | @as("hidden") Hidden
   | @as("visible") Visible
 
-type orientationType =
-  | @as("landscape-primary") LandscapePrimary
-  | @as("landscape-secondary") LandscapeSecondary
-  | @as("portrait-primary") PortraitPrimary
-  | @as("portrait-secondary") PortraitSecondary
+type orientationType = ScreenOrientation.orientationType
 
 type insertPosition =
   | @as("afterbegin") Afterbegin
@@ -257,7 +254,7 @@ type shareData = {
 [See Location on MDN](https://developer.mozilla.org/docs/Web/API/Location)
 */
 @editor.completeFrom(Location)
-type location = Base__Document.location = private {...Base__Document.location}
+type location = Location.t = private {...Location.t}
 
 // TODO: mark as private once mutating fields of private records is allowed
 @editor.completeFrom(DOMTokenList)
@@ -313,18 +310,7 @@ type barProp = {
 [See ScreenOrientation on MDN](https://developer.mozilla.org/docs/Web/API/ScreenOrientation)
 */
 @editor.completeFrom(ScreenOrientation)
-type screenOrientation = private {
-  ...eventTarget,
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/ScreenOrientation/type)
-    */
-  @as("type")
-  type_: orientationType,
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/ScreenOrientation/angle)
-    */
-  angle: int,
-}
+type screenOrientation = ScreenOrientation.t
 
 /**
 A screen, usually the one on which the current window is being rendered, and is obtained using window.screen.
@@ -413,20 +399,13 @@ type mediaList = {
 [See StylePropertyMapReadOnly on MDN](https://developer.mozilla.org/docs/Web/API/StylePropertyMapReadOnly)
 */
 @editor.completeFrom(StylePropertyMapReadOnly)
-type stylePropertyMapReadOnly = private {
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/StylePropertyMapReadOnly/size)
-    */
-  size: int,
-}
+type stylePropertyMapReadOnly = StylePropertyMapReadOnly.t
 
 /**
 [See StylePropertyMap on MDN](https://developer.mozilla.org/docs/Web/API/StylePropertyMap)
 */
 @editor.completeFrom(StylePropertyMap)
-type stylePropertyMap = private {
-  ...stylePropertyMapReadOnly,
-}
+type stylePropertyMap = StylePropertyMap.t
 
 /**
 Used by the dataset HTML attribute to represent data for custom attributes added to elements.
@@ -1535,108 +1514,9 @@ type svgImageElement = {
   preserveAspectRatio: svgAnimatedPreserveAspectRatio,
 }
 
-/**
-[See DOMMatrixReadOnly on MDN](https://developer.mozilla.org/docs/Web/API/DOMMatrixReadOnly)
-*/
-@editor.completeFrom(DOMMatrixReadOnly)
-type domMatrixReadOnly = private {
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/DOMMatrixReadOnly#instance_properties)
-    */
-  a: float,
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/DOMMatrixReadOnly#instance_properties)
-    */
-  b: float,
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/DOMMatrixReadOnly#instance_properties)
-    */
-  c: float,
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/DOMMatrixReadOnly#instance_properties)
-    */
-  d: float,
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/DOMMatrixReadOnly#instance_properties)
-    */
-  e: float,
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/DOMMatrixReadOnly#instance_properties)
-    */
-  f: float,
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/DOMMatrixReadOnly#instance_properties)
-    */
-  m11: float,
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/DOMMatrixReadOnly#instance_properties)
-    */
-  m12: float,
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/DOMMatrixReadOnly#instance_properties)
-    */
-  m13: float,
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/DOMMatrixReadOnly#instance_properties)
-    */
-  m14: float,
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/DOMMatrixReadOnly#instance_properties)
-    */
-  m21: float,
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/DOMMatrixReadOnly#instance_properties)
-    */
-  m22: float,
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/DOMMatrixReadOnly#instance_properties)
-    */
-  m23: float,
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/DOMMatrixReadOnly#instance_properties)
-    */
-  m24: float,
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/DOMMatrixReadOnly#instance_properties)
-    */
-  m31: float,
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/DOMMatrixReadOnly#instance_properties)
-    */
-  m32: float,
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/DOMMatrixReadOnly#instance_properties)
-    */
-  m33: float,
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/DOMMatrixReadOnly#instance_properties)
-    */
-  m34: float,
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/DOMMatrixReadOnly#instance_properties)
-    */
-  m41: float,
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/DOMMatrixReadOnly#instance_properties)
-    */
-  m42: float,
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/DOMMatrixReadOnly#instance_properties)
-    */
-  m43: float,
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/DOMMatrixReadOnly#instance_properties)
-    */
-  m44: float,
-}
+type domMatrixReadOnly = DOMMatrixReadOnly.t
 
-/**
-[See DOMMatrix on MDN](https://developer.mozilla.org/docs/Web/API/DOMMatrix)
-*/
-@editor.completeFrom(DOMMatrix)
-type domMatrix = private {
-  ...domMatrixReadOnly,
-}
+type domMatrix = DOMMatrix.t
 
 /**
 [See VideoColorSpace on MDN](https://developer.mozilla.org/docs/Web/API/VideoColorSpace)
@@ -1735,36 +1615,9 @@ type imageData = private {
   colorSpace: predefinedColorSpace,
 }
 
-/**
-[See DOMPointReadOnly on MDN](https://developer.mozilla.org/docs/Web/API/DOMPointReadOnly)
-*/
-@editor.completeFrom(DOMPointReadOnly)
-type domPointReadOnly = private {
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/DOMPointReadOnly/x)
-    */
-  x: float,
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/DOMPointReadOnly/y)
-    */
-  y: float,
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/DOMPointReadOnly/z)
-    */
-  z: float,
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/DOMPointReadOnly/w)
-    */
-  w: float,
-}
+type domPointReadOnly = DOMPointReadOnly.t
 
-/**
-[See DOMPoint on MDN](https://developer.mozilla.org/docs/Web/API/DOMPoint)
-*/
-@editor.completeFrom(DOMPoint)
-type domPoint = private {
-  ...domPointReadOnly,
-}
+type domPoint = DOMPoint.t
 
 /**
  [Read more on MDN](https://developer.mozilla.org/en-US/docs/Web/API/HTMLCanvasElement/getContext#contextattributes)
@@ -1871,12 +1724,7 @@ type pointerLockOptions = {mutable unadjustedMovement?: bool}
 
 type caretPositionFromPointOptions = {mutable shadowRoots?: array<shadowRoot>}
 
-type domRectInit = {
-  mutable x?: float,
-  mutable y?: float,
-  mutable width?: float,
-  mutable height?: float,
-}
+type domRectInit = GeometryTypes.domRectInit
 
 type validityStateFlags = {
   mutable valueMissing?: bool,
@@ -1992,35 +1840,8 @@ type svgBoundingBoxOptions = {
   mutable clipped?: bool,
 }
 
-type domMatrix2DInit = {
-  mutable a?: float,
-  mutable b?: float,
-  mutable c?: float,
-  mutable d?: float,
-  mutable e?: float,
-  mutable f?: float,
-  mutable m11?: float,
-  mutable m12?: float,
-  mutable m21?: float,
-  mutable m22?: float,
-  mutable m41?: float,
-  mutable m42?: float,
-}
-
-type domMatrixInit = {
-  ...domMatrix2DInit,
-  mutable m13?: float,
-  mutable m14?: float,
-  mutable m23?: float,
-  mutable m24?: float,
-  mutable m31?: float,
-  mutable m32?: float,
-  mutable m33?: float,
-  mutable m34?: float,
-  mutable m43?: float,
-  mutable m44?: float,
-  mutable is2D?: bool,
-}
+type domMatrix2DInit = GeometryTypes.domMatrix2DInit
+type domMatrixInit = GeometryTypes.domMatrixInit
 
 type videoFrameInit = {
   mutable duration?: int,
@@ -2065,12 +1886,7 @@ type videoFrameCopyToOptions = {
   mutable colorSpace?: predefinedColorSpace,
 }
 
-type domPointInit = {
-  mutable x?: float,
-  mutable y?: float,
-  mutable z?: float,
-  mutable w?: float,
-}
+type domPointInit = GeometryTypes.domPointInit
 
 type xPathNSResolver
 

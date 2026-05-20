@@ -1,12 +1,16 @@
+@editor.completeFrom(StylePropertyMapReadOnly)
+type t = private {
+  size: int,
+}
+
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/StylePropertyMapReadOnly/getAll)
 */
 @send
-external getAll: (DomTypes.stylePropertyMapReadOnly, string) => array<DomTypes.cssStyleValue> =
-  "getAll"
+external getAll: (t, string) => array<CSSStyleValue.t> = "getAll"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/StylePropertyMapReadOnly/has)
 */
 @send
-external has: (DomTypes.stylePropertyMapReadOnly, string) => bool = "has"
+external has: (t, string) => bool = "has"

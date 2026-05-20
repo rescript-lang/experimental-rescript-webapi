@@ -1,19 +1,21 @@
 /**
+[See DOMRectReadOnly on MDN](https://developer.mozilla.org/docs/Web/API/DOMRectReadOnly)
+*/
+@editor.completeFrom(DOMRectReadOnly)
+type t = GeometryTypes.domRectReadOnly
+
+/**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/DOMRectReadOnly)
 */
 @new
-external make: (
-  ~x: float=?,
-  ~y: float=?,
-  ~width: float=?,
-  ~height: float=?,
-) => DomTypes.domRectReadOnly = "DOMRectReadOnly"
+external make: (~x: float=?, ~y: float=?, ~width: float=?, ~height: float=?) => t =
+  "DOMRectReadOnly"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/DOMRectReadOnly/fromRect_static)
 */
 @scope("DOMRectReadOnly")
-external fromRect: (~other: DomTypes.domRectInit=?) => DomTypes.domRectReadOnly = "fromRect"
+external fromRect: (~other: GeometryTypes.domRectInit=?) => t = "fromRect"
 
 @send
-external toJSON: DomTypes.domRectReadOnly => Dict.t<string> = "toJSON"
+external toJSON: t => Dict.t<string> = "toJSON"

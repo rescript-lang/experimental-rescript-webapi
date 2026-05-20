@@ -1,25 +1,12 @@
 @@warning("-30")
 
-/**
-An abnormal event (called an exception) which occurs as a result of calling a method or accessing a property of a web API.
-[See DOMException on MDN](https://developer.mozilla.org/docs/Web/API/DOMException)
-*/
-type domException = {
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/DOMException/name)
-    */
-  name: string,
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/DOMException/message)
-    */
-  message: string,
-}
+type domException = DOMException.t
 
 /**
 A type returned by some APIs which contains a list of DOMString (strings).
 [See DOMStringList on MDN](https://developer.mozilla.org/docs/Web/API/DOMStringList)
 */
-type domStringList = Base__Document.domStringList
+type domStringList = DOMStringList.t
 
 type window
 
@@ -44,11 +31,7 @@ type documentVisibilityState =
   | @as("hidden") Hidden
   | @as("visible") Visible
 
-type orientationType =
-  | @as("landscape-primary") LandscapePrimary
-  | @as("landscape-secondary") LandscapeSecondary
-  | @as("portrait-primary") PortraitPrimary
-  | @as("portrait-secondary") PortraitSecondary
+type orientationType = ScreenOrientation.orientationType
 
 type insertPosition =
   | @as("afterbegin") Afterbegin
@@ -198,7 +181,7 @@ The location (WebApiURL) of the object it is linked to. Changes done on it are r
 TODO: mark as private once mutating fields of private records is allowed
 */
 @editor.completeFrom(Location)
-type location = Base__Document.location
+type location = Location.t
 
 // TODO: mark as private once mutating fields of private records is allowed
 @editor.completeFrom(DOM.DOMTokenList)
@@ -254,18 +237,7 @@ type barProp = {
 [See ScreenOrientation on MDN](https://developer.mozilla.org/docs/Web/API/ScreenOrientation)
 */
 @editor.completeFrom(DOM.ScreenOrientation)
-type screenOrientation = private {
-  ...BaseEvent.eventTarget,
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/ScreenOrientation/type)
-    */
-  @as("type")
-  type_: orientationType,
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/ScreenOrientation/angle)
-    */
-  angle: int,
-}
+type screenOrientation = ScreenOrientation.t
 
 /**
 A screen, usually the one on which the current window is being rendered, and is obtained using window.screen.
@@ -354,20 +326,13 @@ type mediaList = {
 [See StylePropertyMapReadOnly on MDN](https://developer.mozilla.org/docs/Web/API/StylePropertyMapReadOnly)
 */
 @editor.completeFrom(DOM.StylePropertyMapReadOnly)
-type stylePropertyMapReadOnly = private {
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/StylePropertyMapReadOnly/size)
-    */
-  size: int,
-}
+type stylePropertyMapReadOnly = StylePropertyMapReadOnly.t
 
 /**
 [See StylePropertyMap on MDN](https://developer.mozilla.org/docs/Web/API/StylePropertyMap)
 */
 @editor.completeFrom(DOM.StylePropertyMap)
-type stylePropertyMap = private {
-  ...stylePropertyMapReadOnly,
-}
+type stylePropertyMap = StylePropertyMap.t
 
 /**
 Used by the dataset HTML attribute to represent data for custom attributes added to elements.
@@ -5694,50 +5659,15 @@ TODO: mark as private once mutating fields of private records is allowed
 [See DOMRectReadOnly on MDN](https://developer.mozilla.org/docs/Web/API/DOMRectReadOnly)
 */
 @editor.completeFrom(DOM.DOMRectReadOnly)
-type domRectReadOnly = private {
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/DOMRectReadOnly/x)
-    */
-  x: float,
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/DOMRectReadOnly/y)
-    */
-  y: float,
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/DOMRectReadOnly/width)
-    */
-  width: float,
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/DOMRectReadOnly/height)
-    */
-  height: float,
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/DOMRectReadOnly/top)
-    */
-  top: float,
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/DOMRectReadOnly/right)
-    */
-  right: float,
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/DOMRectReadOnly/bottom)
-    */
-  bottom: float,
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/DOMRectReadOnly/left)
-    */
-  left: float,
-}
+type domRectReadOnly = DOMRectReadOnly.t
 
 /**
 [See DOMRect on MDN](https://developer.mozilla.org/docs/Web/API/DOMRect)
 */
 @editor.completeFrom(DOM.DOMRect)
-type domRect = private {
-  ...domRectReadOnly,
-}
+type domRect = DOMRect.t
 
-@editor.completeFrom(DOM.DOMRectList) type domRectList = private {}
+@editor.completeFrom(DOM.DOMRectList) type domRectList = DOMRectList.t
 
 /**
 The validity states that an element can be in, with respect to constraint validation. Together, they help explain why an element's value fails to validate, if it's not valid.
@@ -6235,19 +6165,14 @@ type mediaQueryList = private {
 [See CSSStyleValue on MDN](https://developer.mozilla.org/docs/Web/API/CSSStyleValue)
 */
 @editor.completeFrom(DOM.CSSStyleValue)
-type cssStyleValue = private {}
+type cssStyleValue = CSSStyleValue.t
 
 /**
 An object of this type is returned by the files property of the HTML <input> element; this lets you access the list of files selected with the <input type="file"> element. It's also used for a list of files dropped into web content when using the drag and drop API; see the DataTransfer object for details on this usage.
 [See FileList on MDN](https://developer.mozilla.org/docs/Web/API/FileList)
 */
 @editor.completeFrom(DOM.FileList)
-type fileList = private {
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/FileList/length)
-    */
-  length: int,
-}
+type fileList = FileList.t
 
 /**
 An error which occurred while handling media in an HTML media element based on HTMLMediaElement, such as <audio> or <video>.
@@ -6281,13 +6206,7 @@ type timeRanges = private {
 [See TextTrackList on MDN](https://developer.mozilla.org/docs/Web/API/TextTrackList)
 */
 @editor.completeFrom(DOM.TextTrackList)
-type textTrackList = private {
-  ...BaseEvent.eventTarget,
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/TextTrackList/length)
-    */
-  length: int,
-}
+type textTrackList = TextTrackList.t
 
 /**
 Returned by the HTMLVideoElement.getVideoPlaybackQuality() method and contains metrics that can be used to determine the playback quality of a video.

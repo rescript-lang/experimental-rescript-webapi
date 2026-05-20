@@ -1296,4 +1296,4 @@ type workletOptions = {mutable credentials?: requestCredentials}
 
 type decodeSuccessCallback = audioBuffer => unit
 
-type decodeErrorCallback = DOM.domException => unit
+type decodeErrorCallback = DOMException.t => unit

@@ -21,7 +21,7 @@ external name: string = "name"
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/location)
 */
-external location: DomTypes.location = "location"
+external location: Location.t = "location"
 
 /**
 Returns true if the location bar is visible; otherwise, returns false.

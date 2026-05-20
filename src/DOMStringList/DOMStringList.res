@@ -1,4 +1,15 @@
-type t = DOM.domStringList
+/**
+A type returned by some APIs which contains a list of DOMString (strings).
+[See DOMStringList on MDN](https://developer.mozilla.org/docs/Web/API/DOMStringList)
+*/
+@editor.completeFrom(DOMStringList)
+type t = {
+  /**
+    Returns the number of strings in strings.
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/DOMStringList/length)
+    */
+  length: int,
+}
 
 /**
 Returns the string with index index from strings.
