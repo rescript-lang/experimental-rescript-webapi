@@ -1,24 +1,23 @@
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/StorageManager/persisted)
 */
-@send
-external persisted: StorageTypes.storageManager => promise<bool> = "persisted"
+@scope("globalThis.navigator.storage")
+external persisted: unit => promise<bool> = "persisted"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/StorageManager/persist)
 */
-@send
-external persist: StorageTypes.storageManager => promise<bool> = "persist"
+@scope("globalThis.navigator.storage")
+external persist: unit => promise<bool> = "persist"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/StorageManager/estimate)
 */
-@send
-external estimate: StorageTypes.storageManager => promise<StorageTypes.storageEstimate> = "estimate"
+@scope("globalThis.navigator.storage")
+external estimate: unit => promise<StorageTypes.storageEstimate> = "estimate"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/StorageManager/getDirectory)
 */
-@send
-external getDirectory: StorageTypes.storageManager => promise<FileTypes.fileSystemDirectoryHandle> =
-  "getDirectory"
+@scope("globalThis.navigator.storage")
+external getDirectory: unit => promise<FileTypes.fileSystemDirectoryHandle> = "getDirectory"

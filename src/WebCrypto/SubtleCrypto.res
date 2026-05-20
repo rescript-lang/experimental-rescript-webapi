@@ -1,9 +1,8 @@
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/SubtleCrypto/encrypt)
 */
-@send
+@scope("globalThis.crypto.subtle")
 external encrypt: (
-  WebCryptoTypes.subtleCrypto,
   ~algorithm: WebCryptoTypes.algorithmIdentifier,
   ~key: WebCryptoTypes.cryptoKey,
   ~data: ArrayBuffer.t,
@@ -12,9 +11,8 @@ external encrypt: (
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/SubtleCrypto/decrypt)
 */
-@send
+@scope("globalThis.crypto.subtle")
 external decrypt: (
-  WebCryptoTypes.subtleCrypto,
   ~algorithm: WebCryptoTypes.algorithmIdentifier,
   ~key: WebCryptoTypes.cryptoKey,
   ~data: ArrayBuffer.t,
@@ -23,9 +21,8 @@ external decrypt: (
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/SubtleCrypto/sign)
 */
-@send
+@scope("globalThis.crypto.subtle")
 external sign: (
-  WebCryptoTypes.subtleCrypto,
   ~algorithm: WebCryptoTypes.algorithmIdentifier,
   ~key: WebCryptoTypes.cryptoKey,
   ~data: ArrayBuffer.t,
@@ -34,9 +31,8 @@ external sign: (
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/SubtleCrypto/verify)
 */
-@send
+@scope("globalThis.crypto.subtle")
 external verify: (
-  WebCryptoTypes.subtleCrypto,
   ~algorithm: WebCryptoTypes.algorithmIdentifier,
   ~key: WebCryptoTypes.cryptoKey,
   ~signature: ArrayBuffer.t,
@@ -46,9 +42,8 @@ external verify: (
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/SubtleCrypto/digest)
 */
-@send
+@scope("globalThis.crypto.subtle")
 external digest: (
-  WebCryptoTypes.subtleCrypto,
   ~algorithm: WebCryptoTypes.algorithmIdentifier,
   ~data: ArrayBuffer.t,
 ) => promise<JSON.t> = "digest"
@@ -56,9 +51,8 @@ external digest: (
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/SubtleCrypto/generateKey)
 */
-@send
+@scope("globalThis.crypto.subtle")
 external generateKey: (
-  WebCryptoTypes.subtleCrypto,
   ~algorithm: WebCryptoTypes.algorithm,
   ~extractable: bool,
   ~keyUsages: array<WebCryptoTypes.keyUsage>,
@@ -67,9 +61,8 @@ external generateKey: (
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/SubtleCrypto/generateKey)
 */
-@send
+@scope("globalThis.crypto.subtle")
 external generateKey2: (
-  WebCryptoTypes.subtleCrypto,
   ~algorithm: string,
   ~extractable: bool,
   ~keyUsages: array<WebCryptoTypes.keyUsage>,
@@ -78,9 +71,8 @@ external generateKey2: (
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/SubtleCrypto/deriveKey)
 */
-@send
+@scope("globalThis.crypto.subtle")
 external deriveKey: (
-  WebCryptoTypes.subtleCrypto,
   ~algorithm: WebCryptoTypes.algorithmIdentifier,
   ~baseKey: WebCryptoTypes.cryptoKey,
   ~derivedKeyType: WebCryptoTypes.algorithmIdentifier,
@@ -91,9 +83,8 @@ external deriveKey: (
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/SubtleCrypto/deriveBits)
 */
-@send
+@scope("globalThis.crypto.subtle")
 external deriveBits: (
-  WebCryptoTypes.subtleCrypto,
   ~algorithm: WebCryptoTypes.algorithm,
   ~baseKey: WebCryptoTypes.cryptoKey,
   ~length: int=?,
@@ -102,9 +93,8 @@ external deriveBits: (
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/SubtleCrypto/deriveBits)
 */
-@send
+@scope("globalThis.crypto.subtle")
 external deriveBits2: (
-  WebCryptoTypes.subtleCrypto,
   ~algorithm: string,
   ~baseKey: WebCryptoTypes.cryptoKey,
   ~length: int=?,
@@ -113,9 +103,8 @@ external deriveBits2: (
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/SubtleCrypto/importKey)
 */
-@send
+@scope("globalThis.crypto.subtle")
 external importKey: (
-  WebCryptoTypes.subtleCrypto,
   ~format: unknown,
   ~keyData: ArrayBuffer.t,
   ~algorithm: WebCryptoTypes.algorithmIdentifier,
@@ -126,9 +115,8 @@ external importKey: (
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/SubtleCrypto/exportKey)
 */
-@send
+@scope("globalThis.crypto.subtle")
 external exportKey: (
-  WebCryptoTypes.subtleCrypto,
   ~format: WebCryptoTypes.keyFormat,
   ~key: WebCryptoTypes.cryptoKey,
 ) => promise<JSON.t> = "exportKey"
@@ -136,9 +124,8 @@ external exportKey: (
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/SubtleCrypto/wrapKey)
 */
-@send
+@scope("globalThis.crypto.subtle")
 external wrapKey: (
-  WebCryptoTypes.subtleCrypto,
   ~format: WebCryptoTypes.keyFormat,
   ~key: WebCryptoTypes.cryptoKey,
   ~wrappingKey: WebCryptoTypes.cryptoKey,
@@ -148,9 +135,8 @@ external wrapKey: (
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/SubtleCrypto/wrapKey)
 */
-@send
+@scope("globalThis.crypto.subtle")
 external wrapKey2: (
-  WebCryptoTypes.subtleCrypto,
   ~format: WebCryptoTypes.keyFormat,
   ~key: WebCryptoTypes.cryptoKey,
   ~wrappingKey: WebCryptoTypes.cryptoKey,
@@ -160,9 +146,8 @@ external wrapKey2: (
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/SubtleCrypto/unwrapKey)
 */
-@send
+@scope("globalThis.crypto.subtle")
 external unwrapKey: (
-  WebCryptoTypes.subtleCrypto,
   ~format: WebCryptoTypes.keyFormat,
   ~wrappedKey: ArrayBuffer.t,
   ~unwrappingKey: WebCryptoTypes.cryptoKey,

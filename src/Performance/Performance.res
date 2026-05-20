@@ -3,37 +3,32 @@ include EventTarget.Impl({type t = PerformanceTypes.performance})
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Performance/now)
 */
-@send
-external now: PerformanceTypes.performance => float = "now"
+@scope("globalThis.performance")
+external now: unit => float = "now"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Performance/toJSON)
 */
-@send
-external toJSON: PerformanceTypes.performance => Dict.t<string> = "toJSON"
+@scope("globalThis.performance")
+external toJSON: unit => Dict.t<string> = "toJSON"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Performance/getEntries)
 */
-@send
-external getEntries: PerformanceTypes.performance => PerformanceTypes.performanceEntryList =
-  "getEntries"
+@scope("globalThis.performance")
+external getEntries: unit => PerformanceTypes.performanceEntryList = "getEntries"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Performance/getEntriesByType)
 */
-@send
-external getEntriesByType: (
-  PerformanceTypes.performance,
-  string,
-) => PerformanceTypes.performanceEntryList = "getEntriesByType"
+@scope("globalThis.performance")
+external getEntriesByType: string => PerformanceTypes.performanceEntryList = "getEntriesByType"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Performance/getEntriesByName)
 */
-@send
+@scope("globalThis.performance")
 external getEntriesByName: (
-  PerformanceTypes.performance,
   ~name: string,
   ~type_: string=?,
 ) => PerformanceTypes.performanceEntryList = "getEntriesByName"
@@ -41,22 +36,20 @@ external getEntriesByName: (
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Performance/clearResourceTimings)
 */
-@send
-external clearResourceTimings: PerformanceTypes.performance => unit = "clearResourceTimings"
+@scope("globalThis.performance")
+external clearResourceTimings: unit => unit = "clearResourceTimings"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Performance/setResourceTimingBufferSize)
 */
-@send
-external setResourceTimingBufferSize: (PerformanceTypes.performance, int) => unit =
-  "setResourceTimingBufferSize"
+@scope("globalThis.performance")
+external setResourceTimingBufferSize: int => unit = "setResourceTimingBufferSize"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Performance/mark)
 */
-@send
+@scope("globalThis.performance")
 external mark: (
-  PerformanceTypes.performance,
   ~markName: string,
   ~markOptions: PerformanceTypes.performanceMarkOptions=?,
 ) => PerformanceTypes.performanceMark = "mark"
@@ -64,15 +57,14 @@ external mark: (
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Performance/clearMarks)
 */
-@send
-external clearMarks: (PerformanceTypes.performance, ~markName: string=?) => unit = "clearMarks"
+@scope("globalThis.performance")
+external clearMarks: (~markName: string=?) => unit = "clearMarks"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Performance/measure)
 */
-@send
+@scope("globalThis.performance")
 external measure: (
-  PerformanceTypes.performance,
   ~measureName: string,
   ~startOrMeasureOptions: string=?,
   ~endMark: string=?,
@@ -81,9 +73,8 @@ external measure: (
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Performance/measure)
 */
-@send
+@scope("globalThis.performance")
 external measure2: (
-  PerformanceTypes.performance,
   ~measureName: string,
   ~startOrMeasureOptions: PerformanceTypes.performanceMeasureOptions=?,
   ~endMark: string=?,
@@ -92,9 +83,8 @@ external measure2: (
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Performance/clearMeasures)
 */
-@send
-external clearMeasures: (PerformanceTypes.performance, ~measureName: string=?) => unit =
-  "clearMeasures"
+@scope("globalThis.performance")
+external clearMeasures: (~measureName: string=?) => unit = "clearMeasures"
 
 module PerformanceEntry = PerformanceEntry
 module PerformanceMark = PerformanceMark

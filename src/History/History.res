@@ -1,37 +1,31 @@
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/History/go)
 */
-@send
-external go: (HistoryTypes.history, ~delta: int=?) => unit = "go"
+@scope("globalThis.history")
+external go: (~delta: int=?) => unit = "go"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/History/back)
 */
-@send
-external back: HistoryTypes.history => unit = "back"
+@scope("globalThis.history")
+external back: unit => unit = "back"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/History/forward)
 */
-@send
-external forward: HistoryTypes.history => unit = "forward"
+@scope("globalThis.history")
+external forward: unit => unit = "forward"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/History/pushState)
 */
-@send
-external pushState: (HistoryTypes.history, ~data: JSON.t, ~unused: string, ~url: string=?) => unit =
-  "pushState"
+@scope("globalThis.history")
+external pushState: (~data: JSON.t, ~unused: string, ~url: string=?) => unit = "pushState"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/History/replaceState)
 */
-@send
-external replaceState: (
-  HistoryTypes.history,
-  ~data: JSON.t,
-  ~unused: string,
-  ~url: string=?,
-) => unit = "replaceState"
+@scope("globalThis.history")
+external replaceState: (~data: JSON.t, ~unused: string, ~url: string=?) => unit = "replaceState"
 
 module Types = HistoryTypes

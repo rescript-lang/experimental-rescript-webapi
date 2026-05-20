@@ -24,17 +24,6 @@ external name: string = "name"
 external location: DomTypes.location = "location"
 
 /**
-[Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/history)
-*/
-external history: HistoryTypes.history = "history"
-
-/**
-Defines a new custom element, mapping the given name to the given constructor as an autonomous custom element.
-[Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/customElements)
-*/
-external customElements: DomTypes.customElementRegistry = "customElements"
-
-/**
 Returns true if the location bar is visible; otherwise, returns false.
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/locationbar)
 */
@@ -110,11 +99,6 @@ external parent: DomTypes.window = "parent"
 external frameElement: DomTypes.element = "frameElement"
 
 /**
-[Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/navigator)
-*/
-external navigator: DomTypes.navigator = "navigator"
-
-/**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/screen)
 */
 external screen: DomTypes.screen = "screen"
@@ -180,11 +164,6 @@ external outerHeight: int = "outerHeight"
 external devicePixelRatio: float = "devicePixelRatio"
 
 /**
-[Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/speechSynthesis)
-*/
-external speechSynthesis: WebSpeechTypes.speechSynthesis = "speechSynthesis"
-
-/**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/origin)
 */
 external origin: string = "origin"
@@ -198,36 +177,6 @@ external isSecureContext: bool = "isSecureContext"
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/crossOriginIsolated)
 */
 external crossOriginIsolated: bool = "crossOriginIsolated"
-
-/**
-[Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/indexedDB)
-*/
-external indexedDB: IndexedDbTypes.idbFactory = "indexedDB"
-
-/**
-[Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/crypto)
-*/
-external crypto: WebCryptoTypes.crypto = "crypto"
-
-/**
-[Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/performance)
-*/
-external performance: PerformanceTypes.performance = "performance"
-
-/**
-[Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/caches)
-*/
-external caches: WebWorkersTypes.cacheStorage = "caches"
-
-/**
-[Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/sessionStorage)
-*/
-external sessionStorage: WebStorageTypes.storage = "sessionStorage"
-
-/**
-[Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/localStorage)
-*/
-external localStorage: WebStorageTypes.storage = "localStorage"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/reportError)

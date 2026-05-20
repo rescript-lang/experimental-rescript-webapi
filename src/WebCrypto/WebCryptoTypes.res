@@ -24,7 +24,7 @@ type keyFormat =
 type keyAlgorithm = {mutable name: string}
 
 /**
-This Web Crypto API interface provides a number of low-level cryptographic functions. It is accessed via the Crypto.subtle properties available in a window context (via Window.crypto).
+This Web Crypto API interface provides a number of low-level cryptographic functions. It is accessed via the Crypto.subtle properties available in the current global context (via globalThis.crypto).
 [See SubtleCrypto on MDN](https://developer.mozilla.org/docs/Web/API/SubtleCrypto)
 */
 @editor.completeFrom(SubtleCrypto)

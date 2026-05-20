@@ -36,19 +36,6 @@ external name: t => string = "name"
 external location: t => DomTypes.location = "location"
 
 /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/history)
-    */
-@get
-external history: t => HistoryTypes.history = "history"
-
-/**
-    Defines a new custom element, mapping the given name to the given constructor as an autonomous custom element.
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/customElements)
-    */
-@get
-external customElements: t => DomTypes.customElementRegistry = "customElements"
-
-/**
     Returns true if the location bar is visible; otherwise, returns false.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/locationbar)
     */
@@ -137,12 +124,6 @@ external parent: t => t = "parent"
 external frameElement: t => Null.t<DomTypes.element> = "frameElement"
 
 /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/navigator)
-    */
-@get
-external navigator: t => DomTypes.navigator = "navigator"
-
-/**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/screen)
     */
 @get
@@ -221,12 +202,6 @@ external outerHeight: t => int = "outerHeight"
 external devicePixelRatio: t => float = "devicePixelRatio"
 
 /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/speechSynthesis)
-    */
-@get
-external speechSynthesis: t => WebSpeechTypes.speechSynthesis = "speechSynthesis"
-
-/**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/origin)
     */
 @get
@@ -243,42 +218,6 @@ external isSecureContext: t => bool = "isSecureContext"
     */
 @get
 external crossOriginIsolated: t => bool = "crossOriginIsolated"
-
-/**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/indexedDB)
-    */
-@get
-external indexedDB: t => IndexedDbTypes.idbFactory = "indexedDB"
-
-/**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/crypto)
-    */
-@get
-external crypto: t => WebCryptoTypes.crypto = "crypto"
-
-/**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/performance)
-    */
-@get
-external performance: t => PerformanceTypes.performance = "performance"
-
-/**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/caches)
-    */
-@get
-external caches: t => WebWorkersTypes.cacheStorage = "caches"
-
-/**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/sessionStorage)
-    */
-@get
-external sessionStorage: t => WebStorageTypes.storage = "sessionStorage"
-
-/**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/localStorage)
-    */
-@get
-external localStorage: t => WebStorageTypes.storage = "localStorage"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/reportError)

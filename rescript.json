@@ -499,7 +499,7 @@
       "dir": "src/WebStorage",
       "subdirs": true,
       "feature": "WebAPI.WebStorage",
-      "public": ["Storage", "StorageEvent"]
+      "public": ["LocalStorage", "SessionStorage", "Storage", "StorageEvent"]
     },
     {
       "dir": "src/WebVTT",

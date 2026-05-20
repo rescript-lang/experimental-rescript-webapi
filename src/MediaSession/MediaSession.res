@@ -8,9 +8,8 @@ type mediaSessionActionHandler = MediaSessionTypes.mediaSessionActionHandler
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/MediaSession/setActionHandler)
 */
-@send
+@scope("globalThis.navigator.mediaSession")
 external setActionHandler: (
-  t,
   ~action: mediaSessionAction,
   ~handler: mediaSessionActionHandler,
 ) => unit = "setActionHandler"
@@ -18,8 +17,8 @@ external setActionHandler: (
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/MediaSession/setPositionState)
 */
-@send
-external setPositionState: (t, ~state: mediaPositionState=?) => unit = "setPositionState"
+@scope("globalThis.navigator.mediaSession")
+external setPositionState: (~state: mediaPositionState=?) => unit = "setPositionState"
 
 module MediaMetadata = MediaMetadata
 module Types = MediaSessionTypes

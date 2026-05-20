@@ -32,10 +32,7 @@ DomGlobal.removeEventListener(
   ~options={capture: false},
 )
 
-let registrationResult = await Window.current
-->Window.navigator
-->Navigator.serviceWorker
-->ServiceWorkerContainer.register("/sw.js")
+let registrationResult = await ServiceWorkerContainer.register("/sw.js")
 let subscription = await registrationResult.pushManager->PushManager.subscribe(
   ~options={
     userVisibleOnly: true,

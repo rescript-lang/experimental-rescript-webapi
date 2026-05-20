@@ -1,9 +1,8 @@
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Geolocation/getCurrentPosition)
 */
-@send
+@scope("globalThis.navigator.geolocation")
 external getCurrentPosition: (
-  GeolocationTypes.geolocation,
   ~successCallback: GeolocationTypes.positionCallback,
   ~errorCallback: GeolocationTypes.positionErrorCallback=?,
   ~options: GeolocationTypes.positionOptions=?,
@@ -12,9 +11,8 @@ external getCurrentPosition: (
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Geolocation/watchPosition)
 */
-@send
+@scope("globalThis.navigator.geolocation")
 external watchPosition: (
-  GeolocationTypes.geolocation,
   ~successCallback: GeolocationTypes.positionCallback,
   ~errorCallback: GeolocationTypes.positionErrorCallback=?,
   ~options: GeolocationTypes.positionOptions=?,
@@ -23,8 +21,8 @@ external watchPosition: (
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Geolocation/clearWatch)
 */
-@send
-external clearWatch: (GeolocationTypes.geolocation, int) => unit = "clearWatch"
+@scope("globalThis.navigator.geolocation")
+external clearWatch: int => unit = "clearWatch"
 
 module GeolocationCoordinates = GeolocationCoordinates
 module GeolocationPosition = GeolocationPosition

@@ -3,9 +3,8 @@ include EventTarget.Impl({type t = ServiceWorkerTypes.serviceWorkerContainer})
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/ServiceWorkerContainer/register)
 */
-@send
+@scope("globalThis.navigator.serviceWorker")
 external register: (
-  ServiceWorkerTypes.serviceWorkerContainer,
   string,
   ~options: ServiceWorkerTypes.registrationOptions=?,
 ) => promise<ServiceWorkerTypes.serviceWorkerRegistration> = "register"
@@ -13,22 +12,20 @@ external register: (
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/ServiceWorkerContainer/getRegistration)
 */
-@send
+@scope("globalThis.navigator.serviceWorker")
 external getRegistration: (
-  ServiceWorkerTypes.serviceWorkerContainer,
   ~clientURL: string=?,
 ) => Nullable.t<ServiceWorkerTypes.serviceWorkerRegistration> = "getRegistration"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/ServiceWorkerContainer/getRegistrations)
 */
-@send
-external getRegistrations: ServiceWorkerTypes.serviceWorkerContainer => promise<
-  array<ServiceWorkerTypes.serviceWorkerRegistration>,
-> = "getRegistrations"
+@scope("globalThis.navigator.serviceWorker")
+external getRegistrations: unit => promise<array<ServiceWorkerTypes.serviceWorkerRegistration>> =
+  "getRegistrations"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/ServiceWorkerContainer/startMessages)
 */
-@send
-external startMessages: ServiceWorkerTypes.serviceWorkerContainer => unit = "startMessages"
+@scope("globalThis.navigator.serviceWorker")
+external startMessages: unit => unit = "startMessages"

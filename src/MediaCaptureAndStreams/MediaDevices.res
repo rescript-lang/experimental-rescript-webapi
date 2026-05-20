@@ -16,25 +16,25 @@ include EventTarget.Impl({type t = t})
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/MediaDevices/enumerateDevices)
 */
-@send
-external enumerateDevices: t => promise<array<MediaDeviceInfo.t>> = "enumerateDevices"
+@scope("globalThis.navigator.mediaDevices")
+external enumerateDevices: unit => promise<array<MediaDeviceInfo.t>> = "enumerateDevices"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/MediaDevices/getSupportedConstraints)
 */
-@send
-external getSupportedConstraints: t => mediaTrackSupportedConstraints = "getSupportedConstraints"
+@scope("globalThis.navigator.mediaDevices")
+external getSupportedConstraints: unit => mediaTrackSupportedConstraints = "getSupportedConstraints"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/MediaDevices/getUserMedia)
 */
-@send
-external getUserMedia: (t, ~constraints: mediaStreamConstraints=?) => promise<MediaStream.t> =
+@scope("globalThis.navigator.mediaDevices")
+external getUserMedia: (~constraints: mediaStreamConstraints=?) => promise<MediaStream.t> =
   "getUserMedia"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/MediaDevices/getDisplayMedia)
 */
-@send
-external getDisplayMedia: (t, ~options: displayMediaStreamOptions=?) => promise<MediaStream.t> =
+@scope("globalThis.navigator.mediaDevices")
+external getDisplayMedia: (~options: displayMediaStreamOptions=?) => promise<MediaStream.t> =
   "getDisplayMedia"

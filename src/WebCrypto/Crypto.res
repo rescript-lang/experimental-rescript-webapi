@@ -5,14 +5,14 @@ open WebCryptoTypes
 TODO: the input type for this should be stricter than just an array<'a>'
 > An integer-based TypedArray, that is one of: Int8Array, Uint8Array, Uint8ClampedArray, Int16Array, Uint16Array, Int32Array, Uint32Array, BigInt64Array, BigUint64Array
 */
-@scope("crypto")
+@scope("globalThis.crypto")
 external getRandomValues: array<'t> => array<'t> = "getRandomValues"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Crypto/randomUUID)
 */
-@scope("crypto")
+@scope("globalThis.crypto")
 external randomUUID: unit => string = "randomUUID"
 
-@scope("crypto")
+@scope("globalThis.crypto")
 external subtle: subtleCrypto = "subtle"
