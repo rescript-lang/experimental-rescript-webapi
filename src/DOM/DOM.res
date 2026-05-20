@@ -5542,7 +5542,7 @@ Any web page loaded in the browser and serves as an entry point into the web pag
 TODO: mark as private once mutating fields of private records is allowed
 */
 @editor.completeFrom(DOM.Document) and document = {
-  // Base properties from Node
+  // Base properties from Nodea
   /**
     Returns the type of node.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/nodeType)
