@@ -1,5 +1,16 @@
 {
   "name": "@rescript/webapi",
+  "features": {
+    "WebAPI.Navigator": [
+      "WebAPI.Base",
+      "WebAPI.Event",
+      "WebAPI.File",
+      "WebAPI.Fetch",
+      "WebAPI.Gamepad",
+      "WebAPI.URL",
+      "WebAPI.WebMIDI"
+    ]
+  },
   "sources": [
     {
       "dir": "src/Base",
@@ -160,7 +171,6 @@
         "MediaList",
         "MediaQueryList",
         "NamedNodeMap",
-        "Navigator",
         "Node",
         "NodeFilter",
         "NodeIterator",
@@ -313,6 +323,12 @@
       "subdirs": true,
       "feature": "WebAPI.MutationObserver",
       "public": ["MutationObserver"]
+    },
+    {
+      "dir": "src/Navigator",
+      "subdirs": true,
+      "feature": "WebAPI.Navigator",
+      "public": ["Navigator"]
     },
     {
       "dir": "src/Notification",

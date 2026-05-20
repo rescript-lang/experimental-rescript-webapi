@@ -1,10 +1,29 @@
-type t = DomTypes.navigator
+/**
+The state and the identity of the user agent. It allows scripts to query it and to register themselves to carry on some activities.
+[See Navigator on MDN](https://developer.mozilla.org/docs/Web/API/Navigator)
+*/
+@editor.completeFrom(Navigator)
+type t
+
+/**
+[See UserActivation on MDN](https://developer.mozilla.org/docs/Web/API/UserActivation)
+*/
+type userActivation = {
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/UserActivation/hasBeenActive)
+    */
+  hasBeenActive: bool,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/UserActivation/isActive)
+    */
+  isActive: bool,
+}
 
 /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Navigator/userActivation)
     */
 @scope("globalThis.navigator") @val
-external userActivation: DomTypes.userActivation = "userActivation"
+external userActivation: userActivation = "userActivation"
 
 /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Navigator/maxTouchPoints)
@@ -108,7 +127,7 @@ external getGamepads: unit => array<GamepadTypes.gamepad> = "getGamepads"
 @scope("globalThis.navigator")
 external requestMediaKeySystemAccess: (
   ~keySystem: string,
-  ~supportedConfigurations: array<DomTypes.mediaKeySystemConfiguration>,
+  ~supportedConfigurations: array<BaseEncryptedMediaExtensions.mediaKeySystemConfiguration>,
 ) => promise<'mediaKeySystemAccess> = "requestMediaKeySystemAccess"
 
 /**

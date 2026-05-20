@@ -260,27 +260,6 @@ type shareData = {
 @editor.completeFrom(Location)
 type location = Base__Document.location = private {...Base__Document.location}
 
-/**
-[See UserActivation on MDN](https://developer.mozilla.org/docs/Web/API/UserActivation)
-*/
-type userActivation = {
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/UserActivation/hasBeenActive)
-    */
-  hasBeenActive: bool,
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/UserActivation/isActive)
-    */
-  isActive: bool,
-}
-
-/**
-The state and the identity of the user agent. It allows scripts to query it and to register themselves to carry on some activities.
-[See Navigator on MDN](https://developer.mozilla.org/docs/Web/API/Navigator)
-*/
-@editor.completeFrom(Navigator)
-type navigator = DOM.navigator
-
 // TODO: mark as private once mutating fields of private records is allowed
 @editor.completeFrom(DOMTokenList)
 type domTokenList = {
