@@ -18,7 +18,7 @@ type htmlFormElement = DOM.htmlFormElement
 type htmlCollection<'a> = DOM.htmlCollection<'a>
 type element = Base.element
 type validityState = DOM.validityState
-type document = DOM.document
+type document = Base.document
 type cssStyleSheet = DOM.cssStyleSheet
 type nodeList<'a> = DOM.nodeList<'a>
 type htmlLabelElement = DOM.htmlLabelElement
@@ -258,7 +258,7 @@ type shareData = {
 [See Location on MDN](https://developer.mozilla.org/docs/Web/API/Location)
 */
 @editor.completeFrom(Location)
-type location = DOM.location = private {...DOM.location}
+type location = Base__Document.location = private {...Base__Document.location}
 
 /**
 [See UserActivation on MDN](https://developer.mozilla.org/docs/Web/API/UserActivation)

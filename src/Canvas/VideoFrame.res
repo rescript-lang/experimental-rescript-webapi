@@ -196,7 +196,7 @@ external copyTo: (
 @send
 external copyTo2: (
   DomTypes.videoFrame,
-  ~destination: ArrayBufferTypedArrayOrDataView.t,
+  ~destination: ArrayBuffer.t,
   ~options: DomTypes.videoFrameCopyToOptions=?,
 ) => promise<array<DomTypes.planeLayout>> = "copyTo"
 

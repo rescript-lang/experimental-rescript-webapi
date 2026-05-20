@@ -1,6 +1,5 @@
 {
   "name": "@rescript/webapi",
-  "namespace": "WebAPI",
   "sources": [
     {
       "dir": "src/Base",

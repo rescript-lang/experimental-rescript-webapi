@@ -6,7 +6,7 @@ external encrypt: (
   WebCryptoTypes.subtleCrypto,
   ~algorithm: WebCryptoTypes.algorithmIdentifier,
   ~key: WebCryptoTypes.cryptoKey,
-  ~data: ArrayBufferTypedArrayOrDataView.t,
+  ~data: ArrayBuffer.t,
 ) => promise<ArrayBuffer.t> = "encrypt"
 
 /**
@@ -17,7 +17,7 @@ external decrypt: (
   WebCryptoTypes.subtleCrypto,
   ~algorithm: WebCryptoTypes.algorithmIdentifier,
   ~key: WebCryptoTypes.cryptoKey,
-  ~data: ArrayBufferTypedArrayOrDataView.t,
+  ~data: ArrayBuffer.t,
 ) => promise<ArrayBuffer.t> = "decrypt"
 
 /**
@@ -28,7 +28,7 @@ external sign: (
   WebCryptoTypes.subtleCrypto,
   ~algorithm: WebCryptoTypes.algorithmIdentifier,
   ~key: WebCryptoTypes.cryptoKey,
-  ~data: ArrayBufferTypedArrayOrDataView.t,
+  ~data: ArrayBuffer.t,
 ) => promise<JSON.t> = "sign"
 
 /**
@@ -39,8 +39,8 @@ external verify: (
   WebCryptoTypes.subtleCrypto,
   ~algorithm: WebCryptoTypes.algorithmIdentifier,
   ~key: WebCryptoTypes.cryptoKey,
-  ~signature: ArrayBufferTypedArrayOrDataView.t,
-  ~data: ArrayBufferTypedArrayOrDataView.t,
+  ~signature: ArrayBuffer.t,
+  ~data: ArrayBuffer.t,
 ) => promise<JSON.t> = "verify"
 
 /**
@@ -50,7 +50,7 @@ external verify: (
 external digest: (
   WebCryptoTypes.subtleCrypto,
   ~algorithm: WebCryptoTypes.algorithmIdentifier,
-  ~data: ArrayBufferTypedArrayOrDataView.t,
+  ~data: ArrayBuffer.t,
 ) => promise<JSON.t> = "digest"
 
 /**
@@ -117,7 +117,7 @@ external deriveBits2: (
 external importKey: (
   WebCryptoTypes.subtleCrypto,
   ~format: unknown,
-  ~keyData: ArrayBufferTypedArrayOrDataView.t,
+  ~keyData: ArrayBuffer.t,
   ~algorithm: WebCryptoTypes.algorithmIdentifier,
   ~extractable: bool,
   ~keyUsages: array<WebCryptoTypes.keyUsage>,
@@ -164,7 +164,7 @@ external wrapKey2: (
 external unwrapKey: (
   WebCryptoTypes.subtleCrypto,
   ~format: WebCryptoTypes.keyFormat,
-  ~wrappedKey: ArrayBufferTypedArrayOrDataView.t,
+  ~wrappedKey: ArrayBuffer.t,
   ~unwrappingKey: WebCryptoTypes.cryptoKey,
   ~unwrapAlgorithm: WebCryptoTypes.algorithmIdentifier,
   ~unwrappedKeyAlgorithm: WebCryptoTypes.algorithmIdentifier,
