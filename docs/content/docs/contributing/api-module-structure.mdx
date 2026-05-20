@@ -51,8 +51,8 @@ type htmlSpanElement = {
 ```
 
 <Aside>
-  Properties spreading is not possible in recursive types! When a circular reference is detected,
-  the base properties are duplicated instead.
+  Properties spreading is not possible in recursive types! When a circular
+  reference is detected, the base properties are duplicated instead.
 </Aside>
 
 ```ReScript
@@ -61,12 +61,10 @@ type rec node = {
   // ... more properties
 }
 
-and element = {
-  // duplicated property from node
-  nodeName: string
-  // ... more properties
-}
+and element = Base.element
 ```
+
+For shared DOM base interfaces such as `Element`, the structural record can live in a Base-owned module such as `Base__Element.res`. The DOM API module then keeps the familiar `DOM.element` alias while method modules use `DomTypes.element`.
 
 ## Auxiliary Types
 

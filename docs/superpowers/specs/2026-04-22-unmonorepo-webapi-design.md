@@ -97,7 +97,10 @@ Example:
 
 ```json
 {
-  "dependencies": ["@plain/dep", { "name": "@other/heavy", "features": ["WebAPI.WebCrypto"] }]
+  "dependencies": [
+    "@plain/dep",
+    { "name": "@other/heavy", "features": ["WebAPI.WebCrypto"] }
+  ]
 }
 ```
 
@@ -124,7 +127,7 @@ The unified build keeps the original flat module surface instead of adding gener
 - `WebAPI.Headers`
 - `WebAPI.URL`
 
-Shared DOM base types should be owned by `DOM`, so common references stay short, for example `DOM.element` instead of `BaseDOM.element` or `Base.DOM.element`.
+Shared DOM base types can be owned by `Base` when they are needed across feature boundaries, while `DOM` can keep short public aliases such as `DOM.element`. For example, `Base__Element.element` is exposed through `Base.element`, then reused as `DomTypes.element` and `DOM.element`.
 
 ## Internal Module Naming
 

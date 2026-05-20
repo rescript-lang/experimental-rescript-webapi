@@ -241,6 +241,7 @@ let redirect = WebAPI.Response.redirect(~url="/login", ~status=302)
 ## DOM
 
 DOM values are operated on through public interface modules.
+`WebAPI.Element` is the method module for element values. When you need to name the element type explicitly, use `WebAPI.DOM.element`; most examples can rely on inference from `Document.createElement`, `Document.querySelector`, and related DOM helpers.
 
 ```ReScript
 let document = WebAPI.Window.current->WebAPI.Window.document
@@ -262,8 +263,8 @@ switch maybeButton {
 Use conversion helpers when moving between related DOM interface types.
 
 ```ReScript
-let element = document->WebAPI.Document.createElement("div")
-let node = element->WebAPI.Element.asNode
+let element: WebAPI.DOM.element = document->WebAPI.Document.createElement("div")
+let node: WebAPI.DOM.node = element->WebAPI.Element.asNode
 ```
 
 ## Visual Viewport

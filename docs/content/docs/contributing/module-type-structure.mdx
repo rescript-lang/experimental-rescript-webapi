@@ -56,7 +56,11 @@ external focus: (T.t, ~options: focusOptions=?) => unit = "focus"
 include Impl({ type t = htmlElement })
 `;
 
-<Code code={htmlElementModule} title="DOMAPI/HTMLElement.res" lang="ReScript"></Code>
+<Code
+  code={htmlElementModule}
+  title="DOMAPI/HTMLElement.res"
+  lang="ReScript"
+></Code>
 
 export const buttonModule = `
 open DOMAPI
@@ -74,4 +78,35 @@ _/
 external checkValidity: htmlButtonElement => bool = "checkValidity"
 `;
 
-<Code code={buttonModule} title="DOMAPI/HTMLButtonElement.res" lang="ReScript"></Code>
+<Code
+  code={buttonModule}
+  title="DOMAPI/HTMLButtonElement.res"
+  lang="ReScript"
+></Code>
+
+## Shared element base
+
+`Element.res` is a method module. It does not define the `element` record type directly. The shared DOM element type is owned by Base and threaded back into DOM through aliases:
+
+```ReScript
+// Base.res
+type element = Base__Element.element
+
+// DomTypes.res
+type element = Base.element
+
+// Element.res
+include Impl({type t = DomTypes.element})
+```
+
+This keeps `Element.Impl` reusable for element subtypes while giving the package one shared base element type. Subtype modules should continue to include the nearest base method implementation:
+
+```ReScript
+// HTMLElement.res
+include Element.Impl({type t = DomTypes.htmlElement})
+
+// HTMLButtonElement.res
+include HTMLElement.Impl({type t = DomTypes.htmlButtonElement})
+```
+
+Use `asElement` when a subtype needs to be passed to a function that expects the shared element type.
