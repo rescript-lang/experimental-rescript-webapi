@@ -1,6 +1,34 @@
 {
   "name": "@rescript/webapi",
   "features": {
+    "WebAPI.DOM": [
+      "WebAPI.Base",
+      "WebAPI.CSSFontLoading",
+      "WebAPI.ChannelMessaging",
+      "WebAPI.Event",
+      "WebAPI.File",
+      "WebAPI.FileAndDirectoryEntries",
+      "WebAPI.RemotePlayback",
+      "WebAPI.ViewTransitions",
+      "WebAPI.VisualViewport"
+    ],
+    "WebAPI.Canvas": [
+      "WebAPI.DOM",
+      "WebAPI.Event",
+      "WebAPI.File",
+      "WebAPI.HTML",
+      "WebAPI.MediaCaptureAndStreams"
+    ],
+    "WebAPI.CSSOM": ["WebAPI.DOM", "WebAPI.Event"],
+    "WebAPI.CSSTypedOM": ["WebAPI.DOM"],
+    "WebAPI.CustomElements": ["WebAPI.DOM"],
+    "WebAPI.FileList": ["WebAPI.DOM", "WebAPI.File"],
+    "WebAPI.Geometry": ["WebAPI.DOM"],
+    "WebAPI.HTML": [
+      "WebAPI.DOM",
+      "WebAPI.PictureInPicture",
+      "WebAPI.WebVTT"
+    ],
     "WebAPI.Navigator": [
       "WebAPI.Base",
       "WebAPI.Event",
@@ -9,7 +37,17 @@
       "WebAPI.Gamepad",
       "WebAPI.URL",
       "WebAPI.WebMIDI"
-    ]
+    ],
+    "WebAPI.ScreenOrientation": ["WebAPI.DOM", "WebAPI.Event"],
+    "WebAPI.SVG": ["WebAPI.DOM", "WebAPI.Geometry"],
+    "WebAPI.WebAnimations": ["WebAPI.DOM", "WebAPI.Event"],
+    "WebAPI.WebVTT": ["WebAPI.DOM", "WebAPI.Event"],
+    "WebAPI.Window": [
+      "WebAPI.ChannelMessaging",
+      "WebAPI.DOM",
+      "WebAPI.Event"
+    ],
+    "WebAPI.XPath": ["WebAPI.DOM"]
   },
   "sources": [
     {
@@ -44,8 +82,10 @@
         "HTMLCanvasElement",
         "ImageBitmap",
         "ImageBitmapRenderingContext",
+        "ImageData",
         "OffscreenCanvas",
         "Path2D",
+        "VideoColorSpace",
         "VideoFrame"
       ]
     },
@@ -72,35 +112,163 @@
       "subdirs": true,
       "feature": "WebAPI.DOM",
       "public": [
-        "Animation",
-        "AnimationEffect",
-        "CSSRuleList",
-        "CSSStyleDeclaration",
-        "CSSStyleSheet",
-        "CSSStyleValue",
         "CaretPosition",
         "CharacterData",
         "Comment",
-        "CustomElementRegistry",
         "DOM",
         "DOMException",
         "DOMImplementation",
+        "DOMStringList",
+        "DOMTokenList",
+        "Document",
+        "DocumentFragment",
+        "Element",
+        "NamedNodeMap",
+        "Node",
+        "NodeFilter",
+        "NodeIterator",
+        "NodeList",
+        "Range",
+        "Selection",
+        "ShadowRoot",
+        "Text",
+        "TreeWalker"
+      ]
+    },
+    {
+      "dir": "src/CSSOM",
+      "subdirs": true,
+      "feature": "WebAPI.CSSOM",
+      "public": [
+        "CSSRuleList",
+        "CSSStyleDeclaration",
+        "CSSStyleSheet",
+        "MediaList",
+        "MediaQueryList",
+        "StyleSheetList"
+      ]
+    },
+    {
+      "dir": "src/CSSTypedOM",
+      "subdirs": true,
+      "feature": "WebAPI.CSSTypedOM",
+      "public": ["CSSStyleValue", "StylePropertyMap", "StylePropertyMapReadOnly"]
+    },
+    {
+      "dir": "src/CustomElements",
+      "subdirs": true,
+      "feature": "WebAPI.CustomElements",
+      "public": ["CustomElementRegistry", "ElementInternals"]
+    },
+    {
+      "dir": "src/EncryptedMediaExtensions",
+      "subdirs": true,
+      "feature": "WebAPI.EncryptedMediaExtensions",
+      "public": [
+        "EncryptedMediaExtensionsHTMLMediaElement",
+        "MediaKeySession",
+        "MediaKeyStatusMap",
+        "MediaKeySystemAccess",
+        "MediaKeys"
+      ]
+    },
+    {
+      "dir": "src/Event",
+      "subdirs": true,
+      "feature": "WebAPI.Event",
+      "public": [
+        "AbortController",
+        "AbortSignal",
+        "Event",
+        "EventTarget",
+        "ExtendableEvent"
+      ]
+    },
+    {
+      "dir": "src/Fetch",
+      "subdirs": true,
+      "feature": "WebAPI.Fetch",
+      "public": [
+        "BodyInit",
+        "Fetch",
+        "FormData",
+        "FormDataEntryValue",
+        "Headers",
+        "HeadersInit",
+        "Request",
+        "Response"
+      ]
+    },
+    {
+      "dir": "src/File",
+      "subdirs": true,
+      "feature": "WebAPI.File",
+      "public": [
+        "Blob",
+        "File",
+        "FileSystemDirectoryHandle",
+        "FileSystemFileHandle",
+        "FileSystemHandle",
+        "FileSystemWritableFileStream",
+        "ReadableStream",
+        "WritableStream",
+        "WritableStreamDefaultController"
+      ]
+    },
+    {
+      "dir": "src/FileList",
+      "subdirs": true,
+      "feature": "WebAPI.FileList",
+      "public": ["FileList"]
+    },
+    {
+      "dir": "src/FileAndDirectoryEntries",
+      "subdirs": true,
+      "feature": "WebAPI.FileAndDirectoryEntries",
+      "public": [
+        "FileSystemDirectoryEntry",
+        "FileSystemDirectoryReader",
+        "FileSystemEntry"
+      ]
+    },
+    {
+      "dir": "src/Gamepad",
+      "subdirs": true,
+      "feature": "WebAPI.Gamepad",
+      "public": ["GamepadHapticActuator"]
+    },
+    {
+      "dir": "src/Geolocation",
+      "subdirs": true,
+      "feature": "WebAPI.Geolocation",
+      "public": ["Geolocation", "GeolocationCoordinates", "GeolocationPosition"]
+    },
+    {
+      "dir": "src/Geometry",
+      "subdirs": true,
+      "feature": "WebAPI.Geometry",
+      "public": [
         "DOMMatrix",
         "DOMMatrixReadOnly",
         "DOMPoint",
         "DOMPointReadOnly",
         "DOMRect",
         "DOMRectList",
-        "DOMRectReadOnly",
-        "DOMStringList",
-        "DOMTokenList",
-        "Document",
-        "DocumentFragment",
-        "DocumentTimeline",
+        "DOMRectReadOnly"
+      ]
+    },
+    {
+      "dir": "src/History",
+      "subdirs": true,
+      "feature": "WebAPI.History",
+      "public": ["History"]
+    },
+    {
+      "dir": "src/HTML",
+      "subdirs": true,
+      "feature": "WebAPI.HTML",
+      "public": [
         "DomHTMLMediaElement",
-        "Element",
-        "ElementInternals",
-        "FileList",
         "HTMLAnchorElement",
         "HTMLAreaElement",
         "HTMLAudioElement",
@@ -165,117 +333,8 @@
         "HTMLTrackElement",
         "HTMLUListElement",
         "HTMLVideoElement",
-        "IdleDeadline",
-        "ImageData",
-        "Location",
-        "MediaList",
-        "MediaQueryList",
-        "NamedNodeMap",
-        "Node",
-        "NodeFilter",
-        "NodeIterator",
-        "NodeList",
-        "Range",
-        "SVGGraphicsElement",
-        "SVGLength",
-        "ScreenOrientation",
-        "Selection",
-        "ShadowRoot",
-        "StylePropertyMap",
-        "StylePropertyMapReadOnly",
-        "StyleSheetList",
-        "Text",
-        "TextTrackList",
-        "TimeRanges",
-        "TreeWalker",
-        "VideoColorSpace",
-        "Window",
-        "XPathExpression",
-        "XPathResult"
+        "TimeRanges"
       ]
-    },
-    {
-      "dir": "src/EncryptedMediaExtensions",
-      "subdirs": true,
-      "feature": "WebAPI.EncryptedMediaExtensions",
-      "public": [
-        "EncryptedMediaExtensionsHTMLMediaElement",
-        "MediaKeySession",
-        "MediaKeyStatusMap",
-        "MediaKeySystemAccess",
-        "MediaKeys"
-      ]
-    },
-    {
-      "dir": "src/Event",
-      "subdirs": true,
-      "feature": "WebAPI.Event",
-      "public": [
-        "AbortController",
-        "AbortSignal",
-        "Event",
-        "EventTarget",
-        "ExtendableEvent"
-      ]
-    },
-    {
-      "dir": "src/Fetch",
-      "subdirs": true,
-      "feature": "WebAPI.Fetch",
-      "public": [
-        "BodyInit",
-        "Fetch",
-        "FormData",
-        "FormDataEntryValue",
-        "Headers",
-        "HeadersInit",
-        "Request",
-        "Response"
-      ]
-    },
-    {
-      "dir": "src/File",
-      "subdirs": true,
-      "feature": "WebAPI.File",
-      "public": [
-        "Blob",
-        "File",
-        "FileSystemDirectoryHandle",
-        "FileSystemFileHandle",
-        "FileSystemHandle",
-        "FileSystemWritableFileStream",
-        "ReadableStream",
-        "WritableStream",
-        "WritableStreamDefaultController"
-      ]
-    },
-    {
-      "dir": "src/FileAndDirectoryEntries",
-      "subdirs": true,
-      "feature": "WebAPI.FileAndDirectoryEntries",
-      "public": [
-        "FileSystemDirectoryEntry",
-        "FileSystemDirectoryReader",
-        "FileSystemEntry"
-      ]
-    },
-    {
-      "dir": "src/Gamepad",
-      "subdirs": true,
-      "feature": "WebAPI.Gamepad",
-      "public": ["GamepadHapticActuator"]
-    },
-    {
-      "dir": "src/Geolocation",
-      "subdirs": true,
-      "feature": "WebAPI.Geolocation",
-      "public": ["Geolocation", "GeolocationCoordinates", "GeolocationPosition"]
-    },
-    {
-      "dir": "src/History",
-      "subdirs": true,
-      "feature": "WebAPI.History",
-      "public": ["History"]
     },
     {
       "dir": "src/IndexedDB",
@@ -379,6 +438,12 @@
       "public": ["ResizeObserver"]
     },
     {
+      "dir": "src/ScreenOrientation",
+      "subdirs": true,
+      "feature": "WebAPI.ScreenOrientation",
+      "public": ["ScreenOrientation"]
+    },
+    {
       "dir": "src/ScreenWakeLock",
       "subdirs": true,
       "feature": "WebAPI.ScreenWakeLock",
@@ -403,6 +468,12 @@
       "subdirs": true,
       "feature": "WebAPI.Storage",
       "public": ["StorageManager"]
+    },
+    {
+      "dir": "src/SVG",
+      "subdirs": true,
+      "feature": "WebAPI.SVG",
+      "public": ["SVGGraphicsElement", "SVGLength"]
     },
     {
       "dir": "src/UIEvents",
@@ -442,6 +513,12 @@
       "subdirs": true,
       "feature": "WebAPI.VisualViewport",
       "public": ["VisualViewport"]
+    },
+    {
+      "dir": "src/WebAnimations",
+      "subdirs": true,
+      "feature": "WebAPI.WebAnimations",
+      "public": ["Animation", "AnimationEffect", "DocumentTimeline"]
     },
     {
       "dir": "src/WebAudio",
@@ -521,13 +598,25 @@
       "dir": "src/WebVTT",
       "subdirs": true,
       "feature": "WebAPI.WebVTT",
-      "public": ["TextTrack", "TextTrackCueList"]
+      "public": ["TextTrack", "TextTrackCueList", "TextTrackList"]
     },
     {
       "dir": "src/WebWorkers",
       "subdirs": true,
       "feature": "WebAPI.WebWorkers",
       "public": ["CacheStorage", "SharedWorker", "SharedWorkerScope", "Worker"]
+    },
+    {
+      "dir": "src/Window",
+      "subdirs": true,
+      "feature": "WebAPI.Window",
+      "public": ["IdleDeadline", "Location", "Window"]
+    },
+    {
+      "dir": "src/XPath",
+      "subdirs": true,
+      "feature": "WebAPI.XPath",
+      "public": ["XPathExpression", "XPathResult"]
     },
     {
       "dir": "tests",
