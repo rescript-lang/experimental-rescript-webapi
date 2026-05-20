@@ -9,9 +9,10 @@ include Node.Impl({type t = DomTypes.document})
 /**
 Returns the first element within node's descendants whose ID is elementId.
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Document/getElementById)
+TODO: prefer option as much as possible
 */
-@send
-external getElementById: (DomTypes.document, string) => null<DomTypes.element> = "getElementById"
+@scope("globalThis.document")
+external getElementById: string => null<DomTypes.element> = "getElementById"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Document/getAnimations)

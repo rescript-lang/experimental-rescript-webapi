@@ -12,8 +12,7 @@ external setTextBaseline: (
   CanvasTypes.canvasTextBaseline,
 ) => unit = "textBaseline"
 
-let myCanvas: DomTypes.htmlCanvasElement =
-  DomGlobal.document->Document.getElementById("myCanvas")->toHTMLCanvasElement
+let myCanvas: DomTypes.htmlCanvasElement = Document.getElementById("myCanvas")->toHTMLCanvasElement
 let ctx = myCanvas->HTMLCanvasElement.getContext2D
 
 ctx->setFillStyle(FillStyle.fromString("red"))
