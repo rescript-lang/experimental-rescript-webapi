@@ -46,7 +46,7 @@ Returns key/value pairs in the same order as they appear in the query string.
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/URLSearchParams/entries)
 */
 @send
-external entries: t => Iterator.t<(string, string)> = "entries"
+external entries: t => iterable<(string, string)> = "entries"
 
 /**
 Returns the first value associated to the given search parameter.
@@ -74,7 +74,7 @@ Returns an iterator allowing iteration through all keys contained in this object
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/URLSearchParams/keys)
 */
 @send
-external keys: t => Iterator.t<string> = "keys"
+external keys: t => iterable<string> = "keys"
 
 /**
 Sets the value associated to a given search parameter to the given value. If there were several values, delete the others.
@@ -101,4 +101,4 @@ Returns an iterator allowing iteration through all values contained in this obje
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/URLSearchParams/values)
 */
 @send
-external values: t => Iterator.t<string> = "values"
+external values: t => iterable<string> = "values"
