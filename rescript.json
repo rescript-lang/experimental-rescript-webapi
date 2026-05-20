@@ -28,12 +28,7 @@
     "WebAPI.File": ["WebAPI.Base", "WebAPI.Event"],
     "WebAPI.FileList": ["WebAPI.DOM", "WebAPI.File"],
     "WebAPI.Geometry": ["WebAPI.DOM"],
-    "WebAPI.Location": ["WebAPI.DOM"],
-    "WebAPI.HTML": [
-      "WebAPI.DOM",
-      "WebAPI.PictureInPicture",
-      "WebAPI.VTT"
-    ],
+    "WebAPI.HTML": ["WebAPI.DOM", "WebAPI.PictureInPicture", "WebAPI.VTT"],
     "WebAPI.Navigator": [
       "WebAPI.Base",
       "WebAPI.Event",
@@ -55,12 +50,20 @@
     ],
     "WebAPI.Locks": ["WebAPI.Event"],
     "WebAPI.MIDI": ["WebAPI.Event"],
-    "WebAPI.Sockets": ["WebAPI.ChannelMessaging", "WebAPI.Event", "WebAPI.File"],
+    "WebAPI.Sockets": [
+      "WebAPI.ChannelMessaging",
+      "WebAPI.Event",
+      "WebAPI.File"
+    ],
     "WebAPI.Speech": ["WebAPI.Event"],
     "WebAPI.Storage": ["WebAPI.Event"],
     "WebAPI.StorageManager": ["WebAPI.File"],
     "WebAPI.VTT": ["WebAPI.DOM", "WebAPI.Event"],
-    "WebAPI.Workers": ["WebAPI.ChannelMessaging", "WebAPI.Event", "WebAPI.Fetch"],
+    "WebAPI.Workers": [
+      "WebAPI.ChannelMessaging",
+      "WebAPI.Event",
+      "WebAPI.Fetch"
+    ],
     "WebAPI.Window": [
       "WebAPI.ChannelMessaging",
       "WebAPI.DOM",
@@ -173,7 +176,11 @@
       "dir": "src/CSSTypedOM",
       "subdirs": true,
       "feature": "WebAPI.CSSTypedOM",
-      "public": ["CSSStyleValue", "StylePropertyMap", "StylePropertyMapReadOnly"]
+      "public": [
+        "CSSStyleValue",
+        "StylePropertyMap",
+        "StylePropertyMapReadOnly"
+      ]
     },
     {
       "dir": "src/CustomElements",

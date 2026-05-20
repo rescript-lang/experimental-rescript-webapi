@@ -19,7 +19,7 @@ The location (WebApiURL) of the object it is linked to. Changes done on it are r
 [See Location on MDN](https://developer.mozilla.org/docs/Web/API/Location)
 TODO: mark as private once mutating fields of private records is allowed
 */
-@editor.completeFrom(DOM.Location)
+@editor.completeFrom(Location)
 type location = {
   /**
     Returns the Location object's URL.

@@ -1,4 +1,4 @@
-type t = DomTypes.location
+type t = Base__Document.location
 
 @scope("globalThis")
 external current: t = "location"
