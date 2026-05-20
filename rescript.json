@@ -22,12 +22,15 @@
     "WebAPI.CSSOM": ["WebAPI.DOM", "WebAPI.Event"],
     "WebAPI.CSSTypedOM": ["WebAPI.DOM"],
     "WebAPI.CustomElements": ["WebAPI.DOM"],
+    "WebAPI.Event": ["WebAPI.Base"],
+    "WebAPI.Fetch": ["WebAPI.Event", "WebAPI.File", "WebAPI.URL"],
+    "WebAPI.File": ["WebAPI.Base", "WebAPI.Event"],
     "WebAPI.FileList": ["WebAPI.DOM", "WebAPI.File"],
     "WebAPI.Geometry": ["WebAPI.DOM"],
     "WebAPI.HTML": [
       "WebAPI.DOM",
       "WebAPI.PictureInPicture",
-      "WebAPI.WebVTT"
+      "WebAPI.VTT"
     ],
     "WebAPI.Navigator": [
       "WebAPI.Base",
@@ -36,12 +39,26 @@
       "WebAPI.Fetch",
       "WebAPI.Gamepad",
       "WebAPI.URL",
-      "WebAPI.WebMIDI"
+      "WebAPI.MIDI"
     ],
     "WebAPI.ScreenOrientation": ["WebAPI.DOM", "WebAPI.Event"],
     "WebAPI.SVG": ["WebAPI.DOM", "WebAPI.Geometry"],
-    "WebAPI.WebAnimations": ["WebAPI.DOM", "WebAPI.Event"],
-    "WebAPI.WebVTT": ["WebAPI.DOM", "WebAPI.Event"],
+    "WebAPI.Animations": ["WebAPI.DOM", "WebAPI.Event"],
+    "WebAPI.Audio": [
+      "WebAPI.ChannelMessaging",
+      "WebAPI.DOM",
+      "WebAPI.Event",
+      "WebAPI.HTML",
+      "WebAPI.MediaCaptureAndStreams"
+    ],
+    "WebAPI.Locks": ["WebAPI.Event"],
+    "WebAPI.MIDI": ["WebAPI.Event"],
+    "WebAPI.Sockets": ["WebAPI.ChannelMessaging", "WebAPI.Event", "WebAPI.File"],
+    "WebAPI.Speech": ["WebAPI.Event"],
+    "WebAPI.Storage": ["WebAPI.Event"],
+    "WebAPI.StorageManager": ["WebAPI.File"],
+    "WebAPI.VTT": ["WebAPI.DOM", "WebAPI.Event"],
+    "WebAPI.Workers": ["WebAPI.ChannelMessaging", "WebAPI.Event", "WebAPI.Fetch"],
     "WebAPI.Window": [
       "WebAPI.ChannelMessaging",
       "WebAPI.DOM",
@@ -466,7 +483,7 @@
     {
       "dir": "src/Storage",
       "subdirs": true,
-      "feature": "WebAPI.Storage",
+      "feature": "WebAPI.StorageManager",
       "public": ["StorageManager"]
     },
     {
@@ -517,13 +534,13 @@
     {
       "dir": "src/WebAnimations",
       "subdirs": true,
-      "feature": "WebAPI.WebAnimations",
+      "feature": "WebAPI.Animations",
       "public": ["Animation", "AnimationEffect", "DocumentTimeline"]
     },
     {
       "dir": "src/WebAudio",
       "subdirs": true,
-      "feature": "WebAPI.WebAudio",
+      "feature": "WebAPI.Audio",
       "public": [
         "AnalyserNode",
         "AudioBuffer",
@@ -561,49 +578,49 @@
     {
       "dir": "src/WebCrypto",
       "subdirs": true,
-      "feature": "WebAPI.WebCrypto",
+      "feature": "WebAPI.Crypto",
       "public": ["Crypto", "SubtleCrypto"]
     },
     {
       "dir": "src/WebLocks",
       "subdirs": true,
-      "feature": "WebAPI.WebLocks",
+      "feature": "WebAPI.Locks",
       "public": ["LockManager"]
     },
     {
       "dir": "src/WebMIDI",
       "subdirs": true,
-      "feature": "WebAPI.WebMIDI",
+      "feature": "WebAPI.MIDI",
       "public": ["WebMIDI"]
     },
     {
       "dir": "src/WebSockets",
       "subdirs": true,
-      "feature": "WebAPI.WebSockets",
+      "feature": "WebAPI.Sockets",
       "public": ["CloseEvent", "MessageEvent", "WebSocket"]
     },
     {
       "dir": "src/WebSpeech",
       "subdirs": true,
-      "feature": "WebAPI.WebSpeech",
+      "feature": "WebAPI.Speech",
       "public": ["SpeechSynthesis", "SpeechSynthesisUtterance"]
     },
     {
       "dir": "src/WebStorage",
       "subdirs": true,
-      "feature": "WebAPI.WebStorage",
+      "feature": "WebAPI.Storage",
       "public": ["LocalStorage", "SessionStorage", "Storage", "StorageEvent"]
     },
     {
       "dir": "src/WebVTT",
       "subdirs": true,
-      "feature": "WebAPI.WebVTT",
+      "feature": "WebAPI.VTT",
       "public": ["TextTrack", "TextTrackCueList", "TextTrackList"]
     },
     {
       "dir": "src/WebWorkers",
       "subdirs": true,
-      "feature": "WebAPI.WebWorkers",
+      "feature": "WebAPI.Workers",
       "public": ["CacheStorage", "SharedWorker", "SharedWorkerScope", "Worker"]
     },
     {

@@ -97,10 +97,7 @@ Example:
 
 ```json
 {
-  "dependencies": [
-    "@plain/dep",
-    { "name": "@other/heavy", "features": ["WebAPI.WebCrypto"] }
-  ]
+  "dependencies": ["@plain/dep", { "name": "@other/heavy", "features": ["WebAPI.Crypto"] }]
 }
 ```
 
@@ -117,7 +114,7 @@ The build remains feature-oriented:
 - `WebAPI.Base`
 - `WebAPI.DOM`
 - `WebAPI.Fetch`
-- `WebAPI.WebCrypto`
+- `WebAPI.Crypto`
 - and the rest of the former package surfaces
 
 The unified build keeps the original flat module surface instead of adding generated feature entry modules. For example, consumers should use modules such as:

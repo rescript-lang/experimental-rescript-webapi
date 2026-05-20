@@ -840,7 +840,7 @@ After agreeing on the public shape:
 
 - Add `LocalStorage.res`
 - Add `SessionStorage.res`
-- Add both modules to the `WebAPI.WebStorage` public list in `rescript.json`
+- Add both modules to the `WebAPI.Storage` public list in `rescript.json`
 - Keep `Storage.res` receiver-based
 - Update WebStorage tests to cover direct singleton usage and generic receiver usage
 

@@ -56,11 +56,7 @@ external focus: (T.t, ~options: focusOptions=?) => unit = "focus"
 include Impl({ type t = htmlElement })
 `;
 
-<Code
-  code={htmlElementModule}
-  title="DOMAPI/HTMLElement.res"
-  lang="ReScript"
-></Code>
+<Code code={htmlElementModule} title="DOMAPI/HTMLElement.res" lang="ReScript"></Code>
 
 export const buttonModule = `
 open DOMAPI
@@ -78,11 +74,7 @@ _/
 external checkValidity: htmlButtonElement => bool = "checkValidity"
 `;
 
-<Code
-  code={buttonModule}
-  title="DOMAPI/HTMLButtonElement.res"
-  lang="ReScript"
-></Code>
+<Code code={buttonModule} title="DOMAPI/HTMLButtonElement.res" lang="ReScript"></Code>
 
 ## Shared element base
 
