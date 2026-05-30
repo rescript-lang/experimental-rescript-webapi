@@ -9,8 +9,6 @@ It should be an integer-based TypedArray, that is one of: Int8Array, Uint8Array,
 @scope("globalThis.crypto")
 external getRandomValues: array<'t> => array<'t> = "getRandomValues"
 
-let _ = getRandomValues([])
-
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Crypto/randomUUID)
 ```rescript
