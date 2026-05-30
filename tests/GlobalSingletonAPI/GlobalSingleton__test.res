@@ -1,5 +1,13 @@
 let cryptoRandomUUID: unit => string = Crypto.randomUUID
-let cryptoGetRandomValues: array<int> => array<int> = Crypto.getRandomValues
+let cryptoGetRandomValuesFromInt8Array: Int8Array.t => Int8Array.t = Crypto.getRandomValuesFromInt8Array
+let cryptoGetRandomValuesFromUint8Array: Uint8Array.t => Uint8Array.t = Crypto.getRandomValuesFromUint8Array
+let cryptoGetRandomValuesFromUint8ClampedArray: Uint8ClampedArray.t => Uint8ClampedArray.t = Crypto.getRandomValuesFromUint8ClampedArray
+let cryptoGetRandomValuesFromInt16Array: Int16Array.t => Int16Array.t = Crypto.getRandomValuesFromInt16Array
+let cryptoGetRandomValuesFromUint16Array: Uint16Array.t => Uint16Array.t = Crypto.getRandomValuesFromUint16Array
+let cryptoGetRandomValuesFromInt32Array: Int32Array.t => Int32Array.t = Crypto.getRandomValuesFromInt32Array
+let cryptoGetRandomValuesFromUint32Array: Uint32Array.t => Uint32Array.t = Crypto.getRandomValuesFromUint32Array
+let cryptoGetRandomValuesFromBigInt64Array: BigInt64Array.t => BigInt64Array.t = Crypto.getRandomValuesFromBigInt64Array
+let cryptoGetRandomValuesFromBigUint64Array: BigUint64Array.t => BigUint64Array.t = Crypto.getRandomValuesFromBigUint64Array
 let cryptoSubtle: WebCryptoTypes.subtleCrypto = Crypto.subtle
 
 let subtleDigest: (

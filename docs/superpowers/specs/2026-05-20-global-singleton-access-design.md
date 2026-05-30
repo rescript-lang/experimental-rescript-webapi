@@ -44,7 +44,6 @@ All direct singleton bindings should scope through `globalThis`, not through bar
 - This change does not convert all `@send` bindings.
 - This change does not redesign unrelated type modeling.
 - This change does not introduce runtime polyfills or availability checks.
-- This change does not attempt to solve stricter typed-array typing for `Crypto.getRandomValues`.
 - This change does not remove useful raw instance values when users still need the value itself, rather than just the singleton's methods.
 
 ## Core Rule
@@ -164,13 +163,21 @@ Target direct API:
 
 ```rescript
 Crypto.randomUUID()
-Crypto.getRandomValues(values)
+Crypto.getRandomValuesFromUint8Array(values)
 Crypto.subtle
 ```
 
 Already changed:
 
-- `Crypto.getRandomValues`
+- `Crypto.getRandomValuesFromInt8Array`
+- `Crypto.getRandomValuesFromUint8Array`
+- `Crypto.getRandomValuesFromUint8ClampedArray`
+- `Crypto.getRandomValuesFromInt16Array`
+- `Crypto.getRandomValuesFromUint16Array`
+- `Crypto.getRandomValuesFromInt32Array`
+- `Crypto.getRandomValuesFromUint32Array`
+- `Crypto.getRandomValuesFromBigInt64Array`
+- `Crypto.getRandomValuesFromBigUint64Array`
 - `Crypto.randomUUID`
 - `Crypto.subtle`
 
@@ -915,7 +922,7 @@ Add or update tests to compile these representative usages:
 
 ```rescript
 Crypto.randomUUID()
-Crypto.getRandomValues([1, 2, 3])
+Crypto.getRandomValuesFromUint8Array(Uint8Array.fromArray([1, 2, 3]))
 
 Performance.now()
 Performance.mark(~markName="start")
