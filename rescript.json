@@ -1,5 +1,6 @@
 {
   "name": "@rescript/webapi",
+  "namespace": "WebAPI",
   "features": {
     "WebAPI.Base": ["WebAPI.Location"],
     "WebAPI.DOM": [
@@ -34,10 +35,7 @@
     "WebAPI.Event": ["WebAPI.Base"],
     "WebAPI.Fetch": ["WebAPI.Event", "WebAPI.File", "WebAPI.URL"],
     "WebAPI.File": ["WebAPI.Base", "WebAPI.Event"],
-    "WebAPI.FileAndDirectoryEntries": [
-      "WebAPI.Base",
-      "WebAPI.DOMException"
-    ],
+    "WebAPI.FileAndDirectoryEntries": ["WebAPI.Base", "WebAPI.DOMException"],
     "WebAPI.FileList": ["WebAPI.File"],
     "WebAPI.IndexedDB": [
       "WebAPI.DOMException",
