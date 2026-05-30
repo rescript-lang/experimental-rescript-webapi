@@ -6,9 +6,10 @@ slug: "design-philosophy"
 
 The core idea of these ReScript bindings is that each interface is modeled as a record type. Where possible, inheritance is represented using record spreading, and methods are modeled as functions in a separate module. This design allows for greater familiarity with the underlying JavaScript APIs, making it more friendly for newcomers.
 
-## ReScript v12
+## ReScript 13
 
-These bindings utilize new features introduced in ReScript v12; thus, they are not compatible with older versions of ReScript.
+These bindings use feature-gated package dependencies and source groups from ReScript 13,
+which is currently in alpha. They are not compatible with older versions of ReScript.
 
 ## Web APIs
 
@@ -24,6 +25,10 @@ open WebAPI.DOM
 let myElement: WebAPI.DOM.element = document->WebAPI.Document.createElement("div")
 let id = myElement.id
 ```
+
+Consumers can also configure `rescript.json` with `"compiler-flags": ["-open WebAPI"]`
+when they want to use modules such as `DOM`, `Document`, and `Element` without the
+`WebAPI.` prefix.
 
 ## Interfaces
 

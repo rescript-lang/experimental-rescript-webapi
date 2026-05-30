@@ -34,30 +34,45 @@ Install the package using your favorite package manager:
   </TabItem>
 </Tabs>
 
-and add `@rescript/webapi` to your `rescript.json`:
+This package requires ReScript 13, which is currently in alpha.
+
+Add `@rescript/webapi` to your `rescript.json` with the features your app uses:
 
 export const rescriptJson = `
 {
   "dependencies": [
-    "@rescript/webapi"
+    {
+      "name": "@rescript/webapi",
+      "features": ["WebAPI.Crypto", "WebAPI.Location"]
+    }
   ]
 }
 `;
 
-<Code lang="json" code={rescriptJson} ins={[3]}></Code>
+<Code lang="json" code={rescriptJson} ins={[4, 5, 6, 7]}></Code>
+
+You can optionally open the namespace globally if you prefer unqualified module names:
+
+export const openWebAPIJson = `
+{
+  "compiler-flags": ["-open WebAPI"]
+}
+`;
+
+<Code lang="json" code={openWebAPIJson}></Code>
 
 ## Usage
 
-After installing the package , you can use bindings for the various Web APIs as defined in [MDN](https://developer.mozilla.org/en-US/docs/Web/API).
+After installing the package, you can use bindings for the various Web APIs as defined in [MDN](https://developer.mozilla.org/en-US/docs/Web/API).
 
 export const rescriptSample = `
-let location = WebAPI.Window.current->WebAPI.Window.location
+let location = WebAPI.Location.current
 
 // Access properties using \`.\`
 let href = location.href
 
-// Invoke methods using the \`->TypeModule.method\`
-location->WebAPI.Location.reload
+// Invoke global singleton methods directly
+WebAPI.Location.reload()
 `;
 
 export const compiledSample = `

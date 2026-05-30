@@ -4,24 +4,43 @@ description: A practical summary of how to use the public @rescript/webapi modul
 slug: "api-surface"
 ---
 
-The package exposes browser APIs under the `WebAPI` namespace. In normal application code,
-add the package to `rescript.json`:
+The package exposes browser APIs under the `WebAPI` namespace. It requires ReScript 13,
+which is currently in alpha.
+
+In normal application code, add the package to `rescript.json` with the features your app
+uses:
 
 ```json
 {
-  "dependencies": ["@rescript/webapi"]
+  "dependencies": [
+    {
+      "name": "@rescript/webapi",
+      "features": ["WebAPI.Crypto", "WebAPI.Location"]
+    }
+  ]
 }
 ```
 
-Use `WebAPI.Window.current` for the browser `window`. Interface-specific methods live on
-public modules such as `WebAPI.Window`, `WebAPI.Location`, `WebAPI.Document`,
-`WebAPI.Element`, `WebAPI.Request`, and `WebAPI.Response`.
+The `features` list controls which Web API source groups are available to your project. Add
+each feature you use, for example `WebAPI.DOM`, `WebAPI.Fetch`, `WebAPI.Crypto`, or
+`WebAPI.Location`.
+
+You can optionally open the namespace globally if you prefer unqualified module names:
+
+```json
+{
+  "compiler-flags": ["-open WebAPI"]
+}
+```
+
+Global singleton APIs such as `Location`, `Crypto`, and `Performance` expose direct
+functions and properties. Object-owned APIs still use the value as the receiver.
 
 ```ReScript
-let location = WebAPI.Window.current->WebAPI.Window.location
+let location = WebAPI.Location.current
 let href = location.href
 
-location->WebAPI.Location.reload
+WebAPI.Location.reload()
 ```
 
 ## Public module shape
@@ -34,6 +53,13 @@ let req: WebAPI.Request.t = WebAPI.Request.fromURL("https://example.com")
 let headers = WebAPI.Headers.make()
 let document = WebAPI.Window.current->WebAPI.Window.document
 let element = document->WebAPI.Document.createElement("button")
+```
+
+With `"-open WebAPI"`, the same modules can be referenced without the `WebAPI.` prefix:
+
+```ReScript
+let location = Location.current
+let id = Crypto.randomUUID()
 ```
 
 Generated implementation modules such as `DomTypes`, `FetchTypes`, `EventTypes`, and
