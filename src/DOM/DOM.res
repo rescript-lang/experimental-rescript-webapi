@@ -237,7 +237,7 @@ type barProp = {
 [See ScreenOrientation on MDN](https://developer.mozilla.org/docs/Web/API/ScreenOrientation)
 */
 @editor.completeFrom(DOM.ScreenOrientation)
-type screenOrientation = ScreenOrientation.t
+type screenOrientation = ScreenOrientation.t = private {...ScreenOrientation.t}
 
 /**
 A screen, usually the one on which the current window is being rendered, and is obtained using window.screen.
@@ -326,13 +326,13 @@ type mediaList = {
 [See StylePropertyMapReadOnly on MDN](https://developer.mozilla.org/docs/Web/API/StylePropertyMapReadOnly)
 */
 @editor.completeFrom(DOM.StylePropertyMapReadOnly)
-type stylePropertyMapReadOnly = StylePropertyMapReadOnly.t
+type stylePropertyMapReadOnly = StylePropertyMapReadOnly.t = private {...StylePropertyMapReadOnly.t}
 
 /**
 [See StylePropertyMap on MDN](https://developer.mozilla.org/docs/Web/API/StylePropertyMap)
 */
 @editor.completeFrom(DOM.StylePropertyMap)
-type stylePropertyMap = StylePropertyMap.t
+type stylePropertyMap = StylePropertyMap.t = private {...StylePropertyMap.t}
 
 /**
 Used by the dataset HTML attribute to represent data for custom attributes added to elements.
@@ -2269,7 +2269,7 @@ Element is the most general base class from which all objects in a Document inhe
 [See Element on MDN](https://developer.mozilla.org/docs/Web/API/Element)
 TODO: mark as private once mutating fields of private records is allowed
 */
-@editor.completeFrom(DOM.Element) and element = Base.element
+@editor.completeFrom(DOM.Element) and element = Base.Element.element
 
 /**
 [See ShadowRoot on MDN](https://developer.mozilla.org/docs/Web/API/ShadowRoot)
@@ -5046,7 +5046,7 @@ Any web page loaded in the browser and serves as an entry point into the web pag
 [See Document on MDN](https://developer.mozilla.org/docs/Web/API/Document)
 TODO: mark as private once mutating fields of private records is allowed
 */
-@editor.completeFrom(DOM.Document) and document = Base.document
+@editor.completeFrom(DOM.Document) and document = Base.Document.document
 
 and mutationRecord = {
   /**
@@ -5659,15 +5659,15 @@ TODO: mark as private once mutating fields of private records is allowed
 [See DOMRectReadOnly on MDN](https://developer.mozilla.org/docs/Web/API/DOMRectReadOnly)
 */
 @editor.completeFrom(DOM.DOMRectReadOnly)
-type domRectReadOnly = DOMRectReadOnly.t
+type domRectReadOnly = DOMRectReadOnly.t = private {...DOMRectReadOnly.t}
 
 /**
 [See DOMRect on MDN](https://developer.mozilla.org/docs/Web/API/DOMRect)
 */
 @editor.completeFrom(DOM.DOMRect)
-type domRect = DOMRect.t
+type domRect = DOMRect.t = private {...DOMRect.t}
 
-@editor.completeFrom(DOM.DOMRectList) type domRectList = DOMRectList.t
+@editor.completeFrom(DOM.DOMRectList) type domRectList = DOMRectList.t = private {...DOMRectList.t}
 
 /**
 The validity states that an element can be in, with respect to constraint validation. Together, they help explain why an element's value fails to validate, if it's not valid.
@@ -6165,14 +6165,14 @@ type mediaQueryList = private {
 [See CSSStyleValue on MDN](https://developer.mozilla.org/docs/Web/API/CSSStyleValue)
 */
 @editor.completeFrom(DOM.CSSStyleValue)
-type cssStyleValue = CSSStyleValue.t
+type cssStyleValue = CSSStyleValue.t = private {...CSSStyleValue.t}
 
 /**
 An object of this type is returned by the files property of the HTML <input> element; this lets you access the list of files selected with the <input type="file"> element. It's also used for a list of files dropped into web content when using the drag and drop API; see the DataTransfer object for details on this usage.
 [See FileList on MDN](https://developer.mozilla.org/docs/Web/API/FileList)
 */
 @editor.completeFrom(DOM.FileList)
-type fileList = FileList.t
+type fileList = FileList.t = private {...FileList.t}
 
 /**
 An error which occurred while handling media in an HTML media element based on HTMLMediaElement, such as <audio> or <video>.
@@ -6206,7 +6206,7 @@ type timeRanges = private {
 [See TextTrackList on MDN](https://developer.mozilla.org/docs/Web/API/TextTrackList)
 */
 @editor.completeFrom(DOM.TextTrackList)
-type textTrackList = TextTrackList.t
+type textTrackList = TextTrackList.t = private {...TextTrackList.t}
 
 /**
 Returned by the HTMLVideoElement.getVideoPlaybackQuality() method and contains metrics that can be used to determine the playback quality of a video.

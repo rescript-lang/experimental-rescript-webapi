@@ -2,7 +2,7 @@
 [See DOMMatrixReadOnly on MDN](https://developer.mozilla.org/docs/Web/API/DOMMatrixReadOnly)
 */
 @editor.completeFrom(DOMMatrixReadOnly)
-type t = GeometryTypes.domMatrixReadOnly
+type t = GeometryTypes.domMatrixReadOnly = private {...GeometryTypes.domMatrixReadOnly}
 
 /**
 `make()`

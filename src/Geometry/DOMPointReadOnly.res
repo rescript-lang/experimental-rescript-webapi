@@ -2,7 +2,7 @@
 [See DOMPointReadOnly on MDN](https://developer.mozilla.org/docs/Web/API/DOMPointReadOnly)
 */
 @editor.completeFrom(DOMPointReadOnly)
-type t = GeometryTypes.domPointReadOnly
+type t = GeometryTypes.domPointReadOnly = private {...GeometryTypes.domPointReadOnly}
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/DOMPointReadOnly)

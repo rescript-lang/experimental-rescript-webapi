@@ -2,7 +2,7 @@
 [See DOMMatrix on MDN](https://developer.mozilla.org/docs/Web/API/DOMMatrix)
 */
 @editor.completeFrom(DOMMatrix)
-type t = GeometryTypes.domMatrix
+type t = GeometryTypes.domMatrix = private {...GeometryTypes.domMatrix}
 
 /**
 `make()`

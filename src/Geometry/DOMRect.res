@@ -2,7 +2,7 @@
 [See DOMRect on MDN](https://developer.mozilla.org/docs/Web/API/DOMRect)
 */
 @editor.completeFrom(DOMRect)
-type t = GeometryTypes.domRect
+type t = GeometryTypes.domRect = private {...GeometryTypes.domRect}
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/DOMRect)

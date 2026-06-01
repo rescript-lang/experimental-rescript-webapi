@@ -14,26 +14,26 @@ type structuredSerializeOptions = ChannelMessagingTypes.structuredSerializeOptio
 type htmlElement = DOM.htmlElement
 type mediaError = DOM.mediaError
 type timeRanges = DOM.timeRanges
-type textTrackList = TextTrackList.t
+type textTrackList = TextTrackList.t = private {...TextTrackList.t}
 type htmlFormElement = DOM.htmlFormElement
 type htmlCollection<'a> = DOM.htmlCollection<'a>
-type element = Base.element
+type element = Base.Element.element
 type validityState = DOM.validityState
-type document = Base.document
+type document = Base.Document.document
 type cssStyleSheet = DOM.cssStyleSheet
 type nodeList<'a> = DOM.nodeList<'a>
 type htmlLabelElement = DOM.htmlLabelElement
 type documentFragment = DOM.documentFragment
 type node = DOM.node
 type cssStyleDeclaration = DOM.cssStyleDeclaration
-type domRectReadOnly = DOMRectReadOnly.t
+type domRectReadOnly = DOMRectReadOnly.t = private {...DOMRectReadOnly.t}
 type shadowRoot = DOM.shadowRoot
 type styleSheet = DOM.styleSheet
 type mediaQueryList = DOM.mediaQueryList
-type domRect = DOMRect.t
+type domRect = DOMRect.t = private {...DOMRect.t}
 type range = DOM.range
 type documentType = DOM.documentType
-type cssStyleValue = CSSStyleValue.t
+type cssStyleValue = CSSStyleValue.t = private {...CSSStyleValue.t}
 type treeWalker = DOM.treeWalker
 type selection = DOM.selection
 type abstractRange = DOM.abstractRange
@@ -41,10 +41,10 @@ type htmlOptionsCollection = DOM.htmlOptionsCollection
 type styleSheetList = DOM.styleSheetList
 type elementInternals = DOM.elementInternals
 type nodeFilter = DOM.nodeFilter
-type fileList = FileList.t
+type fileList = FileList.t = private {...FileList.t}
 type cssRule = DOM.cssRule
 type attr = DOM.attr
-type domRectList = DOMRectList.t
+type domRectList = DOMRectList.t = private {...DOMRectList.t}
 type htmlFormControlsCollection = DOM.htmlFormControlsCollection
 type domImplementation = DOM.domImplementation
 type nodeIterator = DOM.nodeIterator
@@ -310,7 +310,7 @@ type barProp = {
 [See ScreenOrientation on MDN](https://developer.mozilla.org/docs/Web/API/ScreenOrientation)
 */
 @editor.completeFrom(ScreenOrientation)
-type screenOrientation = ScreenOrientation.t
+type screenOrientation = ScreenOrientation.t = private {...ScreenOrientation.t}
 
 /**
 A screen, usually the one on which the current window is being rendered, and is obtained using window.screen.
@@ -399,13 +399,13 @@ type mediaList = {
 [See StylePropertyMapReadOnly on MDN](https://developer.mozilla.org/docs/Web/API/StylePropertyMapReadOnly)
 */
 @editor.completeFrom(StylePropertyMapReadOnly)
-type stylePropertyMapReadOnly = StylePropertyMapReadOnly.t
+type stylePropertyMapReadOnly = StylePropertyMapReadOnly.t = private {...StylePropertyMapReadOnly.t}
 
 /**
 [See StylePropertyMap on MDN](https://developer.mozilla.org/docs/Web/API/StylePropertyMap)
 */
 @editor.completeFrom(StylePropertyMap)
-type stylePropertyMap = StylePropertyMap.t
+type stylePropertyMap = StylePropertyMap.t = private {...StylePropertyMap.t}
 
 /**
 Used by the dataset HTML attribute to represent data for custom attributes added to elements.
@@ -1514,9 +1514,9 @@ type svgImageElement = {
   preserveAspectRatio: svgAnimatedPreserveAspectRatio,
 }
 
-type domMatrixReadOnly = DOMMatrixReadOnly.t
+type domMatrixReadOnly = DOMMatrixReadOnly.t = private {...DOMMatrixReadOnly.t}
 
-type domMatrix = DOMMatrix.t
+type domMatrix = DOMMatrix.t = private {...DOMMatrix.t}
 
 /**
 [See VideoColorSpace on MDN](https://developer.mozilla.org/docs/Web/API/VideoColorSpace)
@@ -1615,9 +1615,9 @@ type imageData = private {
   colorSpace: predefinedColorSpace,
 }
 
-type domPointReadOnly = DOMPointReadOnly.t
+type domPointReadOnly = DOMPointReadOnly.t = private {...DOMPointReadOnly.t}
 
-type domPoint = DOMPoint.t
+type domPoint = DOMPoint.t = private {...DOMPoint.t}
 
 /**
  [Read more on MDN](https://developer.mozilla.org/en-US/docs/Web/API/HTMLCanvasElement/getContext#contextattributes)

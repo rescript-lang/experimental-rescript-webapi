@@ -1,2 +1,2 @@
-type element = Base__Element.element
-type document = Base__Document.document
+module Element = Base__Element
+module Document = Base__Document
