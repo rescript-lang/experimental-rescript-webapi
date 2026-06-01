@@ -1,4 +1,4 @@
-type t = DomTypes.htmlElement
+type t = DOM.htmlElement = private {...DOM.htmlElement}
 
 module Impl = (
   T: {
