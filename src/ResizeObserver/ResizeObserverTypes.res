@@ -30,7 +30,7 @@ type resizeObserverEntry = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/ResizeObserverEntry/contentRect)
     */
-  contentRect: DomTypes.domRectReadOnly,
+  contentRect: DOMRectReadOnly.t,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/ResizeObserverEntry/borderBoxSize)
     */

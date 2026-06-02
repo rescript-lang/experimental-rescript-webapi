@@ -118,7 +118,7 @@ The possible values are "none", "copy", "copyLink", "copyMove", "link", "linkMov
     Returns a FileList of the files being dragged, if any.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/DataTransfer/files)
     */
-  files: DomTypes.fileList,
+  files: FileList.t,
 }
 
 /**

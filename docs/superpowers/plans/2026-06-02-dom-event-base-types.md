@@ -30,13 +30,15 @@ Completed:
 - [x] Added compile-only same-type alias coverage for `DOM.event`, `Event.t`, `DOM.eventTarget`, `Event.eventTarget`, `EventTarget.t`, and `EventType.t`.
 - [x] Removed the event-specific unmonorepo assertions from `tests/unmonorepo/release-files.test.mjs`.
 - [x] Removed `eventTarget` and `eventType` aliases from `src/DOM/DomTypes.res`.
+- [x] Removed low-risk `DomTypes` aliases for `DOMRectReadOnly`, `DOMRect`, `DOMRectList`, `FileList`, `TextTrackList`, and `CSSStyleValue`.
+- [x] Added explicit feature dependencies exposed by those direct public owner references.
+- [x] Audited stale `@editor.completeFrom` annotations that pointed through `DOM.*` or non-public base owner paths.
 
 Not completed in this slice:
 
 - [ ] Minimize `DOM.res` to only the lightweight base type surface.
 - [ ] Remove or split the remaining non-event `DomTypes.res` aliases.
 - [ ] Remove all non-event `DOM.*` behavior/type declarations from `DOM.res`.
-- [ ] Finish the repo-wide `@editor.completeFrom` audit.
 - [ ] Decide whether event listener/init/options records should remain in internal `EventTypes.res` or move to smaller hidden owner modules.
 - [ ] Run a rescript-react compatibility check against the new base type surface.
 
@@ -69,6 +71,8 @@ Important interpretation:
 - `WebAPI.DOM` and `WebAPI.Event` do not depend on each other.
 - `WebAPI.Event` still depends on `WebAPI.Base` for other existing APIs. Event base aliases no longer flow through `WebAPI.Base`.
 - `WebAPI.DOM` is not yet a minimal feature. It still has broader dependencies because the full DOM cleanup is outside this event-focused slice.
+- `WebAPI.IntersectionObserver` and `WebAPI.ResizeObserver` now explicitly depend on `WebAPI.DOM` and `WebAPI.Geometry`.
+- `WebAPI.UIEvents` now explicitly depends on `WebAPI.DOM`, `WebAPI.Event`, and `WebAPI.FileList`.
 - `src/DOM` does not reference public `Event.*` or `EventTarget.*` modules for the event aliases.
 - `src/DOM/DomGlobal.res` still references internal listener/options helper shapes from `src/Event/EventTypes.res`. That file is not public, but its placement is a follow-up if the shared helper boundary needs to move fully under `src/EventTypes`.
 
@@ -313,7 +317,7 @@ Expected: build passes.
 
 - Modify: touched `.res` files containing invalid or stale `@editor.completeFrom` annotations
 
-- [ ] **Step 1: Find stale annotations**
+- [x] **Step 1: Find stale annotations**
 
 Run:
 
@@ -321,7 +325,7 @@ Run:
 rg -n "@editor\\.completeFrom\\(DOM\\.|@editor\\.completeFrom\\(Base|@editor\\.completeFrom\\([A-Za-z0-9_]+\\.[A-Za-z0-9_]" src
 ```
 
-- [ ] **Step 2: Point public leaf aliases at public leaf modules**
+- [x] **Step 2: Point public leaf aliases at public leaf modules**
 
 Use this shape when the completion owner is public and does not create a bad feature dependency:
 
@@ -332,7 +336,7 @@ type t = Base__CSSStyleDeclaration.t = private {...Base__CSSStyleDeclaration.t}
 
 Do not add `@editor.completeFrom(Event)` to `DOM.event` unless it can be proven not to create a `WebAPI.DOM -> WebAPI.Event` dependency.
 
-- [ ] **Step 3: Rebuild**
+- [x] **Step 3: Rebuild**
 
 Run:
 
@@ -341,6 +345,8 @@ npm run build
 ```
 
 Expected: build passes.
+
+Result: build passes. The broad audit command still matches `@editor.completeFrom(BaseAudioContext)`, but that is an intentional public WebAudio leaf module, not a non-public base owner path.
 
 ## Follow-Up Task 4: Rescript-React Compatibility Check
 
@@ -389,6 +395,7 @@ Expected: the fixture compiles without requiring unrelated DOM leaf behavior.
 - [x] `EventType.t` owns public event type variants.
 - [x] Event-specific unmonorepo assertions are not part of this branch.
 - [x] `DomTypes` no longer carries event aliases.
+- [x] `DomTypes` no longer carries low-risk public-owner aliases for geometry list/rects, `FileList`, `TextTrackList`, or `CSSStyleValue`.
 - [ ] `DOM.res` is minimal.
 - [ ] `DomTypes` has no remaining role.
-- [ ] All stale `@editor.completeFrom` annotations have been audited.
+- [x] All stale `@editor.completeFrom` annotations have been audited.

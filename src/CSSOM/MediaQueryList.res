@@ -1,1 +1,3 @@
-include EventTarget.Impl({type t = DomTypes.mediaQueryList})
+type t = CssomTypes.mediaQueryList = private {...CssomTypes.mediaQueryList}
+
+include EventTarget.Impl({type t = t})

@@ -33,7 +33,6 @@ Any web page loaded in the browser and serves as an entry point into the web pag
 [See Document on MDN](https://developer.mozilla.org/docs/Web/API/Document)
 TODO: mark as private once mutating fields of private records is allowed
 */
-@editor.completeFrom(DOM.Document)
 type rec document = {
   // Base properties from Nodea
   /**

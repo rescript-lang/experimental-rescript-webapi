@@ -394,7 +394,7 @@ external postMessageWithOptions: (
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/matchMedia)
 */
-external matchMedia: string => DomTypes.mediaQueryList = "matchMedia"
+external matchMedia: string => MediaQueryList.t = "matchMedia"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/moveTo)
@@ -449,10 +449,8 @@ external scrollBy2: (~x: float, ~y: float) => unit = "scrollBy"
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/getComputedStyle)
 */
-external getComputedStyle: (
-  ~elt: DomTypes.element,
-  ~pseudoElt: string=?,
-) => DomTypes.cssStyleDeclaration = "getComputedStyle"
+external getComputedStyle: (~elt: DomTypes.element, ~pseudoElt: string=?) => CSSStyleDeclaration.t =
+  "getComputedStyle"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/requestIdleCallback)

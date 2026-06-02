@@ -6,6 +6,7 @@
     "WebAPI.DOM": [
       "WebAPI.Base",
       "WebAPI.CSSFontLoading",
+      "WebAPI.CSSOM",
       "WebAPI.ChannelMessaging",
       "WebAPI.CSSTypedOM",
       "WebAPI.DOMException",
@@ -30,7 +31,7 @@
       "WebAPI.HTML",
       "WebAPI.MediaCaptureAndStreams"
     ],
-    "WebAPI.CSSOM": ["WebAPI.DOM", "WebAPI.Event"],
+    "WebAPI.CSSOM": ["WebAPI.Event", "WebAPI.EventTypes"],
     "WebAPI.CustomElements": ["WebAPI.DOM"],
     "WebAPI.CredentialManagement": ["WebAPI.Event"],
     "WebAPI.EventTypes": [],
@@ -44,6 +45,7 @@
       "WebAPI.DOMStringList",
       "WebAPI.Event"
     ],
+    "WebAPI.IntersectionObserver": ["WebAPI.DOM", "WebAPI.Geometry"],
     "WebAPI.Location": ["WebAPI.DOMStringList"],
     "WebAPI.HTML": ["WebAPI.DOM", "WebAPI.PictureInPicture", "WebAPI.VTT"],
     "WebAPI.Navigator": [
@@ -70,6 +72,7 @@
     "WebAPI.MIDI": ["WebAPI.Event"],
     "WebAPI.Notification": ["WebAPI.Event"],
     "WebAPI.Push": ["WebAPI.ChannelMessaging", "WebAPI.Event"],
+    "WebAPI.ResizeObserver": ["WebAPI.DOM", "WebAPI.Geometry"],
     "WebAPI.Sockets": [
       "WebAPI.ChannelMessaging",
       "WebAPI.Event",
@@ -78,6 +81,7 @@
     "WebAPI.Speech": ["WebAPI.Event"],
     "WebAPI.Storage": ["WebAPI.Event"],
     "WebAPI.StorageManager": ["WebAPI.File"],
+    "WebAPI.UIEvents": ["WebAPI.DOM", "WebAPI.Event", "WebAPI.FileList"],
     "WebAPI.VTT": ["WebAPI.Event"],
     "WebAPI.Workers": [
       "WebAPI.ChannelMessaging",
@@ -197,11 +201,13 @@
       "subdirs": true,
       "feature": "WebAPI.CSSOM",
       "public": [
+        "CSSRule",
         "CSSRuleList",
         "CSSStyleDeclaration",
         "CSSStyleSheet",
         "MediaList",
         "MediaQueryList",
+        "StyleSheet",
         "StyleSheetList"
       ]
     },

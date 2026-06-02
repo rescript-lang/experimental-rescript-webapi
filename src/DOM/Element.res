@@ -152,13 +152,13 @@ Returns element's attribute whose namespace is namespace and local name is local
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/getBoundingClientRect)
 */
   @send
-  external getBoundingClientRect: T.t => DomTypes.domRect = "getBoundingClientRect"
+  external getBoundingClientRect: T.t => DOMRect.t = "getBoundingClientRect"
 
   /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/getClientRects)
 */
   @send
-  external getClientRects: T.t => DomTypes.domRectList = "getClientRects"
+  external getClientRects: T.t => DOMRectList.t = "getClientRects"
 
   /**
 Returns a HTMLCollection of the elements in the object on which the method was invoked (a document or an element) that have all the classes given by classNames. The classNames argument is interpreted as a space-separated list of classes.

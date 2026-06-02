@@ -15,7 +15,6 @@ Element is the most general base class from which all objects in a Document inhe
 [See Element on MDN](https://developer.mozilla.org/docs/Web/API/Element)
 TODO: mark as private once mutating fields of private records is allowed
 */
-@editor.completeFrom(DOM.Element)
 type rec element = {
   // Base properties from Node
   /**

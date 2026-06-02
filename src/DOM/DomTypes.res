@@ -12,37 +12,31 @@ type structuredSerializeOptions = ChannelMessagingTypes.structuredSerializeOptio
 type htmlElement = DOM.htmlElement
 type mediaError = DOM.mediaError
 type timeRanges = DOM.timeRanges
-type textTrackList = TextTrackList.t = private {...TextTrackList.t}
 type htmlFormElement = DOM.htmlFormElement
 type htmlCollection<'a> = DOM.htmlCollection<'a>
 type element = Base.Element.element
 type validityState = DOM.validityState
 type document = Base.Document.document
-type cssStyleSheet = DOM.cssStyleSheet
+type cssStyleSheet = CSSStyleSheet.t
 type nodeList<'a> = DOM.nodeList<'a>
 type htmlLabelElement = DOM.htmlLabelElement
 type documentFragment = DOM.documentFragment
 type node = DOM.node
-type cssStyleDeclaration = DOM.cssStyleDeclaration
-type domRectReadOnly = DOMRectReadOnly.t = private {...DOMRectReadOnly.t}
+type cssStyleDeclaration = CSSStyleDeclaration.t
 type shadowRoot = DOM.shadowRoot
-type styleSheet = DOM.styleSheet
-type mediaQueryList = DOM.mediaQueryList
-type domRect = DOMRect.t = private {...DOMRect.t}
+type styleSheet = StyleSheet.t
+type mediaQueryList = MediaQueryList.t
 type range = DOM.range
 type documentType = DOM.documentType
-type cssStyleValue = CSSStyleValue.t = private {...CSSStyleValue.t}
 type treeWalker = DOM.treeWalker
 type selection = DOM.selection
 type abstractRange = DOM.abstractRange
 type htmlOptionsCollection = DOM.htmlOptionsCollection
-type styleSheetList = DOM.styleSheetList
+type styleSheetList = StyleSheetList.t
 type elementInternals = DOM.elementInternals
 type nodeFilter = DOM.nodeFilter
-type fileList = FileList.t = private {...FileList.t}
-type cssRule = DOM.cssRule
+type cssRule = CSSRule.t
 type attr = DOM.attr
-type domRectList = DOMRectList.t = private {...DOMRectList.t}
 type htmlFormControlsCollection = DOM.htmlFormControlsCollection
 type domImplementation = DOM.domImplementation
 type nodeIterator = DOM.nodeIterator
@@ -73,7 +67,8 @@ type htmlTableRowElement = DOM.htmlTableRowElement
 type htmlImageElement = DOM.htmlImageElement
 type htmlAreaElement = DOM.htmlAreaElement
 type videoPlaybackQuality = DOM.videoPlaybackQuality
-type cssRuleList = DOM.cssRuleList
+type cssRuleList = CSSRuleList.t
+type mediaList = MediaList.t
 type mediaKeySystemConfiguration = BaseEncryptedMediaExtensions.mediaKeySystemConfiguration
 
 /**
@@ -378,22 +373,6 @@ type rec animationTimeline = private {
 }
 
 /**
-[See MediaList on MDN](https://developer.mozilla.org/docs/Web/API/MediaList)
-TODO: mark as private once mutating fields of private records is allowed
-*/
-@editor.completeFrom(MediaList)
-type mediaList = {
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/MediaList/mediaText)
-    */
-  mutable mediaText: string,
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/MediaList/length)
-    */
-  length: int,
-}
-
-/**
 [See StylePropertyMapReadOnly on MDN](https://developer.mozilla.org/docs/Web/API/StylePropertyMapReadOnly)
 */
 @editor.completeFrom(StylePropertyMapReadOnly)
@@ -534,7 +513,7 @@ type htmlMediaElement = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLMediaElement/textTracks)
     */
-  textTracks: textTrackList,
+  textTracks: TextTrackList.t,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLMediaElement/sinkId)
     */
@@ -1559,11 +1538,11 @@ type videoFrame = private {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/VideoFrame/codedRect)
     */
-  codedRect: Null.t<domRectReadOnly>,
+  codedRect: Null.t<DOMRectReadOnly.t>,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/VideoFrame/visibleRect)
     */
-  visibleRect: Null.t<domRectReadOnly>,
+  visibleRect: Null.t<DOMRectReadOnly.t>,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/VideoFrame/displayWidth)
     */
@@ -1737,11 +1716,7 @@ type validityStateFlags = {
   mutable customError?: bool,
 }
 
-type cssStyleSheetInit = {
-  mutable baseURL?: string,
-  mutable media?: unknown,
-  mutable disabled?: bool,
-}
+type cssStyleSheetInit = CSSStyleSheet.init
 
 type videoFrameCallbackMetadata = {
   mutable presentationTime: float,

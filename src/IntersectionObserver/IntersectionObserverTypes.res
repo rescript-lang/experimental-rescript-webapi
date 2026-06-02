@@ -35,15 +35,15 @@ type intersectionObserverEntry = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/IntersectionObserverEntry/rootBounds)
     */
-  rootBounds: Null.t<DomTypes.domRectReadOnly>,
+  rootBounds: Null.t<DOMRectReadOnly.t>,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/IntersectionObserverEntry/boundingClientRect)
     */
-  boundingClientRect: DomTypes.domRectReadOnly,
+  boundingClientRect: DOMRectReadOnly.t,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/IntersectionObserverEntry/intersectionRect)
     */
-  intersectionRect: DomTypes.domRectReadOnly,
+  intersectionRect: DOMRectReadOnly.t,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/IntersectionObserverEntry/isIntersecting)
     */

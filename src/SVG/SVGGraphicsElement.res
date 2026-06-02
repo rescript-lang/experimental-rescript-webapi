@@ -9,7 +9,7 @@ external asSVGElement: DomTypes.svgGraphicsElement => DomTypes.svgElement = "%id
 external getBBox: (
   DomTypes.svgGraphicsElement,
   ~options: DomTypes.svgBoundingBoxOptions=?,
-) => DomTypes.domRect = "getBBox"
+) => DOMRect.t = "getBBox"
 
 @send
 external getCTM: DomTypes.svgGraphicsElement => DomTypes.domMatrix = "getCTM"

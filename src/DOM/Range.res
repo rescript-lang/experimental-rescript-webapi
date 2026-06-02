@@ -133,13 +133,13 @@ external intersectsNode: (DomTypes.range, DomTypes.node) => bool = "intersectsNo
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Range/getClientRects)
 */
 @send
-external getClientRects: DomTypes.range => DomTypes.domRectList = "getClientRects"
+external getClientRects: DomTypes.range => DOMRectList.t = "getClientRects"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Range/getBoundingClientRect)
 */
 @send
-external getBoundingClientRect: DomTypes.range => DomTypes.domRect = "getBoundingClientRect"
+external getBoundingClientRect: DomTypes.range => DOMRect.t = "getBoundingClientRect"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Range/createContextualFragment)
