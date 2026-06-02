@@ -61,7 +61,7 @@ This WebApiEncryptedMediaExtensions API interface represents a context for mess
 */
 @editor.completeFrom(BaseEncryptedMediaExtensions.MediaKeySession)
 type mediaKeySession = private {
-  ...BaseEvent.eventTarget,
+  ...Base__EventTarget.t,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/MediaKeySession/sessionId)
     */

@@ -1,6 +1,6 @@
 let self = ServiceWorkerScope.current
 
-self->ServiceWorkerScope.addEventListener(EventTypes.Push, (event: PushEvent.t) => {
+self->ServiceWorkerScope.addEventListener(EventType.Push, (event: PushEvent.t) => {
   Console.log("received push event")
 
   // Extract data
@@ -32,7 +32,7 @@ self->ServiceWorkerScope.addEventListener(EventTypes.Push, (event: PushEvent.t) 
   ->Promise.ignore
 })
 
-self->ServiceWorkerScope.addEventListener(EventTypes.NotificationClick, (
+self->ServiceWorkerScope.addEventListener(EventType.NotificationClick, (
   event: Notification.notificationEvent,
 ) => {
   Console.log(`notification clicked: ${event.action}`)

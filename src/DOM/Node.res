@@ -3,8 +3,6 @@ module Impl = (
     type t
   },
 ) => {
-  include EventTarget.Impl({type t = T.t})
-
   external asNode: T.t => DomTypes.node = "%identity"
 
   /**

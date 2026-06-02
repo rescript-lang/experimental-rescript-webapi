@@ -2,8 +2,8 @@
 
 type domStringList = DOMStringList.t
 type domException = DOMException.t
-type eventTarget = EventTypes.eventTarget
-type eventType = EventTypes.eventType
+type eventTarget = Base__EventTarget.t = private {...Base__EventTarget.t}
+type eventType = EventType.t
 type file = FileTypes.file
 type blob = FileTypes.blob
 type fileSystemEntry = FileAndDirectoryEntriesTypes.fileSystemEntry

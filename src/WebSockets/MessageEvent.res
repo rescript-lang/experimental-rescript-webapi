@@ -1,5 +1,5 @@
-type event = EventTypes.event
-type eventTarget = EventTypes.eventTarget
+type event = Event.t
+type eventTarget = Event.eventTarget
 type messageEventSource = WebSocketsTypes.messageEventSource
 
 type messageEvent<'t> = WebSocketsTypes.messageEvent<'t>

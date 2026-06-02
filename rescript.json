@@ -2,7 +2,7 @@
   "name": "@rescript/webapi",
   "namespace": "WebAPI",
   "features": {
-    "WebAPI.Base": ["WebAPI.Location"],
+    "WebAPI.Base": ["WebAPI.EventTypes", "WebAPI.Location"],
     "WebAPI.DOM": [
       "WebAPI.Base",
       "WebAPI.CSSFontLoading",
@@ -10,7 +10,7 @@
       "WebAPI.CSSTypedOM",
       "WebAPI.DOMException",
       "WebAPI.DOMStringList",
-      "WebAPI.Event",
+      "WebAPI.EventTypes",
       "WebAPI.File",
       "WebAPI.FileAndDirectoryEntries",
       "WebAPI.FileList",
@@ -32,7 +32,9 @@
     ],
     "WebAPI.CSSOM": ["WebAPI.DOM", "WebAPI.Event"],
     "WebAPI.CustomElements": ["WebAPI.DOM"],
-    "WebAPI.Event": ["WebAPI.Base"],
+    "WebAPI.CredentialManagement": ["WebAPI.Event"],
+    "WebAPI.EventTypes": [],
+    "WebAPI.Event": ["WebAPI.Base", "WebAPI.EventTypes"],
     "WebAPI.Fetch": ["WebAPI.Event", "WebAPI.File", "WebAPI.URL"],
     "WebAPI.File": ["WebAPI.Base", "WebAPI.Event"],
     "WebAPI.FileAndDirectoryEntries": ["WebAPI.Base", "WebAPI.DOMException"],
@@ -66,6 +68,8 @@
     ],
     "WebAPI.Locks": ["WebAPI.Event"],
     "WebAPI.MIDI": ["WebAPI.Event"],
+    "WebAPI.Notification": ["WebAPI.Event"],
+    "WebAPI.Push": ["WebAPI.ChannelMessaging", "WebAPI.Event"],
     "WebAPI.Sockets": [
       "WebAPI.ChannelMessaging",
       "WebAPI.Event",
@@ -96,9 +100,6 @@
       "feature": "WebAPI.Base",
       "public": [
         "ArrayBufferTypedArrayOrDataView",
-        "BaseCSSFontLoading",
-        "BaseEncryptedMediaExtensions",
-        "BaseEvent",
         "BaseFile",
         "BaseFileAndDirectoryEntries"
       ]
@@ -178,6 +179,12 @@
       "subdirs": true,
       "feature": "WebAPI.DOMException",
       "public": ["DOMException"]
+    },
+    {
+      "dir": "src/EventTypes",
+      "subdirs": true,
+      "feature": "WebAPI.EventTypes",
+      "public": ["EventType"]
     },
     {
       "dir": "src/DOMStringList",

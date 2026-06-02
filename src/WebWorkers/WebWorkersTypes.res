@@ -34,7 +34,7 @@ Each WorkerGlobalScope has its own event loop.
 */
 @editor.completeFrom(WorkerGlobalScope)
 type workerGlobalScope = private {
-  ...EventTypes.eventTarget,
+  ...Event.eventTarget,
   /**
     [Read more on MDN](https://developer.mozilla.org/en-US/docs/Web/API/WorkerGlobalScope/caches)
     */

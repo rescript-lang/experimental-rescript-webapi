@@ -10,6 +10,10 @@ type domStringList = DOMStringList.t
 
 type window
 
+type event = Base__Event.t = private {...Base__Event.t}
+
+type eventTarget = Base__EventTarget.t = private {...Base__EventTarget.t}
+
 type shadowRootMode =
   | @as("closed") Closed
   | @as("open") Open
@@ -2181,7 +2185,7 @@ TODO: mark as private once mutating fields of private records is allowed
 */
 @editor.completeFrom(DOM.Node)
 type rec node = {
-  ...BaseEvent.eventTarget,
+  ...eventTarget,
   /**
     Returns the type of node.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/nodeType)
@@ -6150,7 +6154,7 @@ Stores information on a media query applied to a document, and handles sending n
 */
 @editor.completeFrom(DOM.MediaQueryList)
 type mediaQueryList = private {
-  ...BaseEvent.eventTarget,
+  ...eventTarget,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/MediaQueryList/media)
     */
