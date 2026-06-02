@@ -2,8 +2,6 @@
 
 type domStringList = DOMStringList.t
 type domException = DOMException.t
-type eventTarget = Base__EventTarget.t = private {...Base__EventTarget.t}
-type eventType = EventType.t
 type file = FileTypes.file
 type blob = FileTypes.blob
 type fileSystemEntry = FileAndDirectoryEntriesTypes.fileSystemEntry
@@ -1637,7 +1635,7 @@ The CanvasRenderingContext2D interface, part of the WebApiCanvas API, provides t
 type canvasRenderingContext2D
 
 type rec animation = {
-  ...eventTarget,
+  ...Base__EventTarget.t,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Animation/id)
     */

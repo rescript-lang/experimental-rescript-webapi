@@ -29,11 +29,12 @@ Completed:
 - [x] Removed the redundant `src/Base/BaseEvent.res` wrapper.
 - [x] Added compile-only same-type alias coverage for `DOM.event`, `Event.t`, `DOM.eventTarget`, `Event.eventTarget`, `EventTarget.t`, and `EventType.t`.
 - [x] Removed the event-specific unmonorepo assertions from `tests/unmonorepo/release-files.test.mjs`.
+- [x] Removed `eventTarget` and `eventType` aliases from `src/DOM/DomTypes.res`.
 
 Not completed in this slice:
 
 - [ ] Minimize `DOM.res` to only the lightweight base type surface.
-- [ ] Remove or split `DomTypes.res`.
+- [ ] Remove or split the remaining non-event `DomTypes.res` aliases.
 - [ ] Remove all non-event `DOM.*` behavior/type declarations from `DOM.res`.
 - [ ] Finish the repo-wide `@editor.completeFrom` audit.
 - [ ] Decide whether event listener/init/options records should remain in internal `EventTypes.res` or move to smaller hidden owner modules.
@@ -225,7 +226,7 @@ node_modules/.bin/rescript build --features WebAPI.Locks --prod
 - Modify: affected leaf modules that still depend on `DomTypes`
 - Modify: `rescript.json`
 
-- [ ] **Step 1: Inventory `DomTypes` usage**
+- [x] **Step 1: Inventory `DomTypes` usage**
 
 Run:
 
@@ -239,7 +240,7 @@ Classify each hit as:
 - a type that should remain as a `DOM.*` base alias
 - a transitional alias that can be deleted
 
-- [ ] **Step 2: Remove event aliases from `DomTypes`**
+- [x] **Step 2: Remove event aliases from `DomTypes`**
 
 After all consumers are confirmed to use `DOM.eventTarget`, `Event.eventTarget`, or `EventTarget.t`, remove:
 
@@ -248,7 +249,7 @@ type eventTarget = Base__EventTarget.t = private {...Base__EventTarget.t}
 type eventType = EventType.t
 ```
 
-- [ ] **Step 3: Keep `DOM.event` and `DOM.eventTarget` in `DOM.res`**
+- [x] **Step 3: Keep `DOM.event` and `DOM.eventTarget` in `DOM.res`**
 
 These aliases remain part of the public DOM-shaped base type surface:
 
@@ -257,7 +258,7 @@ type event = Base__Event.t = private {...Base__Event.t}
 type eventTarget = Base__EventTarget.t = private {...Base__EventTarget.t}
 ```
 
-- [ ] **Step 4: Rebuild**
+- [x] **Step 4: Rebuild**
 
 Run:
 
@@ -387,6 +388,7 @@ Expected: the fixture compiles without requiring unrelated DOM leaf behavior.
 - [x] Event property access exists through `Event` getters.
 - [x] `EventType.t` owns public event type variants.
 - [x] Event-specific unmonorepo assertions are not part of this branch.
+- [x] `DomTypes` no longer carries event aliases.
 - [ ] `DOM.res` is minimal.
 - [ ] `DomTypes` has no remaining role.
 - [ ] All stale `@editor.completeFrom` annotations have been audited.
