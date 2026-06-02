@@ -82,10 +82,11 @@ external checkValidity: htmlButtonElement => bool = "checkValidity"
 
 ```ReScript
 // Base.res
-type element = Base__Element.element
+module Element = Base__Element
+module Document = Base__Document
 
 // DomTypes.res
-type element = Base.element
+type element = Base.Element.element
 
 // Element.res
 include Impl({type t = DomTypes.element})
