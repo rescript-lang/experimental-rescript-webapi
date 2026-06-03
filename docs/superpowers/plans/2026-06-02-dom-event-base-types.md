@@ -4,7 +4,7 @@
 
 **Goal:** Make `DOM.event` and `Event.t` same-type aliases over a shared hidden base owner, with `DOM.event` fully opaque and event fields exposed through `Event` getters.
 
-**Architecture:** Internal `Base__*` modules own canonical shared event object/interface types and are never public. `DOM` and event leaf modules are sibling public surfaces over those shared internal owners; neither aliases through the other. `WebAPI.EventTypes` is the narrow shared feature for canonical event base owners, with `EventType` as its only public module. Some internal listener/init/abort helper records still live in `src/Event/EventTypes.res`; moving or splitting those helpers is a follow-up boundary cleanup.
+**Architecture:** Internal `Base__*` modules own canonical shared event object/interface types and are never public. `DOM` and event leaf modules are sibling public surfaces over those shared internal owners; neither aliases through the other. `WebAPI.EventTypes` is the narrow shared feature for canonical event base owners, with `EventType` as its only public module. Internal listener/init/abort helper records now live under `src/EventTypes/EventTypes.res`, which remains non-public.
 
 **Tech Stack:** ReScript source modules, `rescript.json` feature-gated sources, compile-only ReScript tests, package build/test/format checks.
 
@@ -33,13 +33,14 @@ Completed:
 - [x] Removed low-risk `DomTypes` aliases for `DOMRectReadOnly`, `DOMRect`, `DOMRectList`, `FileList`, `TextTrackList`, and `CSSStyleValue`.
 - [x] Added explicit feature dependencies exposed by those direct public owner references.
 - [x] Audited stale `@editor.completeFrom` annotations that pointed through `DOM.*` or non-public base owner paths.
+- [x] Moved shared internal event listener/init/abort helper shapes under the `WebAPI.EventTypes` source root.
+- [x] Removed reverse `@editor.completeFrom` annotations from the internal `EventTypes` helper owner to public Event leaf modules.
 
 Not completed in this slice:
 
 - [ ] Minimize `DOM.res` to only the lightweight base type surface.
 - [ ] Remove or split the remaining non-event `DomTypes.res` aliases.
 - [ ] Remove all non-event `DOM.*` behavior/type declarations from `DOM.res`.
-- [ ] Decide whether event listener/init/options records should remain in internal `EventTypes.res` or move to smaller hidden owner modules.
 - [ ] Run a rescript-react compatibility check against the new base type surface.
 
 ## Current Feature Shape
@@ -74,7 +75,7 @@ Important interpretation:
 - `WebAPI.IntersectionObserver` and `WebAPI.ResizeObserver` now explicitly depend on `WebAPI.DOM` and `WebAPI.Geometry`.
 - `WebAPI.UIEvents` now explicitly depends on `WebAPI.DOM`, `WebAPI.Event`, and `WebAPI.FileList`.
 - `src/DOM` does not reference public `Event.*` or `EventTarget.*` modules for the event aliases.
-- `src/DOM/DomGlobal.res` still references internal listener/options helper shapes from `src/Event/EventTypes.res`. That file is not public, but its placement is a follow-up if the shared helper boundary needs to move fully under `src/EventTypes`.
+- `src/DOM/DomGlobal.res` references internal listener/options helper shapes from `src/EventTypes/EventTypes.res`. That file is not public.
 
 ## Current Type Ownership
 
@@ -156,7 +157,7 @@ This preserves the public API direction for the DOM base surface. It is not the 
 
 ## Current Internal Helpers
 
-`src/Event/EventTypes.res` remains internal. It currently owns helper shapes that are shared by event modules and DOM globals:
+`src/EventTypes/EventTypes.res` remains internal. It currently owns helper shapes that are shared by event modules and DOM globals:
 
 - `abortController`
 - `abortSignal`
@@ -166,7 +167,7 @@ This preserves the public API direction for the DOM base surface. It is not the 
 - `addEventListenerOptions`
 - `extendableEvent`
 
-This is intentional for the current slice. There is no public `EventTypes` module. The file currently lives in `src/Event`, not `src/EventTypes`, so it should be revisited if we want every shared helper used by `DOM` and `Event` to live under the `WebAPI.EventTypes` source root.
+This is intentional for the current slice. There is no public `EventTypes` module.
 
 `AbortSignal.t`, `AbortController.t`, and `ExtendableEvent.t` are public leaf aliases over these internal helper shapes:
 
@@ -185,6 +186,7 @@ Added compile-only tests:
 - `tests/DOMAPI/Event__test.res`
 - `tests/DOMAPI/EventTarget__test.res`
 - `tests/DOMAPI/EventType__test.res`
+- `tests/unmonorepo/feature-spec.test.mjs`
 
 These verify:
 
@@ -192,6 +194,8 @@ These verify:
 - `Event.t` can be passed where `DOM.event` is expected.
 - `DOM.eventTarget`, `Event.eventTarget`, and `EventTarget.t` are mutually assignable.
 - `EventType.t` accepts the public variant constructors and custom event strings.
+- The internal `EventTypes` helper module lives under `src/EventTypes`, not `src/Event`.
+- The internal `EventTypes` helper module does not point editor completions back to `AbortController`, `AbortSignal`, or `ExtendableEvent`.
 
 No event-specific unmonorepo assertions are currently retained in this plan or in `tests/unmonorepo/release-files.test.mjs`.
 
@@ -274,22 +278,23 @@ Expected: build passes.
 
 ## Follow-Up Task 2: Move Or Split Event Helper Shapes If Needed
 
-**Goal:** Decide whether internal helper records in `src/Event/EventTypes.res` should stay there, move under `src/EventTypes`, or split into smaller hidden owners.
+**Goal:** Decide whether internal helper records should stay in a shared internal `EventTypes` module or split into smaller hidden owners.
 
 **Files:**
 
-- Modify: `src/Event/EventTypes.res`
+- Delete: `src/Event/EventTypes.res`
+- Add: `src/EventTypes/EventTypes.res`
 - Modify: `src/Event/AbortSignal.res`
 - Modify: `src/Event/AbortController.res`
 - Modify: `src/Event/ExtendableEvent.res`
 - Modify: `src/Event/Event.res`
 - Modify: `src/DOM/DomGlobal.res`
 
-- [ ] **Step 1: Keep current shape unless it causes a concrete dependency problem**
+- [x] **Step 1: Keep current shape unless it causes a concrete dependency problem**
 
-Current internal helper ownership is acceptable for this branch because `EventTypes.res` is not public. If we need `DOM` to avoid any source-level reliance on the `src/Event` folder, move the shared listener/options/abort helper shapes under `src/EventTypes` or split them into hidden `Base__*` owners.
+Result: `DOM` did have source-level reliance on a helper file physically located in `src/Event`, so the shared listener/options/abort helper shapes were moved under `src/EventTypes/EventTypes.res`. The module remains internal because `WebAPI.EventTypes` only exposes `EventType`.
 
-- [ ] **Step 2: If splitting, use hidden same-type owners**
+- [x] **Step 2: If splitting, use hidden same-type owners**
 
 Use the same private-spread pattern:
 
@@ -297,9 +302,9 @@ Use the same private-spread pattern:
 type t = Base__AbortSignal.t = private {...Base__AbortSignal.t}
 ```
 
-Do not expose `Base__AbortSignal`, `Base__AbortController`, or any new `*Types` module publicly.
+Result: no split was needed. `AbortSignal.t`, `AbortController.t`, and `ExtendableEvent.t` remain same-type aliases over internal `EventTypes.*` helper shapes, no new public module was exposed, and the internal helper owner does not point completions back to those public Event leaf modules.
 
-- [ ] **Step 3: Rebuild**
+- [x] **Step 3: Rebuild**
 
 Run:
 
@@ -308,6 +313,8 @@ npm run build
 ```
 
 Expected: build passes.
+
+Result: build passes.
 
 ## Follow-Up Task 3: Audit `@editor.completeFrom`
 

@@ -1,11 +1,16 @@
 import test from "node:test";
 import assert from "node:assert/strict";
+import { existsSync, readFileSync } from "node:fs";
+import { dirname, join } from "node:path";
+import { fileURLToPath } from "node:url";
 import {
   featureSpecs,
   migratedLeafName,
   publicModuleToInternalPrefix,
   publicNameForLeafModule,
 } from "../../scripts/unmonorepo/feature-spec.mjs";
+
+const repoRoot = join(dirname(fileURLToPath(import.meta.url)), "..", "..");
 
 test("defines all legacy feature mappings used by the unmonorepo migration", () => {
   assert.deepEqual(
@@ -37,6 +42,19 @@ test("defines all legacy feature mappings used by the unmonorepo migration", () 
   );
 
   assert.equal(featureSpecs.length, 44);
+});
+
+test("keeps shared internal event helper shapes under the EventTypes feature root", () => {
+  assert.equal(existsSync(join(repoRoot, "src", "EventTypes", "EventTypes.res")), true);
+  assert.equal(existsSync(join(repoRoot, "src", "Event", "EventTypes.res")), false);
+
+  const eventTypesSource = readFileSync(
+    join(repoRoot, "src", "EventTypes", "EventTypes.res"),
+    "utf8",
+  );
+  assert.equal(eventTypesSource.includes("@editor.completeFrom(AbortController)"), false);
+  assert.equal(eventTypesSource.includes("@editor.completeFrom(AbortSignal)"), false);
+  assert.equal(eventTypesSource.includes("@editor.completeFrom(ExtendableEvent)"), false);
 });
 
 test("normalizes internal prefixes and public duplicate names", () => {

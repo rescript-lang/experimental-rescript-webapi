@@ -5,6 +5,7 @@
     "WebAPI.Base": ["WebAPI.EventTypes", "WebAPI.Location"],
     "WebAPI.DOM": [
       "WebAPI.Base",
+      "WebAPI.Animations",
       "WebAPI.CSSFontLoading",
       "WebAPI.CSSOM",
       "WebAPI.ChannelMessaging",
@@ -59,7 +60,7 @@
     ],
     "WebAPI.ScreenOrientation": ["WebAPI.Event"],
     "WebAPI.SVG": ["WebAPI.DOM", "WebAPI.Geometry"],
-    "WebAPI.Animations": ["WebAPI.DOM", "WebAPI.Event"],
+    "WebAPI.Animations": ["WebAPI.Event", "WebAPI.EventTypes"],
     "WebAPI.Audio": [
       "WebAPI.ChannelMessaging",
       "WebAPI.DOMException",

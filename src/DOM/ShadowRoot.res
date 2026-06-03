@@ -4,7 +4,7 @@ include DocumentFragment.Impl({type t = DomTypes.shadowRoot})
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Document/getAnimations)
 */
 @send
-external getAnimations: DomTypes.shadowRoot => array<DomTypes.animation> = "getAnimations"
+external getAnimations: DomTypes.shadowRoot => array<Animation.t> = "getAnimations"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/ShadowRoot/setHTMLUnsafe)

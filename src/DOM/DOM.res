@@ -72,29 +72,13 @@ type canPlayTypeResult =
   | @as("maybe") Maybe
   | @as("probably") Probably
 
-type animationPlayState =
-  | @as("finished") Finished
-  | @as("idle") Idle
-  | @as("paused") Paused
-  | @as("running") Running
+type animationPlayState = Animation.playState = | ...Animation.playState
 
-type animationReplaceState =
-  | @as("active") Active
-  | @as("persisted") Persisted
-  | @as("removed") Removed
+type animationReplaceState = Animation.replaceState = | ...Animation.replaceState
 
-type fillMode =
-  | @as("auto") Auto
-  | @as("backwards") Backwards
-  | @as("both") Both
-  | @as("forwards") Forwards
-  | @as("none") None
+type fillMode = Animation.fillMode = | ...Animation.fillMode
 
-type playbackDirection =
-  | @as("alternate") Alternate
-  | @as("alternate-reverse") AlternateReverse
-  | @as("normal") Normal
-  | @as("reverse") Reverse
+type playbackDirection = Animation.playbackDirection = | ...Animation.playbackDirection
 
 type imageOrientation =
   | @as("flipY") FlipY
@@ -128,14 +112,10 @@ type selectionMode =
   | @as("select") Select
   | @as("start") Start
 
-type compositeOperation =
-  | @as("accumulate") Accumulate
-  | @as("add") Add
-  | @as("replace") Replace
+type compositeOperation = Animation.compositeOperation = | ...Animation.compositeOperation
 
-type iterationCompositeOperation =
-  | @as("accumulate") Accumulate
-  | @as("replace") Replace
+type iterationCompositeOperation = Animation.iterationCompositeOperation =
+  | ...Animation.iterationCompositeOperation
 
 type videoPixelFormat =
   | BGRA
@@ -291,24 +271,13 @@ type offscreenRenderingContext = unknown
 [See AnimationTimeline on MDN](https://developer.mozilla.org/docs/Web/API/AnimationTimeline)
 */
 @editor.completeFrom(Animation)
-type rec animationTimeline = private {
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/AnimationTimeline/currentTime)
-    */
-  currentTime: Null.t<float>,
-}
+type animationTimeline = Animation.timeline = private {...Animation.timeline}
 
 /**
 [See DocumentTimeline on MDN](https://developer.mozilla.org/docs/Web/API/DocumentTimeline)
 */
-@editor.completeFrom(DocumentTimeline) and documentTimeline = private {
-  // Base properties from AnimationTimeline
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/AnimationTimeline/currentTime)
-    */
-  currentTime: Null.t<float>,
-  // End base properties from AnimationTimeline
-}
+@editor.completeFrom(DocumentTimeline)
+type documentTimeline = DocumentTimeline.t = private {...DocumentTimeline.t}
 
 /**
 [See MediaList on MDN](https://developer.mozilla.org/docs/Web/API/MediaList)
@@ -316,18 +285,6 @@ TODO: mark as private once mutating fields of private records is allowed
 */
 @editor.completeFrom(MediaList)
 type mediaList = MediaList.t = {...MediaList.t}
-
-/**
-[See StylePropertyMapReadOnly on MDN](https://developer.mozilla.org/docs/Web/API/StylePropertyMapReadOnly)
-*/
-@editor.completeFrom(StylePropertyMapReadOnly)
-type stylePropertyMapReadOnly = StylePropertyMapReadOnly.t = private {...StylePropertyMapReadOnly.t}
-
-/**
-[See StylePropertyMap on MDN](https://developer.mozilla.org/docs/Web/API/StylePropertyMap)
-*/
-@editor.completeFrom(StylePropertyMap)
-type stylePropertyMap = StylePropertyMap.t = private {...StylePropertyMap.t}
 
 /**
 Used by the dataset HTML attribute to represent data for custom attributes added to elements.
@@ -902,7 +859,7 @@ TODO: mark as private once mutating fields of private records is allowed
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/attributeStyleMap)
     */
-  attributeStyleMap: stylePropertyMap,
+  attributeStyleMap: StylePropertyMap.t,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/contentEditable)
     */
@@ -4355,12 +4312,6 @@ Stores information on a media query applied to a document, and handles sending n
 */
 @editor.completeFrom(MediaQueryList)
 type mediaQueryList = MediaQueryList.t = private {...MediaQueryList.t}
-
-/**
-[See CSSStyleValue on MDN](https://developer.mozilla.org/docs/Web/API/CSSStyleValue)
-*/
-@editor.completeFrom(CSSStyleValue)
-type cssStyleValue = CSSStyleValue.t = private {...CSSStyleValue.t}
 
 /**
 An object of this type is returned by the files property of the HTML <input> element; this lets you access the list of files selected with the <input type="file"> element. It's also used for a list of files dropped into web content when using the drag and drop API; see the DataTransfer object for details on this usage.

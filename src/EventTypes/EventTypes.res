@@ -4,7 +4,6 @@
 A controller object that allows you to abort one or more WebApiDOM requests as and when desired.
 [See AbortController on MDN](https://developer.mozilla.org/docs/Web/API/AbortController)
 */
-@editor.completeFrom(AbortController)
 type rec abortController = private {
   /**
     Returns the AbortSignal object associated with this object.
@@ -17,7 +16,7 @@ type rec abortController = private {
 A signal object that allows you to communicate with a WebApiDOM request (such as a WebApiFetch) and abort it if required via an AbortController object.
 [See AbortSignal on MDN](https://developer.mozilla.org/docs/Web/API/AbortSignal)
 */
-@editor.completeFrom(AbortSignal) and abortSignal = private {
+and abortSignal = private {
   ...Base__EventTarget.t,
   /**
     Returns true if this AbortSignal's AbortController has signaled to abort, and false otherwise.
@@ -51,7 +50,6 @@ type addEventListenerOptions = {
 The ExtendableEvent interface extends the lifetime of the install and activate events dispatched on the global scope as part of the service worker lifecycle.
 [See ExtendableEvent on MDN](https://developer.mozilla.org/docs/Web/API/ExtendableEvent)
  */
-@editor.completeFrom(ExtendableEvent)
 type extendableEvent = private {
   ...Base__Event.t,
 }

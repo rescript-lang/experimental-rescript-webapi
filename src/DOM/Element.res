@@ -29,7 +29,7 @@ Throws a "HierarchyRequestError" DOMException if the constraints of the node tre
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/animate)
 */
   @send
-  external animate: (T.t, ~keyframes: unknown, ~options: float=?) => DomTypes.animation = "animate"
+  external animate: (T.t, ~keyframes: unknown, ~options: float=?) => Animation.t = "animate"
 
   /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/animate)
@@ -38,8 +38,8 @@ Throws a "HierarchyRequestError" DOMException if the constraints of the node tre
   external animate2: (
     T.t,
     ~keyframes: unknown,
-    ~options: DomTypes.keyframeAnimationOptions=?,
-  ) => DomTypes.animation = "animate"
+    ~options: Animation.keyframeAnimationOptions=?,
+  ) => Animation.t = "animate"
 
   /**
 Inserts nodes after the last child of node, while replacing strings in nodes with equivalent Text nodes.
@@ -108,10 +108,8 @@ Returns the first (starting at element) inclusive ancestor that matches selector
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/getAnimations)
 */
   @send
-  external getAnimations: (
-    T.t,
-    ~options: DomTypes.getAnimationsOptions=?,
-  ) => array<DomTypes.animation> = "getAnimations"
+  external getAnimations: (T.t, ~options: Animation.getAnimationsOptions=?) => array<Animation.t> =
+    "getAnimations"
 
   /**
 Returns element's first attribute whose qualified name is qualifiedName, and null if there is no such attribute otherwise.

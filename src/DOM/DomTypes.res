@@ -135,29 +135,13 @@ type canPlayTypeResult =
   | @as("maybe") Maybe
   | @as("probably") Probably
 
-type animationPlayState =
-  | @as("finished") Finished
-  | @as("idle") Idle
-  | @as("paused") Paused
-  | @as("running") Running
+type animationPlayState = Animation.playState = | ...Animation.playState
 
-type animationReplaceState =
-  | @as("active") Active
-  | @as("persisted") Persisted
-  | @as("removed") Removed
+type animationReplaceState = Animation.replaceState = | ...Animation.replaceState
 
-type fillMode =
-  | @as("auto") Auto
-  | @as("backwards") Backwards
-  | @as("both") Both
-  | @as("forwards") Forwards
-  | @as("none") None
+type fillMode = Animation.fillMode = | ...Animation.fillMode
 
-type playbackDirection =
-  | @as("alternate") Alternate
-  | @as("alternate-reverse") AlternateReverse
-  | @as("normal") Normal
-  | @as("reverse") Reverse
+type playbackDirection = Animation.playbackDirection = | ...Animation.playbackDirection
 
 type imageOrientation =
   | @as("flipY") FlipY
@@ -191,14 +175,10 @@ type selectionMode =
   | @as("select") Select
   | @as("start") Start
 
-type compositeOperation =
-  | @as("accumulate") Accumulate
-  | @as("add") Add
-  | @as("replace") Replace
+type compositeOperation = Animation.compositeOperation = | ...Animation.compositeOperation
 
-type iterationCompositeOperation =
-  | @as("accumulate") Accumulate
-  | @as("replace") Replace
+type iterationCompositeOperation = Animation.iterationCompositeOperation =
+  | ...Animation.iterationCompositeOperation
 
 type videoPixelFormat =
   | BGRA
@@ -353,36 +333,13 @@ type offscreenRenderingContext = unknown
 [See AnimationTimeline on MDN](https://developer.mozilla.org/docs/Web/API/AnimationTimeline)
 */
 @editor.completeFrom(Animation)
-type rec animationTimeline = private {
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/AnimationTimeline/currentTime)
-    */
-  currentTime: Null.t<float>,
-}
+type animationTimeline = Animation.timeline = private {...Animation.timeline}
 
 /**
 [See DocumentTimeline on MDN](https://developer.mozilla.org/docs/Web/API/DocumentTimeline)
 */
-@editor.completeFrom(DocumentTimeline) and documentTimeline = private {
-  // Base properties from AnimationTimeline
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/AnimationTimeline/currentTime)
-    */
-  currentTime: Null.t<float>,
-  // End base properties from AnimationTimeline
-}
-
-/**
-[See StylePropertyMapReadOnly on MDN](https://developer.mozilla.org/docs/Web/API/StylePropertyMapReadOnly)
-*/
-@editor.completeFrom(StylePropertyMapReadOnly)
-type stylePropertyMapReadOnly = StylePropertyMapReadOnly.t = private {...StylePropertyMapReadOnly.t}
-
-/**
-[See StylePropertyMap on MDN](https://developer.mozilla.org/docs/Web/API/StylePropertyMap)
-*/
-@editor.completeFrom(StylePropertyMap)
-type stylePropertyMap = StylePropertyMap.t = private {...StylePropertyMap.t}
+@editor.completeFrom(DocumentTimeline)
+type documentTimeline = DocumentTimeline.t = private {...DocumentTimeline.t}
 
 /**
 Used by the dataset HTML attribute to represent data for custom attributes added to elements.
@@ -1345,11 +1302,7 @@ type htmlVideoElement = {
   mutable disablePictureInPicture: bool,
 }
 
-/**
-[See AnimationEffect on MDN](https://developer.mozilla.org/docs/Web/API/AnimationEffect)
-*/
-@editor.completeFrom(AnimationEffect)
-type animationEffect = private {}
+type animationEffect = AnimationEffect.t
 
 /**
 This interface is a compiled XPath expression that can be evaluated on a document or specific node to return information its WebApiDOM tree.
@@ -1451,7 +1404,7 @@ type svgElement = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/attributeStyleMap)
     */
-  attributeStyleMap: stylePropertyMap,
+  attributeStyleMap: StylePropertyMap.t,
 }
 
 /**
@@ -1613,57 +1566,11 @@ The CanvasRenderingContext2D interface, part of the WebApiCanvas API, provides t
 @editor.completeFrom(CanvasRenderingContext2D)
 type canvasRenderingContext2D
 
-type rec animation = {
-  ...Base__EventTarget.t,
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Animation/id)
-    */
-  mutable id: string,
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Animation/effect)
-    */
-  mutable effect: Null.t<animationEffect>,
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Animation/timeline)
-    */
-  mutable timeline: Null.t<animationTimeline>,
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Animation/playbackRate)
-    */
-  mutable playbackRate: float,
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Animation/playState)
-    */
-  playState: animationPlayState,
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Animation/replaceState)
-    */
-  replaceState: animationReplaceState,
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Animation/pending)
-    */
-  pending: bool,
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Animation/ready)
-    */
-  ready: promise<animation>,
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Animation/finished)
-    */
-  finished: promise<animation>,
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Animation/startTime)
-    */
-  mutable startTime: Null.t<float>,
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Animation/currentTime)
-    */
-  mutable currentTime: Null.t<float>,
-}
+type animation = Animation.t
 
 type elementDefinitionOptions = {mutable extends?: string}
 
-type documentTimelineOptions = {mutable originTime?: float}
+type documentTimelineOptions = DocumentTimeline.options
 
 type getRootNodeOptions = {mutable composed?: bool}
 
@@ -1735,41 +1642,13 @@ type assignedNodesOptions = {mutable flatten?: bool}
 
 type focusOptions = {mutable preventScroll?: bool}
 
-type effectTiming = {
-  mutable fill?: fillMode,
-  mutable iterationStart?: float,
-  mutable iterations?: float,
-  mutable direction?: playbackDirection,
-  mutable easing?: string,
-  mutable delay?: float,
-  mutable endDelay?: float,
-  mutable playbackRate?: float,
-  mutable duration?: unknown,
-}
+type effectTiming = AnimationEffect.timing
 
-type getAnimationsOptions = {mutable subtree?: bool}
+type getAnimationsOptions = Animation.getAnimationsOptions
 
-type computedEffectTiming = {
-  ...effectTiming,
-  mutable progress?: Null.t<float>,
-  mutable currentIteration?: Null.t<float>,
-  mutable startTime?: float,
-  mutable endTime?: float,
-  mutable activeDuration?: float,
-  mutable localTime?: Null.t<float>,
-}
+type computedEffectTiming = AnimationEffect.computedTiming
 
-type optionalEffectTiming = {
-  mutable delay?: float,
-  mutable endDelay?: float,
-  mutable fill?: fillMode,
-  mutable iterationStart?: float,
-  mutable iterations?: float,
-  mutable duration?: unknown,
-  mutable direction?: playbackDirection,
-  mutable easing?: string,
-  mutable playbackRate?: float,
-}
+type optionalEffectTiming = AnimationEffect.optionalTiming
 
 type imageBitmapOptions = {
   mutable imageOrientation?: imageOrientation,
@@ -1791,18 +1670,9 @@ type windowPostMessageOptions = {
   mutable targetOrigin?: string,
 }
 
-type keyframeEffectOptions = {
-  ...effectTiming,
-  mutable composite?: compositeOperation,
-  mutable pseudoElement?: Null.t<string>,
-  mutable iterationComposite?: iterationCompositeOperation,
-}
+type keyframeEffectOptions = Animation.keyframeEffectOptions
 
-type keyframeAnimationOptions = {
-  ...keyframeEffectOptions,
-  mutable id?: string,
-  mutable timeline?: Null.t<animationTimeline>,
-}
+type keyframeAnimationOptions = Animation.keyframeAnimationOptions
 
 type elementCreationOptions = {mutable is?: string}
 
