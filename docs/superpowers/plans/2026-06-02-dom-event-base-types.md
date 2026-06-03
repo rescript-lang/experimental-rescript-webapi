@@ -35,12 +35,14 @@ Completed:
 - [x] Audited stale `@editor.completeFrom` annotations that pointed through `DOM.*` or non-public base owner paths.
 - [x] Moved shared internal event listener/init/abort helper shapes under the `WebAPI.EventTypes` source root.
 - [x] Removed reverse `@editor.completeFrom` annotations from the internal `EventTypes` helper owner to public Event leaf modules.
+- [x] Minimized `src/DOM/DOM.res` to only `event`, `eventTarget`, and `element`.
+- [x] Made `DOM.element` a same-type alias over opaque `Base__Element.t`.
+- [x] Removed the `src/Base/Base.res` wrapper module and direct `Base.*` references.
+- [x] Removed leaf-owned alias re-exports from `Base__Document.res` for `Location.t` and the old structural element type.
 
 Not completed in this slice:
 
-- [ ] Minimize `DOM.res` to only the lightweight base type surface.
 - [ ] Remove or split the remaining non-event `DomTypes.res` aliases.
-- [ ] Remove all non-event `DOM.*` behavior/type declarations from `DOM.res`.
 - [ ] Run a rescript-react compatibility check against the new base type surface.
 
 ## Current Feature Shape
@@ -71,7 +73,8 @@ Important interpretation:
 - `WebAPI.DOM` and `WebAPI.Event` both depend on `WebAPI.EventTypes`.
 - `WebAPI.DOM` and `WebAPI.Event` do not depend on each other.
 - `WebAPI.Event` still depends on `WebAPI.Base` for other existing APIs. Event base aliases no longer flow through `WebAPI.Base`.
-- `WebAPI.DOM` is not yet a minimal feature. It still has broader dependencies because the full DOM cleanup is outside this event-focused slice.
+- `src/DOM/DOM.res` is now a minimal public base type surface. The broader `WebAPI.DOM` feature still has dependencies because `DomTypes.res` remains a transitional internal owner.
+- `src/Base/Base.res` has been removed. Base owners are referenced directly as hidden implementation modules.
 - `WebAPI.IntersectionObserver` and `WebAPI.ResizeObserver` now explicitly depend on `WebAPI.DOM` and `WebAPI.Geometry`.
 - `WebAPI.UIEvents` now explicitly depends on `WebAPI.DOM`, `WebAPI.Event`, and `WebAPI.FileList`.
 - `src/DOM` does not reference public `Event.*` or `EventTarget.*` modules for the event aliases.
@@ -87,6 +90,9 @@ type t = private {}
 
 // src/EventTypes/Base__EventTarget.res
 type t = private {}
+
+// src/Base/Base__Element.res
+type t = private {}
 ```
 
 Public sibling aliases:
@@ -95,6 +101,7 @@ Public sibling aliases:
 // src/DOM/DOM.res
 type event = Base__Event.t = private {...Base__Event.t}
 type eventTarget = Base__EventTarget.t = private {...Base__EventTarget.t}
+type element = Base__Element.t = private {...Base__Element.t}
 
 // src/Event/Event.res
 type eventTarget = Base__EventTarget.t = private {...Base__EventTarget.t}
@@ -115,6 +122,10 @@ Base__EventTarget.t
   -> DOM.eventTarget
   -> Event.eventTarget
   -> EventTarget.t
+
+Base__Element.t
+  -> DOM.element
+  -> DomTypes.element
 ```
 
 The arrows here mean "same internal owner exposed by public aliases", not dependency direction. `DOM` and the leaf modules are siblings over the same hidden owner.
@@ -233,6 +244,133 @@ node_modules/.bin/rescript build --features WebAPI.Locks --prod
 - Modify: `src/DOM/DomTypes.res`
 - Modify: affected leaf modules that still depend on `DomTypes`
 - Modify: `rescript.json`
+
+### `DOM.res` Removal Audit
+
+`src/DOM/DOM.res` has been reduced to a small public base alias surface. It should not become a convenience re-export module for types that are easily named through their owning feature module.
+
+The enforced end state is that `DOM.res` has no structural record fields and no non-event behavior surface. Keep only thin opaque aliases needed as core base names, and move all field-bearing records, option records, variants, and feature-specific aliases to their leaf feature owners.
+
+Keep in `DOM.res` as the minimal base surface:
+
+- Existing event base aliases: `event`, `eventTarget`.
+- Existing element base alias: `element`, backed by opaque `Base__Element.t`.
+
+These definitions were removed from `DOM.res` and should stay out. Do not add compatibility aliases for feature-owned types; use the owning module type directly, such as `Location.t`, `CSSStyleSheet.t`, `Animation.t`, `TouchList.t`, or `DataTransfer.t`.
+
+- External feature aliases:
+  `domException`, `domStringList`, `location`, `orientationType`, `screenOrientation`.
+- CSSOM and CSSTypedOM surface:
+  `mediaList`, `styleSheetList`, `styleSheet`, `cssStyleSheet`, `cssRule`, `cssRuleList`, `cssStyleDeclaration`, `mediaQueryList`, `domStringMap`.
+- Web Animations surface:
+  `animationPlayState`, `animationReplaceState`, `fillMode`, `playbackDirection`, `compositeOperation`, `iterationCompositeOperation`, `animationTimeline`, `documentTimeline`.
+- Geometry, FileList, and VTT aliases:
+  `domRectReadOnly`, `domRect`, `domRectList`, `fileList`, `textTrackList`.
+- Custom Elements surface:
+  `customElementRegistry`, `elementInternals`, `customStateSet`.
+- Window, Navigator, Screen, and Remote Playback helper shapes:
+  `shareData`, `barProp`, `screen`, `vibratePattern`, `remotePlaybackState`, `fragmentDirective`.
+- Canvas, ImageBitmap, and VideoFrame helper shapes:
+  `renderingContext`, `offscreenRenderingContext`, `imageOrientation`, `premultiplyAlpha`, `colorSpaceConversion`, `resizeQuality`, `videoPixelFormat`, `videoColorPrimaries`, `videoTransferCharacteristics`, `videoMatrixCoefficients`, `alphaOption`, `predefinedColorSpace`.
+- DOM leaf interface records and local helper shapes:
+  `domTokenList`, `namedNodeMap`, `node`, `nodeList`, `shadowRoot`, `domImplementation`, `documentType`, `document`, `mutationRecord`, `attr`, `characterData`, `documentFragment`, `xmlDocument`, `text`, `cdataSection`, `comment`, `processingInstruction`, `abstractRange`, `range`, `staticRange`, `nodeFilter`, `nodeIterator`, `treeWalker`, `caretPosition`, `selection`.
+- DOM operation and option enums/records:
+  `shadowRootMode`, `slotAssignmentMode`, `documentReadyState`, `documentVisibilityState`, `insertPosition`, `scrollBehavior`, `fullscreenNavigationUI`, `referrerPolicy`, `scrollLogicalPosition`, `selectionMode`.
+- HTML element records and HTML helper types previously embedded in `DOM.res`:
+  `htmlElement`, `htmlHeadElement`, `htmlFormElement`, `htmlImageElement`, `htmlEmbedElement`, `htmlAnchorElement`, `htmlAreaElement`, `htmlScriptElement`, `htmlSlotElement`, `htmlTableElement`, `htmlTableCaptionElement`, `htmlTableSectionElement`, `htmlTableCellElement`, `htmlTableRowElement`, `htmlButtonElement`, `htmlLabelElement`, `htmlTextAreaElement`, `htmlOutputElement`, `htmlInputElement`, `htmlDataListElement`, `htmlSelectElement`, `htmlOptionElement`, `htmlOptionsCollection`, `htmlCollection`, `htmlFormControlsCollection`, `canPlayTypeResult`, `autoFillBase`, `validityState`, `mediaError`, `timeRanges`, `videoPlaybackQuality`.
+
+Ordering constraints for removal:
+
+- Move `DomTypes` consumers first. Any file using `DomTypes.foo = DOM.foo` must switch to the public leaf type or an internal hidden owner before `DOM.foo` is removed.
+- Do not make `WebAPI.DOM` depend on leaf features that already depend on `WebAPI.DOM`. For circular candidates such as `HTMLCollection`, `HTMLElement`, `TouchList`, and `DataTransfer`, split a hidden owner into a shared lower-level feature or keep the type under its owning feature module.
+- Remove `@editor.completeFrom(...)` annotations from `DOM.res` entries as the entries are deleted. Do not replace them with annotations that point from a base owner to a higher-level public leaf.
+- Do not recreate `Base.res` as a compatibility aggregator. Reference hidden base owners directly.
+- Do not add leaf-owned compatibility aliases to `Base__Document.res` or any eventual window base owner. If a property needs `Location.t`, `CSSStyleSheet.t`, or another public leaf type, use that leaf type directly or move the behavior onto the leaf module.
+- After each removal slice, run at least:
+
+```sh
+npm run build
+node_modules/.bin/rescript build --features WebAPI.DOM --prod
+```
+
+### Duplicate Type Declaration Audit
+
+Consumer rule: enabling a feature should expose that feature's own types and the minimum base handles it genuinely needs. It should not mint fresh abstract stand-ins for types owned by other features. If a consumer wants `HTMLElement`, CSSOM, Web Animations, Window, Location, or Canvas integration, they should enable those features and receive the owning module's type, not a duplicate placeholder.
+
+Acceptable pattern:
+
+- Hidden shared base owners such as `Base__Event.t`, `Base__EventTarget.t`, and `Base__Element.t`.
+- Public aliases over the same hidden owner, such as `DOM.element = Base__Element.t = private {...Base__Element.t}`.
+- Feature-local helper records/enums that are not independently exposed by another feature.
+
+Smell pattern:
+
+- `type htmlElement` in `Base__Document.res` or `Base__Element.res`: creates `Base__Document.htmlElement` / `Base__Element.htmlElement`, not `HTMLElement.t`.
+- `type styleSheetList` in `Base__Document.res`: creates a separate type from `StyleSheetList.t`.
+- `type window` in `Base__Document.res`: creates a separate type from `Window.t`.
+- `type htmlElement = private {}` in `DomTypes.res` while `HTMLElement.t` aliases back to it: puts an HTML-owned type under the DOM feature and forces wrong feature ownership.
+- `type cssStyleSheet = CSSStyleSheet.t` in `DomTypes.res`: makes `WebAPI.DOM` depend on CSSOM just to name a CSSOM-owned type.
+
+Current high-risk duplicate declarations:
+
+- `src/Base/Base__Document.res` lines 3-20:
+  `node`, `htmlElement`, `nodeList`, `domImplementation`, `documentType`, `documentReadyState`, `htmlHeadElement`, `htmlCollection`, `htmlImageElement`, `htmlEmbedElement`, `htmlFormElement`, `htmlScriptElement`, `window`, `documentVisibilityState`, `fragmentDirective`, `documentTimeline`, `styleSheetList`, `cssStyleSheet`.
+- `src/Base/Base__Element.res` lines 5-13:
+  `document`, `node`, `htmlElement`, `nodeList`, `domTokenList`, `namedNodeMap`, `shadowRoot`, `htmlCollection`, `htmlSlotElement`.
+- `src/DOM/DomTypes.res` lines 12-74:
+  DOM, HTML, CSSOM, Custom Elements, MutationObserver, and EME placeholders all live in one feature bag. This makes feature ownership ambiguous and creates same-named types that only work if every consumer routes through `DomTypes`.
+
+Target ownership:
+
+- Core DOM feature owns DOM primitives only: `Document.t`, `Node.t`, `Element.t`/`DOM.element`, `NodeList.t`, `DocumentFragment.t`, `ShadowRoot.t`, `DOMTokenList.t`, `NamedNodeMap.t`, `DOMImplementation.t`, `DocumentType.t`, `Attr.t`, `CharacterData.t`, `Text.t`, `Comment.t`, `Range.t`, `Selection.t`, and related DOM-only option records/enums.
+- HTML feature owns every `HTML*Element` type, HTML collections specific to forms/options, `ValidityState`, `MediaError`, `TimeRanges`, and HTML media helpers.
+- CSSOM feature owns `StyleSheet.t`, `StyleSheetList.t`, `CSSStyleSheet.t`, `CSSRule.t`, `CSSRuleList.t`, `CSSStyleDeclaration.t`, `MediaList.t`, and `MediaQueryList.t`.
+- Web Animations feature owns `Animation.t`, `Animation.timeline`, `DocumentTimeline.t`, effect timing records, keyframe option records, and `getAnimations`/`animate` option types.
+- Window feature owns `Window.t` and window-only option records. DOM should not define a private `window` stand-in.
+- Location, Geometry, File, FileList, VTT, Canvas, Custom Elements, EME, RemotePlayback, ScreenOrientation, and ViewTransitions keep their own public leaf types.
+
+Removal order:
+
+1. Make `Base__Document.document` opaque and delete its field-bearing record. Then add `Document.res` accessors for DOM-only properties that return DOM-owned types.
+2. Move HTML-returning document properties out of `WebAPI.DOM` into the HTML feature. Examples: `body`, `head`, `images`, `embeds`, `plugins`, `links`, `forms`, `scripts`, `currentScript`.
+3. Move CSSOM-returning document properties out of `WebAPI.DOM` into the CSSOM feature. Examples: `styleSheets`, `adoptedStyleSheets`.
+4. Move Web Animations document integration out of `WebAPI.DOM` into the Web Animations feature. Examples: `timeline`, `getAnimations`.
+5. Move Window-returning document integration out of core DOM or make it require the Window feature explicitly. Examples: `defaultView`, `open2`.
+6. Make `Base__Element` only own `type t = private {}` and delete its structural `element` record plus the duplicate abstract stand-ins. Keep behavior in `Element.res` and feature-specific extension modules.
+7. Split `DomTypes.res` by owner. Each public leaf module should either define its own `type t` over a hidden same-feature owner, or alias a lower-level base handle deliberately. It should not import an unrelated `DomTypes.*` placeholder as its root type.
+8. Update feature dependencies so `WebAPI.DOM` no longer depends on HTML, CSSOM, Web Animations, Canvas, EME, RemotePlayback, File, FileList, VTT, or Window solely to satisfy duplicate type declarations.
+
+Guard tests to add before each removal:
+
+```js
+test("does not allow duplicate abstract type declarations in base document and element owners", () => {
+  const baseDocumentSource = readFileSync(
+    join(repoRoot, "src", "Base", "Base__Document.res"),
+    "utf8",
+  );
+  const baseElementSource = readFileSync(
+    join(repoRoot, "src", "Base", "Base__Element.res"),
+    "utf8",
+  );
+
+  assert.equal(baseDocumentSource.includes("type htmlElement"), false);
+  assert.equal(baseDocumentSource.includes("type styleSheetList"), false);
+  assert.equal(baseDocumentSource.includes("type window"), false);
+  assert.equal(baseElementSource.includes("type htmlElement"), false);
+  assert.equal(baseElementSource.includes("type htmlSlotElement"), false);
+});
+```
+
+```js
+test("keeps DOM feature dependencies limited to DOM-owned base features", () => {
+  const domDeps = featureSpecs.find(({ featureName }) => featureName === "WebAPI.DOM").dependencies;
+
+  assert.equal(domDeps.includes("WebAPI.HTML"), false);
+  assert.equal(domDeps.includes("WebAPI.CSSOM"), false);
+  assert.equal(domDeps.includes("WebAPI.Animations"), false);
+  assert.equal(domDeps.includes("WebAPI.Window"), false);
+});
+```
 
 - [x] **Step 1: Inventory `DomTypes` usage**
 
@@ -355,22 +493,19 @@ Expected: build passes.
 
 Result: build passes. The broad audit command still matches `@editor.completeFrom(BaseAudioContext)`, but that is an intentional public WebAudio leaf module, not a non-public base owner path.
 
-## Follow-Up Task 4: Rescript-React Compatibility Check
+## Follow-Up Task 4: Thin DOM Surface Check
 
-**Goal:** Verify the eventual base surface is thin enough for rescript-react without pulling in the larger DOM API.
+**Goal:** Verify the final base surface stays thin and does not pull in unrelated DOM leaf behavior.
 
-**Target types:**
+**Target public `DOM` types:**
 
 - `DOM.element`
-- `DOM.window`
-- `DOM.history`
+- `DOM.event`
 - `DOM.eventTarget`
-- `DOM.touchList`
-- `DOM.dataTransfer`
 
 - [ ] **Step 1: Create or use a local compatibility fixture**
 
-The fixture should depend on the smallest intended WebAPI feature set and compile representative rescript-react DOM/event usage.
+The fixture should depend on the smallest intended WebAPI feature set and compile representative DOM/event usage. It should use feature-owned names for non-core types instead of `DOM.*` compatibility aliases.
 
 - [ ] **Step 2: Confirm event assignability**
 
@@ -403,6 +538,9 @@ Expected: the fixture compiles without requiring unrelated DOM leaf behavior.
 - [x] Event-specific unmonorepo assertions are not part of this branch.
 - [x] `DomTypes` no longer carries event aliases.
 - [x] `DomTypes` no longer carries low-risk public-owner aliases for geometry list/rects, `FileList`, `TextTrackList`, or `CSSStyleValue`.
-- [ ] `DOM.res` is minimal.
+- [x] `DOM.res` is minimal.
+- [x] `DOM.element` is opaque over `Base__Element.t`.
+- [x] `Base.res` has been removed.
+- [x] `Base__Document` no longer re-exports `Location.t` or the structural element alias.
 - [ ] `DomTypes` has no remaining role.
 - [x] All stale `@editor.completeFrom` annotations have been audited.

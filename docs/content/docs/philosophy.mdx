@@ -54,7 +54,7 @@ In some cases, type conversion will be required. Subtypes can safely be cast to 
 open WebAPI.DOM
 
 let element: WebAPI.DOM.element = document->WebAPI.Document.createElement("div")
-let node: WebAPI.DOM.node = element->WebAPI.Element.asNode
+let node = element->WebAPI.Element.asNode
 ```
 
 Any other conversions should be treated as unsafe casts and used with caution, because the type system cannot guarantee they are valid at runtime.

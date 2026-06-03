@@ -2,4 +2,4 @@ external toHTMLInputElement: DomTypes.element => DomTypes.htmlInputElement = "%i
 
 let input: DomTypes.htmlInputElement =
   DomGlobal.document->Document.createElement("input")->toHTMLInputElement
-let value = input.value
+input->HTMLInputElement.checkValidity->ignore

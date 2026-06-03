@@ -57,6 +57,48 @@ test("keeps shared internal event helper shapes under the EventTypes feature roo
   assert.equal(eventTypesSource.includes("@editor.completeFrom(ExtendableEvent)"), false);
 });
 
+test("does not keep a public Base wrapper module", () => {
+  assert.equal(existsSync(join(repoRoot, "src", "Base", "Base.res")), false);
+});
+
+test("keeps Base__Document from re-exporting leaf-owned aliases", () => {
+  const baseDocumentSource = readFileSync(
+    join(repoRoot, "src", "Base", "Base__Document.res"),
+    "utf8",
+  );
+
+  assert.equal(baseDocumentSource.includes("type location = Location.t"), false);
+  assert.equal(baseDocumentSource.includes("type element = Base__Element.element"), false);
+});
+
+test("keeps DOM.res limited to the core base type surface", () => {
+  const domSource = readFileSync(join(repoRoot, "src", "DOM", "DOM.res"), "utf8");
+  const baseElementSource = readFileSync(
+    join(repoRoot, "src", "Base", "Base__Element.res"),
+    "utf8",
+  );
+  const declaredTypes = [];
+
+  for (const rawLine of domSource.split("\n")) {
+    const line = rawLine.trim();
+    const typeMatch = line.match(/^type(?:\s+rec)?\s+([a-z][A-Za-z0-9_]*)/);
+    if (typeMatch) {
+      declaredTypes.push(typeMatch[1]);
+      continue;
+    }
+
+    const andMatch = line.match(/^@editor\.completeFrom\([^)]*\)\s+and\s+([a-z][A-Za-z0-9_]*)/);
+    if (andMatch) {
+      declaredTypes.push(andMatch[1]);
+    }
+  }
+
+  assert.deepEqual(declaredTypes, ["event", "eventTarget", "element"]);
+  assert.match(domSource, /^type element = Base__Element\.t = private \{\.\.\.Base__Element\.t\}$/m);
+  assert.match(baseElementSource, /^type t = private \{\}$/m);
+  assert.equal(domSource.includes("Base.Element.element"), false);
+});
+
 test("normalizes internal prefixes and public duplicate names", () => {
   assert.equal(publicModuleToInternalPrefix("DOM"), "Dom");
   assert.equal(publicModuleToInternalPrefix("URL"), "Url");

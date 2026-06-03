@@ -1,5 +1,7 @@
 @@warning("-30")
 
+type t = private {}
+
 type document
 type node
 type htmlElement

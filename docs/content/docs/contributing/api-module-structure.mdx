@@ -61,10 +61,10 @@ type rec node = {
   // ... more properties
 }
 
-and element = Base.Element.element
+and element = Base__Element.t
 ```
 
-For shared DOM base interfaces such as `Element`, the structural record can live in a Base-owned module such as `Base__Element.res`. `Base.res` should re-export that implementation as a module, for example `module Element = Base__Element`, so the DOM API module can keep the familiar `DOM.element` alias while method modules use `DomTypes.element`.
+For shared DOM base interfaces such as `Element`, keep the root type as a thin opaque owner such as `Base__Element.t`. The DOM API module can expose `DOM.element` as a public alias while method modules use `DomTypes.element`.
 
 ## Auxiliary Types
 

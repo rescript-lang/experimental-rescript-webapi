@@ -25,7 +25,7 @@ external disconnect: MutationObserverTypes.mutationObserver => unit = "disconnec
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/MutationObserver/takeRecords)
 */
 @send
-external takeRecords: MutationObserverTypes.mutationObserver => array<DOM.mutationRecord> =
+external takeRecords: MutationObserverTypes.mutationObserver => array<DomTypes.mutationRecord> =
   "takeRecords"
 
 module Types = MutationObserverTypes

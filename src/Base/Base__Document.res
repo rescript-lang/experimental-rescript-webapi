@@ -5,15 +5,6 @@ type htmlElement
 type nodeList<'tNode>
 type domImplementation
 type documentType
-type element = Base__Element.element
-
-/**
-The location (WebApiURL) of the object it is linked to. Changes done on it are reflected on the object it relates to. Both the Document and Window interface have such a linked Location, accessible via Document.location and Window.location respectively.
-[See Location on MDN](https://developer.mozilla.org/docs/Web/API/Location)
-TODO: mark as private once mutating fields of private records is allowed
-*/
-@editor.completeFrom(Location)
-type location = Location.t
 type documentReadyState
 type htmlHeadElement
 type htmlCollection<'t>
@@ -149,7 +140,7 @@ type rec document = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Document/scrollingElement)
     */
-  scrollingElement: Null.t<element>,
+  scrollingElement: Null.t<Base__Element.t>,
   /**
     Returns true if document has the ability to display elements fullscreen and fullscreen is supported, or false otherwise.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Document/fullscreenEnabled)
@@ -159,7 +150,7 @@ type rec document = {
     Contains information about the current URL.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Document/location)
     */
-  mutable location: location,
+  mutable location: Location.t,
   /**
     Gets the WebApiURL of the location that referred the user to the current page.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Document/referrer)
@@ -223,7 +214,7 @@ If the contents are sandboxed into a unique origin (e.g. in an iframe with the s
     Retrieves a collection of all a objects that specify the href property and all area objects in the document.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Document/links)
     */
-  links: htmlCollection<element>,
+  links: htmlCollection<Base__Element.t>,
   /**
     Retrieves a collection, in source order, of all form objects in the document.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Document/forms)
@@ -288,7 +279,7 @@ Returns null if the Document is not currently executing a script or SVG script e
     Returns document's fullscreen element.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Document/fullscreenElement)
     */
-  fullscreenElement: Null.t<element>,
+  fullscreenElement: Null.t<Base__Element.t>,
   /**
     Returns the deepest element in the document through which or to which key events are being routed. This is, roughly speaking, the focused element in the document.
 
@@ -297,30 +288,30 @@ For the purposes of this API, when a child browsing context is focused, its cont
 Similarly, when the focused element is in a different node tree than documentOrShadowRoot, the element returned will be the host that's located in the same node tree as documentOrShadowRoot if documentOrShadowRoot is a shadow-including inclusive ancestor of the focused element, and null if not.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Document/activeElement)
     */
-  activeElement: Null.t<element>,
+  activeElement: Null.t<Base__Element.t>,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Document/pictureInPictureElement)
     */
-  pictureInPictureElement: Null.t<element>,
+  pictureInPictureElement: Null.t<Base__Element.t>,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Document/pointerLockElement)
     */
-  pointerLockElement: Null.t<element>,
+  pointerLockElement: Null.t<Base__Element.t>,
   /**
     Returns the child elements.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Document/children)
     */
-  children: htmlCollection<element>,
+  children: htmlCollection<Base__Element.t>,
   /**
     Returns the first child that is an element, and null otherwise.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Document/firstElementChild)
     */
-  firstElementChild: Null.t<element>,
+  firstElementChild: Null.t<Base__Element.t>,
   /**
     Returns the last child that is an element, and null otherwise.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Document/lastElementChild)
     */
-  lastElementChild: Null.t<element>,
+  lastElementChild: Null.t<Base__Element.t>,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Document/childElementCount)
     */

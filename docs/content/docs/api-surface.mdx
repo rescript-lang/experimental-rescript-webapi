@@ -290,7 +290,7 @@ Use conversion helpers when moving between related DOM interface types.
 
 ```ReScript
 let element: WebAPI.DOM.element = document->WebAPI.Document.createElement("div")
-let node: WebAPI.DOM.node = element->WebAPI.Element.asNode
+let node = element->WebAPI.Element.asNode
 ```
 
 ## Visual Viewport

@@ -78,21 +78,20 @@ external checkValidity: htmlButtonElement => bool = "checkValidity"
 
 ## Shared element base
 
-`Element.res` is a method module. It does not define the `element` record type directly. The shared DOM element type is owned by Base and threaded back into DOM through aliases:
+`Element.res` is a method module. It does not define the `element` type directly. The shared DOM element type is a thin opaque base handle threaded back into DOM through aliases:
 
 ```ReScript
-// Base.res
-module Element = Base__Element
-module Document = Base__Document
+// Base__Element.res
+type t = private {}
 
 // DomTypes.res
-type element = Base.Element.element
+type element = Base__Element.t = private {...Base__Element.t}
 
 // Element.res
 include Impl({type t = DomTypes.element})
 ```
 
-This keeps `Element.Impl` reusable for element subtypes while giving the package one shared base element type. Subtype modules should continue to include the nearest base method implementation:
+This keeps `Element.Impl` reusable for element subtypes while giving the package one shared base element handle. Subtype modules should continue to include the nearest base method implementation:
 
 ```ReScript
 // HTMLElement.res
