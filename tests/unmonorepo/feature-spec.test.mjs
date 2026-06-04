@@ -94,8 +94,9 @@ test("keeps DOM.res limited to the core base type surface", () => {
   }
 
   assert.deepEqual(declaredTypes, ["event", "eventTarget", "element"]);
-  assert.match(domSource, /^type element = Base__Element\.t = private \{\.\.\.Base__Element\.t\}$/m);
-  assert.match(baseElementSource, /^type t = private \{\}$/m);
+  assert.match(domSource, /^type element = Base__Element\.t = \{\.\.\.Base__Element\.t\}$/m);
+  assert.match(baseElementSource, /^type rec t = \{$/m);
+  assert.equal(baseElementSource.includes("type rec element = {"), false);
   assert.equal(domSource.includes("Base.Element.element"), false);
 });
 

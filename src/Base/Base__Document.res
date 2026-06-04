@@ -1,13 +1,13 @@
 @@warning("-30")
 
-type node
-type htmlElement
-type nodeList<'tNode>
+type node = Base__DomTypes.node
+type htmlElement = Base__DomTypes.htmlElement
+type nodeList<'tNode> = Base__DomTypes.nodeList<'tNode>
 type domImplementation
 type documentType
 type documentReadyState
 type htmlHeadElement
-type htmlCollection<'t>
+type htmlCollection<'t> = Base__DomTypes.htmlCollection<'t>
 type htmlImageElement
 type htmlEmbedElement
 type htmlFormElement

@@ -29,7 +29,7 @@ switch ctx->getFillStyle->FillStyle.decode {
 | FillStyle.CanvasPattern(_) => Console.log("CanvasPattern")
 }
 
-let img: DomTypes.htmlImageElement = DomGlobal.document->Document.createElement("img")->Obj.magic
+let img: DomTypes.htmlImageElement = Document.createElement("img")->Obj.magic
 ctx->CanvasRenderingContext2D.drawImageWithDimensions(
   ~image=img,
   ~dx=0.,

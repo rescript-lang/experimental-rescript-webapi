@@ -9,21 +9,21 @@ type remotePlayback = RemotePlaybackTypes.remotePlayback
 type fontFaceSet = CssFontLoadingTypes.fontFaceSet
 type structuredSerializeOptions = ChannelMessagingTypes.structuredSerializeOptions
 
-type htmlElement = private {}
+type htmlElement = Base__DomTypes.htmlElement
 type mediaError = private {}
 type timeRanges = private {}
 type htmlFormElement = private {}
-type htmlCollection<'a> = private {}
-type element = Base__Element.t = private {...Base__Element.t}
+type htmlCollection<'a> = Base__DomTypes.htmlCollection<'a>
+type element = Base__Element.t = {...Base__Element.t}
 type validityState = private {}
 type document = Base__Document.document
 type cssStyleSheet = CSSStyleSheet.t
-type nodeList<'a> = private {}
+type nodeList<'a> = Base__DomTypes.nodeList<'a>
 type htmlLabelElement = private {}
 type documentFragment = private {}
-type node = private {}
+type node = Base__DomTypes.node
 type cssStyleDeclaration = CSSStyleDeclaration.t
-type shadowRoot = private {}
+type shadowRoot = Base__DomTypes.shadowRoot
 type styleSheet = StyleSheet.t
 type mediaQueryList = MediaQueryList.t
 type range = private {}
@@ -59,7 +59,7 @@ type htmlOptionElement = private {}
 type htmlEmbedElement = private {}
 type htmlTextAreaElement = private {}
 type htmlTableCaptionElement = private {}
-type htmlSlotElement = private {}
+type htmlSlotElement = Base__DomTypes.htmlSlotElement
 type htmlDataListElement = private {}
 type htmlInputElement = private {}
 type htmlScriptElement = private {}
@@ -233,32 +233,14 @@ type location = Location.t = private {...Location.t}
 
 // TODO: mark as private once mutating fields of private records is allowed
 @editor.completeFrom(DOMTokenList)
-type domTokenList = {
-  /**
-    Returns the number of tokens.
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/DOMTokenList/length)
-    */
-  length: int,
-  /**
-    Returns the associated set as string.
-
-Can be set, to change the associated attribute.
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/DOMTokenList/value)
-    */
-  mutable value: string,
-}
+type domTokenList = Base__DomTypes.domTokenList = {...Base__DomTypes.domTokenList}
 
 /**
 A collection of Attr objects. Objects inside a NamedNodeMap are not in any particular order, unlike NodeList, although they may be accessed by an index as in an array.
 [See NamedNodeMap on MDN](https://developer.mozilla.org/docs/Web/API/NamedNodeMap)
 */
 @editor.completeFrom(NamedNodeMap)
-type namedNodeMap = private {
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/NamedNodeMap/length)
-    */
-  length: int,
-}
+type namedNodeMap = Base__DomTypes.namedNodeMap = private {...Base__DomTypes.namedNodeMap}
 
 /**
 [See FragmentDirective on MDN](https://developer.mozilla.org/docs/Web/API/FragmentDirective)

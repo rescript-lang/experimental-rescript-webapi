@@ -1,3 +1,5 @@
+type t = Base__Element.t = {...Base__Element.t}
+
 module Impl = (
   T: {
     type t
@@ -500,6 +502,6 @@ Returns true if qualifiedName is now present, and false otherwise.
     "toggleAttribute"
 }
 
-include Impl({type t = DomTypes.element})
+include Impl({type t = t})
 
 let isInstanceOf = (_: 't): bool => %raw(`param instanceof Element`)

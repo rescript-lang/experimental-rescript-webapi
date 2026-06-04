@@ -1,9 +1,11 @@
-let location = DomGlobal.document.location
+let location: Location.t = Location.current
 
-// Access properties using `.`
 let href = location.href
+let host = location.host
+let globalHost = Location.host
 
-// Invoke global location methods directly.
 Location.reload()
 
-let a = 0
+ignore(href)
+ignore(host)
+ignore(globalHost)

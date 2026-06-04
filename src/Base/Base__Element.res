@@ -1,23 +1,21 @@
 @@warning("-30")
 
-type t = private {}
-
 type document
-type node
-type htmlElement
-type nodeList<'tNode>
-type domTokenList
-type namedNodeMap
-type shadowRoot
-type htmlCollection<'t>
-type htmlSlotElement
+type node = Base__DomTypes.node
+type htmlElement = Base__DomTypes.htmlElement
+type nodeList<'tNode> = Base__DomTypes.nodeList<'tNode>
+type domTokenList = Base__DomTypes.domTokenList
+type namedNodeMap = Base__DomTypes.namedNodeMap
+type shadowRoot = Base__DomTypes.shadowRoot
+type htmlCollection<'t> = Base__DomTypes.htmlCollection<'t>
+type htmlSlotElement = Base__DomTypes.htmlSlotElement
 
 /**
 Element is the most general base class from which all objects in a Document inherit. It only has methods and properties common to all kinds of elements. More specific classes inherit from Element.
 [See Element on MDN](https://developer.mozilla.org/docs/Web/API/Element)
 TODO: mark as private once mutating fields of private records is allowed
 */
-type rec element = {
+type rec t = {
   // Base properties from Node
   /**
     Returns the type of node.
@@ -190,17 +188,17 @@ type rec element = {
     Returns the child elements.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Document/children)
     */
-  children: htmlCollection<element>,
+  children: htmlCollection<t>,
   /**
     Returns the first child that is an element, and null otherwise.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Document/firstElementChild)
     */
-  firstElementChild: Null.t<element>,
+  firstElementChild: Null.t<t>,
   /**
     Returns the last child that is an element, and null otherwise.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Document/lastElementChild)
     */
-  lastElementChild: Null.t<element>,
+  lastElementChild: Null.t<t>,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Document/childElementCount)
     */
@@ -209,12 +207,12 @@ type rec element = {
     Returns the first preceding sibling that is an element, and null otherwise.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CharacterData/previousElementSibling)
     */
-  previousElementSibling: Null.t<element>,
+  previousElementSibling: Null.t<t>,
   /**
     Returns the first following sibling that is an element, and null otherwise.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CharacterData/nextElementSibling)
     */
-  nextElementSibling: Null.t<element>,
+  nextElementSibling: Null.t<t>,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/assignedSlot)
     */

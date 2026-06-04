@@ -1,7 +1,7 @@
 module MObserver = MutationObserver
 
 let observer = MObserver.make((mutations, obs) => {
-  let button = DomGlobal.document->Document.querySelector("button")
+  let button = Document.querySelector("button")
   switch button->Null.toOption {
   | Some(button) => {
       Console.log(button)

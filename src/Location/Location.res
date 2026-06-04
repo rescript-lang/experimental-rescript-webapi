@@ -76,6 +76,36 @@ Can be set, to navigate to the same WebApiURL with a changed fragment (ignores l
 @scope("globalThis")
 external current: t = "location"
 
+@scope("globalThis.location")
+external href: string = "href"
+
+@scope("globalThis.location")
+external origin: string = "origin"
+
+@scope("globalThis.location")
+external protocol: string = "protocol"
+
+@scope("globalThis.location")
+external host: string = "host"
+
+@scope("globalThis.location")
+external hostname: string = "hostname"
+
+@scope("globalThis.location")
+external port: string = "port"
+
+@scope("globalThis.location")
+external pathname: string = "pathname"
+
+@scope("globalThis.location")
+external search: string = "search"
+
+@scope("globalThis.location")
+external hash: string = "hash"
+
+@scope("globalThis.location")
+external ancestorOrigins: DOMStringList.t = "ancestorOrigins"
+
 /**
 Navigates to the given URL.
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Location/assign)

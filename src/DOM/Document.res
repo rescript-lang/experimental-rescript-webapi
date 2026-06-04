@@ -1,10 +1,12 @@
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Document)
 */
-@new
-external make: unit => DomTypes.document = "Document"
+type t = Base__Document.document = {...Base__Document.document}
 
-include Node.Impl({type t = DomTypes.document})
+@new
+external make: unit => t = "Document"
+
+include Node.Impl({type t = t})
 
 /**
 Returns the first element within node's descendants whose ID is elementId.
@@ -12,7 +14,7 @@ Returns the first element within node's descendants whose ID is elementId.
 TODO: prefer option as much as possible
 */
 @scope("globalThis.document")
-external getElementById: string => null<DomTypes.element> = "getElementById"
+external getElementById: string => null<Element.t> = "getElementById"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Document/getAnimations)
@@ -78,16 +80,15 @@ external replaceChildren2: (DomTypes.document, string) => unit = "replaceChildre
 Returns the first element that is a descendant of node that matches selectors.
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Document/querySelector)
 */
-@send
-external querySelector: (DomTypes.document, string) => Null.t<DomTypes.element> = "querySelector"
+@scope("globalThis.document")
+external querySelector: string => Null.t<Element.t> = "querySelector"
 
 /**
 Returns all element descendants of node that match selectors.
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Document/querySelectorAll)
 */
-@send
-external querySelectorAll: (DomTypes.document, string) => DomTypes.nodeList<DomTypes.element> =
-  "querySelectorAll"
+@scope("globalThis.document")
+external querySelectorAll: string => DomTypes.nodeList<Element.t> = "querySelectorAll"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Document/createExpression)
@@ -117,11 +118,8 @@ Retrieves a collection of objects based on the specified element name.
 @param name Specifies the name of an element.
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Document/getElementsByTagName)
 */
-@send
-external getElementsByTagName: (
-  DomTypes.document,
-  string,
-) => DomTypes.htmlCollection<DomTypes.element> = "getElementsByTagName"
+@scope("globalThis.document")
+external getElementsByTagName: string => DomTypes.htmlCollection<Element.t> = "getElementsByTagName"
 
 /**
 If namespace and localName are "*" returns a HTMLCollection of all descendant elements.
@@ -144,32 +142,28 @@ external getElementsByTagNameNS: (
 Returns a HTMLCollection of the elements in the object on which the method was invoked (a document or an element) that have all the classes given by classNames. The classNames argument is interpreted as a space-separated list of classes.
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Document/getElementsByClassName)
 */
-@send
-external getElementsByClassName: (
-  DomTypes.document,
-  string,
-) => DomTypes.htmlCollection<DomTypes.element> = "getElementsByClassName"
+@scope("globalThis.document")
+external getElementsByClassName: string => DomTypes.htmlCollection<Element.t> =
+  "getElementsByClassName"
 
 /**
 Creates an instance of the element for the specified tag.
 @param tagName The name of an element.
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Document/createElement)
 */
-@send
-external createElement: (DomTypes.document, string, ~options: string=?) => DomTypes.element =
-  "createElement"
+@scope("globalThis.document")
+external createElement: (string, ~options: string=?) => Element.t = "createElement"
 
 /**
 Creates an instance of the element for the specified tag.
 @param tagName The name of an element.
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Document/createElement)
 */
-@send
+@scope("globalThis.document")
 external createElement2: (
-  DomTypes.document,
   ~localName: string,
   ~options: DomTypes.elementCreationOptions=?,
-) => DomTypes.element = "createElement"
+) => Element.t = "createElement"
 
 /**
 Returns an element with namespace namespace. Its namespace prefix will be everything before ":" (U+003E) in qualifiedName or null. Its local name will be everything after ":" (U+003E) in qualifiedName or qualifiedName.
@@ -187,13 +181,12 @@ namespace is the XMLNS namespace and neither qualifiedName nor namespace prefix 
 When supplied, options's is can be used to create a customized built-in element.
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Document/createElementNS)
 */
-@send
+@scope("globalThis.document")
 external createElementNS: (
-  DomTypes.document,
   ~namespace: string,
   ~qualifiedName: string,
   ~options: string=?,
-) => DomTypes.element = "createElementNS"
+) => Element.t = "createElementNS"
 
 /**
 Returns an element with namespace namespace. Its namespace prefix will be everything before ":" (U+003E) in qualifiedName or null. Its local name will be everything after ":" (U+003E) in qualifiedName or qualifiedName.
@@ -211,13 +204,12 @@ namespace is the XMLNS namespace and neither qualifiedName nor namespace prefix 
 When supplied, options's is can be used to create a customized built-in element.
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Document/createElementNS)
 */
-@send
+@scope("globalThis.document")
 external createElementNS2: (
-  DomTypes.document,
   ~namespace: string,
   ~qualifiedName: string,
   ~options: DomTypes.elementCreationOptions=?,
-) => DomTypes.element = "createElementNS"
+) => Element.t = "createElementNS"
 
 /**
 Creates a new document.
