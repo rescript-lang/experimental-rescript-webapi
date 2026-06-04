@@ -13,7 +13,6 @@ type mediaError = private {}
 type timeRanges = private {}
 type htmlFormElement = private {}
 type validityState = private {}
-type document = Base__Document.document
 type cssStyleSheet = CSSStyleSheet.t
 type htmlLabelElement = private {}
 type documentFragment = private {}
@@ -710,7 +709,7 @@ type htmliFrameElement = {
     Retrieves the document object of the page or frame.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLIFrameElement/contentDocument)
     */
-  contentDocument: Null.t<document>,
+  contentDocument: Null.t<Base__Document.document>,
   /**
     Retrieves the object of the specified.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLIFrameElement/contentWindow)
@@ -957,7 +956,7 @@ type htmlObjectElement = {
     Retrieves the document object of the page or frame.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLObjectElement/contentDocument)
     */
-  contentDocument: Null.t<document>,
+  contentDocument: Null.t<Base__Document.document>,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLObjectElement/contentWindow)
     */

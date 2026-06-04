@@ -1,7 +1,7 @@
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Document)
 */
-type t = Base__Document.document = {...Base__Document.document}
+type t = {...Base__Document.document}
 
 @new
 external make: unit => t = "Document"
@@ -20,7 +20,7 @@ external getElementById: string => null<Element.t> = "getElementById"
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Document/getAnimations)
 */
 @send
-external getAnimations: DomTypes.document => array<Animation.t> = "getAnimations"
+external getAnimations: t => array<Animation.t> = "getAnimations"
 
 /**
 Inserts nodes before the first child of node, while replacing strings in nodes with equivalent Text nodes.
@@ -29,7 +29,7 @@ Throws a "HierarchyRequestError" DOMException if the constraints of the node tre
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Document/prepend)
 */
 @send
-external prepend: (DomTypes.document, Node.t) => unit = "prepend"
+external prepend: (t, Node.t) => unit = "prepend"
 
 /**
 Inserts nodes before the first child of node, while replacing strings in nodes with equivalent Text nodes.
@@ -38,7 +38,7 @@ Throws a "HierarchyRequestError" DOMException if the constraints of the node tre
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Document/prepend)
 */
 @send
-external prepend2: (DomTypes.document, string) => unit = "prepend"
+external prepend2: (t, string) => unit = "prepend"
 
 /**
 Inserts nodes after the last child of node, while replacing strings in nodes with equivalent Text nodes.
@@ -47,7 +47,7 @@ Throws a "HierarchyRequestError" DOMException if the constraints of the node tre
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Document/append)
 */
 @send
-external append: (DomTypes.document, Node.t) => unit = "append"
+external append: (t, Node.t) => unit = "append"
 
 /**
 Inserts nodes after the last child of node, while replacing strings in nodes with equivalent Text nodes.
@@ -56,7 +56,7 @@ Throws a "HierarchyRequestError" DOMException if the constraints of the node tre
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Document/append)
 */
 @send
-external append2: (DomTypes.document, string) => unit = "append"
+external append2: (t, string) => unit = "append"
 
 /**
 Replace all children of node with nodes, while replacing strings in nodes with equivalent Text nodes.
@@ -65,7 +65,7 @@ Throws a "HierarchyRequestError" DOMException if the constraints of the node tre
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Document/replaceChildren)
 */
 @send
-external replaceChildren: (DomTypes.document, Node.t) => unit = "replaceChildren"
+external replaceChildren: (t, Node.t) => unit = "replaceChildren"
 
 /**
 Replace all children of node with nodes, while replacing strings in nodes with equivalent Text nodes.
@@ -74,7 +74,7 @@ Throws a "HierarchyRequestError" DOMException if the constraints of the node tre
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Document/replaceChildren)
 */
 @send
-external replaceChildren2: (DomTypes.document, string) => unit = "replaceChildren"
+external replaceChildren2: (t, string) => unit = "replaceChildren"
 
 /**
 Returns the first element that is a descendant of node that matches selectors.
@@ -95,7 +95,7 @@ external querySelectorAll: string => NodeList.t<Element.t> = "querySelectorAll"
 */
 @send
 external createExpression: (
-  DomTypes.document,
+  t,
   ~expression: string,
   ~resolver: DomTypes.xPathNSResolver=?,
 ) => DomTypes.xPathExpression = "createExpression"
@@ -105,7 +105,7 @@ external createExpression: (
 */
 @send
 external evaluate: (
-  DomTypes.document,
+  t,
   ~expression: string,
   ~contextNode: Node.t,
   ~resolver: DomTypes.xPathNSResolver=?,
@@ -133,7 +133,7 @@ Otherwise, returns a HTMLCollection of all descendant elements whose namespace i
 */
 @send
 external getElementsByTagNameNS: (
-  DomTypes.document,
+  t,
   ~namespace: string,
   ~localName: string,
 ) => HTMLCollection.t<Element.t> = "getElementsByTagNameNS"
@@ -215,8 +215,7 @@ Creates a new document.
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Document/createDocumentFragment)
 */
 @send
-external createDocumentFragment: DomTypes.document => DomTypes.documentFragment =
-  "createDocumentFragment"
+external createDocumentFragment: t => DomTypes.documentFragment = "createDocumentFragment"
 
 /**
 Creates a text string from the specified value.
@@ -224,15 +223,14 @@ Creates a text string from the specified value.
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Document/createTextNode)
 */
 @send
-external createTextNode: (DomTypes.document, string) => DomTypes.text = "createTextNode"
+external createTextNode: (t, string) => DomTypes.text = "createTextNode"
 
 /**
 Returns a CDATASection node whose data is data.
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Document/createCDATASection)
 */
 @send
-external createCDATASection: (DomTypes.document, string) => DomTypes.cdataSection =
-  "createCDATASection"
+external createCDATASection: (t, string) => DomTypes.cdataSection = "createCDATASection"
 
 /**
 Creates a comment object with the specified data.
@@ -240,7 +238,7 @@ Creates a comment object with the specified data.
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Document/createComment)
 */
 @send
-external createComment: (DomTypes.document, string) => DomTypes.comment = "createComment"
+external createComment: (t, string) => DomTypes.comment = "createComment"
 
 /**
 Returns a ProcessingInstruction node whose target is target and data is data. If target does not match the Name production an "InvalidCharacterError" DOMException will be thrown. If data contains "?>" an "InvalidCharacterError" DOMException will be thrown.
@@ -248,7 +246,7 @@ Returns a ProcessingInstruction node whose target is target and data is data. If
 */
 @send
 external createProcessingInstruction: (
-  DomTypes.document,
+  t,
   ~target: string,
   ~data: string,
 ) => DomTypes.processingInstruction = "createProcessingInstruction"
@@ -260,7 +258,7 @@ If node is a document or a shadow root, throws a "NotSupportedError" DOMExceptio
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Document/importNode)
 */
 @send
-external importNode: (DomTypes.document, 't, ~deep: bool=?) => 't = "importNode"
+external importNode: (t, 't, ~deep: bool=?) => 't = "importNode"
 
 /**
 Moves node from another document and returns it.
@@ -269,7 +267,7 @@ If node is a document, throws a "NotSupportedError" DOMException or, if node is 
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Document/adoptNode)
 */
 @send
-external adoptNode: (DomTypes.document, 't) => 't = "adoptNode"
+external adoptNode: (t, 't) => 't = "adoptNode"
 
 /**
 Creates an attribute object with a specified name.
@@ -277,30 +275,27 @@ Creates an attribute object with a specified name.
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Document/createAttribute)
 */
 @send
-external createAttribute: (DomTypes.document, string) => DomTypes.attr = "createAttribute"
+external createAttribute: (t, string) => DomTypes.attr = "createAttribute"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Document/createAttributeNS)
 */
 @send
-external createAttributeNS: (
-  DomTypes.document,
-  ~namespace: string,
-  ~qualifiedName: string,
-) => DomTypes.attr = "createAttributeNS"
+external createAttributeNS: (t, ~namespace: string, ~qualifiedName: string) => DomTypes.attr =
+  "createAttributeNS"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Document/createEvent)
 */
 @send
-external createEvent: (DomTypes.document, string) => Event.t = "createEvent"
+external createEvent: (t, string) => Event.t = "createEvent"
 
 /**
  Returns an empty range object that has both of its boundary points positioned at the beginning of the document.
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Document/createRange)
 */
 @send
-external createRange: DomTypes.document => DomTypes.range = "createRange"
+external createRange: t => DomTypes.range = "createRange"
 
 /**
 Creates a NodeIterator object that you can use to traverse filtered lists of nodes or elements in a document.
@@ -311,7 +306,7 @@ Creates a NodeIterator object that you can use to traverse filtered lists of nod
 */
 @send
 external createNodeIterator: (
-  DomTypes.document,
+  t,
   ~root: Node.t,
   ~whatToShow: int=?,
   ~filter: DomTypes.nodeFilter=?,
@@ -326,7 +321,7 @@ Creates a TreeWalker object that you can use to traverse filtered lists of nodes
 */
 @send
 external createTreeWalker: (
-  DomTypes.document,
+  t,
   ~root: Node.t,
   ~whatToShow: int=?,
   ~filter: DomTypes.nodeFilter=?,
@@ -337,7 +332,7 @@ external createTreeWalker: (
 */
 @send
 external startViewTransition: (
-  DomTypes.document,
+  t,
   ~callbackOptions: ViewTransitionsTypes.viewTransitionUpdateCallback=?,
 ) => ViewTransitionsTypes.viewTransition = "startViewTransition"
 
@@ -346,7 +341,7 @@ external startViewTransition: (
 */
 @send
 external caretPositionFromPoint: (
-  DomTypes.document,
+  t,
   ~x: float,
   ~y: float,
   ~options: DomTypes.caretPositionFromPointOptions=?,
@@ -357,13 +352,13 @@ Stops document's fullscreen element from being displayed fullscreen and resolves
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Document/exitFullscreen)
 */
 @send
-external exitFullscreen: DomTypes.document => promise<unit> = "exitFullscreen"
+external exitFullscreen: t => promise<unit> = "exitFullscreen"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Document/parseHTMLUnsafe_static)
 */
 @scope("Document")
-external parseHTMLUnsafe: string => DomTypes.document = "parseHTMLUnsafe"
+external parseHTMLUnsafe: string => t = "parseHTMLUnsafe"
 
 /**
 Gets a collection of objects based on the value of the NAME or ID attribute.
@@ -371,8 +366,7 @@ Gets a collection of objects based on the value of the NAME or ID attribute.
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Document/getElementsByName)
 */
 @send
-external getElementsByName: (DomTypes.document, string) => NodeList.t<HTMLElement.t> =
-  "getElementsByName"
+external getElementsByName: (t, string) => NodeList.t<HTMLElement.t> = "getElementsByName"
 
 /**
 Opens a new window and loads a document specified by a given URL. Also, opens a new window that uses the url parameter and the name parameter to collect the output of the write method and the writeln method.
@@ -383,8 +377,7 @@ Opens a new window and loads a document specified by a given URL. Also, opens a 
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Document/open)
 */
 @send
-external open_: (DomTypes.document, ~unused1: string=?, ~unused2: string=?) => DomTypes.document =
-  "open"
+external open_: (t, ~unused1: string=?, ~unused2: string=?) => t = "open"
 
 /**
 Opens a new window and loads a document specified by a given URL. Also, opens a new window that uses the url parameter and the name parameter to collect the output of the write method and the writeln method.
@@ -395,19 +388,14 @@ Opens a new window and loads a document specified by a given URL. Also, opens a 
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Document/open)
 */
 @send
-external open2: (
-  DomTypes.document,
-  ~url: string,
-  ~name: string,
-  ~features: string,
-) => DomTypes.window = "open"
+external open2: (t, ~url: string, ~name: string, ~features: string) => DomTypes.window = "open"
 
 /**
 Closes an output stream and forces the sent data to display.
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Document/close)
 */
 @send
-external close: DomTypes.document => unit = "close"
+external close: t => unit = "close"
 
 /**
 Writes one or more HTML expressions to a document in the specified window.
@@ -415,7 +403,7 @@ Writes one or more HTML expressions to a document in the specified window.
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Document/write)
 */
 @send
-external write: (DomTypes.document, string) => unit = "write"
+external write: (t, string) => unit = "write"
 
 /**
 Writes one or more HTML expressions, followed by a carriage return, to a document in the specified window.
@@ -423,44 +411,44 @@ Writes one or more HTML expressions, followed by a carriage return, to a documen
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Document/writeln)
 */
 @send
-external writeln: (DomTypes.document, string) => unit = "writeln"
+external writeln: (t, string) => unit = "writeln"
 
 /**
 Gets a value indicating whether the object currently has focus.
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Document/hasFocus)
 */
 @send
-external hasFocus: DomTypes.document => bool = "hasFocus"
+external hasFocus: t => bool = "hasFocus"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Document/exitPictureInPicture)
 */
 @send
-external exitPictureInPicture: DomTypes.document => promise<unit> = "exitPictureInPicture"
+external exitPictureInPicture: t => promise<unit> = "exitPictureInPicture"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Document/exitPointerLock)
 */
 @send
-external exitPointerLock: DomTypes.document => unit = "exitPointerLock"
+external exitPointerLock: t => unit = "exitPointerLock"
 
 /**
 Returns an object representing the current selection of the document that is loaded into the object displaying a webpage.
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Document/getSelection)
 */
 @send
-external getSelection: DomTypes.document => null<DomTypes.selection> = "getSelection"
+external getSelection: t => null<DomTypes.selection> = "getSelection"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Document/hasStorageAccess)
 */
 @send
-external hasStorageAccess: DomTypes.document => promise<bool> = "hasStorageAccess"
+external hasStorageAccess: t => promise<bool> = "hasStorageAccess"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Document/requestStorageAccess)
 */
 @send
-external requestStorageAccess: DomTypes.document => promise<unit> = "requestStorageAccess"
+external requestStorageAccess: t => promise<unit> = "requestStorageAccess"
 
 let isInstanceOf = (_: 't): bool => %raw(`param instanceof Document`)

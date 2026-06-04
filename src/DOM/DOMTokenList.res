@@ -1,4 +1,4 @@
-type t = Base__DOMTokenList.t = {...Base__DOMTokenList.t}
+type t = {...Base__DOMTokenList.t}
 
 /**
 Returns the token with index index.

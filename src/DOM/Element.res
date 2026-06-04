@@ -1,4 +1,4 @@
-type t = Base__Element.t = {...Base__Element.t}
+type t = {...Base__Element.t}
 
 module Impl = (
   T: {

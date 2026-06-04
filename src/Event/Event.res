@@ -1,4 +1,4 @@
-type t = Base__Event.t = private {...Base__Event.t}
+type t = private {...Base__Event.t}
 
 type eventListener<'event> = EventTypes.eventListener<'event>
 

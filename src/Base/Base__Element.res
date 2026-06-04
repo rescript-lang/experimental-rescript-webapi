@@ -113,7 +113,7 @@ type rec t = {
     Allows for manipulation of element's class content attribute as a set of whitespace-separated tokens through a DOMTokenList object.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/classList)
     */
-  classList: Base__DOMTokenList.t,
+  classList: DOMTokenList.t,
   /**
     Returns the value of element's slot content attribute. Can be set to change it.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/slot)
@@ -131,7 +131,7 @@ type rec t = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/part)
     */
-  part: Base__DOMTokenList.t,
+  part: DOMTokenList.t,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/scrollTop)
     */

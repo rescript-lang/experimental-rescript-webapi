@@ -1,4 +1,5 @@
 let element: Element.t = Document.createElement("button")
+let div: Element.t = Document.createElement("div")
 
 element.id = "save"
 element.className = "primary"
@@ -21,6 +22,8 @@ let maybeElementById: null<Element.t> = Document.getElementById("save")
 let document: Document.t = DomGlobal.document
 let firstDocumentChildNode = document.childNodes->NodeList.item(0)
 let firstDocumentChildElement = document.children->HTMLCollection.item(0)
+let documentText = document->Document.createTextNode("hello")
+let documentRange = document->Document.createRange
 
 let location: Location.t = Location.current
 let href = location.href
@@ -41,5 +44,8 @@ ignore(maybeElement)
 ignore(maybeElementById)
 ignore(firstDocumentChildNode)
 ignore(firstDocumentChildElement)
+ignore(div)
+ignore(documentText)
+ignore(documentRange)
 ignore(href)
 ignore(currentHost)

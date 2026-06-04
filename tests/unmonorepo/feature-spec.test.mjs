@@ -98,6 +98,7 @@ test("keeps DOM.res from re-exporting owner module types", () => {
   assert.match(baseElementSource, /^type rec t = \{$/m);
   assert.equal(baseElementSource.includes("type rec element = {"), false);
   assert.equal(existsSync(join(repoRoot, "src", "Base", "Base__DomTypes.res")), false);
+  assert.equal(/^type document\b/m.test(domTypesSource), false);
   assert.equal(/^type element\b/m.test(domTypesSource), false);
   assert.equal(domTypesSource.includes("type nodeList"), false);
   assert.equal(domTypesSource.includes("type htmlCollection"), false);

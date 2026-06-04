@@ -1,4 +1,4 @@
-type t = Base__t
+type t = Base__HTMLSlotElement.t
 
 include HTMLElement.Impl({type t = t})
 
