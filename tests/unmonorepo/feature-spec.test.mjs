@@ -109,6 +109,26 @@ test("keeps DOM.res from re-exporting owner module types", () => {
   assert.equal(domSource.includes("Base__EventTarget"), false);
 });
 
+test("keeps DOM feature dependencies available for DOM-only consumers", () => {
+  const config = JSON.parse(readFileSync(join(repoRoot, "rescript.json"), "utf8"));
+  const sourceEntries = config.sources.filter((source) => source.dir?.startsWith("src/"));
+  const domSource = sourceEntries.find((source) => source.dir === "src/DOM");
+  const htmlSource = sourceEntries.find((source) => source.dir === "src/HTML");
+
+  assert.ok(domSource, "src/DOM source entry should exist");
+  assert.ok(htmlSource, "src/HTML source entry should exist");
+  assert.ok(
+    domSource.public.includes("HTMLCollection"),
+    "src/DOM should expose HTMLCollection because DOM modules return HTMLCollection.t",
+  );
+  assert.ok(
+    domSource.public.includes("HTMLElement"),
+    "src/DOM should expose HTMLElement because DOM modules return HTMLElement.t",
+  );
+  assert.equal(htmlSource.public.includes("HTMLCollection"), false);
+  assert.equal(htmlSource.public.includes("HTMLElement"), false);
+});
+
 test("normalizes internal prefixes and public duplicate names", () => {
   assert.equal(publicModuleToInternalPrefix("DOM"), "Dom");
   assert.equal(publicModuleToInternalPrefix("URL"), "Url");
