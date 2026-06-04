@@ -3,7 +3,9 @@
   "namespace": "WebAPI",
   "features": {
     "WebAPI.Base": ["WebAPI.EventTypes", "WebAPI.Location"],
-    "WebAPI.DOM": [
+    "WebAPI.DOM": [],
+    "WebAPI.DOMExtended": [
+      "WebAPI.DOM",
       "WebAPI.Base",
       "WebAPI.Animations",
       "WebAPI.CSSFontLoading",
@@ -26,14 +28,14 @@
       "WebAPI.VisualViewport"
     ],
     "WebAPI.Canvas": [
-      "WebAPI.DOM",
+      "WebAPI.DOMExtended",
       "WebAPI.Event",
       "WebAPI.File",
       "WebAPI.HTML",
       "WebAPI.MediaCaptureAndStreams"
     ],
     "WebAPI.CSSOM": ["WebAPI.Event", "WebAPI.EventTypes"],
-    "WebAPI.CustomElements": ["WebAPI.DOM"],
+    "WebAPI.CustomElements": ["WebAPI.DOMExtended", "WebAPI.HTML"],
     "WebAPI.CredentialManagement": ["WebAPI.Event"],
     "WebAPI.EventTypes": [],
     "WebAPI.Event": ["WebAPI.Base", "WebAPI.EventTypes"],
@@ -48,7 +50,7 @@
     ],
     "WebAPI.IntersectionObserver": ["WebAPI.DOM", "WebAPI.Geometry"],
     "WebAPI.Location": ["WebAPI.DOMStringList"],
-    "WebAPI.HTML": ["WebAPI.DOM", "WebAPI.PictureInPicture", "WebAPI.VTT"],
+    "WebAPI.HTML": ["WebAPI.DOMExtended", "WebAPI.PictureInPicture", "WebAPI.VTT"],
     "WebAPI.Navigator": [
       "WebAPI.Base",
       "WebAPI.Event",
@@ -59,12 +61,12 @@
       "WebAPI.MIDI"
     ],
     "WebAPI.ScreenOrientation": ["WebAPI.Event"],
-    "WebAPI.SVG": ["WebAPI.DOM", "WebAPI.Geometry"],
+    "WebAPI.SVG": ["WebAPI.DOMExtended", "WebAPI.Geometry"],
     "WebAPI.Animations": ["WebAPI.Event", "WebAPI.EventTypes"],
     "WebAPI.Audio": [
       "WebAPI.ChannelMessaging",
       "WebAPI.DOMException",
-      "WebAPI.DOM",
+      "WebAPI.DOMExtended",
       "WebAPI.Event",
       "WebAPI.HTML",
       "WebAPI.MediaCaptureAndStreams"
@@ -82,7 +84,7 @@
     "WebAPI.Speech": ["WebAPI.Event"],
     "WebAPI.Storage": ["WebAPI.Event"],
     "WebAPI.StorageManager": ["WebAPI.File"],
-    "WebAPI.UIEvents": ["WebAPI.DOM", "WebAPI.Event", "WebAPI.FileList"],
+    "WebAPI.UIEvents": ["WebAPI.DOMExtended", "WebAPI.Event", "WebAPI.FileList"],
     "WebAPI.VTT": ["WebAPI.Event"],
     "WebAPI.Workers": [
       "WebAPI.ChannelMessaging",
@@ -91,12 +93,12 @@
     ],
     "WebAPI.Window": [
       "WebAPI.ChannelMessaging",
-      "WebAPI.DOM",
+      "WebAPI.DOMExtended",
       "WebAPI.Event",
       "WebAPI.IdleDeadline",
       "WebAPI.Location"
     ],
-    "WebAPI.XPath": ["WebAPI.DOM"]
+    "WebAPI.XPath": ["WebAPI.DOMExtended"]
   },
   "sources": [
     {
@@ -158,17 +160,22 @@
       "subdirs": true,
       "feature": "WebAPI.DOM",
       "public": [
+        "Document",
+        "Element"
+      ]
+    },
+    {
+      "dir": "src/DOMExtended",
+      "subdirs": true,
+      "feature": "WebAPI.DOMExtended",
+      "public": [
         "CaretPosition",
         "CharacterData",
         "Comment",
         "DOM",
         "DOMImplementation",
         "DOMTokenList",
-        "Document",
         "DocumentFragment",
-        "Element",
-        "HTMLCollection",
-        "HTMLElement",
         "NamedNodeMap",
         "Node",
         "NodeFilter",
@@ -352,11 +359,13 @@
         "HTMLBaseElement",
         "HTMLBodyElement",
         "HTMLButtonElement",
+        "HTMLCollection",
         "HTMLDListElement",
         "HTMLDataElement",
         "HTMLDataListElement",
         "HTMLDialogElement",
         "HTMLDivElement",
+        "HTMLElement",
         "HTMLEmbedElement",
         "HTMLFieldSetElement",
         "HTMLFormControlsCollection",

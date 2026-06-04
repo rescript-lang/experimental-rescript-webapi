@@ -71,30 +71,14 @@ test("keeps Base__Document from re-exporting leaf-owned aliases", () => {
   assert.equal(baseDocumentSource.includes("type element = Base__Element.element"), false);
 });
 
-test("keeps DOM.res from re-exporting owner module types", () => {
-  const domSource = readFileSync(join(repoRoot, "src", "DOM", "DOM.res"), "utf8");
-  const domTypesSource = readFileSync(join(repoRoot, "src", "DOM", "DomTypes.res"), "utf8");
+test("keeps DOM owner type aliases out of public compatibility modules", () => {
+  const domTypesSource = readFileSync(join(repoRoot, "src", "DOMExtended", "DomTypes.res"), "utf8");
   const baseElementSource = readFileSync(
     join(repoRoot, "src", "Base", "Base__Element.res"),
     "utf8",
   );
-  const declaredTypes = [];
 
-  for (const rawLine of domSource.split("\n")) {
-    const line = rawLine.trim();
-    const typeMatch = line.match(/^type(?:\s+rec)?\s+([a-z][A-Za-z0-9_]*)/);
-    if (typeMatch) {
-      declaredTypes.push(typeMatch[1]);
-      continue;
-    }
-
-    const andMatch = line.match(/^@editor\.completeFrom\([^)]*\)\s+and\s+([a-z][A-Za-z0-9_]*)/);
-    if (andMatch) {
-      declaredTypes.push(andMatch[1]);
-    }
-  }
-
-  assert.deepEqual(declaredTypes, []);
+  assert.equal(existsSync(join(repoRoot, "src", "DOM", "DOM.res")), false);
   assert.match(baseElementSource, /^type rec t = \{$/m);
   assert.equal(baseElementSource.includes("type rec element = {"), false);
   assert.equal(existsSync(join(repoRoot, "src", "Base", "Base__DomTypes.res")), false);
@@ -104,12 +88,9 @@ test("keeps DOM.res from re-exporting owner module types", () => {
   assert.equal(domTypesSource.includes("type htmlCollection"), false);
   assert.equal(domTypesSource.includes("type domTokenList"), false);
   assert.equal(domTypesSource.includes("type namedNodeMap"), false);
-  assert.equal(domSource.includes("Base__Element"), false);
-  assert.equal(domSource.includes("Base__Event"), false);
-  assert.equal(domSource.includes("Base__EventTarget"), false);
 });
 
-test("keeps DOM feature dependencies available for DOM-only consumers", () => {
+test("keeps DOM feature minimal for React-oriented consumers", () => {
   const config = JSON.parse(readFileSync(join(repoRoot, "rescript.json"), "utf8"));
   const sourceEntries = config.sources.filter((source) => source.dir?.startsWith("src/"));
   const domSource = sourceEntries.find((source) => source.dir === "src/DOM");
@@ -117,16 +98,10 @@ test("keeps DOM feature dependencies available for DOM-only consumers", () => {
 
   assert.ok(domSource, "src/DOM source entry should exist");
   assert.ok(htmlSource, "src/HTML source entry should exist");
-  assert.ok(
-    domSource.public.includes("HTMLCollection"),
-    "src/DOM should expose HTMLCollection because DOM modules return HTMLCollection.t",
-  );
-  assert.ok(
-    domSource.public.includes("HTMLElement"),
-    "src/DOM should expose HTMLElement because DOM modules return HTMLElement.t",
-  );
-  assert.equal(htmlSource.public.includes("HTMLCollection"), false);
-  assert.equal(htmlSource.public.includes("HTMLElement"), false);
+  assert.deepEqual(config.features["WebAPI.DOM"], []);
+  assert.deepEqual(domSource.public, ["Document", "Element"]);
+  assert.ok(htmlSource.public.includes("HTMLCollection"));
+  assert.ok(htmlSource.public.includes("HTMLElement"));
 });
 
 test("normalizes internal prefixes and public duplicate names", () => {

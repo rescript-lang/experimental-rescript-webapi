@@ -1,5 +1,7 @@
 module MObserver = MutationObserver
 
+external documentAsNode: Document.t => Node.t = "%identity"
+
 let observer = MObserver.make((mutations, obs) => {
   let button = Document.querySelector("button")
   switch button->Null.toOption {
@@ -13,7 +15,7 @@ let observer = MObserver.make((mutations, obs) => {
 })
 
 observer->MObserver.observe(
-  ~target=DomGlobal.document->Document.asNode,
+  ~target=DomGlobal.document->documentAsNode,
   ~options={childList: true, subtree: true},
 )
 
