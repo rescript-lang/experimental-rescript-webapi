@@ -23,7 +23,7 @@ This WebApiServiceWorker API interface provides a reference to a service worker.
 */
 @editor.completeFrom(WebApiServiceWorker)
 type serviceWorker = private {
-  ...Event.eventTarget,
+  ...EventTarget.t,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/ServiceWorker/scriptURL)
     */
@@ -46,7 +46,7 @@ This WebApiServiceWorker API interface represents the service worker registratio
 */
 @editor.completeFrom(ServiceWorkerRegistration)
 type serviceWorkerRegistration = private {
-  ...Event.eventTarget,
+  ...EventTarget.t,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/ServiceWorkerRegistration/installing)
     */
@@ -83,7 +83,7 @@ The ServiceWorkerContainer interface of the WebApiServiceWorker API provides
 */
 @editor.completeFrom(ServiceWorkerContainer)
 type serviceWorkerContainer = private {
-  ...Event.eventTarget,
+  ...EventTarget.t,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/ServiceWorkerContainer/controller)
     */

@@ -29,7 +29,7 @@ Throws a "HierarchyRequestError" DOMException if the constraints of the node tre
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Document/prepend)
 */
 @send
-external prepend: (DomTypes.document, DomTypes.node) => unit = "prepend"
+external prepend: (DomTypes.document, Node.t) => unit = "prepend"
 
 /**
 Inserts nodes before the first child of node, while replacing strings in nodes with equivalent Text nodes.
@@ -47,7 +47,7 @@ Throws a "HierarchyRequestError" DOMException if the constraints of the node tre
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Document/append)
 */
 @send
-external append: (DomTypes.document, DomTypes.node) => unit = "append"
+external append: (DomTypes.document, Node.t) => unit = "append"
 
 /**
 Inserts nodes after the last child of node, while replacing strings in nodes with equivalent Text nodes.
@@ -65,7 +65,7 @@ Throws a "HierarchyRequestError" DOMException if the constraints of the node tre
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Document/replaceChildren)
 */
 @send
-external replaceChildren: (DomTypes.document, DomTypes.node) => unit = "replaceChildren"
+external replaceChildren: (DomTypes.document, Node.t) => unit = "replaceChildren"
 
 /**
 Replace all children of node with nodes, while replacing strings in nodes with equivalent Text nodes.
@@ -88,7 +88,7 @@ Returns all element descendants of node that match selectors.
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Document/querySelectorAll)
 */
 @scope("globalThis.document")
-external querySelectorAll: string => DomTypes.nodeList<Element.t> = "querySelectorAll"
+external querySelectorAll: string => NodeList.t<Element.t> = "querySelectorAll"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Document/createExpression)
@@ -107,7 +107,7 @@ external createExpression: (
 external evaluate: (
   DomTypes.document,
   ~expression: string,
-  ~contextNode: DomTypes.node,
+  ~contextNode: Node.t,
   ~resolver: DomTypes.xPathNSResolver=?,
   ~type_: int=?,
   ~result: DomTypes.xPathResult=?,
@@ -119,7 +119,7 @@ Retrieves a collection of objects based on the specified element name.
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Document/getElementsByTagName)
 */
 @scope("globalThis.document")
-external getElementsByTagName: string => DomTypes.htmlCollection<Element.t> = "getElementsByTagName"
+external getElementsByTagName: string => HTMLCollection.t<Element.t> = "getElementsByTagName"
 
 /**
 If namespace and localName are "*" returns a HTMLCollection of all descendant elements.
@@ -136,15 +136,14 @@ external getElementsByTagNameNS: (
   DomTypes.document,
   ~namespace: string,
   ~localName: string,
-) => DomTypes.htmlCollection<DomTypes.element> = "getElementsByTagNameNS"
+) => HTMLCollection.t<Element.t> = "getElementsByTagNameNS"
 
 /**
 Returns a HTMLCollection of the elements in the object on which the method was invoked (a document or an element) that have all the classes given by classNames. The classNames argument is interpreted as a space-separated list of classes.
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Document/getElementsByClassName)
 */
 @scope("globalThis.document")
-external getElementsByClassName: string => DomTypes.htmlCollection<Element.t> =
-  "getElementsByClassName"
+external getElementsByClassName: string => HTMLCollection.t<Element.t> = "getElementsByClassName"
 
 /**
 Creates an instance of the element for the specified tag.
@@ -294,7 +293,7 @@ external createAttributeNS: (
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Document/createEvent)
 */
 @send
-external createEvent: (DomTypes.document, string) => DOM.event = "createEvent"
+external createEvent: (DomTypes.document, string) => Event.t = "createEvent"
 
 /**
  Returns an empty range object that has both of its boundary points positioned at the beginning of the document.
@@ -313,7 +312,7 @@ Creates a NodeIterator object that you can use to traverse filtered lists of nod
 @send
 external createNodeIterator: (
   DomTypes.document,
-  ~root: DomTypes.node,
+  ~root: Node.t,
   ~whatToShow: int=?,
   ~filter: DomTypes.nodeFilter=?,
 ) => DomTypes.nodeIterator = "createNodeIterator"
@@ -328,7 +327,7 @@ Creates a TreeWalker object that you can use to traverse filtered lists of nodes
 @send
 external createTreeWalker: (
   DomTypes.document,
-  ~root: DomTypes.node,
+  ~root: Node.t,
   ~whatToShow: int=?,
   ~filter: DomTypes.nodeFilter=?,
 ) => DomTypes.treeWalker = "createTreeWalker"
@@ -372,7 +371,7 @@ Gets a collection of objects based on the value of the NAME or ID attribute.
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Document/getElementsByName)
 */
 @send
-external getElementsByName: (DomTypes.document, string) => DomTypes.nodeList<DomTypes.htmlElement> =
+external getElementsByName: (DomTypes.document, string) => NodeList.t<HTMLElement.t> =
   "getElementsByName"
 
 /**

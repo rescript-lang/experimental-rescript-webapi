@@ -1,2 +1,2 @@
 @send
-external acceptNode: (DomTypes.nodeFilter, DomTypes.node) => int = "acceptNode"
+external acceptNode: (DomTypes.nodeFilter, Node.t) => int = "acceptNode"

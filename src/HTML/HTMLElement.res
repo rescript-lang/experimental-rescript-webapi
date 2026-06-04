@@ -1,4 +1,4 @@
-type t = DomTypes.htmlElement
+type t = Base__HTMLElement.t
 
 module Impl = (
   T: {

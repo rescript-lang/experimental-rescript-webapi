@@ -26,7 +26,7 @@ type resizeObserverEntry = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/ResizeObserverEntry/target)
     */
-  target: DomTypes.element,
+  target: Element.t,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/ResizeObserverEntry/contentRect)
     */

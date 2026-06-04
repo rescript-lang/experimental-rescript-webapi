@@ -1,5 +1,5 @@
 /**
-Inserts element before the DomTypes.node given by before.
+Inserts element before the Node.t given by before.
 
 The before argument can be a number, in which case element is inserted before the item with that number, or an element from the collection, in which case element is inserted before that element.
 

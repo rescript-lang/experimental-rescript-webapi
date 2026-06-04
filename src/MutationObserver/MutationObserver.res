@@ -11,7 +11,7 @@ external make: MutationObserverTypes.mutationObserverCallback => MutationObserve
 @send
 external observe: (
   MutationObserverTypes.mutationObserver,
-  ~target: DomTypes.node,
+  ~target: Node.t,
   ~options: MutationObserverTypes.mutationObserverInit=?,
 ) => unit = "observe"
 

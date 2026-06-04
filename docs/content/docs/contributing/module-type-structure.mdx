@@ -88,18 +88,15 @@ type t = private {}
 
 // Element.res
 type t = Base__Element.t = {...Base__Element.t}
-
-// DomTypes.res
-type element = Base__Element.t = {...Base__Element.t}
 ```
 
-This keeps `Element.t` as the public type name while still allowing generated DOM structural
-types to share the same object identity. `Element.Impl` remains reusable for element subtypes,
+This keeps `Element.t` as the public type name while still allowing structural
+types to share the same object identity through the base owner. `Element.Impl` remains reusable for element subtypes,
 and subtype modules should continue to include the nearest base method implementation:
 
 ```ReScript
 // HTMLElement.res
-include Element.Impl({type t = DomTypes.htmlElement})
+include Element.Impl({type t = HTMLElement.t})
 
 // HTMLButtonElement.res
 include HTMLElement.Impl({type t = DomTypes.htmlButtonElement})

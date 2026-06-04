@@ -11,7 +11,7 @@ external make: ResizeObserverTypes.resizeObserverCallback => ResizeObserverTypes
 @send
 external observe: (
   ResizeObserverTypes.resizeObserver,
-  ~target: DomTypes.element,
+  ~target: Element.t,
   ~options: ResizeObserverTypes.resizeObserverOptions=?,
 ) => unit = "observe"
 
@@ -19,7 +19,7 @@ external observe: (
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/ResizeObserver/unobserve)
 */
 @send
-external unobserve: (ResizeObserverTypes.resizeObserver, DomTypes.element) => unit = "unobserve"
+external unobserve: (ResizeObserverTypes.resizeObserver, Element.t) => unit = "unobserve"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/ResizeObserver/disconnect)

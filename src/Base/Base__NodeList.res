@@ -1,0 +1,1 @@
+type t<'node> = private {}

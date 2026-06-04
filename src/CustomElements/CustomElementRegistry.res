@@ -4,7 +4,7 @@
 @scope("globalThis.customElements")
 external define: (
   ~name: string,
-  ~constructor: DomTypes.htmlElement,
+  ~constructor: HTMLElement.t,
   ~options: DomTypes.elementDefinitionOptions=?,
 ) => unit = "define"
 
@@ -24,4 +24,4 @@ external whenDefined: string => promise<DomTypes.customElementConstructor> = "wh
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CustomElementRegistry/upgrade)
 */
 @scope("globalThis.customElements")
-external upgrade: DomTypes.node => unit = "upgrade"
+external upgrade: Node.t => unit = "upgrade"

@@ -17,7 +17,7 @@ external setValidity: (
   DomTypes.elementInternals,
   ~flags: DomTypes.validityStateFlags=?,
   ~message: string=?,
-  ~anchor: DomTypes.htmlElement=?,
+  ~anchor: HTMLElement.t=?,
 ) => unit = "setValidity"
 
 /**

@@ -6,7 +6,7 @@ This Web Speech API interface is the controller interface for the speech service
 */
 @editor.completeFrom(SpeechSynthesis)
 type speechSynthesis = private {
-  ...Event.eventTarget,
+  ...EventTarget.t,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/SpeechSynthesis/pending)
     */
@@ -55,7 +55,7 @@ TODO: mark as private once mutating fields of private records is allowed
 */
 @editor.completeFrom(SpeechSynthesisUtterance)
 type speechSynthesisUtterance = {
-  ...Event.eventTarget,
+  ...EventTarget.t,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/SpeechSynthesisUtterance/text)
     */

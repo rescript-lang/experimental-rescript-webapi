@@ -1,12 +1,12 @@
 external fromDocument: DomTypes.document => IntersectionObserverTypes.root = "%identity"
-external fromElement: DomTypes.element => IntersectionObserverTypes.root = "%identity"
+external fromElement: Element.t => IntersectionObserverTypes.root = "%identity"
 external fromNull: IntersectionObserverTypes.root = "null"
 
-external toElement: IntersectionObserverTypes.root => DomTypes.element = "%identity"
+external toElement: IntersectionObserverTypes.root => Element.t = "%identity"
 external toDocument: IntersectionObserverTypes.root => DomTypes.document = "%identity"
 
 type decoded =
-  | Element(DomTypes.element)
+  | Element(Element.t)
   | Document(DomTypes.document)
   | Null
 

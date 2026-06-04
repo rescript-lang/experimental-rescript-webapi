@@ -32,14 +32,13 @@ external empty: DomTypes.selection => unit = "empty"
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Selection/collapse)
 */
 @send
-external collapse: (DomTypes.selection, ~node: DomTypes.node, ~offset: int=?) => unit = "collapse"
+external collapse: (DomTypes.selection, ~node: Node.t, ~offset: int=?) => unit = "collapse"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Selection/collapse)
 */
 @send
-external setPosition: (DomTypes.selection, ~node: DomTypes.node, ~offset: int=?) => unit =
-  "setPosition"
+external setPosition: (DomTypes.selection, ~node: Node.t, ~offset: int=?) => unit = "setPosition"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Selection/collapseToStart)
@@ -57,7 +56,7 @@ external collapseToEnd: DomTypes.selection => unit = "collapseToEnd"
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Selection/extend)
 */
 @send
-external extend: (DomTypes.selection, ~node: DomTypes.node, ~offset: int=?) => unit = "extend"
+external extend: (DomTypes.selection, ~node: Node.t, ~offset: int=?) => unit = "extend"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Selection/setBaseAndExtent)
@@ -65,9 +64,9 @@ external extend: (DomTypes.selection, ~node: DomTypes.node, ~offset: int=?) => u
 @send
 external setBaseAndExtent: (
   DomTypes.selection,
-  ~anchorNode: DomTypes.node,
+  ~anchorNode: Node.t,
   ~anchorOffset: int,
-  ~focusNode: DomTypes.node,
+  ~focusNode: Node.t,
   ~focusOffset: int,
 ) => unit = "setBaseAndExtent"
 
@@ -75,7 +74,7 @@ external setBaseAndExtent: (
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Selection/selectAllChildren)
 */
 @send
-external selectAllChildren: (DomTypes.selection, DomTypes.node) => unit = "selectAllChildren"
+external selectAllChildren: (DomTypes.selection, Node.t) => unit = "selectAllChildren"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Selection/modify)
@@ -100,6 +99,6 @@ external deleteFromDocument: DomTypes.selection => unit = "deleteFromDocument"
 @send
 external containsNode: (
   DomTypes.selection,
-  ~node: DomTypes.node,
+  ~node: Node.t,
   ~allowPartialContainment: bool=?,
 ) => bool = "containsNode"

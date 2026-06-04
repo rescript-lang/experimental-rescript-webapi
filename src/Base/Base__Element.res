@@ -1,14 +1,6 @@
 @@warning("-30")
 
 type document
-type node = Base__DomTypes.node
-type htmlElement = Base__DomTypes.htmlElement
-type nodeList<'tNode> = Base__DomTypes.nodeList<'tNode>
-type domTokenList = Base__DomTypes.domTokenList
-type namedNodeMap = Base__DomTypes.namedNodeMap
-type shadowRoot = Base__DomTypes.shadowRoot
-type htmlCollection<'t> = Base__DomTypes.htmlCollection<'t>
-type htmlSlotElement = Base__DomTypes.htmlSlotElement
 
 /**
 Element is the most general base class from which all objects in a Document inherit. It only has methods and properties common to all kinds of elements. More specific classes inherit from Element.
@@ -46,37 +38,37 @@ type rec t = {
     Returns the parent.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/parentNode)
     */
-  parentNode: Null.t<node>,
+  parentNode: Null.t<Base__Node.t>,
   /**
     Returns the parent element.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/parentElement)
     */
-  parentElement: Null.t<htmlElement>,
+  parentElement: Null.t<Base__HTMLElement.t>,
   /**
     Returns the children.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/childNodes)
     */
-  childNodes: nodeList<node>,
+  childNodes: Base__NodeList.t<Base__Node.t>,
   /**
     Returns the first child.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/firstChild)
     */
-  firstChild: Null.t<node>,
+  firstChild: Null.t<Base__Node.t>,
   /**
     Returns the last child.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/lastChild)
     */
-  lastChild: Null.t<node>,
+  lastChild: Null.t<Base__Node.t>,
   /**
     Returns the previous sibling.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/previousSibling)
     */
-  previousSibling: Null.t<node>,
+  previousSibling: Null.t<Base__Node.t>,
   /**
     Returns the next sibling.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/nextSibling)
     */
-  nextSibling: Null.t<node>,
+  nextSibling: Null.t<Base__Node.t>,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/nodeValue)
     */
@@ -121,7 +113,7 @@ type rec t = {
     Allows for manipulation of element's class content attribute as a set of whitespace-separated tokens through a DOMTokenList object.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/classList)
     */
-  classList: domTokenList,
+  classList: Base__DOMTokenList.t,
   /**
     Returns the value of element's slot content attribute. Can be set to change it.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/slot)
@@ -130,16 +122,16 @@ type rec t = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/attributes)
     */
-  attributes: namedNodeMap,
+  attributes: Base__NamedNodeMap.t,
   /**
     Returns element's shadow root, if any, and if shadow root's mode is "open", and null otherwise.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/shadowRoot)
     */
-  shadowRoot: Null.t<shadowRoot>,
+  shadowRoot: Null.t<Base__ShadowRoot.t>,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/part)
     */
-  part: domTokenList,
+  part: Base__DOMTokenList.t,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/scrollTop)
     */
@@ -188,7 +180,7 @@ type rec t = {
     Returns the child elements.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Document/children)
     */
-  children: htmlCollection<t>,
+  children: Base__HTMLCollection.t<t>,
   /**
     Returns the first child that is an element, and null otherwise.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Document/firstElementChild)
@@ -216,7 +208,7 @@ type rec t = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/assignedSlot)
     */
-  assignedSlot: Null.t<htmlSlotElement>,
+  assignedSlot: Null.t<Base__HTMLSlotElement.t>,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/ariaAtomic)
     */

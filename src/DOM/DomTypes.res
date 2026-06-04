@@ -9,21 +9,15 @@ type remotePlayback = RemotePlaybackTypes.remotePlayback
 type fontFaceSet = CssFontLoadingTypes.fontFaceSet
 type structuredSerializeOptions = ChannelMessagingTypes.structuredSerializeOptions
 
-type htmlElement = Base__DomTypes.htmlElement
 type mediaError = private {}
 type timeRanges = private {}
 type htmlFormElement = private {}
-type htmlCollection<'a> = Base__DomTypes.htmlCollection<'a>
-type element = Base__Element.t = {...Base__Element.t}
 type validityState = private {}
 type document = Base__Document.document
 type cssStyleSheet = CSSStyleSheet.t
-type nodeList<'a> = Base__DomTypes.nodeList<'a>
 type htmlLabelElement = private {}
 type documentFragment = private {}
-type node = Base__DomTypes.node
 type cssStyleDeclaration = CSSStyleDeclaration.t
-type shadowRoot = Base__DomTypes.shadowRoot
 type styleSheet = StyleSheet.t
 type mediaQueryList = MediaQueryList.t
 type range = private {}
@@ -59,7 +53,6 @@ type htmlOptionElement = private {}
 type htmlEmbedElement = private {}
 type htmlTextAreaElement = private {}
 type htmlTableCaptionElement = private {}
-type htmlSlotElement = Base__DomTypes.htmlSlotElement
 type htmlDataListElement = private {}
 type htmlInputElement = private {}
 type htmlScriptElement = private {}
@@ -231,17 +224,6 @@ type shareData = {
 @editor.completeFrom(Location)
 type location = Location.t = private {...Location.t}
 
-// TODO: mark as private once mutating fields of private records is allowed
-@editor.completeFrom(DOMTokenList)
-type domTokenList = Base__DomTypes.domTokenList = {...Base__DomTypes.domTokenList}
-
-/**
-A collection of Attr objects. Objects inside a NamedNodeMap are not in any particular order, unlike NodeList, although they may be accessed by an index as in an array.
-[See NamedNodeMap on MDN](https://developer.mozilla.org/docs/Web/API/NamedNodeMap)
-*/
-@editor.completeFrom(NamedNodeMap)
-type namedNodeMap = Base__DomTypes.namedNodeMap = private {...Base__DomTypes.namedNodeMap}
-
 /**
 [See FragmentDirective on MDN](https://developer.mozilla.org/docs/Web/API/FragmentDirective)
 */
@@ -340,7 +322,7 @@ TODO: mark as private once mutating fields of private records is allowed
 */
 @editor.completeFrom(HTMLMediaElement)
 type htmlMediaElement = {
-  ...htmlElement,
+  ...Base__HTMLElement.t,
   /**
     Returns an object representing the current error state of the audio or video element.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLMediaElement/error)
@@ -485,7 +467,7 @@ TODO: mark as private once mutating fields of private records is allowed
 */
 @editor.completeFrom(HTMLBaseElement)
 type htmlBaseElement = {
-  ...htmlElement,
+  ...Base__HTMLElement.t,
   /**
     Gets or sets the baseline WebApiURL on which relative links are based.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLBaseElement/href)
@@ -504,7 +486,7 @@ Provides special properties (beyond those inherited from the regular HTMLElement
 */
 @editor.completeFrom(HTMLBodyElement)
 type htmlBodyElement = private {
-  ...htmlElement,
+  ...Base__HTMLElement.t,
 }
 
 /**
@@ -513,7 +495,7 @@ A HTML line break element (<br>). It inherits from HTMLElement.
 */
 @editor.completeFrom(HTMLBRElement)
 type htmlbrElement = private {
-  ...htmlElement,
+  ...Base__HTMLElement.t,
 }
 
 /**
@@ -523,7 +505,7 @@ TODO: mark as private once mutating fields of private records is allowed
 */
 @editor.completeFrom(HTMLCanvasElement)
 type htmlCanvasElement = {
-  ...htmlElement,
+  ...Base__HTMLElement.t,
   /**
     Gets or sets the width of a canvas element on a document.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLCanvasElement/width)
@@ -543,7 +525,7 @@ TODO: mark as private once mutating fields of private records is allowed
 */
 @editor.completeFrom(HTMLDataElement)
 type htmlDataElement = {
-  ...htmlElement,
+  ...Base__HTMLElement.t,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLDataElement/value)
     */
@@ -556,7 +538,7 @@ TODO: mark as private once mutating fields of private records is allowed
 */
 @editor.completeFrom(HTMLDialogElement)
 type htmlDialogElement = {
-  ...htmlElement,
+  ...Base__HTMLElement.t,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLDialogElement/open)
     */
@@ -574,7 +556,7 @@ Provides special properties (beyond the regular HTMLElement interface it also ha
 */
 @editor.completeFrom(HTMLDivElement)
 type htmlDivElement = private {
-  ...htmlElement,
+  ...Base__HTMLElement.t,
 }
 
 /**
@@ -583,7 +565,7 @@ Provides special properties (beyond those of the regular HTMLElement interface i
 */
 @editor.completeFrom(HTMLDListElement)
 type htmldListElement = private {
-  ...htmlElement,
+  ...Base__HTMLElement.t,
 }
 
 /**
@@ -593,7 +575,7 @@ TODO: mark as private once mutating fields of private records is allowed
 */
 @editor.completeFrom(HTMLFieldSetElement)
 type htmlFieldSetElement = {
-  ...htmlElement,
+  ...Base__HTMLElement.t,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLFieldSetElement/disabled)
     */
@@ -617,7 +599,7 @@ type htmlFieldSetElement = {
     Returns an HTMLCollection of the form controls in the element.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLFieldSetElement/elements)
     */
-  elements: htmlCollection<element>,
+  elements: Base__HTMLCollection.t<Base__Element.t>,
   /**
     Returns whether an element will successfully validate based on forms validation rules and constraints.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLFieldSetElement/willValidate)
@@ -641,7 +623,7 @@ Provides special properties (beyond those of the regular HTMLElement interface t
 */
 @editor.completeFrom(HTMLFrameSetElement)
 type htmlFrameSetElement = private {
-  ...htmlElement,
+  ...Base__HTMLElement.t,
 }
 
 /**
@@ -650,7 +632,7 @@ The different heading elements. It inherits methods and properties from the HTML
 */
 @editor.completeFrom(HTMLHeadingElement)
 type htmlHeadingElement = private {
-  ...htmlElement,
+  ...Base__HTMLElement.t,
 }
 
 /**
@@ -659,7 +641,7 @@ Provides special properties (beyond those of the HTMLElement interface it also h
 */
 @editor.completeFrom(HTMLHRElement)
 type htmlhrElement = private {
-  ...htmlElement,
+  ...Base__HTMLElement.t,
 }
 
 /**
@@ -668,7 +650,7 @@ Serves as the root node for a given HTML document. This object inherits the prop
 */
 @editor.completeFrom(HTMLHtmlElement)
 type htmlHtmlElement = private {
-  ...htmlElement,
+  ...Base__HTMLElement.t,
 }
 
 /**
@@ -678,7 +660,7 @@ TODO: mark as private once mutating fields of private records is allowed
 */
 @editor.completeFrom(HTMLIFrameElement)
 type htmliFrameElement = {
-  ...htmlElement,
+  ...Base__HTMLElement.t,
   /**
     Sets or retrieves a WebApiURL to be loaded by the object.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLIFrameElement/src)
@@ -697,7 +679,7 @@ type htmliFrameElement = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLIFrameElement/sandbox)
     */
-  sandbox: domTokenList,
+  sandbox: Base__DOMTokenList.t,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLIFrameElement/allow)
     */
@@ -742,7 +724,7 @@ The HTMLLegendElement is an interface allowing to access properties of the <lege
 */
 @editor.completeFrom(HTMLLegendElement)
 type htmlLegendElement = private {
-  ...htmlElement,
+  ...Base__HTMLElement.t,
   /**
     Retrieves a reference to the form that the object is embedded in.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLLegendElement/form)
@@ -756,7 +738,7 @@ Exposes specific properties and methods (beyond those defined by regular HTMLEle
 */
 @editor.completeFrom(HTMLLIElement)
 type htmlliElement = private {
-  ...htmlElement,
+  ...Base__HTMLElement.t,
 }
 
 /**
@@ -766,7 +748,7 @@ TODO: mark as private once mutating fields of private records is allowed
 */
 @editor.completeFrom(HTMLLinkElement)
 type htmlLinkElement = {
-  ...htmlElement,
+  ...Base__HTMLElement.t,
   /**
     Sets or retrieves a destination WebApiURL or an anchor point.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLLinkElement/href)
@@ -789,7 +771,7 @@ type htmlLinkElement = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLLinkElement/relList)
     */
-  relList: domTokenList,
+  relList: Base__DOMTokenList.t,
   /**
     Sets or retrieves the media type.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLLinkElement/media)
@@ -835,7 +817,7 @@ TODO: mark as private once mutating fields of private records is allowed
 */
 @editor.completeFrom(HTMLMapElement)
 type htmlMapElement = {
-  ...htmlElement,
+  ...Base__HTMLElement.t,
   /**
     Sets or retrieves the name of the object.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLMapElement/name)
@@ -845,7 +827,7 @@ type htmlMapElement = {
     Retrieves a collection of the area objects defined for the given map object.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLMapElement/areas)
     */
-  areas: htmlCollection<element>,
+  areas: Base__HTMLCollection.t<Base__Element.t>,
 }
 
 /**
@@ -853,7 +835,7 @@ type htmlMapElement = {
 */
 @editor.completeFrom(HTMLMenuElement)
 type htmlMenuElement = private {
-  ...htmlElement,
+  ...Base__HTMLElement.t,
 }
 
 /**
@@ -863,7 +845,7 @@ TODO: mark as private once mutating fields of private records is allowed
 */
 @editor.completeFrom(HTMLMetaElement)
 type htmlMetaElement = {
-  ...htmlElement,
+  ...Base__HTMLElement.t,
   /**
     Sets or retrieves the value specified in the content attribute of the meta object.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLMetaElement/name)
@@ -892,7 +874,7 @@ TODO: mark as private once mutating fields of private records is allowed
 */
 @editor.completeFrom(HTMLMeterElement)
 type htmlMeterElement = {
-  ...htmlElement,
+  ...Base__HTMLElement.t,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLMeterElement/value)
     */
@@ -920,7 +902,7 @@ type htmlMeterElement = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLMeterElement/labels)
     */
-  labels: nodeList<htmlLabelElement>,
+  labels: Base__NodeList.t<htmlLabelElement>,
 }
 
 /**
@@ -929,7 +911,7 @@ Provides special properties (beyond the regular methods and properties available
 */
 @editor.completeFrom(HTMLModElement)
 type htmlModElement = private {
-  ...htmlElement,
+  ...Base__HTMLElement.t,
 }
 
 /**
@@ -939,7 +921,7 @@ TODO: mark as private once mutating fields of private records is allowed
 */
 @editor.completeFrom(HTMLObjectElement)
 type htmlObjectElement = {
-  ...htmlElement,
+  ...Base__HTMLElement.t,
   /**
     Sets or retrieves the WebApiURL that references the data of the object.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLObjectElement/data)
@@ -1004,7 +986,7 @@ TODO: mark as private once mutating fields of private records is allowed
 */
 @editor.completeFrom(HTMLOListElement)
 type htmloListElement = {
-  ...htmlElement,
+  ...Base__HTMLElement.t,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLOListElement/reversed)
     */
@@ -1028,7 +1010,7 @@ TODO: mark as private once mutating fields of private records is allowed
 */
 @editor.completeFrom(HTMLOptGroupElement)
 type htmlOptGroupElement = {
-  ...htmlElement,
+  ...Base__HTMLElement.t,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLOptGroupElement/disabled)
     */
@@ -1046,7 +1028,7 @@ Provides special properties (beyond those of the regular HTMLElement object inte
 */
 @editor.completeFrom(HTMLParagraphElement)
 type htmlParagraphElement = private {
-  ...htmlElement,
+  ...Base__HTMLElement.t,
 }
 
 /**
@@ -1055,7 +1037,7 @@ A <picture> HTML element. It doesn't implement specific properties or methods.
 */
 @editor.completeFrom(HTMLPictureElement)
 type htmlPictureElement = private {
-  ...htmlElement,
+  ...Base__HTMLElement.t,
 }
 
 /**
@@ -1064,7 +1046,7 @@ Exposes specific properties and methods (beyond those of the HTMLElement interfa
 */
 @editor.completeFrom(HTMLPreElement)
 type htmlPreElement = private {
-  ...htmlElement,
+  ...Base__HTMLElement.t,
 }
 
 /**
@@ -1074,7 +1056,7 @@ TODO: mark as private once mutating fields of private records is allowed
 */
 @editor.completeFrom(HTMLProgressElement)
 type htmlProgressElement = {
-  ...htmlElement,
+  ...Base__HTMLElement.t,
   /**
     Sets or gets the current value of a progress element. The value must be a non-negative number between 0 and the max value.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLProgressElement/value)
@@ -1093,7 +1075,7 @@ type htmlProgressElement = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLProgressElement/labels)
     */
-  labels: nodeList<htmlLabelElement>,
+  labels: Base__NodeList.t<htmlLabelElement>,
 }
 
 /**
@@ -1102,7 +1084,7 @@ Provides special properties and methods (beyond the regular HTMLElement interfac
 */
 @editor.completeFrom(HTMLQuoteElement)
 type htmlQuoteElement = private {
-  ...htmlElement,
+  ...Base__HTMLElement.t,
 }
 
 /**
@@ -1112,7 +1094,7 @@ TODO: mark as private once mutating fields of private records is allowed
 */
 @editor.completeFrom(HTMLSourceElement)
 type htmlSourceElement = {
-  ...htmlElement,
+  ...Base__HTMLElement.t,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLSourceElement/width)
     */
@@ -1129,7 +1111,7 @@ A <span> element and derives from the HTMLElement interface, but without impleme
 */
 @editor.completeFrom(HTMLSpanElement)
 type htmlSpanElement = private {
-  ...htmlElement,
+  ...Base__HTMLElement.t,
 }
 
 /**
@@ -1139,7 +1121,7 @@ TODO: mark as private once mutating fields of private records is allowed
 */
 @editor.completeFrom(HTMLStyleElement)
 type htmlStyleElement = {
-  ...htmlElement,
+  ...Base__HTMLElement.t,
   /**
     Enables or disables the style sheet.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLStyleElement/disabled)
@@ -1163,7 +1145,7 @@ TODO: mark as private once mutating fields of private records is allowed
 */
 @editor.completeFrom(HTMLTemplateElement)
 type htmlTemplateElement = {
-  ...htmlElement,
+  ...Base__HTMLElement.t,
   /**
     Returns the template contents (a DocumentFragment).
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLTemplateElement/content)
@@ -1194,7 +1176,7 @@ TODO: mark as private once mutating fields of private records is allowed
 */
 @editor.completeFrom(HTMLTimeElement)
 type htmlTimeElement = {
-  ...htmlElement,
+  ...Base__HTMLElement.t,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLTimeElement/dateTime)
     */
@@ -1208,7 +1190,7 @@ TODO: mark as private once mutating fields of private records is allowed
 */
 @editor.completeFrom(HTMLTitleElement)
 type htmlTitleElement = {
-  ...htmlElement,
+  ...Base__HTMLElement.t,
   /**
     Retrieves or sets the text of the object as a string.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLTitleElement/text)
@@ -1223,7 +1205,7 @@ TODO: mark as private once mutating fields of private records is allowed
 */
 @editor.completeFrom(HTMLTrackElement)
 type htmlTrackElement = {
-  ...htmlElement,
+  ...Base__HTMLElement.t,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLTrackElement/src)
     */
@@ -1236,7 +1218,7 @@ Provides special properties (beyond those defined on the regular HTMLElement int
 */
 @editor.completeFrom(HTMLUListElement)
 type htmluListElement = private {
-  ...htmlElement,
+  ...Base__HTMLElement.t,
 }
 
 /**
@@ -1244,7 +1226,7 @@ An invalid HTML element and derives from the HTMLElement interface, but without 
 [See HTMLUnknownElement on MDN](https://developer.mozilla.org/docs/Web/API/HTMLUnknownElement)
 */
 type htmlUnknownElement = {
-  ...htmlElement,
+  ...Base__HTMLElement.t,
 }
 
 /**
@@ -1320,7 +1302,7 @@ type xPathResult = private {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/XPathResult/singleNodeValue)
     */
-  singleNodeValue: Null.t<node>,
+  singleNodeValue: Null.t<Base__Node.t>,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/XPathResult/invalidIteratorState)
     */
@@ -1364,7 +1346,7 @@ All of the SVG WebApiDOM interfaces that correspond directly to elements in the 
 [See SVGElement on MDN](https://developer.mozilla.org/docs/Web/API/SVGElement)
 */
 type svgElement = {
-  ...element,
+  ...Base__Element.t,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/dataset)
     */
@@ -1585,12 +1567,12 @@ type fullscreenOptions = {mutable navigationUI?: fullscreenNavigationUI}
 
 type getHTMLOptions = {
   mutable serializableShadowRoots?: bool,
-  mutable shadowRoots?: array<shadowRoot>,
+  mutable shadowRoots?: array<Base__ShadowRoot.t>,
 }
 
 type pointerLockOptions = {mutable unadjustedMovement?: bool}
 
-type caretPositionFromPointOptions = {mutable shadowRoots?: array<shadowRoot>}
+type caretPositionFromPointOptions = {mutable shadowRoots?: array<Base__ShadowRoot.t>}
 
 type domRectInit = GeometryTypes.domRectInit
 

@@ -1,13 +1,9 @@
 @@warning("-30")
 
-type node = Base__DomTypes.node
-type htmlElement = Base__DomTypes.htmlElement
-type nodeList<'tNode> = Base__DomTypes.nodeList<'tNode>
 type domImplementation
 type documentType
 type documentReadyState
 type htmlHeadElement
-type htmlCollection<'t> = Base__DomTypes.htmlCollection<'t>
 type htmlImageElement
 type htmlEmbedElement
 type htmlFormElement
@@ -55,37 +51,37 @@ type rec document = {
     Returns the parent.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/parentNode)
     */
-  parentNode: Null.t<node>,
+  parentNode: Null.t<Base__Node.t>,
   /**
     Returns the parent element.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/parentElement)
     */
-  parentElement: Null.t<htmlElement>,
+  parentElement: Null.t<Base__HTMLElement.t>,
   /**
     Returns the children.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/childNodes)
     */
-  childNodes: nodeList<node>,
+  childNodes: Base__NodeList.t<Base__Node.t>,
   /**
     Returns the first child.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/firstChild)
     */
-  firstChild: Null.t<node>,
+  firstChild: Null.t<Base__Node.t>,
   /**
     Returns the last child.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/lastChild)
     */
-  lastChild: Null.t<node>,
+  lastChild: Null.t<Base__Node.t>,
   /**
     Returns the previous sibling.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/previousSibling)
     */
-  previousSibling: Null.t<node>,
+  previousSibling: Null.t<Base__Node.t>,
   /**
     Returns the next sibling.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/nextSibling)
     */
-  nextSibling: Null.t<node>,
+  nextSibling: Null.t<Base__Node.t>,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/nodeValue)
     */
@@ -136,7 +132,7 @@ type rec document = {
     Gets a reference to the root node of the document.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Document/documentElement)
     */
-  documentElement: htmlElement,
+  documentElement: Base__HTMLElement.t,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Document/scrollingElement)
     */
@@ -189,7 +185,7 @@ If the contents are sandboxed into a unique origin (e.g. in an iframe with the s
     Specifies the beginning and end of the document body.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Document/body)
     */
-  mutable body: htmlElement,
+  mutable body: Base__HTMLElement.t,
   /**
     Returns the head element.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Document/head)
@@ -199,39 +195,39 @@ If the contents are sandboxed into a unique origin (e.g. in an iframe with the s
     Retrieves a collection, in source order, of img objects in the document.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Document/images)
     */
-  images: htmlCollection<htmlImageElement>,
+  images: Base__HTMLCollection.t<htmlImageElement>,
   /**
     Retrieves a collection of all embed objects in the document.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Document/embeds)
     */
-  embeds: htmlCollection<htmlEmbedElement>,
+  embeds: Base__HTMLCollection.t<htmlEmbedElement>,
   /**
     Return an HTMLCollection of the embed elements in the Document.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Document/plugins)
     */
-  plugins: htmlCollection<htmlEmbedElement>,
+  plugins: Base__HTMLCollection.t<htmlEmbedElement>,
   /**
     Retrieves a collection of all a objects that specify the href property and all area objects in the document.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Document/links)
     */
-  links: htmlCollection<Base__Element.t>,
+  links: Base__HTMLCollection.t<Base__Element.t>,
   /**
     Retrieves a collection, in source order, of all form objects in the document.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Document/forms)
     */
-  forms: htmlCollection<htmlFormElement>,
+  forms: Base__HTMLCollection.t<htmlFormElement>,
   /**
     Retrieves a collection of all script objects in the document.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Document/scripts)
     */
-  scripts: htmlCollection<htmlScriptElement>,
+  scripts: Base__HTMLCollection.t<htmlScriptElement>,
   /**
     Returns the script element, or the SVG script element, that is currently executing, as long as the element represents a classic script. In the case of reentrant script execution, returns the one that most recently started executing amongst those that have not yet finished executing.
 
 Returns null if the Document is not currently executing a script or SVG script element (e.g., because the running script is an event handler, or a timeout), or if the currently executing script or SVG script element represents a module script.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Document/currentScript)
     */
-  currentScript: Null.t<htmlElement>,
+  currentScript: Null.t<Base__HTMLElement.t>,
   /**
     Returns the Window object of the active document.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Document/defaultView)
@@ -301,7 +297,7 @@ Similarly, when the focused element is in a different node tree than documentOrS
     Returns the child elements.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Document/children)
     */
-  children: htmlCollection<Base__Element.t>,
+  children: Base__HTMLCollection.t<Base__Element.t>,
   /**
     Returns the first child that is an element, and null otherwise.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Document/firstElementChild)

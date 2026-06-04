@@ -71,8 +71,9 @@ test("keeps Base__Document from re-exporting leaf-owned aliases", () => {
   assert.equal(baseDocumentSource.includes("type element = Base__Element.element"), false);
 });
 
-test("keeps DOM.res limited to the core base type surface", () => {
+test("keeps DOM.res from re-exporting owner module types", () => {
   const domSource = readFileSync(join(repoRoot, "src", "DOM", "DOM.res"), "utf8");
+  const domTypesSource = readFileSync(join(repoRoot, "src", "DOM", "DomTypes.res"), "utf8");
   const baseElementSource = readFileSync(
     join(repoRoot, "src", "Base", "Base__Element.res"),
     "utf8",
@@ -93,11 +94,18 @@ test("keeps DOM.res limited to the core base type surface", () => {
     }
   }
 
-  assert.deepEqual(declaredTypes, ["event", "eventTarget", "element"]);
-  assert.match(domSource, /^type element = Base__Element\.t = \{\.\.\.Base__Element\.t\}$/m);
+  assert.deepEqual(declaredTypes, []);
   assert.match(baseElementSource, /^type rec t = \{$/m);
   assert.equal(baseElementSource.includes("type rec element = {"), false);
-  assert.equal(domSource.includes("Base.Element.element"), false);
+  assert.equal(existsSync(join(repoRoot, "src", "Base", "Base__DomTypes.res")), false);
+  assert.equal(/^type element\b/m.test(domTypesSource), false);
+  assert.equal(domTypesSource.includes("type nodeList"), false);
+  assert.equal(domTypesSource.includes("type htmlCollection"), false);
+  assert.equal(domTypesSource.includes("type domTokenList"), false);
+  assert.equal(domTypesSource.includes("type namedNodeMap"), false);
+  assert.equal(domSource.includes("Base__Element"), false);
+  assert.equal(domSource.includes("Base__Event"), false);
+  assert.equal(domSource.includes("Base__EventTarget"), false);
 });
 
 test("normalizes internal prefixes and public duplicate names", () => {

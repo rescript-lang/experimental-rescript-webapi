@@ -14,7 +14,7 @@ Throws a "HierarchyRequestError" DOMException if the constraints of the node tre
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CharacterData/after)
 */
   @send
-  external after: (T.t, DomTypes.node) => unit = "after"
+  external after: (T.t, Node.t) => unit = "after"
 
   /**
 Inserts nodes just after node, while replacing strings in nodes with equivalent Text nodes.
@@ -38,7 +38,7 @@ Throws a "HierarchyRequestError" DOMException if the constraints of the node tre
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CharacterData/before)
 */
   @send
-  external before: (T.t, DomTypes.node) => unit = "before"
+  external before: (T.t, Node.t) => unit = "before"
 
   /**
 Inserts nodes just before node, while replacing strings in nodes with equivalent Text nodes.
@@ -81,7 +81,7 @@ Throws a "HierarchyRequestError" DOMException if the constraints of the node tre
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CharacterData/replaceWith)
 */
   @send
-  external replaceWith: (T.t, DomTypes.node) => unit = "replaceWith"
+  external replaceWith: (T.t, Node.t) => unit = "replaceWith"
 
   /**
 Replaces node with nodes, while replacing strings in nodes with equivalent Text nodes.

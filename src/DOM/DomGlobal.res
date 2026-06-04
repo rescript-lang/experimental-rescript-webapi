@@ -96,7 +96,7 @@ external parent: DomTypes.window = "parent"
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/frameElement)
 */
-external frameElement: DomTypes.element = "frameElement"
+external frameElement: Element.t = "frameElement"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/screen)
@@ -311,7 +311,7 @@ external removeEventListenerUseCapture: (
 Dispatches a synthetic event event to target and returns true if either event's cancelable attribute value is false or its preventDefault() method was not invoked, and false otherwise.
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/EventTarget/dispatchEvent)
 */
-external dispatchEvent: DOM.event => bool = "dispatchEvent"
+external dispatchEvent: Event.t => bool = "dispatchEvent"
 
 /**
 Closes the window.
@@ -449,7 +449,7 @@ external scrollBy2: (~x: float, ~y: float) => unit = "scrollBy"
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/getComputedStyle)
 */
-external getComputedStyle: (~elt: DomTypes.element, ~pseudoElt: string=?) => CSSStyleDeclaration.t =
+external getComputedStyle: (~elt: Element.t, ~pseudoElt: string=?) => CSSStyleDeclaration.t =
   "getComputedStyle"
 
 /**

@@ -70,8 +70,8 @@ These public `t` types are the names consumers should use in annotations.
 
 When an interface needs a shared structural owner across APIs or inheritance chains, keep
 that shared shape in a base module such as `Base__Element.t`. The public interface module
-then aliases the base shape as its own `t`, while generated structural modules can keep
-using internal aliases such as `DomTypes.element` where needed.
+then aliases the base shape as its own `t`. Other modules should reference that owner type,
+such as `Element.t`, or the base owner directly only when needed to break structural cycles.
 
 ## Auxiliary Types
 

@@ -9,37 +9,37 @@ external asAbstractRange: DomTypes.range => DomTypes.abstractRange = "%identity"
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Range/setStart)
 */
 @send
-external setStart: (DomTypes.range, ~node: DomTypes.node, ~offset: int) => unit = "setStart"
+external setStart: (DomTypes.range, ~node: Node.t, ~offset: int) => unit = "setStart"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Range/setEnd)
 */
 @send
-external setEnd: (DomTypes.range, ~node: DomTypes.node, ~offset: int) => unit = "setEnd"
+external setEnd: (DomTypes.range, ~node: Node.t, ~offset: int) => unit = "setEnd"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Range/setStartBefore)
 */
 @send
-external setStartBefore: (DomTypes.range, DomTypes.node) => unit = "setStartBefore"
+external setStartBefore: (DomTypes.range, Node.t) => unit = "setStartBefore"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Range/setStartAfter)
 */
 @send
-external setStartAfter: (DomTypes.range, DomTypes.node) => unit = "setStartAfter"
+external setStartAfter: (DomTypes.range, Node.t) => unit = "setStartAfter"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Range/setEndBefore)
 */
 @send
-external setEndBefore: (DomTypes.range, DomTypes.node) => unit = "setEndBefore"
+external setEndBefore: (DomTypes.range, Node.t) => unit = "setEndBefore"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Range/setEndAfter)
 */
 @send
-external setEndAfter: (DomTypes.range, DomTypes.node) => unit = "setEndAfter"
+external setEndAfter: (DomTypes.range, Node.t) => unit = "setEndAfter"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Range/collapse)
@@ -51,13 +51,13 @@ external collapse: (DomTypes.range, ~toStart: bool=?) => unit = "collapse"
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Range/selectNode)
 */
 @send
-external selectNode: (DomTypes.range, DomTypes.node) => unit = "selectNode"
+external selectNode: (DomTypes.range, Node.t) => unit = "selectNode"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Range/selectNodeContents)
 */
 @send
-external selectNodeContents: (DomTypes.range, DomTypes.node) => unit = "selectNodeContents"
+external selectNodeContents: (DomTypes.range, Node.t) => unit = "selectNodeContents"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Range/compareBoundaryPoints)
@@ -88,13 +88,13 @@ external cloneContents: DomTypes.range => DomTypes.documentFragment = "cloneCont
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Range/insertNode)
 */
 @send
-external insertNode: (DomTypes.range, DomTypes.node) => unit = "insertNode"
+external insertNode: (DomTypes.range, Node.t) => unit = "insertNode"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Range/surroundContents)
 */
 @send
-external surroundContents: (DomTypes.range, DomTypes.node) => unit = "surroundContents"
+external surroundContents: (DomTypes.range, Node.t) => unit = "surroundContents"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Range/cloneRange)
@@ -112,22 +112,21 @@ external detach: DomTypes.range => unit = "detach"
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Range/isPointInRange)
 */
 @send
-external isPointInRange: (DomTypes.range, ~node: DomTypes.node, ~offset: int) => bool =
-  "isPointInRange"
+external isPointInRange: (DomTypes.range, ~node: Node.t, ~offset: int) => bool = "isPointInRange"
 
 /**
 Returns −1 if the point is before the range, 0 if the point is in the range, and 1 if the point is after the range.
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Range/comparePoint)
 */
 @send
-external comparePoint: (DomTypes.range, ~node: DomTypes.node, ~offset: int) => int = "comparePoint"
+external comparePoint: (DomTypes.range, ~node: Node.t, ~offset: int) => int = "comparePoint"
 
 /**
 Returns whether range intersects node.
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Range/intersectsNode)
 */
 @send
-external intersectsNode: (DomTypes.range, DomTypes.node) => bool = "intersectsNode"
+external intersectsNode: (DomTypes.range, Node.t) => bool = "intersectsNode"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Range/getClientRects)
