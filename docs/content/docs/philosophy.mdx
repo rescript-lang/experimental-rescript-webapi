@@ -20,14 +20,12 @@ In other words, if you are searching for a specific JavaScript binding, begin yo
 The bindings are exposed under the `WebAPI` namespace with the same flat module structure as the original package.
 
 ```ReScript
-open WebAPI.DOM
-
-let myElement: WebAPI.DOM.element = document->WebAPI.Document.createElement("div")
+let myElement: WebAPI.Element.t = WebAPI.Document.createElement("div")
 let id = myElement.id
 ```
 
 Consumers can also configure `rescript.json` with `"compiler-flags": ["-open WebAPI"]`
-when they want to use modules such as `DOM`, `Document`, and `Element` without the
+when they want to use modules such as `Document`, `Element`, and `Location` without the
 `WebAPI.` prefix.
 
 ## Interfaces
@@ -40,7 +38,7 @@ Methods are modeled as functions in a separate module. The idea is that these wi
 
 Inherited methods are duplicated in the inheriting module to eliminate the need to cast the type to the base type.
 
-For DOM elements, `WebAPI.Element` is the method module. The element type itself is exposed as `WebAPI.DOM.element`. Most code does not need to annotate the type because functions such as `Document.createElement` and `Document.querySelector` already return it.
+For DOM elements, `WebAPI.Element.t` is the public element type and `WebAPI.Element` is the method module. Most code does not need to annotate the type because functions such as `Document.createElement` and `Document.querySelector` already return it.
 
 ### Overloads
 
@@ -51,9 +49,7 @@ JavaScript supports function overloads, where a function can have multiple signa
 In some cases, type conversion will be required. Subtypes can safely be cast to their base type using conversion helpers within their module.
 
 ```ReScript
-open WebAPI.DOM
-
-let element: WebAPI.DOM.element = document->WebAPI.Document.createElement("div")
+let element: WebAPI.Element.t = WebAPI.Document.createElement("div")
 let node = element->WebAPI.Element.asNode
 ```
 

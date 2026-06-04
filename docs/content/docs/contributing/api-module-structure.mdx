@@ -64,7 +64,14 @@ type rec node = {
 and element = Base__Element.t
 ```
 
-For shared DOM base interfaces such as `Element`, keep the root type as a thin opaque owner such as `Base__Element.t`. The DOM API module can expose `DOM.element` as a public alias while method modules use `DomTypes.element`.
+Public interface modules own their public `t` type. For example, `Element.res` exposes
+`Element.t`, `Document.res` exposes `Document.t`, and `Location.res` exposes `Location.t`.
+These public `t` types are the names consumers should use in annotations.
+
+When an interface needs a shared structural owner across APIs or inheritance chains, keep
+that shared shape in a base module such as `Base__Element.t`. The public interface module
+then aliases the base shape as its own `t`, while generated structural modules can keep
+using internal aliases such as `DomTypes.element` where needed.
 
 ## Auxiliary Types
 
