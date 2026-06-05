@@ -297,7 +297,7 @@ git commit -m "Add method style audit"
 At the top of `src/Canvas/CanvasRenderingContext2D.res`, add:
 
 ```rescript
-type t = DomTypes.canvasRenderingContext2D = private {...DomTypes.canvasRenderingContext2D}
+type t = DomTypes.canvasRenderingContext2D
 ```
 
 - [ ] **Step 2: Replace receiver positions**

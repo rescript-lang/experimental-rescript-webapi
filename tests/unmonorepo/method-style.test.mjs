@@ -3,7 +3,6 @@ import assert from "node:assert/strict";
 import { auditMethodStyle } from "../../scripts/audit-method-style.mjs";
 
 const pilotTypeBucketReceivers = [
-  "src/Canvas/CanvasRenderingContext2D.res",
   "src/DOMExtended/Range.res",
   "src/DOMExtended/Selection.res",
   "src/IndexedDB/IDBIndex.res",
