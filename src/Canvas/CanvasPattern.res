@@ -1,3 +1,4 @@
+type t = CanvasTypes.canvasPattern = private {...CanvasTypes.canvasPattern}
 type domMatrix2DInit = DomTypes.domMatrix2DInit
 
 /**
@@ -5,7 +6,7 @@ Sets the transformation matrix that will be used when rendering the pattern duri
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CanvasPattern/setTransform)
 */
 @send
-external setTransform: (CanvasTypes.canvasPattern, ~transform: domMatrix2DInit=?) => unit =
+external setTransform: (t, ~transform: domMatrix2DInit=?) => unit =
   "setTransform"
 
 let isInstanceOf = (_: 't): bool => %raw(`param instanceof CanvasPattern`)
