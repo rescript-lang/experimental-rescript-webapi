@@ -30,7 +30,7 @@ type styleSheetList = StyleSheetList.t
 type elementInternals = private {}
 type nodeFilter = private {}
 type cssRule = CSSRule.t
-type attr = private {}
+type attr = NamedNodeMap.attr
 type htmlFormControlsCollection = private {}
 type domImplementation = private {}
 type nodeIterator = private {}
@@ -678,7 +678,7 @@ type htmliFrameElement = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLIFrameElement/sandbox)
     */
-  sandbox: Base__DOMTokenList.t,
+  sandbox: DOMTokenList.t,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLIFrameElement/allow)
     */
@@ -770,7 +770,7 @@ type htmlLinkElement = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLLinkElement/relList)
     */
-  relList: Base__DOMTokenList.t,
+  relList: DOMTokenList.t,
   /**
     Sets or retrieves the media type.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLLinkElement/media)

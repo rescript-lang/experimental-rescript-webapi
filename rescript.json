@@ -13,6 +13,8 @@
     ],
     "WebAPI.CSSFontLoading": [
       "EventTypes",
+      "Element",
+      "Document",
       "DOMStringList",
       "Location",
       "Base",
@@ -56,6 +58,8 @@
     "WebAPI.Clipboard": [
       "EventTypes",
       "Event",
+      "Element",
+      "Document",
       "DOMStringList",
       "Location",
       "Base",
@@ -144,6 +148,8 @@
     "WebAPI.Fetch": [
       "EventTypes",
       "Event",
+      "Element",
+      "Document",
       "DOMStringList",
       "Location",
       "Base",
@@ -153,6 +159,8 @@
     ],
     "WebAPI.File": [
       "EventTypes",
+      "Element",
+      "Document",
       "DOMStringList",
       "Location",
       "Base",
@@ -161,6 +169,8 @@
     ],
     "WebAPI.FileList": [
       "EventTypes",
+      "Element",
+      "Document",
       "DOMStringList",
       "Location",
       "Base",
@@ -170,6 +180,8 @@
     ],
     "WebAPI.FileAndDirectoryEntries": [
       "EventTypes",
+      "Element",
+      "Document",
       "DOMStringList",
       "Location",
       "Base",
@@ -276,6 +288,8 @@
     ],
     "WebAPI.Navigator": [
       "EventTypes",
+      "Element",
+      "Document",
       "DOMStringList",
       "Location",
       "Base",
@@ -338,6 +352,8 @@
       "ChannelMessaging",
       "EventTypes",
       "Event",
+      "Element",
+      "Document",
       "DOMStringList",
       "Location",
       "Base",
@@ -351,6 +367,8 @@
     ],
     "WebAPI.StorageManager": [
       "EventTypes",
+      "Element",
+      "Document",
       "DOMStringList",
       "Location",
       "Base",
@@ -475,6 +493,8 @@
       "ChannelMessaging",
       "EventTypes",
       "Event",
+      "Element",
+      "Document",
       "DOMStringList",
       "Location",
       "Base",
@@ -500,6 +520,8 @@
       "ChannelMessaging",
       "EventTypes",
       "Event",
+      "Element",
+      "Document",
       "DOMStringList",
       "Location",
       "Base",
@@ -572,7 +594,11 @@
         "ArrayBufferTypedArrayOrDataView",
         "BaseFile",
         "BaseFileAndDirectoryEntries",
-        "DOMTokenList"
+        "DOMTokenList",
+        "HTMLCollection",
+        "NamedNodeMap",
+        "Node",
+        "NodeList"
       ]
     },
     {
@@ -660,11 +686,8 @@
         "DOM",
         "DOMImplementation",
         "DocumentFragment",
-        "NamedNodeMap",
-        "Node",
         "NodeFilter",
         "NodeIterator",
-        "NodeList",
         "Range",
         "Selection",
         "ShadowRoot",
@@ -875,7 +898,6 @@
         "HTMLBaseElement",
         "HTMLBodyElement",
         "HTMLButtonElement",
-        "HTMLCollection",
         "HTMLDListElement",
         "HTMLDataElement",
         "HTMLDataListElement",

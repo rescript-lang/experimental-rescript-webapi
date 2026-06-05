@@ -1,6 +1,6 @@
 @@warning("-30")
 
-type document
+type shadowRoot
 
 /**
 Element is the most general base class from which all objects in a Document inherit. It only has methods and properties common to all kinds of elements. More specific classes inherit from Element.
@@ -33,42 +33,42 @@ type rec t = {
     Returns the node document. Returns null for documents.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/ownerDocument)
     */
-  ownerDocument: Null.t<document>,
+  ownerDocument: Null.t<Document.t>,
   /**
     Returns the parent.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/parentNode)
     */
-  parentNode: Null.t<Base__Node.t>,
+  parentNode: Null.t<Node.t>,
   /**
     Returns the parent element.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/parentElement)
     */
-  parentElement: Null.t<Base__HTMLElement.t>,
+  parentElement: Null.t<Element.t>,
   /**
     Returns the children.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/childNodes)
     */
-  childNodes: Base__NodeList.t<Base__Node.t>,
+  childNodes: NodeList.t<Node.t>,
   /**
     Returns the first child.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/firstChild)
     */
-  firstChild: Null.t<Base__Node.t>,
+  firstChild: Null.t<Node.t>,
   /**
     Returns the last child.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/lastChild)
     */
-  lastChild: Null.t<Base__Node.t>,
+  lastChild: Null.t<Node.t>,
   /**
     Returns the previous sibling.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/previousSibling)
     */
-  previousSibling: Null.t<Base__Node.t>,
+  previousSibling: Null.t<Node.t>,
   /**
     Returns the next sibling.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/nextSibling)
     */
-  nextSibling: Null.t<Base__Node.t>,
+  nextSibling: Null.t<Node.t>,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/nodeValue)
     */
@@ -122,12 +122,12 @@ type rec t = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/attributes)
     */
-  attributes: Base__NamedNodeMap.t,
+  attributes: NamedNodeMap.t,
   /**
     Returns element's shadow root, if any, and if shadow root's mode is "open", and null otherwise.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/shadowRoot)
     */
-  shadowRoot: Null.t<Base__ShadowRoot.t>,
+  shadowRoot: Null.t<shadowRoot>,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/part)
     */
@@ -180,7 +180,7 @@ type rec t = {
     Returns the child elements.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Document/children)
     */
-  children: Base__HTMLCollection.t<t>,
+  children: HTMLCollection.t<t>,
   /**
     Returns the first child that is an element, and null otherwise.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Document/firstElementChild)
@@ -208,7 +208,7 @@ type rec t = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/assignedSlot)
     */
-  assignedSlot: Null.t<Base__HTMLSlotElement.t>,
+  assignedSlot: Null.t<Element.t>,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/ariaAtomic)
     */

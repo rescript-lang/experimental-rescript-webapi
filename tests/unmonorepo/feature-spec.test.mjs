@@ -71,6 +71,52 @@ test("keeps Base__Document from re-exporting leaf-owned aliases", () => {
   assert.equal(baseDocumentSource.includes("type element = Base__Element.element"), false);
 });
 
+test("keeps public object shapes from exposing Base__ implementation types", () => {
+  const baseDocumentSource = readFileSync(
+    join(repoRoot, "src", "Base", "Base__Document.res"),
+    "utf8",
+  );
+  const baseElementSource = readFileSync(
+    join(repoRoot, "src", "Base", "Base__Element.res"),
+    "utf8",
+  );
+
+  for (const source of [baseDocumentSource, baseElementSource]) {
+    assert.equal(source.includes("Base__Node.t"), false);
+    assert.equal(source.includes("Base__Element.t"), false);
+    assert.equal(source.includes("Base__HTMLElement.t"), false);
+    assert.equal(source.includes("Base__NodeList.t"), false);
+    assert.equal(source.includes("Base__HTMLCollection.t"), false);
+    assert.equal(source.includes("Base__NamedNodeMap.t"), false);
+    assert.equal(source.includes("Base__ShadowRoot.t"), false);
+    assert.equal(source.includes("Base__HTMLSlotElement.t"), false);
+  }
+});
+
+test("keeps DOMTokenList as the direct public object owner", () => {
+  const domTokenListSource = readFileSync(join(repoRoot, "src", "Base", "DOMTokenList.res"), "utf8");
+
+  assert.equal(existsSync(join(repoRoot, "src", "Base", "Base__DOMTokenList.res")), false);
+  assert.match(domTokenListSource, /^type t = private \{$/m);
+  assert.equal(domTokenListSource.includes("Base__DOMTokenList"), false);
+});
+
+test("documents private spreads for shared object bases", () => {
+  const moduleTypeStructureSource = readFileSync(
+    join(repoRoot, "docs", "content", "docs", "contributing", "module-type-structure.mdx"),
+    "utf8",
+  );
+
+  assert.match(
+    moduleTypeStructureSource,
+    /type t = Base__Element\.t = private \{\.\.\.Base__Element\.t\}/,
+  );
+  assert.equal(
+    moduleTypeStructureSource.includes("type t = Base__Element.t = {...Base__Element.t}"),
+    false,
+  );
+});
+
 test("keeps DOM owner type aliases out of public compatibility modules", () => {
   const domTypesSource = readFileSync(join(repoRoot, "src", "DOMExtended", "DomTypes.res"), "utf8");
   const baseElementSource = readFileSync(
@@ -95,10 +141,12 @@ test("keeps DOM feature minimal for React-oriented consumers", () => {
   const sourceEntries = config.sources.filter((source) => source.dir?.startsWith("src/"));
   const documentSource = sourceEntries.find((source) => source.feature === "Document");
   const elementSource = sourceEntries.find((source) => source.feature === "Element");
+  const baseSource = sourceEntries.find((source) => source.dir === "src/Base");
   const htmlSource = sourceEntries.find((source) => source.dir === "src/HTML");
 
   assert.ok(documentSource, "Document source entry should exist");
   assert.ok(elementSource, "Element source entry should exist");
+  assert.ok(baseSource, "src/Base source entry should exist");
   assert.ok(htmlSource, "src/HTML source entry should exist");
   assert.deepEqual(config.features["WebAPI.DOM"], ["EventTypes", "Event", "Element", "Document"]);
   assert.deepEqual(documentSource, {
@@ -113,7 +161,10 @@ test("keeps DOM feature minimal for React-oriented consumers", () => {
     feature: "Element",
     public: ["Element"],
   });
-  assert.ok(htmlSource.public.includes("HTMLCollection"));
+  assert.ok(baseSource.public.includes("HTMLCollection"));
+  assert.ok(baseSource.public.includes("NamedNodeMap"));
+  assert.ok(baseSource.public.includes("Node"));
+  assert.ok(baseSource.public.includes("NodeList"));
   assert.ok(htmlSource.public.includes("HTMLElement"));
 });
 
@@ -146,6 +197,11 @@ test("keeps public feature groups separate from internal source features", () =>
         internalFeatures.has(dependency),
         `${featureName} depends on missing internal feature ${dependency}`,
       );
+    }
+
+    if (dependencies.includes("Base")) {
+      assert.ok(dependencies.includes("Element"), `${featureName} should include Element with Base`);
+      assert.ok(dependencies.includes("Document"), `${featureName} should include Document with Base`);
     }
   }
 });

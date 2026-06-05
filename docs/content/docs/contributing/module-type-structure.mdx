@@ -87,7 +87,7 @@ interface module a same-type alias of that base:
 type t = private {}
 
 // Element.res
-type t = Base__Element.t = {...Base__Element.t}
+type t = Base__Element.t = private {...Base__Element.t}
 ```
 
 This keeps `Element.t` as the public type name while still allowing structural

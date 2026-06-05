@@ -1,4 +1,7 @@
-type t = {...Base__DOMTokenList.t}
+type t = private {
+  length: int,
+  mutable value: string,
+}
 
 /**
 Returns the token with index index.

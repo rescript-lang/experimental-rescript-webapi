@@ -1,5 +1,7 @@
 type t = Base__Node.t
 
+type getRootNodeOptions = {mutable composed?: bool}
+
 module Impl = (
   T: {
     type t
@@ -12,7 +14,7 @@ Returns node's root.
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/getRootNode)
 */
   @send
-  external getRootNode: (T.t, ~options: DomTypes.getRootNodeOptions=?) => t = "getRootNode"
+  external getRootNode: (T.t, ~options: getRootNodeOptions=?) => t = "getRootNode"
 
   /**
 Returns whether node has children.
