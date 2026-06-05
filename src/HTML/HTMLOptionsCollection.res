@@ -1,3 +1,5 @@
+type t = DomTypes.htmlOptionsCollection = private {...DomTypes.htmlOptionsCollection}
+
 /**
 Inserts element before the Node.t given by before.
 
@@ -9,7 +11,7 @@ This method will throw a "HierarchyRequestError" DOMException if element is an a
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLOptionsCollection/add)
 */
 @send
-external add: (DomTypes.htmlOptionsCollection, ~element: unknown, ~before: unknown=?) => unit =
+external add: (t, ~element: unknown, ~before: unknown=?) => unit =
   "add"
 
 /**
@@ -17,4 +19,4 @@ Removes the item with index index from the collection.
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLOptionsCollection/remove)
 */
 @send
-external remove: (DomTypes.htmlOptionsCollection, int) => unit = "remove"
+external remove: (t, int) => unit = "remove"

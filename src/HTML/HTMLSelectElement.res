@@ -1,3 +1,5 @@
+type t = DomTypes.htmlSelectElement = private {...DomTypes.htmlSelectElement}
+
 /**
 Retrieves a select object or an object from an options collection.
 @param name Variant of type Number or String that specifies the object or collection to retrieve. If this parameter is an integer, it is the zero-based index of the object. If this parameter is a string, all objects with matching name or id properties are retrieved, and a collection is returned if more than one match is made.
@@ -5,7 +7,7 @@ Retrieves a select object or an object from an options collection.
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLSelectElement/item)
 */
 @send
-external item: (DomTypes.htmlSelectElement, int) => DomTypes.htmlOptionElement = "item"
+external item: (t, int) => DomTypes.htmlOptionElement = "item"
 
 /**
 Retrieves a select object or an object from an options collection.
@@ -13,7 +15,7 @@ Retrieves a select object or an object from an options collection.
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLSelectElement/namedItem)
 */
 @send
-external namedItem: (DomTypes.htmlSelectElement, string) => DomTypes.htmlOptionElement = "namedItem"
+external namedItem: (t, string) => DomTypes.htmlOptionElement = "namedItem"
 
 /**
 Adds an element to the areas, controlRange, or options collection.
@@ -22,7 +24,7 @@ Adds an element to the areas, controlRange, or options collection.
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLSelectElement/add)
 */
 @send
-external add: (DomTypes.htmlSelectElement, ~element: unknown, ~before: unknown=?) => unit = "add"
+external add: (t, ~element: unknown, ~before: unknown=?) => unit = "add"
 
 /**
 Removes an element from the collection.
@@ -30,7 +32,7 @@ Removes an element from the collection.
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLSelectElement/remove)
 */
 @send
-external removeH: DomTypes.htmlSelectElement => unit = "remove"
+external removeH: t => unit = "remove"
 
 /**
 Removes an element from the collection.
@@ -38,20 +40,20 @@ Removes an element from the collection.
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLSelectElement/remove)
 */
 @send
-external removeH2: (DomTypes.htmlSelectElement, int) => unit = "remove"
+external removeH2: (t, int) => unit = "remove"
 
 /**
 Returns whether a form will validate when it is submitted, without having to submit it.
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLSelectElement/checkValidity)
 */
 @send
-external checkValidity: DomTypes.htmlSelectElement => bool = "checkValidity"
+external checkValidity: t => bool = "checkValidity"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLSelectElement/reportValidity)
 */
 @send
-external reportValidity: DomTypes.htmlSelectElement => bool = "reportValidity"
+external reportValidity: t => bool = "reportValidity"
 
 /**
 Sets a custom error message that is displayed when a form is submitted.
@@ -59,12 +61,12 @@ Sets a custom error message that is displayed when a form is submitted.
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLSelectElement/setCustomValidity)
 */
 @send
-external setCustomValidity: (DomTypes.htmlSelectElement, string) => unit = "setCustomValidity"
+external setCustomValidity: (t, string) => unit = "setCustomValidity"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLSelectElement/showPicker)
 */
 @send
-external showPicker: DomTypes.htmlSelectElement => unit = "showPicker"
+external showPicker: t => unit = "showPicker"
 
-include HTMLElement.Impl({type t = DomTypes.htmlSelectElement})
+include HTMLElement.Impl({type t = t})

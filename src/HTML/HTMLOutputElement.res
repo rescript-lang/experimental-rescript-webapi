@@ -1,19 +1,21 @@
-include HTMLElement.Impl({type t = DomTypes.htmlOutputElement})
+type t = DomTypes.htmlOutputElement = private {...DomTypes.htmlOutputElement}
+
+include HTMLElement.Impl({type t = t})
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLOutputElement/checkValidity)
 */
 @send
-external checkValidity: DomTypes.htmlOutputElement => bool = "checkValidity"
+external checkValidity: t => bool = "checkValidity"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLOutputElement/reportValidity)
 */
 @send
-external reportValidity: DomTypes.htmlOutputElement => bool = "reportValidity"
+external reportValidity: t => bool = "reportValidity"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLOutputElement/setCustomValidity)
 */
 @send
-external setCustomValidity: (DomTypes.htmlOutputElement, string) => unit = "setCustomValidity"
+external setCustomValidity: (t, string) => unit = "setCustomValidity"

@@ -1,17 +1,19 @@
-include DomHTMLMediaElement.Impl({type t = DomTypes.htmlVideoElement})
+type t = DomTypes.htmlVideoElement = private {...DomTypes.htmlVideoElement}
+
+include DomHTMLMediaElement.Impl({type t = t})
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLVideoElement/getVideoPlaybackQuality)
 */
 @send
-external getVideoPlaybackQuality: DomTypes.htmlVideoElement => DomTypes.videoPlaybackQuality =
+external getVideoPlaybackQuality: t => DomTypes.videoPlaybackQuality =
   "getVideoPlaybackQuality"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLVideoElement/requestPictureInPicture)
 */
 @send
-external requestPictureInPicture: DomTypes.htmlVideoElement => promise<
+external requestPictureInPicture: t => promise<
   PictureInPictureTypes.pictureInPictureWindow,
 > = "requestPictureInPicture"
 
@@ -20,7 +22,7 @@ external requestPictureInPicture: DomTypes.htmlVideoElement => promise<
 */
 @send
 external requestVideoFrameCallback: (
-  DomTypes.htmlVideoElement,
+  t,
   (float, DomTypes.videoFrameCallbackMetadata) => unit,
 ) => int = "requestVideoFrameCallback"
 
@@ -28,5 +30,5 @@ external requestVideoFrameCallback: (
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLVideoElement/cancelVideoFrameCallback)
 */
 @send
-external cancelVideoFrameCallback: (DomTypes.htmlVideoElement, int) => unit =
+external cancelVideoFrameCallback: (t, int) => unit =
   "cancelVideoFrameCallback"
