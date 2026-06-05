@@ -1,4 +1,4 @@
-type t = DomTypes.window
+type t = DomTypes.window = private {...DomTypes.window}
 type windowPostMessageOptions = DomTypes.windowPostMessageOptions
 
 include EventTarget.Impl({type t = t})
@@ -490,4 +490,4 @@ external cancelIdleCallback: (t, int) => unit = "cancelIdleCallback"
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/getSelection)
 */
 @send
-external getSelection: t => null<DomTypes.selection> = "getSelection"
+external getSelection: t => null<Selection.t> = "getSelection"

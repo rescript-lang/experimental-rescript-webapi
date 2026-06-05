@@ -2,9 +2,7 @@ import test from "node:test";
 import assert from "node:assert/strict";
 import { auditMethodStyle } from "../../scripts/audit-method-style.mjs";
 
-const pilotTypeBucketReceivers = [
-  "src/Window/Window.res",
-];
+const pilotTypeBucketReceivers = [];
 
 const remainingTransitionTypeBucketReceivers = [
   "src/CSSFontLoading/FontFace.res",
