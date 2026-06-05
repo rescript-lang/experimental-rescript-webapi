@@ -1529,7 +1529,7 @@ The CanvasRenderingContext2D interface, part of the WebApiCanvas API, provides t
 [See CanvasRenderingContext2D on MDN](https://developer.mozilla.org/docs/Web/API/CanvasRenderingContext2D)
 */
 @editor.completeFrom(CanvasRenderingContext2D)
-type canvasRenderingContext2D
+type canvasRenderingContext2D = private {}
 
 type animation = Animation.t
 

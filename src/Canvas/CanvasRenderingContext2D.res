@@ -1,4 +1,4 @@
-type t = DomTypes.canvasRenderingContext2D
+type t = DomTypes.canvasRenderingContext2D = private {...DomTypes.canvasRenderingContext2D}
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CanvasRenderingContext2D/save)

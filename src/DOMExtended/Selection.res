@@ -1,69 +1,71 @@
+type t = DomTypes.selection = private {...DomTypes.selection}
+
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Selection/getRangeAt)
 */
 @send
-external getRangeAt: (DomTypes.selection, int) => DomTypes.range = "getRangeAt"
+external getRangeAt: (t, int) => Range.t = "getRangeAt"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Selection/addRange)
 */
 @send
-external addRange: (DomTypes.selection, DomTypes.range) => unit = "addRange"
+external addRange: (t, Range.t) => unit = "addRange"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Selection/removeRange)
 */
 @send
-external removeRange: (DomTypes.selection, DomTypes.range) => unit = "removeRange"
+external removeRange: (t, Range.t) => unit = "removeRange"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Selection/removeAllRanges)
 */
 @send
-external removeAllRanges: DomTypes.selection => unit = "removeAllRanges"
+external removeAllRanges: t => unit = "removeAllRanges"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Selection/removeAllRanges)
 */
 @send
-external empty: DomTypes.selection => unit = "empty"
+external empty: t => unit = "empty"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Selection/collapse)
 */
 @send
-external collapse: (DomTypes.selection, ~node: Node.t, ~offset: int=?) => unit = "collapse"
+external collapse: (t, ~node: Node.t, ~offset: int=?) => unit = "collapse"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Selection/collapse)
 */
 @send
-external setPosition: (DomTypes.selection, ~node: Node.t, ~offset: int=?) => unit = "setPosition"
+external setPosition: (t, ~node: Node.t, ~offset: int=?) => unit = "setPosition"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Selection/collapseToStart)
 */
 @send
-external collapseToStart: DomTypes.selection => unit = "collapseToStart"
+external collapseToStart: t => unit = "collapseToStart"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Selection/collapseToEnd)
 */
 @send
-external collapseToEnd: DomTypes.selection => unit = "collapseToEnd"
+external collapseToEnd: t => unit = "collapseToEnd"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Selection/extend)
 */
 @send
-external extend: (DomTypes.selection, ~node: Node.t, ~offset: int=?) => unit = "extend"
+external extend: (t, ~node: Node.t, ~offset: int=?) => unit = "extend"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Selection/setBaseAndExtent)
 */
 @send
 external setBaseAndExtent: (
-  DomTypes.selection,
+  t,
   ~anchorNode: Node.t,
   ~anchorOffset: int,
   ~focusNode: Node.t,
@@ -74,14 +76,14 @@ external setBaseAndExtent: (
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Selection/selectAllChildren)
 */
 @send
-external selectAllChildren: (DomTypes.selection, Node.t) => unit = "selectAllChildren"
+external selectAllChildren: (t, Node.t) => unit = "selectAllChildren"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Selection/modify)
 */
 @send
 external modify: (
-  DomTypes.selection,
+  t,
   ~alter: string=?,
   ~direction: string=?,
   ~granularity: string=?,
@@ -91,14 +93,14 @@ external modify: (
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Selection/deleteFromDocument)
 */
 @send
-external deleteFromDocument: DomTypes.selection => unit = "deleteFromDocument"
+external deleteFromDocument: t => unit = "deleteFromDocument"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Selection/containsNode)
 */
 @send
 external containsNode: (
-  DomTypes.selection,
+  t,
   ~node: Node.t,
   ~allowPartialContainment: bool=?,
 ) => bool = "containsNode"
