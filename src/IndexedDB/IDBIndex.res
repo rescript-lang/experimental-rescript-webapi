@@ -1,3 +1,5 @@
+type t = IndexedDbTypes.idbIndex = private {...IndexedDbTypes.idbIndex}
+
 /**
 Retrieves the value of the first record matching the given key or key range in query.
 
@@ -5,7 +7,7 @@ If successful, request's result will be the value, or undefined if there was no 
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/IDBIndex/get)
 */
 @send
-external get: (IndexedDbTypes.idbIndex, unknown) => IndexedDbTypes.idbRequest<JSON.t> = "get"
+external get: (t, unknown) => IndexedDbTypes.idbRequest<JSON.t> = "get"
 
 /**
 Retrieves the key of the first record matching the given key or key range in query.
@@ -14,7 +16,7 @@ If successful, request's result will be the key, or undefined if there was no ma
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/IDBIndex/getKey)
 */
 @send
-external getKey: (IndexedDbTypes.idbIndex, unknown) => IndexedDbTypes.idbRequest<unknown> = "getKey"
+external getKey: (t, unknown) => IndexedDbTypes.idbRequest<unknown> = "getKey"
 
 /**
 Retrieves the values of the records matching the given key or key range in query (up to count if given).
@@ -24,7 +26,7 @@ If successful, request's result will be an Array of the values.
 */
 @send
 external getAll: (
-  IndexedDbTypes.idbIndex,
+  t,
   ~query: unknown=?,
   ~count: int=?,
 ) => IndexedDbTypes.idbRequest<array<JSON.t>> = "getAll"
@@ -37,7 +39,7 @@ If successful, request's result will be an Array of the keys.
 */
 @send
 external getAllKeys: (
-  IndexedDbTypes.idbIndex,
+  t,
   ~query: unknown=?,
   ~count: int=?,
 ) => IndexedDbTypes.idbRequest<array<IndexedDbTypes.idbValidKey>> = "getAllKeys"
@@ -49,7 +51,7 @@ If successful, request's result will be the count.
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/IDBIndex/count)
 */
 @send
-external count: (IndexedDbTypes.idbIndex, ~query: unknown=?) => IndexedDbTypes.idbRequest<int> =
+external count: (t, ~query: unknown=?) => IndexedDbTypes.idbRequest<int> =
   "count"
 
 /**
@@ -60,7 +62,7 @@ If successful, request's result will be an IDBCursorWithValue, or null if there 
 */
 @send
 external openCursor: (
-  IndexedDbTypes.idbIndex,
+  t,
   ~query: unknown=?,
   ~direction: IndexedDbTypes.idbCursorDirection=?,
 ) => IndexedDbTypes.idbRequest<unknown> = "openCursor"
@@ -73,7 +75,7 @@ If successful, request's result will be an IDBCursor, or null if there were no m
 */
 @send
 external openKeyCursor: (
-  IndexedDbTypes.idbIndex,
+  t,
   ~query: unknown=?,
   ~direction: IndexedDbTypes.idbCursorDirection=?,
 ) => IndexedDbTypes.idbRequest<unknown> = "openKeyCursor"
