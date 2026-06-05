@@ -1,11 +1,13 @@
+type t = DomTypes.nodeIterator = private {...DomTypes.nodeIterator}
+
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/NodeIterator/nextNode)
 */
 @send
-external nextNode: DomTypes.nodeIterator => Node.t = "nextNode"
+external nextNode: t => Node.t = "nextNode"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/NodeIterator/previousNode)
 */
 @send
-external previousNode: DomTypes.nodeIterator => Node.t = "previousNode"
+external previousNode: t => Node.t = "previousNode"

@@ -1,14 +1,16 @@
-include CharacterData.Impl({type t = DomTypes.text})
+type t = DomTypes.text = private {...DomTypes.text}
+
+include CharacterData.Impl({type t = t})
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Text)
 */
 @new
-external make: (~data: string=?) => DomTypes.text = "Text"
+external make: (~data: string=?) => t = "Text"
 
 /**
 Splits data at the given offset and returns the remainder as Text node.
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Text/splitText)
 */
 @send
-external splitText: (DomTypes.text, int) => DomTypes.text = "splitText"
+external splitText: (t, int) => t = "splitText"

@@ -8,13 +8,6 @@ const remainingTransitionTypeBucketReceivers = [
   "src/CSSFontLoading/FontFace.res",
   "src/CSSFontLoading/FontFaceSet.res",
   "src/Clipboard/ClipboardItem.res",
-  "src/CustomElements/ElementInternals.res",
-  "src/DOMExtended/CaretPosition.res",
-  "src/DOMExtended/DOMImplementation.res",
-  "src/DOMExtended/NodeFilter.res",
-  "src/DOMExtended/NodeIterator.res",
-  "src/DOMExtended/Text.res",
-  "src/DOMExtended/TreeWalker.res",
   "src/EncryptedMediaExtensions/EncryptedMediaExtensionsHTMLMediaElement.res",
   "src/EncryptedMediaExtensions/MediaKeySession.res",
   "src/EncryptedMediaExtensions/MediaKeyStatusMap.res",
@@ -89,8 +82,6 @@ const remainingTransitionTypeBucketReceivers = [
   "src/WebStorage/Storage.res",
   "src/WebVTT/TextTrack.res",
   "src/WebVTT/TextTrackCueList.res",
-  "src/XPath/XPathExpression.res",
-  "src/XPath/XPathResult.res",
 ];
 
 const allowedTypeBucketReceivers = new Set([

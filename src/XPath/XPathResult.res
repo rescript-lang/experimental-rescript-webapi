@@ -1,11 +1,13 @@
+type t = DomTypes.xPathResult = private {...DomTypes.xPathResult}
+
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/XPathResult/iterateNext)
 */
 @send
-external iterateNext: DomTypes.xPathResult => Node.t = "iterateNext"
+external iterateNext: t => Node.t = "iterateNext"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/XPathResult/snapshotItem)
 */
 @send
-external snapshotItem: (DomTypes.xPathResult, int) => Node.t = "snapshotItem"
+external snapshotItem: (t, int) => Node.t = "snapshotItem"

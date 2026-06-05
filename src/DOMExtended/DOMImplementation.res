@@ -1,9 +1,11 @@
+type t = DomTypes.domImplementation = private {...DomTypes.domImplementation}
+
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/DOMImplementation/createDocumentType)
 */
 @send
 external createDocumentType: (
-  DomTypes.domImplementation,
+  t,
   ~qualifiedName: string,
   ~publicId: string,
   ~systemId: string,
@@ -14,7 +16,7 @@ external createDocumentType: (
 */
 @send
 external createDocument: (
-  DomTypes.domImplementation,
+  t,
   ~namespace: string,
   ~qualifiedName: string,
   ~doctype: DomTypes.documentType=?,
@@ -24,5 +26,5 @@ external createDocument: (
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/DOMImplementation/createHTMLDocument)
 */
 @send
-external createHTMLDocument: (DomTypes.domImplementation, ~title: string=?) => Document.t =
+external createHTMLDocument: (t, ~title: string=?) => Document.t =
   "createHTMLDocument"
