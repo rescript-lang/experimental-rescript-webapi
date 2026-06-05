@@ -28,14 +28,14 @@ test("defines all legacy feature mappings used by the unmonorepo migration", () 
         dirName: "Base",
         legacyNamespace: "WebApiBase",
         publicModule: "Base",
-        featureName: "WebAPI.Base",
+        featureName: "Base",
         internalPrefix: "Base",
       },
       {
         dirName: "DOM",
         legacyNamespace: "WebApiDOM",
         publicModule: "DOM",
-        featureName: "WebAPI.DOM",
+        featureName: "DOM",
         internalPrefix: "Dom",
       },
     ],
@@ -44,12 +44,12 @@ test("defines all legacy feature mappings used by the unmonorepo migration", () 
   assert.equal(featureSpecs.length, 44);
 });
 
-test("keeps shared internal event helper shapes under the EventTypes feature root", () => {
-  assert.equal(existsSync(join(repoRoot, "src", "EventTypes", "EventTypes.res")), true);
-  assert.equal(existsSync(join(repoRoot, "src", "Event", "EventTypes.res")), false);
+test("keeps shared internal event helper shapes beside the Event modules", () => {
+  assert.equal(existsSync(join(repoRoot, "src", "Event", "EventTypes.res")), true);
+  assert.equal(existsSync(join(repoRoot, "src", "EventTypes", "EventTypes.res")), false);
 
   const eventTypesSource = readFileSync(
-    join(repoRoot, "src", "EventTypes", "EventTypes.res"),
+    join(repoRoot, "src", "Event", "EventTypes.res"),
     "utf8",
   );
   assert.equal(eventTypesSource.includes("@editor.completeFrom(AbortController)"), false);
@@ -93,15 +93,61 @@ test("keeps DOM owner type aliases out of public compatibility modules", () => {
 test("keeps DOM feature minimal for React-oriented consumers", () => {
   const config = JSON.parse(readFileSync(join(repoRoot, "rescript.json"), "utf8"));
   const sourceEntries = config.sources.filter((source) => source.dir?.startsWith("src/"));
-  const domSource = sourceEntries.find((source) => source.dir === "src/DOM");
+  const documentSource = sourceEntries.find((source) => source.feature === "Document");
+  const elementSource = sourceEntries.find((source) => source.feature === "Element");
   const htmlSource = sourceEntries.find((source) => source.dir === "src/HTML");
 
-  assert.ok(domSource, "src/DOM source entry should exist");
+  assert.ok(documentSource, "Document source entry should exist");
+  assert.ok(elementSource, "Element source entry should exist");
   assert.ok(htmlSource, "src/HTML source entry should exist");
-  assert.deepEqual(config.features["WebAPI.DOM"], []);
-  assert.deepEqual(domSource.public, ["Document", "Element"]);
+  assert.deepEqual(config.features["WebAPI.DOM"], ["EventTypes", "Event", "Element", "Document"]);
+  assert.deepEqual(documentSource, {
+    dir: "src/DOM",
+    files: ["Document.res"],
+    feature: "Document",
+    public: ["Document"],
+  });
+  assert.deepEqual(elementSource, {
+    dir: "src/DOM",
+    files: ["Element.res"],
+    feature: "Element",
+    public: ["Element"],
+  });
   assert.ok(htmlSource.public.includes("HTMLCollection"));
   assert.ok(htmlSource.public.includes("HTMLElement"));
+});
+
+test("keeps public feature groups separate from internal source features", () => {
+  const config = JSON.parse(readFileSync(join(repoRoot, "rescript.json"), "utf8"));
+  const sourceEntries = config.sources.filter((source) => source.dir?.startsWith("src/"));
+  const internalFeatures = new Set(sourceEntries.map((source) => source.feature));
+
+  assert.ok(!config.features.Base, "Base should not be a public feature group");
+  assert.ok(!config.features["WebAPI.Base"], "WebAPI.Base should not be a public feature group");
+  assert.ok(!config.features.DOMExtended, "DOMExtended should not be a public feature group");
+  assert.ok(
+    !config.features["WebAPI.DOMExtended"],
+    "WebAPI.DOMExtended should not be a public feature group",
+  );
+
+  for (const source of sourceEntries) {
+    assert.ok(
+      !source.feature.startsWith("WebAPI."),
+      `${source.dir} should use an unprefixed internal feature name`,
+    );
+  }
+
+  for (const [featureName, dependencies] of Object.entries(config.features)) {
+    assert.ok(featureName.startsWith("WebAPI."), `${featureName} should be a public feature group`);
+
+    for (const dependency of dependencies) {
+      assert.ok(!dependency.startsWith("WebAPI."), `${featureName} should depend on ${dependency} directly`);
+      assert.ok(
+        internalFeatures.has(dependency),
+        `${featureName} depends on missing internal feature ${dependency}`,
+      );
+    }
+  }
 });
 
 test("normalizes internal prefixes and public duplicate names", () => {
