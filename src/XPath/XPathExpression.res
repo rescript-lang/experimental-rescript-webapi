@@ -1,4 +1,4 @@
-type t = DOMTypes.xPathExpression = private {...DOMTypes.xPathExpression}
+type t = DOM.xPathExpression = private {...DOM.xPathExpression}
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/XPathExpression/evaluate)

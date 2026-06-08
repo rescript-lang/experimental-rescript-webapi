@@ -19,7 +19,7 @@ export function publicNameForLeafModule(leafName, internalPrefix) {
   const preservedPrefixedModules = new Set(["PushEvent"]);
   const duplicatedSuffixes = ["Types", "Global", "Event", "File", "HTMLMediaElement"];
 
-  if (internalPrefix === "Dom" && leafName === "DOMTypes") {
+  if (internalPrefix === "Dom" && leafName === "DOM") {
     return "Types";
   }
 
@@ -147,7 +147,7 @@ export function migratedLeafName({ spec, leafName, duplicateLeaves }) {
   }
 
   if (spec.dirName === "DOM" && leafName === "Types") {
-    return "DOMTypes";
+    return "DOM";
   }
 
   if (duplicateLeaves.has(leafName)) {

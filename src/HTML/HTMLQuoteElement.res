@@ -1,1 +1,1 @@
-include HTMLElement.Impl({type t = DOMTypes.htmlQuoteElement})
+include HTMLElement.Impl({type t = DOM.htmlQuoteElement})

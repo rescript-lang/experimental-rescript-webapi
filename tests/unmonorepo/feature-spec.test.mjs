@@ -118,7 +118,7 @@ test("documents private spreads for shared object bases", () => {
 });
 
 test("keeps DOM owner type aliases out of public compatibility modules", () => {
-  const domTypesSource = readFileSync(join(repoRoot, "src", "DOMTypes", "DOMTypes.res"), "utf8");
+  const domSource = readFileSync(join(repoRoot, "src", "DOMTypes", "DOM.res"), "utf8");
   const baseElementSource = readFileSync(
     join(repoRoot, "src", "Base", "Base__Element.res"),
     "utf8",
@@ -127,25 +127,25 @@ test("keeps DOM owner type aliases out of public compatibility modules", () => {
   assert.equal(existsSync(join(repoRoot, "src", "DOM", "DOM.res")), false);
   assert.match(baseElementSource, /^type rec t = \{$/m);
   assert.equal(baseElementSource.includes("type rec element = {"), false);
-  assert.equal(existsSync(join(repoRoot, "src", "Base", "Base__DOMTypes.res")), false);
-  assert.equal(/^type document\b/m.test(domTypesSource), false);
-  assert.equal(/^type element\b/m.test(domTypesSource), false);
-  assert.equal(domTypesSource.includes("type nodeList"), false);
-  assert.equal(domTypesSource.includes("type htmlCollection"), false);
-  assert.equal(domTypesSource.includes("type domTokenList"), false);
-  assert.equal(domTypesSource.includes("type namedNodeMap"), false);
+  assert.equal(existsSync(join(repoRoot, "src", "Base", "Base__DOM.res")), false);
+  assert.equal(/^type document\b/m.test(domSource), false);
+  assert.equal(/^type element\b/m.test(domSource), false);
+  assert.equal(domSource.includes("type nodeList"), false);
+  assert.equal(domSource.includes("type htmlCollection"), false);
+  assert.equal(domSource.includes("type domTokenList"), false);
+  assert.equal(domSource.includes("type namedNodeMap"), false);
 });
 
 test("keeps CSSStyleSheet as the public stylesheet type", () => {
   const config = JSON.parse(readFileSync(join(repoRoot, "rescript.json"), "utf8"));
   const cssomSource = config.sources.find((source) => source.dir === "src/CSSOM");
-  const domTypesSource = readFileSync(join(repoRoot, "src", "DOMTypes", "DOMTypes.res"), "utf8");
+  const domSource = readFileSync(join(repoRoot, "src", "DOMTypes", "DOM.res"), "utf8");
 
   assert.ok(cssomSource, "src/CSSOM source entry should exist");
   assert.ok(cssomSource.public.includes("CSSStyleSheet"));
   assert.equal(cssomSource.public.includes("StyleSheet"), false);
   assert.equal(existsSync(join(repoRoot, "src", "CSSOM", "StyleSheet.res")), false);
-  assert.equal(/^type styleSheet\b/m.test(domTypesSource), false);
+  assert.equal(/^type styleSheet\b/m.test(domSource), false);
 });
 
 test("removes DOMExtended in favor of leaf source directories", () => {
@@ -157,7 +157,7 @@ test("removes DOMExtended in favor of leaf source directories", () => {
   assert.equal(existsSync(join(repoRoot, "src", "Text", "Text.res")), true);
   assert.equal(existsSync(join(repoRoot, "src", "Range", "Range.res")), true);
   assert.equal(existsSync(join(repoRoot, "src", "DocumentFragment", "DocumentFragment.res")), true);
-  assert.equal(existsSync(join(repoRoot, "src", "DOMTypes", "DOMTypes.res")), true);
+  assert.equal(existsSync(join(repoRoot, "src", "DOMTypes", "DOM.res")), true);
   assert.equal(existsSync(join(repoRoot, "src", "DomGlobal", "DomGlobal.res")), true);
   assert.equal(sourceFeatures.has("DOMExtended"), false);
 
@@ -252,7 +252,7 @@ test("keeps public feature groups separate from internal source features", () =>
 test("normalizes internal prefixes and public duplicate names", () => {
   assert.equal(publicModuleToInternalPrefix("DOM"), "Dom");
   assert.equal(publicModuleToInternalPrefix("URL"), "Url");
-  assert.equal(publicNameForLeafModule("DOMTypes", "Dom"), "Types");
+  assert.equal(publicNameForLeafModule("DOM", "Dom"), "Types");
   assert.equal(publicNameForLeafModule("Document", "Dom"), "Document");
   assert.equal(publicNameForLeafModule("DOM", "Base"), "DOM");
   assert.equal(publicNameForLeafModule("PushEvent", "Push"), "PushEvent");

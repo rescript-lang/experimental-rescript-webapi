@@ -1,4 +1,4 @@
-type t = DOMTypes.htmlVideoElement = private {...DOMTypes.htmlVideoElement}
+type t = DOM.htmlVideoElement = private {...DOM.htmlVideoElement}
 
 include DomHTMLMediaElement.Impl({type t = t})
 
@@ -6,7 +6,7 @@ include DomHTMLMediaElement.Impl({type t = t})
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLVideoElement/getVideoPlaybackQuality)
 */
 @send
-external getVideoPlaybackQuality: t => DOMTypes.videoPlaybackQuality = "getVideoPlaybackQuality"
+external getVideoPlaybackQuality: t => DOM.videoPlaybackQuality = "getVideoPlaybackQuality"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLVideoElement/requestPictureInPicture)
@@ -21,7 +21,7 @@ external requestPictureInPicture: t => promise<PictureInPictureTypes.pictureInPi
 @send
 external requestVideoFrameCallback: (
   t,
-  (float, DOMTypes.videoFrameCallbackMetadata) => unit,
+  (float, DOM.videoFrameCallbackMetadata) => unit,
 ) => int = "requestVideoFrameCallback"
 
 /**

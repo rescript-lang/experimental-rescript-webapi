@@ -1,4 +1,4 @@
-type t = DOMTypes.xPathResult = private {...DOMTypes.xPathResult}
+type t = DOM.xPathResult = private {...DOM.xPathResult}
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/XPathResult/iterateNext)

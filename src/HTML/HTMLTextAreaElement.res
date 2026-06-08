@@ -1,4 +1,4 @@
-type t = DOMTypes.htmlTextAreaElement = private {...DOMTypes.htmlTextAreaElement}
+type t = DOM.htmlTextAreaElement = private {...DOM.htmlTextAreaElement}
 
 include HTMLElement.Impl({type t = t})
 
@@ -45,7 +45,7 @@ external setRangeText2: (
   ~replacement: string,
   ~start: int,
   ~end: int,
-  ~selectionMode: DOMTypes.selectionMode=?,
+  ~selectionMode: DOM.selectionMode=?,
 ) => unit = "setRangeText"
 
 /**

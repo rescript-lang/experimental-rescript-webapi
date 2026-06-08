@@ -1,4 +1,4 @@
-type t = DOMTypes.canvasRenderingContext2D = private {...DOMTypes.canvasRenderingContext2D}
+type t = DOM.canvasRenderingContext2D = private {...DOM.canvasRenderingContext2D}
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CanvasRenderingContext2D/save)
@@ -124,7 +124,7 @@ external createConicGradient: (
 @send
 external createPattern: (
   t,
-  ~image: DOMTypes.htmlImageElement,
+  ~image: DOM.htmlImageElement,
   ~repetition: string,
 ) => CanvasTypes.canvasPattern = "createPattern"
 
@@ -134,7 +134,7 @@ external createPattern: (
 @send
 external createPattern2: (
   t,
-  ~image: DOMTypes.svgImageElement,
+  ~image: DOM.svgImageElement,
   ~repetition: string,
 ) => CanvasTypes.canvasPattern = "createPattern"
 
@@ -144,7 +144,7 @@ external createPattern2: (
 @send
 external createPattern3: (
   t,
-  ~image: DOMTypes.htmlVideoElement,
+  ~image: DOM.htmlVideoElement,
   ~repetition: string,
 ) => CanvasTypes.canvasPattern = "createPattern"
 
@@ -154,7 +154,7 @@ external createPattern3: (
 @send
 external createPattern4: (
   t,
-  ~image: DOMTypes.htmlCanvasElement,
+  ~image: DOM.htmlCanvasElement,
   ~repetition: string,
 ) => CanvasTypes.canvasPattern = "createPattern"
 
@@ -184,7 +184,7 @@ external createPattern6: (
 @send
 external createPattern7: (
   t,
-  ~image: DOMTypes.videoFrame,
+  ~image: DOM.videoFrame,
   ~repetition: string,
 ) => CanvasTypes.canvasPattern = "createPattern"
 
@@ -318,14 +318,14 @@ external measureText: (t, string) => CanvasTypes.textMetrics = "measureText"
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CanvasRenderingContext2D/drawImage)
 */
 @send
-external drawImage: (t, ~image: DOMTypes.htmlImageElement, ~dx: float, ~dy: float) => unit =
+external drawImage: (t, ~image: DOM.htmlImageElement, ~dx: float, ~dy: float) => unit =
   "drawImage"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CanvasRenderingContext2D/drawImage)
 */
 @send
-external drawImageWithSvg: (t, ~image: DOMTypes.svgImageElement, ~dx: float, ~dy: float) => unit =
+external drawImageWithSvg: (t, ~image: DOM.svgImageElement, ~dx: float, ~dy: float) => unit =
   "drawImage"
 
 /**
@@ -334,7 +334,7 @@ external drawImageWithSvg: (t, ~image: DOMTypes.svgImageElement, ~dx: float, ~dy
 @send
 external drawImageWithVideo: (
   t,
-  ~image: DOMTypes.htmlVideoElement,
+  ~image: DOM.htmlVideoElement,
   ~dx: float,
   ~dy: float,
 ) => unit = "drawImage"
@@ -345,7 +345,7 @@ external drawImageWithVideo: (
 @send
 external drawImageWithCanvas: (
   t,
-  ~image: DOMTypes.htmlCanvasElement,
+  ~image: DOM.htmlCanvasElement,
   ~dx: float,
   ~dy: float,
 ) => unit = "drawImage"
@@ -376,7 +376,7 @@ external drawImageWithOffscreenCanvas: (
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CanvasRenderingContext2D/drawImage)
 */
 @send
-external drawImageWithVideoFrame: (t, ~image: DOMTypes.videoFrame, ~dx: float, ~dy: float) => unit =
+external drawImageWithVideoFrame: (t, ~image: DOM.videoFrame, ~dx: float, ~dy: float) => unit =
   "drawImage"
 
 /**
@@ -385,7 +385,7 @@ external drawImageWithVideoFrame: (t, ~image: DOMTypes.videoFrame, ~dx: float, ~
 @send
 external drawImageWithDimensions: (
   t,
-  ~image: DOMTypes.htmlImageElement,
+  ~image: DOM.htmlImageElement,
   ~dx: float,
   ~dy: float,
   ~dw: float,
@@ -398,7 +398,7 @@ external drawImageWithDimensions: (
 @send
 external drawImageWithSvgDimensions: (
   t,
-  ~image: DOMTypes.svgImageElement,
+  ~image: DOM.svgImageElement,
   ~dx: float,
   ~dy: float,
   ~dw: float,
@@ -411,7 +411,7 @@ external drawImageWithSvgDimensions: (
 @send
 external drawImageWithVideoDimensions: (
   t,
-  ~image: DOMTypes.htmlVideoElement,
+  ~image: DOM.htmlVideoElement,
   ~dx: float,
   ~dy: float,
   ~dw: float,
@@ -424,7 +424,7 @@ external drawImageWithVideoDimensions: (
 @send
 external drawImageWithCanvasDimensions: (
   t,
-  ~image: DOMTypes.htmlCanvasElement,
+  ~image: DOM.htmlCanvasElement,
   ~dx: float,
   ~dy: float,
   ~dw: float,
@@ -463,7 +463,7 @@ external drawImageWithOffscreenCanvasDimensions: (
 @send
 external drawImageWithVideoFrameDimensions: (
   t,
-  ~image: DOMTypes.videoFrame,
+  ~image: DOM.videoFrame,
   ~dx: float,
   ~dy: float,
   ~dw: float,
@@ -476,7 +476,7 @@ external drawImageWithVideoFrameDimensions: (
 @send
 external drawImageWithSubRectangle: (
   t,
-  ~image: DOMTypes.htmlImageElement,
+  ~image: DOM.htmlImageElement,
   ~sx: float,
   ~sy: float,
   ~sw: float,
@@ -493,7 +493,7 @@ external drawImageWithSubRectangle: (
 @send
 external drawImageWithSvgSubRectangle: (
   t,
-  ~image: DOMTypes.svgImageElement,
+  ~image: DOM.svgImageElement,
   ~sx: float,
   ~sy: float,
   ~sw: float,
@@ -510,7 +510,7 @@ external drawImageWithSvgSubRectangle: (
 @send
 external drawImageWithVideoSubRectangle: (
   t,
-  ~image: DOMTypes.htmlVideoElement,
+  ~image: DOM.htmlVideoElement,
   ~sx: float,
   ~sy: float,
   ~sw: float,
@@ -527,7 +527,7 @@ external drawImageWithVideoSubRectangle: (
 @send
 external drawImageWithCanvasSubRectangle: (
   t,
-  ~image: DOMTypes.htmlCanvasElement,
+  ~image: DOM.htmlCanvasElement,
   ~sx: float,
   ~sy: float,
   ~sw: float,
@@ -578,7 +578,7 @@ external drawImageWithOffscreenCanvasSubRectangle: (
 @send
 external drawImageWithVideoFrameSubRectangle: (
   t,
-  ~image: DOMTypes.videoFrame,
+  ~image: DOM.videoFrame,
   ~sx: float,
   ~sy: float,
   ~sw: float,
@@ -597,14 +597,14 @@ external createImageData: (
   t,
   ~sw: int,
   ~sh: int,
-  ~settings: DOMTypes.imageDataSettings=?,
-) => DOMTypes.imageData = "createImageData"
+  ~settings: DOM.imageDataSettings=?,
+) => DOM.imageData = "createImageData"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CanvasRenderingContext2D/createImageData)
 */
 @send
-external createImageData2: (t, DOMTypes.imageData) => DOMTypes.imageData = "createImageData"
+external createImageData2: (t, DOM.imageData) => DOM.imageData = "createImageData"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CanvasRenderingContext2D/getImageData)
@@ -616,14 +616,14 @@ external getImageData: (
   ~sy: int,
   ~sw: int,
   ~sh: int,
-  ~settings: DOMTypes.imageDataSettings=?,
-) => DOMTypes.imageData = "getImageData"
+  ~settings: DOM.imageDataSettings=?,
+) => DOM.imageData = "getImageData"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CanvasRenderingContext2D/putImageData)
 */
 @send
-external putImageData: (t, ~imagedata: DOMTypes.imageData, ~dx: int, ~dy: int) => unit =
+external putImageData: (t, ~imagedata: DOM.imageData, ~dx: int, ~dy: int) => unit =
   "putImageData"
 
 /**
@@ -632,7 +632,7 @@ external putImageData: (t, ~imagedata: DOMTypes.imageData, ~dx: int, ~dy: int) =
 @send
 external putImageData2: (
   t,
-  ~imagedata: DOMTypes.imageData,
+  ~imagedata: DOM.imageData,
   ~dx: int,
   ~dy: int,
   ~dirtyX: int,

@@ -1,1 +1,1 @@
-include HTMLElement.Impl({type t = DOMTypes.htmlMeterElement})
+include HTMLElement.Impl({type t = DOM.htmlMeterElement})

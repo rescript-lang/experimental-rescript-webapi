@@ -1,4 +1,4 @@
-type t = DOMTypes.svgGraphicsElement = private {...DOMTypes.svgGraphicsElement}
+type t = DOM.svgGraphicsElement = private {...DOM.svgGraphicsElement}
 
 include Element.Impl({type t = t})
 
@@ -6,7 +6,7 @@ include Element.Impl({type t = t})
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/SVGGraphicsElement/getBBox)
 */
 @send
-external getBBox: (t, ~options: DOMTypes.svgBoundingBoxOptions=?) => DOMRect.t = "getBBox"
+external getBBox: (t, ~options: DOM.svgBoundingBoxOptions=?) => DOMRect.t = "getBBox"
 
 @send
 external getCTM: t => DOMMatrix.t = "getCTM"

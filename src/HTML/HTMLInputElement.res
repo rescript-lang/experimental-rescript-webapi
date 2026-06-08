@@ -1,4 +1,4 @@
-type t = DOMTypes.htmlInputElement = private {...DOMTypes.htmlInputElement}
+type t = DOM.htmlInputElement = private {...DOM.htmlInputElement}
 
 include HTMLElement.Impl({type t = t})
 
@@ -61,7 +61,7 @@ external setRangeText2: (
   ~replacement: string,
   ~start: int,
   ~end: int,
-  ~selectionMode: DOMTypes.selectionMode=?,
+  ~selectionMode: DOM.selectionMode=?,
 ) => unit = "setRangeText"
 
 /**

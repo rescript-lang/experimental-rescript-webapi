@@ -1,4 +1,4 @@
-type t = DOMTypes.htmlTableSectionElement = private {...DOMTypes.htmlTableSectionElement}
+type t = DOM.htmlTableSectionElement = private {...DOM.htmlTableSectionElement}
 
 include HTMLElement.Impl({type t = t})
 
@@ -8,7 +8,7 @@ Creates a new row (tr) in the table, and adds the row to the rows collection.
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLTableSectionElement/insertRow)
 */
 @send
-external insertRow: (t, ~index: int=?) => DOMTypes.htmlTableRowElement = "insertRow"
+external insertRow: (t, ~index: int=?) => DOM.htmlTableRowElement = "insertRow"
 
 /**
 Removes the specified row (tr) from the element and from the rows collection.

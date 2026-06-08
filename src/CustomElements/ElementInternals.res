@@ -1,4 +1,4 @@
-type t = DOMTypes.elementInternals = private {...DOMTypes.elementInternals}
+type t = DOM.elementInternals = private {...DOM.elementInternals}
 
 /**
 Sets both the state and submission value of internals's target element to value.
@@ -16,7 +16,7 @@ Marks internals's target element as suffering from the constraints indicated by 
 @send
 external setValidity: (
   t,
-  ~flags: DOMTypes.validityStateFlags=?,
+  ~flags: DOM.validityStateFlags=?,
   ~message: string=?,
   ~anchor: HTMLElement.t=?,
 ) => unit = "setValidity"

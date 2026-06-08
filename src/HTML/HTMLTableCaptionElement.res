@@ -1,1 +1,1 @@
-include HTMLElement.Impl({type t = DOMTypes.htmlTableCaptionElement})
+include HTMLElement.Impl({type t = DOM.htmlTableCaptionElement})

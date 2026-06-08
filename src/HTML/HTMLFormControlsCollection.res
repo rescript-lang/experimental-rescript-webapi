@@ -1,4 +1,4 @@
-type t = DOMTypes.htmlFormControlsCollection = private {...DOMTypes.htmlFormControlsCollection}
+type t = DOM.htmlFormControlsCollection = private {...DOM.htmlFormControlsCollection}
 
 external asHTMLCollection: t => HTMLCollection.t<Element.t> = "%identity"
 /**

@@ -1,4 +1,4 @@
-type t = DOMTypes.htmlImageElement = private {...DOMTypes.htmlImageElement}
+type t = DOM.htmlImageElement = private {...DOM.htmlImageElement}
 
 include HTMLElement.Impl({type t = t})
 

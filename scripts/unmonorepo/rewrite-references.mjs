@@ -41,6 +41,7 @@ function rewriteNestedFeatureReferences(source, { specs, leavesByFeature }) {
 function rewriteOwnerTypeReferences(source) {
   return source
     .replaceAll("DOMTypes.element", "Element.t")
+    .replaceAll("DOM.element", "Element.t")
     .replaceAll("DOM.eventTarget", "EventTarget.t")
     .replaceAll("DOM.event", "Event.t");
 }

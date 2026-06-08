@@ -1,4 +1,4 @@
-include HTMLElement.Impl({type t = DOMTypes.htmlScriptElement})
+include HTMLElement.Impl({type t = DOM.htmlScriptElement})
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLScriptElement/supports_static)

@@ -1,4 +1,4 @@
-type t = DOMTypes.htmlDialogElement = private {...DOMTypes.htmlDialogElement}
+type t = DOM.htmlDialogElement = private {...DOM.htmlDialogElement}
 
 include HTMLElement.Impl({type t = t})
 

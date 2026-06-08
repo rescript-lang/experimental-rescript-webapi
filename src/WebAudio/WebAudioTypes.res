@@ -991,7 +991,7 @@ type mediaElementAudioSourceNode = private {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/MediaElementAudioSourceNode/mediaElement)
     */
-  mediaElement: DOMTypes.htmlMediaElement,
+  mediaElement: DOM.htmlMediaElement,
 }
 
 /**
@@ -1271,7 +1271,7 @@ type audioContextOptions = {
   mutable sampleRate?: float,
 }
 
-type mediaElementAudioSourceOptions = {mutable mediaElement: DOMTypes.htmlMediaElement}
+type mediaElementAudioSourceOptions = {mutable mediaElement: DOM.htmlMediaElement}
 
 type mediaStreamAudioSourceOptions = {
   mutable mediaStream: MediaCaptureAndStreamsTypes.mediaStream,

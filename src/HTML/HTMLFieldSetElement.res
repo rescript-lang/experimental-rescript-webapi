@@ -1,4 +1,4 @@
-type t = DOMTypes.htmlFieldSetElement = private {...DOMTypes.htmlFieldSetElement}
+type t = DOM.htmlFieldSetElement = private {...DOM.htmlFieldSetElement}
 
 include HTMLElement.Impl({type t = t})
 

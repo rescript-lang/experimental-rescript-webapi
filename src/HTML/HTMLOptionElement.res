@@ -1,1 +1,1 @@
-include HTMLElement.Impl({type t = DOMTypes.htmlOptionElement})
+include HTMLElement.Impl({type t = DOM.htmlOptionElement})

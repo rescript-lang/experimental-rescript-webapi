@@ -2,7 +2,7 @@
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/ImageData)
 */
 @new
-external make: (~sw: int, ~sh: int, ~settings: DOMTypes.imageDataSettings=?) => DOMTypes.imageData =
+external make: (~sw: int, ~sh: int, ~settings: DOM.imageDataSettings=?) => DOM.imageData =
   "ImageData"
 
 /**
@@ -13,5 +13,5 @@ external makeWithData: (
   ~data: Uint8ClampedArray.t,
   ~sw: int,
   ~sh: int=?,
-  ~settings: DOMTypes.imageDataSettings=?,
-) => DOMTypes.imageData = "ImageData"
+  ~settings: DOM.imageDataSettings=?,
+) => DOM.imageData = "ImageData"

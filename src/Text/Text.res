@@ -1,4 +1,4 @@
-type t = DOMTypes.text = private {...DOMTypes.text}
+type t = DOM.text = private {...DOM.text}
 
 include CharacterData.Impl({type t = t})
 

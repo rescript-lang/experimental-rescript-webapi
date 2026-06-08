@@ -1,4 +1,4 @@
-type t = DOMTypes.htmlOptionsCollection = private {...DOMTypes.htmlOptionsCollection}
+type t = DOM.htmlOptionsCollection = private {...DOM.htmlOptionsCollection}
 
 /**
 Inserts element before the Node.t given by before.

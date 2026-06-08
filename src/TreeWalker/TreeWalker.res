@@ -1,4 +1,4 @@
-type t = DOMTypes.treeWalker = private {...DOMTypes.treeWalker}
+type t = DOM.treeWalker = private {...DOM.treeWalker}
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/TreeWalker/parentNode)

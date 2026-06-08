@@ -14,7 +14,7 @@ type uiEvent = private {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/UIEvent/view)
     */
-  view: Null.t<DOMTypes.window>,
+  view: Null.t<DOM.window>,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/UIEvent/detail)
     */
@@ -472,7 +472,7 @@ type pointerEvent = private {
 
 type uiEventInit = {
   ...Event.eventInit,
-  mutable view?: Null.t<DOMTypes.window>,
+  mutable view?: Null.t<DOM.window>,
   mutable detail?: int,
   mutable which?: int,
 }
@@ -543,7 +543,7 @@ type inputEventInit = {
   mutable isComposing?: bool,
   mutable inputType?: string,
   mutable dataTransfer?: Null.t<dataTransfer>,
-  mutable targetRanges?: array<DOMTypes.staticRange>,
+  mutable targetRanges?: array<DOM.staticRange>,
 }
 
 type touchInit = {

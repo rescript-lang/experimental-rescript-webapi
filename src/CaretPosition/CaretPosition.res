@@ -1,4 +1,4 @@
-type t = DOMTypes.caretPosition = private {...DOMTypes.caretPosition}
+type t = DOM.caretPosition = private {...DOM.caretPosition}
 
 @send
 external getClientRect: t => DOMRect.t = "getClientRect"

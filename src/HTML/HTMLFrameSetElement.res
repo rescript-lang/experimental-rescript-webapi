@@ -1,1 +1,1 @@
-include HTMLElement.Impl({type t = DOMTypes.htmlFrameSetElement})
+include HTMLElement.Impl({type t = DOM.htmlFrameSetElement})

@@ -1,7 +1,7 @@
-include CharacterData.Impl({type t = DOMTypes.comment})
+include CharacterData.Impl({type t = DOM.comment})
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Comment)
 */
 @new
-external make: (~data: string=?) => DOMTypes.comment = "Comment"
+external make: (~data: string=?) => DOM.comment = "Comment"

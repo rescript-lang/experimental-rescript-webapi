@@ -1,4 +1,4 @@
-type t = DOMTypes.svgLength = private {...DOMTypes.svgLength}
+type t = DOM.svgLength = private {...DOM.svgLength}
 
 @send
 external newValueSpecifiedUnits: (t, ~unitType: int, ~valueInSpecifiedUnits: float) => unit =

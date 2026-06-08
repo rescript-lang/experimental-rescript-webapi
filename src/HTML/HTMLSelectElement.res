@@ -1,4 +1,4 @@
-type t = DOMTypes.htmlSelectElement = private {...DOMTypes.htmlSelectElement}
+type t = DOM.htmlSelectElement = private {...DOM.htmlSelectElement}
 
 /**
 Retrieves a select object or an object from an options collection.
@@ -7,7 +7,7 @@ Retrieves a select object or an object from an options collection.
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLSelectElement/item)
 */
 @send
-external item: (t, int) => DOMTypes.htmlOptionElement = "item"
+external item: (t, int) => DOM.htmlOptionElement = "item"
 
 /**
 Retrieves a select object or an object from an options collection.
@@ -15,7 +15,7 @@ Retrieves a select object or an object from an options collection.
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLSelectElement/namedItem)
 */
 @send
-external namedItem: (t, string) => DOMTypes.htmlOptionElement = "namedItem"
+external namedItem: (t, string) => DOM.htmlOptionElement = "namedItem"
 
 /**
 Adds an element to the areas, controlRange, or options collection.

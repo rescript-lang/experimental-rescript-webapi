@@ -1,4 +1,4 @@
-type t = DOMTypes.htmlCanvasElement = private {...DOMTypes.htmlCanvasElement}
+type t = DOM.htmlCanvasElement = private {...DOM.htmlCanvasElement}
 
 include HTMLElement.Impl({type t = t})
 

@@ -1,4 +1,4 @@
-type t = DOMTypes.range = private {...DOMTypes.range}
+type t = DOM.range = private {...DOM.range}
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Range)
@@ -6,7 +6,7 @@ type t = DOMTypes.range = private {...DOMTypes.range}
 @new
 external make: unit => t = "Range"
 
-external asAbstractRange: t => DOMTypes.abstractRange = "%identity"
+external asAbstractRange: t => DOM.abstractRange = "%identity"
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Range/setStart)
 */
@@ -77,13 +77,13 @@ external deleteContents: t => unit = "deleteContents"
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Range/extractContents)
 */
 @send
-external extractContents: t => DOMTypes.documentFragment = "extractContents"
+external extractContents: t => DOM.documentFragment = "extractContents"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Range/cloneContents)
 */
 @send
-external cloneContents: t => DOMTypes.documentFragment = "cloneContents"
+external cloneContents: t => DOM.documentFragment = "cloneContents"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Range/insertNode)
@@ -145,5 +145,5 @@ external getBoundingClientRect: t => DOMRect.t = "getBoundingClientRect"
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Range/createContextualFragment)
 */
 @send
-external createContextualFragment: (t, string) => DOMTypes.documentFragment =
+external createContextualFragment: (t, string) => DOM.documentFragment =
   "createContextualFragment"

@@ -1,4 +1,4 @@
-type t = DOMTypes.timeRanges = private {...DOMTypes.timeRanges}
+type t = DOM.timeRanges = private {...DOM.timeRanges}
 
 /**
 Returns the time for the start of the range with the given index.

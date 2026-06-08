@@ -1,4 +1,4 @@
-type t = DOMTypes.htmlOutputElement = private {...DOMTypes.htmlOutputElement}
+type t = DOM.htmlOutputElement = private {...DOM.htmlOutputElement}
 
 include HTMLElement.Impl({type t = t})
 
