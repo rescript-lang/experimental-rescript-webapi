@@ -99,7 +99,7 @@ and subtype modules should continue to include the nearest base method implement
 include Element.Impl({type t = HTMLElement.t})
 
 // HTMLButtonElement.res
-include HTMLElement.Impl({type t = DomTypes.htmlButtonElement})
+include HTMLElement.Impl({type t = DOMTypes.htmlButtonElement})
 ```
 
 Use `asElement` when a subtype needs to be passed to a function that expects `Element.t`.

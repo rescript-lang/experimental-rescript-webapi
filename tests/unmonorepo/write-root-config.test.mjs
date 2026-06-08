@@ -12,7 +12,7 @@ test("builds the unified root rescript.json and package.json", () => {
       dirName: "DOM",
       publicModule: "DOM",
       featureName: "DOM",
-      publicModules: ["Document", "DomGlobal", "DomTypes", "Element"],
+      publicModules: ["Document", "DomGlobal", "DOMTypes", "Element"],
     },
   ];
 

@@ -11,7 +11,7 @@ external make: (
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/InputEvent/getTargetRanges)
 */
 @send
-external getTargetRanges: UiEventsTypes.inputEvent => array<DomTypes.staticRange> =
+external getTargetRanges: UiEventsTypes.inputEvent => array<DOMTypes.staticRange> =
   "getTargetRanges"
 
 include UIEvent.Impl({type t = UiEventsTypes.inputEvent})

@@ -33,7 +33,7 @@ function receiverBuckets(source) {
     if (/\bT\.t\b/.test(receiver)) {
       buckets.add("impl-param");
     }
-    if (/\bDomTypes\.[A-Za-z0-9_]+/.test(receiver)) {
+    if (/\bDOMTypes\.[A-Za-z0-9_]+/.test(receiver)) {
       buckets.add("dom-types");
     }
     if (/\b[A-Za-z0-9]+Types\.[A-Za-z0-9_]+/.test(receiver)) {

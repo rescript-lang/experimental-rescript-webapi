@@ -1,4 +1,4 @@
-type t = DomTypes.selection = private {...DomTypes.selection}
+type t = DOMTypes.selection = private {...DOMTypes.selection}
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Selection/getRangeAt)
@@ -82,12 +82,8 @@ external selectAllChildren: (t, Node.t) => unit = "selectAllChildren"
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Selection/modify)
 */
 @send
-external modify: (
-  t,
-  ~alter: string=?,
-  ~direction: string=?,
-  ~granularity: string=?,
-) => unit = "modify"
+external modify: (t, ~alter: string=?, ~direction: string=?, ~granularity: string=?) => unit =
+  "modify"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Selection/deleteFromDocument)
@@ -99,8 +95,4 @@ external deleteFromDocument: t => unit = "deleteFromDocument"
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Selection/containsNode)
 */
 @send
-external containsNode: (
-  t,
-  ~node: Node.t,
-  ~allowPartialContainment: bool=?,
-) => bool = "containsNode"
+external containsNode: (t, ~node: Node.t, ~allowPartialContainment: bool=?) => bool = "containsNode"

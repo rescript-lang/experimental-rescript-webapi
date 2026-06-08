@@ -6,14 +6,14 @@ include HTMLElement.Impl({type t = t})
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLSlotElement/assignedNodes)
 */
 @send
-external assignedNodes: (t, ~options: DomTypes.assignedNodesOptions=?) => array<Node.t> =
+external assignedNodes: (t, ~options: DOMTypes.assignedNodesOptions=?) => array<Node.t> =
   "assignedNodes"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLSlotElement/assignedElements)
 */
 @send
-external assignedElements: (t, ~options: DomTypes.assignedNodesOptions=?) => array<Element.t> =
+external assignedElements: (t, ~options: DOMTypes.assignedNodesOptions=?) => array<Element.t> =
   "assignedElements"
 
 /**
@@ -26,4 +26,4 @@ external assign: (t, Element.t) => unit = "assign"
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLSlotElement/assign)
 */
 @send
-external assign2: (t, DomTypes.text) => unit = "assign"
+external assign2: (t, DOMTypes.text) => unit = "assign"

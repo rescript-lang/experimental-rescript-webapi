@@ -1,51 +1,51 @@
 let acceptsAnimationTimeline = (_value: Animation.timeline) => ()
-let acceptsDomTypesAnimationTimeline = (_value: DomTypes.animationTimeline) => ()
+let acceptsDOMTypesAnimationTimeline = (_value: Animation.timeline) => ()
 
 let _ = (value: Animation.timeline) => {
   acceptsAnimationTimeline(value)
-  acceptsDomTypesAnimationTimeline(value)
+  acceptsDOMTypesAnimationTimeline(value)
 }
 
 let acceptsDocumentTimeline = (_value: DocumentTimeline.t) => ()
-let acceptsDomTypesDocumentTimeline = (_value: DomTypes.documentTimeline) => ()
+let acceptsDOMTypesDocumentTimeline = (_value: DocumentTimeline.t) => ()
 
 let _ = (value: DocumentTimeline.t) => {
   acceptsDocumentTimeline(value)
-  acceptsDomTypesDocumentTimeline(value)
+  acceptsDOMTypesDocumentTimeline(value)
 }
 
-let acceptsDomTypesAnimation = (_value: DomTypes.animation) => ()
+let acceptsDOMTypesAnimation = (_value: Animation.t) => ()
 let acceptsAnimation = (_value: Animation.t) => ()
 
-let _ = (value: DomTypes.animation) => acceptsAnimation(value)
-let _ = (value: Animation.t) => acceptsDomTypesAnimation(value)
+let _ = (value: Animation.t) => acceptsAnimation(value)
+let _ = (value: Animation.t) => acceptsDOMTypesAnimation(value)
 
-let acceptsDomTypesAnimationEffect = (_value: DomTypes.animationEffect) => ()
+let acceptsDOMTypesAnimationEffect = (_value: AnimationEffect.t) => ()
 let acceptsAnimationEffect = (_value: AnimationEffect.t) => ()
 
-let _ = (value: DomTypes.animationEffect) => acceptsAnimationEffect(value)
-let _ = (value: AnimationEffect.t) => acceptsDomTypesAnimationEffect(value)
+let _ = (value: AnimationEffect.t) => acceptsAnimationEffect(value)
+let _ = (value: AnimationEffect.t) => acceptsDOMTypesAnimationEffect(value)
 
 let _animationPlayState: Animation.playState = Animation.Running
-let _domTypesAnimationPlayState: DomTypes.animationPlayState = DomTypes.Finished
+let _domTypesAnimationPlayState: Animation.playState = Animation.Finished
 
 let _replaceState: Animation.replaceState = Animation.Active
-let _domTypesReplaceState: DomTypes.animationReplaceState = DomTypes.Removed
+let _domTypesReplaceState: Animation.replaceState = Animation.Removed
 
 let _fillMode: Animation.fillMode = Animation.Forwards
-let _domTypesFillMode: DomTypes.fillMode = DomTypes.Both
+let _domTypesFillMode: Animation.fillMode = Animation.Both
 
 let _direction: Animation.playbackDirection = Animation.Alternate
-let _domTypesDirection: DomTypes.playbackDirection = DomTypes.Reverse
+let _domTypesDirection: Animation.playbackDirection = Animation.Reverse
 
 let _composite: Animation.compositeOperation = Animation.Add
-let _domTypesComposite: DomTypes.compositeOperation = DomTypes.Accumulate
+let _domTypesComposite: Animation.compositeOperation = Animation.Accumulate
 
 let _iterationComposite: Animation.iterationCompositeOperation = Animation.Replace
-let _domTypesIterationComposite: DomTypes.iterationCompositeOperation = DomTypes.Replace
+let _domTypesIterationComposite: Animation.iterationCompositeOperation = Animation.Replace
 
 let _timelineOptions: DocumentTimeline.options = {originTime: 0.}
-let _domTimelineOptions: DomTypes.documentTimelineOptions = {originTime: 1.}
+let _domTimelineOptions: DocumentTimeline.options = {originTime: 1.}
 
 let _effectTiming: AnimationEffect.timing = {
   fill: Animation.Forwards,
@@ -65,9 +65,9 @@ let _keyframeOptions: Animation.keyframeAnimationOptions = {
   id: "fade",
 }
 
-let _domKeyframeOptions: DomTypes.keyframeAnimationOptions = {
-  fill: DomTypes.Forwards,
-  direction: DomTypes.Normal,
-  composite: DomTypes.Replace,
-  iterationComposite: DomTypes.Accumulate,
+let _domKeyframeOptions: Animation.keyframeAnimationOptions = {
+  fill: Animation.Forwards,
+  direction: Animation.Normal,
+  composite: Animation.Replace,
+  iterationComposite: Animation.Accumulate,
 }

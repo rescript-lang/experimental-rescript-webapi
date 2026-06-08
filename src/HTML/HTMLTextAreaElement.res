@@ -1,4 +1,4 @@
-type t = DomTypes.htmlTextAreaElement = private {...DomTypes.htmlTextAreaElement}
+type t = DOMTypes.htmlTextAreaElement = private {...DOMTypes.htmlTextAreaElement}
 
 include HTMLElement.Impl({type t = t})
 
@@ -45,7 +45,7 @@ external setRangeText2: (
   ~replacement: string,
   ~start: int,
   ~end: int,
-  ~selectionMode: DomTypes.selectionMode=?,
+  ~selectionMode: DOMTypes.selectionMode=?,
 ) => unit = "setRangeText"
 
 /**
@@ -56,9 +56,5 @@ Sets the start and end positions of a selection in a text field.
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLTextAreaElement/setSelectionRange)
 */
 @send
-external setSelectionRange: (
-  t,
-  ~start: int,
-  ~end: int,
-  ~direction: string=?,
-) => unit = "setSelectionRange"
+external setSelectionRange: (t, ~start: int, ~end: int, ~direction: string=?) => unit =
+  "setSelectionRange"

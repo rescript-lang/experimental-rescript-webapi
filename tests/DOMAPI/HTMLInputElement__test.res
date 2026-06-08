@@ -1,4 +1,4 @@
-external toHTMLInputElement: Element.t => DomTypes.htmlInputElement = "%identity"
+external toHTMLInputElement: Element.t => DOMTypes.htmlInputElement = "%identity"
 
-let input: DomTypes.htmlInputElement = Document.createElement("input")->toHTMLInputElement
+let input: DOMTypes.htmlInputElement = Document.createElement("input")->toHTMLInputElement
 input->HTMLInputElement.checkValidity->ignore

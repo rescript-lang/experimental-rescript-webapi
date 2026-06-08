@@ -735,7 +735,6 @@
         "CSSStyleSheet",
         "MediaList",
         "MediaQueryList",
-        "StyleSheet",
         "StyleSheetList"
       ]
     },

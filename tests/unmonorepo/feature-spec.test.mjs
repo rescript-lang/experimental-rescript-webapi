@@ -118,7 +118,7 @@ test("documents private spreads for shared object bases", () => {
 });
 
 test("keeps DOM owner type aliases out of public compatibility modules", () => {
-  const domTypesSource = readFileSync(join(repoRoot, "src", "DOMExtended", "DomTypes.res"), "utf8");
+  const domTypesSource = readFileSync(join(repoRoot, "src", "DOMExtended", "DOMTypes.res"), "utf8");
   const baseElementSource = readFileSync(
     join(repoRoot, "src", "Base", "Base__Element.res"),
     "utf8",
@@ -127,13 +127,25 @@ test("keeps DOM owner type aliases out of public compatibility modules", () => {
   assert.equal(existsSync(join(repoRoot, "src", "DOM", "DOM.res")), false);
   assert.match(baseElementSource, /^type rec t = \{$/m);
   assert.equal(baseElementSource.includes("type rec element = {"), false);
-  assert.equal(existsSync(join(repoRoot, "src", "Base", "Base__DomTypes.res")), false);
+  assert.equal(existsSync(join(repoRoot, "src", "Base", "Base__DOMTypes.res")), false);
   assert.equal(/^type document\b/m.test(domTypesSource), false);
   assert.equal(/^type element\b/m.test(domTypesSource), false);
   assert.equal(domTypesSource.includes("type nodeList"), false);
   assert.equal(domTypesSource.includes("type htmlCollection"), false);
   assert.equal(domTypesSource.includes("type domTokenList"), false);
   assert.equal(domTypesSource.includes("type namedNodeMap"), false);
+});
+
+test("keeps CSSStyleSheet as the public stylesheet type", () => {
+  const config = JSON.parse(readFileSync(join(repoRoot, "rescript.json"), "utf8"));
+  const cssomSource = config.sources.find((source) => source.dir === "src/CSSOM");
+  const domTypesSource = readFileSync(join(repoRoot, "src", "DOMExtended", "DOMTypes.res"), "utf8");
+
+  assert.ok(cssomSource, "src/CSSOM source entry should exist");
+  assert.ok(cssomSource.public.includes("CSSStyleSheet"));
+  assert.equal(cssomSource.public.includes("StyleSheet"), false);
+  assert.equal(existsSync(join(repoRoot, "src", "CSSOM", "StyleSheet.res")), false);
+  assert.equal(/^type styleSheet\b/m.test(domTypesSource), false);
 });
 
 test("keeps DOM feature minimal for React-oriented consumers", () => {
@@ -209,7 +221,7 @@ test("keeps public feature groups separate from internal source features", () =>
 test("normalizes internal prefixes and public duplicate names", () => {
   assert.equal(publicModuleToInternalPrefix("DOM"), "Dom");
   assert.equal(publicModuleToInternalPrefix("URL"), "Url");
-  assert.equal(publicNameForLeafModule("DomTypes", "Dom"), "Types");
+  assert.equal(publicNameForLeafModule("DOMTypes", "Dom"), "Types");
   assert.equal(publicNameForLeafModule("Document", "Dom"), "Document");
   assert.equal(publicNameForLeafModule("DOM", "Base"), "DOM");
   assert.equal(publicNameForLeafModule("PushEvent", "Push"), "PushEvent");

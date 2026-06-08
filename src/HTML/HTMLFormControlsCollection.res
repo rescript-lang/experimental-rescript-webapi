@@ -1,7 +1,6 @@
-type t = DomTypes.htmlFormControlsCollection = private {...DomTypes.htmlFormControlsCollection}
+type t = DOMTypes.htmlFormControlsCollection = private {...DOMTypes.htmlFormControlsCollection}
 
-external asHTMLCollection: t => HTMLCollection.t<Element.t> =
-  "%identity"
+external asHTMLCollection: t => HTMLCollection.t<Element.t> = "%identity"
 /**
 Retrieves an object from various collections.
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLCollection/item)

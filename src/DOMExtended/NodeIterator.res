@@ -1,4 +1,4 @@
-type t = DomTypes.nodeIterator = private {...DomTypes.nodeIterator}
+type t = DOMTypes.nodeIterator = private {...DOMTypes.nodeIterator}
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/NodeIterator/nextNode)

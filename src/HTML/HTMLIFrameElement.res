@@ -1,4 +1,4 @@
-type t = DomTypes.htmliFrameElement = private {...DomTypes.htmliFrameElement}
+type t = DOMTypes.htmliFrameElement = private {...DOMTypes.htmliFrameElement}
 
 include HTMLElement.Impl({type t = t})
 

@@ -61,7 +61,7 @@ test("moves legacy sources into src/<Feature>, renames duplicate leaves, and rem
     readFileSync(path.join(root, "src", "DOM", "Document.res"), "utf8"),
     "let current = WebApiDOM.Global.document",
   );
-  assert.equal(readFileSync(path.join(root, "src", "DOM", "DomTypes.res"), "utf8"), "type element");
+  assert.equal(readFileSync(path.join(root, "src", "DOM", "DOMTypes.res"), "utf8"), "type element");
   assert.equal(
     readFileSync(path.join(root, "src", "DOM", "DomGlobal.res"), "utf8"),
     "let document = 1",

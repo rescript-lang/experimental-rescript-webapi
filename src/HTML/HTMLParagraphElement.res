@@ -1,1 +1,1 @@
-include HTMLElement.Impl({type t = DomTypes.htmlParagraphElement})
+include HTMLElement.Impl({type t = DOMTypes.htmlParagraphElement})

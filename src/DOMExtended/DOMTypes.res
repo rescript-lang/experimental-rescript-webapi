@@ -1,24 +1,11 @@
 @@warning("-30")
 
-type domStringList = DOMStringList.t
-type domException = DOMException.t
-type file = FileTypes.file
-type blob = FileTypes.blob
-type fileSystemEntry = FileAndDirectoryEntriesTypes.fileSystemEntry
-type remotePlayback = RemotePlaybackTypes.remotePlayback
-type fontFaceSet = CssFontLoadingTypes.fontFaceSet
-type structuredSerializeOptions = ChannelMessagingTypes.structuredSerializeOptions
-
 type mediaError = private {}
 type timeRanges = private {}
 type htmlFormElement = private {}
 type validityState = private {}
-type cssStyleSheet = CSSStyleSheet.t
 type htmlLabelElement = private {}
 type documentFragment = private {}
-type cssStyleDeclaration = CSSStyleDeclaration.t
-type styleSheet = StyleSheet.t
-type mediaQueryList = MediaQueryList.t
 type range = private {}
 type documentType = private {}
 type treeWalker = private {}
@@ -26,11 +13,8 @@ type selection = private {}
 type abstractRange = private {}
 type staticRange = private {}
 type htmlOptionsCollection = private {}
-type styleSheetList = StyleSheetList.t
 type elementInternals = private {}
 type nodeFilter = private {}
-type cssRule = CSSRule.t
-type attr = NamedNodeMap.attr
 type htmlFormControlsCollection = private {}
 type domImplementation = private {}
 type nodeIterator = private {}
@@ -61,9 +45,6 @@ type htmlImageElement = private {}
 type htmlAreaElement = private {}
 type videoPlaybackQuality = private {}
 type mutationRecord = private {}
-type cssRuleList = CSSRuleList.t
-type mediaList = MediaList.t
-type mediaKeySystemConfiguration = BaseEncryptedMediaExtensions.mediaKeySystemConfiguration
 
 /**
 A window containing a WebApiDOM document; the document property points to the WebApiDOM document loaded in that window.
@@ -91,8 +72,6 @@ type documentReadyState =
 type documentVisibilityState =
   | @as("hidden") Hidden
   | @as("visible") Visible
-
-type orientationType = ScreenOrientation.orientationType
 
 type insertPosition =
   | @as("afterbegin") Afterbegin
@@ -129,14 +108,6 @@ type canPlayTypeResult =
   | @as("maybe") Maybe
   | @as("probably") Probably
 
-type animationPlayState = Animation.playState = | ...Animation.playState
-
-type animationReplaceState = Animation.replaceState = | ...Animation.replaceState
-
-type fillMode = Animation.fillMode = | ...Animation.fillMode
-
-type playbackDirection = Animation.playbackDirection = | ...Animation.playbackDirection
-
 type imageOrientation =
   | @as("flipY") FlipY
   | @as("from-image") FromImage
@@ -168,11 +139,6 @@ type selectionMode =
   | @as("preserve") Preserve
   | @as("select") Select
   | @as("start") Start
-
-type compositeOperation = Animation.compositeOperation = | ...Animation.compositeOperation
-
-type iterationCompositeOperation = Animation.iterationCompositeOperation =
-  | ...Animation.iterationCompositeOperation
 
 type videoPixelFormat =
   | BGRA
@@ -210,18 +176,11 @@ type predefinedColorSpace =
   | @as("srgb") Srgb
 
 type shareData = {
-  mutable files?: array<file>,
+  mutable files?: array<FileTypes.file>,
   mutable title?: string,
   mutable text?: string,
   mutable url?: string,
 }
-
-/**
-@editor.completeFrom(Window) The location (WebApiURL) of the object it is linked to. Changes done on it are reflected on the object it relates to. Both the Document and Window interface have such a linked Location, accessible via Document.location and Window.location respectively.
-[See Location on MDN](https://developer.mozilla.org/docs/Web/API/Location)
-*/
-@editor.completeFrom(Location)
-type location = Location.t = private {...Location.t}
 
 /**
 [See FragmentDirective on MDN](https://developer.mozilla.org/docs/Web/API/FragmentDirective)
@@ -243,12 +202,6 @@ type barProp = {
     */
   visible: bool,
 }
-
-/**
-[See ScreenOrientation on MDN](https://developer.mozilla.org/docs/Web/API/ScreenOrientation)
-*/
-@editor.completeFrom(ScreenOrientation)
-type screenOrientation = ScreenOrientation.t = private {...ScreenOrientation.t}
 
 /**
 A screen, usually the one on which the current window is being rendered, and is obtained using window.screen.
@@ -282,7 +235,7 @@ type screen = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Screen/orientation)
     */
-  orientation: screenOrientation,
+  orientation: ScreenOrientation.t,
 }
 
 @unboxed
@@ -293,18 +246,6 @@ type vibratePattern =
 type renderingContext = unknown
 
 type offscreenRenderingContext = unknown
-
-/**
-[See AnimationTimeline on MDN](https://developer.mozilla.org/docs/Web/API/AnimationTimeline)
-*/
-@editor.completeFrom(Animation)
-type animationTimeline = Animation.timeline = private {...Animation.timeline}
-
-/**
-[See DocumentTimeline on MDN](https://developer.mozilla.org/docs/Web/API/DocumentTimeline)
-*/
-@editor.completeFrom(DocumentTimeline)
-type documentTimeline = DocumentTimeline.t = private {...DocumentTimeline.t}
 
 /**
 Used by the dataset HTML attribute to represent data for custom attributes added to elements.
@@ -443,7 +384,7 @@ type htmlMediaElement = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLMediaElement/remote)
     */
-  remote: remotePlayback,
+  remote: RemotePlaybackTypes.remotePlayback,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLMediaElement/disableRemotePlayback)
     */
@@ -806,7 +747,7 @@ type htmlLinkElement = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLLinkElement/sheet)
     */
-  sheet: Null.t<cssStyleSheet>,
+  sheet: Null.t<CSSStyleSheet.t>,
 }
 
 /**
@@ -1134,7 +1075,7 @@ type htmlStyleElement = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLLinkElement/sheet)
     */
-  sheet: Null.t<cssStyleSheet>,
+  sheet: Null.t<CSSStyleSheet.t>,
 }
 
 /**
@@ -1267,8 +1208,6 @@ type htmlVideoElement = {
   mutable disablePictureInPicture: bool,
 }
 
-type animationEffect = AnimationEffect.t
-
 /**
 This interface is a compiled XPath expression that can be evaluated on a document or specific node to return information its WebApiDOM tree.
 [See XPathExpression on MDN](https://developer.mozilla.org/docs/Web/API/XPathExpression)
@@ -1366,7 +1305,7 @@ type svgGraphicsElement = private {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/style)
     */
-  style: cssStyleDeclaration,
+  style: CSSStyleDeclaration.t,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/attributeStyleMap)
     */
@@ -1400,10 +1339,6 @@ type svgImageElement = {
     */
   preserveAspectRatio: svgAnimatedPreserveAspectRatio,
 }
-
-type domMatrixReadOnly = DOMMatrixReadOnly.t = private {...DOMMatrixReadOnly.t}
-
-type domMatrix = DOMMatrix.t = private {...DOMMatrix.t}
 
 /**
 [See VideoColorSpace on MDN](https://developer.mozilla.org/docs/Web/API/VideoColorSpace)
@@ -1502,10 +1437,6 @@ type imageData = private {
   colorSpace: predefinedColorSpace,
 }
 
-type domPointReadOnly = DOMPointReadOnly.t = private {...DOMPointReadOnly.t}
-
-type domPoint = DOMPoint.t = private {...DOMPoint.t}
-
 /**
  [Read more on MDN](https://developer.mozilla.org/en-US/docs/Web/API/HTMLCanvasElement/getContext#contextattributes)
  */
@@ -1523,11 +1454,7 @@ The CanvasRenderingContext2D interface, part of the WebApiCanvas API, provides t
 @editor.completeFrom(CanvasRenderingContext2D)
 type canvasRenderingContext2D = private {}
 
-type animation = Animation.t
-
 type elementDefinitionOptions = {mutable extends?: string}
-
-type documentTimelineOptions = DocumentTimeline.options
 
 type getRootNodeOptions = {mutable composed?: bool}
 
@@ -1565,8 +1492,6 @@ type pointerLockOptions = {mutable unadjustedMovement?: bool}
 
 type caretPositionFromPointOptions = {mutable shadowRoots?: array<Base__ShadowRoot.t>}
 
-type domRectInit = GeometryTypes.domRectInit
-
 type validityStateFlags = {
   mutable valueMissing?: bool,
   mutable typeMismatch?: bool,
@@ -1579,8 +1504,6 @@ type validityStateFlags = {
   mutable badInput?: bool,
   mutable customError?: bool,
 }
-
-type cssStyleSheetInit = CSSStyleSheet.init
 
 type videoFrameCallbackMetadata = {
   mutable presentationTime: float,
@@ -1599,14 +1522,6 @@ type assignedNodesOptions = {mutable flatten?: bool}
 
 type focusOptions = {mutable preventScroll?: bool}
 
-type effectTiming = AnimationEffect.timing
-
-type getAnimationsOptions = Animation.getAnimationsOptions
-
-type computedEffectTiming = AnimationEffect.computedTiming
-
-type optionalEffectTiming = AnimationEffect.optionalTiming
-
 type imageBitmapOptions = {
   mutable imageOrientation?: imageOrientation,
   mutable premultiplyAlpha?: premultiplyAlpha,
@@ -1623,13 +1538,9 @@ type scrollIntoViewOptions = {
 }
 
 type windowPostMessageOptions = {
-  ...structuredSerializeOptions,
+  ...ChannelMessagingTypes.structuredSerializeOptions,
   mutable targetOrigin?: string,
 }
-
-type keyframeEffectOptions = Animation.keyframeEffectOptions
-
-type keyframeAnimationOptions = Animation.keyframeAnimationOptions
 
 type elementCreationOptions = {mutable is?: string}
 
@@ -1640,14 +1551,11 @@ type svgBoundingBoxOptions = {
   mutable clipped?: bool,
 }
 
-type domMatrix2DInit = GeometryTypes.domMatrix2DInit
-type domMatrixInit = GeometryTypes.domMatrixInit
-
 type videoFrameInit = {
   mutable duration?: int,
   mutable timestamp?: int,
   mutable alpha?: alphaOption,
-  mutable visibleRect?: domRectInit,
+  mutable visibleRect?: GeometryTypes.domRectInit,
   mutable displayWidth?: int,
   mutable displayHeight?: int,
 }
@@ -1671,7 +1579,7 @@ type videoFrameBufferInit = {
   mutable timestamp: int,
   mutable duration?: int,
   mutable layout?: array<planeLayout>,
-  mutable visibleRect?: domRectInit,
+  mutable visibleRect?: GeometryTypes.domRectInit,
   mutable displayWidth?: int,
   mutable displayHeight?: int,
   mutable colorSpace?: videoColorSpaceInit,
@@ -1680,13 +1588,11 @@ type videoFrameBufferInit = {
 type imageDataSettings = {mutable colorSpace?: predefinedColorSpace}
 
 type videoFrameCopyToOptions = {
-  mutable rect?: domRectInit,
+  mutable rect?: GeometryTypes.domRectInit,
   mutable layout?: array<planeLayout>,
   mutable format?: videoPixelFormat,
   mutable colorSpace?: predefinedColorSpace,
 }
-
-type domPointInit = GeometryTypes.domPointInit
 
 type xPathNSResolver
 

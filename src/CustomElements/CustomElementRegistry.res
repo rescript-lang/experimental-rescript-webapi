@@ -5,20 +5,20 @@
 external define: (
   ~name: string,
   ~constructor: HTMLElement.t,
-  ~options: DomTypes.elementDefinitionOptions=?,
+  ~options: DOMTypes.elementDefinitionOptions=?,
 ) => unit = "define"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CustomElementRegistry/getName)
 */
 @scope("globalThis.customElements")
-external getName: DomTypes.customElementConstructor => string = "getName"
+external getName: DOMTypes.customElementConstructor => string = "getName"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CustomElementRegistry/whenDefined)
 */
 @scope("globalThis.customElements")
-external whenDefined: string => promise<DomTypes.customElementConstructor> = "whenDefined"
+external whenDefined: string => promise<DOMTypes.customElementConstructor> = "whenDefined"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CustomElementRegistry/upgrade)

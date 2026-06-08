@@ -5,7 +5,7 @@ module Impl = (
 ) => {
   include Node.Impl({type t = T.t})
 
-  external asCharacterData: T.t => DomTypes.characterData = "%identity"
+  external asCharacterData: T.t => DOMTypes.characterData = "%identity"
 
   /**
 Inserts nodes just after node, while replacing strings in nodes with equivalent Text nodes.
@@ -99,4 +99,4 @@ Throws a "HierarchyRequestError" DOMException if the constraints of the node tre
   external substringData: (T.t, ~offset: int, ~count: int) => string = "substringData"
 }
 
-include Impl({type t = DomTypes.characterData})
+include Impl({type t = DOMTypes.characterData})

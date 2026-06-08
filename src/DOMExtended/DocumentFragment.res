@@ -2,7 +2,7 @@
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/DocumentFragmentFragment)
 */
 @new
-external make: unit => DomTypes.documentFragment = "DocumentFragment"
+external make: unit => DOMTypes.documentFragment = "DocumentFragment"
 
 module Impl = (
   T: {
@@ -11,7 +11,7 @@ module Impl = (
 ) => {
   include Node.Impl({type t = T.t})
 
-  external asDocumentFragment: T.t => DomTypes.documentFragment = "%identity"
+  external asDocumentFragment: T.t => DOMTypes.documentFragment = "%identity"
 
   /**
 Inserts nodes after the last child of node, while replacing strings in nodes with equivalent Text nodes.
@@ -89,4 +89,4 @@ Throws a "HierarchyRequestError" DOMException if the constraints of the node tre
   external replaceChildren2: (T.t, string) => unit = "replaceChildren"
 }
 
-include Impl({type t = DomTypes.documentFragment})
+include Impl({type t = DOMTypes.documentFragment})

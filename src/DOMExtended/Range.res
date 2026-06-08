@@ -1,4 +1,4 @@
-type t = DomTypes.range = private {...DomTypes.range}
+type t = DOMTypes.range = private {...DOMTypes.range}
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Range)
@@ -6,7 +6,7 @@ type t = DomTypes.range = private {...DomTypes.range}
 @new
 external make: unit => t = "Range"
 
-external asAbstractRange: t => DomTypes.abstractRange = "%identity"
+external asAbstractRange: t => DOMTypes.abstractRange = "%identity"
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Range/setStart)
 */
@@ -65,8 +65,7 @@ external selectNodeContents: (t, Node.t) => unit = "selectNodeContents"
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Range/compareBoundaryPoints)
 */
 @send
-external compareBoundaryPoints: (t, ~how: int, ~sourceRange: t) => int =
-  "compareBoundaryPoints"
+external compareBoundaryPoints: (t, ~how: int, ~sourceRange: t) => int = "compareBoundaryPoints"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Range/deleteContents)
@@ -78,13 +77,13 @@ external deleteContents: t => unit = "deleteContents"
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Range/extractContents)
 */
 @send
-external extractContents: t => DomTypes.documentFragment = "extractContents"
+external extractContents: t => DOMTypes.documentFragment = "extractContents"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Range/cloneContents)
 */
 @send
-external cloneContents: t => DomTypes.documentFragment = "cloneContents"
+external cloneContents: t => DOMTypes.documentFragment = "cloneContents"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Range/insertNode)
@@ -146,5 +145,5 @@ external getBoundingClientRect: t => DOMRect.t = "getBoundingClientRect"
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Range/createContextualFragment)
 */
 @send
-external createContextualFragment: (t, string) => DomTypes.documentFragment =
+external createContextualFragment: (t, string) => DOMTypes.documentFragment =
   "createContextualFragment"

@@ -1,4 +1,4 @@
-type t = DomTypes.htmlButtonElement = private {...DomTypes.htmlButtonElement}
+type t = DOMTypes.htmlButtonElement = private {...DOMTypes.htmlButtonElement}
 
 include HTMLElement.Impl({type t = t})
 

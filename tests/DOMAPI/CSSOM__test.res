@@ -1,65 +1,57 @@
 let acceptsMediaList = (_value: MediaList.t) => ()
-let acceptsDomTypesMediaList = (_value: DomTypes.mediaList) => ()
+let acceptsDOMTypesMediaList = (_value: MediaList.t) => ()
 
 let _ = (value: MediaList.t) => {
-  acceptsDomTypesMediaList(value)
+  acceptsDOMTypesMediaList(value)
 }
 
 let acceptsStyleSheetList = (_value: StyleSheetList.t) => ()
-let acceptsDomTypesStyleSheetList = (_value: DomTypes.styleSheetList) => ()
+let acceptsDOMTypesStyleSheetList = (_value: StyleSheetList.t) => ()
 
 let _ = (value: StyleSheetList.t) => {
   acceptsStyleSheetList(value)
-  acceptsDomTypesStyleSheetList(value)
-}
-
-let acceptsStyleSheet = (_value: StyleSheet.t) => ()
-let acceptsDomTypesStyleSheet = (_value: DomTypes.styleSheet) => ()
-
-let _ = (value: StyleSheet.t) => {
-  acceptsStyleSheet(value)
-  acceptsDomTypesStyleSheet(value)
+  acceptsDOMTypesStyleSheetList(value)
 }
 
 let acceptsCSSStyleSheet = (_value: CSSStyleSheet.t) => ()
-let acceptsDomTypesCSSStyleSheet = (_value: DomTypes.cssStyleSheet) => ()
+let acceptsDOMTypesCSSStyleSheet = (_value: CSSStyleSheet.t) => ()
 
 let _ = (value: CSSStyleSheet.t) => {
   acceptsCSSStyleSheet(value)
-  acceptsDomTypesCSSStyleSheet(value)
+  acceptsDOMTypesCSSStyleSheet(value)
 }
 
 let acceptsCSSRule = (_value: CSSRule.t) => ()
-let acceptsDomTypesCSSRule = (_value: DomTypes.cssRule) => ()
+let acceptsDOMTypesCSSRule = (_value: CSSRule.t) => ()
 
 let _ = (value: CSSRule.t) => {
   acceptsCSSRule(value)
-  acceptsDomTypesCSSRule(value)
+  acceptsDOMTypesCSSRule(value)
 }
 
 let acceptsCSSRuleList = (_value: CSSRuleList.t) => ()
-let acceptsDomTypesCSSRuleList = (_value: DomTypes.cssRuleList) => ()
+let acceptsDOMTypesCSSRuleList = (_value: CSSRuleList.t) => ()
 
 let _ = (value: CSSRuleList.t) => {
   acceptsCSSRuleList(value)
-  acceptsDomTypesCSSRuleList(value)
+  acceptsDOMTypesCSSRuleList(value)
 }
 
 let acceptsCSSStyleDeclaration = (_value: CSSStyleDeclaration.t) => ()
-let acceptsDomTypesCSSStyleDeclaration = (_value: DomTypes.cssStyleDeclaration) => ()
+let acceptsDOMTypesCSSStyleDeclaration = (_value: CSSStyleDeclaration.t) => ()
 
 let _ = (value: CSSStyleDeclaration.t) => {
   acceptsCSSStyleDeclaration(value)
-  acceptsDomTypesCSSStyleDeclaration(value)
+  acceptsDOMTypesCSSStyleDeclaration(value)
 }
 
 let acceptsMediaQueryList = (_value: MediaQueryList.t) => ()
-let acceptsDomTypesMediaQueryList = (_value: DomTypes.mediaQueryList) => ()
+let acceptsDOMTypesMediaQueryList = (_value: MediaQueryList.t) => ()
 
 let _ = (value: MediaQueryList.t) => {
   acceptsMediaQueryList(value)
-  acceptsDomTypesMediaQueryList(value)
+  acceptsDOMTypesMediaQueryList(value)
 }
 
 let acceptsCSSStyleSheetInit = (_value: CSSStyleSheet.init) => ()
-let _ = (value: DomTypes.cssStyleSheetInit) => acceptsCSSStyleSheetInit(value)
+let _ = (value: CSSStyleSheet.init) => acceptsCSSStyleSheetInit(value)

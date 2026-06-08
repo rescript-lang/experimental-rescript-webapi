@@ -1,1 +1,1 @@
-include DomHTMLMediaElement.Impl({type t = DomTypes.htmlAudioElement})
+include DomHTMLMediaElement.Impl({type t = DOMTypes.htmlAudioElement})
