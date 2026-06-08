@@ -44,7 +44,20 @@
       "VTT",
       "ViewTransitions",
       "VisualViewport",
-      "DOMExtended",
+      "CaretPosition",
+      "CharacterData",
+      "Comment",
+      "DOMImplementation",
+      "DOMTypes",
+      "DocumentFragment",
+      "DomGlobal",
+      "NodeFilter",
+      "NodeIterator",
+      "Range",
+      "Selection",
+      "ShadowRoot",
+      "Text",
+      "TreeWalker",
       "PictureInPicture",
       "HTML",
       "MediaCaptureAndStreams",
@@ -109,7 +122,20 @@
       "VTT",
       "ViewTransitions",
       "VisualViewport",
-      "DOMExtended",
+      "CaretPosition",
+      "CharacterData",
+      "Comment",
+      "DOMImplementation",
+      "DOMTypes",
+      "DocumentFragment",
+      "DomGlobal",
+      "NodeFilter",
+      "NodeIterator",
+      "Range",
+      "Selection",
+      "ShadowRoot",
+      "Text",
+      "TreeWalker",
       "PictureInPicture",
       "HTML",
       "CustomElements"
@@ -138,7 +164,20 @@
       "VTT",
       "ViewTransitions",
       "VisualViewport",
-      "DOMExtended",
+      "CaretPosition",
+      "CharacterData",
+      "Comment",
+      "DOMImplementation",
+      "DOMTypes",
+      "DocumentFragment",
+      "DomGlobal",
+      "NodeFilter",
+      "NodeIterator",
+      "Range",
+      "Selection",
+      "ShadowRoot",
+      "Text",
+      "TreeWalker",
       "EncryptedMediaExtensions"
     ],
     "WebAPI.Event": [
@@ -227,7 +266,20 @@
       "VTT",
       "ViewTransitions",
       "VisualViewport",
-      "DOMExtended",
+      "CaretPosition",
+      "CharacterData",
+      "Comment",
+      "DOMImplementation",
+      "DOMTypes",
+      "DocumentFragment",
+      "DomGlobal",
+      "NodeFilter",
+      "NodeIterator",
+      "Range",
+      "Selection",
+      "ShadowRoot",
+      "Text",
+      "TreeWalker",
       "PictureInPicture",
       "HTML"
     ],
@@ -283,7 +335,20 @@
       "VTT",
       "ViewTransitions",
       "VisualViewport",
-      "DOMExtended",
+      "CaretPosition",
+      "CharacterData",
+      "Comment",
+      "DOMImplementation",
+      "DOMTypes",
+      "DocumentFragment",
+      "DomGlobal",
+      "NodeFilter",
+      "NodeIterator",
+      "Range",
+      "Selection",
+      "ShadowRoot",
+      "Text",
+      "TreeWalker",
       "MutationObserver"
     ],
     "WebAPI.Navigator": [
@@ -400,7 +465,20 @@
       "VTT",
       "ViewTransitions",
       "VisualViewport",
-      "DOMExtended",
+      "CaretPosition",
+      "CharacterData",
+      "Comment",
+      "DOMImplementation",
+      "DOMTypes",
+      "DocumentFragment",
+      "DomGlobal",
+      "NodeFilter",
+      "NodeIterator",
+      "Range",
+      "Selection",
+      "ShadowRoot",
+      "Text",
+      "TreeWalker",
       "SVG"
     ],
     "WebAPI.UIEvents": [
@@ -427,7 +505,20 @@
       "VTT",
       "ViewTransitions",
       "VisualViewport",
-      "DOMExtended",
+      "CaretPosition",
+      "CharacterData",
+      "Comment",
+      "DOMImplementation",
+      "DOMTypes",
+      "DocumentFragment",
+      "DomGlobal",
+      "NodeFilter",
+      "NodeIterator",
+      "Range",
+      "Selection",
+      "ShadowRoot",
+      "Text",
+      "TreeWalker",
       "UIEvents"
     ],
     "WebAPI.URL": [
@@ -470,7 +561,20 @@
       "VTT",
       "ViewTransitions",
       "VisualViewport",
-      "DOMExtended",
+      "CaretPosition",
+      "CharacterData",
+      "Comment",
+      "DOMImplementation",
+      "DOMTypes",
+      "DocumentFragment",
+      "DomGlobal",
+      "NodeFilter",
+      "NodeIterator",
+      "Range",
+      "Selection",
+      "ShadowRoot",
+      "Text",
+      "TreeWalker",
       "PictureInPicture",
       "HTML",
       "MediaCaptureAndStreams",
@@ -554,7 +658,20 @@
       "VTT",
       "ViewTransitions",
       "VisualViewport",
-      "DOMExtended",
+      "CaretPosition",
+      "CharacterData",
+      "Comment",
+      "DOMImplementation",
+      "DOMTypes",
+      "DocumentFragment",
+      "DomGlobal",
+      "NodeFilter",
+      "NodeIterator",
+      "Range",
+      "Selection",
+      "ShadowRoot",
+      "Text",
+      "TreeWalker",
       "Window"
     ],
     "WebAPI.XPath": [
@@ -581,7 +698,20 @@
       "VTT",
       "ViewTransitions",
       "VisualViewport",
-      "DOMExtended",
+      "CaretPosition",
+      "CharacterData",
+      "Comment",
+      "DOMImplementation",
+      "DOMTypes",
+      "DocumentFragment",
+      "DomGlobal",
+      "NodeFilter",
+      "NodeIterator",
+      "Range",
+      "Selection",
+      "ShadowRoot",
+      "Text",
+      "TreeWalker",
       "XPath"
     ]
   },
@@ -676,22 +806,110 @@
       ]
     },
     {
-      "dir": "src/DOMExtended",
+      "dir": "src/DOMTypes",
       "subdirs": true,
-      "feature": "DOMExtended",
+      "feature": "DOMTypes",
+      "public": []
+    },
+    {
+      "dir": "src/DomGlobal",
+      "subdirs": true,
+      "feature": "DomGlobal",
+      "public": []
+    },
+    {
+      "dir": "src/CaretPosition",
+      "subdirs": true,
+      "feature": "CaretPosition",
       "public": [
-        "CaretPosition",
-        "CharacterData",
-        "Comment",
-        "DOM",
-        "DOMImplementation",
-        "DocumentFragment",
-        "NodeFilter",
-        "NodeIterator",
-        "Range",
-        "Selection",
-        "ShadowRoot",
-        "Text",
+        "CaretPosition"
+      ]
+    },
+    {
+      "dir": "src/CharacterData",
+      "subdirs": true,
+      "feature": "CharacterData",
+      "public": [
+        "CharacterData"
+      ]
+    },
+    {
+      "dir": "src/Comment",
+      "subdirs": true,
+      "feature": "Comment",
+      "public": [
+        "Comment"
+      ]
+    },
+    {
+      "dir": "src/DOMImplementation",
+      "subdirs": true,
+      "feature": "DOMImplementation",
+      "public": [
+        "DOMImplementation"
+      ]
+    },
+    {
+      "dir": "src/DocumentFragment",
+      "subdirs": true,
+      "feature": "DocumentFragment",
+      "public": [
+        "DocumentFragment"
+      ]
+    },
+    {
+      "dir": "src/NodeFilter",
+      "subdirs": true,
+      "feature": "NodeFilter",
+      "public": [
+        "NodeFilter"
+      ]
+    },
+    {
+      "dir": "src/NodeIterator",
+      "subdirs": true,
+      "feature": "NodeIterator",
+      "public": [
+        "NodeIterator"
+      ]
+    },
+    {
+      "dir": "src/Range",
+      "subdirs": true,
+      "feature": "Range",
+      "public": [
+        "Range"
+      ]
+    },
+    {
+      "dir": "src/Selection",
+      "subdirs": true,
+      "feature": "Selection",
+      "public": [
+        "Selection"
+      ]
+    },
+    {
+      "dir": "src/ShadowRoot",
+      "subdirs": true,
+      "feature": "ShadowRoot",
+      "public": [
+        "ShadowRoot"
+      ]
+    },
+    {
+      "dir": "src/Text",
+      "subdirs": true,
+      "feature": "Text",
+      "public": [
+        "Text"
+      ]
+    },
+    {
+      "dir": "src/TreeWalker",
+      "subdirs": true,
+      "feature": "TreeWalker",
+      "public": [
         "TreeWalker"
       ]
     },
