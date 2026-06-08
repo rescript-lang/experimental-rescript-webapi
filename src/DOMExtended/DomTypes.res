@@ -1341,10 +1341,11 @@ type svgAnimatedLength = {
 }
 
 /**
-All of the SVG WebApiDOM interfaces that correspond directly to elements in the SVG language derive from the SVGElement interface.
-[See SVGElement on MDN](https://developer.mozilla.org/docs/Web/API/SVGElement)
+SVG elements whose primary purpose is to directly render graphics into a group.
+[See SVGGraphicsElement on MDN](https://developer.mozilla.org/docs/Web/API/SVGGraphicsElement)
 */
-type svgElement = {
+@editor.completeFrom(SVGGraphicsElement)
+type svgGraphicsElement = private {
   ...Base__Element.t,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/dataset)
@@ -1370,15 +1371,6 @@ type svgElement = {
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/attributeStyleMap)
     */
   attributeStyleMap: StylePropertyMap.t,
-}
-
-/**
-SVG elements whose primary purpose is to directly render graphics into a group.
-[See SVGGraphicsElement on MDN](https://developer.mozilla.org/docs/Web/API/SVGGraphicsElement)
-*/
-@editor.completeFrom(SVGGraphicsElement)
-type svgGraphicsElement = private {
-  ...svgElement,
 }
 
 /**

@@ -1,17 +1,19 @@
+type t = PushTypes.pushManager = private {...PushTypes.pushManager}
+
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/PushManager/subscribe)
 */
 @send
 external subscribe: (
-  PushTypes.pushManager,
+  t,
   ~options: PushTypes.pushSubscriptionOptionsInit=?,
-) => promise<PushTypes.pushSubscription> = "subscribe"
+) => promise<PushSubscription.t> = "subscribe"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/PushManager/getSubscription)
 */
 @send
-external getSubscription: PushTypes.pushManager => promise<PushTypes.pushSubscription> =
+external getSubscription: t => promise<PushSubscription.t> =
   "getSubscription"
 
 /**
@@ -19,6 +21,6 @@ external getSubscription: PushTypes.pushManager => promise<PushTypes.pushSubscri
 */
 @send
 external permissionState: (
-  PushTypes.pushManager,
+  t,
   ~options: PushTypes.pushSubscriptionOptionsInit=?,
 ) => promise<PushTypes.permissionState> = "permissionState"

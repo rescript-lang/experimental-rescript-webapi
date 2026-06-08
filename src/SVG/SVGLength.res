@@ -1,9 +1,11 @@
+type t = DomTypes.svgLength = private {...DomTypes.svgLength}
+
 @send
 external newValueSpecifiedUnits: (
-  DomTypes.svgLength,
+  t,
   ~unitType: int,
   ~valueInSpecifiedUnits: float,
 ) => unit = "newValueSpecifiedUnits"
 
 @send
-external convertToSpecifiedUnits: (DomTypes.svgLength, int) => unit = "convertToSpecifiedUnits"
+external convertToSpecifiedUnits: (t, int) => unit = "convertToSpecifiedUnits"

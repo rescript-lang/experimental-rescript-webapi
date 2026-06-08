@@ -1,59 +1,61 @@
-/**
-[Read more on MDN](https://developer.mozilla.org/docs/Web/API/Headers)
-*/
-@new
-external make: unit => FetchTypes.headers = "Headers"
+type t = FetchTypes.headers = private {...FetchTypes.headers}
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Headers)
 */
 @new
-external fromDict: dict<string> => FetchTypes.headers = "Headers"
+external make: unit => t = "Headers"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Headers)
 */
 @new
-external fromHeaders: FetchTypes.headers => FetchTypes.headers = "Headers"
+external fromDict: dict<string> => t = "Headers"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Headers)
 */
 @new
-external fromKeyValueArray: array<(string, string)> => FetchTypes.headers = "Headers"
+external fromHeaders: t => t = "Headers"
+
+/**
+[Read more on MDN](https://developer.mozilla.org/docs/Web/API/Headers)
+*/
+@new
+external fromKeyValueArray: array<(string, string)> => t = "Headers"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Headers/append)
 */
 @send
-external append: (FetchTypes.headers, ~name: string, ~value: string) => unit = "append"
+external append: (t, ~name: string, ~value: string) => unit = "append"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Headers/delete)
 */
 @send
-external delete: (FetchTypes.headers, string) => unit = "delete"
+external delete: (t, string) => unit = "delete"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Headers/get)
 */
 @send
-external get: (FetchTypes.headers, string) => null<string> = "get"
+external get: (t, string) => null<string> = "get"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Headers/getSetCookie)
 */
 @send
-external getSetCookie: FetchTypes.headers => array<string> = "getSetCookie"
+external getSetCookie: t => array<string> = "getSetCookie"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Headers/has)
 */
 @send
-external has: (FetchTypes.headers, string) => bool = "has"
+external has: (t, string) => bool = "has"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Headers/set)
 */
 @send
-external set: (FetchTypes.headers, ~name: string, ~value: string) => unit = "set"
+external set: (t, ~name: string, ~value: string) => unit = "set"

@@ -1136,6 +1136,7 @@
       "subdirs": true,
       "feature": "SVG",
       "public": [
+        "SVGElement",
         "SVGGraphicsElement",
         "SVGLength"
       ]

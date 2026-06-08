@@ -1,38 +1,46 @@
+type t = IntersectionObserverTypes.intersectionObserver = private {
+  ...IntersectionObserverTypes.intersectionObserver,
+}
+type callback = IntersectionObserverTypes.intersectionObserverCallback
+type entry = IntersectionObserverTypes.intersectionObserverEntry = private {
+  ...IntersectionObserverTypes.intersectionObserverEntry,
+}
+type init = IntersectionObserverTypes.intersectionObserverInit = private {
+  ...IntersectionObserverTypes.intersectionObserverInit,
+}
+
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/IntersectionObserver)
 */
 @new
 external make: (
-  ~callback: IntersectionObserverTypes.intersectionObserverCallback,
+  ~callback: callback,
   ~options: IntersectionObserverTypes.intersectionObserverInit=?,
-) => IntersectionObserverTypes.intersectionObserver = "IntersectionObserver"
+) => t = "IntersectionObserver"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/IntersectionObserver/observe)
 */
 @send
-external observe: (IntersectionObserverTypes.intersectionObserver, Element.t) => unit = "observe"
+external observe: (t, Element.t) => unit = "observe"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/IntersectionObserver/unobserve)
 */
 @send
-external unobserve: (IntersectionObserverTypes.intersectionObserver, Element.t) => unit =
-  "unobserve"
+external unobserve: (t, Element.t) => unit = "unobserve"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/IntersectionObserver/disconnect)
 */
 @send
-external disconnect: IntersectionObserverTypes.intersectionObserver => unit = "disconnect"
+external disconnect: t => unit = "disconnect"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/IntersectionObserver/takeRecords)
 */
 @send
-external takeRecords: IntersectionObserverTypes.intersectionObserver => array<
-  IntersectionObserverTypes.intersectionObserverEntry,
-> = "takeRecords"
+external takeRecords: t => array<entry> = "takeRecords"
 
 module IntersectionObserverRoot = IntersectionObserverRoot
 module Types = IntersectionObserverTypes
