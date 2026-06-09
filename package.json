@@ -13,10 +13,12 @@
   "bugs": "https://github.com/rescript-lang/experimental-rescript-webapi/issues",
   "license": "MIT",
   "author": {
-    "name": "Florian Verdonck"
+    "name": "ReScript"
   },
   "maintainers": [
-    "Florian Verdonck (https://github.com/nojaf)"
+    "Bernardo Gurgel (https://github.com/brnrdog)",
+    "Josh Vlk (https://github.com/jderochervlk)",
+    "Paul Tsnobiladzé (https://github.com/tsnobip)"
   ],
   "repository": {
     "type": "git",
