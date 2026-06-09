@@ -1,3 +1,8 @@
+type t = CssFontLoadingTypes.fontFace = private {...CssFontLoadingTypes.fontFace}
+type descriptors = CssFontLoadingTypes.fontFaceDescriptors = private {
+  ...CssFontLoadingTypes.fontFaceDescriptors,
+}
+
 /**
 `fromString(~family: string, ~source: string, ~descriptors: fontFaceDescriptors=?)`
 
@@ -11,11 +16,8 @@ let fontFace =
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/FontFace)
 */
 @new
-external fromString: (
-  ~family: string,
-  ~source: string,
-  ~descriptors: CssFontLoadingTypes.fontFaceDescriptors=?,
-) => CssFontLoadingTypes.fontFace = "FontFace"
+external fromString: (~family: string, ~source: string, ~descriptors: descriptors=?) => t =
+  "FontFace"
 
 /**
 `fromDataView(~family: string, ~source: DataView.t, ~descriptors: fontFaceDescriptors=?)`
@@ -30,11 +32,8 @@ let fontFace =
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/FontFace)
 */
 @new
-external fromDataView: (
-  ~family: string,
-  ~source: DataView.t,
-  ~descriptors: CssFontLoadingTypes.fontFaceDescriptors=?,
-) => CssFontLoadingTypes.fontFace = "FontFace"
+external fromDataView: (~family: string, ~source: DataView.t, ~descriptors: descriptors=?) => t =
+  "FontFace"
 
 /**
 `fromArrayBuffer(~family: string, ~source: ArrayBuffer.t, ~descriptors: fontFaceDescriptors=?)`
@@ -52,11 +51,11 @@ let fontFace =
 external fromArrayBuffer: (
   ~family: string,
   ~source: ArrayBuffer.t,
-  ~descriptors: CssFontLoadingTypes.fontFaceDescriptors=?,
-) => CssFontLoadingTypes.fontFace = "FontFace"
+  ~descriptors: descriptors=?,
+) => t = "FontFace"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/FontFace/load)
 */
 @send
-external load: CssFontLoadingTypes.fontFace => promise<CssFontLoadingTypes.fontFace> = "load"
+external load: t => promise<t> = "load"

@@ -1,7 +1,7 @@
-let acceptsDOMEvent = (_event: DOM.event) => ()
+let acceptsDOMEvent = (_event: Event.t) => ()
 let acceptsEvent = (_event: Event.t) => ()
 
-let _ = (event: DOM.event) => {
+let _ = (event: Event.t) => {
   acceptsEvent(event)
 }
 

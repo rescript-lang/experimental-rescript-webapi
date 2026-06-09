@@ -1,1 +1,1 @@
-include HTMLElement.Impl({type t = DomTypes.htmlMenuElement})
+include HTMLElement.Impl({type t = DOM.htmlMenuElement})

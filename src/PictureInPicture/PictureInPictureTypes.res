@@ -4,7 +4,7 @@
 [See PictureInPictureWindow on MDN](https://developer.mozilla.org/docs/Web/API/PictureInPictureWindow)
 */
 type pictureInPictureWindow = {
-  ...Event.eventTarget,
+  ...EventTarget.t,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/PictureInPictureWindow/width)
     */

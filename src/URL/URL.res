@@ -1,14 +1,16 @@
+type t = UrlTypes.url = private {...UrlTypes.url}
+
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/URL)
 */
 @new
-external make: (~url: string, ~base: string=?) => UrlTypes.url = "URL"
+external make: (~url: string, ~base: string=?) => t = "URL"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/URL/parse_static)
 */
 @scope("URL")
-external parse: (~url: string, ~base: string=?) => UrlTypes.url = "parse"
+external parse: (~url: string, ~base: string=?) => t = "parse"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/URL/canParse_static)
@@ -20,7 +22,7 @@ external canParse: (~url: string, ~base: string=?) => bool = "canParse"
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/URL/toJSON)
 */
 @send
-external toJSON: UrlTypes.url => string = "toJSON"
+external toJSON: t => string = "toJSON"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/URL/createObjectURL_static)

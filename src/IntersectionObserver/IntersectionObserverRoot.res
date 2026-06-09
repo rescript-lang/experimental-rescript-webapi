@@ -1,13 +1,13 @@
-external fromDocument: DomTypes.document => IntersectionObserverTypes.root = "%identity"
-external fromElement: DomTypes.element => IntersectionObserverTypes.root = "%identity"
+external fromDocument: Document.t => IntersectionObserverTypes.root = "%identity"
+external fromElement: Element.t => IntersectionObserverTypes.root = "%identity"
 external fromNull: IntersectionObserverTypes.root = "null"
 
-external toElement: IntersectionObserverTypes.root => DomTypes.element = "%identity"
-external toDocument: IntersectionObserverTypes.root => DomTypes.document = "%identity"
+external toElement: IntersectionObserverTypes.root => Element.t = "%identity"
+external toDocument: IntersectionObserverTypes.root => Document.t = "%identity"
 
 type decoded =
-  | Element(DomTypes.element)
-  | Document(DomTypes.document)
+  | Element(Element.t)
+  | Document(Document.t)
   | Null
 
 let decode = (t: IntersectionObserverTypes.root): decoded => {

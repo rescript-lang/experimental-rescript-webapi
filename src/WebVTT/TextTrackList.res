@@ -1,6 +1,6 @@
 @editor.completeFrom(TextTrackList)
 type t = private {
-  ...Event.eventTarget,
+  ...EventTarget.t,
   length: int,
 }
 

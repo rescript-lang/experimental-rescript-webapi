@@ -1,1 +1,1 @@
-include HTMLElement.Impl({type t = DomTypes.htmlMetaElement})
+include HTMLElement.Impl({type t = DOM.htmlMetaElement})

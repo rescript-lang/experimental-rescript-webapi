@@ -19,6 +19,10 @@ export function publicNameForLeafModule(leafName, internalPrefix) {
   const preservedPrefixedModules = new Set(["PushEvent"]);
   const duplicatedSuffixes = ["Types", "Global", "Event", "File", "HTMLMediaElement"];
 
+  if (internalPrefix === "Dom" && leafName === "DOM") {
+    return "Types";
+  }
+
   if (preservedPrefixedModules.has(leafName)) {
     return leafName;
   }
@@ -122,7 +126,7 @@ export const featureSpecs = [
     dirName,
     legacyNamespace,
     publicModule,
-    featureName: `WebAPI.${publicModule}`,
+    featureName: publicModule,
     internalPrefix: publicModuleToInternalPrefix(publicModule),
     sourceDir: `src/${dirName}`,
   };
@@ -140,6 +144,10 @@ export function migratedLeafName({ spec, leafName, duplicateLeaves }) {
 
   if (leafName === spec.publicModule) {
     return leafName;
+  }
+
+  if (spec.dirName === "DOM" && leafName === "Types") {
+    return "DOM";
   }
 
   if (duplicateLeaves.has(leafName)) {

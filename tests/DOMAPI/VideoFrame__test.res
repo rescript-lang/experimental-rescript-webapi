@@ -1,15 +1,15 @@
-let htmlImageElement: DomTypes.htmlImageElement = Obj.magic()
-let svgImageElement: DomTypes.svgImageElement = Obj.magic()
-let htmlVideoElement: DomTypes.htmlVideoElement = Obj.magic()
-let htmlCanvasElement: DomTypes.htmlCanvasElement = Obj.magic()
+let htmlImageElement: DOM.htmlImageElement = Obj.magic()
+let svgImageElement: DOM.svgImageElement = Obj.magic()
+let htmlVideoElement: DOM.htmlVideoElement = Obj.magic()
+let htmlCanvasElement: DOM.htmlCanvasElement = Obj.magic()
 let imageBitmap: CanvasTypes.imageBitmap = Obj.magic()
 let offscreenCanvas: CanvasTypes.offscreenCanvas = Obj.magic()
-let videoFrame: DomTypes.videoFrame = Obj.magic()
+let videoFrame: DOM.videoFrame = Obj.magic()
 let arrayBuffer: ArrayBuffer.t = Obj.magic()
 let typedArray: TypedArray.t<int> = Obj.magic()
 let dataView: DataView.t = Obj.magic()
-let videoFrameInit: DomTypes.videoFrameInit = Obj.magic()
-let videoFrameBufferInit: DomTypes.videoFrameBufferInit = Obj.magic()
+let videoFrameInit: DOM.videoFrameInit = Obj.magic()
+let videoFrameBufferInit: DOM.videoFrameBufferInit = Obj.magic()
 
 let _fromHTMLImageElement = VideoFrame.fromHTMLImageElement(
   ~image=htmlImageElement,

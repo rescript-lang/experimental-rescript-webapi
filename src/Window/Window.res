@@ -1,5 +1,5 @@
-type t = DomTypes.window
-type windowPostMessageOptions = DomTypes.windowPostMessageOptions
+type t = DOM.window = private {...DOM.window}
+type windowPostMessageOptions = DOM.windowPostMessageOptions
 
 include EventTarget.Impl({type t = t})
 
@@ -21,7 +21,7 @@ external self: t => t = "self"
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/document)
     */
 @get
-external document: t => DomTypes.document = "document"
+external document: t => Document.t = "document"
 
 /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/name)
@@ -40,42 +40,42 @@ external location: t => Location.t = "location"
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/locationbar)
     */
 @get
-external locationbar: t => DomTypes.barProp = "locationbar"
+external locationbar: t => DOM.barProp = "locationbar"
 
 /**
     Returns true if the menu bar is visible; otherwise, returns false.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/menubar)
     */
 @get
-external menubar: t => DomTypes.barProp = "menubar"
+external menubar: t => DOM.barProp = "menubar"
 
 /**
     Returns true if the personal bar is visible; otherwise, returns false.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/personalbar)
     */
 @get
-external personalbar: t => DomTypes.barProp = "personalbar"
+external personalbar: t => DOM.barProp = "personalbar"
 
 /**
     Returns true if the scrollbars are visible; otherwise, returns false.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/scrollbars)
     */
 @get
-external scrollbars: t => DomTypes.barProp = "scrollbars"
+external scrollbars: t => DOM.barProp = "scrollbars"
 
 /**
     Returns true if the status bar is visible; otherwise, returns false.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/statusbar)
     */
 @get
-external statusbar: t => DomTypes.barProp = "statusbar"
+external statusbar: t => DOM.barProp = "statusbar"
 
 /**
     Returns true if the toolbar is visible; otherwise, returns false.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/toolbar)
     */
 @get
-external toolbar: t => DomTypes.barProp = "toolbar"
+external toolbar: t => DOM.barProp = "toolbar"
 
 /**
     Returns true if the window has been closed, false otherwise.
@@ -121,13 +121,13 @@ external parent: t => t = "parent"
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/frameElement)
     */
 @get
-external frameElement: t => Null.t<DomTypes.element> = "frameElement"
+external frameElement: t => Null.t<Element.t> = "frameElement"
 
 /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/screen)
     */
 @get
-external screen: t => DomTypes.screen = "screen"
+external screen: t => DOM.screen = "screen"
 
 /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/visualViewport)
@@ -243,7 +243,7 @@ Executes a function after a delay given in milliseconds expires.
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/setTimeout)
 */
 @send
-external setTimeout: (t, ~handler: unit => unit, ~timeout: int=?) => DomTypes.timeoutId =
+external setTimeout: (t, ~handler: unit => unit, ~timeout: int=?) => DOM.timeoutId =
   "setTimeout"
 
 /**
@@ -252,7 +252,7 @@ Cancels the execution of a timeout created with setTimeout.
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/clearTimeout)
 */
 @send
-external clearTimeout: (t, DomTypes.timeoutId) => unit = "clearTimeout"
+external clearTimeout: (t, DOM.timeoutId) => unit = "clearTimeout"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/setInterval)
@@ -431,7 +431,7 @@ external resizeBy: (t, ~x: int, ~y: int) => unit = "resizeBy"
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/scroll)
 */
 @send
-external scroll: (t, ~options: DomTypes.scrollToOptions=?) => unit = "scroll"
+external scroll: (t, ~options: DOM.scrollToOptions=?) => unit = "scroll"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/scroll)
@@ -443,7 +443,7 @@ external scrollXY: (t, ~x: float, ~y: float) => unit = "scroll"
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/scrollTo)
 */
 @send
-external scrollTo: (t, ~options: DomTypes.scrollToOptions=?) => unit = "scrollTo"
+external scrollTo: (t, ~options: DOM.scrollToOptions=?) => unit = "scrollTo"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/scrollTo)
@@ -455,7 +455,7 @@ external scrollToXY: (t, ~x: float, ~y: float) => unit = "scrollTo"
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/scrollBy)
 */
 @send
-external scrollBy: (t, ~options: DomTypes.scrollToOptions=?) => unit = "scrollBy"
+external scrollBy: (t, ~options: DOM.scrollToOptions=?) => unit = "scrollBy"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/scrollBy)
@@ -467,11 +467,8 @@ external scrollByXY: (t, ~x: float, ~y: float) => unit = "scrollBy"
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/getComputedStyle)
 */
 @send
-external getComputedStyle: (
-  t,
-  ~elt: DomTypes.element,
-  ~pseudoElt: string=?,
-) => CSSStyleDeclaration.t = "getComputedStyle"
+external getComputedStyle: (t, ~elt: Element.t, ~pseudoElt: string=?) => CSSStyleDeclaration.t =
+  "getComputedStyle"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/requestIdleCallback)
@@ -493,4 +490,4 @@ external cancelIdleCallback: (t, int) => unit = "cancelIdleCallback"
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/getSelection)
 */
 @send
-external getSelection: t => null<DomTypes.selection> = "getSelection"
+external getSelection: t => null<Selection.t> = "getSelection"

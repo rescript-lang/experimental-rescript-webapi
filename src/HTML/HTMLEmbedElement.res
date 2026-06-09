@@ -1,4 +1,6 @@
-include HTMLElement.Impl({type t = DomTypes.htmlEmbedElement})
+type t = DOM.htmlEmbedElement = private {...DOM.htmlEmbedElement}
+
+include HTMLElement.Impl({type t = t})
 
 @send
-external getSVGDocument: DomTypes.htmlEmbedElement => DomTypes.document = "getSVGDocument"
+external getSVGDocument: t => Document.t = "getSVGDocument"

@@ -38,6 +38,14 @@ function rewriteNestedFeatureReferences(source, { specs, leavesByFeature }) {
   return next;
 }
 
+function rewriteOwnerTypeReferences(source) {
+  return source
+    .replaceAll("DOMTypes.element", "Element.t")
+    .replaceAll("DOM.element", "Element.t")
+    .replaceAll("DOM.eventTarget", "EventTarget.t")
+    .replaceAll("DOM.event", "Event.t");
+}
+
 export function rewriteSourceText(
   source,
   { currentFeature, specs, localLeaves, leavesByFeature = new Map([[currentFeature, localLeaves]]) },
@@ -58,11 +66,11 @@ export function rewriteSourceText(
     }
   }
 
-  return next;
+  return rewriteOwnerTypeReferences(next);
 }
 
 export function rewriteTestText(source, specs = featureSpecs, leavesByFeature = new Map()) {
-  return rewriteNestedFeatureReferences(source, { specs, leavesByFeature });
+  return rewriteOwnerTypeReferences(rewriteNestedFeatureReferences(source, { specs, leavesByFeature }));
 }
 
 function rewriteTestFilesInDirectory(directoryPath, leavesByFeature) {

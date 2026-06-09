@@ -1,1 +1,1 @@
-include HTMLElement.Impl({type t = DomTypes.htmlAnchorElement})
+include HTMLElement.Impl({type t = DOM.htmlAnchorElement})

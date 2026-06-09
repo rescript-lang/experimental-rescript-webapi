@@ -1,4 +1,5 @@
-type domMatrix2DInit = DomTypes.domMatrix2DInit
+type t = CanvasTypes.path2D = private {...CanvasTypes.path2D}
+type domMatrix2DInit = GeometryTypes.domMatrix2DInit
 
 /**
 `make()`
@@ -12,7 +13,7 @@ let path = Path2D.make()
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Path2D)
 */
 @new
-external make: unit => CanvasTypes.path2D = "Path2D"
+external make: unit => t = "Path2D"
 
 /**
 `fromPath2D(path2D)`
@@ -26,7 +27,7 @@ let copiedPath = Path2D.fromPath2D(existingPath)
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Path2D)
 */
 @new
-external fromPath2D: CanvasTypes.path2D => CanvasTypes.path2D = "Path2D"
+external fromPath2D: t => t = "Path2D"
 
 /**
 `fromString(string)`
@@ -40,44 +41,39 @@ let path = Path2D.fromString("M0 0 L10 10")
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Path2D)
 */
 @new
-external fromString: string => CanvasTypes.path2D = "Path2D"
+external fromString: string => t = "Path2D"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CanvasRenderingContext2D/closePath)
 */
 @send
-external closePath: CanvasTypes.path2D => unit = "closePath"
+external closePath: t => unit = "closePath"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CanvasRenderingContext2D/moveTo)
 */
 @send
-external moveTo: (CanvasTypes.path2D, ~x: float, ~y: float) => unit = "moveTo"
+external moveTo: (t, ~x: float, ~y: float) => unit = "moveTo"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CanvasRenderingContext2D/lineTo)
 */
 @send
-external lineTo: (CanvasTypes.path2D, ~x: float, ~y: float) => unit = "lineTo"
+external lineTo: (t, ~x: float, ~y: float) => unit = "lineTo"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CanvasRenderingContext2D/quadraticCurveTo)
 */
 @send
-external quadraticCurveTo: (
-  CanvasTypes.path2D,
-  ~cpx: float,
-  ~cpy: float,
-  ~x: float,
-  ~y: float,
-) => unit = "quadraticCurveTo"
+external quadraticCurveTo: (t, ~cpx: float, ~cpy: float, ~x: float, ~y: float) => unit =
+  "quadraticCurveTo"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CanvasRenderingContext2D/bezierCurveTo)
 */
 @send
 external bezierCurveTo: (
-  CanvasTypes.path2D,
+  t,
   ~cp1x: float,
   ~cp1y: float,
   ~cp2x: float,
@@ -90,27 +86,21 @@ external bezierCurveTo: (
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CanvasRenderingContext2D/arcTo)
 */
 @send
-external arcTo: (
-  CanvasTypes.path2D,
-  ~x1: float,
-  ~y1: float,
-  ~x2: float,
-  ~y2: float,
-  ~radius: float,
-) => unit = "arcTo"
+external arcTo: (t, ~x1: float, ~y1: float, ~x2: float, ~y2: float, ~radius: float) => unit =
+  "arcTo"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CanvasRenderingContext2D/rect)
 */
 @send
-external rect: (CanvasTypes.path2D, ~x: float, ~y: float, ~w: float, ~h: float) => unit = "rect"
+external rect: (t, ~x: float, ~y: float, ~w: float, ~h: float) => unit = "rect"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CanvasRenderingContext2D/roundRect)
 */
 @send
 external roundRect: (
-  CanvasTypes.path2D,
+  t,
   ~x: float,
   ~y: float,
   ~w: float,
@@ -123,7 +113,7 @@ external roundRect: (
 */
 @send
 external roundRect2: (
-  CanvasTypes.path2D,
+  t,
   ~x: float,
   ~y: float,
   ~w: float,
@@ -136,7 +126,7 @@ external roundRect2: (
 */
 @send
 external roundRect3: (
-  CanvasTypes.path2D,
+  t,
   ~x: float,
   ~y: float,
   ~w: float,
@@ -149,7 +139,7 @@ external roundRect3: (
 */
 @send
 external arc: (
-  CanvasTypes.path2D,
+  t,
   ~x: float,
   ~y: float,
   ~radius: float,
@@ -163,7 +153,7 @@ external arc: (
 */
 @send
 external ellipse: (
-  CanvasTypes.path2D,
+  t,
   ~x: float,
   ~y: float,
   ~radiusX: float,
@@ -179,8 +169,4 @@ Adds to the path the path given by the argument.
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Path2D/addPath)
 */
 @send
-external addPath: (
-  CanvasTypes.path2D,
-  ~path: CanvasTypes.path2D,
-  ~transform: domMatrix2DInit=?,
-) => unit = "addPath"
+external addPath: (t, ~path: t, ~transform: domMatrix2DInit=?) => unit = "addPath"

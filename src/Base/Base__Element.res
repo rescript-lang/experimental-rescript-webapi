@@ -1,23 +1,13 @@
 @@warning("-30")
 
-type t = private {}
-
-type document
-type node
-type htmlElement
-type nodeList<'tNode>
-type domTokenList
-type namedNodeMap
 type shadowRoot
-type htmlCollection<'t>
-type htmlSlotElement
 
 /**
 Element is the most general base class from which all objects in a Document inherit. It only has methods and properties common to all kinds of elements. More specific classes inherit from Element.
 [See Element on MDN](https://developer.mozilla.org/docs/Web/API/Element)
 TODO: mark as private once mutating fields of private records is allowed
 */
-type rec element = {
+type rec t = {
   // Base properties from Node
   /**
     Returns the type of node.
@@ -43,42 +33,42 @@ type rec element = {
     Returns the node document. Returns null for documents.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/ownerDocument)
     */
-  ownerDocument: Null.t<document>,
+  ownerDocument: Null.t<Document.t>,
   /**
     Returns the parent.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/parentNode)
     */
-  parentNode: Null.t<node>,
+  parentNode: Null.t<Node.t>,
   /**
     Returns the parent element.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/parentElement)
     */
-  parentElement: Null.t<htmlElement>,
+  parentElement: Null.t<Element.t>,
   /**
     Returns the children.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/childNodes)
     */
-  childNodes: nodeList<node>,
+  childNodes: NodeList.t<Node.t>,
   /**
     Returns the first child.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/firstChild)
     */
-  firstChild: Null.t<node>,
+  firstChild: Null.t<Node.t>,
   /**
     Returns the last child.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/lastChild)
     */
-  lastChild: Null.t<node>,
+  lastChild: Null.t<Node.t>,
   /**
     Returns the previous sibling.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/previousSibling)
     */
-  previousSibling: Null.t<node>,
+  previousSibling: Null.t<Node.t>,
   /**
     Returns the next sibling.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/nextSibling)
     */
-  nextSibling: Null.t<node>,
+  nextSibling: Null.t<Node.t>,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/nodeValue)
     */
@@ -123,7 +113,7 @@ type rec element = {
     Allows for manipulation of element's class content attribute as a set of whitespace-separated tokens through a DOMTokenList object.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/classList)
     */
-  classList: domTokenList,
+  classList: DOMTokenList.t,
   /**
     Returns the value of element's slot content attribute. Can be set to change it.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/slot)
@@ -132,7 +122,7 @@ type rec element = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/attributes)
     */
-  attributes: namedNodeMap,
+  attributes: NamedNodeMap.t,
   /**
     Returns element's shadow root, if any, and if shadow root's mode is "open", and null otherwise.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/shadowRoot)
@@ -141,7 +131,7 @@ type rec element = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/part)
     */
-  part: domTokenList,
+  part: DOMTokenList.t,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/scrollTop)
     */
@@ -190,17 +180,17 @@ type rec element = {
     Returns the child elements.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Document/children)
     */
-  children: htmlCollection<element>,
+  children: HTMLCollection.t<t>,
   /**
     Returns the first child that is an element, and null otherwise.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Document/firstElementChild)
     */
-  firstElementChild: Null.t<element>,
+  firstElementChild: Null.t<t>,
   /**
     Returns the last child that is an element, and null otherwise.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Document/lastElementChild)
     */
-  lastElementChild: Null.t<element>,
+  lastElementChild: Null.t<t>,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Document/childElementCount)
     */
@@ -209,16 +199,16 @@ type rec element = {
     Returns the first preceding sibling that is an element, and null otherwise.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CharacterData/previousElementSibling)
     */
-  previousElementSibling: Null.t<element>,
+  previousElementSibling: Null.t<t>,
   /**
     Returns the first following sibling that is an element, and null otherwise.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CharacterData/nextElementSibling)
     */
-  nextElementSibling: Null.t<element>,
+  nextElementSibling: Null.t<t>,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/assignedSlot)
     */
-  assignedSlot: Null.t<htmlSlotElement>,
+  assignedSlot: Null.t<Element.t>,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/ariaAtomic)
     */

@@ -1,10 +1,12 @@
+type t = DOM.xPathExpression = private {...DOM.xPathExpression}
+
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/XPathExpression/evaluate)
 */
 @send
 external evaluate: (
-  DomTypes.xPathExpression,
-  ~contextNode: DomTypes.node,
+  t,
+  ~contextNode: Node.t,
   ~type_: int=?,
-  ~result: DomTypes.xPathResult=?,
-) => DomTypes.xPathResult = "evaluate"
+  ~result: XPathResult.t=?,
+) => XPathResult.t = "evaluate"

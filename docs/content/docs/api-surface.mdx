@@ -37,8 +37,9 @@ Global singleton APIs such as `Location`, `Crypto`, and `Performance` expose dir
 functions and properties. Object-owned APIs still use the value as the receiver.
 
 ```ReScript
+let href = WebAPI.Location.href
 let location = WebAPI.Location.current
-let href = location.href
+let sameHref = location.href
 
 WebAPI.Location.reload()
 ```
@@ -51,8 +52,7 @@ helper modules.
 ```ReScript
 let req: WebAPI.Request.t = WebAPI.Request.fromURL("https://example.com")
 let headers = WebAPI.Headers.make()
-let document = WebAPI.Window.current->WebAPI.Window.document
-let element = document->WebAPI.Document.createElement("button")
+let element: WebAPI.Element.t = WebAPI.Document.createElement("button")
 ```
 
 With `"-open WebAPI"`, the same modules can be referenced without the `WebAPI.` prefix:
@@ -62,7 +62,7 @@ let location = Location.current
 let id = Crypto.randomUUID()
 ```
 
-Generated implementation modules such as `DomTypes`, `FetchTypes`, `EventTypes`, and
+Generated implementation modules such as `DOMTypes`, `FetchTypes`, `EventTypes`, and
 `UiEventsTypes` are internal. If you need to name a public type, use the public interface
 module's `t` type when it has one, or use a dedicated public type module. Otherwise, let
 the value type be inferred from constructors and accessors.
@@ -266,30 +266,24 @@ let redirect = WebAPI.Response.redirect(~url="/login", ~status=302)
 
 ## DOM
 
-DOM values are operated on through public interface modules.
-`WebAPI.Element` is the method module for element values. When you need to name the element type explicitly, use `WebAPI.DOM.element`; most examples can rely on inference from `Document.createElement`, `Document.querySelector`, and related DOM helpers.
+Common document entry points are exposed directly on `WebAPI.Document`, bound to
+`globalThis.document`. DOM object properties use dot syntax, and instance methods stay
+receiver-based through the owner module. When you need to name an element type explicitly,
+use `WebAPI.Element.t`.
 
 ```ReScript
-let document = WebAPI.Window.current->WebAPI.Window.document
-
-let maybeButton = document
-->WebAPI.Document.querySelector("button")
-->Null.toOption
-
-switch maybeButton {
-| Some(button) =>
-  switch button->WebAPI.Element.getAttribute("data-user-id") {
-  | Null.Value(id) => Console.log(id)
-  | Null => Console.log("anonymous")
-  }
-| None => Console.log("button not found")
-}
+let button: WebAPI.Element.t = WebAPI.Document.createElement("button")
+button.id = "save"
+button.className = "primary"
+button.innerHTML = "Save"
+button->WebAPI.Element.setAttribute(~qualifiedName="data-state", ~value="ready")
+let maybeButton = WebAPI.Document.querySelector("#save")->Null.toOption
 ```
 
 Use conversion helpers when moving between related DOM interface types.
 
 ```ReScript
-let element: WebAPI.DOM.element = document->WebAPI.Document.createElement("div")
+let element: WebAPI.Element.t = WebAPI.Document.createElement("div")
 let node = element->WebAPI.Element.asNode
 ```
 

@@ -1,1 +1,1 @@
-include HTMLElement.Impl({type t = DomTypes.htmlTimeElement})
+include HTMLElement.Impl({type t = DOM.htmlTimeElement})

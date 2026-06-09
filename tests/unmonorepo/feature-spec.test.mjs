@@ -28,14 +28,14 @@ test("defines all legacy feature mappings used by the unmonorepo migration", () 
         dirName: "Base",
         legacyNamespace: "WebApiBase",
         publicModule: "Base",
-        featureName: "WebAPI.Base",
+        featureName: "Base",
         internalPrefix: "Base",
       },
       {
         dirName: "DOM",
         legacyNamespace: "WebApiDOM",
         publicModule: "DOM",
-        featureName: "WebAPI.DOM",
+        featureName: "DOM",
         internalPrefix: "Dom",
       },
     ],
@@ -44,14 +44,11 @@ test("defines all legacy feature mappings used by the unmonorepo migration", () 
   assert.equal(featureSpecs.length, 44);
 });
 
-test("keeps shared internal event helper shapes under the EventTypes feature root", () => {
-  assert.equal(existsSync(join(repoRoot, "src", "EventTypes", "EventTypes.res")), true);
-  assert.equal(existsSync(join(repoRoot, "src", "Event", "EventTypes.res")), false);
+test("keeps shared internal event helper shapes beside the Event modules", () => {
+  assert.equal(existsSync(join(repoRoot, "src", "Event", "EventTypes.res")), true);
+  assert.equal(existsSync(join(repoRoot, "src", "EventTypes", "EventTypes.res")), false);
 
-  const eventTypesSource = readFileSync(
-    join(repoRoot, "src", "EventTypes", "EventTypes.res"),
-    "utf8",
-  );
+  const eventTypesSource = readFileSync(join(repoRoot, "src", "Event", "EventTypes.res"), "utf8");
   assert.equal(eventTypesSource.includes("@editor.completeFrom(AbortController)"), false);
   assert.equal(eventTypesSource.includes("@editor.completeFrom(AbortSignal)"), false);
   assert.equal(eventTypesSource.includes("@editor.completeFrom(ExtendableEvent)"), false);
@@ -71,38 +68,191 @@ test("keeps Base__Document from re-exporting leaf-owned aliases", () => {
   assert.equal(baseDocumentSource.includes("type element = Base__Element.element"), false);
 });
 
-test("keeps DOM.res limited to the core base type surface", () => {
-  const domSource = readFileSync(join(repoRoot, "src", "DOM", "DOM.res"), "utf8");
+test("keeps public object shapes from exposing Base__ implementation types", () => {
+  const baseDocumentSource = readFileSync(
+    join(repoRoot, "src", "Base", "Base__Document.res"),
+    "utf8",
+  );
   const baseElementSource = readFileSync(
     join(repoRoot, "src", "Base", "Base__Element.res"),
     "utf8",
   );
-  const declaredTypes = [];
 
-  for (const rawLine of domSource.split("\n")) {
-    const line = rawLine.trim();
-    const typeMatch = line.match(/^type(?:\s+rec)?\s+([a-z][A-Za-z0-9_]*)/);
-    if (typeMatch) {
-      declaredTypes.push(typeMatch[1]);
-      continue;
-    }
+  for (const source of [baseDocumentSource, baseElementSource]) {
+    assert.equal(source.includes("Base__Node.t"), false);
+    assert.equal(source.includes("Base__Element.t"), false);
+    assert.equal(source.includes("Base__HTMLElement.t"), false);
+    assert.equal(source.includes("Base__NodeList.t"), false);
+    assert.equal(source.includes("Base__HTMLCollection.t"), false);
+    assert.equal(source.includes("Base__NamedNodeMap.t"), false);
+    assert.equal(source.includes("Base__ShadowRoot.t"), false);
+    assert.equal(source.includes("Base__HTMLSlotElement.t"), false);
+  }
+});
 
-    const andMatch = line.match(/^@editor\.completeFrom\([^)]*\)\s+and\s+([a-z][A-Za-z0-9_]*)/);
-    if (andMatch) {
-      declaredTypes.push(andMatch[1]);
-    }
+test("keeps DOMTokenList as the direct public object owner", () => {
+  const domTokenListSource = readFileSync(
+    join(repoRoot, "src", "Base", "DOMTokenList.res"),
+    "utf8",
+  );
+
+  assert.equal(existsSync(join(repoRoot, "src", "Base", "Base__DOMTokenList.res")), false);
+  assert.match(domTokenListSource, /^type t = private \{$/m);
+  assert.equal(domTokenListSource.includes("Base__DOMTokenList"), false);
+});
+
+test("documents private spreads for shared object bases", () => {
+  const moduleTypeStructureSource = readFileSync(
+    join(repoRoot, "docs", "content", "docs", "contributing", "module-type-structure.mdx"),
+    "utf8",
+  );
+
+  assert.match(
+    moduleTypeStructureSource,
+    /type t = Base__Element\.t = private \{\.\.\.Base__Element\.t\}/,
+  );
+  assert.equal(
+    moduleTypeStructureSource.includes("type t = Base__Element.t = {...Base__Element.t}"),
+    false,
+  );
+});
+
+test("keeps DOM owner type aliases out of public compatibility modules", () => {
+  const domSource = readFileSync(join(repoRoot, "src", "DOMTypes", "DOM.res"), "utf8");
+  const baseElementSource = readFileSync(
+    join(repoRoot, "src", "Base", "Base__Element.res"),
+    "utf8",
+  );
+
+  assert.equal(existsSync(join(repoRoot, "src", "DOM", "DOM.res")), false);
+  assert.match(baseElementSource, /^type rec t = \{$/m);
+  assert.equal(baseElementSource.includes("type rec element = {"), false);
+  assert.equal(existsSync(join(repoRoot, "src", "Base", "Base__DOM.res")), false);
+  assert.equal(/^type document\b/m.test(domSource), false);
+  assert.equal(/^type element\b/m.test(domSource), false);
+  assert.equal(domSource.includes("type nodeList"), false);
+  assert.equal(domSource.includes("type htmlCollection"), false);
+  assert.equal(domSource.includes("type domTokenList"), false);
+  assert.equal(domSource.includes("type namedNodeMap"), false);
+});
+
+test("keeps CSSStyleSheet as the public stylesheet type", () => {
+  const config = JSON.parse(readFileSync(join(repoRoot, "rescript.json"), "utf8"));
+  const cssomSource = config.sources.find((source) => source.dir === "src/CSSOM");
+  const domSource = readFileSync(join(repoRoot, "src", "DOMTypes", "DOM.res"), "utf8");
+
+  assert.ok(cssomSource, "src/CSSOM source entry should exist");
+  assert.ok(cssomSource.public.includes("CSSStyleSheet"));
+  assert.equal(cssomSource.public.includes("StyleSheet"), false);
+  assert.equal(existsSync(join(repoRoot, "src", "CSSOM", "StyleSheet.res")), false);
+  assert.equal(/^type styleSheet\b/m.test(domSource), false);
+});
+
+test("removes DOMExtended in favor of leaf source directories", () => {
+  const config = JSON.parse(readFileSync(join(repoRoot, "rescript.json"), "utf8"));
+  const sourceEntries = config.sources.filter((source) => source.dir?.startsWith("src/"));
+  const sourceFeatures = new Set(sourceEntries.map((source) => source.feature));
+
+  assert.equal(existsSync(join(repoRoot, "src", "DOMExtended")), false);
+  assert.equal(existsSync(join(repoRoot, "src", "Text", "Text.res")), true);
+  assert.equal(existsSync(join(repoRoot, "src", "Range", "Range.res")), true);
+  assert.equal(existsSync(join(repoRoot, "src", "DocumentFragment", "DocumentFragment.res")), true);
+  assert.equal(existsSync(join(repoRoot, "src", "DOMTypes", "DOM.res")), true);
+  assert.equal(existsSync(join(repoRoot, "src", "DomGlobal", "DomGlobal.res")), true);
+  assert.equal(sourceFeatures.has("DOMExtended"), false);
+
+  for (const [featureName, dependencies] of Object.entries(config.features)) {
+    assert.equal(
+      dependencies.includes("DOMExtended"),
+      false,
+      `${featureName} should depend on specific DOM leaf features instead of DOMExtended`,
+    );
+  }
+});
+
+test("keeps DOM feature minimal for React-oriented consumers", () => {
+  const config = JSON.parse(readFileSync(join(repoRoot, "rescript.json"), "utf8"));
+  const sourceEntries = config.sources.filter((source) => source.dir?.startsWith("src/"));
+  const documentSource = sourceEntries.find((source) => source.feature === "Document");
+  const elementSource = sourceEntries.find((source) => source.feature === "Element");
+  const baseSource = sourceEntries.find((source) => source.dir === "src/Base");
+  const htmlSource = sourceEntries.find((source) => source.dir === "src/HTML");
+
+  assert.ok(documentSource, "Document source entry should exist");
+  assert.ok(elementSource, "Element source entry should exist");
+  assert.ok(baseSource, "src/Base source entry should exist");
+  assert.ok(htmlSource, "src/HTML source entry should exist");
+  assert.deepEqual(config.features["WebAPI.DOM"], ["EventTypes", "Event", "Element", "Document"]);
+  assert.deepEqual(documentSource, {
+    dir: "src/DOM",
+    files: ["Document.res"],
+    feature: "Document",
+    public: ["Document"],
+  });
+  assert.deepEqual(elementSource, {
+    dir: "src/DOM",
+    files: ["Element.res"],
+    feature: "Element",
+    public: ["Element"],
+  });
+  assert.ok(baseSource.public.includes("HTMLCollection"));
+  assert.ok(baseSource.public.includes("NamedNodeMap"));
+  assert.ok(baseSource.public.includes("Node"));
+  assert.ok(baseSource.public.includes("NodeList"));
+  assert.ok(htmlSource.public.includes("HTMLElement"));
+});
+
+test("keeps public feature groups separate from internal source features", () => {
+  const config = JSON.parse(readFileSync(join(repoRoot, "rescript.json"), "utf8"));
+  const sourceEntries = config.sources.filter((source) => source.dir?.startsWith("src/"));
+  const internalFeatures = new Set(sourceEntries.map((source) => source.feature));
+
+  assert.ok(!config.features.Base, "Base should not be a public feature group");
+  assert.ok(!config.features["WebAPI.Base"], "WebAPI.Base should not be a public feature group");
+  assert.ok(!config.features.DOMExtended, "DOMExtended should not be a public feature group");
+  assert.ok(
+    !config.features["WebAPI.DOMExtended"],
+    "WebAPI.DOMExtended should not be a public feature group",
+  );
+
+  for (const source of sourceEntries) {
+    assert.ok(
+      !source.feature.startsWith("WebAPI."),
+      `${source.dir} should use an unprefixed internal feature name`,
+    );
   }
 
-  assert.deepEqual(declaredTypes, ["event", "eventTarget", "element"]);
-  assert.match(domSource, /^type element = Base__Element\.t = private \{\.\.\.Base__Element\.t\}$/m);
-  assert.match(baseElementSource, /^type t = private \{\}$/m);
-  assert.equal(domSource.includes("Base.Element.element"), false);
+  for (const [featureName, dependencies] of Object.entries(config.features)) {
+    assert.ok(featureName.startsWith("WebAPI."), `${featureName} should be a public feature group`);
+
+    for (const dependency of dependencies) {
+      assert.ok(
+        !dependency.startsWith("WebAPI."),
+        `${featureName} should depend on ${dependency} directly`,
+      );
+      assert.ok(
+        internalFeatures.has(dependency),
+        `${featureName} depends on missing internal feature ${dependency}`,
+      );
+    }
+
+    if (dependencies.includes("Base")) {
+      assert.ok(
+        dependencies.includes("Element"),
+        `${featureName} should include Element with Base`,
+      );
+      assert.ok(
+        dependencies.includes("Document"),
+        `${featureName} should include Document with Base`,
+      );
+    }
+  }
 });
 
 test("normalizes internal prefixes and public duplicate names", () => {
   assert.equal(publicModuleToInternalPrefix("DOM"), "Dom");
   assert.equal(publicModuleToInternalPrefix("URL"), "Url");
-  assert.equal(publicNameForLeafModule("DomTypes", "Dom"), "Types");
+  assert.equal(publicNameForLeafModule("DOM", "Dom"), "Types");
   assert.equal(publicNameForLeafModule("Document", "Dom"), "Document");
   assert.equal(publicNameForLeafModule("DOM", "Base"), "DOM");
   assert.equal(publicNameForLeafModule("PushEvent", "Push"), "PushEvent");
@@ -170,7 +320,11 @@ test("preserves direct public leaf modules while renaming duplicated internals",
   );
   assert.equal(
     migratedLeafName({
-      spec: { dirName: "ServiceWorker", publicModule: "ServiceWorker", internalPrefix: "ServiceWorker" },
+      spec: {
+        dirName: "ServiceWorker",
+        publicModule: "ServiceWorker",
+        internalPrefix: "ServiceWorker",
+      },
       leafName: "ServiceWorkerGlobalScope",
       duplicateLeaves,
     }),

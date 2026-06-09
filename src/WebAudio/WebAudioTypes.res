@@ -109,7 +109,7 @@ TODO: mark as private once mutating fields of private records is allowed
 */
 @editor.completeFrom(AudioNode)
 type rec audioNode = {
-  ...Event.eventTarget,
+  ...EventTarget.t,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/AudioNode/context)
     */
@@ -178,7 +178,7 @@ and audioDestinationNode = {
 [See BaseAudioContext on MDN](https://developer.mozilla.org/docs/Web/API/BaseAudioContext)
 */
 @editor.completeFrom(BaseAudioContext) and baseAudioContext = private {
-  ...Event.eventTarget,
+  ...EventTarget.t,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/BaseAudioContext/destination)
     */
@@ -991,7 +991,7 @@ type mediaElementAudioSourceNode = private {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/MediaElementAudioSourceNode/mediaElement)
     */
-  mediaElement: DomTypes.htmlMediaElement,
+  mediaElement: DOM.htmlMediaElement,
 }
 
 /**
@@ -1271,7 +1271,7 @@ type audioContextOptions = {
   mutable sampleRate?: float,
 }
 
-type mediaElementAudioSourceOptions = {mutable mediaElement: DomTypes.htmlMediaElement}
+type mediaElementAudioSourceOptions = {mutable mediaElement: DOM.htmlMediaElement}
 
 type mediaStreamAudioSourceOptions = {
   mutable mediaStream: MediaCaptureAndStreamsTypes.mediaStream,

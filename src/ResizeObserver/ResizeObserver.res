@@ -1,8 +1,14 @@
+type t = ResizeObserverTypes.resizeObserver = private {...ResizeObserverTypes.resizeObserver}
+type callback = ResizeObserverTypes.resizeObserverCallback
+type options = ResizeObserverTypes.resizeObserverOptions = private {
+  ...ResizeObserverTypes.resizeObserverOptions,
+}
+
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/ResizeObserver)
 */
 @new
-external make: ResizeObserverTypes.resizeObserverCallback => ResizeObserverTypes.resizeObserver =
+external make: callback => t =
   "ResizeObserver"
 
 /**
@@ -10,8 +16,8 @@ external make: ResizeObserverTypes.resizeObserverCallback => ResizeObserverTypes
 */
 @send
 external observe: (
-  ResizeObserverTypes.resizeObserver,
-  ~target: DomTypes.element,
+  t,
+  ~target: Element.t,
   ~options: ResizeObserverTypes.resizeObserverOptions=?,
 ) => unit = "observe"
 
@@ -19,12 +25,12 @@ external observe: (
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/ResizeObserver/unobserve)
 */
 @send
-external unobserve: (ResizeObserverTypes.resizeObserver, DomTypes.element) => unit = "unobserve"
+external unobserve: (t, Element.t) => unit = "unobserve"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/ResizeObserver/disconnect)
 */
 @send
-external disconnect: ResizeObserverTypes.resizeObserver => unit = "disconnect"
+external disconnect: t => unit = "disconnect"
 
 module Types = ResizeObserverTypes

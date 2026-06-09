@@ -2,123 +2,748 @@
   "name": "@rescript/webapi",
   "namespace": "WebAPI",
   "features": {
-    "WebAPI.Base": ["WebAPI.EventTypes", "WebAPI.Location"],
     "WebAPI.DOM": [
-      "WebAPI.Base",
-      "WebAPI.Animations",
-      "WebAPI.CSSFontLoading",
-      "WebAPI.CSSOM",
-      "WebAPI.ChannelMessaging",
-      "WebAPI.CSSTypedOM",
-      "WebAPI.DOMException",
-      "WebAPI.DOMStringList",
-      "WebAPI.EventTypes",
-      "WebAPI.File",
-      "WebAPI.FileAndDirectoryEntries",
-      "WebAPI.FileList",
-      "WebAPI.Geometry",
-      "WebAPI.IdleDeadline",
-      "WebAPI.Location",
-      "WebAPI.RemotePlayback",
-      "WebAPI.ScreenOrientation",
-      "WebAPI.VTT",
-      "WebAPI.ViewTransitions",
-      "WebAPI.VisualViewport"
+      "EventTypes",
+      "Event",
+      "Element",
+      "Document"
+    ],
+    "WebAPI.EventTypes": [
+      "EventTypes"
+    ],
+    "WebAPI.CSSFontLoading": [
+      "EventTypes",
+      "Element",
+      "Document",
+      "DOMStringList",
+      "Location",
+      "Base",
+      "CSSFontLoading"
     ],
     "WebAPI.Canvas": [
-      "WebAPI.DOM",
-      "WebAPI.Event",
-      "WebAPI.File",
-      "WebAPI.HTML",
-      "WebAPI.MediaCaptureAndStreams"
+      "EventTypes",
+      "Event",
+      "Element",
+      "Document",
+      "DOMStringList",
+      "Location",
+      "Base",
+      "Animations",
+      "CSSFontLoading",
+      "CSSOM",
+      "ChannelMessaging",
+      "CSSTypedOM",
+      "DOMException",
+      "File",
+      "FileAndDirectoryEntries",
+      "FileList",
+      "Geometry",
+      "IdleDeadline",
+      "RemotePlayback",
+      "ScreenOrientation",
+      "VTT",
+      "ViewTransitions",
+      "VisualViewport",
+      "CaretPosition",
+      "CharacterData",
+      "Comment",
+      "DOMImplementation",
+      "DOMTypes",
+      "DocumentFragment",
+      "DomGlobal",
+      "NodeFilter",
+      "NodeIterator",
+      "Range",
+      "Selection",
+      "ShadowRoot",
+      "Text",
+      "TreeWalker",
+      "PictureInPicture",
+      "HTML",
+      "MediaCaptureAndStreams",
+      "Canvas"
     ],
-    "WebAPI.CSSOM": ["WebAPI.Event", "WebAPI.EventTypes"],
-    "WebAPI.CustomElements": ["WebAPI.DOM"],
-    "WebAPI.CredentialManagement": ["WebAPI.Event"],
-    "WebAPI.EventTypes": [],
-    "WebAPI.Event": ["WebAPI.Base", "WebAPI.EventTypes"],
-    "WebAPI.Fetch": ["WebAPI.Event", "WebAPI.File", "WebAPI.URL"],
-    "WebAPI.File": ["WebAPI.Base", "WebAPI.Event"],
-    "WebAPI.FileAndDirectoryEntries": ["WebAPI.Base", "WebAPI.DOMException"],
-    "WebAPI.FileList": ["WebAPI.File"],
+    "WebAPI.ChannelMessaging": [
+      "EventTypes",
+      "Event",
+      "ChannelMessaging"
+    ],
+    "WebAPI.Clipboard": [
+      "EventTypes",
+      "Event",
+      "Element",
+      "Document",
+      "DOMStringList",
+      "Location",
+      "Base",
+      "File",
+      "Clipboard"
+    ],
+    "WebAPI.CredentialManagement": [
+      "EventTypes",
+      "Event",
+      "CredentialManagement"
+    ],
+    "WebAPI.DOMException": [
+      "DOMException"
+    ],
+    "WebAPI.DOMStringList": [
+      "DOMStringList"
+    ],
+    "WebAPI.CSSOM": [
+      "EventTypes",
+      "Event",
+      "CSSOM"
+    ],
+    "WebAPI.CSSTypedOM": [
+      "CSSTypedOM"
+    ],
+    "WebAPI.CustomElements": [
+      "EventTypes",
+      "Event",
+      "Element",
+      "Document",
+      "DOMStringList",
+      "Location",
+      "Base",
+      "Animations",
+      "CSSFontLoading",
+      "CSSOM",
+      "ChannelMessaging",
+      "CSSTypedOM",
+      "DOMException",
+      "File",
+      "FileAndDirectoryEntries",
+      "FileList",
+      "Geometry",
+      "IdleDeadline",
+      "RemotePlayback",
+      "ScreenOrientation",
+      "VTT",
+      "ViewTransitions",
+      "VisualViewport",
+      "CaretPosition",
+      "CharacterData",
+      "Comment",
+      "DOMImplementation",
+      "DOMTypes",
+      "DocumentFragment",
+      "DomGlobal",
+      "NodeFilter",
+      "NodeIterator",
+      "Range",
+      "Selection",
+      "ShadowRoot",
+      "Text",
+      "TreeWalker",
+      "PictureInPicture",
+      "HTML",
+      "CustomElements"
+    ],
+    "WebAPI.EncryptedMediaExtensions": [
+      "EventTypes",
+      "DOMStringList",
+      "Location",
+      "Base",
+      "Event",
+      "Element",
+      "Document",
+      "Animations",
+      "CSSFontLoading",
+      "CSSOM",
+      "ChannelMessaging",
+      "CSSTypedOM",
+      "DOMException",
+      "File",
+      "FileAndDirectoryEntries",
+      "FileList",
+      "Geometry",
+      "IdleDeadline",
+      "RemotePlayback",
+      "ScreenOrientation",
+      "VTT",
+      "ViewTransitions",
+      "VisualViewport",
+      "CaretPosition",
+      "CharacterData",
+      "Comment",
+      "DOMImplementation",
+      "DOMTypes",
+      "DocumentFragment",
+      "DomGlobal",
+      "NodeFilter",
+      "NodeIterator",
+      "Range",
+      "Selection",
+      "ShadowRoot",
+      "Text",
+      "TreeWalker",
+      "EncryptedMediaExtensions"
+    ],
+    "WebAPI.Event": [
+      "EventTypes",
+      "Event"
+    ],
+    "WebAPI.Fetch": [
+      "EventTypes",
+      "Event",
+      "Element",
+      "Document",
+      "DOMStringList",
+      "Location",
+      "Base",
+      "File",
+      "URL",
+      "Fetch"
+    ],
+    "WebAPI.File": [
+      "EventTypes",
+      "Element",
+      "Document",
+      "DOMStringList",
+      "Location",
+      "Base",
+      "Event",
+      "File"
+    ],
+    "WebAPI.FileList": [
+      "EventTypes",
+      "Element",
+      "Document",
+      "DOMStringList",
+      "Location",
+      "Base",
+      "Event",
+      "File",
+      "FileList"
+    ],
+    "WebAPI.FileAndDirectoryEntries": [
+      "EventTypes",
+      "Element",
+      "Document",
+      "DOMStringList",
+      "Location",
+      "Base",
+      "DOMException",
+      "FileAndDirectoryEntries"
+    ],
+    "WebAPI.Gamepad": [
+      "Gamepad"
+    ],
+    "WebAPI.Geolocation": [
+      "Geolocation"
+    ],
+    "WebAPI.Geometry": [
+      "Geometry"
+    ],
+    "WebAPI.History": [
+      "History"
+    ],
+    "WebAPI.IdleDeadline": [
+      "IdleDeadline"
+    ],
+    "WebAPI.HTML": [
+      "EventTypes",
+      "Event",
+      "Element",
+      "Document",
+      "DOMStringList",
+      "Location",
+      "Base",
+      "Animations",
+      "CSSFontLoading",
+      "CSSOM",
+      "ChannelMessaging",
+      "CSSTypedOM",
+      "DOMException",
+      "File",
+      "FileAndDirectoryEntries",
+      "FileList",
+      "Geometry",
+      "IdleDeadline",
+      "RemotePlayback",
+      "ScreenOrientation",
+      "VTT",
+      "ViewTransitions",
+      "VisualViewport",
+      "CaretPosition",
+      "CharacterData",
+      "Comment",
+      "DOMImplementation",
+      "DOMTypes",
+      "DocumentFragment",
+      "DomGlobal",
+      "NodeFilter",
+      "NodeIterator",
+      "Range",
+      "Selection",
+      "ShadowRoot",
+      "Text",
+      "TreeWalker",
+      "PictureInPicture",
+      "HTML"
+    ],
+    "WebAPI.Location": [
+      "DOMStringList",
+      "Location"
+    ],
     "WebAPI.IndexedDB": [
-      "WebAPI.DOMException",
-      "WebAPI.DOMStringList",
-      "WebAPI.Event"
+      "DOMException",
+      "DOMStringList",
+      "EventTypes",
+      "Event",
+      "IndexedDB"
     ],
-    "WebAPI.IntersectionObserver": ["WebAPI.DOM", "WebAPI.Geometry"],
-    "WebAPI.Location": ["WebAPI.DOMStringList"],
-    "WebAPI.HTML": ["WebAPI.DOM", "WebAPI.PictureInPicture", "WebAPI.VTT"],
+    "WebAPI.IntersectionObserver": [
+      "Element",
+      "Document",
+      "Geometry",
+      "IntersectionObserver"
+    ],
+    "WebAPI.MediaCapabilities": [
+      "MediaCapabilities"
+    ],
+    "WebAPI.MediaCaptureAndStreams": [
+      "EventTypes",
+      "Event",
+      "MediaCaptureAndStreams"
+    ],
+    "WebAPI.MediaSession": [
+      "MediaSession"
+    ],
+    "WebAPI.MutationObserver": [
+      "EventTypes",
+      "Event",
+      "Element",
+      "Document",
+      "DOMStringList",
+      "Location",
+      "Base",
+      "Animations",
+      "CSSFontLoading",
+      "CSSOM",
+      "ChannelMessaging",
+      "CSSTypedOM",
+      "DOMException",
+      "File",
+      "FileAndDirectoryEntries",
+      "FileList",
+      "Geometry",
+      "IdleDeadline",
+      "RemotePlayback",
+      "ScreenOrientation",
+      "VTT",
+      "ViewTransitions",
+      "VisualViewport",
+      "CaretPosition",
+      "CharacterData",
+      "Comment",
+      "DOMImplementation",
+      "DOMTypes",
+      "DocumentFragment",
+      "DomGlobal",
+      "NodeFilter",
+      "NodeIterator",
+      "Range",
+      "Selection",
+      "ShadowRoot",
+      "Text",
+      "TreeWalker",
+      "MutationObserver"
+    ],
     "WebAPI.Navigator": [
-      "WebAPI.Base",
-      "WebAPI.Event",
-      "WebAPI.File",
-      "WebAPI.Fetch",
-      "WebAPI.Gamepad",
-      "WebAPI.URL",
-      "WebAPI.MIDI"
+      "EventTypes",
+      "Element",
+      "Document",
+      "DOMStringList",
+      "Location",
+      "Base",
+      "Event",
+      "File",
+      "URL",
+      "Fetch",
+      "Gamepad",
+      "MIDI",
+      "Navigator"
     ],
-    "WebAPI.ScreenOrientation": ["WebAPI.Event"],
-    "WebAPI.SVG": ["WebAPI.DOM", "WebAPI.Geometry"],
-    "WebAPI.Animations": ["WebAPI.Event", "WebAPI.EventTypes"],
+    "WebAPI.Notification": [
+      "EventTypes",
+      "Event",
+      "Notification"
+    ],
+    "WebAPI.Performance": [
+      "EventTypes",
+      "Event",
+      "Performance"
+    ],
+    "WebAPI.Permissions": [
+      "EventTypes",
+      "Event",
+      "Permissions"
+    ],
+    "WebAPI.PictureInPicture": [
+      "EventTypes",
+      "Event",
+      "PictureInPicture"
+    ],
+    "WebAPI.Push": [
+      "ChannelMessaging",
+      "EventTypes",
+      "Event",
+      "Push"
+    ],
+    "WebAPI.RemotePlayback": [
+      "EventTypes",
+      "Event",
+      "RemotePlayback"
+    ],
+    "WebAPI.ResizeObserver": [
+      "Element",
+      "Document",
+      "Geometry",
+      "ResizeObserver"
+    ],
+    "WebAPI.ScreenOrientation": [
+      "EventTypes",
+      "Event",
+      "ScreenOrientation"
+    ],
+    "WebAPI.ScreenWakeLock": [
+      "EventTypes",
+      "Event",
+      "ScreenWakeLock"
+    ],
+    "WebAPI.ServiceWorker": [
+      "ChannelMessaging",
+      "EventTypes",
+      "Event",
+      "Element",
+      "Document",
+      "DOMStringList",
+      "Location",
+      "Base",
+      "File",
+      "URL",
+      "Fetch",
+      "Workers",
+      "Push",
+      "Notification",
+      "ServiceWorker"
+    ],
+    "WebAPI.StorageManager": [
+      "EventTypes",
+      "Element",
+      "Document",
+      "DOMStringList",
+      "Location",
+      "Base",
+      "Event",
+      "File",
+      "StorageManager"
+    ],
+    "WebAPI.SVG": [
+      "EventTypes",
+      "Event",
+      "Element",
+      "Document",
+      "DOMStringList",
+      "Location",
+      "Base",
+      "Animations",
+      "CSSFontLoading",
+      "CSSOM",
+      "ChannelMessaging",
+      "CSSTypedOM",
+      "DOMException",
+      "File",
+      "FileAndDirectoryEntries",
+      "FileList",
+      "Geometry",
+      "IdleDeadline",
+      "RemotePlayback",
+      "ScreenOrientation",
+      "VTT",
+      "ViewTransitions",
+      "VisualViewport",
+      "CaretPosition",
+      "CharacterData",
+      "Comment",
+      "DOMImplementation",
+      "DOMTypes",
+      "DocumentFragment",
+      "DomGlobal",
+      "NodeFilter",
+      "NodeIterator",
+      "Range",
+      "Selection",
+      "ShadowRoot",
+      "Text",
+      "TreeWalker",
+      "SVG"
+    ],
+    "WebAPI.UIEvents": [
+      "EventTypes",
+      "Event",
+      "Element",
+      "Document",
+      "DOMStringList",
+      "Location",
+      "Base",
+      "Animations",
+      "CSSFontLoading",
+      "CSSOM",
+      "ChannelMessaging",
+      "CSSTypedOM",
+      "DOMException",
+      "File",
+      "FileAndDirectoryEntries",
+      "FileList",
+      "Geometry",
+      "IdleDeadline",
+      "RemotePlayback",
+      "ScreenOrientation",
+      "VTT",
+      "ViewTransitions",
+      "VisualViewport",
+      "CaretPosition",
+      "CharacterData",
+      "Comment",
+      "DOMImplementation",
+      "DOMTypes",
+      "DocumentFragment",
+      "DomGlobal",
+      "NodeFilter",
+      "NodeIterator",
+      "Range",
+      "Selection",
+      "ShadowRoot",
+      "Text",
+      "TreeWalker",
+      "UIEvents"
+    ],
+    "WebAPI.URL": [
+      "URL"
+    ],
+    "WebAPI.ViewTransitions": [
+      "ViewTransitions"
+    ],
+    "WebAPI.VisualViewport": [
+      "EventTypes",
+      "Event",
+      "VisualViewport"
+    ],
+    "WebAPI.Animations": [
+      "EventTypes",
+      "Event",
+      "Animations"
+    ],
     "WebAPI.Audio": [
-      "WebAPI.ChannelMessaging",
-      "WebAPI.DOMException",
-      "WebAPI.DOM",
-      "WebAPI.Event",
-      "WebAPI.HTML",
-      "WebAPI.MediaCaptureAndStreams"
+      "ChannelMessaging",
+      "DOMException",
+      "EventTypes",
+      "Event",
+      "Element",
+      "Document",
+      "DOMStringList",
+      "Location",
+      "Base",
+      "Animations",
+      "CSSFontLoading",
+      "CSSOM",
+      "CSSTypedOM",
+      "File",
+      "FileAndDirectoryEntries",
+      "FileList",
+      "Geometry",
+      "IdleDeadline",
+      "RemotePlayback",
+      "ScreenOrientation",
+      "VTT",
+      "ViewTransitions",
+      "VisualViewport",
+      "CaretPosition",
+      "CharacterData",
+      "Comment",
+      "DOMImplementation",
+      "DOMTypes",
+      "DocumentFragment",
+      "DomGlobal",
+      "NodeFilter",
+      "NodeIterator",
+      "Range",
+      "Selection",
+      "ShadowRoot",
+      "Text",
+      "TreeWalker",
+      "PictureInPicture",
+      "HTML",
+      "MediaCaptureAndStreams",
+      "Audio"
     ],
-    "WebAPI.Locks": ["WebAPI.Event"],
-    "WebAPI.MIDI": ["WebAPI.Event"],
-    "WebAPI.Notification": ["WebAPI.Event"],
-    "WebAPI.Push": ["WebAPI.ChannelMessaging", "WebAPI.Event"],
-    "WebAPI.ResizeObserver": ["WebAPI.DOM", "WebAPI.Geometry"],
+    "WebAPI.Crypto": [
+      "Crypto"
+    ],
+    "WebAPI.Locks": [
+      "EventTypes",
+      "Event",
+      "Locks"
+    ],
+    "WebAPI.MIDI": [
+      "EventTypes",
+      "Event",
+      "MIDI"
+    ],
     "WebAPI.Sockets": [
-      "WebAPI.ChannelMessaging",
-      "WebAPI.Event",
-      "WebAPI.File"
+      "ChannelMessaging",
+      "EventTypes",
+      "Event",
+      "Element",
+      "Document",
+      "DOMStringList",
+      "Location",
+      "Base",
+      "File",
+      "Sockets"
     ],
-    "WebAPI.Speech": ["WebAPI.Event"],
-    "WebAPI.Storage": ["WebAPI.Event"],
-    "WebAPI.StorageManager": ["WebAPI.File"],
-    "WebAPI.UIEvents": ["WebAPI.DOM", "WebAPI.Event", "WebAPI.FileList"],
-    "WebAPI.VTT": ["WebAPI.Event"],
+    "WebAPI.Speech": [
+      "EventTypes",
+      "Event",
+      "Speech"
+    ],
+    "WebAPI.Storage": [
+      "EventTypes",
+      "Event",
+      "Storage"
+    ],
+    "WebAPI.VTT": [
+      "EventTypes",
+      "Event",
+      "VTT"
+    ],
     "WebAPI.Workers": [
-      "WebAPI.ChannelMessaging",
-      "WebAPI.Event",
-      "WebAPI.Fetch"
+      "ChannelMessaging",
+      "EventTypes",
+      "Event",
+      "Element",
+      "Document",
+      "DOMStringList",
+      "Location",
+      "Base",
+      "File",
+      "URL",
+      "Fetch",
+      "Workers"
     ],
     "WebAPI.Window": [
-      "WebAPI.ChannelMessaging",
-      "WebAPI.DOM",
-      "WebAPI.Event",
-      "WebAPI.IdleDeadline",
-      "WebAPI.Location"
+      "ChannelMessaging",
+      "EventTypes",
+      "Event",
+      "Element",
+      "Document",
+      "DOMStringList",
+      "Location",
+      "Base",
+      "Animations",
+      "CSSFontLoading",
+      "CSSOM",
+      "CSSTypedOM",
+      "DOMException",
+      "File",
+      "FileAndDirectoryEntries",
+      "FileList",
+      "Geometry",
+      "IdleDeadline",
+      "RemotePlayback",
+      "ScreenOrientation",
+      "VTT",
+      "ViewTransitions",
+      "VisualViewport",
+      "CaretPosition",
+      "CharacterData",
+      "Comment",
+      "DOMImplementation",
+      "DOMTypes",
+      "DocumentFragment",
+      "DomGlobal",
+      "NodeFilter",
+      "NodeIterator",
+      "Range",
+      "Selection",
+      "ShadowRoot",
+      "Text",
+      "TreeWalker",
+      "Window"
     ],
-    "WebAPI.XPath": ["WebAPI.DOM"]
+    "WebAPI.XPath": [
+      "EventTypes",
+      "Event",
+      "Element",
+      "Document",
+      "DOMStringList",
+      "Location",
+      "Base",
+      "Animations",
+      "CSSFontLoading",
+      "CSSOM",
+      "ChannelMessaging",
+      "CSSTypedOM",
+      "DOMException",
+      "File",
+      "FileAndDirectoryEntries",
+      "FileList",
+      "Geometry",
+      "IdleDeadline",
+      "RemotePlayback",
+      "ScreenOrientation",
+      "VTT",
+      "ViewTransitions",
+      "VisualViewport",
+      "CaretPosition",
+      "CharacterData",
+      "Comment",
+      "DOMImplementation",
+      "DOMTypes",
+      "DocumentFragment",
+      "DomGlobal",
+      "NodeFilter",
+      "NodeIterator",
+      "Range",
+      "Selection",
+      "ShadowRoot",
+      "Text",
+      "TreeWalker",
+      "XPath"
+    ]
   },
   "sources": [
     {
       "dir": "src/Base",
       "subdirs": true,
-      "feature": "WebAPI.Base",
+      "feature": "Base",
       "public": [
         "ArrayBufferTypedArrayOrDataView",
         "BaseFile",
-        "BaseFileAndDirectoryEntries"
+        "BaseFileAndDirectoryEntries",
+        "DOMTokenList",
+        "HTMLCollection",
+        "NamedNodeMap",
+        "Node",
+        "NodeList"
       ]
     },
     {
       "dir": "src/CSSFontLoading",
       "subdirs": true,
-      "feature": "WebAPI.CSSFontLoading",
-      "public": ["FontFace", "FontFaceSet"]
+      "feature": "CSSFontLoading",
+      "public": [
+        "FontFace",
+        "FontFaceSet"
+      ]
     },
     {
       "dir": "src/Canvas",
       "subdirs": true,
-      "feature": "WebAPI.Canvas",
+      "feature": "Canvas",
       "public": [
         "Canvas",
         "CanvasGradient",
@@ -138,69 +763,189 @@
     {
       "dir": "src/ChannelMessaging",
       "subdirs": true,
-      "feature": "WebAPI.ChannelMessaging",
-      "public": ["MessagePort"]
+      "feature": "ChannelMessaging",
+      "public": [
+        "MessagePort"
+      ]
     },
     {
       "dir": "src/Clipboard",
       "subdirs": true,
-      "feature": "WebAPI.Clipboard",
-      "public": ["Clipboard", "ClipboardItem"]
+      "feature": "Clipboard",
+      "public": [
+        "Clipboard",
+        "ClipboardItem"
+      ]
     },
     {
       "dir": "src/CredentialManagement",
       "subdirs": true,
-      "feature": "WebAPI.CredentialManagement",
-      "public": ["CredentialsContainer"]
+      "feature": "CredentialManagement",
+      "public": [
+        "CredentialsContainer"
+      ]
     },
     {
       "dir": "src/DOM",
-      "subdirs": true,
-      "feature": "WebAPI.DOM",
+      "files": [
+        "Element.res"
+      ],
+      "feature": "Element",
       "public": [
-        "CaretPosition",
-        "CharacterData",
-        "Comment",
-        "DOM",
-        "DOMImplementation",
-        "DOMTokenList",
-        "Document",
-        "DocumentFragment",
-        "Element",
-        "NamedNodeMap",
-        "Node",
-        "NodeFilter",
-        "NodeIterator",
-        "NodeList",
-        "Range",
-        "Selection",
-        "ShadowRoot",
-        "Text",
+        "Element"
+      ]
+    },
+    {
+      "dir": "src/DOM",
+      "files": [
+        "Document.res"
+      ],
+      "feature": "Document",
+      "public": [
+        "Document"
+      ]
+    },
+    {
+      "dir": "src/DOMTypes",
+      "subdirs": true,
+      "feature": "DOMTypes",
+      "public": []
+    },
+    {
+      "dir": "src/DomGlobal",
+      "subdirs": true,
+      "feature": "DomGlobal",
+      "public": []
+    },
+    {
+      "dir": "src/CaretPosition",
+      "subdirs": true,
+      "feature": "CaretPosition",
+      "public": [
+        "CaretPosition"
+      ]
+    },
+    {
+      "dir": "src/CharacterData",
+      "subdirs": true,
+      "feature": "CharacterData",
+      "public": [
+        "CharacterData"
+      ]
+    },
+    {
+      "dir": "src/Comment",
+      "subdirs": true,
+      "feature": "Comment",
+      "public": [
+        "Comment"
+      ]
+    },
+    {
+      "dir": "src/DOMImplementation",
+      "subdirs": true,
+      "feature": "DOMImplementation",
+      "public": [
+        "DOMImplementation"
+      ]
+    },
+    {
+      "dir": "src/DocumentFragment",
+      "subdirs": true,
+      "feature": "DocumentFragment",
+      "public": [
+        "DocumentFragment"
+      ]
+    },
+    {
+      "dir": "src/NodeFilter",
+      "subdirs": true,
+      "feature": "NodeFilter",
+      "public": [
+        "NodeFilter"
+      ]
+    },
+    {
+      "dir": "src/NodeIterator",
+      "subdirs": true,
+      "feature": "NodeIterator",
+      "public": [
+        "NodeIterator"
+      ]
+    },
+    {
+      "dir": "src/Range",
+      "subdirs": true,
+      "feature": "Range",
+      "public": [
+        "Range"
+      ]
+    },
+    {
+      "dir": "src/Selection",
+      "subdirs": true,
+      "feature": "Selection",
+      "public": [
+        "Selection"
+      ]
+    },
+    {
+      "dir": "src/ShadowRoot",
+      "subdirs": true,
+      "feature": "ShadowRoot",
+      "public": [
+        "ShadowRoot"
+      ]
+    },
+    {
+      "dir": "src/Text",
+      "subdirs": true,
+      "feature": "Text",
+      "public": [
+        "Text"
+      ]
+    },
+    {
+      "dir": "src/TreeWalker",
+      "subdirs": true,
+      "feature": "TreeWalker",
+      "public": [
         "TreeWalker"
       ]
     },
     {
       "dir": "src/DOMException",
       "subdirs": true,
-      "feature": "WebAPI.DOMException",
-      "public": ["DOMException"]
+      "feature": "DOMException",
+      "public": [
+        "DOMException"
+      ]
     },
     {
-      "dir": "src/EventTypes",
-      "subdirs": true,
-      "feature": "WebAPI.EventTypes",
-      "public": ["EventType"]
+      "dir": "src/Event",
+      "files": [
+        "Base__Event.res",
+        "Base__EventTarget.res",
+        "EventType.res",
+        "EventTypes.res"
+      ],
+      "feature": "EventTypes",
+      "public": [
+        "EventType"
+      ]
     },
     {
       "dir": "src/DOMStringList",
       "subdirs": true,
-      "feature": "WebAPI.DOMStringList",
-      "public": ["DOMStringList"]
+      "feature": "DOMStringList",
+      "public": [
+        "DOMStringList"
+      ]
     },
     {
       "dir": "src/CSSOM",
       "subdirs": true,
-      "feature": "WebAPI.CSSOM",
+      "feature": "CSSOM",
       "public": [
         "CSSRule",
         "CSSRuleList",
@@ -208,14 +953,13 @@
         "CSSStyleSheet",
         "MediaList",
         "MediaQueryList",
-        "StyleSheet",
         "StyleSheetList"
       ]
     },
     {
       "dir": "src/CSSTypedOM",
       "subdirs": true,
-      "feature": "WebAPI.CSSTypedOM",
+      "feature": "CSSTypedOM",
       "public": [
         "CSSStyleValue",
         "StylePropertyMap",
@@ -225,13 +969,16 @@
     {
       "dir": "src/CustomElements",
       "subdirs": true,
-      "feature": "WebAPI.CustomElements",
-      "public": ["CustomElementRegistry", "ElementInternals"]
+      "feature": "CustomElements",
+      "public": [
+        "CustomElementRegistry",
+        "ElementInternals"
+      ]
     },
     {
       "dir": "src/EncryptedMediaExtensions",
       "subdirs": true,
-      "feature": "WebAPI.EncryptedMediaExtensions",
+      "feature": "EncryptedMediaExtensions",
       "public": [
         "EncryptedMediaExtensionsHTMLMediaElement",
         "MediaKeySession",
@@ -242,8 +989,14 @@
     },
     {
       "dir": "src/Event",
-      "subdirs": true,
-      "feature": "WebAPI.Event",
+      "files": [
+        "AbortController.res",
+        "AbortSignal.res",
+        "Event.res",
+        "EventTarget.res",
+        "ExtendableEvent.res"
+      ],
+      "feature": "Event",
       "public": [
         "AbortController",
         "AbortSignal",
@@ -255,7 +1008,7 @@
     {
       "dir": "src/Fetch",
       "subdirs": true,
-      "feature": "WebAPI.Fetch",
+      "feature": "Fetch",
       "public": [
         "BodyInit",
         "Fetch",
@@ -270,7 +1023,7 @@
     {
       "dir": "src/File",
       "subdirs": true,
-      "feature": "WebAPI.File",
+      "feature": "File",
       "public": [
         "Blob",
         "File",
@@ -286,13 +1039,15 @@
     {
       "dir": "src/FileList",
       "subdirs": true,
-      "feature": "WebAPI.FileList",
-      "public": ["FileList"]
+      "feature": "FileList",
+      "public": [
+        "FileList"
+      ]
     },
     {
       "dir": "src/FileAndDirectoryEntries",
       "subdirs": true,
-      "feature": "WebAPI.FileAndDirectoryEntries",
+      "feature": "FileAndDirectoryEntries",
       "public": [
         "FileSystemDirectoryEntry",
         "FileSystemDirectoryReader",
@@ -302,19 +1057,25 @@
     {
       "dir": "src/Gamepad",
       "subdirs": true,
-      "feature": "WebAPI.Gamepad",
-      "public": ["GamepadHapticActuator"]
+      "feature": "Gamepad",
+      "public": [
+        "GamepadHapticActuator"
+      ]
     },
     {
       "dir": "src/Geolocation",
       "subdirs": true,
-      "feature": "WebAPI.Geolocation",
-      "public": ["Geolocation", "GeolocationCoordinates", "GeolocationPosition"]
+      "feature": "Geolocation",
+      "public": [
+        "Geolocation",
+        "GeolocationCoordinates",
+        "GeolocationPosition"
+      ]
     },
     {
       "dir": "src/Geometry",
       "subdirs": true,
-      "feature": "WebAPI.Geometry",
+      "feature": "Geometry",
       "public": [
         "DOMMatrix",
         "DOMMatrixReadOnly",
@@ -328,19 +1089,23 @@
     {
       "dir": "src/History",
       "subdirs": true,
-      "feature": "WebAPI.History",
-      "public": ["History"]
+      "feature": "History",
+      "public": [
+        "History"
+      ]
     },
     {
       "dir": "src/IdleDeadline",
       "subdirs": true,
-      "feature": "WebAPI.IdleDeadline",
-      "public": ["IdleDeadline"]
+      "feature": "IdleDeadline",
+      "public": [
+        "IdleDeadline"
+      ]
     },
     {
       "dir": "src/HTML",
       "subdirs": true,
-      "feature": "WebAPI.HTML",
+      "feature": "HTML",
       "public": [
         "DomHTMLMediaElement",
         "HTMLAnchorElement",
@@ -350,7 +1115,6 @@
         "HTMLBaseElement",
         "HTMLBodyElement",
         "HTMLButtonElement",
-        "HTMLCollection",
         "HTMLDListElement",
         "HTMLDataElement",
         "HTMLDataListElement",
@@ -413,13 +1177,15 @@
     {
       "dir": "src/Location",
       "subdirs": true,
-      "feature": "WebAPI.Location",
-      "public": ["Location"]
+      "feature": "Location",
+      "public": [
+        "Location"
+      ]
     },
     {
       "dir": "src/IndexedDB",
       "subdirs": true,
-      "feature": "WebAPI.IndexedDB",
+      "feature": "IndexedDB",
       "public": [
         "IDBDatabase",
         "IDBFactory",
@@ -431,19 +1197,24 @@
     {
       "dir": "src/IntersectionObserver",
       "subdirs": true,
-      "feature": "WebAPI.IntersectionObserver",
-      "public": ["IntersectionObserver", "IntersectionObserverRoot"]
+      "feature": "IntersectionObserver",
+      "public": [
+        "IntersectionObserver",
+        "IntersectionObserverRoot"
+      ]
     },
     {
       "dir": "src/MediaCapabilities",
       "subdirs": true,
-      "feature": "WebAPI.MediaCapabilities",
-      "public": ["MediaCapabilities"]
+      "feature": "MediaCapabilities",
+      "public": [
+        "MediaCapabilities"
+      ]
     },
     {
       "dir": "src/MediaCaptureAndStreams",
       "subdirs": true,
-      "feature": "WebAPI.MediaCaptureAndStreams",
+      "feature": "MediaCaptureAndStreams",
       "public": [
         "MediaDeviceInfo",
         "MediaDevices",
@@ -454,49 +1225,66 @@
     {
       "dir": "src/MediaSession",
       "subdirs": true,
-      "feature": "WebAPI.MediaSession",
-      "public": ["MediaMetadata", "MediaSession"]
+      "feature": "MediaSession",
+      "public": [
+        "MediaMetadata",
+        "MediaSession"
+      ]
     },
     {
       "dir": "src/MutationObserver",
       "subdirs": true,
-      "feature": "WebAPI.MutationObserver",
-      "public": ["MutationObserver"]
+      "feature": "MutationObserver",
+      "public": [
+        "MutationObserver"
+      ]
     },
     {
       "dir": "src/Navigator",
       "subdirs": true,
-      "feature": "WebAPI.Navigator",
-      "public": ["Navigator"]
+      "feature": "Navigator",
+      "public": [
+        "Navigator"
+      ]
     },
     {
       "dir": "src/Notification",
       "subdirs": true,
-      "feature": "WebAPI.Notification",
-      "public": ["Notification"]
+      "feature": "Notification",
+      "public": [
+        "Notification"
+      ]
     },
     {
       "dir": "src/Performance",
       "subdirs": true,
-      "feature": "WebAPI.Performance",
-      "public": ["Performance", "PerformanceEntry", "PerformanceMark"]
+      "feature": "Performance",
+      "public": [
+        "Performance",
+        "PerformanceEntry",
+        "PerformanceMark"
+      ]
     },
     {
       "dir": "src/Permissions",
       "subdirs": true,
-      "feature": "WebAPI.Permissions",
-      "public": ["Permissions"]
+      "feature": "Permissions",
+      "public": [
+        "Permissions"
+      ]
     },
     {
       "dir": "src/PictureInPicture",
       "subdirs": true,
-      "feature": "WebAPI.PictureInPicture",
-      "public": ["PictureInPicture"]
+      "feature": "PictureInPicture",
+      "public": [
+        "PictureInPicture"
+      ]
     },
     {
       "dir": "src/Push",
       "subdirs": true,
-      "feature": "WebAPI.Push",
+      "feature": "Push",
       "public": [
         "ApplicationServerKey",
         "PushEvent",
@@ -508,31 +1296,40 @@
     {
       "dir": "src/RemotePlayback",
       "subdirs": true,
-      "feature": "WebAPI.RemotePlayback",
-      "public": ["RemotePlayback"]
+      "feature": "RemotePlayback",
+      "public": [
+        "RemotePlayback"
+      ]
     },
     {
       "dir": "src/ResizeObserver",
       "subdirs": true,
-      "feature": "WebAPI.ResizeObserver",
-      "public": ["ResizeObserver"]
+      "feature": "ResizeObserver",
+      "public": [
+        "ResizeObserver"
+      ]
     },
     {
       "dir": "src/ScreenOrientation",
       "subdirs": true,
-      "feature": "WebAPI.ScreenOrientation",
-      "public": ["ScreenOrientation"]
+      "feature": "ScreenOrientation",
+      "public": [
+        "ScreenOrientation"
+      ]
     },
     {
       "dir": "src/ScreenWakeLock",
       "subdirs": true,
-      "feature": "WebAPI.ScreenWakeLock",
-      "public": ["WakeLock", "WakeLockSentinel"]
+      "feature": "ScreenWakeLock",
+      "public": [
+        "WakeLock",
+        "WakeLockSentinel"
+      ]
     },
     {
       "dir": "src/ServiceWorker",
       "subdirs": true,
-      "feature": "WebAPI.ServiceWorker",
+      "feature": "ServiceWorker",
       "public": [
         "Cache",
         "Clients",
@@ -546,19 +1343,25 @@
     {
       "dir": "src/Storage",
       "subdirs": true,
-      "feature": "WebAPI.StorageManager",
-      "public": ["StorageManager"]
+      "feature": "StorageManager",
+      "public": [
+        "StorageManager"
+      ]
     },
     {
       "dir": "src/SVG",
       "subdirs": true,
-      "feature": "WebAPI.SVG",
-      "public": ["SVGGraphicsElement", "SVGLength"]
+      "feature": "SVG",
+      "public": [
+        "SVGElement",
+        "SVGGraphicsElement",
+        "SVGLength"
+      ]
     },
     {
       "dir": "src/UIEvents",
       "subdirs": true,
-      "feature": "WebAPI.UIEvents",
+      "feature": "UIEvents",
       "public": [
         "CompositionEvent",
         "DataTransfer",
@@ -579,31 +1382,42 @@
     {
       "dir": "src/URL",
       "subdirs": true,
-      "feature": "WebAPI.URL",
-      "public": ["URL", "URLSearchParams"]
+      "feature": "URL",
+      "public": [
+        "URL",
+        "URLSearchParams"
+      ]
     },
     {
       "dir": "src/ViewTransitions",
       "subdirs": true,
-      "feature": "WebAPI.ViewTransitions",
-      "public": ["ViewTransition"]
+      "feature": "ViewTransitions",
+      "public": [
+        "ViewTransition"
+      ]
     },
     {
       "dir": "src/VisualViewport",
       "subdirs": true,
-      "feature": "WebAPI.VisualViewport",
-      "public": ["VisualViewport"]
+      "feature": "VisualViewport",
+      "public": [
+        "VisualViewport"
+      ]
     },
     {
       "dir": "src/WebAnimations",
       "subdirs": true,
-      "feature": "WebAPI.Animations",
-      "public": ["Animation", "AnimationEffect", "DocumentTimeline"]
+      "feature": "Animations",
+      "public": [
+        "Animation",
+        "AnimationEffect",
+        "DocumentTimeline"
+      ]
     },
     {
       "dir": "src/WebAudio",
       "subdirs": true,
-      "feature": "WebAPI.Audio",
+      "feature": "Audio",
       "public": [
         "AnalyserNode",
         "AudioBuffer",
@@ -641,62 +1455,95 @@
     {
       "dir": "src/WebCrypto",
       "subdirs": true,
-      "feature": "WebAPI.Crypto",
-      "public": ["Crypto", "SubtleCrypto"]
+      "feature": "Crypto",
+      "public": [
+        "Crypto",
+        "SubtleCrypto"
+      ]
     },
     {
       "dir": "src/WebLocks",
       "subdirs": true,
-      "feature": "WebAPI.Locks",
-      "public": ["LockManager"]
+      "feature": "Locks",
+      "public": [
+        "LockManager"
+      ]
     },
     {
       "dir": "src/WebMIDI",
       "subdirs": true,
-      "feature": "WebAPI.MIDI",
-      "public": ["WebMIDI"]
+      "feature": "MIDI",
+      "public": [
+        "WebMIDI"
+      ]
     },
     {
       "dir": "src/WebSockets",
       "subdirs": true,
-      "feature": "WebAPI.Sockets",
-      "public": ["CloseEvent", "MessageEvent", "WebSocket"]
+      "feature": "Sockets",
+      "public": [
+        "CloseEvent",
+        "MessageEvent",
+        "WebSocket"
+      ]
     },
     {
       "dir": "src/WebSpeech",
       "subdirs": true,
-      "feature": "WebAPI.Speech",
-      "public": ["SpeechSynthesis", "SpeechSynthesisUtterance"]
+      "feature": "Speech",
+      "public": [
+        "SpeechSynthesis",
+        "SpeechSynthesisUtterance"
+      ]
     },
     {
       "dir": "src/WebStorage",
       "subdirs": true,
-      "feature": "WebAPI.Storage",
-      "public": ["LocalStorage", "SessionStorage", "Storage", "StorageEvent"]
+      "feature": "Storage",
+      "public": [
+        "LocalStorage",
+        "SessionStorage",
+        "Storage",
+        "StorageEvent"
+      ]
     },
     {
       "dir": "src/WebVTT",
       "subdirs": true,
-      "feature": "WebAPI.VTT",
-      "public": ["TextTrack", "TextTrackCueList", "TextTrackList"]
+      "feature": "VTT",
+      "public": [
+        "TextTrack",
+        "TextTrackCueList",
+        "TextTrackList"
+      ]
     },
     {
       "dir": "src/WebWorkers",
       "subdirs": true,
-      "feature": "WebAPI.Workers",
-      "public": ["CacheStorage", "SharedWorker", "SharedWorkerScope", "Worker"]
+      "feature": "Workers",
+      "public": [
+        "CacheStorage",
+        "SharedWorker",
+        "SharedWorkerScope",
+        "Worker"
+      ]
     },
     {
       "dir": "src/Window",
       "subdirs": true,
-      "feature": "WebAPI.Window",
-      "public": ["Window"]
+      "feature": "Window",
+      "public": [
+        "Window"
+      ]
     },
     {
       "dir": "src/XPath",
       "subdirs": true,
-      "feature": "WebAPI.XPath",
-      "public": ["XPathExpression", "XPathResult"]
+      "feature": "XPath",
+      "public": [
+        "XPathExpression",
+        "XPathResult"
+      ]
     },
     {
       "dir": "tests",

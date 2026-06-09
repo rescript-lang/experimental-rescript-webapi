@@ -4,6 +4,7 @@ import { featureSpecs } from "./feature-spec.mjs";
 
 export function isPublicModuleName(spec, moduleName) {
   if (moduleName.endsWith("Types")) return false;
+  if (spec.dirName === "DOM" && moduleName === "DOM") return false;
   if (spec.dirName === "DOM" && moduleName === "DomGlobal") return false;
 
   return true;

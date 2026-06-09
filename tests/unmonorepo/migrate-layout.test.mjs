@@ -61,7 +61,7 @@ test("moves legacy sources into src/<Feature>, renames duplicate leaves, and rem
     readFileSync(path.join(root, "src", "DOM", "Document.res"), "utf8"),
     "let current = WebApiDOM.Global.document",
   );
-  assert.equal(readFileSync(path.join(root, "src", "DOM", "DomTypes.res"), "utf8"), "type element");
+  assert.equal(readFileSync(path.join(root, "src", "DOM", "DOM.res"), "utf8"), "type element");
   assert.equal(
     readFileSync(path.join(root, "src", "DOM", "DomGlobal.res"), "utf8"),
     "let document = 1",
@@ -95,7 +95,6 @@ test("moves legacy sources into src/<Feature>, renames duplicate leaves, and rem
     "external make: unit => unit = \"URL\"",
   );
   assert.equal(readFileSync(path.join(root, "src", "URL", "URLSearchParams.res"), "utf8"), "type t");
-  assert.ok(!existsSync(path.join(root, "src", "DOM", "DOM.res")));
   assert.ok(!existsSync(path.join(root, "src", "Base", "Base.res")));
   assert.equal(readFileSync(path.join(root, "src", "Base", "DOM.res"), "utf8"), "type dom = unit");
   assert.ok(!existsSync(path.join(root, "packages", "DOM", "rescript.json")));

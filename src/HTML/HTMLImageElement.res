@@ -1,7 +1,9 @@
-include HTMLElement.Impl({type t = DomTypes.htmlImageElement})
+type t = DOM.htmlImageElement = private {...DOM.htmlImageElement}
+
+include HTMLElement.Impl({type t = t})
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLImageElement/decode)
 */
 @send
-external decode: DomTypes.htmlImageElement => promise<unit> = "decode"
+external decode: t => promise<unit> = "decode"

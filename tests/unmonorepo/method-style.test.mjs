@@ -1,0 +1,82 @@
+import test from "node:test";
+import assert from "node:assert/strict";
+import { auditMethodStyle } from "../../scripts/audit-method-style.mjs";
+
+const pilotTypeBucketReceivers = [];
+
+const remainingTransitionTypeBucketReceivers = [
+  "src/EncryptedMediaExtensions/EncryptedMediaExtensionsHTMLMediaElement.res",
+  "src/EncryptedMediaExtensions/MediaKeySession.res",
+  "src/EncryptedMediaExtensions/MediaKeyStatusMap.res",
+  "src/EncryptedMediaExtensions/MediaKeySystemAccess.res",
+  "src/EncryptedMediaExtensions/MediaKeys.res",
+  "src/File/FileSystemDirectoryHandle.res",
+  "src/File/FileSystemFileHandle.res",
+  "src/File/FileSystemHandle.res",
+  "src/File/FileSystemWritableFileStream.res",
+  "src/File/WritableStream.res",
+  "src/File/WritableStreamDefaultController.res",
+  "src/FileAndDirectoryEntries/FileSystemDirectoryEntry.res",
+  "src/FileAndDirectoryEntries/FileSystemDirectoryReader.res",
+  "src/FileAndDirectoryEntries/FileSystemEntry.res",
+  "src/IndexedDB/IDBDatabase.res",
+  "src/IndexedDB/IDBTransaction.res",
+  "src/ServiceWorker/Cache.res",
+  "src/ServiceWorker/Clients.res",
+  "src/ServiceWorker/NavigationPreloadManager.res",
+  "src/ServiceWorker/ServiceWorkerRegistration.res",
+  "src/UIEvents/DataTransfer.res",
+  "src/UIEvents/DataTransferItem.res",
+  "src/UIEvents/DataTransferItemList.res",
+  "src/UIEvents/InputEvent.res",
+  "src/UIEvents/KeyboardEvent.res",
+  "src/UIEvents/PointerEvent.res",
+  "src/UIEvents/TouchList.res",
+  "src/WebAudio/AnalyserNode.res",
+  "src/WebAudio/AudioBuffer.res",
+  "src/WebAudio/AudioBufferSourceNode.res",
+  "src/WebAudio/AudioContext.res",
+  "src/WebAudio/AudioParam.res",
+  "src/WebAudio/BiquadFilterNode.res",
+  "src/WebAudio/IIRFilterNode.res",
+  "src/WebAudio/OfflineAudioContext.res",
+  "src/WebAudio/OscillatorNode.res",
+  "src/WebAudio/Worklet.res",
+];
+
+const allowedTypeBucketReceivers = new Set([
+  ...pilotTypeBucketReceivers,
+  ...remainingTransitionTypeBucketReceivers,
+]);
+
+test("keeps object shapes property-only", () => {
+  const audit = auditMethodStyle();
+
+  assert.equal(audit.summary.functionFieldOccurrences, 0);
+});
+
+test("tracks public method modules still using type-bucket receivers", () => {
+  const audit = auditMethodStyle();
+  const currentTypeBucketReceivers = audit.files
+    .filter((entry) =>
+      entry.receiverBuckets.includes("dom-types") ||
+      entry.receiverBuckets.includes("feature-types")
+    )
+    .map((entry) => entry.path);
+
+  for (const path of currentTypeBucketReceivers) {
+    assert.ok(
+      allowedTypeBucketReceivers.has(path),
+      `${path} should define a public receiver type or be added to the transition allowlist`,
+    );
+  }
+});
+
+test("keeps Base__ implementation receivers out of public method modules", () => {
+  const audit = auditMethodStyle();
+  const publicBaseReceiverFiles = audit.files
+    .filter((entry) => entry.receiverBuckets.includes("base-internal"))
+    .map((entry) => entry.path);
+
+  assert.deepEqual(publicBaseReceiverFiles, []);
+});

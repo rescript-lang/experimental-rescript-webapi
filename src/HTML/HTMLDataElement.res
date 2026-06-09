@@ -1,1 +1,1 @@
-include HTMLElement.Impl({type t = DomTypes.htmlDataElement})
+include HTMLElement.Impl({type t = DOM.htmlDataElement})

@@ -13,7 +13,7 @@ TODO: mark as private once mutating fields of private records is allowed
 */
 @editor.completeFrom(WebSocket)
 type webSocket = {
-  ...Event.eventTarget,
+  ...EventTarget.t,
   /**
     Returns the WebApiURL that was used to establish the WebSocket connection.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/WebSocket/url)

@@ -12,7 +12,7 @@ test("rewrites same-feature references to local modules and external namespaces 
     { publicModule: "URL", legacyNamespace: "WebApiURL", internalPrefix: "Url" },
   ];
   const leavesByFeature = new Map([
-    ["DOM", ["Document", "DomGlobal", "DomTypes"]],
+    ["DOM", ["Document", "DOM", "DomGlobal"]],
     ["Event", ["Event", "EventTarget", "EventTypes"]],
     ["URL", ["URL", "URLSearchParams", "UrlTypes"]],
   ]);
@@ -20,17 +20,17 @@ test("rewrites same-feature references to local modules and external namespaces 
   assert.equal(
     rewriteSourceText(
       "let target: Types.element = Global.document->WebApiEvent.EventTarget.asEventTarget",
-      { currentFeature: "DOM", specs, localLeaves: ["Document", "DomGlobal", "DomTypes"], leavesByFeature },
+      { currentFeature: "DOM", specs, localLeaves: ["Document", "DOM", "DomGlobal"], leavesByFeature },
     ),
-    "let target: DomTypes.element = DomGlobal.document->EventTarget.asEventTarget",
+    "let target: Element.t = DomGlobal.document->EventTarget.asEventTarget",
   );
 
   assert.equal(
     rewriteSourceText(
       "let target: WebAPI.DOM.Types.element = WebAPI.DOM.Global.document->WebAPI.Event.EventTarget.asEventTarget",
-      { currentFeature: "DOM", specs, localLeaves: ["Document", "DomGlobal", "DomTypes"], leavesByFeature },
+      { currentFeature: "DOM", specs, localLeaves: ["Document", "DOM", "DomGlobal"], leavesByFeature },
     ),
-    "let target: DomTypes.element = DomGlobal.document->EventTarget.asEventTarget",
+    "let target: Element.t = DomGlobal.document->EventTarget.asEventTarget",
   );
 
   assert.equal(

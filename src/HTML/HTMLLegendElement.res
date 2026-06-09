@@ -1,1 +1,1 @@
-include HTMLElement.Impl({type t = DomTypes.htmlLegendElement})
+include HTMLElement.Impl({type t = DOM.htmlLegendElement})

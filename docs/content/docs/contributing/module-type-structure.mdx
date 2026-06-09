@@ -76,29 +76,30 @@ external checkValidity: htmlButtonElement => bool = "checkValidity"
 
 <Code code={buttonModule} title="DOMAPI/HTMLButtonElement.res" lang="ReScript"></Code>
 
-## Shared element base
+## Shared Object Bases
 
-`Element.res` is a method module. It does not define the `element` type directly. The shared DOM element type is a thin opaque base handle threaded back into DOM through aliases:
+Public interface modules expose their own `t` type even when the underlying shape is shared.
+For a shared DOM object base, keep the structural owner in a base module and make the public
+interface module a same-type alias of that base:
 
 ```ReScript
 // Base__Element.res
 type t = private {}
 
-// DomTypes.res
-type element = Base__Element.t = private {...Base__Element.t}
-
 // Element.res
-include Impl({type t = DomTypes.element})
+type t = Base__Element.t = private {...Base__Element.t}
 ```
 
-This keeps `Element.Impl` reusable for element subtypes while giving the package one shared base element handle. Subtype modules should continue to include the nearest base method implementation:
+This keeps `Element.t` as the public type name while still allowing structural
+types to share the same object identity through the base owner. `Element.Impl` remains reusable for element subtypes,
+and subtype modules should continue to include the nearest base method implementation:
 
 ```ReScript
 // HTMLElement.res
-include Element.Impl({type t = DomTypes.htmlElement})
+include Element.Impl({type t = HTMLElement.t})
 
 // HTMLButtonElement.res
-include HTMLElement.Impl({type t = DomTypes.htmlButtonElement})
+include HTMLElement.Impl({type t = DOMTypes.htmlButtonElement})
 ```
 
-Use `asElement` when a subtype needs to be passed to a function that expects the shared element type.
+Use `asElement` when a subtype needs to be passed to a function that expects `Element.t`.

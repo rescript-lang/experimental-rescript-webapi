@@ -1,38 +1,40 @@
-include EventTarget.Impl({type t = CssFontLoadingTypes.fontFaceSet})
+type t = CssFontLoadingTypes.fontFaceSet
+
+include EventTarget.Impl({type t = t})
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/FontFaceSet/add)
 */
 @send
 external add: (
-  CssFontLoadingTypes.fontFaceSet,
-  CssFontLoadingTypes.fontFace,
-) => CssFontLoadingTypes.fontFaceSet = "add"
+  t,
+  FontFace.t,
+) => t = "add"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/FontFaceSet/delete)
 */
 @send
-external delete: (CssFontLoadingTypes.fontFaceSet, CssFontLoadingTypes.fontFace) => bool = "delete"
+external delete: (t, FontFace.t) => bool = "delete"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/FontFaceSet/clear)
 */
 @send
-external clear: CssFontLoadingTypes.fontFaceSet => unit = "clear"
+external clear: t => unit = "clear"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/FontFaceSet/load)
 */
 @send
 external load: (
-  CssFontLoadingTypes.fontFaceSet,
+  t,
   ~font: string,
   ~text: string=?,
-) => promise<array<CssFontLoadingTypes.fontFace>> = "load"
+) => promise<array<FontFace.t>> = "load"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/FontFaceSet/check)
 */
 @send
-external check: (CssFontLoadingTypes.fontFaceSet, ~font: string, ~text: string=?) => bool = "check"
+external check: (t, ~font: string, ~text: string=?) => bool = "check"

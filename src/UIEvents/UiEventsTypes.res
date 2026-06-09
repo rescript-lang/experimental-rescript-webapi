@@ -14,7 +14,7 @@ type uiEvent = private {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/UIEvent/view)
     */
-  view: Null.t<DomTypes.window>,
+  view: Null.t<DOM.window>,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/UIEvent/detail)
     */
@@ -44,7 +44,7 @@ type focusEvent = private {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/FocusEvent/relatedTarget)
     */
-  relatedTarget: Null.t<Event.eventTarget>,
+  relatedTarget: Null.t<EventTarget.t>,
 }
 
 /**
@@ -248,7 +248,7 @@ type mouseEvent = private {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/MouseEvent/relatedTarget)
     */
-  relatedTarget: Null.t<Event.eventTarget>,
+  relatedTarget: Null.t<EventTarget.t>,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/MouseEvent/pageX)
     */
@@ -321,7 +321,7 @@ type touch = private {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Touch/target)
     */
-  target: Event.eventTarget,
+  target: EventTarget.t,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Touch/screenX)
     */
@@ -472,7 +472,7 @@ type pointerEvent = private {
 
 type uiEventInit = {
   ...Event.eventInit,
-  mutable view?: Null.t<DomTypes.window>,
+  mutable view?: Null.t<DOM.window>,
   mutable detail?: int,
   mutable which?: int,
 }
@@ -503,14 +503,14 @@ type mouseEventInit = {
   mutable clientY?: int,
   mutable button?: int,
   mutable buttons?: int,
-  mutable relatedTarget?: Null.t<Event.eventTarget>,
+  mutable relatedTarget?: Null.t<EventTarget.t>,
   mutable movementX?: float,
   mutable movementY?: float,
 }
 
 type focusEventInit = {
   ...uiEventInit,
-  mutable relatedTarget?: Null.t<Event.eventTarget>,
+  mutable relatedTarget?: Null.t<EventTarget.t>,
 }
 
 type compositionEventInit = {
@@ -543,12 +543,12 @@ type inputEventInit = {
   mutable isComposing?: bool,
   mutable inputType?: string,
   mutable dataTransfer?: Null.t<dataTransfer>,
-  mutable targetRanges?: array<DomTypes.staticRange>,
+  mutable targetRanges?: array<DOM.staticRange>,
 }
 
 type touchInit = {
   mutable identifier: int,
-  mutable target: Event.eventTarget,
+  mutable target: EventTarget.t,
   mutable clientX?: float,
   mutable clientY?: float,
   mutable screenX?: float,

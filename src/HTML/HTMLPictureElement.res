@@ -1,1 +1,1 @@
-include HTMLElement.Impl({type t = DomTypes.htmlPictureElement})
+include HTMLElement.Impl({type t = DOM.htmlPictureElement})

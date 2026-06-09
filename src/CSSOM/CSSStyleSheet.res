@@ -7,7 +7,6 @@ type init = CssomTypes.cssStyleSheetInit = {...CssomTypes.cssStyleSheetInit}
 @new
 external make: (~options: init=?) => t = "CSSStyleSheet"
 
-external asStyleSheet: t => StyleSheet.t = "%identity"
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CSSStyleSheet/insertRule)
 */

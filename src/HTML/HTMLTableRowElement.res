@@ -1,4 +1,6 @@
-include HTMLElement.Impl({type t = DomTypes.htmlTableRowElement})
+type t = DOM.htmlTableRowElement = private {...DOM.htmlTableRowElement}
+
+include HTMLElement.Impl({type t = t})
 
 /**
 Creates a new cell in the table row, and adds the cell to the cells collection.
@@ -6,10 +8,7 @@ Creates a new cell in the table row, and adds the cell to the cells collection.
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLTableRowElement/insertCell)
 */
 @send
-external insertCell: (
-  DomTypes.htmlTableRowElement,
-  ~index: int=?,
-) => DomTypes.htmlTableCellElement = "insertCell"
+external insertCell: (t, ~index: int=?) => DOM.htmlTableCellElement = "insertCell"
 
 /**
 Removes the specified cell from the table row, as well as from the cells collection.
@@ -17,4 +16,4 @@ Removes the specified cell from the table row, as well as from the cells collect
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLTableRowElement/deleteCell)
 */
 @send
-external deleteCell: (DomTypes.htmlTableRowElement, int) => unit = "deleteCell"
+external deleteCell: (t, int) => unit = "deleteCell"
