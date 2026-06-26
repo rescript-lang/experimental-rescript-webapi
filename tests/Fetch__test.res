@@ -26,12 +26,6 @@ let response3 = await Fetch.fetchWithRequest(
   },
 )
 
-DomGlobal.removeEventListener(
-  EventTypes.Mousedown,
-  MouseEvent.preventDefault,
-  ~options={capture: false},
-)
-
 let registrationResult = await Window.current
 ->Window.navigator
 ->Navigator.serviceWorker

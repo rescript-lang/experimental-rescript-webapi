@@ -1,16 +1,16 @@
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/EventTarget)
 */
+type t = EventTypes.eventTarget = private {...EventTypes.eventTarget}
+
 @new
-external make: unit => EventTypes.eventTarget = "EventTarget"
+external make: unit => t = "EventTarget"
 
 module Impl = (
   T: {
     type t
   },
 ) => {
-  external asEventTarget: T.t => EventTypes.eventTarget = "%identity"
-
   /**
 Appends an event listener for events whose type attribute value is type. The callback argument sets the callback that will be invoked when the event is dispatched.
 
@@ -30,9 +30,9 @@ The event listener is appended to target's event listener list and is not append
   @send
   external addEventListener: (
     T.t,
-    EventTypes.eventType,
-    EventTypes.eventListener<'event>,
-    ~options: EventTypes.addEventListenerOptions=?,
+    EventType.t,
+    Event.eventListener<'event>,
+    ~options: Event.addEventListenerOptions=?,
   ) => unit = "addEventListener"
 
   /**
@@ -54,8 +54,8 @@ The event listener is appended to target's event listener list and is not append
   @send
   external addEventListenerWithCapture: (
     T.t,
-    EventTypes.eventType,
-    EventTypes.eventListener<'event>,
+    EventType.t,
+    Event.eventListener<'event>,
     @as(json`true`) _,
   ) => unit = "addEventListener"
 
@@ -66,9 +66,9 @@ Removes the event listener in target's event listener list with the same type, c
   @send
   external removeEventListener: (
     T.t,
-    EventTypes.eventType,
-    EventTypes.eventListener<'event>,
-    ~options: EventTypes.eventListenerOptions=?,
+    EventType.t,
+    Event.eventListener<'event>,
+    ~options: Event.eventListenerOptions=?,
   ) => unit = "removeEventListener"
 
   /**
@@ -78,8 +78,8 @@ Removes the event listener in target's event listener list with the same type, c
   @send
   external removeEventListenerUseCapture: (
     T.t,
-    EventTypes.eventType,
-    EventTypes.eventListener<'event>,
+    EventType.t,
+    Event.eventListener<'event>,
     @as(json`true`) _,
   ) => unit = "removeEventListener"
 
@@ -88,7 +88,7 @@ Dispatches a synthetic event event to target and returns true if either event's 
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/EventTarget/dispatchEvent)
 */
   @send
-  external dispatchEvent: (T.t, EventTypes.event) => bool = "dispatchEvent"
+  external dispatchEvent: (T.t, Event.t) => bool = "dispatchEvent"
 }
 
-include Impl({type t = EventTypes.eventTarget})
+include Impl({type t = t})
