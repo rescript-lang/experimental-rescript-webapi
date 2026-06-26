@@ -50,13 +50,13 @@ external has: (t, string) => bool = "has"
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/FormData/entries)
 */
 @send
-external entries: t => Iterator.t<(string, formDataEntryValue)> = "entries"
+external entries: t => iterable<(string, formDataEntryValue)> = "entries"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/FormData/keys)
 */
 @send
-external keys: t => Iterator.t<string> = "keys"
+external keys: t => iterable<string> = "keys"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/FormData/set)
