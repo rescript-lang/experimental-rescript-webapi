@@ -1,6 +1,6 @@
-type t = private {...Base__Event.t}
+type t = Base.event = private {...Base.event}
 
-type eventTarget = Base__EventTarget.t = private {...Base__EventTarget.t}
+type eventTarget = Base.eventTarget = private {...Base.eventTarget}
 
 type eventListener<'event> = EventTypes.eventListener<'event>
 

@@ -1,7 +1,7 @@
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/EventTarget)
 */
-type t = Base__EventTarget.t = private {...Base__EventTarget.t}
+type t = Base.eventTarget = private {...Base.eventTarget}
 
 @new
 external make: unit => t = "EventTarget"

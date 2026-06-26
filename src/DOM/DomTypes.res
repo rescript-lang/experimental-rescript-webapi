@@ -1,8 +1,6 @@
 @@warning("-30")
 
 type domStringList = DOM.domStringList
-type eventTarget = EventTarget.t
-type eventType = EventType.t
 type file = FileTypes.file
 type blob = FileTypes.blob
 type fileSystemEntry = FileAndDirectoryEntriesTypes.fileSystemEntry
@@ -336,7 +334,7 @@ type barProp = {
 */
 @editor.completeFrom(ScreenOrientation)
 type screenOrientation = private {
-  ...eventTarget,
+  ...Base.eventTarget,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/ScreenOrientation/type)
     */
@@ -1806,7 +1804,7 @@ The CanvasRenderingContext2D interface, part of the WebApiCanvas API, provides t
 type canvasRenderingContext2D
 
 type rec animation = {
-  ...eventTarget,
+  ...Base.eventTarget,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Animation/id)
     */

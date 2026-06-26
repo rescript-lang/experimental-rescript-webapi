@@ -17,7 +17,7 @@ A signal object that allows you to communicate with a WebApiDOM request (such as
 [See AbortSignal on MDN](https://developer.mozilla.org/docs/Web/API/AbortSignal)
 */
 and abortSignal = private {
-  ...Base__EventTarget.t,
+  ...Base.eventTarget,
   /**
     Returns true if this AbortSignal's AbortController has signaled to abort, and false otherwise.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/AbortSignal/aborted)
@@ -51,5 +51,5 @@ The ExtendableEvent interface extends the lifetime of the install and activate e
 [See ExtendableEvent on MDN](https://developer.mozilla.org/docs/Web/API/ExtendableEvent)
  */
 type extendableEvent = private {
-  ...Base__Event.t,
+  ...Base.event,
 }
