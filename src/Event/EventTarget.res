@@ -92,3 +92,12 @@ Dispatches a synthetic event event to target and returns true if either event's 
 }
 
 include Impl({type t = t})
+
+// Allow an external type to count as a valid EventTarget
+module Extend = (
+  T: {
+    type t
+  },
+) => Impl({
+  type t = T.t
+})

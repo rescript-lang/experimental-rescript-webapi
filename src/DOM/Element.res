@@ -5,8 +5,6 @@ module Impl = (
 ) => {
   include Node.Impl({type t = T.t})
 
-  external asElement: T.t => DomTypes.element = "%identity"
-
   /**
 Inserts nodes just after node, while replacing strings in nodes with equivalent Text nodes.
 
@@ -505,3 +503,5 @@ Returns true if qualifiedName is now present, and false otherwise.
 include Impl({type t = DomTypes.element})
 
 let isInstanceOf = (_: 't): bool => %raw(`param instanceof Element`)
+
+include EventTarget.Extend({type t = DomTypes.element})

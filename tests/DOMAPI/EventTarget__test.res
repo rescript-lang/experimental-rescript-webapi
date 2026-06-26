@@ -8,3 +8,8 @@ let _ = (target: EventTarget.t) => {
 let _ = (target: EventTarget.t) => {
   acceptsDOMEventTarget(target)
 }
+
+let el = switch Document.make()->Document.getElementById("foo") {
+| Null => ()
+| Value(el) => el->Element.addEventListener(Click, () => ())
+}
