@@ -1,7 +1,7 @@
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/EventTarget)
 */
-type t = private {...Base__EventTarget.t}
+type t = Base__EventTarget.t = private {...Base__EventTarget.t}
 
 @new
 external make: unit => t = "EventTarget"
@@ -11,8 +11,6 @@ module Impl = (
     type t
   },
 ) => {
-  external asEventTarget: T.t => t = "%identity"
-
   /**
 Appends an event listener for events whose type attribute value is type. The callback argument sets the callback that will be invoked when the event is dispatched.
 
