@@ -311,9 +311,9 @@ The event listener is appended to target's event listener list and is not append
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/EventTarget/addEventListener)
 */
 external addEventListener: (
-  EventTypes.eventType,
+  EventType.t,
   EventTypes.eventListener<'event>,
-  ~options: EventTypes.addEventListenerOptions=?,
+  ~options: Event.addEventListenerOptions=?,
 ) => unit = "addEventListener"
 
 /**
@@ -333,7 +333,7 @@ The event listener is appended to target's event listener list and is not append
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/EventTarget/addEventListener)
 */
 external addEventListenerWithCapture: (
-  EventTypes.eventType,
+  EventType.t,
   EventTypes.eventListener<'event>,
   @as(json`true`) _,
 ) => unit = "addEventListener"
@@ -343,9 +343,9 @@ Removes the event listener in target's event listener list with the same type, c
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/EventTarget/removeEventListener)
 */
 external removeEventListener: (
-  EventTypes.eventType,
+  EventType.t,
   EventTypes.eventListener<'event>,
-  ~options: EventTypes.eventListenerOptions=?,
+  ~options: Event.eventListenerOptions=?,
 ) => unit = "removeEventListener"
 
 /**
@@ -353,7 +353,7 @@ Removes the event listener in target's event listener list with the same type, c
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/EventTarget/removeEventListener)
 */
 external removeEventListenerUseCapture: (
-  EventTypes.eventType,
+  EventType.t,
   EventTypes.eventListener<'event>,
   @as(json`true`) _,
 ) => unit = "removeEventListener"
@@ -362,7 +362,7 @@ external removeEventListenerUseCapture: (
 Dispatches a synthetic event event to target and returns true if either event's cancelable attribute value is false or its preventDefault() method was not invoked, and false otherwise.
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/EventTarget/dispatchEvent)
 */
-external dispatchEvent: EventTypes.event => bool = "dispatchEvent"
+external dispatchEvent: Event.t => bool = "dispatchEvent"
 
 /**
 Closes the window.

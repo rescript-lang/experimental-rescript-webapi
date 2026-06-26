@@ -214,6 +214,7 @@
         "AbortController",
         "AbortSignal",
         "Event",
+        "EventType",
         "EventTarget",
         "ExtendableEvent"
       ]

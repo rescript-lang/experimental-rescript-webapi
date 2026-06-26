@@ -63,7 +63,7 @@ type writableStreamDefaultController = private {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/WritableStreamDefaultController/signal)
     */
-  signal: EventTypes.abortSignal,
+  signal: AbortSignal.t,
 }
 
 /**
@@ -200,7 +200,7 @@ The signal option can be set to an AbortSignal to allow aborting an ongoing pipe
   mutable preventClose?: bool,
   mutable preventAbort?: bool,
   mutable preventCancel?: bool,
-  mutable signal?: EventTypes.abortSignal,
+  mutable signal?: AbortSignal.t,
 }
 
 type filePropertyBag = {

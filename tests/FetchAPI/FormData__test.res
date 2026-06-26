@@ -43,10 +43,13 @@ logEntry(~stringPrefix="String entry: ", ~filePrefix="Unexpected file entry: ", 
 logEntry(~stringPrefix="Unexpected string entry: ", ~filePrefix="File entry: ", fileEntry)
 
 // Iterate over all entries in the FormData
-let entries: Iterator.t<(string, EntryValue.t)> = formData->FormData.entries
-let _ = entries->Iterator.forEach(((key, value)) => {
-  switch value {
-  | String(s) => Console.log(`${key}: ${s}`)
-  | File(f) => Console.log(`${key}: [WebApiFile] ${f.name}`)
-  }
-})
+let entries: iterable<(string, EntryValue.t)> = formData->FormData.entries
+let _ =
+  entries
+  ->Array.fromIterable
+  ->Array.forEach(((key, value)) => {
+    switch value {
+    | String(s) => Console.log(`${key}: ${s}`)
+    | File(f) => Console.log(`${key}: [WebApiFile] ${f.name}`)
+    }
+  })
