@@ -1,1 +1,1 @@
-let maybeViewport: Null.t<VisualViewport.t> = Window.current->Window.visualViewport
+let maybeViewport: Null.t<VisualViewport.t> = Base.window->Window.visualViewport

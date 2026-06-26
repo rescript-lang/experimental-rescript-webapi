@@ -51,7 +51,7 @@ export const rescriptJson = `
 After installing the package , you can use bindings for the various Web APIs as defined in [MDN](https://developer.mozilla.org/en-US/docs/Web/API).
 
 export const rescriptSample = `
-let location = WebAPI.Window.current->WebAPI.Window.location
+let location = WebAPI.Base.window->WebAPI.Window.location
 
 // Access properties using \`.\`
 let href = location.href

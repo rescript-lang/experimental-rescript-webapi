@@ -504,4 +504,4 @@ include Impl({type t = DomTypes.element})
 
 let isInstanceOf = (_: 't): bool => %raw(`param instanceof Element`)
 
-include EventTarget.Extend({type t = DomTypes.element})
+include EventTarget.Impl({type t = DomTypes.element})
