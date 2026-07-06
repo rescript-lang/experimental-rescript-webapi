@@ -101,7 +101,7 @@ type rec abortController = private {
 A signal object that allows you to communicate with a WebApiDOM request (such as a WebApiFetch) and abort it if required via an AbortController object.
 [See AbortSignal on MDN](https://developer.mozilla.org/docs/Web/API/AbortSignal)
 */
-and abortSignal = private {
+@editor.completeFrom(AbortSignal) and abortSignal = private {
   ...eventTarget,
   /**
     Returns true if this AbortSignal's AbortController has signaled to abort, and false otherwise.
