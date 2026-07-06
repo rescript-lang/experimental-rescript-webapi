@@ -333,7 +333,7 @@ external isPointInStroke2: (
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CanvasRenderingContext2D/drawFocusIfNeeded)
 */
 @send
-external drawFocusIfNeeded: (DomTypes.canvasRenderingContext2D, DomTypes.element) => unit =
+external drawFocusIfNeeded: (DomTypes.canvasRenderingContext2D, DOM_.element) => unit =
   "drawFocusIfNeeded"
 
 /**
@@ -343,7 +343,7 @@ external drawFocusIfNeeded: (DomTypes.canvasRenderingContext2D, DomTypes.element
 external drawFocusIfNeeded2: (
   DomTypes.canvasRenderingContext2D,
   ~path: CanvasTypes.path2D,
-  ~element: DomTypes.element,
+  ~element: DOM_.element,
 ) => unit = "drawFocusIfNeeded"
 
 /**

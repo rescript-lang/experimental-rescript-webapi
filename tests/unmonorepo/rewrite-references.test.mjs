@@ -7,9 +7,21 @@ import {
 
 test("rewrites same-feature references to local modules and external namespaces to dotted names", () => {
   const specs = [
-    { publicModule: "DOM", legacyNamespace: "WebApiDOM", internalPrefix: "Dom" },
-    { publicModule: "Event", legacyNamespace: "WebApiEvent", internalPrefix: "Event" },
-    { publicModule: "URL", legacyNamespace: "WebApiURL", internalPrefix: "Url" },
+    {
+      publicModule: "DOM",
+      legacyNamespace: "WebApiDOM",
+      internalPrefix: "Dom",
+    },
+    {
+      publicModule: "Event",
+      legacyNamespace: "WebApiEvent",
+      internalPrefix: "Event",
+    },
+    {
+      publicModule: "URL",
+      legacyNamespace: "WebApiURL",
+      internalPrefix: "Url",
+    },
   ];
   const leavesByFeature = new Map([
     ["DOM", ["Document", "DomGlobal", "DomTypes"]],
@@ -20,17 +32,27 @@ test("rewrites same-feature references to local modules and external namespaces 
   assert.equal(
     rewriteSourceText(
       "let target: Types.element = Global.document->WebApiEvent.EventTarget.asEventTarget",
-      { currentFeature: "DOM", specs, localLeaves: ["Document", "DomGlobal", "DomTypes"], leavesByFeature },
+      {
+        currentFeature: "DOM",
+        specs,
+        localLeaves: ["Document", "DomGlobal", "DomTypes"],
+        leavesByFeature,
+      },
     ),
-    "let target: DomTypes.element = DomGlobal.document->EventTarget.asEventTarget",
+    "let target: DOM_.element = DomGlobal.document->EventTarget.asEventTarget",
   );
 
   assert.equal(
     rewriteSourceText(
       "let target: WebAPI.DOM.Types.element = WebAPI.DOM.Global.document->WebAPI.Event.EventTarget.asEventTarget",
-      { currentFeature: "DOM", specs, localLeaves: ["Document", "DomGlobal", "DomTypes"], leavesByFeature },
+      {
+        currentFeature: "DOM",
+        specs,
+        localLeaves: ["Document", "DomGlobal", "DomTypes"],
+        leavesByFeature,
+      },
     ),
-    "let target: DomTypes.element = DomGlobal.document->EventTarget.asEventTarget",
+    "let target: DOM_.element = DomGlobal.document->EventTarget.asEventTarget",
   );
 
   assert.equal(
@@ -47,16 +69,32 @@ test("rewrites same-feature references to local modules and external namespaces 
   );
 
   assert.equal(
-    rewriteTestText("let x = WebApiDOM.Global.document", specs, leavesByFeature),
+    rewriteTestText(
+      "let x = WebApiDOM.Global.document",
+      specs,
+      leavesByFeature,
+    ),
     "let x = DomGlobal.document",
   );
 });
 
 test("rewrites legacy global module references to simplified public modules", () => {
   const specs = [
-    { publicModule: "Fetch", legacyNamespace: "WebApiFetch", internalPrefix: "Fetch" },
-    { publicModule: "Canvas", legacyNamespace: "WebApiCanvas", internalPrefix: "Canvas" },
-    { publicModule: "WebWorkers", legacyNamespace: "WebApiWebWorkers", internalPrefix: "WebWorkers" },
+    {
+      publicModule: "Fetch",
+      legacyNamespace: "WebApiFetch",
+      internalPrefix: "Fetch",
+    },
+    {
+      publicModule: "Canvas",
+      legacyNamespace: "WebApiCanvas",
+      internalPrefix: "Canvas",
+    },
+    {
+      publicModule: "WebWorkers",
+      legacyNamespace: "WebApiWebWorkers",
+      internalPrefix: "WebWorkers",
+    },
     {
       publicModule: "ServiceWorker",
       legacyNamespace: "WebApiServiceWorker",
@@ -66,8 +104,14 @@ test("rewrites legacy global module references to simplified public modules", ()
   const leavesByFeature = new Map([
     ["Fetch", ["Fetch", "FetchTypes"]],
     ["Canvas", ["Canvas", "CanvasTypes"]],
-    ["WebWorkers", ["Worker", "SharedWorkerScope", "SharedWorker", "WebWorkersTypes"]],
-    ["ServiceWorker", ["ServiceWorker", "ServiceWorkerScope", "ServiceWorkerTypes"]],
+    [
+      "WebWorkers",
+      ["Worker", "SharedWorkerScope", "SharedWorker", "WebWorkersTypes"],
+    ],
+    [
+      "ServiceWorker",
+      ["ServiceWorker", "ServiceWorkerScope", "ServiceWorkerTypes"],
+    ],
   ]);
 
   assert.equal(

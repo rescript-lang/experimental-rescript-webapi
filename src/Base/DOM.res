@@ -294,35 +294,6 @@ The state and the identity of the user agent. It allows scripts to query it and 
 @editor.completeFrom(DOM.Navigator)
 type navigator
 
-// TODO: mark as private once mutating fields of private records is allowed
-@editor.completeFrom(DOM.DOMTokenList)
-type domTokenList = {
-  /**
-    Returns the number of tokens.
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/DOMTokenList/length)
-    */
-  length: int,
-  /**
-    Returns the associated set as string.
-
-Can be set, to change the associated attribute.
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/DOMTokenList/value)
-    */
-  mutable value: string,
-}
-
-/**
-A collection of Attr objects. Objects inside a NamedNodeMap are not in any particular order, unlike NodeList, although they may be accessed by an index as in an array.
-[See NamedNodeMap on MDN](https://developer.mozilla.org/docs/Web/API/NamedNodeMap)
-*/
-@editor.completeFrom(DOM.NamedNodeMap)
-type namedNodeMap = private {
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/NamedNodeMap/length)
-    */
-  length: int,
-}
-
 /**
 [See FragmentDirective on MDN](https://developer.mozilla.org/docs/Web/API/FragmentDirective)
 */
@@ -2504,7 +2475,7 @@ TODO: mark as private once mutating fields of private records is allowed
     Allows for manipulation of element's class content attribute as a set of whitespace-separated tokens through a DOMTokenList object.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/classList)
     */
-  classList: domTokenList,
+  classList: DOMTokenList.t,
   /**
     Returns the value of element's slot content attribute. Can be set to change it.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/slot)
@@ -2513,7 +2484,7 @@ TODO: mark as private once mutating fields of private records is allowed
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/attributes)
     */
-  attributes: namedNodeMap,
+  attributes: DOM_.namedNodeMap,
   /**
     Returns element's shadow root, if any, and if shadow root's mode is "open", and null otherwise.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/shadowRoot)
@@ -2522,7 +2493,7 @@ TODO: mark as private once mutating fields of private records is allowed
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/part)
     */
-  part: domTokenList,
+  part: DOMTokenList.t,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/scrollTop)
     */
@@ -2922,7 +2893,7 @@ A generic collection (array-like object similar to arguments) of elements (in do
 A collection of HTML form control elements.
 [See HTMLFormControlsCollection on MDN](https://developer.mozilla.org/docs/Web/API/HTMLFormControlsCollection)
 */
-@editor.completeFrom(DOM.DOM.HTMLFormControlsCollection) and htmlFormControlsCollection = private {
+@editor.completeFrom(HTMLFormControlsCollection) and htmlFormControlsCollection = private {
   // Base properties from HTMLCollection
   /**
     Sets or retrieves the number of objects in a collection.
@@ -2930,301 +2901,6 @@ A collection of HTML form control elements.
     */
   length: int,
   // End base properties from HTMLCollection
-}
-
-/**
-Any HTML element. Some elements directly implement this interface, while others implement it via an interface that inherits it.
-[See HTMLElement on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement)
-TODO: mark as private once mutating fields of private records is allowed
-*/
-@editor.completeFrom(DOM.HTMLElement) and htmlElement = {
-  // Base properties from Element
-  /**
-    Returns the namespace.
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/namespaceURI)
-    */
-  namespaceURI: Null.t<string>,
-  /**
-    Returns the namespace prefix.
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/prefix)
-    */
-  prefix: Null.t<string>,
-  /**
-    Returns the local name.
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/localName)
-    */
-  localName: string,
-  /**
-    Returns the HTML-uppercased qualified name.
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/tagName)
-    */
-  tagName: string,
-  /**
-    Returns the value of element's id content attribute. Can be set to change it.
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/id)
-    */
-  mutable id: string,
-  /**
-    Returns the value of element's class content attribute. Can be set to change it.
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/className)
-    */
-  mutable className: string,
-  /**
-    Allows for manipulation of element's class content attribute as a set of whitespace-separated tokens through a DOMTokenList object.
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/classList)
-    */
-  classList: domTokenList,
-  /**
-    Returns the value of element's slot content attribute. Can be set to change it.
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/slot)
-    */
-  mutable slot: string,
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/attributes)
-    */
-  attributes: namedNodeMap,
-  /**
-    Returns element's shadow root, if any, and if shadow root's mode is "open", and null otherwise.
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/shadowRoot)
-    */
-  shadowRoot: Null.t<shadowRoot>,
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/part)
-    */
-  part: domTokenList,
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/scrollTop)
-    */
-  mutable scrollTop: float,
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/scrollLeft)
-    */
-  mutable scrollLeft: float,
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/scrollWidth)
-    */
-  scrollWidth: int,
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/scrollHeight)
-    */
-  scrollHeight: int,
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/clientTop)
-    */
-  clientTop: int,
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/clientLeft)
-    */
-  clientLeft: int,
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/clientWidth)
-    */
-  clientWidth: int,
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/clientHeight)
-    */
-  clientHeight: int,
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/currentCSSZoom)
-    */
-  currentCSSZoom: float,
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/innerHTML)
-    */
-  mutable innerHTML: string,
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/outerHTML)
-    */
-  mutable outerHTML: string,
-  // End base properties from Element
-
-  // Base properties from Node
-  /**
-    Returns the type of node.
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/nodeType)
-    */
-  nodeType: int,
-  /**
-    Returns a string appropriate for the type of node.
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/nodeName)
-    */
-  nodeName: string,
-  /**
-    Returns node's node document's document base URL.
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/baseURI)
-    */
-  baseURI: string,
-  /**
-    Returns true if node is connected and false otherwise.
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/isConnected)
-    */
-  isConnected: bool,
-  /**
-    Returns the node document. Returns null for documents.
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/ownerDocument)
-    */
-  ownerDocument: Null.t<document>,
-  /**
-    Returns the parent.
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/parentNode)
-    */
-  parentNode: Null.t<node>,
-  /**
-    Returns the parent element.
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/parentElement)
-    */
-  parentElement: Null.t<htmlElement>,
-  /**
-    Returns the children.
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/childNodes)
-    */
-  childNodes: nodeList<node>,
-  /**
-    Returns the first child.
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/firstChild)
-    */
-  firstChild: Null.t<node>,
-  /**
-    Returns the last child.
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/lastChild)
-    */
-  lastChild: Null.t<node>,
-  /**
-    Returns the previous sibling.
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/previousSibling)
-    */
-  previousSibling: Null.t<node>,
-  /**
-    Returns the next sibling.
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/nextSibling)
-    */
-  nextSibling: Null.t<node>,
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/nodeValue)
-    */
-  mutable nodeValue: Null.t<string>,
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/textContent)
-    */
-  mutable textContent: Null.t<string>,
-  // End base properties from Node
-
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/title)
-    */
-  mutable title: string,
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/lang)
-    */
-  mutable lang: string,
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/translate)
-    */
-  mutable translate: bool,
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/dir)
-    */
-  mutable dir: string,
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/hidden)
-    */
-  mutable hidden: unknown,
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/inert)
-    */
-  mutable inert: bool,
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/accessKey)
-    */
-  mutable accessKey: string,
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/accessKeyLabel)
-    */
-  accessKeyLabel: string,
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/draggable)
-    */
-  mutable draggable: bool,
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/spellcheck)
-    */
-  mutable spellcheck: bool,
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/autocapitalize)
-    */
-  mutable autocapitalize: string,
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/innerText)
-    */
-  mutable innerText: string,
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/outerText)
-    */
-  mutable outerText: string,
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/popover)
-    */
-  mutable popover: Null.t<string>,
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/offsetParent)
-    */
-  offsetParent: Null.t<element>,
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/offsetTop)
-    */
-  offsetTop: int,
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/offsetLeft)
-    */
-  offsetLeft: int,
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/offsetWidth)
-    */
-  offsetWidth: int,
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/offsetHeight)
-    */
-  offsetHeight: int,
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/style)
-    */
-  style: cssStyleDeclaration,
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/attributeStyleMap)
-    */
-  attributeStyleMap: stylePropertyMap,
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/contentEditable)
-    */
-  mutable contentEditable: string,
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/enterKeyHint)
-    */
-  mutable enterKeyHint: string,
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/isContentEditable)
-    */
-  isContentEditable: bool,
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/inputMode)
-    */
-  mutable inputMode: string,
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/dataset)
-    */
-  dataset: domStringMap,
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/nonce)
-    */
-  mutable nonce?: string,
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/autofocus)
-    */
-  mutable autofocus: bool,
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/tabIndex)
-    */
-  mutable tabIndex: int,
 }
 
 /**
@@ -3347,7 +3023,7 @@ TODO: mark as private once mutating fields of private records is allowed
     Allows for manipulation of element's class content attribute as a set of whitespace-separated tokens through a DOMTokenList object.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/classList)
     */
-  classList: domTokenList,
+  classList: DOMTokenList.t,
   /**
     Returns the value of element's slot content attribute. Can be set to change it.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/slot)
@@ -3356,7 +3032,7 @@ TODO: mark as private once mutating fields of private records is allowed
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/attributes)
     */
-  attributes: namedNodeMap,
+  attributes: DOM_.namedNodeMap,
   /**
     Returns element's shadow root, if any, and if shadow root's mode is "open", and null otherwise.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/shadowRoot)
@@ -3365,7 +3041,7 @@ TODO: mark as private once mutating fields of private records is allowed
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/part)
     */
-  part: domTokenList,
+  part: DOMTokenList.t,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/scrollTop)
     */
@@ -3604,7 +3280,7 @@ TODO: mark as private once mutating fields of private records is allowed
     Allows for manipulation of element's class content attribute as a set of whitespace-separated tokens through a DOMTokenList object.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/classList)
     */
-  classList: domTokenList,
+  classList: DOMTokenList.t,
   /**
     Returns the value of element's slot content attribute. Can be set to change it.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/slot)
@@ -3613,7 +3289,7 @@ TODO: mark as private once mutating fields of private records is allowed
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/attributes)
     */
-  attributes: namedNodeMap,
+  attributes: DOM_.namedNodeMap,
   /**
     Returns element's shadow root, if any, and if shadow root's mode is "open", and null otherwise.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/shadowRoot)
@@ -3622,7 +3298,7 @@ TODO: mark as private once mutating fields of private records is allowed
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/part)
     */
-  part: domTokenList,
+  part: DOMTokenList.t,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/scrollTop)
     */
@@ -3912,7 +3588,7 @@ TODO: mark as private once mutating fields of private records is allowed
     Allows for manipulation of element's class content attribute as a set of whitespace-separated tokens through a DOMTokenList object.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/classList)
     */
-  classList: domTokenList,
+  classList: DOMTokenList.t,
   /**
     Returns the value of element's slot content attribute. Can be set to change it.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/slot)
@@ -3921,7 +3597,7 @@ TODO: mark as private once mutating fields of private records is allowed
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/attributes)
     */
-  attributes: namedNodeMap,
+  attributes: DOM_.namedNodeMap,
   /**
     Returns element's shadow root, if any, and if shadow root's mode is "open", and null otherwise.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/shadowRoot)
@@ -3930,7 +3606,7 @@ TODO: mark as private once mutating fields of private records is allowed
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/part)
     */
-  part: domTokenList,
+  part: DOMTokenList.t,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/scrollTop)
     */
@@ -4256,7 +3932,7 @@ TODO: mark as private once mutating fields of private records is allowed
     Allows for manipulation of element's class content attribute as a set of whitespace-separated tokens through a DOMTokenList object.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/classList)
     */
-  classList: domTokenList,
+  classList: DOMTokenList.t,
   /**
     Returns the value of element's slot content attribute. Can be set to change it.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/slot)
@@ -4265,7 +3941,7 @@ TODO: mark as private once mutating fields of private records is allowed
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/attributes)
     */
-  attributes: namedNodeMap,
+  attributes: DOM_.namedNodeMap,
   /**
     Returns element's shadow root, if any, and if shadow root's mode is "open", and null otherwise.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/shadowRoot)
@@ -4274,7 +3950,7 @@ TODO: mark as private once mutating fields of private records is allowed
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/part)
     */
-  part: domTokenList,
+  part: DOMTokenList.t,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/scrollTop)
     */
@@ -4529,7 +4205,7 @@ TODO: mark as private once mutating fields of private records is allowed
     Allows for manipulation of element's class content attribute as a set of whitespace-separated tokens through a DOMTokenList object.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/classList)
     */
-  classList: domTokenList,
+  classList: DOMTokenList.t,
   /**
     Returns the value of element's slot content attribute. Can be set to change it.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/slot)
@@ -4538,7 +4214,7 @@ TODO: mark as private once mutating fields of private records is allowed
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/attributes)
     */
-  attributes: namedNodeMap,
+  attributes: DOM_.namedNodeMap,
   /**
     Returns element's shadow root, if any, and if shadow root's mode is "open", and null otherwise.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/shadowRoot)
@@ -4547,7 +4223,7 @@ TODO: mark as private once mutating fields of private records is allowed
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/part)
     */
-  part: domTokenList,
+  part: DOMTokenList.t,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/scrollTop)
     */
@@ -4686,7 +4362,7 @@ TODO: mark as private once mutating fields of private records is allowed
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLAnchorElement/relList)
     */
-  relList: domTokenList,
+  relList: DOMTokenList.t,
   /**
     Sets or retrieves the language code of the object.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLAnchorElement/hreflang)
@@ -4903,7 +4579,7 @@ TODO: mark as private once mutating fields of private records is allowed
     Allows for manipulation of element's class content attribute as a set of whitespace-separated tokens through a DOMTokenList object.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/classList)
     */
-  classList: domTokenList,
+  classList: DOMTokenList.t,
   /**
     Returns the value of element's slot content attribute. Can be set to change it.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/slot)
@@ -4912,7 +4588,7 @@ TODO: mark as private once mutating fields of private records is allowed
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/attributes)
     */
-  attributes: namedNodeMap,
+  attributes: DOM_.namedNodeMap,
   /**
     Returns element's shadow root, if any, and if shadow root's mode is "open", and null otherwise.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/shadowRoot)
@@ -4921,7 +4597,7 @@ TODO: mark as private once mutating fields of private records is allowed
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/part)
     */
-  part: domTokenList,
+  part: DOMTokenList.t,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/scrollTop)
     */
@@ -5055,7 +4731,7 @@ TODO: mark as private once mutating fields of private records is allowed
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLAreaElement/relList)
     */
-  relList: domTokenList,
+  relList: DOMTokenList.t,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLAreaElement/referrerPolicy)
     */
@@ -5257,7 +4933,7 @@ TODO: mark as private once mutating fields of private records is allowed
     Allows for manipulation of element's class content attribute as a set of whitespace-separated tokens through a DOMTokenList object.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/classList)
     */
-  classList: domTokenList,
+  classList: DOMTokenList.t,
   /**
     Returns the value of element's slot content attribute. Can be set to change it.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/slot)
@@ -5266,7 +4942,7 @@ TODO: mark as private once mutating fields of private records is allowed
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/attributes)
     */
-  attributes: namedNodeMap,
+  attributes: DOM_.namedNodeMap,
   /**
     Returns element's shadow root, if any, and if shadow root's mode is "open", and null otherwise.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/shadowRoot)
@@ -5275,7 +4951,7 @@ TODO: mark as private once mutating fields of private records is allowed
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/part)
     */
-  part: domTokenList,
+  part: DOMTokenList.t,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/scrollTop)
     */
@@ -6300,7 +5976,7 @@ TODO: mark as private once mutating fields of private records is allowed
     Allows for manipulation of element's class content attribute as a set of whitespace-separated tokens through a DOMTokenList object.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/classList)
     */
-  classList: domTokenList,
+  classList: DOMTokenList.t,
   /**
     Returns the value of element's slot content attribute. Can be set to change it.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/slot)
@@ -6309,7 +5985,7 @@ TODO: mark as private once mutating fields of private records is allowed
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/attributes)
     */
-  attributes: namedNodeMap,
+  attributes: DOM_.namedNodeMap,
   /**
     Returns element's shadow root, if any, and if shadow root's mode is "open", and null otherwise.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/shadowRoot)
@@ -6318,7 +5994,7 @@ TODO: mark as private once mutating fields of private records is allowed
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/part)
     */
-  part: domTokenList,
+  part: DOMTokenList.t,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/scrollTop)
     */
@@ -6546,212 +6222,6 @@ type validityState = {
 [See CustomStateSet on MDN](https://developer.mozilla.org/docs/Web/API/CustomStateSet)
 */
 type customStateSet = {}
-
-/**
-[See ElementInternals on MDN](https://developer.mozilla.org/docs/Web/API/ElementInternals)
-TODO: mark as private once mutating fields of private records is allowed
-*/
-@editor.completeFrom(DOM.ElementInternals)
-type elementInternals = {
-  /**
-    Returns the ShadowRoot for internals's target element, if the target element is a shadow host, or null otherwise.
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/ElementInternals/shadowRoot)
-    */
-  shadowRoot: Null.t<shadowRoot>,
-  /**
-    Returns the form owner of internals's target element.
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/ElementInternals/form)
-    */
-  form: Null.t<htmlFormElement>,
-  /**
-    Returns true if internals's target element will be validated when the form is submitted; false otherwise.
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/ElementInternals/willValidate)
-    */
-  willValidate: bool,
-  /**
-    Returns the ValidityState object for internals's target element.
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/ElementInternals/validity)
-    */
-  validity: validityState,
-  /**
-    Returns the error message that would be shown to the user if internals's target element was to be checked for validity.
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/ElementInternals/validationMessage)
-    */
-  validationMessage: string,
-  /**
-    Returns a NodeList of all the label elements that internals's target element is associated with.
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/ElementInternals/labels)
-    */
-  labels: nodeList<unknown>,
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/ElementInternals/states)
-    */
-  states: customStateSet,
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/ariaAtomic)
-    */
-  mutable ariaAtomic: Null.t<string>,
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/ariaAutoComplete)
-    */
-  mutable ariaAutoComplete: Null.t<string>,
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/ariaBrailleLabel)
-    */
-  mutable ariaBrailleLabel: Null.t<string>,
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/ariaBrailleRoleDescription)
-    */
-  mutable ariaBrailleRoleDescription: Null.t<string>,
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/ariaBusy)
-    */
-  mutable ariaBusy: Null.t<string>,
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/ariaChecked)
-    */
-  mutable ariaChecked: Null.t<string>,
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/ariaColCount)
-    */
-  mutable ariaColCount: Null.t<string>,
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/ariaColIndex)
-    */
-  mutable ariaColIndex: Null.t<string>,
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/ariaColIndexText)
-    */
-  mutable ariaColIndexText: Null.t<string>,
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/ariaColSpan)
-    */
-  mutable ariaColSpan: Null.t<string>,
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/ariaCurrent)
-    */
-  mutable ariaCurrent: Null.t<string>,
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/ariaDescription)
-    */
-  mutable ariaDescription: Null.t<string>,
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/ariaDisabled)
-    */
-  mutable ariaDisabled: Null.t<string>,
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/ariaExpanded)
-    */
-  mutable ariaExpanded: Null.t<string>,
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/ariaHasPopup)
-    */
-  mutable ariaHasPopup: Null.t<string>,
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/ariaHidden)
-    */
-  mutable ariaHidden: Null.t<string>,
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/ariaKeyShortcuts)
-    */
-  mutable ariaKeyShortcuts: Null.t<string>,
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/ariaLabel)
-    */
-  mutable ariaLabel: Null.t<string>,
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/ariaLevel)
-    */
-  mutable ariaLevel: Null.t<string>,
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/ariaLive)
-    */
-  mutable ariaLive: Null.t<string>,
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/ariaModal)
-    */
-  mutable ariaModal: Null.t<string>,
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/ariaMultiLine)
-    */
-  mutable ariaMultiLine: Null.t<string>,
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/ariaMultiSelectable)
-    */
-  mutable ariaMultiSelectable: Null.t<string>,
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/ariaOrientation)
-    */
-  mutable ariaOrientation: Null.t<string>,
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/ariaPlaceholder)
-    */
-  mutable ariaPlaceholder: Null.t<string>,
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/ariaPosInSet)
-    */
-  mutable ariaPosInSet: Null.t<string>,
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/ariaPressed)
-    */
-  mutable ariaPressed: Null.t<string>,
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/ariaReadOnly)
-    */
-  mutable ariaReadOnly: Null.t<string>,
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/ariaRequired)
-    */
-  mutable ariaRequired: Null.t<string>,
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/ariaRoleDescription)
-    */
-  mutable ariaRoleDescription: Null.t<string>,
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/ariaRowCount)
-    */
-  mutable ariaRowCount: Null.t<string>,
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/ariaRowIndex)
-    */
-  mutable ariaRowIndex: Null.t<string>,
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/ariaRowIndexText)
-    */
-  mutable ariaRowIndexText: Null.t<string>,
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/ariaRowSpan)
-    */
-  mutable ariaRowSpan: Null.t<string>,
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/ariaSelected)
-    */
-  mutable ariaSelected: Null.t<string>,
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/ariaSetSize)
-    */
-  mutable ariaSetSize: Null.t<string>,
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/ariaSort)
-    */
-  mutable ariaSort: Null.t<string>,
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/ariaValueMax)
-    */
-  mutable ariaValueMax: Null.t<string>,
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/ariaValueMin)
-    */
-  mutable ariaValueMin: Null.t<string>,
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/ariaValueNow)
-    */
-  mutable ariaValueNow: Null.t<string>,
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/ariaValueText)
-    */
-  mutable ariaValueText: Null.t<string>,
-}
 
 /**
 An XML document. It inherits from the generic Document and does not add any specific methods or properties to it: nevertheless, several algorithms behave differently with the two types of documents.
@@ -7419,7 +6889,7 @@ TODO: mark as private once mutating fields of private records is allowed
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLOutputElement/htmlFor)
     */
-  htmlFor: domTokenList,
+  htmlFor: DOMTokenList.t,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLOutputElement/form)
     */

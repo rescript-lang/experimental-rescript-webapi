@@ -1,16 +1,32 @@
+// TODO: mark as private once mutating fields of private records is allowed
+type t = {
+  /**
+    Returns the number of tokens.
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/DOMTokenList/length)
+    */
+  length: int,
+  /**
+    Returns the associated set as string.
+
+Can be set, to change the associated attribute.
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/DOMTokenList/value)
+    */
+  mutable value: string,
+}
+
 /**
 Returns the token with index index.
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/DOMTokenList/item)
 */
 @send
-external item: (DomTypes.domTokenList, int) => string = "item"
+external item: (t, int) => string = "item"
 
 /**
 Returns true if token is present, and false otherwise.
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/DOMTokenList/contains)
 */
 @send
-external contains: (DomTypes.domTokenList, string) => bool = "contains"
+external contains: (t, string) => bool = "contains"
 
 /**
 Adds all arguments passed, except those already present.
@@ -21,7 +37,7 @@ Throws an "InvalidCharacterError" DOMException if one of the arguments contains 
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/DOMTokenList/add)
 */
 @send
-external add: (DomTypes.domTokenList, string) => unit = "add"
+external add: (t, string) => unit = "add"
 
 /**
 Removes arguments passed, if they are present.
@@ -32,7 +48,7 @@ Throws an "InvalidCharacterError" DOMException if one of the arguments contains 
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/DOMTokenList/remove)
 */
 @send
-external remove: (DomTypes.domTokenList, string) => unit = "remove"
+external remove: (t, string) => unit = "remove"
 
 /**
 If force is not given, "toggles" token, removing it if it's present and adding it if it's not present. If force is true, adds token (same as add()). If force is false, removes token (same as remove()).
@@ -45,7 +61,7 @@ Throws an "InvalidCharacterError" DOMException if token contains any spaces.
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/DOMTokenList/toggle)
 */
 @send
-external toggle: (DomTypes.domTokenList, ~token: string, ~force: bool=?) => bool = "toggle"
+external toggle: (t, ~token: string, ~force: bool=?) => bool = "toggle"
 
 /**
 Replaces token with newToken.
@@ -58,7 +74,7 @@ Throws an "InvalidCharacterError" DOMException if one of the arguments contains 
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/DOMTokenList/replace)
 */
 @send
-external replace: (DomTypes.domTokenList, ~token: string, ~newToken: string) => bool = "replace"
+external replace: (t, ~token: string, ~newToken: string) => bool = "replace"
 
 /**
 Returns true if token is in the associated attribute's supported tokens. Returns false otherwise.
@@ -67,4 +83,4 @@ Throws a TypeError if the associated attribute has no supported tokens defined.
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/DOMTokenList/supports)
 */
 @send
-external supports: (DomTypes.domTokenList, string) => bool = "supports"
+external supports: (t, string) => bool = "supports"

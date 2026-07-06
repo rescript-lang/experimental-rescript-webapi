@@ -14,7 +14,6 @@ type timeRanges = DOM.timeRanges
 type textTrackList = DOM.textTrackList
 type htmlFormElement = DOM.htmlFormElement
 type htmlCollection<'a> = DOM.htmlCollection<'a>
-type element = DOM.element
 type validityState = DOM.validityState
 type document = DOM.document
 type cssStyleSheet = DOM.cssStyleSheet
@@ -36,7 +35,6 @@ type selection = DOM.selection
 type abstractRange = DOM.abstractRange
 type htmlOptionsCollection = DOM.htmlOptionsCollection
 type styleSheetList = DOM.styleSheetList
-type elementInternals = DOM.elementInternals
 type nodeFilter = DOM.nodeFilter
 type fileList = DOM.fileList
 type cssRule = DOM.cssRule
@@ -740,7 +738,7 @@ type htmlFieldSetElement = {
     Returns an HTMLCollection of the form controls in the element.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLFieldSetElement/elements)
     */
-  elements: htmlCollection<element>,
+  elements: htmlCollection<DOM_.element>,
   /**
     Returns whether an element will successfully validate based on forms validation rules and constraints.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLFieldSetElement/willValidate)
@@ -968,7 +966,7 @@ type htmlMapElement = {
     Retrieves a collection of the area objects defined for the given map object.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLMapElement/areas)
     */
-  areas: htmlCollection<element>,
+  areas: htmlCollection<DOM_.element>,
 }
 
 /**
@@ -1491,7 +1489,7 @@ All of the SVG WebApiDOM interfaces that correspond directly to elements in the 
 [See SVGElement on MDN](https://developer.mozilla.org/docs/Web/API/SVGElement)
 */
 type svgElement = {
-  ...element,
+  ...DOM_.element,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/dataset)
     */

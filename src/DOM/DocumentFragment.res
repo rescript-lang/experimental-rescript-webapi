@@ -36,7 +36,7 @@ Returns the first element within node's descendants whose ID is elementId.
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/DocumentFragment/getElementById)
 */
   @send
-  external getElementById: (T.t, string) => null<DomTypes.element> = "getElementById"
+  external getElementById: (T.t, string) => null<DOM_.element> = "getElementById"
 
   /**
 Inserts nodes before the first child of node, while replacing strings in nodes with equivalent Text nodes.
@@ -61,14 +61,14 @@ Returns the first element that is a descendant of node that matches selectors.
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/DocumentFragment/querySelector)
 */
   @send
-  external querySelector: (T.t, string) => Null.t<DomTypes.element> = "querySelector"
+  external querySelector: (T.t, string) => Null.t<DOM_.element> = "querySelector"
 
   /**
 Returns all element descendants of node that match selectors.
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/DocumentFragment/querySelectorAll)
 */
   @send
-  external querySelectorAll: (T.t, string) => DomTypes.nodeList<DomTypes.element> =
+  external querySelectorAll: (T.t, string) => DomTypes.nodeList<DOM_.element> =
     "querySelectorAll"
 
   /**

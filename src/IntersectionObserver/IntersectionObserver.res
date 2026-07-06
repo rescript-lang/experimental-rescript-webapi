@@ -11,14 +11,14 @@ external make: (
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/IntersectionObserver/observe)
 */
 @send
-external observe: (IntersectionObserverTypes.intersectionObserver, DomTypes.element) => unit =
+external observe: (IntersectionObserverTypes.intersectionObserver, DOM_.element) => unit =
   "observe"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/IntersectionObserver/unobserve)
 */
 @send
-external unobserve: (IntersectionObserverTypes.intersectionObserver, DomTypes.element) => unit =
+external unobserve: (IntersectionObserverTypes.intersectionObserver, DOM_.element) => unit =
   "unobserve"
 
 /**

@@ -11,7 +11,7 @@ Returns the first element within node's descendants whose ID is elementId.
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Document/getElementById)
 */
 @send
-external getElementById: (DomTypes.document, string) => null<DomTypes.element> = "getElementById"
+external getElementById: (DomTypes.document, string) => null<DOM_.element> = "getElementById"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Document/getAnimations)
@@ -78,14 +78,14 @@ Returns the first element that is a descendant of node that matches selectors.
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Document/querySelector)
 */
 @send
-external querySelector: (DomTypes.document, string) => Null.t<DomTypes.element> = "querySelector"
+external querySelector: (DomTypes.document, string) => Null.t<DOM_.element> = "querySelector"
 
 /**
 Returns all element descendants of node that match selectors.
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Document/querySelectorAll)
 */
 @send
-external querySelectorAll: (DomTypes.document, string) => DomTypes.nodeList<DomTypes.element> =
+external querySelectorAll: (DomTypes.document, string) => DomTypes.nodeList<DOM_.element> =
   "querySelectorAll"
 
 /**
@@ -120,7 +120,7 @@ Retrieves a collection of objects based on the specified element name.
 external getElementsByTagName: (
   DomTypes.document,
   string,
-) => DomTypes.htmlCollection<DomTypes.element> = "getElementsByTagName"
+) => DomTypes.htmlCollection<DOM_.element> = "getElementsByTagName"
 
 /**
 If namespace and localName are "*" returns a HTMLCollection of all descendant elements.
@@ -137,7 +137,7 @@ external getElementsByTagNameNS: (
   DomTypes.document,
   ~namespace: string,
   ~localName: string,
-) => DomTypes.htmlCollection<DomTypes.element> = "getElementsByTagNameNS"
+) => DomTypes.htmlCollection<DOM_.element> = "getElementsByTagNameNS"
 
 /**
 Returns a HTMLCollection of the elements in the object on which the method was invoked (a document or an element) that have all the classes given by classNames. The classNames argument is interpreted as a space-separated list of classes.
@@ -147,7 +147,7 @@ Returns a HTMLCollection of the elements in the object on which the method was i
 external getElementsByClassName: (
   DomTypes.document,
   string,
-) => DomTypes.htmlCollection<DomTypes.element> = "getElementsByClassName"
+) => DomTypes.htmlCollection<DOM_.element> = "getElementsByClassName"
 
 /**
 Creates an instance of the element for the specified tag.
@@ -155,7 +155,7 @@ Creates an instance of the element for the specified tag.
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Document/createElement)
 */
 @send
-external createElement: (DomTypes.document, string, ~options: string=?) => DomTypes.element =
+external createElement: (DomTypes.document, string, ~options: string=?) => DOM_.element =
   "createElement"
 
 /**
@@ -168,7 +168,7 @@ external createElement2: (
   DomTypes.document,
   ~localName: string,
   ~options: DomTypes.elementCreationOptions=?,
-) => DomTypes.element = "createElement"
+) => DOM_.element = "createElement"
 
 /**
 Returns an element with namespace namespace. Its namespace prefix will be everything before ":" (U+003E) in qualifiedName or null. Its local name will be everything after ":" (U+003E) in qualifiedName or qualifiedName.
@@ -192,7 +192,7 @@ external createElementNS: (
   ~namespace: string,
   ~qualifiedName: string,
   ~options: string=?,
-) => DomTypes.element = "createElementNS"
+) => DOM_.element = "createElementNS"
 
 /**
 Returns an element with namespace namespace. Its namespace prefix will be everything before ":" (U+003E) in qualifiedName or null. Its local name will be everything after ":" (U+003E) in qualifiedName or qualifiedName.
@@ -216,7 +216,7 @@ external createElementNS2: (
   ~namespace: string,
   ~qualifiedName: string,
   ~options: DomTypes.elementCreationOptions=?,
-) => DomTypes.element = "createElementNS"
+) => DOM_.element = "createElementNS"
 
 /**
 Creates a new document.

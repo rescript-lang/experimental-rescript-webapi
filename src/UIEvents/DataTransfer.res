@@ -11,7 +11,7 @@ Uses the given element to update the drag feedback, replacing any previously spe
 @send
 external setDragImage: (
   UiEventsTypes.dataTransfer,
-  ~image: DomTypes.element,
+  ~image: DOM_.element,
   ~x: int,
   ~y: int,
 ) => unit = "setDragImage"
