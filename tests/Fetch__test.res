@@ -26,7 +26,7 @@ let response3 = await Fetch.fetchWithRequest(
   },
 )
 
-let registrationResult = await Base.window
+let registrationResult = await DOM_.window
 ->Window.navigator
 ->Navigator.serviceWorker
 ->ServiceWorkerContainer.register("/sw.js")

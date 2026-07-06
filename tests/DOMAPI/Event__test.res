@@ -19,10 +19,10 @@ let handleClick = (event: Event.t) => {
 
 let target: EventTarget.t = {}
 
-let fn = (target: Event.eventTarget) =>
+let fn = (target: DOM_.eventTarget) =>
   target->EventTarget.addEventListener(Click, () => Console.log("Click 1"))
 
 let x = fn(target)
 
 // Testing out global event listeners
-Base.window->Window.addEventListener(Click, () => Console.log("Click 2"))
+DOM_.window->Window.addEventListener(Click, () => Console.log("Click 2"))

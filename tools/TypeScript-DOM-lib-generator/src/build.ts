@@ -215,33 +215,33 @@ async function emitDom() {
         webidl.interfaces!.interface[partial.name] ||
         webidl.mixins!.mixin[partial.name];
       if (base) {
-        if (base.exposed) resolveExposure(partial, base.exposed);
-        merge(base.constants, partial.constants, true);
-        merge(base.methods, partial.methods, true);
-        merge(base.properties, partial.properties, true);
+        if (DOM_.exposed) resolveExposure(partial, DOM_.exposed);
+        merge(DOM_.constants, partial.constants, true);
+        merge(DOM_.methods, partial.methods, true);
+        merge(DOM_.properties, partial.properties, true);
       }
     }
     for (const partial of w.partialMixins) {
       const base = webidl.mixins!.mixin[partial.name];
       if (base) {
-        if (base.exposed) resolveExposure(partial, base.exposed);
-        merge(base.constants, partial.constants, true);
-        merge(base.methods, partial.methods, true);
-        merge(base.properties, partial.properties, true);
+        if (DOM_.exposed) resolveExposure(partial, DOM_.exposed);
+        merge(DOM_.constants, partial.constants, true);
+        merge(DOM_.methods, partial.methods, true);
+        merge(DOM_.properties, partial.properties, true);
       }
     }
     for (const partial of w.partialDictionaries) {
       const base = webidl.dictionaries!.dictionary[partial.name];
       if (base) {
-        merge(base.members, partial.members, true);
+        merge(DOM_.members, partial.members, true);
       }
     }
     for (const partial of w.partialNamespaces) {
       const base = webidl.namespaces?.find((n) => n.name === partial.name);
       if (base) {
-        if (base.exposed) resolveExposure(partial, base.exposed);
-        merge(base.methods, partial.methods, true);
-        merge(base.properties, partial.properties, true);
+        if (DOM_.exposed) resolveExposure(partial, DOM_.exposed);
+        merge(DOM_.methods, partial.methods, true);
+        merge(DOM_.properties, partial.properties, true);
       }
     }
     for (const include of w.includes) {

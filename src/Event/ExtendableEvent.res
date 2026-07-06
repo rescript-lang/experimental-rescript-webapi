@@ -1,12 +1,10 @@
-type t = EventTypes.extendableEvent = private {...EventTypes.extendableEvent}
+type t = DOM_.extendableEvent = private {...DOM_.extendableEvent}
 
 module Impl = (
   T: {
     type t
   },
 ) => {
-  external asExtendableEvent: T.t => t = "%identity"
-
   include Event.Impl({type t = T.t})
 
   @send

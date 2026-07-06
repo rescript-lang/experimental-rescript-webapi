@@ -25,7 +25,7 @@ and add `@rescript/webapi` to your `rescript.json`:
 ## Usage
 
 ```rescript
-let location = WebAPI.Base.window->WebAPI.Window.location
+let location = WebAPI.DOM_.window->WebAPI.Window.location
 let href = location.href
 location->WebAPI.Location.reload
 ```

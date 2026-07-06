@@ -28,24 +28,24 @@ In the following code snippet, we make a request to open a database, and include
 type idbFactory = private {}
 
 /**
-This WebApiIndexedDB API interface provides a connection to a database; you can use an IDBDatabase object to open a transaction on your database then create, manipulate, and delete objects (data) in that database. The interface provides the only way to get and manage versions of the database.
+This WebApiIndexedDB API interface provides a connection to a database; you can use an IDBDatabase object to open a transaction on your database then create, manipulate, and delete objects (data) in that dataDOM_. The interface provides the only way to get and manage versions of the dataDOM_.
 [See IDBDatabase on MDN](https://developer.mozilla.org/docs/Web/API/IDBDatabase)
 */
 @editor.completeFrom(IDBDatabase)
 type idbDatabase = private {
   ...EventTarget.t,
   /**
-    Returns the name of the database.
+    Returns the name of the dataDOM_.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/IDBDatabase/name)
     */
   name: string,
   /**
-    Returns the version of the database.
+    Returns the version of the dataDOM_.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/IDBDatabase/version)
     */
   version: int,
   /**
-    Returns a list of the names of object stores in the database.
+    Returns a list of the names of object stores in the dataDOM_.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/IDBDatabase/objectStoreNames)
     */
   objectStoreNames: DOM.domStringList,
@@ -58,7 +58,7 @@ type idbDatabase = private {
 type idbTransaction = private {
   ...EventTarget.t,
   /**
-    Returns a list of the names of object stores in the transaction's scope. For an upgrade transaction this is all object stores in the database.
+    Returns a list of the names of object stores in the transaction's scope. For an upgrade transaction this is all object stores in the dataDOM_.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/IDBTransaction/objectStoreNames)
     */
   objectStoreNames: DOM.domStringList,
@@ -159,7 +159,7 @@ type idbObjectStore = {
 }
 
 /**
-IDBIndex interface of the WebApiIndexedDB API provides asynchronous access to an index in a database. An index is a kind of object store for looking up records in another object store, called the referenced object store. You use this interface to retrieve data.
+IDBIndex interface of the WebApiIndexedDB API provides asynchronous access to an index in a dataDOM_. An index is a kind of object store for looking up records in another object store, called the referenced object store. You use this interface to retrieve data.
 [See IDBIndex on MDN](https://developer.mozilla.org/docs/Web/API/IDBIndex)
 TODO: mark as private once mutating fields of private records is allowed
 */

@@ -349,7 +349,7 @@ type barProp = {
 */
 @editor.completeFrom(DOM.ScreenOrientation)
 type screenOrientation = private {
-  ...BaseEvent.eventTarget,
+  ...DOM_.eventTarget,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/ScreenOrientation/type)
     */
@@ -2310,7 +2310,7 @@ TODO: mark as private once mutating fields of private records is allowed
 */
 @editor.completeFrom(DOM.Node)
 type rec node = {
-  ...BaseEvent.eventTarget,
+  ...DOM_.eventTarget,
   /**
     Returns the type of node.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/nodeType)
@@ -6972,7 +6972,7 @@ Stores information on a media query applied to a document, and handles sending n
 */
 @editor.completeFrom(DOM.MediaQueryList)
 type mediaQueryList = private {
-  ...BaseEvent.eventTarget,
+  ...DOM_.eventTarget,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/MediaQueryList/media)
     */
@@ -7045,7 +7045,7 @@ type timeRanges = private {
 */
 @editor.completeFrom(DOM.TextTrackList)
 type textTrackList = private {
-  ...BaseEvent.eventTarget,
+  ...DOM_.eventTarget,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/TextTrackList/length)
     */

@@ -80,19 +80,49 @@ type eventInit = {
 The ExtendableEvent interface extends the lifetime of the install and activate events dispatched on the global scope as part of the service worker lifecycle.
 [See ExtendableEvent on MDN](https://developer.mozilla.org/docs/Web/API/ExtendableEvent)
  */
+@editor.completeFrom(ExtendableEvent)
 type extendableEvent = private {
   ...event,
 }
 
-type abortSignal = private {}
+/**
+A controller object that allows you to abort one or more WebApiDOM requests as and when desired.
+[See AbortController on MDN](https://developer.mozilla.org/docs/Web/API/AbortController)
+*/
+@editor.completeFrom(AbortController)
+type rec abortController = private {
+  /**
+    Returns the AbortSignal object associated with this object.
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/AbortController/signal)
+    */
+  signal: abortSignal,
+}
+/**
+A signal object that allows you to communicate with a WebApiDOM request (such as a WebApiFetch) and abort it if required via an AbortController object.
+[See AbortSignal on MDN](https://developer.mozilla.org/docs/Web/API/AbortSignal)
+*/
+and abortSignal = private {
+  ...eventTarget,
+  /**
+    Returns true if this AbortSignal's AbortController has signaled to abort, and false otherwise.
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/AbortSignal/aborted)
+    */
+  aborted: bool,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/AbortSignal/reason)
+    */
+  reason: JSON.t,
+}
 
-type eventListener<'event> = 'event => unit
+module EventListener = {
+  type t<'event> = 'event => unit
 
-type eventListenerOptions = {mutable capture?: bool}
+  type options = {mutable capture?: bool}
 
-type addEventListenerOptions = {
-  ...eventListenerOptions,
-  mutable passive?: bool,
-  mutable once?: bool,
-  mutable signal?: abortSignal,
+  type addEventListenerOptions = {
+    ...options,
+    mutable passive?: bool,
+    mutable once?: bool,
+    mutable signal?: abortSignal,
+  }
 }

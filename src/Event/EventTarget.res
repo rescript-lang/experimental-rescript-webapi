@@ -1,7 +1,7 @@
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/EventTarget)
 */
-type t = Base.eventTarget = private {...Base.eventTarget}
+type t = DOM_.eventTarget = private {...DOM_.eventTarget}
 
 @new
 external make: unit => t = "EventTarget"
@@ -31,8 +31,8 @@ The event listener is appended to target's event listener list and is not append
   external addEventListener: (
     T.t,
     EventType.t,
-    Event.eventListener<'event>,
-    ~options: Event.addEventListenerOptions=?,
+    DOM_.EventListener.t<'event>,
+    ~options: DOM_.EventListener.addEventListenerOptions=?,
   ) => unit = "addEventListener"
 
   /**
@@ -55,7 +55,7 @@ The event listener is appended to target's event listener list and is not append
   external addEventListenerWithCapture: (
     T.t,
     EventType.t,
-    Event.eventListener<'event>,
+    DOM_.EventListener.t<'event>,
     @as(json`true`) _,
   ) => unit = "addEventListener"
 
@@ -67,8 +67,8 @@ Removes the event listener in target's event listener list with the same type, c
   external removeEventListener: (
     T.t,
     EventType.t,
-    Event.eventListener<'event>,
-    ~options: Event.eventListenerOptions=?,
+    DOM_.EventListener.t<'event>,
+    ~options: DOM_.EventListener.options=?,
   ) => unit = "removeEventListener"
 
   /**
@@ -79,7 +79,7 @@ Removes the event listener in target's event listener list with the same type, c
   external removeEventListenerUseCapture: (
     T.t,
     EventType.t,
-    Event.eventListener<'event>,
+    DOM_.EventListener.t<'event>,
     @as(json`true`) _,
   ) => unit = "removeEventListener"
 

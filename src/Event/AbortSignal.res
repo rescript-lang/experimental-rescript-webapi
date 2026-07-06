@@ -1,4 +1,4 @@
-type t = EventTypes.abortSignal = private {...EventTypes.abortSignal}
+type t = DOM_.abortSignal = private {...DOM_.abortSignal}
 
 include EventTarget.Impl({type t = t})
 

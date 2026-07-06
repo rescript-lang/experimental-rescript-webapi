@@ -96,7 +96,7 @@ test("moves legacy sources into src/<Feature>, renames duplicate leaves, and rem
   );
   assert.equal(readFileSync(path.join(root, "src", "URL", "URLSearchParams.res"), "utf8"), "type t");
   assert.ok(!existsSync(path.join(root, "src", "DOM", "DOM.res")));
-  assert.ok(!existsSync(path.join(root, "src", "Base", "Base.res")));
+  assert.ok(!existsSync(path.join(root, "src", "Base", "DOM_.res")));
   assert.equal(readFileSync(path.join(root, "src", "Base", "DOM.res"), "utf8"), "type dom = unit");
   assert.ok(!existsSync(path.join(root, "packages", "DOM", "rescript.json")));
   assert.ok(!existsSync(path.join(root, "packages", "DOM", "package.json")));

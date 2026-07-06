@@ -1,7 +1,7 @@
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/AbortController)
 */
-type t = EventTypes.abortController = private {...EventTypes.abortController}
+type t = DOM_.abortController = private {...DOM_.abortController}
 
 @new
 external make: unit => t = "AbortController"
