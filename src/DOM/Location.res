@@ -92,3 +92,24 @@ Reloads the current page.
 */
 @send
 external reload: t => unit = "reload"
+
+/**
+The `location` object from `window`.
+[See Location on MDN](https://developer.mozilla.org/docs/Web/API/Location)
+**/
+@scope("window")
+external fromWindow: t = "location"
+
+/**
+The `location` object from `document`.
+[See Location on MDN](https://developer.mozilla.org/docs/Web/API/Location)
+**/
+@scope("document")
+external fromDocument: t = "location"
+
+/**
+The `location` object from `globalThis`.
+[See Location on MDN](https://developer.mozilla.org/docs/Web/API/Location)
+**/
+@scope("globalThis")
+external fromWGlobalThis: t = "location"
