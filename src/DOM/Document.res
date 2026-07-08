@@ -150,14 +150,14 @@ external getElementsByClassName: (DOM.document, string) => DOM.htmlCollection<DO
   "getElementsByClassName"
 
 type elementCreationOptions = {mutable is?: string}
-  
+
 /**
 Creates an instance of the element for the specified tag.
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Document/createElement)
 */
 @send
-external createElement: (DOM.document, string,
-~options: elementCreationOptions=?) => DOM.element = "createElement"
+external createElement: (DOM.document, string, ~options: elementCreationOptions=?) => DOM.element =
+  "createElement"
 
 /**
 Returns an element with namespace namespace. Its namespace prefix will be everything before ":" (U+003E) in qualifiedName or null. Its local name will be everything after ":" (U+003E) in qualifiedName or qualifiedName.

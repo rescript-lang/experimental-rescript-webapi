@@ -9,16 +9,16 @@ type animationReplaceState =
   | @as("persisted") Persisted
   | @as("removed") Removed
 
-  /**
+/**
   [See AnimationTimeline on MDN](https://developer.mozilla.org/docs/Web/API/AnimationTimeline)
   */
-  type animationTimeline = private {
-    /**
+type animationTimeline = private {
+  /**
       [Read more on MDN](https://developer.mozilla.org/docs/Web/API/AnimationTimeline/currentTime)
       */
-    currentTime: Null.t<float>,
-  }
-  
+  currentTime: Null.t<float>,
+}
+
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Animation)
 */
@@ -74,10 +74,8 @@ type rec t = {
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Animation)
 */
 @new
-external make: (
-  ~effect: AnimationEffect.t=?,
-  ~timeline: DomTypes.animationTimeline=?,
-) => t = "Animation"
+external make: (~effect: AnimationEffect.t=?, ~timeline: DomTypes.animationTimeline=?) => t =
+  "Animation"
 
 include EventTarget.Impl({type t = t})
 

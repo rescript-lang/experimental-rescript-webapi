@@ -5,7 +5,6 @@ This interface is a compiled XPath expression that can be evaluated on a documen
 @editor.completeFrom(XPathExpression)
 type t = private {}
 
-
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/XPathExpression/evaluate)
 */
