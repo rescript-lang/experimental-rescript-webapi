@@ -11,7 +11,7 @@ external self: DomTypes.window = "self"
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/document)
 */
-external document: DomTypes.document = "document"
+external document: DOM.document = "document"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/name)

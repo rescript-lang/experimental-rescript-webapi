@@ -21,7 +21,7 @@ external self: t => t = "self"
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/document)
     */
 @get
-external document: t => DomTypes.document = "document"
+external document: t => DOM.document = "document"
 
 /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/name)

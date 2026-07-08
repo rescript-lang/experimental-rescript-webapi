@@ -99,17 +99,6 @@ type canPlayTypeResult =
   | @as("maybe") Maybe
   | @as("probably") Probably
 
-type animationPlayState =
-  | @as("finished") Finished
-  | @as("idle") Idle
-  | @as("paused") Paused
-  | @as("running") Running
-
-type animationReplaceState =
-  | @as("active") Active
-  | @as("persisted") Persisted
-  | @as("removed") Removed
-
 type fillMode =
   | @as("auto") Auto
   | @as("backwards") Backwards
@@ -462,26 +451,13 @@ type renderingContext = unknown
 type offscreenRenderingContext = unknown
 
 /**
-[See AnimationTimeline on MDN](https://developer.mozilla.org/docs/Web/API/AnimationTimeline)
-*/
-@editor.completeFrom(Animation)
-type rec animationTimeline = private {
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/AnimationTimeline/currentTime)
-    */
-  currentTime: Null.t<float>,
-}
-
-/**
 [See DocumentTimeline on MDN](https://developer.mozilla.org/docs/Web/API/DocumentTimeline)
 */
 @editor.completeFrom(DocumentTimeline) and documentTimeline = private {
-  // Base properties from AnimationTimeline
   /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/AnimationTimeline/currentTime)
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/DocumentTimeline/currentTime)
     */
-  currentTime: Null.t<float>,
-  // End base properties from AnimationTimeline
+    currentTime: Null.t<float>,
 }
 
 /**
@@ -7607,3 +7583,4 @@ Can be set, to change the selection.
     */
   mutable selectedIndex: int,
 }
+
