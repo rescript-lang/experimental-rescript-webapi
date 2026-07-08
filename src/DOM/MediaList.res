@@ -1,17 +1,29 @@
+@editor.completeFrom(MediaList)
+type t = {
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/MediaList/mediaText)
+    */
+  mutable mediaText: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/MediaList/length)
+    */
+  length: int,
+}
+
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/MediaList/item)
 */
 @send
-external item: (DOM.mediaList, int) => string = "item"
+external item: (t, int) => string = "item"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/MediaList/appendMedium)
 */
 @send
-external appendMedium: (DOM.mediaList, string) => unit = "appendMedium"
+external appendMedium: (t, string) => unit = "appendMedium"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/MediaList/deleteMedium)
 */
 @send
-external deleteMedium: (DOM.mediaList, string) => unit = "deleteMedium"
+external deleteMedium: (t, string) => unit = "deleteMedium"

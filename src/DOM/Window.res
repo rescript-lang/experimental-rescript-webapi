@@ -461,7 +461,7 @@ external postMessageWithOptions: (
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/matchMedia)
 */
 @send
-external matchMedia: (t, string) => DOM.mediaQueryList = "matchMedia"
+external matchMedia: (t, string) => MediaQueryList.t = "matchMedia"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/moveTo)
@@ -531,7 +531,7 @@ external getComputedStyle: (
   t,
   ~elt: DOMTree.element,
   ~pseudoElt: string=?,
-) => DOM.cssStyleDeclaration = "getComputedStyle"
+) => CSSStyleDeclaration.t = "getComputedStyle"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/requestIdleCallback)

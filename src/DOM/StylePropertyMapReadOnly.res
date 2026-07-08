@@ -1,11 +1,22 @@
 /**
+[See StylePropertyMapReadOnly on MDN](https://developer.mozilla.org/docs/Web/API/StylePropertyMapReadOnly)
+*/
+@editor.completeFrom(StylePropertyMapReadOnly)
+type t = private {
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/StylePropertyMapReadOnly/size)
+    */
+  size: int,
+}
+
+/**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/StylePropertyMapReadOnly/getAll)
 */
 @send
-external getAll: (DOM.stylePropertyMapReadOnly, string) => array<DOM.cssStyleValue> = "getAll"
+external getAll: (t, string) => array<CSSStyleValue.t> = "getAll"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/StylePropertyMapReadOnly/has)
 */
 @send
-external has: (DOM.stylePropertyMapReadOnly, string) => bool = "has"
+external has: (t, string) => bool = "has"

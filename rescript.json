@@ -78,7 +78,7 @@
         "AnimationEffect",
         "CSSRuleList",
         "CSSStyleDeclaration",
-        "CSSStyleSheet",
+        "StyleSheet",
         "CSSStyleValue",
         "CaretPosition",
         "CharacterData",
