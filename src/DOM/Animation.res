@@ -136,7 +136,7 @@ type iterationCompositeOperation =
   | @as("replace") Replace
 
 type keyframeEffectOptions = {
-  ...DomTypes.effectTiming,
+  ...AnimationEffect.effectTiming,
   mutable composite?: compositeOperation,
   mutable pseudoElement?: Null.t<string>,
   mutable iterationComposite?: iterationCompositeOperation,
