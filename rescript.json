@@ -8,6 +8,7 @@
     "WebAPI.File": ["WebAPI.Event", "File"],
     "WebAPI.URL": ["WebAPI.DOM", "URL"],
     "WebAPI.Fetch": ["WebAPI.Event", "WebAPI.File", "WebAPI.URL", "Fetch"],
+    "WebAPI.CSSFontLoading": ["WebAPI.Event", "CSSFontLoading"],
     "WebAPI.Crypto": ["WebAPI.DOM", "Crypto"],
     "WebAPI.Performance": ["WebAPI.Event", "Performance"],
     "WebAPI.ViewTransitions": ["WebAPI.Event", "ViewTransitions"]
@@ -33,9 +34,9 @@
       ]
     },
     {
-      "dir": "src/CSSFontLoading",
+      "dir": "src/css-font-loading",
       "subdirs": true,
-      "feature": "WebAPI.CSSFontLoading",
+      "feature": "CSSFontLoading",
       "public": [
         "FontFace",
         "FontFaceSet"
