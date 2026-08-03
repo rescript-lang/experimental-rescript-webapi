@@ -1,5 +1,21 @@
 /**
-Inserts element before the DomTypes.node given by before.
+HTMLOptionsCollection is an interface representing a collection of HTML option elements (in document order) and offers methods and properties for traversing the list as well as optionally altering its items. This type is returned solely by the "options" property of select.
+[See HTMLOptionsCollection on MDN](https://developer.mozilla.org/docs/Web/API/HTMLOptionsCollection)
+TODO: mark as private once mutating fields of private records is allowed
+*/
+type t = {
+  ...HTMLCollection.t<HTMLOptionElement.t>,
+  /**
+    Returns the index of the first selected item, if any, or -1 if there is no selected item.
+
+Can be set, to change the selection.
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLOptionsCollection/selectedIndex)
+    */
+  mutable selectedIndex: int,
+}
+
+/**
+Inserts element before the DOMTree.node given by before.
 
 The before argument can be a number, in which case element is inserted before the item with that number, or an element from the collection, in which case element is inserted before that element.
 
@@ -9,12 +25,11 @@ This method will throw a "HierarchyRequestError" DOMException if element is an a
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLOptionsCollection/add)
 */
 @send
-external add: (DomTypes.htmlOptionsCollection, ~element: unknown, ~before: unknown=?) => unit =
-  "add"
+external add: (t, ~element: unknown, ~before: unknown=?) => unit = "add"
 
 /**
 Removes the item with index index from the collection.
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLOptionsCollection/remove)
 */
 @send
-external remove: (DomTypes.htmlOptionsCollection, int) => unit = "remove"
+external remove: (t, int) => unit = "remove"
