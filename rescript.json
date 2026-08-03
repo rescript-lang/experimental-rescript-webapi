@@ -1,18 +1,19 @@
 {
   "name": "@rescript/webapi",
   "namespace": "WebAPI",
+  "features": {
+    "WebAPI.DOM": ["DOM", "EventType"],
+    "WebAPI.Event": ["WebAPI.DOM", "Event"],
+    "WebAPI.File": ["WebAPI.Event", "File"],
+    "WebAPI.URL": ["WebAPI.DOM", "URL"],
+    "WebAPI.Fetch": ["WebAPI.Event", "WebAPI.File", "WebAPI.URL", "Fetch"]
+  },
   "sources": [
     {
       "dir": "src/Base",
       "subdirs": true,
-      "feature": "WebAPI.Base",
+      "feature": "DOM",
       "public": [
-        "ArrayBufferTypedArrayOrDataView",
-        "BaseCSSFontLoading",
-        "BaseEncryptedMediaExtensions",
-        "BaseEvent",
-        "BaseFile",
-        "BaseFileAndDirectoryEntries",
         "DOM"
       ]
     },
@@ -209,8 +210,23 @@
     },
     {
       "dir": "src/Event",
+      "files": [
+        "EventType.res"
+      ],
+      "feature": "EventType",
+      "public": [
+        "EventType"
+      ]
+    },
+    {
+      "dir": "src/Event",
       "subdirs": true,
-      "feature": "WebAPI.Event",
+      "files": {
+        "excludes": [
+          "EventType.res"
+        ]
+      },
+      "feature": "Event",
       "public": [
         "AbortController",
         "AbortSignal",
@@ -222,7 +238,7 @@
     {
       "dir": "src/Fetch",
       "subdirs": true,
-      "feature": "WebAPI.Fetch",
+      "feature": "Fetch",
       "public": [
         "BodyInit",
         "Fetch",
@@ -237,7 +253,7 @@
     {
       "dir": "src/File",
       "subdirs": true,
-      "feature": "WebAPI.File",
+      "feature": "File",
       "public": [
         "Blob",
         "File",
@@ -460,7 +476,7 @@
     {
       "dir": "src/URL",
       "subdirs": true,
-      "feature": "WebAPI.URL",
+      "feature": "URL",
       "public": [
         "URL",
         "URLSearchParams"

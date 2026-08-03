@@ -2,7 +2,7 @@
 
 type domStringList = DOM.domStringList
 type eventTarget = EventTypes.eventTarget
-type eventType = EventTypes.eventType
+type eventType = EventType.t
 type file = FileTypes.file
 type blob = FileTypes.blob
 type fileSystemEntry = FileAndDirectoryEntriesTypes.fileSystemEntry

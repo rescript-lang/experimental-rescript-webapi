@@ -30,7 +30,7 @@ The event listener is appended to target's event listener list and is not append
   @send
   external addEventListener: (
     T.t,
-    EventTypes.eventType,
+    EventType.t,
     EventTypes.eventListener<'event>,
     ~options: EventTypes.addEventListenerOptions=?,
   ) => unit = "addEventListener"
@@ -54,7 +54,7 @@ The event listener is appended to target's event listener list and is not append
   @send
   external addEventListenerWithCapture: (
     T.t,
-    EventTypes.eventType,
+    EventType.t,
     EventTypes.eventListener<'event>,
     @as(json`true`) _,
   ) => unit = "addEventListener"
@@ -66,7 +66,7 @@ Removes the event listener in target's event listener list with the same type, c
   @send
   external removeEventListener: (
     T.t,
-    EventTypes.eventType,
+    EventType.t,
     EventTypes.eventListener<'event>,
     ~options: EventTypes.eventListenerOptions=?,
   ) => unit = "removeEventListener"
@@ -78,7 +78,7 @@ Removes the event listener in target's event listener list with the same type, c
   @send
   external removeEventListenerUseCapture: (
     T.t,
-    EventTypes.eventType,
+    EventType.t,
     EventTypes.eventListener<'event>,
     @as(json`true`) _,
   ) => unit = "removeEventListener"

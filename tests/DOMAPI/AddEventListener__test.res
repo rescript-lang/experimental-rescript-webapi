@@ -3,7 +3,7 @@ let h2 = DomGlobal.document->Document.querySelector("h2")->Null.toOption
 
 switch (button, h2) {
 | (Some(button), Some(h2)) =>
-  button->Element.addEventListener(EventTypes.Click, (e: UiEventsTypes.mouseEvent) => {
+  button->Element.addEventListener(EventType.Click, (e: UiEventsTypes.mouseEvent) => {
     Console.log(`Button clicked, ${Int.toString(e.button)}`)
     switch h2.textContent {
     | Null => h2.textContent = Value("1")
