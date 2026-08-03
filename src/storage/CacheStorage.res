@@ -3,9 +3,9 @@
 */
 @send
 external match: (
-  WebWorkersTypes.cacheStorage,
+  CacheTypes.cacheStorage,
   ~request: FetchTypes.request,
-  ~options: WebWorkersTypes.multiCacheQueryOptions=?,
+  ~options: CacheTypes.multiCacheQueryOptions=?,
 ) => Nullable.t<FetchTypes.response> = "match"
 
 /**
@@ -13,31 +13,31 @@ external match: (
 */
 @send
 external match2: (
-  WebWorkersTypes.cacheStorage,
+  CacheTypes.cacheStorage,
   ~request: string,
-  ~options: WebWorkersTypes.multiCacheQueryOptions=?,
+  ~options: CacheTypes.multiCacheQueryOptions=?,
 ) => Nullable.t<FetchTypes.response> = "match"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CacheStorage/has)
 */
 @send
-external has: (WebWorkersTypes.cacheStorage, string) => promise<bool> = "has"
+external has: (CacheTypes.cacheStorage, string) => promise<bool> = "has"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CacheStorage/open)
 */
 @send
-external open_: (WebWorkersTypes.cacheStorage, string) => promise<WebWorkersTypes.cache> = "open"
+external open_: (CacheTypes.cacheStorage, string) => promise<CacheTypes.cache> = "open"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CacheStorage/delete)
 */
 @send
-external delete: (WebWorkersTypes.cacheStorage, string) => promise<bool> = "delete"
+external delete: (CacheTypes.cacheStorage, string) => promise<bool> = "delete"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CacheStorage/keys)
 */
 @send
-external keys: WebWorkersTypes.cacheStorage => promise<array<string>> = "keys"
+external keys: CacheTypes.cacheStorage => promise<array<string>> = "keys"

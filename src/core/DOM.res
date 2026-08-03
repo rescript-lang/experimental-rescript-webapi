@@ -167,8 +167,29 @@ type predefinedColorSpace =
   | @as("display-p3") DisplayP3
   | @as("srgb") Srgb
 
+/**
+A file-like object of immutable, raw data.
+[See Blob on MDN](https://developer.mozilla.org/docs/Web/API/Blob)
+*/
+type blob = private {
+  size: int,
+  @as("type")
+  type_: string,
+}
+
+/**
+Provides information about a file selected by or available to the user.
+[See File on MDN](https://developer.mozilla.org/docs/Web/API/File)
+*/
+type file = private {
+  ...blob,
+  name: string,
+  lastModified: int,
+  webkitRelativePath: string,
+}
+
 type shareData = {
-  mutable files?: array<BaseFile.file>,
+  mutable files?: array<file>,
   mutable title?: string,
   mutable text?: string,
   mutable url?: string,

@@ -212,7 +212,7 @@ external performance: PerformanceTypes.performance = "performance"
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/caches)
 */
-external caches: WebWorkersTypes.cacheStorage = "caches"
+external caches: CacheTypes.cacheStorage = "caches"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/sessionStorage)
