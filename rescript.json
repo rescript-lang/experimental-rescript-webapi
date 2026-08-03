@@ -8,7 +8,8 @@
     "WebAPI.File": ["WebAPI.Event", "File"],
     "WebAPI.URL": ["WebAPI.DOM", "URL"],
     "WebAPI.Fetch": ["WebAPI.Event", "WebAPI.File", "WebAPI.URL", "Fetch"],
-    "WebAPI.Performance": ["WebAPI.Event", "Performance"]
+    "WebAPI.Performance": ["WebAPI.Event", "Performance"],
+    "WebAPI.ViewTransitions": ["WebAPI.Event", "ViewTransitions"]
   },
   "sources": [
     {
@@ -481,9 +482,9 @@
       ]
     },
     {
-      "dir": "src/ViewTransitions",
+      "dir": "src/view-transitions",
       "subdirs": true,
-      "feature": "WebAPI.ViewTransitions",
+      "feature": "ViewTransitions",
       "public": [
         "ViewTransition"
       ]
