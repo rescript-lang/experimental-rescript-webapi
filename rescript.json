@@ -176,8 +176,10 @@
         "HTMLCanvasElement",
         "ImageBitmap",
         "ImageBitmapRenderingContext",
+        "ImageData",
         "OffscreenCanvas",
         "Path2D",
+        "VideoColorSpace",
         "VideoFrame"
       ]
     },
@@ -286,10 +288,8 @@
         "CustomElementRegistry",
         "Document",
         "IdleDeadline",
-        "ImageData",
         "Location",
         "ScreenOrientation",
-        "VideoColorSpace",
         "Window",
         "XPathExpression",
         "XPathResult"
