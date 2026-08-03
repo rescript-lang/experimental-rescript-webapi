@@ -122,7 +122,7 @@ TODO: mark as private once mutating fields of private records is allowed
 */
 @editor.completeFrom(OffscreenCanvas)
 type offscreenCanvas = {
-  ...EventTypes.eventTarget,
+  ...DOM.eventTarget,
   /**
     These attributes return the dimensions of the OffscreenCanvas object's bitmap.
 

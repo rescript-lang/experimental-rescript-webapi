@@ -80,7 +80,7 @@ The Web Audio API events that occur when a ScriptProcessorNode input buffer is r
 */
 @editor.completeFrom(AudioProcessingEvent)
 type audioProcessingEvent = private {
-  ...EventTypes.event,
+  ...DOM.event,
 }
 
 /**
@@ -89,7 +89,7 @@ The Web Audio API OfflineAudioCompletionEvent interface represents events that o
 */
 @editor.completeFrom(OfflineAudioCompletionEvent)
 type offlineAudioCompletionEvent = private {
-  ...EventTypes.event,
+  ...DOM.event,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/OfflineAudioCompletionEvent/renderedBuffer)
     */
@@ -109,7 +109,7 @@ TODO: mark as private once mutating fields of private records is allowed
 */
 @editor.completeFrom(AudioNode)
 type rec audioNode = {
-  ...EventTypes.eventTarget,
+  ...DOM.eventTarget,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/AudioNode/context)
     */
@@ -178,7 +178,7 @@ and audioDestinationNode = {
 [See BaseAudioContext on MDN](https://developer.mozilla.org/docs/Web/API/BaseAudioContext)
 */
 @editor.completeFrom(BaseAudioContext) and baseAudioContext = private {
-  ...EventTypes.eventTarget,
+  ...DOM.eventTarget,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/BaseAudioContext/destination)
     */
@@ -1136,14 +1136,14 @@ type audioBufferOptions = {
 }
 
 type audioProcessingEventInit = {
-  ...EventTypes.eventInit,
+  ...Event.eventInit,
   mutable playbackTime: float,
   mutable inputBuffer: audioBuffer,
   mutable outputBuffer: audioBuffer,
 }
 
 type offlineAudioCompletionEventInit = {
-  ...EventTypes.eventInit,
+  ...Event.eventInit,
   mutable renderedBuffer: audioBuffer,
 }
 
