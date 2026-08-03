@@ -16,6 +16,7 @@
       "DOMNodes"
     ],
     "WebAPI.HTML": ["WebAPI.DOMNodes", "WebAPI.File", "HTML"],
+    "WebAPI.Media": ["WebAPI.HTML", "Media"],
     "WebAPI.File": ["WebAPI.Event", "File"],
     "WebAPI.URL": ["WebAPI.DOM", "URL"],
     "WebAPI.Fetch": ["WebAPI.Event", "WebAPI.File", "WebAPI.URL", "Fetch"],
@@ -254,10 +255,6 @@
       "public": [
         "CustomElementRegistry",
         "Document",
-        "DomHTMLMediaElement",
-        "HTMLAudioElement",
-        "HTMLTrackElement",
-        "HTMLVideoElement",
         "IdleDeadline",
         "ImageData",
         "Location",
@@ -266,24 +263,10 @@
         "SVGGraphicsElement",
         "SVGLength",
         "ScreenOrientation",
-        "TextTrackList",
-        "TimeRanges",
         "VideoColorSpace",
         "Window",
         "XPathExpression",
         "XPathResult"
-      ]
-    },
-    {
-      "dir": "src/EncryptedMediaExtensions",
-      "subdirs": true,
-      "feature": "WebAPI.EncryptedMediaExtensions",
-      "public": [
-        "EncryptedMediaExtensionsHTMLMediaElement",
-        "MediaKeySession",
-        "MediaKeyStatusMap",
-        "MediaKeySystemAccess",
-        "MediaKeys"
       ]
     },
     {
@@ -378,31 +361,36 @@
       ]
     },
     {
-      "dir": "src/MediaCapabilities",
+      "dir": "src/media",
       "subdirs": true,
-      "feature": "WebAPI.MediaCapabilities",
+      "feature": "Media",
       "public": [
-        "MediaCapabilities"
-      ]
-    },
-    {
-      "dir": "src/MediaCaptureAndStreams",
-      "subdirs": true,
-      "feature": "WebAPI.MediaCaptureAndStreams",
-      "public": [
+        "DomHTMLMediaElement",
+        "EncryptedMediaExtensionsHTMLMediaElement",
+        "HTMLAudioElement",
+        "HTMLTrackElement",
+        "HTMLVideoElement",
+        "MediaCapabilities",
         "MediaDeviceInfo",
         "MediaDevices",
-        "MediaStream",
-        "MediaStreamTrack"
-      ]
-    },
-    {
-      "dir": "src/MediaSession",
-      "subdirs": true,
-      "feature": "WebAPI.MediaSession",
-      "public": [
+        "MediaError",
+        "MediaKeySession",
+        "MediaKeyStatusMap",
+        "MediaKeySystemAccess",
+        "MediaKeys",
         "MediaMetadata",
-        "MediaSession"
+        "MediaSession",
+        "MediaStream",
+        "MediaStreamTrack",
+        "PictureInPicture",
+        "RemotePlayback",
+        "SpeechSynthesis",
+        "SpeechSynthesisUtterance",
+        "TextTrack",
+        "TextTrackCueList",
+        "TextTrackList",
+        "TimeRanges",
+        "VideoPlaybackQuality"
       ]
     },
     {
@@ -429,22 +417,6 @@
       "feature": "WebAPI.Permissions",
       "public": [
         "Permissions"
-      ]
-    },
-    {
-      "dir": "src/PictureInPicture",
-      "subdirs": true,
-      "feature": "WebAPI.PictureInPicture",
-      "public": [
-        "PictureInPicture"
-      ]
-    },
-    {
-      "dir": "src/RemotePlayback",
-      "subdirs": true,
-      "feature": "WebAPI.RemotePlayback",
-      "public": [
-        "RemotePlayback"
       ]
     },
     {
@@ -571,30 +543,12 @@
       ]
     },
     {
-      "dir": "src/WebSpeech",
-      "subdirs": true,
-      "feature": "WebAPI.WebSpeech",
-      "public": [
-        "SpeechSynthesis",
-        "SpeechSynthesisUtterance"
-      ]
-    },
-    {
       "dir": "src/WebStorage",
       "subdirs": true,
       "feature": "WebAPI.WebStorage",
       "public": [
         "Storage",
         "StorageEvent"
-      ]
-    },
-    {
-      "dir": "src/WebVTT",
-      "subdirs": true,
-      "feature": "WebAPI.WebVTT",
-      "public": [
-        "TextTrack",
-        "TextTrackCueList"
       ]
     },
     {
