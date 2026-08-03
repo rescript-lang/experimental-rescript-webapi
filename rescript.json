@@ -471,7 +471,7 @@
       ]
     },
     {
-      "dir": "src/URL",
+      "dir": "src/url",
       "subdirs": true,
       "feature": "URL",
       "public": [
