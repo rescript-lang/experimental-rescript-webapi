@@ -115,7 +115,6 @@
         "DomHTMLMediaElement",
         "Element",
         "ElementInternals",
-        "FileList",
         "HTMLAnchorElement",
         "HTMLAreaElement",
         "HTMLAudioElement",
@@ -252,29 +251,23 @@
       ]
     },
     {
-      "dir": "src/File",
+      "dir": "src/file",
       "subdirs": true,
       "feature": "File",
       "public": [
         "Blob",
         "File",
+        "FileList",
+        "FileSystemDirectoryEntry",
         "FileSystemDirectoryHandle",
+        "FileSystemDirectoryReader",
+        "FileSystemEntry",
         "FileSystemFileHandle",
         "FileSystemHandle",
         "FileSystemWritableFileStream",
         "ReadableStream",
         "WritableStream",
         "WritableStreamDefaultController"
-      ]
-    },
-    {
-      "dir": "src/FileAndDirectoryEntries",
-      "subdirs": true,
-      "feature": "WebAPI.FileAndDirectoryEntries",
-      "public": [
-        "FileSystemDirectoryEntry",
-        "FileSystemDirectoryReader",
-        "FileSystemEntry"
       ]
     },
     {
