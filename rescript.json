@@ -7,6 +7,7 @@
     "WebAPI.DOMPlatform": ["WebAPI.Event", "DOMPlatform"],
     "WebAPI.Animation": ["WebAPI.Event", "Animation"],
     "WebAPI.Geometry": ["WebAPI.DOM", "Geometry"],
+    "WebAPI.CSSOM": ["WebAPI.Event", "CSSOM"],
     "WebAPI.File": ["WebAPI.Event", "File"],
     "WebAPI.URL": ["WebAPI.DOM", "URL"],
     "WebAPI.Fetch": ["WebAPI.Event", "WebAPI.File", "WebAPI.URL", "Fetch"],
@@ -45,6 +46,22 @@
         "Animation",
         "AnimationEffect",
         "DocumentTimeline"
+      ]
+    },
+    {
+      "dir": "src/cssom",
+      "subdirs": true,
+      "feature": "CSSOM",
+      "public": [
+        "CSSRuleList",
+        "CSSStyleDeclaration",
+        "CSSStyleValue",
+        "MediaList",
+        "MediaQueryList",
+        "StylePropertyMap",
+        "StylePropertyMapReadOnly",
+        "StyleSheet",
+        "StyleSheetList"
       ]
     },
     {
@@ -127,10 +144,6 @@
       "subdirs": true,
       "feature": "WebAPI.DOM",
       "public": [
-        "CSSRuleList",
-        "CSSStyleDeclaration",
-        "StyleSheet",
-        "CSSStyleValue",
         "CaretPosition",
         "CharacterData",
         "Comment",
@@ -210,8 +223,6 @@
         "IdleDeadline",
         "ImageData",
         "Location",
-        "MediaList",
-        "MediaQueryList",
         "NamedNodeMap",
         "Navigator",
         "Node",
@@ -225,9 +236,6 @@
         "ScreenOrientation",
         "Selection",
         "ShadowRoot",
-        "StylePropertyMap",
-        "StylePropertyMapReadOnly",
-        "StyleSheetList",
         "Text",
         "TextTrackList",
         "TimeRanges",
