@@ -25,6 +25,13 @@
       "Observers"
     ],
     "WebAPI.UIEvents": ["WebAPI.DOMNodes", "WebAPI.File", "UIEvents"],
+    "WebAPI.Canvas": [
+      "WebAPI.Geometry",
+      "WebAPI.HTML",
+      "WebAPI.Media",
+      "WebAPI.SVG",
+      "Canvas"
+    ],
     "WebAPI.File": ["WebAPI.Event", "File"],
     "WebAPI.URL": ["WebAPI.DOM", "URL"],
     "WebAPI.Fetch": ["WebAPI.Event", "WebAPI.File", "WebAPI.URL", "Fetch"],
@@ -147,9 +154,9 @@
       ]
     },
     {
-      "dir": "src/Canvas",
+      "dir": "src/canvas",
       "subdirs": true,
-      "feature": "WebAPI.Canvas",
+      "feature": "Canvas",
       "public": [
         "Canvas",
         "CanvasGradient",
