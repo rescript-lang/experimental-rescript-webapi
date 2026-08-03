@@ -25,4 +25,4 @@ let fn = (target: DOM.eventTarget) =>
 let x = fn(target)
 
 // Testing out global event listeners
-Window.current->Window.addEventListener(Click, () => Console.log("Click 2"))
+DOM.window->Window.addEventListener(Click, () => Console.log("Click 2"))

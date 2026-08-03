@@ -1,4 +1,5 @@
-let location = DomGlobal.document.location
+let window = DOM.window
+let location = window->Window.location
 
 // Access properties using `.`
 let href = location.href

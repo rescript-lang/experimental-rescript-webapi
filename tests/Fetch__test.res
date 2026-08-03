@@ -26,7 +26,7 @@ let response3 = await Fetch.fetchWithRequest(
   },
 )
 
-Window.current->Window.removeEventListener(
+DOM.window->Window.removeEventListener(
   EventType.Mousedown,
   MouseEvent.preventDefault,
   ~options={capture: false},
