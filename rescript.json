@@ -32,6 +32,7 @@
       "WebAPI.SVG",
       "Canvas"
     ],
+    "WebAPI.Storage": ["WebAPI.Fetch", "Storage"],
     "WebAPI.File": ["WebAPI.Event", "File"],
     "WebAPI.URL": ["WebAPI.DOM", "URL"],
     "WebAPI.Fetch": ["WebAPI.Event", "WebAPI.File", "WebAPI.URL", "Fetch"],
@@ -362,15 +363,20 @@
       ]
     },
     {
-      "dir": "src/IndexedDB",
+      "dir": "src/storage",
       "subdirs": true,
-      "feature": "WebAPI.IndexedDB",
+      "feature": "Storage",
       "public": [
+        "Cache",
+        "CacheStorage",
         "IDBDatabase",
         "IDBFactory",
         "IDBIndex",
         "IDBObjectStore",
-        "IDBTransaction"
+        "IDBTransaction",
+        "Storage",
+        "StorageEvent",
+        "StorageManager"
       ]
     },
     {
@@ -440,21 +446,12 @@
       "subdirs": true,
       "feature": "WebAPI.ServiceWorker",
       "public": [
-        "Cache",
         "Clients",
         "NavigationPreloadManager",
         "ServiceWorker",
         "ServiceWorkerContainer",
         "ServiceWorkerRegistration",
         "ServiceWorkerScope"
-      ]
-    },
-    {
-      "dir": "src/Storage",
-      "subdirs": true,
-      "feature": "WebAPI.Storage",
-      "public": [
-        "StorageManager"
       ]
     },
     {
@@ -551,20 +548,10 @@
       ]
     },
     {
-      "dir": "src/WebStorage",
-      "subdirs": true,
-      "feature": "WebAPI.WebStorage",
-      "public": [
-        "Storage",
-        "StorageEvent"
-      ]
-    },
-    {
       "dir": "src/WebWorkers",
       "subdirs": true,
       "feature": "WebAPI.WebWorkers",
       "public": [
-        "CacheStorage",
         "SharedWorker",
         "SharedWorkerScope",
         "Worker"
