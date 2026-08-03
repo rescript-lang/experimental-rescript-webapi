@@ -213,7 +213,7 @@
       ]
     },
     {
-      "dir": "src/Event",
+      "dir": "src/event",
       "subdirs": true,
       "feature": "Event",
       "public": [
