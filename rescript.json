@@ -19,6 +19,11 @@
     "WebAPI.Media": ["WebAPI.HTML", "Media"],
     "WebAPI.WebAudio": ["WebAPI.Media", "WebAPI.Messaging", "WebAudio"],
     "WebAPI.SVG": ["WebAPI.DOMNodes", "WebAPI.Geometry", "SVG"],
+    "WebAPI.Observers": [
+      "WebAPI.DOMNodes",
+      "WebAPI.Geometry",
+      "Observers"
+    ],
     "WebAPI.File": ["WebAPI.Event", "File"],
     "WebAPI.URL": ["WebAPI.DOM", "URL"],
     "WebAPI.Fetch": ["WebAPI.Event", "WebAPI.File", "WebAPI.URL", "Fetch"],
@@ -361,12 +366,14 @@
       ]
     },
     {
-      "dir": "src/IntersectionObserver",
+      "dir": "src/observers",
       "subdirs": true,
-      "feature": "WebAPI.IntersectionObserver",
+      "feature": "Observers",
       "public": [
         "IntersectionObserver",
-        "IntersectionObserverRoot"
+        "IntersectionObserverRoot",
+        "MutationObserver",
+        "ResizeObserver"
       ]
     },
     {
@@ -403,14 +410,6 @@
       ]
     },
     {
-      "dir": "src/MutationObserver",
-      "subdirs": true,
-      "feature": "WebAPI.MutationObserver",
-      "public": [
-        "MutationObserver"
-      ]
-    },
-    {
       "dir": "src/performance",
       "subdirs": true,
       "feature": "Performance",
@@ -426,14 +425,6 @@
       "feature": "WebAPI.Permissions",
       "public": [
         "Permissions"
-      ]
-    },
-    {
-      "dir": "src/ResizeObserver",
-      "subdirs": true,
-      "feature": "WebAPI.ResizeObserver",
-      "public": [
-        "ResizeObserver"
       ]
     },
     {

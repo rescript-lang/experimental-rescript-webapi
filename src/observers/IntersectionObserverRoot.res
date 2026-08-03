@@ -10,10 +10,12 @@ type decoded =
   | Document(DOM.document)
   | Null
 
+let isDocument = (_: 't): bool => %raw(`param instanceof Document`)
+
 let decode = (t: IntersectionObserverTypes.root): decoded => {
   if Element.isInstanceOf(t) {
     Element(t->toElement)
-  } else if Document.isInstanceOf(t) {
+  } else if isDocument(t) {
     Document(t->toDocument)
   } else {
     Null
