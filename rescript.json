@@ -24,6 +24,7 @@
       "WebAPI.Geometry",
       "Observers"
     ],
+    "WebAPI.UIEvents": ["WebAPI.DOMNodes", "WebAPI.File", "UIEvents"],
     "WebAPI.File": ["WebAPI.Event", "File"],
     "WebAPI.URL": ["WebAPI.DOM", "URL"],
     "WebAPI.Fetch": ["WebAPI.Event", "WebAPI.File", "WebAPI.URL", "Fetch"],
@@ -450,9 +451,9 @@
       ]
     },
     {
-      "dir": "src/UIEvents",
+      "dir": "src/ui-events",
       "subdirs": true,
-      "feature": "WebAPI.UIEvents",
+      "feature": "UIEvents",
       "public": [
         "CompositionEvent",
         "DataTransfer",
