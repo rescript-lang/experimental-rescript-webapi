@@ -145,7 +145,7 @@ type request = private {
     Returns the signal associated with request, which is an AbortSignal object indicating whether or not request has been aborted, and its abort event handler.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Request/signal)
     */
-  signal: EventTypes.abortSignal,
+  signal: DOM.abortSignal,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Request/body)
     */
@@ -267,7 +267,7 @@ type requestInit = {
   /**
     An AbortSignal to set request's signal.
     */
-  mutable signal?: Null.t<EventTypes.abortSignal>,
+  mutable signal?: Null.t<DOM.abortSignal>,
   mutable priority?: requestPriority,
   /**
     Can only be null. Used to disassociate request from any Window.
