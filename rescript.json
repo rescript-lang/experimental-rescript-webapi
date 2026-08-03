@@ -33,6 +33,7 @@
       "Canvas"
     ],
     "WebAPI.Storage": ["WebAPI.Fetch", "Storage"],
+    "WebAPI.Workers": ["WebAPI.Messaging", "WebAPI.Storage", "Workers"],
     "WebAPI.File": ["WebAPI.Event", "File"],
     "WebAPI.URL": ["WebAPI.DOM", "URL"],
     "WebAPI.Fetch": ["WebAPI.Event", "WebAPI.File", "WebAPI.URL", "Fetch"],
@@ -442,16 +443,19 @@
       ]
     },
     {
-      "dir": "src/ServiceWorker",
+      "dir": "src/workers",
       "subdirs": true,
-      "feature": "WebAPI.ServiceWorker",
+      "feature": "Workers",
       "public": [
         "Clients",
         "NavigationPreloadManager",
         "ServiceWorker",
         "ServiceWorkerContainer",
         "ServiceWorkerRegistration",
-        "ServiceWorkerScope"
+        "ServiceWorkerScope",
+        "SharedWorker",
+        "SharedWorkerScope",
+        "Worker"
       ]
     },
     {
@@ -545,16 +549,6 @@
       "public": [
         "Crypto",
         "SubtleCrypto"
-      ]
-    },
-    {
-      "dir": "src/WebWorkers",
-      "subdirs": true,
-      "feature": "WebAPI.WebWorkers",
-      "public": [
-        "SharedWorker",
-        "SharedWorkerScope",
-        "Worker"
       ]
     },
     {
