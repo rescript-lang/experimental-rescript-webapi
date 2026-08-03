@@ -7,10 +7,10 @@ include SVGElement.Impl({type t = SVGElement.svgGraphicsElement})
 external getBBox: (
   SVGElement.svgGraphicsElement,
   ~options: SVGElement.svgBoundingBoxOptions=?,
-) => DomTypes.domRect = "getBBox"
+) => DOM.domRect = "getBBox"
 
 @send
-external getCTM: SVGElement.svgGraphicsElement => DomTypes.domMatrix = "getCTM"
+external getCTM: SVGElement.svgGraphicsElement => DOM.domMatrix = "getCTM"
 
 @send
-external getScreenCTM: SVGElement.svgGraphicsElement => DomTypes.domMatrix = "getScreenCTM"
+external getScreenCTM: SVGElement.svgGraphicsElement => DOM.domMatrix = "getScreenCTM"

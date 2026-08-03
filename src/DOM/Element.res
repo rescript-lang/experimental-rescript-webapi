@@ -64,7 +64,7 @@ Creates a shadow root for element and returns it.
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/attachShadow)
 */
   @send
-  external attachShadow: (T.t, DomTypes.shadowRootInit) => DOMTree.shadowRoot = "attachShadow"
+  external attachShadow: (T.t, HTML.shadowRootInit) => DOMTree.shadowRoot = "attachShadow"
 
   /**
 Inserts nodes just before node, while replacing strings in nodes with equivalent Text nodes.
@@ -88,7 +88,7 @@ Throws a "HierarchyRequestError" DOMException if the constraints of the node tre
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/checkVisibility)
 */
   @send
-  external checkVisibility: (T.t, ~options: DomTypes.checkVisibilityOptions=?) => bool =
+  external checkVisibility: (T.t, ~options: DOM.checkVisibilityOptions=?) => bool =
     "checkVisibility"
 
   /**
@@ -108,8 +108,10 @@ Returns the first (starting at element) inclusive ancestor that matches selector
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/getAnimations)
 */
   @send
-  external getAnimations: (T.t, ~options: DomTypes.getAnimationsOptions=?) => array<Animation.t> =
-    "getAnimations"
+  external getAnimations: (
+    T.t,
+    ~options: AnimationEffect.getAnimationsOptions=?,
+  ) => array<Animation.t> = "getAnimations"
 
   /**
 Returns element's first attribute whose qualified name is qualifiedName, and null if there is no such attribute otherwise.
@@ -187,7 +189,7 @@ Returns a HTMLCollection of the elements in the object on which the method was i
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/getHTML)
 */
   @send
-  external getHTML: (T.t, ~options: DomTypes.getHTMLOptions=?) => string = "getHTML"
+  external getHTML: (T.t, ~options: HTML.getHTMLOptions=?) => string = "getHTML"
 
   /**
 Returns true if element has an attribute whose qualified name is qualifiedName, and false otherwise.
@@ -356,21 +358,21 @@ When supplied, options's navigationUI member indicates whether showing navigatio
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/requestFullscreen)
 */
   @send
-  external requestFullscreen: (T.t, ~options: DomTypes.fullscreenOptions=?) => promise<unit> =
+  external requestFullscreen: (T.t, ~options: DOM.fullscreenOptions=?) => promise<unit> =
     "requestFullscreen"
 
   /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/requestPointerLock)
 */
   @send
-  external requestPointerLock: (T.t, ~options: DomTypes.pointerLockOptions=?) => promise<unit> =
+  external requestPointerLock: (T.t, ~options: DOM.pointerLockOptions=?) => promise<unit> =
     "requestPointerLock"
 
   /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/scroll)
 */
   @send
-  external scroll: (T.t, ~options: DomTypes.scrollToOptions=?) => unit = "scroll"
+  external scroll: (T.t, ~options: DOM.scrollToOptions=?) => unit = "scroll"
 
   /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/scroll)
@@ -382,7 +384,7 @@ When supplied, options's navigationUI member indicates whether showing navigatio
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/scrollBy)
 */
   @send
-  external scrollBy: (T.t, ~options: DomTypes.scrollToOptions=?) => unit = "scrollBy"
+  external scrollBy: (T.t, ~options: DOM.scrollToOptions=?) => unit = "scrollBy"
 
   /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/scrollBy)
@@ -430,14 +432,13 @@ element->Element.scrollIntoViewWithOptions({ behavior: DOMAPI.Smooth })
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/scrollIntoView)
 */
   @send
-  external scrollIntoViewWithOptions: (T.t, DomTypes.scrollIntoViewOptions) => unit =
-    "scrollIntoView"
+  external scrollIntoViewWithOptions: (T.t, DOM.scrollIntoViewOptions) => unit = "scrollIntoView"
 
   /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/scrollTo)
 */
   @send
-  external scrollTo: (T.t, ~options: DomTypes.scrollToOptions=?) => unit = "scrollTo"
+  external scrollTo: (T.t, ~options: DOM.scrollToOptions=?) => unit = "scrollTo"
 
   /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/scrollTo)

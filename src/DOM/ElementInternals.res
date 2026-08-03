@@ -15,7 +15,7 @@ Marks internals's target element as suffering from the constraints indicated by 
 @send
 external setValidity: (
   DOMTree.elementInternals,
-  ~flags: DomTypes.validityStateFlags=?,
+  ~flags: DOM.validityStateFlags=?,
   ~message: string=?,
   ~anchor: DOMTree.htmlElement=?,
 ) => unit = "setValidity"

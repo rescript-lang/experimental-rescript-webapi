@@ -2,16 +2,16 @@
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/MediaList/item)
 */
 @send
-external item: (DomTypes.mediaList, int) => string = "item"
+external item: (DOM.mediaList, int) => string = "item"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/MediaList/appendMedium)
 */
 @send
-external appendMedium: (DomTypes.mediaList, string) => unit = "appendMedium"
+external appendMedium: (DOM.mediaList, string) => unit = "appendMedium"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/MediaList/deleteMedium)
 */
 @send
-external deleteMedium: (DomTypes.mediaList, string) => unit = "deleteMedium"
+external deleteMedium: (DOM.mediaList, string) => unit = "deleteMedium"

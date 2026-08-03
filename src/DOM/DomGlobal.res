@@ -1,12 +1,12 @@
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/window)
 */
-external window: DomTypes.window = "window"
+external window: DOM.window = "window"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/self)
 */
-external self: DomTypes.window = "self"
+external self: DOM.window = "self"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/document)
@@ -27,43 +27,43 @@ external history: HistoryTypes.history = "history"
 Defines a new custom element, mapping the given name to the given constructor as an autonomous custom element.
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/customElements)
 */
-external customElements: DomTypes.customElementRegistry = "customElements"
+external customElements: DOM.customElementRegistry = "customElements"
 
 /**
 Returns true if the location bar is visible; otherwise, returns false.
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/locationbar)
 */
-external locationbar: DomTypes.barProp = "locationbar"
+external locationbar: DOM.barProp = "locationbar"
 
 /**
 Returns true if the menu bar is visible; otherwise, returns false.
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/menubar)
 */
-external menubar: DomTypes.barProp = "menubar"
+external menubar: DOM.barProp = "menubar"
 
 /**
 Returns true if the personal bar is visible; otherwise, returns false.
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/personalbar)
 */
-external personalbar: DomTypes.barProp = "personalbar"
+external personalbar: DOM.barProp = "personalbar"
 
 /**
 Returns true if the scrollbars are visible; otherwise, returns false.
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/scrollbars)
 */
-external scrollbars: DomTypes.barProp = "scrollbars"
+external scrollbars: DOM.barProp = "scrollbars"
 
 /**
 Returns true if the status bar is visible; otherwise, returns false.
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/statusbar)
 */
-external statusbar: DomTypes.barProp = "statusbar"
+external statusbar: DOM.barProp = "statusbar"
 
 /**
 Returns true if the toolbar is visible; otherwise, returns false.
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/toolbar)
 */
-external toolbar: DomTypes.barProp = "toolbar"
+external toolbar: DOM.barProp = "toolbar"
 
 /**
 Returns true if the window has been closed, false otherwise.
@@ -74,7 +74,7 @@ external closed: bool = "closed"
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/frames)
 */
-external frames: DomTypes.window = "frames"
+external frames: DOM.window = "frames"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/length)
@@ -84,7 +84,7 @@ external length: int = "length"
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/top)
 */
-external top: DomTypes.window = "top"
+external top: DOM.window = "top"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/opener)
@@ -97,22 +97,22 @@ Refers to either the parent WindowProxy, or itself.
 It can rarely be null e.g. for contentWindow of an iframe that is already removed from the parent.
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/parent)
 */
-external parent: DomTypes.window = "parent"
+external parent: DOM.window = "parent"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/frameElement)
 */
-external frameElement: DomTypes.element = "frameElement"
+external frameElement: DOMTree.element = "frameElement"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/navigator)
 */
-external navigator: DomTypes.navigator = "navigator"
+external navigator: DOM.navigator = "navigator"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/screen)
 */
-external screen: DomTypes.screen = "screen"
+external screen: DOM.screen = "screen"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/visualViewport)
@@ -244,14 +244,14 @@ Executes a function after a delay given in milliseconds expires.
 
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/setTimeout)
 */
-external setTimeout: (~handler: unit => unit, ~timeout: int=?) => DomTypes.timeoutId = "setTimeout"
+external setTimeout: (~handler: unit => unit, ~timeout: int=?) => DOM.timeoutId = "setTimeout"
 
 /**
 Cancels the execution of a timeout created with setTimeout.
 
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/clearTimeout)
 */
-external clearTimeout: DomTypes.timeoutId => unit = "clearTimeout"
+external clearTimeout: DOM.timeoutId => unit = "clearTimeout"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/setInterval)
@@ -310,7 +310,7 @@ external focus: unit => unit = "focus"
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/open)
 */
-external open_: (~url: string=?, ~target: string=?, ~features: string=?) => DomTypes.window = "open"
+external open_: (~url: string=?, ~target: string=?, ~features: string=?) => DOM.window = "open"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/alert)
@@ -364,13 +364,13 @@ Throws a "DataCloneError" DOMException if transfer array contains duplicate obje
 */
 external postMessageWithOptions: (
   ~message: JSON.t,
-  ~options: DomTypes.windowPostMessageOptions=?,
+  ~options: DOM.windowPostMessageOptions=?,
 ) => unit = "postMessage"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/matchMedia)
 */
-external matchMedia: string => DomTypes.mediaQueryList = "matchMedia"
+external matchMedia: string => DOM.mediaQueryList = "matchMedia"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/moveTo)
@@ -395,7 +395,7 @@ external resizeBy: (~x: int, ~y: int) => unit = "resizeBy"
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/scroll)
 */
-external scroll: (~options: DomTypes.scrollToOptions=?) => unit = "scroll"
+external scroll: (~options: DOM.scrollToOptions=?) => unit = "scroll"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/scroll)
@@ -405,7 +405,7 @@ external scroll2: (~x: float, ~y: float) => unit = "scroll"
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/scrollTo)
 */
-external scrollTo: (~options: DomTypes.scrollToOptions=?) => unit = "scrollTo"
+external scrollTo: (~options: DOM.scrollToOptions=?) => unit = "scrollTo"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/scrollTo)
@@ -415,7 +415,7 @@ external scrollTo2: (~x: float, ~y: float) => unit = "scrollTo"
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/scrollBy)
 */
-external scrollBy: (~options: DomTypes.scrollToOptions=?) => unit = "scrollBy"
+external scrollBy: (~options: DOM.scrollToOptions=?) => unit = "scrollBy"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/scrollBy)
@@ -426,16 +426,16 @@ external scrollBy2: (~x: float, ~y: float) => unit = "scrollBy"
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/getComputedStyle)
 */
 external getComputedStyle: (
-  ~elt: DomTypes.element,
+  ~elt: DOMTree.element,
   ~pseudoElt: string=?,
-) => DomTypes.cssStyleDeclaration = "getComputedStyle"
+) => DOM.cssStyleDeclaration = "getComputedStyle"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/requestIdleCallback)
 */
 external requestIdleCallback: (
-  ~callback: DomTypes.idleDeadline => unit,
-  ~options: DomTypes.idleRequestOptions=?,
+  ~callback: DOM.idleDeadline => unit,
+  ~options: DOM.idleRequestOptions=?,
 ) => int = "requestIdleCallback"
 
 /**
@@ -446,4 +446,4 @@ external cancelIdleCallback: int => unit = "cancelIdleCallback"
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/getSelection)
 */
-external getSelection: unit => null<DomTypes.selection> = "getSelection"
+external getSelection: unit => null<Selection.t> = "getSelection"

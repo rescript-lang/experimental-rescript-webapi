@@ -16,4 +16,4 @@ external setHTMLUnsafe: (DOMTree.shadowRoot, string) => unit = "setHTMLUnsafe"
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/ShadowRoot/getHTML)
 */
 @send
-external getHTML: (DOMTree.shadowRoot, ~options: DomTypes.getHTMLOptions=?) => string = "getHTML"
+external getHTML: (DOMTree.shadowRoot, ~options: HTML.getHTMLOptions=?) => string = "getHTML"

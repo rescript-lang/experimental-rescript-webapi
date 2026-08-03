@@ -265,17 +265,15 @@ include HTMLElement.Impl({type t = t})
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLSlotElement/assignedNodes)
 */
 @send
-external assignedNodes: (t, ~options: DomTypes.assignedNodesOptions=?) => array<DOMTree.node> =
+external assignedNodes: (t, ~options: DOM.assignedNodesOptions=?) => array<DOMTree.node> =
   "assignedNodes"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLSlotElement/assignedElements)
 */
 @send
-external assignedElements: (
-  t,
-  ~options: DomTypes.assignedNodesOptions=?,
-) => array<DOMTree.element> = "assignedElements"
+external assignedElements: (t, ~options: DOM.assignedNodesOptions=?) => array<DOMTree.element> =
+  "assignedElements"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLSlotElement/assign)

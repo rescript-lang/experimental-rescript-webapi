@@ -3,5 +3,5 @@ let createSvgElement = (document: DOM.document) =>
 
 let makeAnimation = (timeline: Animation.animationTimeline) => Animation.make(~timeline)
 
-let asAnimationTimeline = (timeline: DomTypes.documentTimeline): Animation.animationTimeline =>
+let asAnimationTimeline = (timeline: DOM.documentTimeline): Animation.animationTimeline =>
   timeline->DocumentTimeline.asAnimationTimeline

@@ -2,23 +2,21 @@
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/DOMPointReadOnly)
 */
 @new
-external make: (~x: float=?, ~y: float=?, ~z: float=?, ~w: float=?) => DomTypes.domPointReadOnly =
+external make: (~x: float=?, ~y: float=?, ~z: float=?, ~w: float=?) => DOM.domPointReadOnly =
   "DOMPointReadOnly"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/DOMPointReadOnly/fromPoint_static)
 */
 @scope("DOMPointReadOnly")
-external fromPoint: (~other: DomTypes.domPointInit=?) => DomTypes.domPointReadOnly = "fromPoint"
+external fromPoint: (~other: DOM.domPointInit=?) => DOM.domPointReadOnly = "fromPoint"
 
 @send
-external matrixTransform: (
-  DomTypes.domPointReadOnly,
-  ~matrix: DomTypes.domMatrixInit=?,
-) => DomTypes.domPoint = "matrixTransform"
+external matrixTransform: (DOM.domPointReadOnly, ~matrix: DOM.domMatrixInit=?) => DOM.domPoint =
+  "matrixTransform"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/DOMPointReadOnly/toJSON)
 */
 @send
-external toJSON: DomTypes.domPointReadOnly => Dict.t<string> = "toJSON"
+external toJSON: DOM.domPointReadOnly => Dict.t<string> = "toJSON"
