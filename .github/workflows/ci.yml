@@ -36,6 +36,9 @@ jobs:
       - name: Rebuild ReScript code
         run: npm run build
 
+      - name: Check public feature builds
+        run: npm run check:features
+
       - name: Run tests
         run: npm test
 

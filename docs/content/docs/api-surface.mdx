@@ -41,6 +41,40 @@ Generated implementation modules such as `DomTypes`, `FetchTypes`, `EventTypes`,
 module's `t` type when it has one, or use a dedicated public type module. Otherwise, let
 the value type be inferred from constructors and accessors.
 
+## Consumer feature bundles
+
+Feature names select related bindings and their transitive dependencies. They do not add
+another namespace segment. For example, selecting `WebAPI.Fetch` enables flat modules such
+as `WebAPI.Fetch`, `WebAPI.Request`, `WebAPI.Response`, and `WebAPI.Headers`.
+
+```json
+{
+  "dependencies": [
+    {
+      "name": "@rescript/webapi",
+      "features": ["WebAPI.Fetch", "WebAPI.HTML"]
+    }
+  ]
+}
+```
+
+The supported feature bundles are:
+
+```text
+WebAPI.DOM                 WebAPI.Event           WebAPI.DOMPlatform
+WebAPI.DOMNodes            WebAPI.File            WebAPI.HTML
+WebAPI.Window              WebAPI.CSSOM           WebAPI.CSSFontLoading
+WebAPI.Geometry            WebAPI.SVG             WebAPI.Animation
+WebAPI.Device              WebAPI.Navigator       WebAPI.Canvas
+WebAPI.URL                 WebAPI.Fetch           WebAPI.UIEvents
+WebAPI.Observers           WebAPI.Media           WebAPI.WebAudio
+WebAPI.Storage             WebAPI.Messaging       WebAPI.Workers
+WebAPI.Crypto              WebAPI.Performance     WebAPI.ViewTransitions
+```
+
+The package owns each bundle as one internal source folder. Those internal folder feature
+names are an implementation detail; consumers should use only the qualified names above.
+
 ## Fetch
 
 Use `WebAPI.Fetch.fetch` for string URLs and `WebAPI.Fetch.fetchWithRequest`
