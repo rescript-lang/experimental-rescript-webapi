@@ -180,6 +180,7 @@
         "NodeIterator",
         "NodeList",
         "Range",
+        "SVGElement",
         "SVGGraphicsElement",
         "SVGLength",
         "ScreenOrientation",
