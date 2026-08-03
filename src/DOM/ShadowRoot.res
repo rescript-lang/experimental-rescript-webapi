@@ -1,19 +1,19 @@
-include DocumentFragment.Impl({type t = DomTypes.shadowRoot})
+include DocumentFragment.Impl({type t = DOMTree.shadowRoot})
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Document/getAnimations)
 */
 @send
-external getAnimations: DomTypes.shadowRoot => array<Animation.t> = "getAnimations"
+external getAnimations: DOMTree.shadowRoot => array<Animation.t> = "getAnimations"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/ShadowRoot/setHTMLUnsafe)
 */
 @send
-external setHTMLUnsafe: (DomTypes.shadowRoot, string) => unit = "setHTMLUnsafe"
+external setHTMLUnsafe: (DOMTree.shadowRoot, string) => unit = "setHTMLUnsafe"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/ShadowRoot/getHTML)
 */
 @send
-external getHTML: (DomTypes.shadowRoot, ~options: DomTypes.getHTMLOptions=?) => string = "getHTML"
+external getHTML: (DOMTree.shadowRoot, ~options: DomTypes.getHTMLOptions=?) => string = "getHTML"

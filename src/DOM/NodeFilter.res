@@ -1,2 +1,5 @@
+@editor.completeFrom(NodeFilter)
+type t = private {}
+
 @send
-external acceptNode: (DomTypes.nodeFilter, DomTypes.node) => int = "acceptNode"
+external acceptNode: (t, DOMTree.node) => int = "acceptNode"

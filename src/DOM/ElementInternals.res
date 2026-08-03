@@ -5,7 +5,7 @@ If value is null, the element won't participate in form submission.
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/ElementInternals/setFormValue)
 */
 @send
-external setFormValue: (DomTypes.elementInternals, ~value: unknown, ~state: unknown=?) => unit =
+external setFormValue: (DOMTree.elementInternals, ~value: unknown, ~state: unknown=?) => unit =
   "setFormValue"
 
 /**
@@ -14,10 +14,10 @@ Marks internals's target element as suffering from the constraints indicated by 
 */
 @send
 external setValidity: (
-  DomTypes.elementInternals,
+  DOMTree.elementInternals,
   ~flags: DomTypes.validityStateFlags=?,
   ~message: string=?,
-  ~anchor: DomTypes.htmlElement=?,
+  ~anchor: DOMTree.htmlElement=?,
 ) => unit = "setValidity"
 
 /**
@@ -25,11 +25,11 @@ Returns true if internals's target element has no validity problems; false other
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/ElementInternals/checkValidity)
 */
 @send
-external checkValidity: DomTypes.elementInternals => bool = "checkValidity"
+external checkValidity: DOMTree.elementInternals => bool = "checkValidity"
 
 /**
 Returns true if internals's target element has no validity problems; otherwise, returns false, fires an invalid event at the element, and (if the event isn't canceled) reports the problem to the user.
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/ElementInternals/reportValidity)
 */
 @send
-external reportValidity: DomTypes.elementInternals => bool = "reportValidity"
+external reportValidity: DOMTree.elementInternals => bool = "reportValidity"
