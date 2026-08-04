@@ -106,10 +106,3 @@ The `location` object from `document`.
 **/
 @scope("document")
 external fromDocument: t = "location"
-
-/**
-The `location` object from `globalThis`.
-[See Location on MDN](https://developer.mozilla.org/docs/Web/API/Location)
-**/
-@scope("globalThis")
-external fromWGlobalThis: t = "location"
