@@ -2,7 +2,7 @@
   "name": "@rescript/webapi",
   "namespace": "WebAPI",
   "features": {
-    "WebAPI.DOM": ["DOM", "Event"],
+    "WebAPI.DOM": ["DOM"],
     "WebAPI.Event": ["WebAPI.DOM", "Event"],
     "WebAPI.DOMPlatform": ["WebAPI.Event", "DOMPlatform"],
     "WebAPI.Animation": ["WebAPI.Event", "Animation"],
