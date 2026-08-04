@@ -455,7 +455,8 @@
         "ServiceWorkerScope",
         "SharedWorker",
         "SharedWorkerScope",
-        "Worker"
+        "Worker",
+        "WorkerLocation"
       ]
     },
     {
