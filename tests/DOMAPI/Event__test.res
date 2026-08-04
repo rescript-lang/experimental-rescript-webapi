@@ -6,8 +6,10 @@ let _ = (event: DOM.event) => {
 }
 
 let _ = (event: DOM.event) => {
-  acceptsDOMEvent(event)
+  acceptsDOMEvent(event->Event.asEvent)
 }
+
+let _ = (event: DOM.extendableEvent) => event->ExtendableEvent.asExtendableEvent
 
 let handleClick = (event: DOM.event) => {
   event->Event.preventDefault
