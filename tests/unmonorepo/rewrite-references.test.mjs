@@ -22,7 +22,7 @@ test("rewrites same-feature references to local modules and external namespaces 
       "let target: Types.element = Global.document->WebApiEvent.EventTarget.asEventTarget",
       { currentFeature: "DOM", specs, localLeaves: ["Document", "DomGlobal", "DomTypes"], leavesByFeature },
     ),
-    "let target: Element.t = DomGlobal.document->EventTarget.asEventTarget",
+    "let target: DomTypes.element = DomGlobal.document->EventTarget.asEventTarget",
   );
 
   assert.equal(
@@ -30,7 +30,7 @@ test("rewrites same-feature references to local modules and external namespaces 
       "let target: WebAPI.DOM.Types.element = WebAPI.DOM.Global.document->WebAPI.Event.EventTarget.asEventTarget",
       { currentFeature: "DOM", specs, localLeaves: ["Document", "DomGlobal", "DomTypes"], leavesByFeature },
     ),
-    "let target: Element.t = DomGlobal.document->EventTarget.asEventTarget",
+    "let target: DomTypes.element = DomGlobal.document->EventTarget.asEventTarget",
   );
 
   assert.equal(
