@@ -455,7 +455,7 @@ type offscreenRenderingContext = unknown
 */
 @editor.completeFrom(DocumentTimeline) and documentTimeline = private {
   /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/DocumentTimeline/currentTime)
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/AnimationTimeline/currentTime)
     */
   currentTime: Null.t<float>,
 }
