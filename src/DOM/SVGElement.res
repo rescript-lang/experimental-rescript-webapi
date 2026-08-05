@@ -58,6 +58,18 @@ type t = {
   attributeStyleMap: DOM.stylePropertyMap,
 }
 
+module Impl = (
+  T: {
+    type t
+  },
+) => {
+  include Element.Impl({type t = T.t})
+
+  external asSVGElement: T.t => t = "%identity"
+}
+
+include Impl({type t = t})
+
 /**
 SVG elements whose primary purpose is to directly render graphics into a group.
 [See SVGGraphicsElement on MDN](https://developer.mozilla.org/docs/Web/API/SVGGraphicsElement)

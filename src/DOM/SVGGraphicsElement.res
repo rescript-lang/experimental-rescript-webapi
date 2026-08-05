@@ -1,6 +1,4 @@
-include Element.Impl({type t = SVGElement.svgGraphicsElement})
-
-external asSVGElement: SVGElement.svgGraphicsElement => SVGElement.t = "%identity"
+include SVGElement.Impl({type t = SVGElement.svgGraphicsElement})
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/SVGGraphicsElement/getBBox)
