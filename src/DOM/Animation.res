@@ -74,8 +74,7 @@ type rec t = {
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Animation)
 */
 @new
-external make: (~effect: AnimationEffect.t=?, ~timeline: DomTypes.animationTimeline=?) => t =
-  "Animation"
+external make: (~effect: AnimationEffect.t=?, ~timeline: animationTimeline=?) => t = "Animation"
 
 include EventTarget.Impl({type t = t})
 
