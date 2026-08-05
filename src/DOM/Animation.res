@@ -125,3 +125,25 @@ external persist: t => unit = "persist"
 */
 @send
 external commitStyles: t => unit = "commitStyles"
+
+type compositeOperation =
+  | @as("accumulate") Accumulate
+  | @as("add") Add
+  | @as("replace") Replace
+
+type iterationCompositeOperation =
+  | @as("accumulate") Accumulate
+  | @as("replace") Replace
+
+type keyframeEffectOptions = {
+  ...DomTypes.effectTiming,
+  mutable composite?: compositeOperation,
+  mutable pseudoElement?: Null.t<string>,
+  mutable iterationComposite?: iterationCompositeOperation,
+}
+
+type keyframeAnimationOptions = {
+  ...keyframeEffectOptions,
+  mutable id?: string,
+  mutable timeline?: Null.t<animationTimeline>,
+}

@@ -38,7 +38,7 @@ Throws a "HierarchyRequestError" DOMException if the constraints of the node tre
   external animate2: (
     T.t,
     ~keyframes: unknown,
-    ~options: DomTypes.keyframeAnimationOptions=?,
+    ~options: Animation.keyframeAnimationOptions=?,
   ) => Animation.t = "animate"
 
   /**

@@ -199,15 +199,6 @@ type selectionMode =
   | @as("select") Select
   | @as("start") Start
 
-type compositeOperation =
-  | @as("accumulate") Accumulate
-  | @as("add") Add
-  | @as("replace") Replace
-
-type iterationCompositeOperation =
-  | @as("accumulate") Accumulate
-  | @as("replace") Replace
-
 type videoPixelFormat =
   | BGRA
   | BGRX
@@ -383,20 +374,10 @@ type renderingContext = unknown
 type offscreenRenderingContext = unknown
 
 /**
-[See AnimationTimeline on MDN](https://developer.mozilla.org/docs/Web/API/AnimationTimeline)
-*/
-@editor.completeFrom(Animation)
-type rec animationTimeline = private {
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/AnimationTimeline/currentTime)
-    */
-  currentTime: Null.t<float>,
-}
-
-/**
 [See DocumentTimeline on MDN](https://developer.mozilla.org/docs/Web/API/DocumentTimeline)
 */
-@editor.completeFrom(DocumentTimeline) and documentTimeline = private {
+@editor.completeFrom(DocumentTimeline)
+type documentTimeline = private {
   // Base properties from AnimationTimeline
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/AnimationTimeline/currentTime)
@@ -1883,19 +1864,6 @@ type scrollIntoViewOptions = {
 type windowPostMessageOptions = {
   ...structuredSerializeOptions,
   mutable targetOrigin?: string,
-}
-
-type keyframeEffectOptions = {
-  ...effectTiming,
-  mutable composite?: compositeOperation,
-  mutable pseudoElement?: Null.t<string>,
-  mutable iterationComposite?: iterationCompositeOperation,
-}
-
-type keyframeAnimationOptions = {
-  ...keyframeEffectOptions,
-  mutable id?: string,
-  mutable timeline?: Null.t<animationTimeline>,
 }
 
 type svgBoundingBoxOptions = {
