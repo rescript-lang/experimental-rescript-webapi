@@ -178,8 +178,8 @@ When supplied, options's is can be used to create a customized built-in element.
 @send
 external createElementNS: (
   DOM.document,
-  ~namespace: string=?,
-  ~qualifiedName: string=?,
+  ~namespace: string,
+  ~qualifiedName: string,
   ~options: string=?,
 ) => DOM.element = "createElementNS"
 
