@@ -16,10 +16,10 @@ test("docs and CI point at the unified package layout", () => {
   const workflow = fs.readFileSync(".github/workflows/ci.yml", "utf8");
 
   assert.match(readme, /npm i @rescript\/webapi@experimental/);
-  assert.match(readme, /WebAPI\.Window\.current/);
+  assert.match(readme, /WebAPI\.DOM\.window/);
   assert.doesNotMatch(readme, /WebAPI\.Global/);
   assert.match(docsIndex, /ReScript WebAPI/);
-  assert.match(docsIndex, /WebAPI\.Window\.current/);
+  assert.match(docsIndex, /WebAPI\.DOM\.window/);
   assert.doesNotMatch(docsIndex, /WebAPI\.Global/);
   assert.match(docsIndex, /location->WebAPI\.Location\.reload/);
   assert.match(docsPhilosophy, /open WebAPI\.DOM/);
