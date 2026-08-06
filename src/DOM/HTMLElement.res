@@ -1,3 +1,7 @@
+type t = DOMTree.htmlElement = private {
+  ...DOMTree.htmlElement,
+}
+
 module Impl = (
   T: {
     type t
@@ -50,4 +54,4 @@ module Impl = (
   external togglePopover: (T.t, ~force: bool=?) => bool = "togglePopover"
 }
 
-include Impl({type t = DOMTree.htmlElement})
+include Impl({type t = t})

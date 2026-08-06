@@ -1,4 +1,8 @@
-include DocumentFragment.Impl({type t = DOMTree.shadowRoot})
+type t = DOMTree.shadowRoot = private {
+  ...DOMTree.shadowRoot,
+}
+
+include DocumentFragment.Impl({type t = t})
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Document/getAnimations)

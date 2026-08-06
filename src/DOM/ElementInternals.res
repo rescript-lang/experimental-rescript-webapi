@@ -1,3 +1,7 @@
+type t = DOMTree.elementInternals = private {
+  ...DOMTree.elementInternals,
+}
+
 /**
 Sets both the state and submission value of internals's target element to value.
 

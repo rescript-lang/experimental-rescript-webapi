@@ -1,3 +1,7 @@
+type t = DOMTree.element = private {
+  ...DOMTree.element,
+}
+
 module Impl = (
   T: {
     type t
@@ -500,6 +504,6 @@ Returns true if qualifiedName is now present, and false otherwise.
     "toggleAttribute"
 }
 
-include Impl({type t = DOMTree.element})
+include Impl({type t = t})
 
 let isInstanceOf = (_: 't): bool => %raw(`param instanceof Element`)

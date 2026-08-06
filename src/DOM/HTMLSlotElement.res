@@ -1,8 +1,9 @@
 /**
 [See HTMLSlotElement on MDN](https://developer.mozilla.org/docs/Web/API/HTMLSlotElement)
-TODO: mark as private once mutating fields of private records is allowed
 */
-type t = DOMTree.htmlSlotElement
+type t = DOMTree.htmlSlotElement = private {
+  ...DOMTree.htmlSlotElement,
+}
 
 include HTMLElement.Impl({type t = t})
 

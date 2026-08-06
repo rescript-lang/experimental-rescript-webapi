@@ -1,3 +1,7 @@
+type t = DOMTree.node = private {
+  ...DOMTree.node,
+}
+
 module Impl = (
   T: {
     type t
@@ -107,4 +111,4 @@ Returns true if other is an inclusive descendant of node, and false otherwise.
   external removeChild: (T.t, 't) => 't = "removeChild"
 }
 
-include Impl({type t = DOMTree.node})
+include Impl({type t = t})
