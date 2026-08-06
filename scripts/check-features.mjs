@@ -145,15 +145,10 @@ const validateConfig = (config) => {
   ];
 };
 
-const rescriptExecutable = path.join(
-  repoRoot,
-  "node_modules",
-  ".bin",
-  process.platform === "win32" ? "rescript.cmd" : "rescript",
-);
+const rescriptCliPath = path.join(repoRoot, "node_modules", "rescript", "cli", "rescript.js");
 
 const runRescript = (args) =>
-  spawnSync(rescriptExecutable, args, {
+  spawnSync(process.execPath, [rescriptCliPath, ...args], {
     cwd: repoRoot,
     encoding: "utf8",
   });
