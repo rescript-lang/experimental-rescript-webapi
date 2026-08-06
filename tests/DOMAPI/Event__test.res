@@ -1,15 +1,10 @@
 let acceptsDOMEvent = (_event: DOM.event) => ()
-let acceptsEvent = (_event: DOM.event) => ()
+let acceptsDOMExtendableEvent = (_event: DOM.extendableEvent) => ()
 
-let _ = (event: DOM.event) => {
-  acceptsEvent(event)
+let _ = (event: PushEvent.t) => {
+  acceptsDOMEvent(event->PushEvent.asEvent)
+  acceptsDOMExtendableEvent(event->PushEvent.asExtendableEvent)
 }
-
-let _ = (event: DOM.event) => {
-  acceptsDOMEvent(event->Event.asEvent)
-}
-
-let _ = (event: DOM.extendableEvent) => event->ExtendableEvent.asExtendableEvent
 
 let handleClick = (event: DOM.event) => {
   event->Event.preventDefault
