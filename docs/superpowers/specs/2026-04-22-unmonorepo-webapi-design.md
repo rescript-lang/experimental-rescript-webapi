@@ -124,7 +124,7 @@ The unified build keeps the original flat module surface instead of adding gener
 - `WebAPI.Headers`
 - `WebAPI.URL`
 
-Shared DOM base types should be owned by `DOM`, so common references stay short, for example `Element.t` instead of `BaseDOM.element` or `Base.Element.t`.
+Shared DOM base types should be owned by `DOM`, so common references stay short, for example `DOM.document` instead of `BaseDOM.document` or `Base.Document.t`.
 
 ## Internal Module Naming
 
