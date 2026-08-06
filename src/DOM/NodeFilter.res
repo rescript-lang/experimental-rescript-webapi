@@ -1,4 +1,3 @@
-@editor.completeFrom(NodeFilter)
 type t = private {}
 
 @send
