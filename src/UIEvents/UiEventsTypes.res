@@ -10,7 +10,7 @@ Simple user interface events.
 */
 @editor.completeFrom(UIEvent)
 type uiEvent = private {
-  ...EventTypes.event,
+  ...DOM.event,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/UIEvent/view)
     */
@@ -44,7 +44,7 @@ type focusEvent = private {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/FocusEvent/relatedTarget)
     */
-  relatedTarget: Null.t<EventTypes.eventTarget>,
+  relatedTarget: Null.t<DOM.eventTarget>,
 }
 
 /**
@@ -248,7 +248,7 @@ type mouseEvent = private {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/MouseEvent/relatedTarget)
     */
-  relatedTarget: Null.t<EventTypes.eventTarget>,
+  relatedTarget: Null.t<DOM.eventTarget>,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/MouseEvent/pageX)
     */
@@ -321,7 +321,7 @@ type touch = private {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Touch/target)
     */
-  target: EventTypes.eventTarget,
+  target: DOM.eventTarget,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Touch/screenX)
     */
@@ -471,7 +471,7 @@ type pointerEvent = private {
 }
 
 type uiEventInit = {
-  ...EventTypes.eventInit,
+  ...Event.eventInit,
   mutable view?: Null.t<DOM.window>,
   mutable detail?: int,
   mutable which?: int,
@@ -503,14 +503,14 @@ type mouseEventInit = {
   mutable clientY?: int,
   mutable button?: int,
   mutable buttons?: int,
-  mutable relatedTarget?: Null.t<EventTypes.eventTarget>,
+  mutable relatedTarget?: Null.t<DOM.eventTarget>,
   mutable movementX?: float,
   mutable movementY?: float,
 }
 
 type focusEventInit = {
   ...uiEventInit,
-  mutable relatedTarget?: Null.t<EventTypes.eventTarget>,
+  mutable relatedTarget?: Null.t<DOM.eventTarget>,
 }
 
 type compositionEventInit = {
@@ -548,7 +548,7 @@ type inputEventInit = {
 
 type touchInit = {
   mutable identifier: int,
-  mutable target: EventTypes.eventTarget,
+  mutable target: DOM.eventTarget,
   mutable clientX?: float,
   mutable clientY?: float,
   mutable screenX?: float,

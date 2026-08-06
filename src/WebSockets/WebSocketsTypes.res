@@ -13,7 +13,7 @@ TODO: mark as private once mutating fields of private records is allowed
 */
 @editor.completeFrom(WebSocket)
 type webSocket = {
-  ...EventTypes.eventTarget,
+  ...DOM.eventTarget,
   /**
     Returns the WebApiURL that was used to establish the WebSocket connection.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/WebSocket/url)
@@ -56,7 +56,7 @@ A CloseEvent is sent to clients using WebApiWebSockets when the connection is cl
 */
 @editor.completeFrom(CloseEvent)
 type closeEvent = private {
-  ...EventTypes.event,
+  ...DOM.event,
   /**
     Returns true if the connection closed cleanly; false otherwise.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CloseEvent/wasClean)
@@ -79,7 +79,7 @@ A message received by a target object.
 [See MessageEvent on MDN](https://developer.mozilla.org/docs/Web/API/MessageEvent)
 */
 type messageEvent<'t> = {
-  ...EventTypes.event,
+  ...DOM.event,
   /**
     Returns the data of the message.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/MessageEvent/data)
@@ -108,14 +108,14 @@ type messageEvent<'t> = {
 }
 
 type closeEventInit = {
-  ...EventTypes.eventInit,
+  ...Event.eventInit,
   mutable wasClean?: bool,
   mutable code?: int,
   mutable reason?: string,
 }
 
 type messageEventInit<'t> = {
-  ...EventTypes.eventInit,
+  ...Event.eventInit,
   mutable data?: 't,
   mutable origin?: string,
   mutable lastEventId?: string,

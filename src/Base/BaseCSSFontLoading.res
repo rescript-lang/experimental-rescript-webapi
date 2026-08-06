@@ -13,7 +13,6 @@ type fontFaceSetLoadStatus =
 */
 @editor.completeFrom(BaseCSSFontLoading.FontFaceSet)
 type rec fontFaceSet = private {
-  ...BaseEvent.eventTarget,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/FontFaceSet/ready)
     */

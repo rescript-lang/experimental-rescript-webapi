@@ -301,7 +301,7 @@ external createAttributeNS: (
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Document/createEvent)
 */
 @send
-external createEvent: (DomTypes.document, string) => EventTypes.event = "createEvent"
+external createEvent: (DomTypes.document, string) => DOM.event = "createEvent"
 
 /**
  Returns an empty range object that has both of its boundary points positioned at the beginning of the document.

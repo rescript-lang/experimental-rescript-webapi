@@ -1,5 +1,5 @@
-type event = EventTypes.event
-type eventTarget = EventTypes.eventTarget
+type event = DOM.event
+type eventTarget = DOM.eventTarget
 type messageEventSource = WebSocketsTypes.messageEventSource
 
 type messageEvent<'t> = WebSocketsTypes.messageEvent<'t>

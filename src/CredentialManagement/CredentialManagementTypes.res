@@ -91,7 +91,7 @@ type publicKeyCredentialRequestOptions = {
 
 type credentialRequestOptions = {
   mutable mediation?: credentialMediationRequirement,
-  mutable signal?: EventTypes.abortSignal,
+  mutable signal?: DOM.abortSignal,
   mutable publicKey?: publicKeyCredentialRequestOptions,
 }
 
@@ -133,6 +133,6 @@ type publicKeyCredentialCreationOptions = {
 }
 
 type credentialCreationOptions = {
-  mutable signal?: EventTypes.abortSignal,
+  mutable signal?: DOM.abortSignal,
   mutable publicKey?: publicKeyCredentialCreationOptions,
 }

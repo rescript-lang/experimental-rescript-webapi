@@ -13,12 +13,12 @@ add the package to `rescript.json`:
 }
 ```
 
-Use `WebAPI.Window.current` for the browser `window`. Interface-specific methods live on
+Use `WebAPI.DOM.window` for the browser `window`. Interface-specific methods live on
 public modules such as `WebAPI.Window`, `WebAPI.Location`, `WebAPI.Document`,
 `WebAPI.Element`, `WebAPI.Request`, and `WebAPI.Response`.
 
 ```ReScript
-let location = WebAPI.Window.current->WebAPI.Window.location
+let location = WebAPI.DOM.window->WebAPI.Window.location
 let href = location.href
 
 location->WebAPI.Location.reload
@@ -32,7 +32,7 @@ helper modules.
 ```ReScript
 let req: WebAPI.Request.t = WebAPI.Request.fromURL("https://example.com")
 let headers = WebAPI.Headers.make()
-let document = WebAPI.Window.current->WebAPI.Window.document
+let document = WebAPI.DOM.window->WebAPI.Window.document
 let element = document->WebAPI.Document.createElement("button")
 ```
 
@@ -243,7 +243,7 @@ let redirect = WebAPI.Response.redirect(~url="/login", ~status=302)
 DOM values are operated on through public interface modules.
 
 ```ReScript
-let document = WebAPI.Window.current->WebAPI.Window.document
+let document = WebAPI.DOM.window->WebAPI.Window.document
 
 let maybeButton = document
 ->WebAPI.Document.querySelector("button")
@@ -271,7 +271,7 @@ let node = element->WebAPI.Element.asNode
 `Window.visualViewport` returns a nullable `WebAPI.VisualViewport.t`.
 
 ```ReScript
-let maybeViewport = WebAPI.Window.current
+let maybeViewport = WebAPI.DOM.window
 ->WebAPI.Window.visualViewport
 ->Null.toOption
 

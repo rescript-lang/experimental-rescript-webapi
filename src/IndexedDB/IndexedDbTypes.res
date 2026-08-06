@@ -33,7 +33,7 @@ This WebApiIndexedDB API interface provides a connection to a database; you can 
 */
 @editor.completeFrom(IDBDatabase)
 type idbDatabase = private {
-  ...EventTypes.eventTarget,
+  ...DOM.eventTarget,
   /**
     Returns the name of the database.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/IDBDatabase/name)
@@ -56,7 +56,7 @@ type idbDatabase = private {
 */
 @editor.completeFrom(IDBTransaction)
 type idbTransaction = private {
-  ...EventTypes.eventTarget,
+  ...DOM.eventTarget,
   /**
     Returns a list of the names of object stores in the transaction's scope. For an upgrade transaction this is all object stores in the database.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/IDBTransaction/objectStoreNames)
@@ -88,7 +88,7 @@ The request object does not initially contain any information about the result o
 [See IDBRequest on MDN](https://developer.mozilla.org/docs/Web/API/IDBRequest)
 */
 type idbRequest<'t> = {
-  ...EventTypes.eventTarget,
+  ...DOM.eventTarget,
   /**
     When a request is completed, returns the result, or undefined if the request failed. Throws a "InvalidStateError" DOMException if the request is still pending.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/IDBRequest/result)
