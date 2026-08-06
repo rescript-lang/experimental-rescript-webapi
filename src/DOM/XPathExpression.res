@@ -2,7 +2,6 @@
 This interface is a compiled XPath expression that can be evaluated on a document or specific node to return information its WebApiDOM tree.
 [See XPathExpression on MDN](https://developer.mozilla.org/docs/Web/API/XPathExpression)
 */
-@editor.completeFrom(XPathExpression)
 type t = private {}
 
 /**
