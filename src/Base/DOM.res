@@ -1,5 +1,9 @@
 @@warning("-30")
 
+/**
+Any web page loaded in the browser that serves as an entry point into the page's DOM tree.
+[See Document on MDN](https://developer.mozilla.org/docs/Web/API/Document)
+*/
 type document = private {}
 
 /**

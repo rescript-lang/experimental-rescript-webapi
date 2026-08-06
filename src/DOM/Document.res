@@ -474,7 +474,8 @@ external requestStorageAccess: DomTypes.document => promise<unit> = "requestStor
 let isInstanceOf = (_: 't): bool => %raw(`param instanceof Document`)
 
 /**
-[Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/location)
+Returns the Location associated with this document, which provides information about the current URL and methods for navigating to another URL.
+[Read more on MDN](https://developer.mozilla.org/docs/Web/API/Document/location)
 */
 @get
 external location: DomTypes.document => Location.t = "location"
