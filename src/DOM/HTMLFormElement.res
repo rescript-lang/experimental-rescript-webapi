@@ -1,6 +1,6 @@
 type t = DOMTree.htmlFormElement
 
-include HTMLElement.Impl({type t = DOMTree.htmlFormElement})
+include HTMLElement.Impl({type t = t})
 
 /**
 Fires when a FORM is about to be submitted.
