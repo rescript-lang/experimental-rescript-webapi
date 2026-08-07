@@ -2,7 +2,7 @@
   "name": "@rescript/webapi",
   "namespace": "WebAPI",
   "features": {
-    "WebAPI.DOM": ["DOM", "Event"],
+    "WebAPI.DOM": ["DOM"],
     "WebAPI.Event": ["WebAPI.DOM", "Event"],
     "WebAPI.DOMPlatform": ["WebAPI.Event", "DOMPlatform"],
     "WebAPI.Animation": ["WebAPI.Event", "Animation"],
@@ -16,6 +16,16 @@
       "DOMNodes"
     ],
     "WebAPI.HTML": ["WebAPI.DOMNodes", "WebAPI.File", "HTML"],
+    "WebAPI.Window": [
+      "WebAPI.HTML",
+      "WebAPI.Media",
+      "WebAPI.Storage",
+      "WebAPI.Messaging",
+      "WebAPI.Crypto",
+      "WebAPI.Performance",
+      "WebAPI.ViewTransitions",
+      "Window"
+    ],
     "WebAPI.Media": ["WebAPI.HTML", "Media"],
     "WebAPI.WebAudio": ["WebAPI.Media", "WebAPI.Messaging", "WebAudio"],
     "WebAPI.SVG": ["WebAPI.DOMNodes", "WebAPI.Geometry", "SVG"],
@@ -281,14 +291,16 @@
       ]
     },
     {
-      "dir": "src/DOM",
+      "dir": "src/window",
       "subdirs": true,
-      "feature": "WebAPI.DOM",
+      "feature": "Window",
       "public": [
         "CustomElementRegistry",
         "Document",
+        "History",
         "IdleDeadline",
         "Location",
+        "VisualViewport",
         "Window",
         "XPathExpression",
         "XPathResult"
@@ -355,14 +367,6 @@
         "WakeLock",
         "WakeLockSentinel",
         "WebMIDI"
-      ]
-    },
-    {
-      "dir": "src/History",
-      "subdirs": true,
-      "feature": "WebAPI.History",
-      "public": [
-        "History"
       ]
     },
     {
@@ -489,14 +493,6 @@
       "feature": "ViewTransitions",
       "public": [
         "ViewTransition"
-      ]
-    },
-    {
-      "dir": "src/VisualViewport",
-      "subdirs": true,
-      "feature": "WebAPI.VisualViewport",
-      "public": [
-        "VisualViewport"
       ]
     },
     {
