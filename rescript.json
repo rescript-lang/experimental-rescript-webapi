@@ -9,6 +9,7 @@
     "WebAPI.URL": ["WebAPI.DOM", "URL"],
     "WebAPI.Fetch": ["WebAPI.Event", "WebAPI.File", "WebAPI.URL", "Fetch"],
     "WebAPI.CSSFontLoading": ["WebAPI.Event", "CSSFontLoading"],
+    "WebAPI.Device": ["WebAPI.Event", "Device"],
     "WebAPI.Crypto": ["WebAPI.DOM", "Crypto"],
     "WebAPI.Performance": ["WebAPI.Event", "Performance"],
     "WebAPI.ViewTransitions": ["WebAPI.Event", "ViewTransitions"]
@@ -271,21 +272,18 @@
       ]
     },
     {
-      "dir": "src/Gamepad",
+      "dir": "src/device",
       "subdirs": true,
-      "feature": "WebAPI.Gamepad",
+      "feature": "Device",
       "public": [
-        "GamepadHapticActuator"
-      ]
-    },
-    {
-      "dir": "src/Geolocation",
-      "subdirs": true,
-      "feature": "WebAPI.Geolocation",
-      "public": [
+        "GamepadHapticActuator",
         "Geolocation",
         "GeolocationCoordinates",
-        "GeolocationPosition"
+        "GeolocationPosition",
+        "LockManager",
+        "WakeLock",
+        "WakeLockSentinel",
+        "WebMIDI"
       ]
     },
     {
@@ -416,15 +414,6 @@
       ]
     },
     {
-      "dir": "src/ScreenWakeLock",
-      "subdirs": true,
-      "feature": "WebAPI.ScreenWakeLock",
-      "public": [
-        "WakeLock",
-        "WakeLockSentinel"
-      ]
-    },
-    {
       "dir": "src/ServiceWorker",
       "subdirs": true,
       "feature": "WebAPI.ServiceWorker",
@@ -537,22 +526,6 @@
       "public": [
         "Crypto",
         "SubtleCrypto"
-      ]
-    },
-    {
-      "dir": "src/WebLocks",
-      "subdirs": true,
-      "feature": "WebAPI.WebLocks",
-      "public": [
-        "LockManager"
-      ]
-    },
-    {
-      "dir": "src/WebMIDI",
-      "subdirs": true,
-      "feature": "WebAPI.WebMIDI",
-      "public": [
-        "WebMIDI"
       ]
     },
     {
