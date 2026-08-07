@@ -10,6 +10,7 @@
     "WebAPI.Fetch": ["WebAPI.Event", "WebAPI.File", "WebAPI.URL", "Fetch"],
     "WebAPI.CSSFontLoading": ["WebAPI.Event", "CSSFontLoading"],
     "WebAPI.Device": ["WebAPI.Event", "Device"],
+    "WebAPI.Messaging": ["WebAPI.Event", "WebAPI.File", "Messaging"],
     "WebAPI.Crypto": ["WebAPI.DOM", "Crypto"],
     "WebAPI.Performance": ["WebAPI.Event", "Performance"],
     "WebAPI.ViewTransitions": ["WebAPI.Event", "ViewTransitions"]
@@ -62,11 +63,20 @@
       ]
     },
     {
-      "dir": "src/ChannelMessaging",
+      "dir": "src/messaging",
       "subdirs": true,
-      "feature": "WebAPI.ChannelMessaging",
+      "feature": "Messaging",
       "public": [
-        "MessagePort"
+        "ApplicationServerKey",
+        "CloseEvent",
+        "MessageEvent",
+        "MessagePort",
+        "Notification",
+        "PushEvent",
+        "PushManager",
+        "PushMessageData",
+        "PushSubscription",
+        "WebSocket"
       ]
     },
     {
@@ -352,14 +362,6 @@
       ]
     },
     {
-      "dir": "src/Notification",
-      "subdirs": true,
-      "feature": "WebAPI.Notification",
-      "public": [
-        "Notification"
-      ]
-    },
-    {
       "dir": "src/performance",
       "subdirs": true,
       "feature": "Performance",
@@ -383,18 +385,6 @@
       "feature": "WebAPI.PictureInPicture",
       "public": [
         "PictureInPicture"
-      ]
-    },
-    {
-      "dir": "src/Push",
-      "subdirs": true,
-      "feature": "WebAPI.Push",
-      "public": [
-        "ApplicationServerKey",
-        "PushEvent",
-        "PushManager",
-        "PushMessageData",
-        "PushSubscription"
       ]
     },
     {
@@ -526,16 +516,6 @@
       "public": [
         "Crypto",
         "SubtleCrypto"
-      ]
-    },
-    {
-      "dir": "src/WebSockets",
-      "subdirs": true,
-      "feature": "WebAPI.WebSockets",
-      "public": [
-        "CloseEvent",
-        "MessageEvent",
-        "WebSocket"
       ]
     },
     {
