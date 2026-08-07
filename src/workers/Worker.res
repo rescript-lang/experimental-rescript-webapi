@@ -8,6 +8,13 @@ module Impl = (
   external current: T.t = "self"
 
   /**
+  The absolute URL of the script executed by this worker.
+  [See WorkerGlobalScope.location on MDN](https://developer.mozilla.org/docs/Web/API/WorkerGlobalScope/location)
+  */
+  @get
+  external location: T.t => WorkerLocation.t = "location"
+
+  /**
 `fetch(workerGlobalScope, string, init)`
 
 The fetch() method of the WorkerGlobalScope interface starts the process of fetching a resource from the network, 
