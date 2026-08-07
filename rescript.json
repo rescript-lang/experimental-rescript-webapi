@@ -8,6 +8,7 @@
     "WebAPI.File": ["WebAPI.Event", "File"],
     "WebAPI.URL": ["WebAPI.DOM", "URL"],
     "WebAPI.Fetch": ["WebAPI.Event", "WebAPI.File", "WebAPI.URL", "Fetch"],
+    "WebAPI.Crypto": ["WebAPI.DOM", "Crypto"],
     "WebAPI.Performance": ["WebAPI.Event", "Performance"],
     "WebAPI.ViewTransitions": ["WebAPI.Event", "ViewTransitions"]
   },
@@ -536,9 +537,9 @@
       ]
     },
     {
-      "dir": "src/WebCrypto",
+      "dir": "src/crypto",
       "subdirs": true,
-      "feature": "WebAPI.WebCrypto",
+      "feature": "Crypto",
       "public": [
         "Crypto",
         "SubtleCrypto"
