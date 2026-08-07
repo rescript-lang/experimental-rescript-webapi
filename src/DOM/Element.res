@@ -106,7 +106,7 @@ Returns the first (starting at element) inclusive ancestor that matches selector
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/computedStyleMap)
 */
   @send
-  external computedStyleMap: T.t => DOM.stylePropertyMapReadOnly = "computedStyleMap"
+  external computedStyleMap: T.t => StylePropertyMapReadOnly.t = "computedStyleMap"
 
   /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/getAnimations)

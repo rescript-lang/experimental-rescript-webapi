@@ -1,50 +1,56 @@
-external asStylePropertyMapReadOnly: DOM.stylePropertyMap => DOM.stylePropertyMapReadOnly =
-  "%identity"
+/**
+[See StylePropertyMap on MDN](https://developer.mozilla.org/docs/Web/API/StylePropertyMap)
+*/
+@editor.completeFrom(StylePropertyMap)
+type t = private {
+  ...StylePropertyMapReadOnly.t,
+}
+
+external asStylePropertyMapReadOnly: t => StylePropertyMapReadOnly.t = "%identity"
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/StylePropertyMapReadOnly/getAll)
 */
 @send
-external getAll: (DOM.stylePropertyMap, string) => array<DOM.cssStyleValue> = "getAll"
+external getAll: (t, string) => array<CSSStyleValue.t> = "getAll"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/StylePropertyMapReadOnly/has)
 */
 @send
-external has: (DOM.stylePropertyMap, string) => bool = "has"
+external has: (t, string) => bool = "has"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/StylePropertyMap/set)
 */
 @send
-external set: (DOM.stylePropertyMap, ~property: string, ~values: DOM.cssStyleValue) => unit = "set"
+external set: (t, ~property: string, ~values: CSSStyleValue.t) => unit = "set"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/StylePropertyMap/set)
 */
 @send
-external set2: (DOM.stylePropertyMap, ~property: string, ~values: string) => unit = "set"
+external set2: (t, ~property: string, ~values: string) => unit = "set"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/StylePropertyMap/append)
 */
 @send
-external append: (DOM.stylePropertyMap, ~property: string, ~values: DOM.cssStyleValue) => unit =
-  "append"
+external append: (t, ~property: string, ~values: CSSStyleValue.t) => unit = "append"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/StylePropertyMap/append)
 */
 @send
-external append2: (DOM.stylePropertyMap, ~property: string, ~values: string) => unit = "append"
+external append2: (t, ~property: string, ~values: string) => unit = "append"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/StylePropertyMap/delete)
 */
 @send
-external delete: (DOM.stylePropertyMap, string) => unit = "delete"
+external delete: (t, string) => unit = "delete"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/StylePropertyMap/clear)
 */
 @send
-external clear: DOM.stylePropertyMap => unit = "clear"
+external clear: t => unit = "clear"

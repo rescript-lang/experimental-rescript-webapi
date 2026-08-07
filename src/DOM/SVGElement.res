@@ -51,11 +51,11 @@ type t = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/style)
     */
-  style: DOM.cssStyleDeclaration,
+  style: CSSStyleDeclaration.t,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/attributeStyleMap)
     */
-  attributeStyleMap: DOM.stylePropertyMap,
+  attributeStyleMap: StylePropertyMap.t,
 }
 
 module Impl = (
