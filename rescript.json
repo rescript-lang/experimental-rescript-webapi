@@ -17,6 +17,7 @@
     ],
     "WebAPI.HTML": ["WebAPI.DOMNodes", "WebAPI.File", "HTML"],
     "WebAPI.Media": ["WebAPI.HTML", "Media"],
+    "WebAPI.WebAudio": ["WebAPI.Media", "WebAPI.Messaging", "WebAudio"],
     "WebAPI.File": ["WebAPI.Event", "File"],
     "WebAPI.URL": ["WebAPI.DOM", "URL"],
     "WebAPI.Fetch": ["WebAPI.Event", "WebAPI.File", "WebAPI.URL", "Fetch"],
@@ -496,9 +497,9 @@
       ]
     },
     {
-      "dir": "src/WebAudio",
+      "dir": "src/web-audio",
       "subdirs": true,
-      "feature": "WebAPI.WebAudio",
+      "feature": "WebAudio",
       "public": [
         "AnalyserNode",
         "AudioBuffer",
