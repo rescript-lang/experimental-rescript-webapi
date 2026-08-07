@@ -5,6 +5,7 @@
     "WebAPI.DOM": ["DOM", "Event"],
     "WebAPI.Event": ["WebAPI.DOM", "Event"],
     "WebAPI.DOMPlatform": ["WebAPI.Event", "DOMPlatform"],
+    "WebAPI.Animation": ["WebAPI.Event", "Animation"],
     "WebAPI.File": ["WebAPI.Event", "File"],
     "WebAPI.URL": ["WebAPI.DOM", "URL"],
     "WebAPI.Fetch": ["WebAPI.Event", "WebAPI.File", "WebAPI.URL", "Fetch"],
@@ -33,6 +34,16 @@
         "DOMException",
         "DOMStringList",
         "DOMTokenList"
+      ]
+    },
+    {
+      "dir": "src/animation",
+      "subdirs": true,
+      "feature": "Animation",
+      "public": [
+        "Animation",
+        "AnimationEffect",
+        "DocumentTimeline"
       ]
     },
     {
@@ -101,8 +112,6 @@
       "subdirs": true,
       "feature": "WebAPI.DOM",
       "public": [
-        "Animation",
-        "AnimationEffect",
         "CSSRuleList",
         "CSSStyleDeclaration",
         "StyleSheet",
@@ -122,7 +131,6 @@
         "DOMTree",
         "Document",
         "DocumentFragment",
-        "DocumentTimeline",
         "DomHTMLMediaElement",
         "Element",
         "ElementInternals",
