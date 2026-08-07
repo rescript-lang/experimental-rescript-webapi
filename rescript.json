@@ -34,6 +34,14 @@
     ],
     "WebAPI.Storage": ["WebAPI.Fetch", "Storage"],
     "WebAPI.Workers": ["WebAPI.Messaging", "WebAPI.Storage", "Workers"],
+    "WebAPI.Navigator": [
+      "WebAPI.DOMPlatform",
+      "WebAPI.Device",
+      "WebAPI.Media",
+      "WebAPI.Storage",
+      "WebAPI.Workers",
+      "Navigator"
+    ],
     "WebAPI.File": ["WebAPI.Event", "File"],
     "WebAPI.URL": ["WebAPI.DOM", "URL"],
     "WebAPI.Fetch": ["WebAPI.Event", "WebAPI.File", "WebAPI.URL", "Fetch"],
@@ -191,20 +199,15 @@
       ]
     },
     {
-      "dir": "src/Clipboard",
+      "dir": "src/navigator",
       "subdirs": true,
-      "feature": "WebAPI.Clipboard",
+      "feature": "Navigator",
       "public": [
         "Clipboard",
-        "ClipboardItem"
-      ]
-    },
-    {
-      "dir": "src/CredentialManagement",
-      "subdirs": true,
-      "feature": "WebAPI.CredentialManagement",
-      "public": [
-        "CredentialsContainer"
+        "ClipboardItem",
+        "CredentialsContainer",
+        "Navigator",
+        "Permissions"
       ]
     },
     {
@@ -285,7 +288,6 @@
         "IdleDeadline",
         "ImageData",
         "Location",
-        "Navigator",
         "ScreenOrientation",
         "VideoColorSpace",
         "Window",
@@ -432,14 +434,6 @@
         "Performance",
         "PerformanceEntry",
         "PerformanceMark"
-      ]
-    },
-    {
-      "dir": "src/Permissions",
-      "subdirs": true,
-      "feature": "WebAPI.Permissions",
-      "public": [
-        "Permissions"
       ]
     },
     {
