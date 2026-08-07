@@ -24,5 +24,5 @@ external createDocument: (
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/DOMImplementation/createHTMLDocument)
 */
 @send
-external createHTMLDocument: (DomTypes.domImplementation, ~title: string=?) => DomTypes.document =
+external createHTMLDocument: (DomTypes.domImplementation, ~title: string=?) => DOM.document =
   "createHTMLDocument"
