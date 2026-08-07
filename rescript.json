@@ -2,7 +2,7 @@
   "name": "@rescript/webapi",
   "namespace": "WebAPI",
   "features": {
-    "WebAPI.DOM": ["DOM", "EventType", "Event"],
+    "WebAPI.DOM": ["DOM", "Event"],
     "WebAPI.Event": ["WebAPI.DOM", "Event"],
     "WebAPI.File": ["WebAPI.Event", "File"],
     "WebAPI.URL": ["WebAPI.DOM", "URL"],
@@ -10,11 +10,12 @@
   },
   "sources": [
     {
-      "dir": "src/Base",
+      "dir": "src/core",
       "subdirs": true,
       "feature": "DOM",
       "public": [
-        "DOM"
+        "DOM",
+        "EventType"
       ]
     },
     {
@@ -213,22 +214,7 @@
     },
     {
       "dir": "src/Event",
-      "files": [
-        "EventType.res"
-      ],
-      "feature": "EventType",
-      "public": [
-        "EventType"
-      ]
-    },
-    {
-      "dir": "src/Event",
       "subdirs": true,
-      "files": {
-        "excludes": [
-          "EventType.res"
-        ]
-      },
       "feature": "Event",
       "public": [
         "AbortController",

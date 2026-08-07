@@ -2,7 +2,6 @@ import * as path from "node:path";
 import { exec } from "node:child_process";
 import { promisify } from "node:util";
 import fs from "node:fs/promises";
-import { featureSpecs } from "../scripts/unmonorepo/feature-spec.mjs";
 
 const execAsync = promisify(exec);
 
@@ -95,12 +94,11 @@ Module: ${moduleName}${typeString}${functionString}
 `;
 }
 
-const specByDir = new Map(featureSpecs.map((spec) => [spec.dirName, spec]));
 const rootDir = path.join(import.meta.dirname, "..");
 const rootConfig = JSON.parse(await fs.readFile(path.join(rootDir, "rescript.json"), "utf-8"));
 const publicModulesBySourceDir = new Map(
   rootConfig.sources
-    .filter((source) => typeof source === "object")
+    .filter((source) => source !== null && typeof source === "object")
     .filter((source) => source.dir?.startsWith("src/") && Array.isArray(source.public))
     .map((source) => [source.dir, new Set(source.public)]),
 );
@@ -130,16 +128,7 @@ function isPublicFile(filePath) {
 }
 
 function moduleNameForFile(relativePath) {
-  const [, dirName, fileName] = relativePath.split(path.sep);
-  const spec = specByDir.get(dirName);
-
-  if (!spec) {
-    throw new Error(`Unsupported source directory for documentation: ${relativePath}`);
-  }
-
-  const leafName = path.basename(fileName, ".res");
-
-  return `WebAPI.${leafName}`;
+  return `WebAPI.${path.basename(relativePath, ".res")}`;
 }
 
 const pattern = "../src/*/**/*.res";
