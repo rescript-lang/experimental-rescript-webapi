@@ -3,9 +3,9 @@
 */
 @send
 external match: (
-  WebWorkersTypes.cache,
+  CacheTypes.cache,
   ~request: FetchTypes.request,
-  ~options: WebWorkersTypes.cacheQueryOptions=?,
+  ~options: CacheTypes.cacheQueryOptions=?,
 ) => Nullable.t<FetchTypes.response> = "match"
 
 /**
@@ -13,9 +13,9 @@ external match: (
 */
 @send
 external match2: (
-  WebWorkersTypes.cache,
+  CacheTypes.cache,
   ~request: string,
-  ~options: WebWorkersTypes.cacheQueryOptions=?,
+  ~options: CacheTypes.cacheQueryOptions=?,
 ) => Nullable.t<FetchTypes.response> = "match"
 
 /**
@@ -23,9 +23,9 @@ external match2: (
 */
 @send
 external matchAll: (
-  WebWorkersTypes.cache,
+  CacheTypes.cache,
   ~request: FetchTypes.request=?,
-  ~options: WebWorkersTypes.cacheQueryOptions=?,
+  ~options: CacheTypes.cacheQueryOptions=?,
 ) => promise<array<FetchTypes.response>> = "matchAll"
 
 /**
@@ -33,35 +33,35 @@ external matchAll: (
 */
 @send
 external matchAll2: (
-  WebWorkersTypes.cache,
+  CacheTypes.cache,
   ~request: string=?,
-  ~options: WebWorkersTypes.cacheQueryOptions=?,
+  ~options: CacheTypes.cacheQueryOptions=?,
 ) => promise<array<FetchTypes.response>> = "matchAll"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Cache/add)
 */
 @send
-external add: (WebWorkersTypes.cache, FetchTypes.request) => promise<unit> = "add"
+external add: (CacheTypes.cache, FetchTypes.request) => promise<unit> = "add"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Cache/add)
 */
 @send
-external add2: (WebWorkersTypes.cache, string) => promise<unit> = "add"
+external add2: (CacheTypes.cache, string) => promise<unit> = "add"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Cache/addAll)
 */
 @send
-external addAll: (WebWorkersTypes.cache, array<FetchTypes.requestInfo>) => promise<unit> = "addAll"
+external addAll: (CacheTypes.cache, array<FetchTypes.requestInfo>) => promise<unit> = "addAll"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Cache/put)
 */
 @send
 external put: (
-  WebWorkersTypes.cache,
+  CacheTypes.cache,
   ~request: FetchTypes.request,
   ~response: FetchTypes.response,
 ) => promise<unit> = "put"
@@ -71,7 +71,7 @@ external put: (
 */
 @send
 external put2: (
-  WebWorkersTypes.cache,
+  CacheTypes.cache,
   ~request: string,
   ~response: FetchTypes.response,
 ) => promise<unit> = "put"
@@ -81,9 +81,9 @@ external put2: (
 */
 @send
 external delete: (
-  WebWorkersTypes.cache,
+  CacheTypes.cache,
   ~request: FetchTypes.request,
-  ~options: WebWorkersTypes.cacheQueryOptions=?,
+  ~options: CacheTypes.cacheQueryOptions=?,
 ) => promise<bool> = "delete"
 
 /**
@@ -91,9 +91,9 @@ external delete: (
 */
 @send
 external delete2: (
-  WebWorkersTypes.cache,
+  CacheTypes.cache,
   ~request: string,
-  ~options: WebWorkersTypes.cacheQueryOptions=?,
+  ~options: CacheTypes.cacheQueryOptions=?,
 ) => promise<bool> = "delete"
 
 /**
@@ -101,9 +101,9 @@ external delete2: (
 */
 @send
 external keys: (
-  WebWorkersTypes.cache,
+  CacheTypes.cache,
   ~request: FetchTypes.request=?,
-  ~options: WebWorkersTypes.cacheQueryOptions=?,
+  ~options: CacheTypes.cacheQueryOptions=?,
 ) => promise<array<FetchTypes.request>> = "keys"
 
 /**
@@ -111,7 +111,7 @@ external keys: (
 */
 @send
 external keys2: (
-  WebWorkersTypes.cache,
+  CacheTypes.cache,
   ~request: string=?,
-  ~options: WebWorkersTypes.cacheQueryOptions=?,
+  ~options: CacheTypes.cacheQueryOptions=?,
 ) => promise<array<FetchTypes.request>> = "keys"

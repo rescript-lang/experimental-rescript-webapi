@@ -1,28 +1,3 @@
-/**
-Provides a storage mechanism for Request / Response object pairs that are cached, for example as part of the WebApiServiceWorker life cycle. Note that the Cache interface is exposed to windowed scopes as well as workers. You don't have to use it in conjunction with service workers, even though it is defined in the service worker spec.
-[See Cache on MDN](https://developer.mozilla.org/docs/Web/API/Cache)
-*/
-@editor.completeFrom(Cache)
-type cache = private {}
-
-/**
-The storage for Cache objects.
-[See CacheStorage on MDN](https://developer.mozilla.org/docs/Web/API/CacheStorage)
-*/
-@editor.completeFrom(CacheStorage)
-type cacheStorage = private {}
-
-type cacheQueryOptions = {
-  mutable ignoreSearch?: bool,
-  mutable ignoreMethod?: bool,
-  mutable ignoreVary?: bool,
-}
-
-type multiCacheQueryOptions = {
-  ...cacheQueryOptions,
-  mutable cacheName?: string,
-}
-
 type sharedWorker
 
 /**
@@ -38,7 +13,7 @@ type workerGlobalScope = private {
   /**
     [Read more on MDN](https://developer.mozilla.org/en-US/docs/Web/API/WorkerGlobalScope/caches)
     */
-  caches: cacheStorage,
+  caches: CacheTypes.cacheStorage,
   /**
     [Read more on MDN](https://developer.mozilla.org/en-US/docs/Web/API/WorkerGlobalScope/crossOriginIsolated)
     */

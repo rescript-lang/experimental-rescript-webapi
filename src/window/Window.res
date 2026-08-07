@@ -266,7 +266,7 @@ external performance: t => PerformanceTypes.performance = "performance"
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/caches)
     */
 @get
-external caches: t => WebWorkersTypes.cacheStorage = "caches"
+external caches: t => CacheTypes.cacheStorage = "caches"
 
 /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/sessionStorage)
