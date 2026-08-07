@@ -5,7 +5,7 @@ module Impl = (
 ) => {
   include Node.Impl({type t = T.t})
 
-  external asElement: T.t => DomTypes.element = "%identity"
+  external asElement: T.t => DOMTree.element = "%identity"
 
   /**
 Inserts nodes just after node, while replacing strings in nodes with equivalent Text nodes.
@@ -14,7 +14,7 @@ Throws a "HierarchyRequestError" DOMException if the constraints of the node tre
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/after)
 */
   @send
-  external after: (T.t, DomTypes.node) => unit = "after"
+  external after: (T.t, DOMTree.node) => unit = "after"
 
   /**
 Inserts nodes just after node, while replacing strings in nodes with equivalent Text nodes.
@@ -48,7 +48,7 @@ Throws a "HierarchyRequestError" DOMException if the constraints of the node tre
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/append)
 */
   @send
-  external append: (T.t, DomTypes.node) => unit = "append"
+  external append: (T.t, DOMTree.node) => unit = "append"
 
   /**
 Inserts nodes after the last child of node, while replacing strings in nodes with equivalent Text nodes.
@@ -64,7 +64,7 @@ Creates a shadow root for element and returns it.
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/attachShadow)
 */
   @send
-  external attachShadow: (T.t, DomTypes.shadowRootInit) => DomTypes.shadowRoot = "attachShadow"
+  external attachShadow: (T.t, DomTypes.shadowRootInit) => DOMTree.shadowRoot = "attachShadow"
 
   /**
 Inserts nodes just before node, while replacing strings in nodes with equivalent Text nodes.
@@ -73,7 +73,7 @@ Throws a "HierarchyRequestError" DOMException if the constraints of the node tre
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/before)
 */
   @send
-  external before: (T.t, DomTypes.node) => unit = "before"
+  external before: (T.t, DOMTree.node) => unit = "before"
 
   /**
 Inserts nodes just before node, while replacing strings in nodes with equivalent Text nodes.
@@ -102,7 +102,7 @@ Returns the first (starting at element) inclusive ancestor that matches selector
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/computedStyleMap)
 */
   @send
-  external computedStyleMap: T.t => DomTypes.stylePropertyMapReadOnly = "computedStyleMap"
+  external computedStyleMap: T.t => DOM.stylePropertyMapReadOnly = "computedStyleMap"
 
   /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/getAnimations)
@@ -129,13 +129,13 @@ Returns the qualified names of all element's attributes. Can contain duplicates.
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/getAttributeNode)
 */
   @send
-  external getAttributeNode: (T.t, string) => DomTypes.attr = "getAttributeNode"
+  external getAttributeNode: (T.t, string) => Attr.t = "getAttributeNode"
 
   /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/getAttributeNodeNS)
 */
   @send
-  external getAttributeNodeNS: (T.t, ~namespace: string, ~localName: string) => DomTypes.attr =
+  external getAttributeNodeNS: (T.t, ~namespace: string, ~localName: string) => Attr.t =
     "getAttributeNodeNS"
 
   /**
@@ -150,27 +150,27 @@ Returns element's attribute whose namespace is namespace and local name is local
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/getBoundingClientRect)
 */
   @send
-  external getBoundingClientRect: T.t => DomTypes.domRect = "getBoundingClientRect"
+  external getBoundingClientRect: T.t => DOM.domRect = "getBoundingClientRect"
 
   /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/getClientRects)
 */
   @send
-  external getClientRects: T.t => DomTypes.domRectList = "getClientRects"
+  external getClientRects: T.t => DOM.domRectList = "getClientRects"
 
   /**
 Returns a HTMLCollection of the elements in the object on which the method was invoked (a document or an element) that have all the classes given by classNames. The classNames argument is interpreted as a space-separated list of classes.
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/getElementsByClassName)
 */
   @send
-  external getElementsByClassName: (T.t, string) => DomTypes.htmlCollection<DomTypes.element> =
+  external getElementsByClassName: (T.t, string) => HTMLCollection.t<DOMTree.element> =
     "getElementsByClassName"
 
   /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/getElementsByTagName)
 */
   @send
-  external getElementsByTagName: (T.t, string) => DomTypes.htmlCollection<DomTypes.element> =
+  external getElementsByTagName: (T.t, string) => HTMLCollection.t<DOMTree.element> =
     "getElementsByTagName"
 
   /**
@@ -178,10 +178,10 @@ Returns a HTMLCollection of the elements in the object on which the method was i
 */
   @send
   external getElementsByTagNameNS: (
-    DomTypes.element,
+    DOMTree.element,
     ~namespace: string,
     ~localName: string,
-  ) => DomTypes.htmlCollection<DomTypes.element> = "getElementsByTagNameNS"
+  ) => HTMLCollection.t<DOMTree.element> = "getElementsByTagNameNS"
 
   /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/getHTML)
@@ -222,22 +222,22 @@ Returns true if element has attributes, and false otherwise.
   @send
   external insertAdjacentElement: (
     T.t,
-    ~where: DomTypes.insertPosition,
-    ~element: DomTypes.element,
-  ) => DomTypes.element = "insertAdjacentElement"
+    ~where: DOM.insertPosition,
+    ~element: DOMTree.element,
+  ) => DOMTree.element = "insertAdjacentElement"
 
   /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/insertAdjacentHTML)
 */
   @send
-  external insertAdjacentHTML: (T.t, ~position: DomTypes.insertPosition, ~string: string) => unit =
+  external insertAdjacentHTML: (T.t, ~position: DOM.insertPosition, ~string: string) => unit =
     "insertAdjacentHTML"
 
   /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/insertAdjacentText)
 */
   @send
-  external insertAdjacentText: (T.t, ~where: DomTypes.insertPosition, ~data: string) => unit =
+  external insertAdjacentText: (T.t, ~where: DOM.insertPosition, ~data: string) => unit =
     "insertAdjacentText"
 
   /**
@@ -254,7 +254,7 @@ Throws a "HierarchyRequestError" DOMException if the constraints of the node tre
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Document/prepend)
 */
   @send
-  external prepend: (T.t, DomTypes.node) => unit = "prepend"
+  external prepend: (T.t, DOMTree.node) => unit = "prepend"
 
   /**
 Inserts nodes before the first child of node, while replacing strings in nodes with equivalent Text nodes.
@@ -270,15 +270,14 @@ Returns the first element that is a descendant of node that matches selectors.
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Document/querySelector)
 */
   @send
-  external querySelector: (T.t, string) => Null.t<DomTypes.element> = "querySelector"
+  external querySelector: (T.t, string) => Null.t<DOMTree.element> = "querySelector"
 
   /**
 Returns all element descendants of node that match selectors.
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Document/querySelectorAll)
 */
   @send
-  external querySelectorAll: (T.t, string) => DomTypes.nodeList<DomTypes.element> =
-    "querySelectorAll"
+  external querySelectorAll: (T.t, string) => DOM.nodeList<DOMTree.element> = "querySelectorAll"
 
   /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/releasePointerCapture)
@@ -304,7 +303,7 @@ Removes element's first attribute whose qualified name is qualifiedName.
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/removeAttributeNode)
 */
   @send
-  external removeAttributeNode: (T.t, DomTypes.attr) => DomTypes.attr = "removeAttributeNode"
+  external removeAttributeNode: (T.t, Attr.t) => Attr.t = "removeAttributeNode"
 
   /**
 Removes element's attribute whose namespace is namespace and local name is localName.
@@ -321,7 +320,7 @@ Throws a "HierarchyRequestError" DOMException if the constraints of the node tre
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Document/replaceChildren)
 */
   @send
-  external replaceChildren: (T.t, DomTypes.node) => unit = "replaceChildren"
+  external replaceChildren: (T.t, DOMTree.node) => unit = "replaceChildren"
 
   /**
 Replace all children of node with nodes, while replacing strings in nodes with equivalent Text nodes.
@@ -339,7 +338,7 @@ Throws a "HierarchyRequestError" DOMException if the constraints of the node tre
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CharacterData/replaceWith)
 */
   @send
-  external replaceWith: (T.t, DomTypes.node) => unit = "replaceWith"
+  external replaceWith: (T.t, DOMTree.node) => unit = "replaceWith"
 
   /**
 Replaces node with nodes, while replacing strings in nodes with equivalent Text nodes.
@@ -457,13 +456,13 @@ Sets the value of element's first attribute whose qualified name is qualifiedNam
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/setAttributeNode)
 */
   @send
-  external setAttributeNode: (T.t, DomTypes.attr) => DomTypes.attr = "setAttributeNode"
+  external setAttributeNode: (T.t, Attr.t) => Attr.t = "setAttributeNode"
 
   /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/setAttributeNodeNS)
 */
   @send
-  external setAttributeNodeNS: (T.t, DomTypes.attr) => DomTypes.attr = "setAttributeNodeNS"
+  external setAttributeNodeNS: (T.t, Attr.t) => Attr.t = "setAttributeNodeNS"
 
   /**
 Sets the value of element's attribute whose namespace is namespace and local name is localName to value.
@@ -471,7 +470,7 @@ Sets the value of element's attribute whose namespace is namespace and local nam
 */
   @send
   external setAttributeNS: (
-    DomTypes.element,
+    DOMTree.element,
     ~namespace: string,
     ~qualifiedName: string,
     ~value: string,
@@ -500,6 +499,6 @@ Returns true if qualifiedName is now present, and false otherwise.
     "toggleAttribute"
 }
 
-include Impl({type t = DomTypes.element})
+include Impl({type t = DOMTree.element})
 
 let isInstanceOf = (_: 't): bool => %raw(`param instanceof Element`)

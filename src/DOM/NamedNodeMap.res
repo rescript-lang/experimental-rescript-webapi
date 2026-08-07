@@ -2,48 +2,42 @@
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/NamedNodeMap/item)
 */
 @send
-external item: (DomTypes.namedNodeMap, int) => DomTypes.attr = "item"
+external item: (DOM.namedNodeMap, int) => Attr.t = "item"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/NamedNodeMap/getNamedItem)
 */
 @send
-external getNamedItem: (DomTypes.namedNodeMap, string) => DomTypes.attr = "getNamedItem"
+external getNamedItem: (DOM.namedNodeMap, string) => Attr.t = "getNamedItem"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/NamedNodeMap/getNamedItemNS)
 */
 @send
-external getNamedItemNS: (
-  DomTypes.namedNodeMap,
-  ~namespace: string,
-  ~localName: string,
-) => DomTypes.attr = "getNamedItemNS"
+external getNamedItemNS: (DOM.namedNodeMap, ~namespace: string, ~localName: string) => Attr.t =
+  "getNamedItemNS"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/NamedNodeMap/setNamedItem)
 */
 @send
-external setNamedItem: (DomTypes.namedNodeMap, DomTypes.attr) => DomTypes.attr = "setNamedItem"
+external setNamedItem: (DOM.namedNodeMap, Attr.t) => Attr.t = "setNamedItem"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/NamedNodeMap/setNamedItemNS)
 */
 @send
-external setNamedItemNS: (DomTypes.namedNodeMap, DomTypes.attr) => DomTypes.attr = "setNamedItemNS"
+external setNamedItemNS: (DOM.namedNodeMap, Attr.t) => Attr.t = "setNamedItemNS"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/NamedNodeMap/removeNamedItem)
 */
 @send
-external removeNamedItem: (DomTypes.namedNodeMap, string) => DomTypes.attr = "removeNamedItem"
+external removeNamedItem: (DOM.namedNodeMap, string) => Attr.t = "removeNamedItem"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/NamedNodeMap/removeNamedItemNS)
 */
 @send
-external removeNamedItemNS: (
-  DomTypes.namedNodeMap,
-  ~namespace: string,
-  ~localName: string,
-) => DomTypes.attr = "removeNamedItemNS"
+external removeNamedItemNS: (DOM.namedNodeMap, ~namespace: string, ~localName: string) => Attr.t =
+  "removeNamedItemNS"

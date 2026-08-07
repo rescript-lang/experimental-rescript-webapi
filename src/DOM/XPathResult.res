@@ -22,7 +22,7 @@ type t = private {
   /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/XPathResult/singleNodeValue)
 */
-  singleNodeValue: Null.t<DOM.node>,
+  singleNodeValue: Null.t<DOMTree.node>,
   /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/XPathResult/invalidIteratorState)
 */
@@ -37,10 +37,10 @@ type t = private {
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/XPathResult/iterateNext)
 */
 @send
-external iterateNext: t => DOM.node = "iterateNext"
+external iterateNext: t => DOMTree.node = "iterateNext"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/XPathResult/snapshotItem)
 */
 @send
-external snapshotItem: (t, int) => DOM.node = "snapshotItem"
+external snapshotItem: (t, int) => DOMTree.node = "snapshotItem"

@@ -1,16 +1,16 @@
-external asHTMLCollection: DomTypes.htmlFormControlsCollection => DomTypes.htmlCollection<
-  DomTypes.element,
-> = "%identity"
+external asHTMLCollection: DOMTree.htmlFormControlsCollection => HTMLCollection.t<DOMTree.element> =
+  "%identity"
+
 /**
 Retrieves an object from various collections.
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLCollection/item)
 */
 @send
-external item: (DomTypes.htmlFormControlsCollection, int) => DomTypes.element = "item"
+external item: (DOMTree.htmlFormControlsCollection, int) => DOMTree.element = "item"
 
 /**
 Retrieves a select object or an object from an options collection.
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLCollection/namedItem)
 */
 @send
-external namedItem: (DomTypes.htmlFormControlsCollection, string) => DomTypes.element = "namedItem"
+external namedItem: (DOMTree.htmlFormControlsCollection, string) => DOMTree.element = "namedItem"

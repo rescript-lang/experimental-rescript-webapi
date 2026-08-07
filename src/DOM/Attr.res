@@ -1,14 +1,8 @@
 /**
-An object providing methods which are not dependent on any particular document. Such an object is returned by the Document.implementation property.
-[See DOMImplementation on MDN](https://developer.mozilla.org/docs/Web/API/DOMImplementation)
+A WebApiDOM element's attribute as an object. In most WebApiDOM methods, you will probably directly retrieve the attribute as a string (e.g., Element.getAttribute(), but certain functions (e.g., Element.getAttributeNode()) or means of iterating give Attr types.
+[See Attr on MDN](https://developer.mozilla.org/docs/Web/API/Attr)
 */
-type t = private {}
-
-/**
-A Node containing a doctype.
-[See DocumentType on MDN](https://developer.mozilla.org/docs/Web/API/DocumentType)
-*/
-type documentType = {
+type t = {
   // Base properties from Node
   /**
     Returns the type of node.
@@ -81,51 +75,27 @@ type documentType = {
   // End base properties from Node
 
   /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/DocumentType/name)
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Attr/namespaceURI)
+    */
+  namespaceURI: Null.t<string>,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Attr/prefix)
+    */
+  prefix: Null.t<string>,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Attr/localName)
+    */
+  localName: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Attr/name)
     */
   name: string,
   /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/DocumentType/publicId)
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Attr/value)
     */
-  publicId: string,
+  mutable value: string,
   /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/DocumentType/systemId)
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Attr/ownerElement)
     */
-  systemId: string,
+  ownerElement: Null.t<DOMTree.element>,
 }
-
-/**
-An XML document. It inherits from the generic Document and does not add any specific methods or properties to it: nevertheless, several algorithms behave differently with the two types of documents.
-[See XMLDocument on MDN](https://developer.mozilla.org/docs/Web/API/XMLDocument)
-*/
-type xmlDocument = {
-  ...DOM.document,
-}
-
-/**
-[Read more on MDN](https://developer.mozilla.org/docs/Web/API/DOMImplementation/createDocumentType)
-*/
-@send
-external createDocumentType: (
-  t,
-  ~qualifiedName: string,
-  ~publicId: string,
-  ~systemId: string,
-) => documentType = "createDocumentType"
-
-/**
-[Read more on MDN](https://developer.mozilla.org/docs/Web/API/DOMImplementation/createDocument)
-*/
-@send
-external createDocument: (
-  t,
-  ~namespace: string,
-  ~qualifiedName: string,
-  ~doctype: documentType=?,
-) => xmlDocument = "createDocument"
-
-/**
-[Read more on MDN](https://developer.mozilla.org/docs/Web/API/DOMImplementation/createHTMLDocument)
-*/
-@send
-external createHTMLDocument: (t, ~title: string=?) => DOM.document = "createHTMLDocument"

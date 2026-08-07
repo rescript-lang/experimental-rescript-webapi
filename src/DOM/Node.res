@@ -5,15 +5,16 @@ module Impl = (
 ) => {
   include EventTarget.Impl({type t = T.t})
 
-  external asNode: T.t => DomTypes.node = "%identity"
+  external asNode: T.t => DOMTree.node = "%identity"
+
+  type getRootNodeOptions = {mutable composed?: bool}
 
   /**
 Returns node's root.
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/getRootNode)
 */
   @send
-  external getRootNode: (T.t, ~options: DomTypes.getRootNodeOptions=?) => DomTypes.node =
-    "getRootNode"
+  external getRootNode: (T.t, ~options: getRootNodeOptions=?) => DOMTree.node = "getRootNode"
 
   /**
 Returns whether node has children.
@@ -41,27 +42,27 @@ Returns whether node and otherNode have the same properties.
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/isEqualNode)
 */
   @send
-  external isEqualNode: (T.t, DomTypes.node) => bool = "isEqualNode"
+  external isEqualNode: (T.t, DOMTree.node) => bool = "isEqualNode"
 
   /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/isSameNode)
 */
   @send
-  external isSameNode: (T.t, DomTypes.node) => bool = "isSameNode"
+  external isSameNode: (T.t, DOMTree.node) => bool = "isSameNode"
 
   /**
 Returns a bitmask indicating the position of other relative to node.
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/compareDocumentPosition)
 */
   @send
-  external compareDocumentPosition: (T.t, DomTypes.node) => int = "compareDocumentPosition"
+  external compareDocumentPosition: (T.t, DOMTree.node) => int = "compareDocumentPosition"
 
   /**
 Returns true if other is an inclusive descendant of node, and false otherwise.
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/contains)
 */
   @send
-  external contains: (T.t, DomTypes.node) => bool = "contains"
+  external contains: (T.t, DOMTree.node) => bool = "contains"
 
   /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/lookupPrefix)
@@ -85,7 +86,7 @@ Returns true if other is an inclusive descendant of node, and false otherwise.
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/insertBefore)
 */
   @send
-  external insertBefore: (T.t, 't, ~child: DomTypes.node) => 't = "insertBefore"
+  external insertBefore: (T.t, 't, ~child: DOMTree.node) => 't = "insertBefore"
 
   /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/appendChild)
@@ -97,7 +98,7 @@ Returns true if other is an inclusive descendant of node, and false otherwise.
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/replaceChild)
 */
   @send
-  external replaceChild: (T.t, ~node: DomTypes.node, 't) => 't = "replaceChild"
+  external replaceChild: (T.t, ~node: DOMTree.node, 't) => 't = "replaceChild"
 
   /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/removeChild)
@@ -106,4 +107,4 @@ Returns true if other is an inclusive descendant of node, and false otherwise.
   external removeChild: (T.t, 't) => 't = "removeChild"
 }
 
-include Impl({type t = DomTypes.node})
+include Impl({type t = DOMTree.node})
