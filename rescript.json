@@ -15,6 +15,7 @@
       "WebAPI.Geometry",
       "DOMNodes"
     ],
+    "WebAPI.HTML": ["WebAPI.DOMNodes", "WebAPI.File", "HTML"],
     "WebAPI.File": ["WebAPI.Event", "File"],
     "WebAPI.URL": ["WebAPI.DOM", "URL"],
     "WebAPI.Fetch": ["WebAPI.Event", "WebAPI.File", "WebAPI.URL", "Fetch"],
@@ -179,16 +180,12 @@
       ]
     },
     {
-      "dir": "src/DOM",
+      "dir": "src/html",
       "subdirs": true,
-      "feature": "WebAPI.DOM",
+      "feature": "HTML",
       "public": [
-        "CustomElementRegistry",
-        "Document",
-        "DomHTMLMediaElement",
         "HTMLAnchorElement",
         "HTMLAreaElement",
-        "HTMLAudioElement",
         "HTMLBRElement",
         "HTMLBaseElement",
         "HTMLBodyElement",
@@ -246,8 +243,20 @@
         "HTMLTextAreaElement",
         "HTMLTimeElement",
         "HTMLTitleElement",
-        "HTMLTrackElement",
         "HTMLUListElement",
+        "HTMLUnknownElement"
+      ]
+    },
+    {
+      "dir": "src/DOM",
+      "subdirs": true,
+      "feature": "WebAPI.DOM",
+      "public": [
+        "CustomElementRegistry",
+        "Document",
+        "DomHTMLMediaElement",
+        "HTMLAudioElement",
+        "HTMLTrackElement",
         "HTMLVideoElement",
         "IdleDeadline",
         "ImageData",
