@@ -237,7 +237,7 @@
       ]
     },
     {
-      "dir": "src/Fetch",
+      "dir": "src/fetch",
       "subdirs": true,
       "feature": "Fetch",
       "public": [
