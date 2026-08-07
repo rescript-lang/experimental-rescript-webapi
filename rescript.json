@@ -4,6 +4,7 @@
   "features": {
     "WebAPI.DOM": ["DOM", "Event"],
     "WebAPI.Event": ["WebAPI.DOM", "Event"],
+    "WebAPI.DOMPlatform": ["WebAPI.Event", "DOMPlatform"],
     "WebAPI.File": ["WebAPI.Event", "File"],
     "WebAPI.URL": ["WebAPI.DOM", "URL"],
     "WebAPI.Fetch": ["WebAPI.Event", "WebAPI.File", "WebAPI.URL", "Fetch"]
@@ -16,6 +17,16 @@
       "public": [
         "DOM",
         "EventType"
+      ]
+    },
+    {
+      "dir": "src/dom-platform",
+      "subdirs": true,
+      "feature": "DOMPlatform",
+      "public": [
+        "DOMException",
+        "DOMStringList",
+        "DOMTokenList"
       ]
     },
     {
@@ -85,7 +96,6 @@
         "CharacterData",
         "Comment",
         "CustomElementRegistry",
-        "DOMException",
         "DOMImplementation",
         "DOMMatrix",
         "DOMMatrixReadOnly",
@@ -94,8 +104,6 @@
         "DOMRect",
         "DOMRectList",
         "DOMRectReadOnly",
-        "DOMStringList",
-        "DOMTokenList",
         "DOMTree",
         "Document",
         "DocumentFragment",
