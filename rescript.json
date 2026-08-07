@@ -7,7 +7,8 @@
     "WebAPI.DOMPlatform": ["WebAPI.Event", "DOMPlatform"],
     "WebAPI.File": ["WebAPI.Event", "File"],
     "WebAPI.URL": ["WebAPI.DOM", "URL"],
-    "WebAPI.Fetch": ["WebAPI.Event", "WebAPI.File", "WebAPI.URL", "Fetch"]
+    "WebAPI.Fetch": ["WebAPI.Event", "WebAPI.File", "WebAPI.URL", "Fetch"],
+    "WebAPI.Performance": ["WebAPI.Event", "Performance"]
   },
   "sources": [
     {
@@ -365,9 +366,9 @@
       ]
     },
     {
-      "dir": "src/Performance",
+      "dir": "src/performance",
       "subdirs": true,
-      "feature": "WebAPI.Performance",
+      "feature": "Performance",
       "public": [
         "Performance",
         "PerformanceEntry",
