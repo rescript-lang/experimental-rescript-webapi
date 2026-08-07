@@ -252,13 +252,6 @@ type shareData = {
 }
 
 /**
-@editor.completeFrom(Window) The location (WebApiURL) of the object it is linked to. Changes done on it are reflected on the object it relates to. Both the Document and Window interface have such a linked Location, accessible via Document.location and Window.location respectively.
-[See Location on MDN](https://developer.mozilla.org/docs/Web/API/Location)
-*/
-@editor.completeFrom(Location)
-type location = DOM.location = private {...DOM.location}
-
-/**
 [See UserActivation on MDN](https://developer.mozilla.org/docs/Web/API/UserActivation)
 */
 type userActivation = {

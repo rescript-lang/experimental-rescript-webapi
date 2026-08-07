@@ -19,11 +19,6 @@ external document: DomTypes.document = "document"
 external name: string = "name"
 
 /**
-[Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/location)
-*/
-external location: DomTypes.location = "location"
-
-/**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/history)
 */
 external history: HistoryTypes.history = "history"

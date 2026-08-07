@@ -10,4 +10,4 @@ location->Location.reload
 let a = 0
 
 // testing out editor autocomplete
-let fn = (l: DOM.location) => l->Location.reload
+let fn = (l: Location.t) => l->Location.reload
