@@ -1,3 +1,7 @@
+type t = DOMTree.htmlElement = private {
+  ...DOMTree.htmlElement,
+}
+
 module Impl = (
   T: {
     type t
@@ -29,7 +33,7 @@ module Impl = (
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/focus)
 */
   @send
-  external focus: (T.t, ~options: DomTypes.focusOptions=?) => unit = "focus"
+  external focus: (T.t, ~options: DOM.focusOptions=?) => unit = "focus"
 
   /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/hidePopover)
@@ -50,4 +54,4 @@ module Impl = (
   external togglePopover: (T.t, ~force: bool=?) => bool = "togglePopover"
 }
 
-include Impl({type t = DOMTree.htmlElement})
+include Impl({type t = t})

@@ -1,3 +1,7 @@
+type t = DOMTree.htmlFormControlsCollection = private {
+  ...DOMTree.htmlFormControlsCollection,
+}
+
 external asHTMLCollection: DOMTree.htmlFormControlsCollection => HTMLCollection.t<DOMTree.element> =
   "%identity"
 

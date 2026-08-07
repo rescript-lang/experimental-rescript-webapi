@@ -1,4 +1,4 @@
-type t = DomTypes.navigator
+type t = DOM.navigator
 
 /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Navigator/clipboard)
@@ -18,7 +18,7 @@ type t = DomTypes.navigator
 /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Navigator/userActivation)
     */
-@get external userActivation: t => DomTypes.userActivation = "userActivation"
+@get external userActivation: t => DOM.userActivation = "userActivation"
 
 /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Navigator/mediaCapabilities)
@@ -153,7 +153,7 @@ external getGamepads: t => array<GamepadTypes.gamepad> = "getGamepads"
 external requestMediaKeySystemAccess: (
   t,
   ~keySystem: string,
-  ~supportedConfigurations: array<DomTypes.mediaKeySystemConfiguration>,
+  ~supportedConfigurations: array<BaseEncryptedMediaExtensions.mediaKeySystemConfiguration>,
 ) => promise<'mediaKeySystemAccess> = "requestMediaKeySystemAccess"
 
 /**

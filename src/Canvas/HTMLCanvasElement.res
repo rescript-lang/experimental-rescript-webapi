@@ -1,4 +1,23 @@
-include HTMLElement.Impl({type t = DomTypes.htmlCanvasElement})
+/**
+Provides properties and methods for manipulating the layout and presentation of <canvas> elements. The HTMLCanvasElement interface also inherits the properties and methods of the HTMLElement interface.
+[See HTMLCanvasElement on MDN](https://developer.mozilla.org/docs/Web/API/HTMLCanvasElement)
+TODO: mark as private once mutating fields of private records is allowed
+*/
+type t = {
+  ...DOMTree.htmlElement,
+  /**
+    Gets or sets the width of a canvas element on a document.
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLCanvasElement/width)
+    */
+  mutable width: int,
+  /**
+    Gets or sets the height of a canvas element on a document.
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLCanvasElement/height)
+    */
+  mutable height: int,
+}
+
+include HTMLElement.Impl({type t = t})
 
 /**
 Returns an object that provides methods and properties for drawing and manipulating images and graphics on a canvas element in a document. A context object includes information about colors, line widths, fonts, and other graphic parameters that can be drawn on a canvas.
@@ -8,10 +27,10 @@ Creates a CanvasRenderingContext2D object representing a two-dimensional renderi
 */
 @send
 external getContext2D: (
-  DomTypes.htmlCanvasElement,
+  t,
   @as("2d") _,
   ~options: CanvasTypes.canvasRenderingContext2DSettings=?,
-) => DomTypes.canvasRenderingContext2D = "getContext"
+) => DOM.canvasRenderingContext2D = "getContext"
 
 /**
 Returns an object that provides methods and properties for drawing and manipulating images and graphics on a canvas element in a document. A context object includes information about colors, line widths, fonts, and other graphic parameters that can be drawn on a canvas.
@@ -20,7 +39,7 @@ Returns an object that provides methods and properties for drawing and manipulat
 */
 @send
 external getContextWebGL: (
-  DomTypes.htmlCanvasElement,
+  t,
   @as("webgl") _,
   ~options: CanvasTypes.webGLContextAttributes=?,
 ) => CanvasTypes.webGLRenderingContext = "getContext"
@@ -32,7 +51,7 @@ Returns an object that provides methods and properties for drawing and manipulat
 */
 @send
 external getContextWebGL2: (
-  DomTypes.htmlCanvasElement,
+  t,
   @as("webgl2") _,
   ~options: CanvasTypes.webGLContextAttributes=?,
 ) => CanvasTypes.webGL2RenderingContext = "getContext"
@@ -44,7 +63,7 @@ Returns an object that provides methods and properties for drawing and manipulat
 */
 @send
 external getContextBitmapRenderer: (
-  DomTypes.htmlCanvasElement,
+  t,
   @as("bitmaprenderer") _,
   ~options: CanvasTypes.imageBitmapRenderingContextSettings=?,
 ) => CanvasTypes.imageBitmapRenderingContext = "getContext"
@@ -55,15 +74,14 @@ Returns the content of the current canvas as an image that you can use as a sour
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLCanvasElement/toDataURL)
 */
 @send
-external toDataURL: (DomTypes.htmlCanvasElement, ~type_: string=?, ~quality: JSON.t=?) => string =
-  "toDataURL"
+external toDataURL: (t, ~type_: string=?, ~quality: JSON.t=?) => string = "toDataURL"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLCanvasElement/toBlob)
 */
 @send
 external toBlob: (
-  DomTypes.htmlCanvasElement,
+  t,
   ~callback: FileTypes.blob => unit,
   ~type_: string=?,
   ~quality: JSON.t=?,
@@ -73,14 +91,11 @@ external toBlob: (
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLCanvasElement/transferControlToOffscreen)
 */
 @send
-external transferControlToOffscreen: DomTypes.htmlCanvasElement => CanvasTypes.offscreenCanvas =
-  "transferControlToOffscreen"
+external transferControlToOffscreen: t => CanvasTypes.offscreenCanvas = "transferControlToOffscreen"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLCanvasElement/captureStream)
 */
 @send
-external captureStream: (
-  DomTypes.htmlCanvasElement,
-  ~frameRequestRate: float=?,
-) => MediaCaptureAndStreamsTypes.mediaStream = "captureStream"
+external captureStream: (t, ~frameRequestRate: float=?) => MediaCaptureAndStreamsTypes.mediaStream =
+  "captureStream"

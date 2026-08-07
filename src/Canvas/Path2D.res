@@ -1,4 +1,4 @@
-type domMatrix2DInit = DomTypes.domMatrix2DInit
+type domMatrix2DInit = DOM.domMatrix2DInit
 
 /**
 `make()`

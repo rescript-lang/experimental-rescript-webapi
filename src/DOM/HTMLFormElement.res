@@ -1,4 +1,6 @@
-type t = DOMTree.htmlFormElement
+type t = DOMTree.htmlFormElement = private {
+  ...DOMTree.htmlFormElement,
+}
 
 include HTMLElement.Impl({type t = t})
 

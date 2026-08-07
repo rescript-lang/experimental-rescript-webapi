@@ -1,3 +1,7 @@
+type t = DOMTree.documentFragment = private {
+  ...DOMTree.documentFragment,
+}
+
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/DocumentFragmentFragment)
 */
@@ -89,4 +93,4 @@ Throws a "HierarchyRequestError" DOMException if the constraints of the node tre
   external replaceChildren2: (T.t, string) => unit = "replaceChildren"
 }
 
-include Impl({type t = DOMTree.documentFragment})
+include Impl({type t = t})
