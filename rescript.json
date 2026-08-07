@@ -95,6 +95,7 @@
         "DOMRectReadOnly",
         "DOMStringList",
         "DOMTokenList",
+        "DOMTree",
         "Document",
         "DocumentFragment",
         "DocumentTimeline",
