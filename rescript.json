@@ -289,7 +289,6 @@
         "Document",
         "IdleDeadline",
         "Location",
-        "ScreenOrientation",
         "Window",
         "XPathExpression",
         "XPathResult"
@@ -352,6 +351,7 @@
         "GeolocationCoordinates",
         "GeolocationPosition",
         "LockManager",
+        "ScreenOrientation",
         "WakeLock",
         "WakeLockSentinel",
         "WebMIDI"
