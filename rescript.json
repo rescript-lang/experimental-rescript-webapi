@@ -6,6 +6,7 @@
     "WebAPI.Event": ["WebAPI.DOM", "Event"],
     "WebAPI.DOMPlatform": ["WebAPI.Event", "DOMPlatform"],
     "WebAPI.Animation": ["WebAPI.Event", "Animation"],
+    "WebAPI.Geometry": ["WebAPI.DOM", "Geometry"],
     "WebAPI.File": ["WebAPI.Event", "File"],
     "WebAPI.URL": ["WebAPI.DOM", "URL"],
     "WebAPI.Fetch": ["WebAPI.Event", "WebAPI.File", "WebAPI.URL", "Fetch"],
@@ -44,6 +45,20 @@
         "Animation",
         "AnimationEffect",
         "DocumentTimeline"
+      ]
+    },
+    {
+      "dir": "src/geometry",
+      "subdirs": true,
+      "feature": "Geometry",
+      "public": [
+        "DOMMatrix",
+        "DOMMatrixReadOnly",
+        "DOMPoint",
+        "DOMPointReadOnly",
+        "DOMRect",
+        "DOMRectList",
+        "DOMRectReadOnly"
       ]
     },
     {
@@ -121,13 +136,6 @@
         "Comment",
         "CustomElementRegistry",
         "DOMImplementation",
-        "DOMMatrix",
-        "DOMMatrixReadOnly",
-        "DOMPoint",
-        "DOMPointReadOnly",
-        "DOMRect",
-        "DOMRectList",
-        "DOMRectReadOnly",
         "DOMTree",
         "Document",
         "DocumentFragment",
