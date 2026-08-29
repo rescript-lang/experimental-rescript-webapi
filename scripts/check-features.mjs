@@ -3,7 +3,8 @@ import path from "node:path";
 import { spawnSync } from "node:child_process";
 import { fileURLToPath } from "node:url";
 
-const repoRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
+const scriptPath = fileURLToPath(import.meta.url);
+const repoRoot = path.resolve(path.dirname(scriptPath), "..");
 const configPath = path.join(repoRoot, "rescript.json");
 
 const expectedFeatureOwners = new Map([
@@ -59,10 +60,13 @@ const readSource = (filePath) => {
   }
 };
 
-// Only direct `Foo.t = BackingModule.backingType` aliases expose an internal type whose
-// editor completion owner needs validation.
-const parsePublicTypeAlias = (source) => {
-  const match = /^type t = ([A-Z][A-Za-z0-9_]*)\.([A-Za-z][A-Za-z0-9_]*)\b/m.exec(source);
+// Only direct `Foo.t = BackingModule.backingType` aliases, with or without type parameters,
+// expose an internal type whose editor completion owner needs validation.
+export const parsePublicTypeAlias = (source) => {
+  const match =
+    /^type t(?:<[^>\r\n]+>)?[ \t]*=[ \t]*([A-Z][A-Za-z0-9_]*)\.([A-Za-z][A-Za-z0-9_]*)\b/m.exec(
+      source,
+    );
   return match === null ? null : { backingModule: match[1], backingType: match[2] };
 };
 
@@ -259,25 +263,27 @@ const compileFeature = (featureName) => {
     : { _tag: "Failure", message: formatProcessFailure(featureName, "build", buildResult) };
 };
 
-const configResult = readConfig();
-if (configResult._tag === "Failure") {
-  console.error(`Unable to read rescript.json: ${configResult.message}`);
-  process.exit(1);
-}
-
-const validationErrors = validateConfig(configResult.value);
-if (validationErrors.length > 0) {
-  console.error(validationErrors.join("\n\n"));
-  process.exit(1);
-}
-
-console.log(`Validated ${expectedFeatureOwners.size} public feature definitions.`);
-
-for (const featureName of expectedFeatureOwners.keys()) {
-  const result = compileFeature(featureName);
-  if (result._tag === "Failure") {
-    console.error(result.message);
+if (process.argv[1] !== undefined && path.resolve(process.argv[1]) === scriptPath) {
+  const configResult = readConfig();
+  if (configResult._tag === "Failure") {
+    console.error(`Unable to read rescript.json: ${configResult.message}`);
     process.exit(1);
   }
-  console.log(`[ok] ${featureName}`);
+
+  const validationErrors = validateConfig(configResult.value);
+  if (validationErrors.length > 0) {
+    console.error(validationErrors.join("\n\n"));
+    process.exit(1);
+  }
+
+  console.log(`Validated ${expectedFeatureOwners.size} public feature definitions.`);
+
+  for (const featureName of expectedFeatureOwners.keys()) {
+    const result = compileFeature(featureName);
+    if (result._tag === "Failure") {
+      console.error(result.message);
+      process.exit(1);
+    }
+    console.log(`[ok] ${featureName}`);
+  }
 }
