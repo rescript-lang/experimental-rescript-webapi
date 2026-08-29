@@ -22,10 +22,6 @@ type rec t = {
     */
   mutable dir: string,
   /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/hidden)
-    */
-  mutable hidden: unknown,
-  /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/inert)
     */
   mutable inert: bool,

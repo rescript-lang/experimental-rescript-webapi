@@ -899,10 +899,6 @@ TODO: mark as private once mutating fields of private records is allowed
     */
   mutable dir: string,
   /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/hidden)
-    */
-  mutable hidden: Null.t<unknown>,
-  /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/inert)
     */
   mutable inert: bool,
@@ -1023,10 +1019,6 @@ TODO: mark as private once mutating fields of private records is allowed
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/dir)
     */
   mutable dir: string,
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/hidden)
-    */
-  mutable hidden: Null.t<unknown>,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/inert)
     */
@@ -1506,10 +1498,6 @@ and htmlSlotElement = {
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/dir)
     */
   mutable dir: string,
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/hidden)
-    */
-  mutable hidden: Null.t<unknown>,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/inert)
     */
