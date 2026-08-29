@@ -70,7 +70,7 @@ type writableStreamDefaultController = private {
 Provides information about files and allows JavaScript in a web page to access their content.
 [See WebApiFile on MDN](https://developer.mozilla.org/docs/Web/API/File)
 */
-@editor.completeFrom(WebApiFile)
+@editor.completeFrom(File)
 type file = DOM.file = private {
   ...blob,
   /**

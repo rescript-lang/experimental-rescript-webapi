@@ -3,6 +3,7 @@
 /**
 [See WebApiVisualViewport on MDN](https://developer.mozilla.org/docs/Web/API/VisualViewport)
 */
+@editor.completeFrom(VisualViewport)
 type visualViewport = {
   ...DOM.eventTarget,
   /**

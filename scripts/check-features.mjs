@@ -43,6 +43,48 @@ const uniqueDuplicates = (values) => [
 const sameMembers = (left, right) =>
   left.length === right.length && left.every((value) => right.includes(value));
 
+const publicModulesFrom = (sourceEntries) =>
+  sourceEntries.flatMap((source) =>
+    (source.public ?? []).map((moduleName) => ({ moduleName, sourceDir: source.dir })),
+  );
+
+const readSource = (filePath) => {
+  try {
+    return { _tag: "Success", value: readFileSync(filePath, "utf8") };
+  } catch (error) {
+    return {
+      _tag: "Failure",
+      message: error instanceof Error ? error.message : String(error),
+    };
+  }
+};
+
+const parsePublicTypeAlias = (source) => {
+  const match = /^type t = ([A-Z][A-Za-z0-9_]*)\.([A-Za-z][A-Za-z0-9_]*)\b/m.exec(source);
+  return match === null ? null : { backingModule: match[1], backingType: match[2] };
+};
+
+const isPublicToPublicAlias = (alias, publicModuleNames) =>
+  alias.backingType === "t" && publicModuleNames.has(alias.backingModule);
+
+const escapeRegExp = (value) => value.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+
+const completionOwnerFor = (source, backingType) => {
+  const escapedType = escapeRegExp(backingType);
+  const attributes = String.raw`(?:[ \t]+@[A-Za-z][A-Za-z0-9_.]*(?:\([^\r\n)]*\))?)*`;
+  const declaration = String.raw`(?:type(?:[ \t]+rec)?|and)[ \t]+${escapedType}\b`;
+  const pattern = new RegExp(
+    String.raw`@editor\.completeFrom\(([^)]+)\)${attributes}[ \t]*(?:\r?\n[ \t]*)?${declaration}`,
+    "m",
+  );
+  return pattern.exec(source)?.[1] ?? null;
+};
+
+const modulePathFor = (sourceEntries, moduleName) =>
+  sourceEntries
+    .map((source) => path.join(repoRoot, source.dir, `${moduleName}.res`))
+    .find(existsSync);
+
 const readConfig = () => {
   try {
     return { _tag: "Success", value: JSON.parse(readFileSync(configPath, "utf8")) };
@@ -110,9 +152,7 @@ const validateFeatureOwners = (featureEntries, sourceEntries) => {
 };
 
 const validatePublicModules = (sourceEntries) => {
-  const publicModules = sourceEntries.flatMap((source) =>
-    (source.public ?? []).map((moduleName) => ({ moduleName, sourceDir: source.dir })),
-  );
+  const publicModules = publicModulesFrom(sourceEntries);
   const duplicateModules = uniqueDuplicates(publicModules.map(({ moduleName }) => moduleName));
   const missingModules = publicModules
     .filter(
@@ -131,6 +171,46 @@ const validatePublicModules = (sourceEntries) => {
   ];
 };
 
+const validateCompletionAlias = (publicModule, sourceEntries, publicModuleNames) => {
+  const publicPath = path.join(repoRoot, publicModule.sourceDir, `${publicModule.moduleName}.res`);
+  const publicSource = readSource(publicPath);
+  if (publicSource._tag === "Failure") {
+    return [`Unable to read ${publicPath}: ${publicSource.message}`];
+  }
+
+  const alias = parsePublicTypeAlias(publicSource.value);
+  if (alias === null || isPublicToPublicAlias(alias, publicModuleNames)) {
+    return [];
+  }
+
+  const backingPath = modulePathFor(sourceEntries, alias.backingModule);
+  if (backingPath === undefined) {
+    return [
+      `Unable to resolve backing module ${alias.backingModule} for ${publicModule.moduleName}.t.`,
+    ];
+  }
+
+  const backingSource = readSource(backingPath);
+  if (backingSource._tag === "Failure") {
+    return [`Unable to read ${backingPath}: ${backingSource.message}`];
+  }
+
+  const actualOwner = completionOwnerFor(backingSource.value, alias.backingType);
+  return actualOwner === publicModule.moduleName
+    ? []
+    : [
+        `${alias.backingModule}.${alias.backingType}, aliased by ${publicModule.moduleName}.t, must use @editor.completeFrom(${publicModule.moduleName}); received ${actualOwner ?? "no annotation"}.`,
+      ];
+};
+
+const validateCompletionAliases = (sourceEntries) => {
+  const publicModules = publicModulesFrom(sourceEntries);
+  const publicModuleNames = new Set(publicModules.map(({ moduleName }) => moduleName));
+  return publicModules.flatMap((publicModule) =>
+    validateCompletionAlias(publicModule, sourceEntries, publicModuleNames),
+  );
+};
+
 const validateConfig = (config) => {
   const featureEntries = Object.entries(config.features ?? {});
   const sourceEntries = (config.sources ?? []).filter(
@@ -142,6 +222,7 @@ const validateConfig = (config) => {
     ...validateSources(sourceEntries),
     ...validateFeatureOwners(featureEntries, sourceEntries),
     ...validatePublicModules(sourceEntries),
+    ...validateCompletionAliases(sourceEntries),
   ];
 };
 

@@ -21,7 +21,7 @@ type workerType =
 This WebApiServiceWorker API interface provides a reference to a service worker. Multiple browsing contexts (e.g. pages, workers, etc.) can be associated with the same service worker, each through a unique WebApiServiceWorker object.
 [See WebApiServiceWorker on MDN](https://developer.mozilla.org/docs/Web/API/ServiceWorker)
 */
-@editor.completeFrom(WebApiServiceWorker)
+@editor.completeFrom(ServiceWorker)
 type serviceWorker = private {
   ...DOM.eventTarget,
   /**
@@ -118,7 +118,7 @@ type clients
 The ServiceWorkerGlobalScope interface of the Service Worker API represents the global execution context of a service worker.
 [See ServiceWorkerGlobalScope on MDN](https://developer.mozilla.org/en-US/docs/Web/API/ServiceWorkerGlobalScope)
  */
-@editor.completeFrom(ServiceWorkerGlobalScope)
+@editor.completeFrom(ServiceWorkerScope)
 type serviceWorkerGlobalScope = private {
   ...WebWorkersTypes.workerGlobalScope,
   /**

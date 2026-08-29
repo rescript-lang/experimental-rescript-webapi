@@ -8,7 +8,7 @@ type remotePlaybackState =
 /**
 [See WebApiRemotePlayback on MDN](https://developer.mozilla.org/docs/Web/API/RemotePlayback)
 */
-@editor.completeFrom(WebApiRemotePlayback)
+@editor.completeFrom(RemotePlayback)
 type remotePlayback = private {
   ...DOM.eventTarget,
   /**

@@ -3,6 +3,7 @@
 /**
 [See PictureInPictureWindow on MDN](https://developer.mozilla.org/docs/Web/API/PictureInPictureWindow)
 */
+@editor.completeFrom(PictureInPicture)
 type pictureInPictureWindow = {
   ...DOM.eventTarget,
   /**
