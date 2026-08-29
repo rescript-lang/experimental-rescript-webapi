@@ -59,16 +59,22 @@ const readSource = (filePath) => {
   }
 };
 
+// Only direct `Foo.t = BackingModule.backingType` aliases expose an internal type whose
+// editor completion owner needs validation.
 const parsePublicTypeAlias = (source) => {
   const match = /^type t = ([A-Z][A-Za-z0-9_]*)\.([A-Za-z][A-Za-z0-9_]*)\b/m.exec(source);
   return match === null ? null : { backingModule: match[1], backingType: match[2] };
 };
 
+// Public-to-public `Foo.t = Bar.t` re-exports keep Bar as the completion owner. Requiring
+// the backing type to point at both public modules would make these valid aliases conflict.
 const isPublicToPublicAlias = (alias, publicModuleNames) =>
   alias.backingType === "t" && publicModuleNames.has(alias.backingModule);
 
 const escapeRegExp = (value) => value.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
 
+// Match the annotation attached to the backing declaration so an unrelated annotation
+// elsewhere in the source file cannot satisfy the check.
 const completionOwnerFor = (source, backingType) => {
   const escapedType = escapeRegExp(backingType);
   const attributes = String.raw`(?:[ \t]+@[A-Za-z][A-Za-z0-9_.]*(?:\([^\r\n)]*\))?)*`;
@@ -171,6 +177,8 @@ const validatePublicModules = (sourceEntries) => {
   ];
 };
 
+// Internal backing types must complete from their public module. This keeps editor suggestions
+// on `Foo` instead of leaking implementation modules such as DOMTree or *Types modules.
 const validateCompletionAlias = (publicModule, sourceEntries, publicModuleNames) => {
   const publicPath = path.join(repoRoot, publicModule.sourceDir, `${publicModule.moduleName}.res`);
   const publicSource = readSource(publicPath);
