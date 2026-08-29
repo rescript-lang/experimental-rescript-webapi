@@ -17,7 +17,7 @@ Inserts nodes just after node, while replacing strings in nodes with equivalent 
 Throws a "HierarchyRequestError" DOMException if the constraints of the node tree are violated.
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/after)
 */
-  @send
+  @throws(JsExn) @send
   external after: (T.t, DOMTree.node) => unit = "after"
 
   /**
@@ -26,7 +26,7 @@ Inserts nodes just after node, while replacing strings in nodes with equivalent 
 Throws a "HierarchyRequestError" DOMException if the constraints of the node tree are violated.
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/after)
 */
-  @send
+  @throws(JsExn) @send
   external after2: (T.t, string) => unit = "after"
 
   /**
@@ -51,7 +51,7 @@ Inserts nodes after the last child of node, while replacing strings in nodes wit
 Throws a "HierarchyRequestError" DOMException if the constraints of the node tree are violated.
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/append)
 */
-  @send
+  @throws(JsExn) @send
   external append: (T.t, DOMTree.node) => unit = "append"
 
   /**
@@ -60,14 +60,14 @@ Inserts nodes after the last child of node, while replacing strings in nodes wit
 Throws a "HierarchyRequestError" DOMException if the constraints of the node tree are violated.
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/append)
 */
-  @send
+  @throws(JsExn) @send
   external append2: (T.t, string) => unit = "append"
 
   /**
 Creates a shadow root for element and returns it.
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/attachShadow)
 */
-  @send
+  @throws(JsExn) @send
   external attachShadow: (T.t, HTML.shadowRootInit) => DOMTree.shadowRoot = "attachShadow"
 
   /**
@@ -76,7 +76,7 @@ Inserts nodes just before node, while replacing strings in nodes with equivalent
 Throws a "HierarchyRequestError" DOMException if the constraints of the node tree are violated.
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/before)
 */
-  @send
+  @throws(JsExn) @send
   external before: (T.t, DOMTree.node) => unit = "before"
 
   /**
@@ -85,7 +85,7 @@ Inserts nodes just before node, while replacing strings in nodes with equivalent
 Throws a "HierarchyRequestError" DOMException if the constraints of the node tree are violated.
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/before)
 */
-  @send
+  @throws(JsExn) @send
   external before2: (T.t, string) => unit = "before"
 
   /**
@@ -99,8 +99,8 @@ Throws a "HierarchyRequestError" DOMException if the constraints of the node tre
 Returns the first (starting at element) inclusive ancestor that matches selectors, and null otherwise.
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/closest)
 */
-  @send
-  external closest: (T.t, string) => 'e = "closest"
+  @throws(JsExn) @send
+  external closest: (T.t, string) => Null.t<'e> = "closest"
 
   /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/computedStyleMap)
@@ -111,7 +111,7 @@ Returns the first (starting at element) inclusive ancestor that matches selector
   /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/getAnimations)
 */
-  @send
+  @throws(JsExn) @send
   external getAnimations: (
     T.t,
     ~options: AnimationEffect.getAnimationsOptions=?,
@@ -122,7 +122,7 @@ Returns element's first attribute whose qualified name is qualifiedName, and nul
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/getAttribute)
 */
   @send
-  external getAttribute: (T.t, string) => null<string> = "getAttribute"
+  external getAttribute: (T.t, string) => Null.t<string> = "getAttribute"
 
   /**
 Returns the qualified names of all element's attributes. Can contain duplicates.
@@ -135,13 +135,13 @@ Returns the qualified names of all element's attributes. Can contain duplicates.
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/getAttributeNode)
 */
   @send
-  external getAttributeNode: (T.t, string) => Attr.t = "getAttributeNode"
+  external getAttributeNode: (T.t, string) => Null.t<Attr.t> = "getAttributeNode"
 
   /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/getAttributeNodeNS)
 */
   @send
-  external getAttributeNodeNS: (T.t, ~namespace: string, ~localName: string) => Attr.t =
+  external getAttributeNodeNS: (T.t, ~namespace: string, ~localName: string) => Null.t<Attr.t> =
     "getAttributeNodeNS"
 
   /**
@@ -149,7 +149,7 @@ Returns element's attribute whose namespace is namespace and local name is local
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/getAttributeNS)
 */
   @send
-  external getAttributeNS: (T.t, ~namespace: string, ~localName: string) => string =
+  external getAttributeNS: (T.t, ~namespace: string, ~localName: string) => Null.t<string> =
     "getAttributeNS"
 
   /**
@@ -230,12 +230,12 @@ Returns true if element has attributes, and false otherwise.
     T.t,
     ~where: DOM.insertPosition,
     ~element: DOMTree.element,
-  ) => DOMTree.element = "insertAdjacentElement"
+  ) => Null.t<DOMTree.element> = "insertAdjacentElement"
 
   /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/insertAdjacentHTML)
 */
-  @send
+  @throws(JsExn) @send
   external insertAdjacentHTML: (T.t, ~position: DOM.insertPosition, ~string: string) => unit =
     "insertAdjacentHTML"
 
@@ -250,7 +250,7 @@ Returns true if element has attributes, and false otherwise.
 Returns true if matching selectors against element's root yields element, and false otherwise.
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/matches)
 */
-  @send
+  @throws(JsExn) @send
   external matches: (T.t, string) => bool = "matches"
 
   /**
@@ -259,7 +259,7 @@ Inserts nodes before the first child of node, while replacing strings in nodes w
 Throws a "HierarchyRequestError" DOMException if the constraints of the node tree are violated.
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Document/prepend)
 */
-  @send
+  @throws(JsExn) @send
   external prepend: (T.t, DOMTree.node) => unit = "prepend"
 
   /**
@@ -268,27 +268,27 @@ Inserts nodes before the first child of node, while replacing strings in nodes w
 Throws a "HierarchyRequestError" DOMException if the constraints of the node tree are violated.
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Document/prepend)
 */
-  @send
+  @throws(JsExn) @send
   external prepend2: (T.t, string) => unit = "prepend"
 
   /**
 Returns the first element that is a descendant of node that matches selectors.
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Document/querySelector)
 */
-  @send
+  @throws(JsExn) @send
   external querySelector: (T.t, string) => Null.t<DOMTree.element> = "querySelector"
 
   /**
 Returns all element descendants of node that match selectors.
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Document/querySelectorAll)
 */
-  @send
+  @throws(JsExn) @send
   external querySelectorAll: (T.t, string) => DOM.nodeList<DOMTree.element> = "querySelectorAll"
 
   /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/releasePointerCapture)
 */
-  @send
+  @throws(JsExn) @send
   external releasePointerCapture: (T.t, int) => unit = "releasePointerCapture"
 
   /**
@@ -308,7 +308,7 @@ Removes element's first attribute whose qualified name is qualifiedName.
   /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/removeAttributeNode)
 */
-  @send
+  @throws(JsExn) @send
   external removeAttributeNode: (T.t, Attr.t) => Attr.t = "removeAttributeNode"
 
   /**
@@ -325,7 +325,7 @@ Replace all children of node with nodes, while replacing strings in nodes with e
 Throws a "HierarchyRequestError" DOMException if the constraints of the node tree are violated.
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Document/replaceChildren)
 */
-  @send
+  @throws(JsExn) @send
   external replaceChildren: (T.t, DOMTree.node) => unit = "replaceChildren"
 
   /**
@@ -334,7 +334,7 @@ Replace all children of node with nodes, while replacing strings in nodes with e
 Throws a "HierarchyRequestError" DOMException if the constraints of the node tree are violated.
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Document/replaceChildren)
 */
-  @send
+  @throws(JsExn) @send
   external replaceChildren2: (T.t, string) => unit = "replaceChildren"
 
   /**
@@ -343,7 +343,7 @@ Replaces node with nodes, while replacing strings in nodes with equivalent Text 
 Throws a "HierarchyRequestError" DOMException if the constraints of the node tree are violated.
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CharacterData/replaceWith)
 */
-  @send
+  @throws(JsExn) @send
   external replaceWith: (T.t, DOMTree.node) => unit = "replaceWith"
 
   /**
@@ -352,7 +352,7 @@ Replaces node with nodes, while replacing strings in nodes with equivalent Text 
 Throws a "HierarchyRequestError" DOMException if the constraints of the node tree are violated.
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CharacterData/replaceWith)
 */
-  @send
+  @throws(JsExn) @send
   external replaceWith2: (T.t, string) => unit = "replaceWith"
 
   /**
@@ -454,26 +454,26 @@ element->Element.scrollIntoViewWithOptions({ behavior: DOMAPI.Smooth })
 Sets the value of element's first attribute whose qualified name is qualifiedName to value.
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/setAttribute)
 */
-  @send
+  @throws(JsExn) @send
   external setAttribute: (T.t, ~qualifiedName: string, ~value: string) => unit = "setAttribute"
 
   /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/setAttributeNode)
 */
   @send
-  external setAttributeNode: (T.t, Attr.t) => Attr.t = "setAttributeNode"
+  external setAttributeNode: (T.t, Attr.t) => Null.t<Attr.t> = "setAttributeNode"
 
   /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/setAttributeNodeNS)
 */
   @send
-  external setAttributeNodeNS: (T.t, Attr.t) => Attr.t = "setAttributeNodeNS"
+  external setAttributeNodeNS: (T.t, Attr.t) => Null.t<Attr.t> = "setAttributeNodeNS"
 
   /**
 Sets the value of element's attribute whose namespace is namespace and local name is localName to value.
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/setAttributeNS)
-*/
-  @send
+  */
+  @throws(JsExn) @send
   external setAttributeNS: (
     DOMTree.element,
     ~namespace: string,
@@ -484,13 +484,13 @@ Sets the value of element's attribute whose namespace is namespace and local nam
   /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/setHTMLUnsafe)
 */
-  @send
+  @throws(JsExn) @send
   external setHTMLUnsafe: (T.t, string) => unit = "setHTMLUnsafe"
 
   /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/setPointerCapture)
 */
-  @send
+  @throws(JsExn) @send
   external setPointerCapture: (T.t, int) => unit = "setPointerCapture"
 
   /**
@@ -499,7 +499,7 @@ If force is not given, "toggles" qualifiedName, removing it if it is present and
 Returns true if qualifiedName is now present, and false otherwise.
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/toggleAttribute)
 */
-  @send
+  @throws(JsExn) @send
   external toggleAttribute: (T.t, ~qualifiedName: string, ~force: bool=?) => bool =
     "toggleAttribute"
 }

@@ -2,7 +2,7 @@
 Attempts to open a connection to the named database with the current version, or 1 if it does not already exist. If the request is successful request's result will be the connection.
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/IDBFactory/open)
 */
-@send
+@throws(JsExn) @send
 external open_: (
   IndexedDbTypes.idbFactory,
   ~name: string,
@@ -30,5 +30,5 @@ Compares two values as keys. Returns -1 if key1 precedes key2, 1 if key2 precede
 Throws a "DataError" DOMException if either input is not a valid key.
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/IDBFactory/cmp)
 */
-@send
+@throws(JsExn) @send
 external cmp: (IndexedDbTypes.idbFactory, ~first: JSON.t, ~second: JSON.t) => int = "cmp"

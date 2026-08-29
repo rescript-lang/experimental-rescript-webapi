@@ -257,10 +257,12 @@ TODO: mark as private once mutating fields of private records is allowed
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/innerHTML)
     */
+  @throws(JsExn)
   mutable innerHTML: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/outerHTML)
     */
+  @throws(JsExn)
   mutable outerHTML: string,
   /**
     Returns the child elements.
@@ -665,6 +667,7 @@ TODO: mark as private once mutating fields of private records is allowed
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/ShadowRoot/innerHTML)
     */
+  @throws(JsExn)
   mutable innerHTML: string,
   /**
     Retrieves a collection of styleSheet objects representing the style sheets that correspond to each instance of a link or style object in the document.
@@ -674,6 +677,7 @@ TODO: mark as private once mutating fields of private records is allowed
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Document/adoptedStyleSheets)
     */
+  @throws(JsExn)
   mutable adoptedStyleSheets: array<StyleSheet.cssStyleSheet>,
   /**
     Returns document's fullscreen element.
@@ -798,10 +802,12 @@ TODO: mark as private once mutating fields of private records is allowed
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/innerHTML)
     */
+  @throws(JsExn)
   mutable innerHTML: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/outerHTML)
     */
+  @throws(JsExn)
   mutable outerHTML: string,
   // End base properties from Element
 
@@ -895,7 +901,7 @@ TODO: mark as private once mutating fields of private records is allowed
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/hidden)
     */
-  mutable hidden: unknown,
+  mutable hidden: Null.t<unknown>,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/inert)
     */
@@ -1020,7 +1026,7 @@ TODO: mark as private once mutating fields of private records is allowed
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/hidden)
     */
-  mutable hidden: unknown,
+  mutable hidden: Null.t<unknown>,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/inert)
     */
@@ -1172,10 +1178,12 @@ TODO: mark as private once mutating fields of private records is allowed
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/innerHTML)
     */
+  @throws(JsExn)
   mutable innerHTML: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/outerHTML)
     */
+  @throws(JsExn)
   mutable outerHTML: string,
   // End base properties from Element
 
@@ -1402,10 +1410,12 @@ and htmlSlotElement = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/innerHTML)
     */
+  @throws(JsExn)
   mutable innerHTML: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/outerHTML)
     */
+  @throws(JsExn)
   mutable outerHTML: string,
   // End base properties from Element
 
@@ -1499,7 +1509,7 @@ and htmlSlotElement = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/hidden)
     */
-  mutable hidden: unknown,
+  mutable hidden: Null.t<unknown>,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/inert)
     */

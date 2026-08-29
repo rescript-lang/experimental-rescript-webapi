@@ -39,7 +39,7 @@ let registrationResult = await Window.current
 let subscription = await registrationResult.pushManager->PushManager.subscribe(
   ~options={
     userVisibleOnly: true,
-    applicationServerKey: ApplicationServerKey.fromString("MyPublicKey"),
+    applicationServerKey: ApplicationServerKey.fromString("MyPublicKey")->Null.make,
   },
 )
 

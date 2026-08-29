@@ -151,16 +151,19 @@ type t = {
     Returns the value of the data at the cursor's current position.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLInputElement/value)
     */
+  @throws(JsExn)
   mutable value: string,
   /**
     Returns a Date object representing the form control's value, if applicable; otherwise, returns null. Can be set, to change the value. Throws an "InvalidStateError" DOMException if the control isn't date- or time-based.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLInputElement/valueAsDate)
     */
+  @throws(JsExn)
   mutable valueAsDate: Null.t<Date.t>,
   /**
     Returns the input field value as a number.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLInputElement/valueAsNumber)
     */
+  @throws(JsExn)
   mutable valueAsNumber: float,
   /**
     Sets or retrieves the width of the object.
@@ -190,15 +193,18 @@ type t = {
     Gets or sets the starting position or offset of a text selection.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLInputElement/selectionStart)
     */
+  @throws(JsExn)
   mutable selectionStart: Null.t<int>,
   /**
     Gets or sets the end position or offset of a text selection.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLInputElement/selectionEnd)
     */
+  @throws(JsExn)
   mutable selectionEnd: Null.t<int>,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLInputElement/selectionDirection)
     */
+  @throws(JsExn)
   mutable selectionDirection: Null.t<string>,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLInputElement/webkitdirectory)
@@ -229,7 +235,7 @@ Increments a range input control's value by the value given by the Step attribut
 @param n Value to increment the value by.
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLInputElement/stepUp)
 */
-@send
+@throws(JsExn) @send
 external stepUp: (t, ~n: int=?) => unit = "stepUp"
 
 /**
@@ -237,7 +243,7 @@ Decrements a range input control's value by the value given by the Step attribut
 @param n Value to decrement the value by.
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLInputElement/stepDown)
 */
-@send
+@throws(JsExn) @send
 external stepDown: (t, ~n: int=?) => unit = "stepDown"
 
 /**
@@ -293,12 +299,12 @@ Sets the start and end positions of a selection in a text field.
 @param direction The direction in which the selection is performed.
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLInputElement/setSelectionRange)
 */
-@send
+@throws(JsExn) @send
 external setSelectionRange: (t, ~start: int, ~end: int, ~direction: string=?) => unit =
   "setSelectionRange"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLInputElement/showPicker)
 */
-@send
+@throws(JsExn) @send
 external showPicker: t => unit = "showPicker"

@@ -176,10 +176,12 @@ type rec t = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/innerHTML)
     */
+  @throws(JsExn)
   mutable innerHTML: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/outerHTML)
     */
+  @throws(JsExn)
   mutable outerHTML: string,
   // End base properties from Element
 

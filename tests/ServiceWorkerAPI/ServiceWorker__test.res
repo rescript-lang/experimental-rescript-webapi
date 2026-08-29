@@ -4,7 +4,7 @@ self->ServiceWorkerScope.addEventListener(EventType.Push, (event: PushEvent.t) =
   Console.log("received push event")
 
   // Extract data
-  let (title, body) = switch event.data {
+  let (title, body) = switch event.data->Null.toOption {
   | Some(data) =>
     switch data->PushMessageData.json {
     | JSON.Object(dict{"title": JSON.String(title), "body": JSON.String(body)}) => (title, body)

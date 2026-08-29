@@ -54,7 +54,7 @@ external setResourceTimingBufferSize: (PerformanceTypes.performance, int) => uni
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Performance/mark)
 */
-@send
+@throws(JsExn) @send
 external mark: (
   PerformanceTypes.performance,
   ~markName: string,
@@ -70,7 +70,7 @@ external clearMarks: (PerformanceTypes.performance, ~markName: string=?) => unit
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Performance/measure)
 */
-@send
+@throws(JsExn) @send
 external measure: (
   PerformanceTypes.performance,
   ~measureName: string,
@@ -81,7 +81,7 @@ external measure: (
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Performance/measure)
 */
-@send
+@throws(JsExn) @send
 external measure2: (
   PerformanceTypes.performance,
   ~measureName: string,

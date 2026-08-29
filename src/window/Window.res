@@ -128,7 +128,7 @@ It can rarely be null e.g. for contentWindow of an iframe that is already remove
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/parent)
     */
 @get
-external parent: t => t = "parent"
+external parent: t => Null.t<t> = "parent"
 
 /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/frameElement)
@@ -271,13 +271,13 @@ external caches: t => CacheTypes.cacheStorage = "caches"
 /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/sessionStorage)
     */
-@get
+@throws(JsExn) @get
 external sessionStorage: t => WebStorageTypes.storage = "sessionStorage"
 
 /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/localStorage)
     */
-@get
+@throws(JsExn) @get
 external localStorage: t => WebStorageTypes.storage = "localStorage"
 
 /**
@@ -289,13 +289,13 @@ external reportError: (t, JSON.t) => unit = "reportError"
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/btoa)
 */
-@send
+@throws(JsExn) @send
 external btoa: (t, string) => string = "btoa"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/atob)
 */
-@send
+@throws(JsExn) @send
 external atob: (t, string) => string = "atob"
 
 /**
@@ -317,7 +317,7 @@ external clearTimeout: (t, DOM.timeoutId) => unit = "clearTimeout"
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/setInterval)
 */
-@send
+@throws(JsExn) @send
 external setInterval: (t, ~handler: string, ~timeout: int=?) => int = "setInterval"
 
 /**
@@ -348,7 +348,7 @@ external queueMicrotask: (t, unit => unit) => unit = "queueMicrotask"
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/structuredClone)
 */
-@send
+@throws(JsExn) @send
 external structuredClone: (
   t,
   't,
@@ -392,7 +392,7 @@ external focus: t => unit = "focus"
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/open)
 */
 @send
-external open_: (t, ~url: string=?, ~target: string=?, ~features: string=?) => t = "open"
+external open_: (t, ~url: string=?, ~target: string=?, ~features: string=?) => Null.t<t> = "open"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/alert)
@@ -410,7 +410,7 @@ external confirm: (t, ~message: string=?) => bool = "confirm"
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/prompt)
 */
 @send
-external prompt: (t, ~message: string=?, ~default: string=?) => string = "prompt"
+external prompt: (t, ~message: string=?, ~default: string=?) => Null.t<string> = "prompt"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/print)
@@ -430,7 +430,7 @@ If the origin of the target window doesn't match the given target origin, the me
 Throws a "DataCloneError" DOMException if transfer array contains duplicate objects or if message could not be cloned.
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/postMessage)
 */
-@send
+@throws(JsExn) @send
 external postMessage: (
   t,
   ~message: JSON.t,
@@ -450,7 +450,7 @@ If the origin of the target window doesn't match the given target origin, the me
 Throws a "DataCloneError" DOMException if transfer array contains duplicate objects or if message could not be cloned.
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/postMessage)
 */
-@send
+@throws(JsExn) @send
 external postMessageWithOptions: (
   t,
   ~message: JSON.t,
@@ -526,7 +526,7 @@ external scrollByXY: (t, ~x: float, ~y: float) => unit = "scrollBy"
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/getComputedStyle)
 */
-@send
+@throws(JsExn) @send
 external getComputedStyle: (
   t,
   ~elt: DOMTree.element,
@@ -553,4 +553,4 @@ external cancelIdleCallback: (t, int) => unit = "cancelIdleCallback"
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Window/getSelection)
 */
 @send
-external getSelection: t => null<Selection.t> = "getSelection"
+external getSelection: t => Null.t<Selection.t> = "getSelection"

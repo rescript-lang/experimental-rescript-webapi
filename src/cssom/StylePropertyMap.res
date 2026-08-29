@@ -10,43 +10,43 @@ external asStylePropertyMapReadOnly: t => StylePropertyMapReadOnly.t = "%identit
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/StylePropertyMapReadOnly/getAll)
 */
-@send
+@throws(JsExn) @send
 external getAll: (t, string) => array<CSSStyleValue.t> = "getAll"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/StylePropertyMapReadOnly/has)
 */
-@send
+@throws(JsExn) @send
 external has: (t, string) => bool = "has"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/StylePropertyMap/set)
 */
-@send
+@throws(JsExn) @send
 external set: (t, ~property: string, ~values: CSSStyleValue.t) => unit = "set"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/StylePropertyMap/set)
 */
-@send
+@throws(JsExn) @send
 external set2: (t, ~property: string, ~values: string) => unit = "set"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/StylePropertyMap/append)
 */
-@send
+@throws(JsExn) @send
 external append: (t, ~property: string, ~values: CSSStyleValue.t) => unit = "append"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/StylePropertyMap/append)
 */
-@send
+@throws(JsExn) @send
 external append2: (t, ~property: string, ~values: string) => unit = "append"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/StylePropertyMap/delete)
 */
-@send
+@throws(JsExn) @send
 external delete: (t, string) => unit = "delete"
 
 /**

@@ -24,7 +24,7 @@ If before is omitted, null, or a number out of range, then element will be added
 This method will throw a "HierarchyRequestError" DOMException if element is an ancestor of the element into which it is to be inserted.
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLOptionsCollection/add)
 */
-@send
+@throws(JsExn) @send
 external add: (t, ~element: unknown, ~before: unknown=?) => unit = "add"
 
 /**

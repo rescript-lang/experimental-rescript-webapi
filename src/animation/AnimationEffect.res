@@ -67,5 +67,5 @@ external getComputedTiming: t => computedEffectTiming = "getComputedTiming"
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/AnimationEffect/updateTiming)
 */
-@send
+@throws(JsExn) @send
 external updateTiming: (t, ~timing: optionalEffectTiming=?) => unit = "updateTiming"

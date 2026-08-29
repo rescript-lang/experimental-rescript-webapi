@@ -11,7 +11,7 @@ Returns the first element within node's descendants whose ID is elementId.
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Document/getElementById)
 */
 @send
-external getElementById: (DOM.document, string) => null<DOMTree.element> = "getElementById"
+external getElementById: (DOM.document, string) => Null.t<DOMTree.element> = "getElementById"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Document/getAnimations)
@@ -25,7 +25,7 @@ Inserts nodes before the first child of node, while replacing strings in nodes w
 Throws a "HierarchyRequestError" DOMException if the constraints of the node tree are violated.
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Document/prepend)
 */
-@send
+@throws(JsExn) @send
 external prepend: (DOM.document, DOMTree.node) => unit = "prepend"
 
 /**
@@ -34,7 +34,7 @@ Inserts nodes before the first child of node, while replacing strings in nodes w
 Throws a "HierarchyRequestError" DOMException if the constraints of the node tree are violated.
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Document/prepend)
 */
-@send
+@throws(JsExn) @send
 external prepend2: (DOM.document, string) => unit = "prepend"
 
 /**
@@ -43,7 +43,7 @@ Inserts nodes after the last child of node, while replacing strings in nodes wit
 Throws a "HierarchyRequestError" DOMException if the constraints of the node tree are violated.
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Document/append)
 */
-@send
+@throws(JsExn) @send
 external append: (DOM.document, DOMTree.node) => unit = "append"
 
 /**
@@ -52,7 +52,7 @@ Inserts nodes after the last child of node, while replacing strings in nodes wit
 Throws a "HierarchyRequestError" DOMException if the constraints of the node tree are violated.
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Document/append)
 */
-@send
+@throws(JsExn) @send
 external append2: (DOM.document, string) => unit = "append"
 
 /**
@@ -61,7 +61,7 @@ Replace all children of node with nodes, while replacing strings in nodes with e
 Throws a "HierarchyRequestError" DOMException if the constraints of the node tree are violated.
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Document/replaceChildren)
 */
-@send
+@throws(JsExn) @send
 external replaceChildren: (DOM.document, DOMTree.node) => unit = "replaceChildren"
 
 /**
@@ -70,21 +70,21 @@ Replace all children of node with nodes, while replacing strings in nodes with e
 Throws a "HierarchyRequestError" DOMException if the constraints of the node tree are violated.
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Document/replaceChildren)
 */
-@send
+@throws(JsExn) @send
 external replaceChildren2: (DOM.document, string) => unit = "replaceChildren"
 
 /**
 Returns the first element that is a descendant of node that matches selectors.
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Document/querySelector)
 */
-@send
+@throws(JsExn) @send
 external querySelector: (DOM.document, string) => Null.t<DOMTree.element> = "querySelector"
 
 /**
 Returns all element descendants of node that match selectors.
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Document/querySelectorAll)
 */
-@send
+@throws(JsExn) @send
 external querySelectorAll: (DOM.document, string) => DOM.nodeList<DOMTree.element> =
   "querySelectorAll"
 
@@ -156,7 +156,7 @@ type elementCreationOptions = {mutable is?: string}
 Creates an instance of the element for the specified tag.
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Document/createElement)
 */
-@send
+@throws(JsExn) @send
 external createElement: (
   DOM.document,
   string,
@@ -179,7 +179,7 @@ namespace is the XMLNS namespace and neither qualifiedName nor namespace prefix 
 When supplied, options's is can be used to create a customized built-in element.
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Document/createElementNS)
 */
-@send
+@throws(JsExn) @send
 external createElementNS: (
   DOM.document,
   ~namespace: string,
@@ -203,7 +203,7 @@ namespace is the XMLNS namespace and neither qualifiedName nor namespace prefix 
 When supplied, options's is can be used to create a customized built-in element.
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Document/createElementNS)
 */
-@send
+@throws(JsExn) @send
 external createElementNS2: (
   DOM.document,
   ~namespace: string,
@@ -245,7 +245,7 @@ external createComment: (DOM.document, string) => Comment.t = "createComment"
 Returns a ProcessingInstruction node whose target is target and data is data. If target does not match the Name production an "InvalidCharacterError" DOMException will be thrown. If data contains "?>" an "InvalidCharacterError" DOMException will be thrown.
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Document/createProcessingInstruction)
 */
-@send
+@throws(JsExn) @send
 external createProcessingInstruction: (
   DOM.document,
   ~target: string,
@@ -258,7 +258,7 @@ Returns a copy of node. If deep is true, the copy also includes the node's desce
 If node is a document or a shadow root, throws a "NotSupportedError" DOMException.
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Document/importNode)
 */
-@send
+@throws(JsExn) @send
 external importNode: (DOM.document, 't, ~deep: bool=?) => 't = "importNode"
 
 /**
@@ -267,7 +267,7 @@ Moves node from another document and returns it.
 If node is a document, throws a "NotSupportedError" DOMException or, if node is a shadow root, throws a "HierarchyRequestError" DOMException.
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Document/adoptNode)
 */
-@send
+@throws(JsExn) @send
 external adoptNode: (DOM.document, 't) => 't = "adoptNode"
 
 /**
@@ -275,13 +275,13 @@ Creates an attribute object with a specified name.
 @param name String that sets the attribute object's name.
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Document/createAttribute)
 */
-@send
+@throws(JsExn) @send
 external createAttribute: (DOM.document, string) => Attr.t = "createAttribute"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Document/createAttributeNS)
 */
-@send
+@throws(JsExn) @send
 external createAttributeNS: (DOM.document, ~namespace: string, ~qualifiedName: string) => Attr.t =
   "createAttributeNS"
 
@@ -348,7 +348,7 @@ external caretPositionFromPoint: (
   ~x: float,
   ~y: float,
   ~options: caretPositionFromPointOptions=?,
-) => DOM.caretPosition = "caretPositionFromPoint"
+) => Null.t<DOM.caretPosition> = "caretPositionFromPoint"
 
 /**
 Stops document's fullscreen element from being displayed fullscreen and resolves promise when done.
@@ -360,7 +360,7 @@ external exitFullscreen: DOM.document => promise<unit> = "exitFullscreen"
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Document/parseHTMLUnsafe_static)
 */
-@scope("Document")
+@throws(JsExn) @scope("Document")
 external parseHTMLUnsafe: string => DOM.document = "parseHTMLUnsafe"
 
 /**
@@ -392,8 +392,12 @@ Opens a new window and loads a document specified by a given URL. Also, opens a 
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Document/open)
 */
 @send
-external open2: (DOM.document, ~url: string, ~name: string, ~features: string) => DOM.window =
-  "open"
+external open2: (
+  DOM.document,
+  ~url: string,
+  ~name: string,
+  ~features: string,
+) => Null.t<DOM.window> = "open"
 
 /**
 Closes an output stream and forces the sent data to display.
@@ -407,7 +411,7 @@ Writes one or more HTML expressions to a document in the specified window.
 @param content Specifies the text and HTML tags to write.
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Document/write)
 */
-@send
+@throws(JsExn) @send
 external write: (DOM.document, string) => unit = "write"
 
 /**
@@ -415,7 +419,7 @@ Writes one or more HTML expressions, followed by a carriage return, to a documen
 @param content The text and HTML tags to write.
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Document/writeln)
 */
-@send
+@throws(JsExn) @send
 external writeln: (DOM.document, string) => unit = "writeln"
 
 /**
@@ -442,7 +446,7 @@ Returns an object representing the current selection of the document that is loa
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Document/getSelection)
 */
 @send
-external getSelection: DOM.document => null<Selection.t> = "getSelection"
+external getSelection: DOM.document => Null.t<Selection.t> = "getSelection"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Document/hasStorageAccess)
@@ -463,4 +467,4 @@ Returns the Location associated with this document, which provides information a
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Document/location)
 */
 @get
-external location: DOM.document => Location.t = "location"
+external location: DOM.document => Null.t<Location.t> = "location"

@@ -1,2 +1,2 @@
 @send
-external getClientRect: DOM.caretPosition => DOM.domRect = "getClientRect"
+external getClientRect: DOM.caretPosition => Null.t<DOM.domRect> = "getClientRect"

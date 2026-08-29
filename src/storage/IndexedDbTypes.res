@@ -93,17 +93,19 @@ type idbRequest<'t> = {
     When a request is completed, returns the result, or undefined if the request failed. Throws a "InvalidStateError" DOMException if the request is still pending.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/IDBRequest/result)
     */
+  @throws(JsExn)
   result: 't,
   /**
     When a request is completed, returns the error (a DOMException), or null if the request succeeded. Throws a "InvalidStateError" DOMException if the request is still pending.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/IDBRequest/error)
     */
+  @throws(JsExn)
   error: Null.t<DOM.domException>,
   /**
     Returns the IDBObjectStore, IDBIndex, or IDBCursor the request was made against, or null if is was an open request.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/IDBRequest/source)
     */
-  source: unknown,
+  source: Null.t<unknown>,
   /**
     Returns the IDBTransaction the request was made within. If this as an open request, then it returns an upgrade transaction while it is running, or null otherwise.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/IDBRequest/transaction)
@@ -135,12 +137,13 @@ type idbObjectStore = {
     Returns the name of the store.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/IDBObjectStore/name)
     */
+  @throws(JsExn)
   mutable name: string,
   /**
     Returns the key path of the store, or null if none.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/IDBObjectStore/keyPath)
     */
-  keyPath: string,
+  keyPath: Null.t<unknown>,
   /**
     Returns a list of the names of indexes in the store.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/IDBObjectStore/indexNames)
@@ -169,6 +172,7 @@ type idbIndex = {
     Returns the name of the index.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/IDBIndex/name)
     */
+  @throws(JsExn)
   mutable name: string,
   /**
     Returns the IDBObjectStore the index belongs to.
@@ -178,7 +182,7 @@ type idbIndex = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/IDBIndex/keyPath)
     */
-  keyPath: string,
+  keyPath: Null.t<unknown>,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/IDBIndex/multiEntry)
     */

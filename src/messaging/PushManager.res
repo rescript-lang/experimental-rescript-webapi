@@ -11,7 +11,7 @@ external subscribe: (
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/PushManager/getSubscription)
 */
 @send
-external getSubscription: PushTypes.pushManager => promise<PushTypes.pushSubscription> =
+external getSubscription: PushTypes.pushManager => promise<Null.t<PushTypes.pushSubscription>> =
   "getSubscription"
 
 /**

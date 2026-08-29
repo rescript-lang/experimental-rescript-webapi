@@ -68,7 +68,7 @@ external getTracks: t => array<MediaStreamTrack.t> = "getTracks"
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/MediaStream/getTrackById)
 */
 @send
-external getTrackById: (t, string) => MediaStreamTrack.t = "getTrackById"
+external getTrackById: (t, string) => Null.t<MediaStreamTrack.t> = "getTrackById"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/MediaStream/addTrack)

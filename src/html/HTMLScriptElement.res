@@ -176,10 +176,12 @@ type t = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/innerHTML)
     */
+  @throws(JsExn)
   mutable innerHTML: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/outerHTML)
     */
+  @throws(JsExn)
   mutable outerHTML: string,
   // End base properties from Element
 
@@ -258,6 +260,7 @@ type t = {
     Retrieves the WebApiURL to an external file that contains the source code or data.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLScriptElement/src)
     */
+  @throws(JsExn)
   mutable src: string,
   /**
     Sets or retrieves the MIME type for the associated scripting engine.
@@ -286,6 +289,7 @@ type t = {
     Retrieves or sets the text of the object as a string.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLScriptElement/text)
     */
+  @throws(JsExn)
   mutable text: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLScriptElement/integrity)

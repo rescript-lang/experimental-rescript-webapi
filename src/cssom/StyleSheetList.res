@@ -14,4 +14,4 @@ type t = private {
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/StyleSheetList/item)
 */
 @send
-external item: (t, int) => StyleSheet.cssStyleSheet = "item"
+external item: (t, int) => Null.t<StyleSheet.cssStyleSheet> = "item"

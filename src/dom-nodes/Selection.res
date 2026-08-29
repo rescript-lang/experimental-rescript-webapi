@@ -101,7 +101,7 @@ external extend: (t, ~node: DOMTree.node, ~offset: int=?) => unit = "extend"
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Selection/setBaseAndExtent)
 */
-@send
+@throws(JsExn) @send
 external setBaseAndExtent: (
   t,
   ~anchorNode: DOMTree.node,

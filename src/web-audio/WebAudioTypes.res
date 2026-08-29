@@ -408,6 +408,7 @@ TODO: mark as private once mutating fields of private records is allowed
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/AudioBufferSourceNode/buffer)
     */
+  @throws(JsExn)
   mutable buffer: Null.t<audioBuffer>,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/AudioBufferSourceNode/playbackRate)
@@ -576,6 +577,7 @@ TODO: mark as private once mutating fields of private records is allowed
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/ConvolverNode/buffer)
     */
+  @throws(JsExn)
   mutable buffer: Null.t<audioBuffer>,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/ConvolverNode/normalize)
@@ -873,14 +875,17 @@ TODO: mark as private once mutating fields of private records is allowed
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/PannerNode/refDistance)
     */
+  @throws(JsExn)
   mutable refDistance: float,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/PannerNode/maxDistance)
     */
+  @throws(JsExn)
   mutable maxDistance: float,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/PannerNode/rolloffFactor)
     */
+  @throws(JsExn)
   mutable rolloffFactor: float,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/PannerNode/coneInnerAngle)
@@ -893,6 +898,7 @@ TODO: mark as private once mutating fields of private records is allowed
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/PannerNode/coneOuterGain)
     */
+  @throws(JsExn)
   mutable coneOuterGain: float,
 }
 
@@ -907,6 +913,7 @@ type analyserNode = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/AnalyserNode/fftSize)
     */
+  @throws(JsExn)
   mutable fftSize: int,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/AnalyserNode/frequencyBinCount)
@@ -915,14 +922,17 @@ type analyserNode = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/AnalyserNode/minDecibels)
     */
+  @throws(JsExn)
   mutable minDecibels: float,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/AnalyserNode/maxDecibels)
     */
+  @throws(JsExn)
   mutable maxDecibels: float,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/AnalyserNode/smoothingTimeConstant)
     */
+  @throws(JsExn)
   mutable smoothingTimeConstant: float,
 }
 
@@ -1262,7 +1272,7 @@ type stereoPannerOptions = {
 
 type waveShaperOptions = {
   ...audioNodeOptions,
-  mutable curve?: array<float>,
+  mutable curve?: Null.t<array<float>>,
   mutable oversample?: overSampleType,
 }
 

@@ -72,11 +72,13 @@ type t = {
     Gets or sets the default playback rate when the user is not using fast forward or reverse for a video or audio resource.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLMediaElement/defaultPlaybackRate)
     */
+  @throws(JsExn)
   mutable defaultPlaybackRate: float,
   /**
     Gets or sets the current rate of speed for the media resource to play. This speed is expressed as a multiple of the normal speed of the media resource.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLMediaElement/playbackRate)
     */
+  @throws(JsExn)
   mutable playbackRate: float,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLMediaElement/preservesPitch)
@@ -111,6 +113,7 @@ type t = {
     Gets or sets the volume level for audio portions of the media element.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLMediaElement/volume)
     */
+  @throws(JsExn)
   mutable volume: float,
   /**
     Gets or sets a flag that indicates whether the audio (either audio or the audio track on video media) is muted.

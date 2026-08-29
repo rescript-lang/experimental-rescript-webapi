@@ -9,13 +9,13 @@ type headersInit = HeadersInit.t
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Request)
 */
-@new
+@throws(JsExn) @new
 external fromURL: (string, ~init: requestInit=?) => t = "Request"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Request)
 */
-@new
+@throws(JsExn) @new
 external fromRequest: (t, ~init: requestInit=?) => t = "Request"
 
 /**
@@ -57,5 +57,5 @@ external text: t => promise<string> = "text"
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Request/clone)
 */
-@send
+@throws(JsExn) @send
 external clone: t => t = "clone"

@@ -12,16 +12,20 @@ let observer2 = IObserver.make(
     Console.log2(entry, observer)
   },
   ~options={
-    root: root->IRoot.fromElement,
+    root: root->IRoot.fromElement->Null.make,
     rootMargin: "10px",
     threshold: [0.1],
   },
 )
 
-switch observer2.root->IRoot.decode {
-| Element(_) => Console.log("Element")
-| Document(_) => Console.log("Document")
-| Null => Console.log("Null")
+switch observer2.root->Null.toOption {
+| Some(root) =>
+  switch root->IRoot.decode {
+  | Element(_) => Console.log("Element")
+  | Document(_) => Console.log("Document")
+  | Null => Console.log("Null")
+  }
+| None => Console.log("Null")
 }
 let rootMargin2 = observer2.rootMargin
 

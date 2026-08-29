@@ -14,7 +14,7 @@ module Impl = (
   /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/attachInternals)
 */
-  @send
+  @throws(JsExn) @send
   external attachInternals: T.t => DOMTree.elementInternals = "attachInternals"
 
   /**
@@ -38,19 +38,19 @@ module Impl = (
   /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/hidePopover)
 */
-  @send
+  @throws(JsExn) @send
   external hidePopover: T.t => unit = "hidePopover"
 
   /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/showPopover)
 */
-  @send
+  @throws(JsExn) @send
   external showPopover: T.t => unit = "showPopover"
 
   /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/togglePopover)
 */
-  @send
+  @throws(JsExn) @send
   external togglePopover: (T.t, ~force: bool=?) => bool = "togglePopover"
 }
 

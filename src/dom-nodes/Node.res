@@ -72,13 +72,13 @@ Returns true if other is an inclusive descendant of node, and false otherwise.
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/lookupPrefix)
 */
   @send
-  external lookupPrefix: (T.t, string) => string = "lookupPrefix"
+  external lookupPrefix: (T.t, string) => Null.t<string> = "lookupPrefix"
 
   /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/lookupNamespaceURI)
 */
   @send
-  external lookupNamespaceURI: (T.t, string) => string = "lookupNamespaceURI"
+  external lookupNamespaceURI: (T.t, string) => Null.t<string> = "lookupNamespaceURI"
 
   /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/isDefaultNamespace)
@@ -89,25 +89,25 @@ Returns true if other is an inclusive descendant of node, and false otherwise.
   /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/insertBefore)
 */
-  @send
+  @throws(JsExn) @send
   external insertBefore: (T.t, 't, ~child: DOMTree.node) => 't = "insertBefore"
 
   /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/appendChild)
 */
-  @send
+  @throws(JsExn) @send
   external appendChild: (T.t, 't) => 't = "appendChild"
 
   /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/replaceChild)
 */
-  @send
+  @throws(JsExn) @send
   external replaceChild: (T.t, ~node: DOMTree.node, 't) => 't = "replaceChild"
 
   /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Node/removeChild)
 */
-  @send
+  @throws(JsExn) @send
   external removeChild: (T.t, 't) => 't = "removeChild"
 }
 

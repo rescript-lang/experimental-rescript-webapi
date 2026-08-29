@@ -130,7 +130,7 @@ external asStyleSheet: cssStyleSheet => t = "%identity"
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CSSStyleSheet/insertRule)
 */
-@send
+@throws(JsExn) @send
 external insertRule: (cssStyleSheet, ~rule: string, ~index: int=?) => int = "insertRule"
 
 /**
@@ -148,5 +148,5 @@ external replace: (cssStyleSheet, string) => promise<cssStyleSheet> = "replace"
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CSSStyleSheet/replaceSync)
 */
-@send
+@throws(JsExn) @send
 external replaceSync: (cssStyleSheet, string) => unit = "replaceSync"

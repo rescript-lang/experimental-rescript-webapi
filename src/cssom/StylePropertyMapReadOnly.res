@@ -12,11 +12,11 @@ type t = private {
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/StylePropertyMapReadOnly/getAll)
 */
-@send
+@throws(JsExn) @send
 external getAll: (t, string) => array<CSSStyleValue.t> = "getAll"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/StylePropertyMapReadOnly/has)
 */
-@send
+@throws(JsExn) @send
 external has: (t, string) => bool = "has"

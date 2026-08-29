@@ -9,7 +9,7 @@ Posts a message through the channel. Objects listed in transfer are transferred,
 Throws a "DataCloneError" DOMException if transfer contains duplicate objects or port, or if message could not be cloned.
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/MessagePort/postMessage)
 */
-@send
+@throws(JsExn) @send
 external postMessage: (t, ~message: JSON.t, ~transfer: array<Dict.t<string>>) => unit =
   "postMessage"
 
@@ -19,7 +19,7 @@ Posts a message through the channel. Objects listed in transfer are transferred,
 Throws a "DataCloneError" DOMException if transfer contains duplicate objects or port, or if message could not be cloned.
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/MessagePort/postMessage)
 */
-@send
+@throws(JsExn) @send
 external postMessage2: (t, ~message: JSON.t, ~options: structuredSerializeOptions=?) => unit =
   "postMessage"
 

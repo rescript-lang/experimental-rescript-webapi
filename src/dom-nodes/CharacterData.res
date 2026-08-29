@@ -110,7 +110,7 @@ Inserts nodes just after node, while replacing strings in nodes with equivalent 
 Throws a "HierarchyRequestError" DOMException if the constraints of the node tree are violated.
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CharacterData/after)
 */
-  @send
+  @throws(JsExn) @send
   external after: (T.t, DOMTree.node) => unit = "after"
 
   /**
@@ -119,7 +119,7 @@ Inserts nodes just after node, while replacing strings in nodes with equivalent 
 Throws a "HierarchyRequestError" DOMException if the constraints of the node tree are violated.
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CharacterData/after)
 */
-  @send
+  @throws(JsExn) @send
   external after2: (T.t, string) => unit = "after"
 
   /**
@@ -134,7 +134,7 @@ Inserts nodes just before node, while replacing strings in nodes with equivalent
 Throws a "HierarchyRequestError" DOMException if the constraints of the node tree are violated.
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CharacterData/before)
 */
-  @send
+  @throws(JsExn) @send
   external before: (T.t, DOMTree.node) => unit = "before"
 
   /**
@@ -143,19 +143,19 @@ Inserts nodes just before node, while replacing strings in nodes with equivalent
 Throws a "HierarchyRequestError" DOMException if the constraints of the node tree are violated.
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CharacterData/before)
 */
-  @send
+  @throws(JsExn) @send
   external before2: (T.t, string) => unit = "before"
 
   /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CharacterData/deleteData)
 */
-  @send
+  @throws(JsExn) @send
   external deleteData: (T.t, ~offset: int, ~count: int) => unit = "deleteData"
 
   /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CharacterData/insertData)
 */
-  @send
+  @throws(JsExn) @send
   external insertData: (T.t, ~offset: int, ~data: string) => unit = "insertData"
 
   /**
@@ -168,7 +168,7 @@ Removes node.
   /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CharacterData/replaceData)
 */
-  @send
+  @throws(JsExn) @send
   external replaceData: (T.t, ~offset: int, ~count: int, ~data: string) => unit = "replaceData"
 
   /**
@@ -177,7 +177,7 @@ Replaces node with nodes, while replacing strings in nodes with equivalent Text 
 Throws a "HierarchyRequestError" DOMException if the constraints of the node tree are violated.
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CharacterData/replaceWith)
 */
-  @send
+  @throws(JsExn) @send
   external replaceWith: (T.t, DOMTree.node) => unit = "replaceWith"
 
   /**
@@ -186,13 +186,13 @@ Replaces node with nodes, while replacing strings in nodes with equivalent Text 
 Throws a "HierarchyRequestError" DOMException if the constraints of the node tree are violated.
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CharacterData/replaceWith)
 */
-  @send
+  @throws(JsExn) @send
   external replaceWith2: (T.t, string) => unit = "replaceWith"
 
   /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CharacterData/substringData)
 */
-  @send
+  @throws(JsExn) @send
   external substringData: (T.t, ~offset: int, ~count: int) => string = "substringData"
 }
 

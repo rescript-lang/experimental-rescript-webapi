@@ -34,7 +34,7 @@ type pushSubscriptionOptions = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/PushSubscriptionOptions/applicationServerKey)
     */
-  applicationServerKey: applicationServerKey,
+  applicationServerKey: Null.t<applicationServerKey>,
 }
 
 /**
@@ -59,7 +59,7 @@ type pushSubscription = private {
 
 type pushSubscriptionOptionsInit = {
   mutable userVisibleOnly?: bool,
-  mutable applicationServerKey?: applicationServerKey,
+  mutable applicationServerKey?: Null.t<applicationServerKey>,
 }
 
 type pushSubscriptionJSONKeys = {
@@ -84,5 +84,5 @@ type pushEvent = private {
   /**
    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/PushEvent/data)
    */
-  data?: pushMessageData,
+  data: Null.t<pushMessageData>,
 }

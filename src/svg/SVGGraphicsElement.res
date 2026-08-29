@@ -10,7 +10,7 @@ external getBBox: (
 ) => DOM.domRect = "getBBox"
 
 @send
-external getCTM: SVGElement.svgGraphicsElement => DOM.domMatrix = "getCTM"
+external getCTM: SVGElement.svgGraphicsElement => Null.t<DOM.domMatrix> = "getCTM"
 
 @send
-external getScreenCTM: SVGElement.svgGraphicsElement => DOM.domMatrix = "getScreenCTM"
+external getScreenCTM: SVGElement.svgGraphicsElement => Null.t<DOM.domMatrix> = "getScreenCTM"

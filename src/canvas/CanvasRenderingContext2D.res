@@ -77,7 +77,7 @@ external setTransform: (
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CanvasRenderingContext2D/setTransform)
 */
-@send
+@throws(JsExn) @send
 external setTransform2: (DOM.canvasRenderingContext2D, ~transform: DOM.domMatrix2DInit=?) => unit =
   "setTransform"
 
@@ -90,7 +90,7 @@ external resetTransform: DOM.canvasRenderingContext2D => unit = "resetTransform"
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CanvasRenderingContext2D/createLinearGradient)
 */
-@send
+@throws(JsExn) @send
 external createLinearGradient: (
   DOM.canvasRenderingContext2D,
   ~x0: float,
@@ -102,7 +102,7 @@ external createLinearGradient: (
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CanvasRenderingContext2D/createRadialGradient)
 */
-@send
+@throws(JsExn) @send
 external createRadialGradient: (
   DOM.canvasRenderingContext2D,
   ~x0: float,
@@ -374,7 +374,7 @@ external measureText: (DOM.canvasRenderingContext2D, string) => CanvasTypes.text
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CanvasRenderingContext2D/drawImage)
 */
-@send
+@throws(JsExn) @send
 external drawImage: (
   DOM.canvasRenderingContext2D,
   ~image: HTMLImageElement.t,
@@ -385,7 +385,7 @@ external drawImage: (
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CanvasRenderingContext2D/drawImage)
 */
-@send
+@throws(JsExn) @send
 external drawImageWithSvg: (
   DOM.canvasRenderingContext2D,
   ~image: SVGElement.svgImageElement,
@@ -396,7 +396,7 @@ external drawImageWithSvg: (
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CanvasRenderingContext2D/drawImage)
 */
-@send
+@throws(JsExn) @send
 external drawImageWithVideo: (
   DOM.canvasRenderingContext2D,
   ~image: HTMLVideoElement.t,
@@ -407,7 +407,7 @@ external drawImageWithVideo: (
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CanvasRenderingContext2D/drawImage)
 */
-@send
+@throws(JsExn) @send
 external drawImageWithCanvas: (
   DOM.canvasRenderingContext2D,
   ~image: HTMLCanvasElement.t,
@@ -418,7 +418,7 @@ external drawImageWithCanvas: (
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CanvasRenderingContext2D/drawImage)
 */
-@send
+@throws(JsExn) @send
 external drawImageWithImageBitmap: (
   DOM.canvasRenderingContext2D,
   ~image: CanvasTypes.imageBitmap,
@@ -429,7 +429,7 @@ external drawImageWithImageBitmap: (
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CanvasRenderingContext2D/drawImage)
 */
-@send
+@throws(JsExn) @send
 external drawImageWithOffscreenCanvas: (
   DOM.canvasRenderingContext2D,
   ~image: CanvasTypes.offscreenCanvas,
@@ -440,7 +440,7 @@ external drawImageWithOffscreenCanvas: (
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CanvasRenderingContext2D/drawImage)
 */
-@send
+@throws(JsExn) @send
 external drawImageWithVideoFrame: (
   DOM.canvasRenderingContext2D,
   ~image: DOM.videoFrame,
@@ -451,7 +451,7 @@ external drawImageWithVideoFrame: (
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CanvasRenderingContext2D/drawImage)
 */
-@send
+@throws(JsExn) @send
 external drawImageWithDimensions: (
   DOM.canvasRenderingContext2D,
   ~image: HTMLImageElement.t,
@@ -464,7 +464,7 @@ external drawImageWithDimensions: (
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CanvasRenderingContext2D/drawImage)
 */
-@send
+@throws(JsExn) @send
 external drawImageWithSvgDimensions: (
   DOM.canvasRenderingContext2D,
   ~image: SVGElement.svgImageElement,
@@ -477,7 +477,7 @@ external drawImageWithSvgDimensions: (
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CanvasRenderingContext2D/drawImage)
 */
-@send
+@throws(JsExn) @send
 external drawImageWithVideoDimensions: (
   DOM.canvasRenderingContext2D,
   ~image: HTMLVideoElement.t,
@@ -490,7 +490,7 @@ external drawImageWithVideoDimensions: (
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CanvasRenderingContext2D/drawImage)
 */
-@send
+@throws(JsExn) @send
 external drawImageWithCanvasDimensions: (
   DOM.canvasRenderingContext2D,
   ~image: HTMLCanvasElement.t,
@@ -503,7 +503,7 @@ external drawImageWithCanvasDimensions: (
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CanvasRenderingContext2D/drawImage)
 */
-@send
+@throws(JsExn) @send
 external drawImageWithImageBitmapDimensions: (
   DOM.canvasRenderingContext2D,
   ~image: CanvasTypes.imageBitmap,
@@ -516,7 +516,7 @@ external drawImageWithImageBitmapDimensions: (
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CanvasRenderingContext2D/drawImage)
 */
-@send
+@throws(JsExn) @send
 external drawImageWithOffscreenCanvasDimensions: (
   DOM.canvasRenderingContext2D,
   ~image: CanvasTypes.offscreenCanvas,
@@ -529,7 +529,7 @@ external drawImageWithOffscreenCanvasDimensions: (
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CanvasRenderingContext2D/drawImage)
 */
-@send
+@throws(JsExn) @send
 external drawImageWithVideoFrameDimensions: (
   DOM.canvasRenderingContext2D,
   ~image: DOM.videoFrame,
@@ -542,7 +542,7 @@ external drawImageWithVideoFrameDimensions: (
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CanvasRenderingContext2D/drawImage)
 */
-@send
+@throws(JsExn) @send
 external drawImageWithSubRectangle: (
   DOM.canvasRenderingContext2D,
   ~image: HTMLImageElement.t,
@@ -559,7 +559,7 @@ external drawImageWithSubRectangle: (
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CanvasRenderingContext2D/drawImage)
 */
-@send
+@throws(JsExn) @send
 external drawImageWithSvgSubRectangle: (
   DOM.canvasRenderingContext2D,
   ~image: SVGElement.svgImageElement,
@@ -576,7 +576,7 @@ external drawImageWithSvgSubRectangle: (
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CanvasRenderingContext2D/drawImage)
 */
-@send
+@throws(JsExn) @send
 external drawImageWithVideoSubRectangle: (
   DOM.canvasRenderingContext2D,
   ~image: HTMLVideoElement.t,
@@ -593,7 +593,7 @@ external drawImageWithVideoSubRectangle: (
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CanvasRenderingContext2D/drawImage)
 */
-@send
+@throws(JsExn) @send
 external drawImageWithCanvasSubRectangle: (
   DOM.canvasRenderingContext2D,
   ~image: HTMLCanvasElement.t,
@@ -610,7 +610,7 @@ external drawImageWithCanvasSubRectangle: (
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CanvasRenderingContext2D/drawImage)
 */
-@send
+@throws(JsExn) @send
 external drawImageWithImageBitmapSubRectangle: (
   DOM.canvasRenderingContext2D,
   ~image: CanvasTypes.imageBitmap,
@@ -627,7 +627,7 @@ external drawImageWithImageBitmapSubRectangle: (
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CanvasRenderingContext2D/drawImage)
 */
-@send
+@throws(JsExn) @send
 external drawImageWithOffscreenCanvasSubRectangle: (
   DOM.canvasRenderingContext2D,
   ~image: CanvasTypes.offscreenCanvas,
@@ -644,7 +644,7 @@ external drawImageWithOffscreenCanvasSubRectangle: (
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CanvasRenderingContext2D/drawImage)
 */
-@send
+@throws(JsExn) @send
 external drawImageWithVideoFrameSubRectangle: (
   DOM.canvasRenderingContext2D,
   ~image: DOM.videoFrame,
@@ -661,7 +661,7 @@ external drawImageWithVideoFrameSubRectangle: (
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CanvasRenderingContext2D/createImageData)
 */
-@send
+@throws(JsExn) @send
 external createImageData: (
   DOM.canvasRenderingContext2D,
   ~sw: int,
@@ -672,14 +672,14 @@ external createImageData: (
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CanvasRenderingContext2D/createImageData)
 */
-@send
+@throws(JsExn) @send
 external createImageData2: (DOM.canvasRenderingContext2D, DOM.imageData) => DOM.imageData =
   "createImageData"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CanvasRenderingContext2D/getImageData)
 */
-@send
+@throws(JsExn) @send
 external getImageData: (
   DOM.canvasRenderingContext2D,
   ~sx: int,
@@ -692,7 +692,7 @@ external getImageData: (
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CanvasRenderingContext2D/putImageData)
 */
-@send
+@throws(JsExn) @send
 external putImageData: (
   DOM.canvasRenderingContext2D,
   ~imagedata: DOM.imageData,
@@ -703,7 +703,7 @@ external putImageData: (
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CanvasRenderingContext2D/putImageData)
 */
-@send
+@throws(JsExn) @send
 external putImageData2: (
   DOM.canvasRenderingContext2D,
   ~imagedata: DOM.imageData,
@@ -774,7 +774,7 @@ external bezierCurveTo: (
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CanvasRenderingContext2D/arcTo)
 */
-@send
+@throws(JsExn) @send
 external arcTo: (
   DOM.canvasRenderingContext2D,
   ~x1: float,
@@ -794,7 +794,7 @@ external rect: (DOM.canvasRenderingContext2D, ~x: float, ~y: float, ~w: float, ~
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CanvasRenderingContext2D/roundRect)
 */
-@send
+@throws(JsExn) @send
 external roundRect: (
   DOM.canvasRenderingContext2D,
   ~x: float,
@@ -807,7 +807,7 @@ external roundRect: (
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CanvasRenderingContext2D/roundRect)
 */
-@send
+@throws(JsExn) @send
 external roundRect2: (
   DOM.canvasRenderingContext2D,
   ~x: float,
@@ -820,7 +820,7 @@ external roundRect2: (
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CanvasRenderingContext2D/roundRect)
 */
-@send
+@throws(JsExn) @send
 external roundRect3: (
   DOM.canvasRenderingContext2D,
   ~x: float,
