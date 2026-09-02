@@ -475,7 +475,7 @@ Sets the value of element's attribute whose namespace is namespace and local nam
 */
   @send
   external setAttributeNS: (
-    DOMTree.element,
+    T.t,
     ~namespace: string,
     ~qualifiedName: string,
     ~value: string,

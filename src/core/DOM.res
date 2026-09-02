@@ -10,6 +10,7 @@ type document = private {}
 An abnormal event (called an exception) which occurs as a result of calling a method or accessing a property of a web API.
 [See DOMException on MDN](https://developer.mozilla.org/docs/Web/API/DOMException)
 */
+@editor.completeFrom(DOMException)
 type domException = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/DOMException/name)
@@ -25,6 +26,7 @@ type domException = {
 A type returned by some APIs which contains a list of DOMString (strings).
 [See DOMStringList on MDN](https://developer.mozilla.org/docs/Web/API/DOMStringList)
 */
+@editor.completeFrom(DOMStringList)
 type domStringList = {
   /**
     Returns the number of strings in strings.

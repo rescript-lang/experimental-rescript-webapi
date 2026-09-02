@@ -1302,7 +1302,7 @@ TODO: mark as private once mutating fields of private records is allowed
   length: int,
 }
 
-@editor.completeFrom(htmlFormControlsCollection)
+@editor.completeFrom(HTMLFormControlsCollection)
 and htmlFormControlsCollection = {
   length: int,
 }
@@ -1602,6 +1602,7 @@ and htmlSlotElement = {
   mutable name: string,
 }
 
+@editor.completeFrom(ElementInternals)
 and elementInternals = {
   shadowRoot: Null.t<shadowRoot>,
   form: Null.t<htmlFormElement>,

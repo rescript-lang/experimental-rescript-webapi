@@ -13,6 +13,7 @@ type midiOutputMap = {}
 /**
 [See MIDIAccess on MDN](https://developer.mozilla.org/docs/Web/API/MIDIAccess)
 */
+@editor.completeFrom(WebMIDI)
 type midiAccess = {
   ...DOM.eventTarget,
   /**

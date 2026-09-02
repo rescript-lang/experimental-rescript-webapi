@@ -3,7 +3,8 @@ import path from "node:path";
 import { spawnSync } from "node:child_process";
 import { fileURLToPath } from "node:url";
 
-const repoRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
+const scriptPath = fileURLToPath(import.meta.url);
+const repoRoot = path.resolve(path.dirname(scriptPath), "..");
 const configPath = path.join(repoRoot, "rescript.json");
 
 const expectedFeatureOwners = new Map([
@@ -42,6 +43,57 @@ const uniqueDuplicates = (values) => [
 
 const sameMembers = (left, right) =>
   left.length === right.length && left.every((value) => right.includes(value));
+
+const publicModulesFrom = (sourceEntries) =>
+  sourceEntries.flatMap((source) =>
+    (source.public ?? []).map((moduleName) => ({ moduleName, sourceDir: source.dir })),
+  );
+
+const readSource = (filePath) => {
+  try {
+    return { _tag: "Success", value: readFileSync(filePath, "utf8") };
+  } catch (error) {
+    return {
+      _tag: "Failure",
+      message: error instanceof Error ? error.message : String(error),
+    };
+  }
+};
+
+// Only direct `Foo.t = BackingModule.backingType` aliases, with or without type parameters,
+// expose an internal type whose editor completion owner needs validation.
+export const parsePublicTypeAlias = (source) => {
+  const match =
+    /^type t(?:<[^>\r\n]+>)?[ \t]*=[ \t]*([A-Z][A-Za-z0-9_]*)\.([A-Za-z][A-Za-z0-9_]*)\b/m.exec(
+      source,
+    );
+  return match === null ? null : { backingModule: match[1], backingType: match[2] };
+};
+
+// Public-to-public `Foo.t = Bar.t` re-exports keep Bar as the completion owner. Requiring
+// the backing type to point at both public modules would make these valid aliases conflict.
+const isPublicToPublicAlias = (alias, publicModuleNames) =>
+  alias.backingType === "t" && publicModuleNames.has(alias.backingModule);
+
+const escapeRegExp = (value) => value.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+
+// Match the annotation attached to the backing declaration so an unrelated annotation
+// elsewhere in the source file cannot satisfy the check.
+const completionOwnerFor = (source, backingType) => {
+  const escapedType = escapeRegExp(backingType);
+  const attributes = String.raw`(?:[ \t]+@[A-Za-z][A-Za-z0-9_.]*(?:\([^\r\n)]*\))?)*`;
+  const declaration = String.raw`(?:type(?:[ \t]+rec)?|and)[ \t]+${escapedType}\b`;
+  const pattern = new RegExp(
+    String.raw`@editor\.completeFrom\(([^)]+)\)${attributes}[ \t]*(?:\r?\n[ \t]*)?${declaration}`,
+    "m",
+  );
+  return pattern.exec(source)?.[1] ?? null;
+};
+
+const modulePathFor = (sourceEntries, moduleName) =>
+  sourceEntries
+    .map((source) => path.join(repoRoot, source.dir, `${moduleName}.res`))
+    .find(existsSync);
 
 const readConfig = () => {
   try {
@@ -110,9 +162,7 @@ const validateFeatureOwners = (featureEntries, sourceEntries) => {
 };
 
 const validatePublicModules = (sourceEntries) => {
-  const publicModules = sourceEntries.flatMap((source) =>
-    (source.public ?? []).map((moduleName) => ({ moduleName, sourceDir: source.dir })),
-  );
+  const publicModules = publicModulesFrom(sourceEntries);
   const duplicateModules = uniqueDuplicates(publicModules.map(({ moduleName }) => moduleName));
   const missingModules = publicModules
     .filter(
@@ -131,6 +181,48 @@ const validatePublicModules = (sourceEntries) => {
   ];
 };
 
+// Internal backing types must complete from their public module. This keeps editor suggestions
+// on `Foo` instead of leaking implementation modules such as DOMTree or *Types modules.
+const validateCompletionAlias = (publicModule, sourceEntries, publicModuleNames) => {
+  const publicPath = path.join(repoRoot, publicModule.sourceDir, `${publicModule.moduleName}.res`);
+  const publicSource = readSource(publicPath);
+  if (publicSource._tag === "Failure") {
+    return [`Unable to read ${publicPath}: ${publicSource.message}`];
+  }
+
+  const alias = parsePublicTypeAlias(publicSource.value);
+  if (alias === null || isPublicToPublicAlias(alias, publicModuleNames)) {
+    return [];
+  }
+
+  const backingPath = modulePathFor(sourceEntries, alias.backingModule);
+  if (backingPath === undefined) {
+    return [
+      `Unable to resolve backing module ${alias.backingModule} for ${publicModule.moduleName}.t.`,
+    ];
+  }
+
+  const backingSource = readSource(backingPath);
+  if (backingSource._tag === "Failure") {
+    return [`Unable to read ${backingPath}: ${backingSource.message}`];
+  }
+
+  const actualOwner = completionOwnerFor(backingSource.value, alias.backingType);
+  return actualOwner === publicModule.moduleName
+    ? []
+    : [
+        `${alias.backingModule}.${alias.backingType}, aliased by ${publicModule.moduleName}.t, must use @editor.completeFrom(${publicModule.moduleName}); received ${actualOwner ?? "no annotation"}.`,
+      ];
+};
+
+const validateCompletionAliases = (sourceEntries) => {
+  const publicModules = publicModulesFrom(sourceEntries);
+  const publicModuleNames = new Set(publicModules.map(({ moduleName }) => moduleName));
+  return publicModules.flatMap((publicModule) =>
+    validateCompletionAlias(publicModule, sourceEntries, publicModuleNames),
+  );
+};
+
 const validateConfig = (config) => {
   const featureEntries = Object.entries(config.features ?? {});
   const sourceEntries = (config.sources ?? []).filter(
@@ -142,6 +234,7 @@ const validateConfig = (config) => {
     ...validateSources(sourceEntries),
     ...validateFeatureOwners(featureEntries, sourceEntries),
     ...validatePublicModules(sourceEntries),
+    ...validateCompletionAliases(sourceEntries),
   ];
 };
 
@@ -170,25 +263,27 @@ const compileFeature = (featureName) => {
     : { _tag: "Failure", message: formatProcessFailure(featureName, "build", buildResult) };
 };
 
-const configResult = readConfig();
-if (configResult._tag === "Failure") {
-  console.error(`Unable to read rescript.json: ${configResult.message}`);
-  process.exit(1);
-}
-
-const validationErrors = validateConfig(configResult.value);
-if (validationErrors.length > 0) {
-  console.error(validationErrors.join("\n\n"));
-  process.exit(1);
-}
-
-console.log(`Validated ${expectedFeatureOwners.size} public feature definitions.`);
-
-for (const featureName of expectedFeatureOwners.keys()) {
-  const result = compileFeature(featureName);
-  if (result._tag === "Failure") {
-    console.error(result.message);
+if (process.argv[1] !== undefined && path.resolve(process.argv[1]) === scriptPath) {
+  const configResult = readConfig();
+  if (configResult._tag === "Failure") {
+    console.error(`Unable to read rescript.json: ${configResult.message}`);
     process.exit(1);
   }
-  console.log(`[ok] ${featureName}`);
+
+  const validationErrors = validateConfig(configResult.value);
+  if (validationErrors.length > 0) {
+    console.error(validationErrors.join("\n\n"));
+    process.exit(1);
+  }
+
+  console.log(`Validated ${expectedFeatureOwners.size} public feature definitions.`);
+
+  for (const featureName of expectedFeatureOwners.keys()) {
+    const result = compileFeature(featureName);
+    if (result._tag === "Failure") {
+      console.error(result.message);
+      process.exit(1);
+    }
+    console.log(`[ok] ${featureName}`);
+  }
 }

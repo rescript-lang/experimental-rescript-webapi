@@ -1,4 +1,4 @@
-type sharedWorker
+@editor.completeFrom(SharedWorker) type sharedWorker
 
 /**
 The WorkerGlobalScope interface of the Web Workers API is an interface representing the scope of any worker.
@@ -39,7 +39,7 @@ namespaces objects, and constructors, not typically associated with the worker
 global scope, but available on it, are listed in the JavaScript Reference. See
 the complete list of functions available to workers.
 */
-@editor.completeFrom(SharedWorkerGlobalScope)
+@editor.completeFrom(SharedWorkerScope)
 type sharedWorkerGlobalScope = private {
   ...workerGlobalScope,
   name: option<string>,

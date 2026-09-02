@@ -36,6 +36,7 @@ type blob = DOM.blob = private {
 This Streams API interface represents a readable stream of byte data. The WebApiFetch API offers a concrete instance of a ReadableStream through the body property of a Response object.
 [See ReadableStream on MDN](https://developer.mozilla.org/docs/Web/API/ReadableStream)
 */
+@editor.completeFrom(ReadableStream)
 type readableStream<'r> = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/ReadableStream/locked)
@@ -70,7 +71,7 @@ type writableStreamDefaultController = private {
 Provides information about files and allows JavaScript in a web page to access their content.
 [See WebApiFile on MDN](https://developer.mozilla.org/docs/Web/API/File)
 */
-@editor.completeFrom(WebApiFile)
+@editor.completeFrom(File)
 type file = DOM.file = private {
   ...blob,
   /**
