@@ -1173,7 +1173,7 @@ type biquadFilterOptions = {
 }
 
 type audioBufferSourceOptions = {
-  mutable buffer?: Null.t<audioBuffer>,
+  mutable buffer?: Nullable.t<audioBuffer>,
   mutable detune?: float,
   mutable loop?: bool,
   mutable loopEnd?: float,
@@ -1195,7 +1195,7 @@ type constantSourceOptions = {mutable offset?: float}
 
 type convolverOptions = {
   ...audioNodeOptions,
-  mutable buffer?: Null.t<audioBuffer>,
+  mutable buffer?: Nullable.t<audioBuffer>,
   mutable disableNormalization?: bool,
 }
 
@@ -1272,7 +1272,7 @@ type stereoPannerOptions = {
 
 type waveShaperOptions = {
   ...audioNodeOptions,
-  mutable curve?: Null.t<array<float>>,
+  mutable curve?: array<float>,
   mutable oversample?: overSampleType,
 }
 

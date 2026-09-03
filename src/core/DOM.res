@@ -975,10 +975,10 @@ type videoFrameInit = {
 }
 
 type videoColorSpaceInit = {
-  mutable primaries?: Null.t<videoColorPrimaries>,
-  mutable transfer?: Null.t<videoTransferCharacteristics>,
-  mutable matrix?: Null.t<videoMatrixCoefficients>,
-  mutable fullRange?: Null.t<bool>,
+  mutable primaries?: Nullable.t<videoColorPrimaries>,
+  mutable transfer?: Nullable.t<videoTransferCharacteristics>,
+  mutable matrix?: Nullable.t<videoMatrixCoefficients>,
+  mutable fullRange?: Nullable.t<bool>,
 }
 
 type planeLayout = {

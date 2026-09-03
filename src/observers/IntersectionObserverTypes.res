@@ -59,7 +59,7 @@ type intersectionObserverEntry = {
 }
 
 type intersectionObserverInit = {
-  mutable root?: Null.t<root>,
+  mutable root?: Nullable.t<root>,
   mutable rootMargin?: string,
   mutable threshold?: array<float>,
 }

@@ -138,12 +138,12 @@ type iterationCompositeOperation =
 type keyframeEffectOptions = {
   ...AnimationEffect.effectTiming,
   mutable composite?: compositeOperation,
-  mutable pseudoElement?: Null.t<string>,
+  mutable pseudoElement?: Nullable.t<string>,
   mutable iterationComposite?: iterationCompositeOperation,
 }
 
 type keyframeAnimationOptions = {
   ...keyframeEffectOptions,
   mutable id?: string,
-  mutable timeline?: Null.t<animationTimeline>,
+  mutable timeline?: Nullable.t<animationTimeline>,
 }

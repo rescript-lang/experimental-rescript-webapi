@@ -42,5 +42,5 @@ the complete list of functions available to workers.
 @editor.completeFrom(SharedWorkerGlobalScope)
 type sharedWorkerGlobalScope = private {
   ...workerGlobalScope,
-  name: option<string>,
+  name: string,
 }

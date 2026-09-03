@@ -12,7 +12,7 @@ let observer2 = IObserver.make(
     Console.log2(entry, observer)
   },
   ~options={
-    root: root->IRoot.fromElement->Null.make,
+    root: root->IRoot.fromElement->Nullable.make,
     rootMargin: "10px",
     threshold: [0.1],
   },

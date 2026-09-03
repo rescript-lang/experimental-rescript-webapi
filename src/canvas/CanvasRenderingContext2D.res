@@ -127,72 +127,72 @@ external createConicGradient: (
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CanvasRenderingContext2D/createPattern)
 */
-@send
+@throws(JsExn) @send
 external createPattern: (
   DOM.canvasRenderingContext2D,
   ~image: HTMLImageElement.t,
   ~repetition: string,
-) => CanvasTypes.canvasPattern = "createPattern"
+) => Null.t<CanvasTypes.canvasPattern> = "createPattern"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CanvasRenderingContext2D/createPattern)
 */
-@send
+@throws(JsExn) @send
 external createPattern2: (
   DOM.canvasRenderingContext2D,
   ~image: SVGElement.svgImageElement,
   ~repetition: string,
-) => CanvasTypes.canvasPattern = "createPattern"
+) => Null.t<CanvasTypes.canvasPattern> = "createPattern"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CanvasRenderingContext2D/createPattern)
 */
-@send
+@throws(JsExn) @send
 external createPattern3: (
   DOM.canvasRenderingContext2D,
   ~image: HTMLVideoElement.t,
   ~repetition: string,
-) => CanvasTypes.canvasPattern = "createPattern"
+) => Null.t<CanvasTypes.canvasPattern> = "createPattern"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CanvasRenderingContext2D/createPattern)
 */
-@send
+@throws(JsExn) @send
 external createPattern4: (
   DOM.canvasRenderingContext2D,
   ~image: HTMLCanvasElement.t,
   ~repetition: string,
-) => CanvasTypes.canvasPattern = "createPattern"
+) => Null.t<CanvasTypes.canvasPattern> = "createPattern"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CanvasRenderingContext2D/createPattern)
 */
-@send
+@throws(JsExn) @send
 external createPattern5: (
   DOM.canvasRenderingContext2D,
   ~image: CanvasTypes.imageBitmap,
   ~repetition: string,
-) => CanvasTypes.canvasPattern = "createPattern"
+) => Null.t<CanvasTypes.canvasPattern> = "createPattern"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CanvasRenderingContext2D/createPattern)
 */
-@send
+@throws(JsExn) @send
 external createPattern6: (
   DOM.canvasRenderingContext2D,
   ~image: CanvasTypes.offscreenCanvas,
   ~repetition: string,
-) => CanvasTypes.canvasPattern = "createPattern"
+) => Null.t<CanvasTypes.canvasPattern> = "createPattern"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CanvasRenderingContext2D/createPattern)
 */
-@send
+@throws(JsExn) @send
 external createPattern7: (
   DOM.canvasRenderingContext2D,
   ~image: DOM.videoFrame,
   ~repetition: string,
-) => CanvasTypes.canvasPattern = "createPattern"
+) => Null.t<CanvasTypes.canvasPattern> = "createPattern"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CanvasRenderingContext2D/clearRect)

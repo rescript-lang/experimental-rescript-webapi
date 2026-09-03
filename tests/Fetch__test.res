@@ -9,7 +9,7 @@ let response2 = await Fetch.fetch(
         "Authorization": "Bearer token",
       },
     ),
-    body: BodyInit.fromString(`secret=foo&response=bar`),
+    body: BodyInit.fromString(`secret=foo&response=bar`)->Nullable.make,
   },
 )
 
@@ -22,7 +22,7 @@ let response3 = await Fetch.fetchWithRequest(
         "Content-Type": "application/x-www-form-urlencoded",
       },
     ),
-    body: BodyInit.fromString(`secret=foo&response=bar`),
+    body: BodyInit.fromString(`secret=foo&response=bar`)->Nullable.make,
   },
 )
 
@@ -39,7 +39,7 @@ let registrationResult = await Window.current
 let subscription = await registrationResult.pushManager->PushManager.subscribe(
   ~options={
     userVisibleOnly: true,
-    applicationServerKey: ApplicationServerKey.fromString("MyPublicKey")->Null.make,
+    applicationServerKey: ApplicationServerKey.fromString("MyPublicKey")->Nullable.make,
   },
 )
 

@@ -32,12 +32,12 @@ type getAnimationsOptions = {mutable subtree?: bool}
 
 type computedEffectTiming = {
   ...effectTiming,
-  mutable progress?: Null.t<float>,
-  mutable currentIteration?: Null.t<float>,
+  mutable progress?: Nullable.t<float>,
+  mutable currentIteration?: Nullable.t<float>,
   mutable startTime?: float,
   mutable endTime?: float,
   mutable activeDuration?: float,
-  mutable localTime?: Null.t<float>,
+  mutable localTime?: Nullable.t<float>,
 }
 
 type optionalEffectTiming = {

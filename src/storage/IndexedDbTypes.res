@@ -203,7 +203,7 @@ type idbDatabaseInfo = {
 type idbTransactionOptions = {mutable durability?: idbTransactionDurability}
 
 type idbObjectStoreParameters = {
-  mutable keyPath?: Null.t<unknown>,
+  mutable keyPath?: Nullable.t<unknown>,
   mutable autoIncrement?: bool,
 }
 
