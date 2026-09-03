@@ -10,8 +10,6 @@ on:
 
 permissions:
   contents: read
-  pages: write
-  id-token: write
 
 jobs:
   build:
@@ -24,8 +22,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v7
         with:
-          node-version: "22"
-          registry-url: https://registry.npmjs.org # Needed to make auth work for publishing
+          node-version: "24"
 
       - name: Install dependencies
         run: npm ci
@@ -61,7 +58,7 @@ jobs:
 
       - name: Update package version to -<commit-hash>
         env:
-          PACKAGE_VERSION: ${{ steps.package-version.outputs.current-version }}-experimental-${{ env.COMMIT_HASH }}
+          PACKAGE_VERSION: ${{ steps.package-version.outputs.current-version }}-alpha-${{ env.COMMIT_HASH }}
         run: |
           node <<'NODE'
           const fs = require("node:fs");
@@ -77,18 +74,38 @@ jobs:
       - name: Upload npm package artifact
         uses: actions/upload-artifact@v7
         with:
-          name: npm-packages
+          name: npm-package
           path: "*.tgz"
 
+  release:
+    needs: build
+    if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      id-token: write
+    steps:
+      - name: Setup Node.js
+        uses: actions/setup-node@v7
+        with:
+          node-version: "24"
+          registry-url: https://registry.npmjs.org
+          package-manager-cache: false
+
+      - name: Download npm package artifact
+        uses: actions/download-artifact@v8
+        with:
+          name: npm-package
+
       - name: Publish npm package
-        if: github.ref == 'refs/heads/main' && github.event_name == 'push'
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NODE_AUTH_TOKEN }}
-        run: npm publish --access public --tag experimental
+        run: npm publish ./rescript-webapi-*.tgz --access public --tag alpha
 
   deploy-docs:
     needs: build
     runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
