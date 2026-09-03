@@ -23,6 +23,7 @@ type hiddenInput =
   | Number(float)
   | String(string)
   | @as(null) Null
+  | @as(undefined) Undefined
 
 type t = DOMTree.htmlElement = private {
   ...DOMTree.htmlElement,
@@ -73,8 +74,9 @@ element->HTMLElement.setHidden(HTMLElement.Visible)
 Sets the native property using its complete Web IDL input contract.
 
 ```rescript
-// `null` removes the hidden attribute.
+// `null` and `undefined` remove the hidden attribute.
 element->HTMLElement.setHiddenRaw(HTMLElement.Null)
+element->HTMLElement.setHiddenRaw(HTMLElement.Undefined)
 
 // Arbitrary native setter inputs remain available.
 element->HTMLElement.setHiddenRaw(HTMLElement.Number(0.))
