@@ -5,14 +5,14 @@ updates:
     directory: "/"
     schedule:
       interval: "weekly"
+    groups:
+      astro-and-starlight:
+        patterns:
+          - "astro"
+          - "@astrojs/starlight"
 
   # Manage GitHub Actions dependencies
   - package-ecosystem: "github-actions"
     directory: "/"
     schedule:
       interval: "weekly"
-    groups:
-      astro-and-starlight:
-        patterns:
-          - "astro"
-          - "@astrojs/starlight"

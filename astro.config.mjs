@@ -53,7 +53,7 @@ export default defineConfig({
         },
         {
           label: "Contributing",
-          autogenerate: { directory: "contributing" },
+          items: [{ autogenerate: { directory: "contributing" } }],
         },
         {
           label: "API Documentation",
