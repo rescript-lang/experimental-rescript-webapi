@@ -46,4 +46,4 @@ external removeEntry: (
 external resolve: (
   FileTypes.fileSystemDirectoryHandle,
   FileTypes.fileSystemHandle,
-) => promise<array<string>> = "resolve"
+) => promise<Null.t<array<string>>> = "resolve"

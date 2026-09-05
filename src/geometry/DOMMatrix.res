@@ -23,7 +23,7 @@ let matrix = DOMMatrix.fromString("matrix(1, 0, 0, 1, 0, 0)")
 
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/DOMMatrix)
 */
-@new
+@throws(JsExn) @new
 external fromString: string => DOM.domMatrix = "DOMMatrix"
 
 /**
@@ -37,17 +37,17 @@ let matrix = DOMMatrix.fromArray([1., 0., 0., 1., 0., 0.])
 
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/DOMMatrix)
 */
-@new
+@throws(JsExn) @new
 external fromArray: array<float> => DOM.domMatrix = "DOMMatrix"
 
 external asDOMMatrixReadOnly: DOM.domMatrix => DOM.domMatrixReadOnly = "%identity"
 @scope("DOMMatrix")
 external fromMatrix: (~other: DOM.domMatrixInit=?) => DOM.domMatrixReadOnly = "fromMatrix"
 
-@scope("DOMMatrix")
+@throws(JsExn) @scope("DOMMatrix")
 external fromFloat32Array: array<float> => DOM.domMatrixReadOnly = "fromFloat32Array"
 
-@scope("DOMMatrix")
+@throws(JsExn) @scope("DOMMatrix")
 external fromFloat64Array: Float64Array.t => DOM.domMatrixReadOnly = "fromFloat64Array"
 
 /**
@@ -134,10 +134,10 @@ external toJSON: DOM.domMatrix => Dict.t<string> = "toJSON"
 @scope("DOMMatrix")
 external fromMatrixD: (~other: DOM.domMatrixInit=?) => DOM.domMatrix = "fromMatrix"
 
-@scope("DOMMatrix")
+@throws(JsExn) @scope("DOMMatrix")
 external fromFloat32ArrayD: array<float> => DOM.domMatrix = "fromFloat32Array"
 
-@scope("DOMMatrix")
+@throws(JsExn) @scope("DOMMatrix")
 external fromFloat64ArrayD: Float64Array.t => DOM.domMatrix = "fromFloat64Array"
 
 @send
@@ -202,5 +202,5 @@ external skewYSelf: (DOM.domMatrix, ~sy: float=?) => DOM.domMatrix = "skewYSelf"
 @send
 external invertSelf: DOM.domMatrix => DOM.domMatrix = "invertSelf"
 
-@send
+@throws(JsExn) @send
 external setMatrixValue: (DOM.domMatrix, string) => DOM.domMatrix = "setMatrixValue"

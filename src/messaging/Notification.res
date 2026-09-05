@@ -18,7 +18,7 @@ type notificationEvent = NotificationTypes.notificationEvent = {
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Notification)
 */
-@new
+@throws(JsExn) @new
 external make: (~title: string, ~options: notificationOptions=?) => t = "Notification"
 
 include EventTarget.Impl({type t = t})

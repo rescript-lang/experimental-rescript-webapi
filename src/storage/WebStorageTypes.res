@@ -49,9 +49,9 @@ type storageEvent = private {
 
 type storageEventInit = {
   ...Event.eventInit,
-  mutable key?: Null.t<string>,
-  mutable oldValue?: Null.t<string>,
-  mutable newValue?: Null.t<string>,
+  mutable key?: Nullable.t<string>,
+  mutable oldValue?: Nullable.t<string>,
+  mutable newValue?: Nullable.t<string>,
   mutable url?: string,
-  mutable storageArea?: Null.t<storage>,
+  mutable storageArea?: Nullable.t<storage>,
 }

@@ -10,11 +10,12 @@ Returns a WebApiFile object, if the drag data item kind is File.
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/DataTransferItem/getAsFile)
 */
 @send
-external getAsFile: UiEventsTypes.dataTransferItem => FileTypes.file = "getAsFile"
+external getAsFile: UiEventsTypes.dataTransferItem => Null.t<FileTypes.file> = "getAsFile"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/DataTransferItem/webkitGetAsEntry)
 */
 @send
-external webkitGetAsEntry: UiEventsTypes.dataTransferItem => FileAndDirectoryEntriesTypes.fileSystemEntry =
-  "webkitGetAsEntry"
+external webkitGetAsEntry: UiEventsTypes.dataTransferItem => Null.t<
+  FileAndDirectoryEntriesTypes.fileSystemEntry,
+> = "webkitGetAsEntry"

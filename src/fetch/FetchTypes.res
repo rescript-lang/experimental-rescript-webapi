@@ -231,7 +231,7 @@ type requestInit = {
   /**
     A BodyInit object or null to set request's body.
     */
-  mutable body?: bodyInit,
+  mutable body?: Nullable.t<bodyInit>,
   /**
     A string whose value is a same-origin WebApiURL, "about:client", or the empty string, to set request's referrer.
     */
@@ -267,12 +267,12 @@ type requestInit = {
   /**
     An AbortSignal to set request's signal.
     */
-  mutable signal?: Null.t<DOM.abortSignal>,
+  mutable signal?: Nullable.t<DOM.abortSignal>,
   mutable priority?: requestPriority,
   /**
     Can only be null. Used to disassociate request from any Window.
     */
-  mutable window?: Null.t<unit>,
+  mutable window?: Nullable.t<unit>,
 }
 
 type responseInit = {

@@ -12,7 +12,7 @@ external make: (
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/IIRFilterNode/getFrequencyResponse)
 */
-@send
+@throws(JsExn) @send
 external getFrequencyResponse: (
   WebAudioTypes.iirFilterNode,
   ~frequencyHz: array<float>,

@@ -207,7 +207,7 @@ external copyTo3: (
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/VideoFrame/clone)
 */
-@send
+@throws(JsExn) @send
 external clone: DOM.videoFrame => DOM.videoFrame = "clone"
 
 /**

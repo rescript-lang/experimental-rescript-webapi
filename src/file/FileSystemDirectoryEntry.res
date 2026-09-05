@@ -3,7 +3,7 @@ external asFileSystemEntry: FileAndDirectoryEntriesTypes.fileSystemDirectoryEntr
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/FileSystemEntry/getParent)
 */
-@send
+@throws(JsExn) @send
 external getParent: (
   FileAndDirectoryEntriesTypes.fileSystemDirectoryEntry,
   ~successCallback: FileAndDirectoryEntriesTypes.fileSystemEntryCallback=?,
@@ -20,7 +20,7 @@ external createReader: FileAndDirectoryEntriesTypes.fileSystemDirectoryEntry => 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/FileSystemDirectoryEntry/getFile)
 */
-@send
+@throws(JsExn) @send
 external getFile: (
   FileAndDirectoryEntriesTypes.fileSystemDirectoryEntry,
   ~path: string=?,
@@ -32,7 +32,7 @@ external getFile: (
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/FileSystemDirectoryEntry/getDirectory)
 */
-@send
+@throws(JsExn) @send
 external getDirectory: (
   FileAndDirectoryEntriesTypes.fileSystemDirectoryEntry,
   ~path: string=?,

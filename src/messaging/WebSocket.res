@@ -15,7 +15,7 @@ let socket = WebSocket.fromURL(~url="wss://example.com/socket")
 
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/WebSocket)
 */
-@new
+@throws(JsExn) @new
 external fromURL: (~url: string, ~protocols: string=?) => t = "WebSocket"
 
 /**
@@ -33,7 +33,7 @@ let socket =
 
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/WebSocket)
 */
-@new
+@throws(JsExn) @new
 external fromURLWithProtocols: (~url: string, ~protocols: array<string>) => t = "WebSocket"
 
 include EventTarget.Impl({type t = t})
@@ -42,30 +42,33 @@ include EventTarget.Impl({type t = t})
 Closes the WebSocket connection, optionally using code as the the WebSocket connection close code and reason as the the WebSocket connection close reason.
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/WebSocket/close)
 */
-@send
+@throws(JsExn) @send
 external close: (t, ~code: int=?, ~reason: string=?) => unit = "close"
 
 /**
 Transmits data using the WebSocket connection. data can be a string, a Blob, an ArrayBuffer, or an ArrayBufferView.
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/WebSocket/send)
 */
-@send
+@throws(JsExn) @send
 external send: (t, DataView.t) => unit = "send"
 
 /**
 Transmits data using the WebSocket connection. data can be a string, a Blob, an ArrayBuffer, or an ArrayBufferView.
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/WebSocket/send)
 */
+@throws(JsExn)
 external sendArrayBuffer: (t, ArrayBuffer.t) => unit = "send"
 
 /**
 Transmits data using the WebSocket connection. data can be a string, a Blob, an ArrayBuffer, or an ArrayBufferView.
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/WebSocket/send)
 */
+@throws(JsExn)
 external sendBlob: (t, Blob.t) => unit = "send"
 
 /**
 Transmits data using the WebSocket connection. data can be a string, a Blob, an ArrayBuffer, or an ArrayBufferView.
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/WebSocket/send)
 */
+@throws(JsExn)
 external sendString: (t, string) => unit = "send"

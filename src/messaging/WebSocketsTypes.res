@@ -119,6 +119,6 @@ type messageEventInit<'t> = {
   mutable data?: 't,
   mutable origin?: string,
   mutable lastEventId?: string,
-  mutable source?: Null.t<messageEventSource>,
+  mutable source?: Nullable.t<messageEventSource>,
   mutable ports?: array<ChannelMessagingTypes.messagePort>,
 }

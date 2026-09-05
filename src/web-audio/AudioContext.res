@@ -3,7 +3,7 @@ include BaseAudioContext.Impl({type t = WebAudioTypes.audioContext})
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/AudioContext)
 */
-@new
+@throws(JsExn) @new
 external make: (
   ~contextOptions: WebAudioTypes.audioContextOptions=?,
 ) => WebAudioTypes.audioContext = "AudioContext"

@@ -12,7 +12,7 @@ external make: (
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/AudioBufferSourceNode/start)
 */
-@send
+@throws(JsExn) @send
 external startA: (
   WebAudioTypes.audioBufferSourceNode,
   ~when_: float=?,

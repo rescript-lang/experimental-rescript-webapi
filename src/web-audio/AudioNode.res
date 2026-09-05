@@ -10,7 +10,7 @@ module Impl = (
   /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/AudioNode/connect)
 */
-  @send
+  @throws(JsExn) @send
   external connect: (
     T.t,
     ~destinationNode: WebAudioTypes.audioNode,
@@ -21,39 +21,39 @@ module Impl = (
   /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/AudioNode/connect)
 */
-  @send
+  @throws(JsExn) @send
   external connect2: (T.t, ~destinationParam: WebAudioTypes.audioParam, ~output: int=?) => unit =
     "connect"
 
   /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/AudioNode/disconnect)
 */
-  @send
+  @throws(JsExn) @send
   external disconnect: T.t => unit = "disconnect"
 
   /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/AudioNode/disconnect)
 */
-  @send
+  @throws(JsExn) @send
   external disconnect2: (T.t, int) => unit = "disconnect"
 
   /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/AudioNode/disconnect)
 */
-  @send
+  @throws(JsExn) @send
   external disconnect3: (T.t, WebAudioTypes.audioNode) => unit = "disconnect"
 
   /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/AudioNode/disconnect)
 */
-  @send
+  @throws(JsExn) @send
   external disconnect4: (T.t, ~destinationNode: WebAudioTypes.audioNode, ~output: int) => unit =
     "disconnect"
 
   /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/AudioNode/disconnect)
 */
-  @send
+  @throws(JsExn) @send
   external disconnect5: (
     T.t,
     ~destinationNode: WebAudioTypes.audioNode,
@@ -64,13 +64,13 @@ module Impl = (
   /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/AudioNode/disconnect)
 */
-  @send
+  @throws(JsExn) @send
   external disconnect6: (T.t, WebAudioTypes.audioParam) => unit = "disconnect"
 
   /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/AudioNode/disconnect)
 */
-  @send
+  @throws(JsExn) @send
   external disconnect7: (T.t, ~destinationParam: WebAudioTypes.audioParam, ~output: int) => unit =
     "disconnect"
 }

@@ -80,7 +80,7 @@ type notificationOptions = {
   mutable tag?: string,
   mutable icon?: string,
   mutable badge?: string,
-  mutable silent?: Null.t<bool>,
+  mutable silent?: Nullable.t<bool>,
   mutable requireInteraction?: bool,
   mutable data?: JSON.t,
   mutable actions?: array<notificationAction>,

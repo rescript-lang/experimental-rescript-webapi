@@ -4,7 +4,7 @@ Adds a color stop with the given color to the gradient at the given offset. 0.0 
 Throws an "IndexSizeError" DOMException if the offset is out of range. Throws a "SyntaxError" DOMException if the color cannot be parsed.
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CanvasGradient/addColorStop)
 */
-@send
+@throws(JsExn) @send
 external addColorStop: (CanvasTypes.canvasGradient, ~offset: float, ~color: string) => unit =
   "addColorStop"
 

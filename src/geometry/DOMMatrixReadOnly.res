@@ -23,7 +23,7 @@ let matrix = DOMMatrixReadOnly.fromString("matrix(1, 0, 0, 1, 0, 0)")
 
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/DOMMatrixReadOnly)
 */
-@new
+@throws(JsExn) @new
 external fromString: string => DOM.domMatrixReadOnly = "DOMMatrixReadOnly"
 
 /**
@@ -37,16 +37,16 @@ let matrix = DOMMatrixReadOnly.fromArray([1., 0., 0., 1., 0., 0.])
 
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/DOMMatrixReadOnly)
 */
-@new
+@throws(JsExn) @new
 external fromArray: array<float> => DOM.domMatrixReadOnly = "DOMMatrixReadOnly"
 
 @scope("DOMMatrixReadOnly")
 external fromMatrix: (~other: DOM.domMatrixInit=?) => DOM.domMatrixReadOnly = "fromMatrix"
 
-@scope("DOMMatrixReadOnly")
+@throws(JsExn) @scope("DOMMatrixReadOnly")
 external fromFloat32Array: array<float> => DOM.domMatrixReadOnly = "fromFloat32Array"
 
-@scope("DOMMatrixReadOnly")
+@throws(JsExn) @scope("DOMMatrixReadOnly")
 external fromFloat64Array: Float64Array.t => DOM.domMatrixReadOnly = "fromFloat64Array"
 
 /**

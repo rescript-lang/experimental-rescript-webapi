@@ -24,11 +24,11 @@ external assignedElements: (t, ~options: DOM.assignedNodesOptions=?) => array<DO
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLSlotElement/assign)
 */
-@send
+@throws(JsExn) @send
 external assign: (t, DOMTree.element) => unit = "assign"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLSlotElement/assign)
 */
-@send
+@throws(JsExn) @send
 external assign2: (t, Text.t) => unit = "assign"

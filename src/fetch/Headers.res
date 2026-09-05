@@ -37,8 +37,8 @@ external delete: (FetchTypes.headers, string) => unit = "delete"
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Headers/get)
 */
-@send
-external get: (FetchTypes.headers, string) => null<string> = "get"
+@throws(JsExn) @send
+external get: (FetchTypes.headers, string) => Null.t<string> = "get"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Headers/getSetCookie)
@@ -49,11 +49,11 @@ external getSetCookie: FetchTypes.headers => array<string> = "getSetCookie"
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Headers/has)
 */
-@send
+@throws(JsExn) @send
 external has: (FetchTypes.headers, string) => bool = "has"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Headers/set)
 */
-@send
+@throws(JsExn) @send
 external set: (FetchTypes.headers, ~name: string, ~value: string) => unit = "set"

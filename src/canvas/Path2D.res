@@ -89,7 +89,7 @@ external bezierCurveTo: (
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CanvasRenderingContext2D/arcTo)
 */
-@send
+@throws(JsExn) @send
 external arcTo: (
   CanvasTypes.path2D,
   ~x1: float,
@@ -108,7 +108,7 @@ external rect: (CanvasTypes.path2D, ~x: float, ~y: float, ~w: float, ~h: float) 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CanvasRenderingContext2D/roundRect)
 */
-@send
+@throws(JsExn) @send
 external roundRect: (
   CanvasTypes.path2D,
   ~x: float,
@@ -121,7 +121,7 @@ external roundRect: (
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CanvasRenderingContext2D/roundRect)
 */
-@send
+@throws(JsExn) @send
 external roundRect2: (
   CanvasTypes.path2D,
   ~x: float,
@@ -134,7 +134,7 @@ external roundRect2: (
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CanvasRenderingContext2D/roundRect)
 */
-@send
+@throws(JsExn) @send
 external roundRect3: (
   CanvasTypes.path2D,
   ~x: float,

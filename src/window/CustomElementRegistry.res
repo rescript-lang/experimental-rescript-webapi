@@ -1,7 +1,7 @@
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CustomElementRegistry/define)
 */
-@send
+@throws(JsExn) @send
 external define: (
   DOM.customElementRegistry,
   ~name: string,
@@ -13,7 +13,8 @@ external define: (
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CustomElementRegistry/getName)
 */
 @send
-external getName: (DOM.customElementRegistry, DOM.customElementConstructor) => string = "getName"
+external getName: (DOM.customElementRegistry, DOM.customElementConstructor) => Null.t<string> =
+  "getName"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CustomElementRegistry/whenDefined)

@@ -5,7 +5,7 @@ Returns the string with index index from strings.
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/DOMStringList/item)
 */
 @send
-external item: (t, int) => string = "item"
+external item: (t, int) => Null.t<string> = "item"
 
 /**
 Returns true if strings contains string, and false otherwise.

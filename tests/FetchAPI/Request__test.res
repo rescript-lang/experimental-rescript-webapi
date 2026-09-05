@@ -13,7 +13,10 @@ let paramsBody = BodyInit.fromURLSearchParams(params)
 let formDataBody = BodyInit.fromFormData(formData)
 let streamBody = BodyInit.fromReadableStream(stream)
 
-let req1 = Request.fromURL("https://example.com/api", ~init={method: "POST", body: stringBody})
+let req1 = Request.fromURL(
+  "https://example.com/api",
+  ~init={method: "POST", body: stringBody->Nullable.make},
+)
 
 let req2 = Request.fromRequest(req1)
 
@@ -21,7 +24,7 @@ let _blob: Blob.t = await req2->Request.clone->Request.blob
 
 let formDataReq = Request.fromURL(
   "https://example.com/form",
-  ~init={method: "POST", body: formDataBody},
+  ~init={method: "POST", body: formDataBody->Nullable.make},
 )
 let _formData: FormData.t = await formDataReq->Request.formData
 
