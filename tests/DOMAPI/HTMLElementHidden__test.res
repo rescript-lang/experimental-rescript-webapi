@@ -11,14 +11,6 @@ let setHiddenStates = (element: HTMLElement.t) => {
   element->HTMLElement.setHidden(HTMLElement.Visible)
 }
 
-let setRawHiddenValues = (element: HTMLElement.t) => {
-  element->HTMLElement.setHiddenRaw(HTMLElement.Boolean(true))
-  element->HTMLElement.setHiddenRaw(HTMLElement.Number(0.))
-  element->HTMLElement.setHiddenRaw(HTMLElement.String("until-found"))
-  element->HTMLElement.setHiddenRaw(HTMLElement.Null)
-  element->HTMLElement.setHiddenRaw(HTMLElement.Undefined)
-}
-
 let formHidden = (element: HTMLFormElement.t): HTMLElement.hiddenState =>
   element->HTMLFormElement.hidden
 
