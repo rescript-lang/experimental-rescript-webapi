@@ -7,7 +7,7 @@ type formDataEntryValue = FormDataEntryValue.t
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/FormData)
 */
-@new
+@throws(JsExn) @new
 external make: (~form: 'form=?, ~submitter: 'submitter=?) => t = "FormData"
 
 /**
@@ -32,7 +32,7 @@ external delete: (t, string) => unit = "delete"
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/FormData/get)
 */
 @send
-external get: (t, string) => null<formDataEntryValue> = "get"
+external get: (t, string) => Null.t<formDataEntryValue> = "get"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/FormData/getAll)

@@ -94,7 +94,7 @@ Retrieves a select object or an object from an options collection.
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLSelectElement/item)
 */
 @send
-external item: (t, int) => HTMLOptionElement.t = "item"
+external item: (t, int) => Null.t<HTMLOptionElement.t> = "item"
 
 /**
 Retrieves a select object or an object from an options collection.
@@ -102,7 +102,7 @@ Retrieves a select object or an object from an options collection.
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLSelectElement/namedItem)
 */
 @send
-external namedItem: (t, string) => HTMLOptionElement.t = "namedItem"
+external namedItem: (t, string) => Null.t<HTMLOptionElement.t> = "namedItem"
 
 /**
 Adds an element to the areas, controlRange, or options collection.
@@ -110,7 +110,7 @@ Adds an element to the areas, controlRange, or options collection.
 @param before Variant of type Object that specifies an element to insert before, or null to append the object to the collection.
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLSelectElement/add)
 */
-@send
+@throws(JsExn) @send
 external add: (t, ~element: unknown, ~before: unknown=?) => unit = "add"
 
 /**
@@ -153,5 +153,5 @@ external setCustomValidity: (t, string) => unit = "setCustomValidity"
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLSelectElement/showPicker)
 */
-@send
+@throws(JsExn) @send
 external showPicker: t => unit = "showPicker"

@@ -219,7 +219,7 @@ type fileSystemCreateWritableOptions = {mutable keepExistingData?: bool}
 
 type writeParams = {
   @as("type") mutable type_: writeCommandType,
-  mutable size?: Null.t<int>,
-  mutable position?: Null.t<int>,
-  mutable data?: Null.t<unknown>,
+  mutable size?: Nullable.t<int>,
+  mutable position?: Nullable.t<int>,
+  mutable data?: Nullable.t<unknown>,
 }

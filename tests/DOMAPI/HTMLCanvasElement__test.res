@@ -11,7 +11,7 @@ external setTextBaseline: (DOM.canvasRenderingContext2D, CanvasTypes.canvasTextB
 
 let myCanvas: HTMLCanvasElement.t =
   DomGlobal.document->Document.getElementById("myCanvas")->toHTMLCanvasElement
-let ctx = myCanvas->HTMLCanvasElement.getContext2D
+let ctx = myCanvas->HTMLCanvasElement.getContext2D->Null.getOrThrow
 
 ctx->setFillStyle(FillStyle.fromString("red"))
 ctx->CanvasRenderingContext2D.fillRect(~x=50., ~y=50., ~w=200., ~h=200.)

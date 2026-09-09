@@ -3,7 +3,7 @@ Returns the token with index index.
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/DOMTokenList/item)
 */
 @send
-external item: (DOM.domTokenList, int) => string = "item"
+external item: (DOM.domTokenList, int) => Null.t<string> = "item"
 
 /**
 Returns true if token is present, and false otherwise.
@@ -20,7 +20,7 @@ Throws a "SyntaxError" DOMException if one of the arguments is the empty string.
 Throws an "InvalidCharacterError" DOMException if one of the arguments contains any ASCII whitespace.
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/DOMTokenList/add)
 */
-@send
+@throws(JsExn) @send
 external add: (DOM.domTokenList, string) => unit = "add"
 
 /**
@@ -31,7 +31,7 @@ Throws a "SyntaxError" DOMException if one of the arguments is the empty string.
 Throws an "InvalidCharacterError" DOMException if one of the arguments contains any ASCII whitespace.
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/DOMTokenList/remove)
 */
-@send
+@throws(JsExn) @send
 external remove: (DOM.domTokenList, string) => unit = "remove"
 
 /**
@@ -44,7 +44,7 @@ Throws a "SyntaxError" DOMException if token is empty.
 Throws an "InvalidCharacterError" DOMException if token contains any spaces.
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/DOMTokenList/toggle)
 */
-@send
+@throws(JsExn) @send
 external toggle: (DOM.domTokenList, ~token: string, ~force: bool=?) => bool = "toggle"
 
 /**
@@ -57,7 +57,7 @@ Throws a "SyntaxError" DOMException if one of the arguments is the empty string.
 Throws an "InvalidCharacterError" DOMException if one of the arguments contains any ASCII whitespace.
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/DOMTokenList/replace)
 */
-@send
+@throws(JsExn) @send
 external replace: (DOM.domTokenList, ~token: string, ~newToken: string) => bool = "replace"
 
 /**
@@ -66,5 +66,5 @@ Returns true if token is in the associated attribute's supported tokens. Returns
 Throws a TypeError if the associated attribute has no supported tokens defined.
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/DOMTokenList/supports)
 */
-@send
+@throws(JsExn) @send
 external supports: (DOM.domTokenList, string) => bool = "supports"

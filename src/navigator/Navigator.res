@@ -143,8 +143,8 @@ external sendBeacon7: (t, ~url: string, ~data: string=?) => bool = "sendBeacon"
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Navigator/getGamepads)
 */
-@send
-external getGamepads: t => array<GamepadTypes.gamepad> = "getGamepads"
+@throws(JsExn) @send
+external getGamepads: t => array<Null.t<GamepadTypes.gamepad>> = "getGamepads"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Navigator/requestMediaKeySystemAccess)

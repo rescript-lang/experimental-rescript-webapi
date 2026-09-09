@@ -13,7 +13,7 @@ external getAnimations: DOMTree.shadowRoot => array<Animation.t> = "getAnimation
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/ShadowRoot/setHTMLUnsafe)
 */
-@send
+@throws(JsExn) @send
 external setHTMLUnsafe: (DOMTree.shadowRoot, string) => unit = "setHTMLUnsafe"
 
 /**

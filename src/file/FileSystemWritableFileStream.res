@@ -16,7 +16,7 @@ external close: FileTypes.fileSystemWritableFileStream => promise<unit> = "close
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/WritableStream/getWriter)
 */
-@send
+@throws(JsExn) @send
 external getWriter: FileTypes.fileSystemWritableFileStream => FileTypes.writableStreamDefaultWriter<
   'w,
 > = "getWriter"

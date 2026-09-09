@@ -29,10 +29,10 @@ type t = private {
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/NodeIterator/nextNode)
 */
 @send
-external nextNode: t => DOMTree.node = "nextNode"
+external nextNode: t => Null.t<DOMTree.node> = "nextNode"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/NodeIterator/previousNode)
 */
 @send
-external previousNode: t => DOMTree.node = "previousNode"
+external previousNode: t => Null.t<DOMTree.node> = "previousNode"

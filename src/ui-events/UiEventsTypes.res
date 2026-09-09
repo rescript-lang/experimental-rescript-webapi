@@ -472,7 +472,7 @@ type pointerEvent = private {
 
 type uiEventInit = {
   ...Event.eventInit,
-  mutable view?: Null.t<DOM.window>,
+  mutable view?: Nullable.t<DOM.window>,
   mutable detail?: int,
   mutable which?: int,
 }
@@ -503,14 +503,14 @@ type mouseEventInit = {
   mutable clientY?: int,
   mutable button?: int,
   mutable buttons?: int,
-  mutable relatedTarget?: Null.t<DOM.eventTarget>,
+  mutable relatedTarget?: Nullable.t<DOM.eventTarget>,
   mutable movementX?: float,
   mutable movementY?: float,
 }
 
 type focusEventInit = {
   ...uiEventInit,
-  mutable relatedTarget?: Null.t<DOM.eventTarget>,
+  mutable relatedTarget?: Nullable.t<DOM.eventTarget>,
 }
 
 type compositionEventInit = {
@@ -539,10 +539,10 @@ type keyboardEventInit = {
 
 type inputEventInit = {
   ...uiEventInit,
-  mutable data?: Null.t<string>,
+  mutable data?: Nullable.t<string>,
   mutable isComposing?: bool,
   mutable inputType?: string,
-  mutable dataTransfer?: Null.t<dataTransfer>,
+  mutable dataTransfer?: Nullable.t<dataTransfer>,
   mutable targetRanges?: array<StaticRange.t>,
 }
 

@@ -65,7 +65,7 @@ type t = {
 include HTMLElement.Impl({type t = t})
 
 @send
-external getSVGDocument: t => DOM.document = "getSVGDocument"
+external getSVGDocument: t => Null.t<DOM.document> = "getSVGDocument"
 
 /**
 Returns whether a form will validate when it is submitted, without having to submit it.

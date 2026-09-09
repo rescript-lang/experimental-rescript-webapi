@@ -8,13 +8,13 @@ include HTMLElement.Impl({type t = t})
 Fires when a FORM is about to be submitted.
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLFormElement/submit)
 */
-@send
+@throws(JsExn) @send
 external submit: DOMTree.htmlFormElement => unit = "submit"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLFormElement/requestSubmit)
 */
-@send
+@throws(JsExn) @send
 external requestSubmit: (DOMTree.htmlFormElement, ~submitter: DOMTree.htmlElement=?) => unit =
   "requestSubmit"
 

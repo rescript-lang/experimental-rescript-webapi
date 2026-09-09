@@ -14,7 +14,7 @@ type t = {
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/MediaList/item)
 */
 @send
-external item: (t, int) => string = "item"
+external item: (t, int) => Null.t<string> = "item"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/MediaList/appendMedium)
@@ -25,5 +25,5 @@ external appendMedium: (t, string) => unit = "appendMedium"
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/MediaList/deleteMedium)
 */
-@send
+@throws(JsExn) @send
 external deleteMedium: (t, string) => unit = "deleteMedium"

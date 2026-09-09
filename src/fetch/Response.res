@@ -111,17 +111,17 @@ external error: unit => t = "error"
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Response/redirect_static)
 */
-@scope("Response")
+@throws(JsExn) @scope("Response")
 external redirect: (~url: string, ~status: int=?) => t = "redirect"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Response/json_static)
 */
-@scope("Response")
+@throws(JsExn) @scope("Response")
 external jsonR: (~data: JSON.t, ~init: responseInit=?) => t = "json"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Response/clone)
 */
-@send
+@throws(JsExn) @send
 external clone: t => t = "clone"

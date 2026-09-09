@@ -84,7 +84,7 @@ Removes the event listener in target's event listener list with the same type, c
 Dispatches a synthetic event event to target and returns true if either event's cancelable attribute value is false or its preventDefault() method was not invoked, and false otherwise.
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/EventTarget/dispatchEvent)
 */
-  @send
+  @throws(JsExn) @send
   external dispatchEvent: (T.t, DOM.event) => bool = "dispatchEvent"
 }
 

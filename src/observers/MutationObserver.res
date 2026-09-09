@@ -78,7 +78,7 @@ external make: mutationObserverCallback => t = "MutationObserver"
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/MutationObserver/observe)
 */
-@send
+@throws(JsExn) @send
 external observe: (t, ~target: DOMTree.node, ~options: mutationObserverInit=?) => unit = "observe"
 
 /**

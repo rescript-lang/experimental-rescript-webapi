@@ -12,7 +12,7 @@ type intersectionObserver = private {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/IntersectionObserver/root)
     */
-  root: root,
+  root: Null.t<root>,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/IntersectionObserver/rootMargin)
     */
@@ -59,7 +59,7 @@ type intersectionObserverEntry = {
 }
 
 type intersectionObserverInit = {
-  mutable root?: root,
+  mutable root?: Nullable.t<root>,
   mutable rootMargin?: string,
   mutable threshold?: array<float>,
 }

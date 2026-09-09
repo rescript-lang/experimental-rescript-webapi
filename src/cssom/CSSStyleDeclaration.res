@@ -1723,12 +1723,12 @@ external getPropertyPriority: (t, string) => string = "getPropertyPriority"
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CSSStyleDeclaration/setProperty)
 */
-@send
+@throws(JsExn) @send
 external setProperty: (t, ~property: string, ~value: string, ~priority: string=?) => unit =
   "setProperty"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CSSStyleDeclaration/removeProperty)
 */
-@send
+@throws(JsExn) @send
 external removeProperty: (t, string) => string = "removeProperty"

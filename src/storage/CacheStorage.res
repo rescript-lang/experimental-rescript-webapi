@@ -6,7 +6,7 @@ external match: (
   CacheTypes.cacheStorage,
   ~request: FetchTypes.request,
   ~options: CacheTypes.multiCacheQueryOptions=?,
-) => Nullable.t<FetchTypes.response> = "match"
+) => promise<option<FetchTypes.response>> = "match"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CacheStorage/match)
@@ -16,7 +16,7 @@ external match2: (
   CacheTypes.cacheStorage,
   ~request: string,
   ~options: CacheTypes.multiCacheQueryOptions=?,
-) => Nullable.t<FetchTypes.response> = "match"
+) => promise<option<FetchTypes.response>> = "match"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CacheStorage/has)

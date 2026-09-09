@@ -21,13 +21,13 @@ include HTMLElement.Impl({type t = t})
 Displays the dialog element.
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLDialogElement/show)
 */
-@send
+@throws(JsExn) @send
 external show: t => unit = "show"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLDialogElement/showModal)
 */
-@send
+@throws(JsExn) @send
 external showModal: t => unit = "showModal"
 
 /**

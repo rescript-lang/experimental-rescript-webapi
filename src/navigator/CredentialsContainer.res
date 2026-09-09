@@ -5,7 +5,7 @@
 external get: (
   CredentialManagementTypes.credentialsContainer,
   ~options: CredentialManagementTypes.credentialRequestOptions=?,
-) => promise<CredentialManagementTypes.credential> = "get"
+) => promise<Null.t<CredentialManagementTypes.credential>> = "get"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CredentialsContainer/store)
@@ -23,7 +23,7 @@ external store: (
 external create: (
   CredentialManagementTypes.credentialsContainer,
   ~options: CredentialManagementTypes.credentialCreationOptions=?,
-) => promise<CredentialManagementTypes.credential> = "create"
+) => promise<Null.t<CredentialManagementTypes.credential>> = "create"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CredentialsContainer/preventSilentAccess)

@@ -82,7 +82,7 @@ type mediaKeySession = private {
 
 type mediaKeySystemMediaCapability = {
   mutable contentType?: string,
-  mutable encryptionScheme?: Null.t<string>,
+  mutable encryptionScheme?: Nullable.t<string>,
   mutable robustness?: string,
 }
 

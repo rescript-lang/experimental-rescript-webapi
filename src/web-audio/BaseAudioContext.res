@@ -22,7 +22,7 @@ module Impl = (
   /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/BaseAudioContext/createBuffer)
 */
-  @send
+  @throws(JsExn) @send
   external createBuffer: (
     T.t,
     ~numberOfChannels: int,
@@ -86,7 +86,7 @@ module Impl = (
   /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/BaseAudioContext/createIIRFilter)
 */
-  @send
+  @throws(JsExn) @send
   external createIIRFilter: (
     T.t,
     ~feedforward: array<float>,
@@ -108,7 +108,7 @@ module Impl = (
   /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/BaseAudioContext/createPeriodicWave)
 */
-  @send
+  @throws(JsExn) @send
   external createPeriodicWave: (
     T.t,
     ~real: array<float>,

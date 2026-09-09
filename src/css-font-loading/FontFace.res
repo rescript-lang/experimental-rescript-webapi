@@ -10,7 +10,7 @@ let fontFace =
 
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/FontFace)
 */
-@new
+@throws(JsExn) @new
 external fromString: (
   ~family: string,
   ~source: string,
@@ -29,7 +29,7 @@ let fontFace =
 
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/FontFace)
 */
-@new
+@throws(JsExn) @new
 external fromDataView: (
   ~family: string,
   ~source: DataView.t,
@@ -48,7 +48,7 @@ let fontFace =
 
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/FontFace)
 */
-@new
+@throws(JsExn) @new
 external fromArrayBuffer: (
   ~family: string,
   ~source: ArrayBuffer.t,

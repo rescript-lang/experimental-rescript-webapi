@@ -16,7 +16,7 @@ let shared: SharedWorker.t = SharedWorker.make("sharedworker.js")
 
 [Read more on MDN](https://developer.mozilla.org/en-US/docs/Web/API/SharedWorker/)
 */
-@new
+@throws(JsExn) @new
 external make: string => t = "SharedWorker"
 
 /**
@@ -31,7 +31,7 @@ let shared: SharedWorker.t = SharedWorker.makeWithName("sharedworker.js", "name"
 
 [Read more on MDN](https://developer.mozilla.org/en-US/docs/Web/API/SharedWorker/)
 */
-@new
+@throws(JsExn) @new
 external makeWithName: (string, string) => t = "SharedWorker"
 
 /**
@@ -49,7 +49,7 @@ let shared: SharedWorker.t = SharedWorker.makeWithOptions("sharedworker.js", {
 
 [Read more on MDN](https://developer.mozilla.org/en-US/docs/Web/API/SharedWorker/)
 */
-@new
+@throws(JsExn) @new
 external makeWithOptions: (string, workerOptions) => t = "SharedWorker"
 
 /**

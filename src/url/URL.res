@@ -1,14 +1,14 @@
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/URL)
 */
-@new
+@throws(JsExn) @new
 external make: (~url: string, ~base: string=?) => UrlTypes.url = "URL"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/URL/parse_static)
 */
 @scope("URL")
-external parse: (~url: string, ~base: string=?) => UrlTypes.url = "parse"
+external parse: (~url: string, ~base: string=?) => Null.t<UrlTypes.url> = "parse"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/URL/canParse_static)

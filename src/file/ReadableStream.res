@@ -31,7 +31,7 @@ let streamWithStrategy =
 
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/ReadableStream)
 */
-@new
+@throws(JsExn) @new
 external fromUnderlyingSource: (
   FileTypes.underlyingSource<'t>,
   ~strategy: FileTypes.queuingStrategy<'t>=?,
@@ -46,7 +46,7 @@ external cancel: (t<'r>, ~reason: JSON.t=?) => promise<unit> = "cancel"
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/ReadableStream/getReader)
 */
-@send
+@throws(JsExn) @send
 external getReader: (
   t<'r>,
   ~options: FileTypes.readableStreamGetReaderOptions=?,
@@ -55,7 +55,7 @@ external getReader: (
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/ReadableStream/pipeThrough)
 */
-@send
+@throws(JsExn) @send
 external pipeThrough: (
   t<'r>,
   ~transform: FileTypes.readableWritablePair<'t, 'r>,
@@ -75,5 +75,5 @@ external pipeTo: (
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/ReadableStream/tee)
 */
-@send
+@throws(JsExn) @send
 external tee: t<'r> => array<t<unit>> = "tee"

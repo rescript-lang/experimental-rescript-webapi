@@ -14,12 +14,12 @@ This specification defines the "2d" context below, which is similar but distinct
 Returns null if the canvas has already been initialized with another context type (e.g., trying to get a "2d" context after getting a "webgl" context).
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/OffscreenCanvas/getContext)
 */
-@send
+@throws(JsExn) @send
 external getContext2D: (
   CanvasTypes.offscreenCanvas,
   @as("2d") _,
   ~options: JSON.t=?,
-) => CanvasTypes.offscreenCanvasRenderingContext2D = "getContext"
+) => Null.t<CanvasTypes.offscreenCanvasRenderingContext2D> = "getContext"
 
 /**
 Returns an object that exposes an API for drawing on the OffscreenCanvas object. contextId specifies the desired API: "2d", "bitmaprenderer", "webgl", or "webgl2". options is handled by that API.
@@ -29,12 +29,12 @@ This specification defines the "2d" context below, which is similar but distinct
 Returns null if the canvas has already been initialized with another context type (e.g., trying to get a "2d" context after getting a "webgl" context).
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/OffscreenCanvas/getContext)
 */
-@send
+@throws(JsExn) @send
 external getContextWebGL: (
   CanvasTypes.offscreenCanvas,
   @as("webgl") _,
   ~options: CanvasTypes.webGLContextAttributes=?,
-) => CanvasTypes.webGLRenderingContext = "getContext"
+) => Null.t<CanvasTypes.webGLRenderingContext> = "getContext"
 
 /**
 Returns an object that exposes an API for drawing on the OffscreenCanvas object. contextId specifies the desired API: "2d", "bitmaprenderer", "webgl", or "webgl2". options is handled by that API.
@@ -44,12 +44,12 @@ This specification defines the "2d" context below, which is similar but distinct
 Returns null if the canvas has already been initialized with another context type (e.g., trying to get a "2d" context after getting a "webgl" context).
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/OffscreenCanvas/getContext)
 */
-@send
+@throws(JsExn) @send
 external getContextWebGL2: (
   CanvasTypes.offscreenCanvas,
   @as("webgl2") _,
   ~options: CanvasTypes.webGLContextAttributes=?,
-) => CanvasTypes.webGL2RenderingContext = "getContext"
+) => Null.t<CanvasTypes.webGL2RenderingContext> = "getContext"
 
 /**
 Returns an object that exposes an API for drawing on the OffscreenCanvas object. contextId specifies the desired API: "2d", "bitmaprenderer", "webgl", or "webgl2". options is handled by that API.
@@ -59,18 +59,18 @@ This specification defines the "2d" context below, which is similar but distinct
 Returns null if the canvas has already been initialized with another context type (e.g., trying to get a "2d" context after getting a "webgl" context).
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/OffscreenCanvas/getContext)
 */
-@send
+@throws(JsExn) @send
 external getContextBitmapRenderer: (
   CanvasTypes.offscreenCanvas,
   @as("bitmaprenderer") _,
   ~options: CanvasTypes.imageBitmapRenderingContextSettings=?,
-) => CanvasTypes.imageBitmapRenderingContext = "getContext"
+) => Null.t<CanvasTypes.imageBitmapRenderingContext> = "getContext"
 
 /**
 Returns a newly created ImageBitmap object with the image in the OffscreenCanvas object. The image in the OffscreenCanvas object is replaced with a new blank image.
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/OffscreenCanvas/transferToImageBitmap)
 */
-@send
+@throws(JsExn) @send
 external transferToImageBitmap: CanvasTypes.offscreenCanvas => CanvasTypes.imageBitmap =
   "transferToImageBitmap"
 

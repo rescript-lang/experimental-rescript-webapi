@@ -13,4 +13,4 @@ for i in 0 to fileList.length - 1 {
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/FileList/item)
 */
 @send
-external item: (DOM.fileList, int) => FileTypes.file = "item"
+external item: (DOM.fileList, int) => Null.t<FileTypes.file> = "item"

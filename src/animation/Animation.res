@@ -87,7 +87,7 @@ external cancel: t => unit = "cancel"
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Animation/finish)
 */
-@send
+@throws(JsExn) @send
 external finish: t => unit = "finish"
 
 /**
@@ -99,7 +99,7 @@ external play: t => unit = "play"
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Animation/pause)
 */
-@send
+@throws(JsExn) @send
 external pause: t => unit = "pause"
 
 /**
@@ -138,12 +138,12 @@ type iterationCompositeOperation =
 type keyframeEffectOptions = {
   ...AnimationEffect.effectTiming,
   mutable composite?: compositeOperation,
-  mutable pseudoElement?: Null.t<string>,
+  mutable pseudoElement?: Nullable.t<string>,
   mutable iterationComposite?: iterationCompositeOperation,
 }
 
 type keyframeAnimationOptions = {
   ...keyframeEffectOptions,
   mutable id?: string,
-  mutable timeline?: Null.t<animationTimeline>,
+  mutable timeline?: Nullable.t<animationTimeline>,
 }

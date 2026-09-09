@@ -10,13 +10,13 @@ module Impl = (
   /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/AudioScheduledSourceNode/start)
 */
-  @send
+  @throws(JsExn) @send
   external start: (T.t, ~when_: float=?) => unit = "start"
 
   /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/AudioScheduledSourceNode/stop)
 */
-  @send
+  @throws(JsExn) @send
   external stop: (T.t, ~when_: float=?) => unit = "stop"
 }
 

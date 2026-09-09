@@ -76,21 +76,21 @@ Can be set, to navigate to the same WebApiURL with a changed fragment (ignores l
 Navigates to the given URL.
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Location/assign)
 */
-@send
+@throws(JsExn) @send
 external assign: (t, string) => unit = "assign"
 
 /**
 Removes the current page from the session history and navigates to the given URL.
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Location/replace)
 */
-@send
+@throws(JsExn) @send
 external replace: (t, string) => unit = "replace"
 
 /**
 Reloads the current page.
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Location/reload)
 */
-@send
+@throws(JsExn) @send
 external reload: t => unit = "reload"
 
 /**

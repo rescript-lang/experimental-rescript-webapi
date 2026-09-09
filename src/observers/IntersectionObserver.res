@@ -1,7 +1,7 @@
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/IntersectionObserver)
 */
-@new
+@throws(JsExn) @new
 external make: (
   ~callback: IntersectionObserverTypes.intersectionObserverCallback,
   ~options: IntersectionObserverTypes.intersectionObserverInit=?,

@@ -116,7 +116,7 @@ external createDocumentType: (
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/DOMImplementation/createDocument)
 */
-@send
+@throws(JsExn) @send
 external createDocument: (
   t,
   ~namespace: string,

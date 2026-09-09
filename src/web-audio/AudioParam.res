@@ -1,7 +1,7 @@
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/AudioParam/setValueAtTime)
 */
-@send
+@throws(JsExn) @send
 external setValueAtTime: (
   WebAudioTypes.audioParam,
   ~value: float,
@@ -42,7 +42,7 @@ external setTargetAtTime: (
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/AudioParam/setValueCurveAtTime)
 */
-@send
+@throws(JsExn) @send
 external setValueCurveAtTime: (
   WebAudioTypes.audioParam,
   ~values: array<float>,

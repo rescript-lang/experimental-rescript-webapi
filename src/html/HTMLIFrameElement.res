@@ -14,6 +14,7 @@ type t = {
     Sets or retrives the content of the page that is to contain.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLIFrameElement/srcdoc)
     */
+  @throws(JsExn)
   mutable srcdoc: string,
   /**
     Sets or retrieves the frame name.
@@ -65,4 +66,4 @@ type t = {
 include HTMLElement.Impl({type t = t})
 
 @send
-external getSVGDocument: t => DOM.document = "getSVGDocument"
+external getSVGDocument: t => Null.t<DOM.document> = "getSVGDocument"

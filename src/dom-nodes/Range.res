@@ -23,7 +23,7 @@ external setStart: (t, ~node: DOMTree.node, ~offset: int) => unit = "setStart"
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Range/setEnd)
 */
-@send
+@throws(JsExn) @send
 external setEnd: (t, ~node: DOMTree.node, ~offset: int) => unit = "setEnd"
 
 /**
@@ -71,7 +71,7 @@ external selectNodeContents: (t, DOMTree.node) => unit = "selectNodeContents"
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Range/compareBoundaryPoints)
 */
-@send
+@throws(JsExn) @send
 external compareBoundaryPoints: (t, ~how: int, ~sourceRange: t) => int = "compareBoundaryPoints"
 
 /**
@@ -101,7 +101,7 @@ external insertNode: (t, DOMTree.node) => unit = "insertNode"
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Range/surroundContents)
 */
-@send
+@throws(JsExn) @send
 external surroundContents: (t, DOMTree.node) => unit = "surroundContents"
 
 /**
@@ -151,6 +151,6 @@ external getBoundingClientRect: t => DOM.domRect = "getBoundingClientRect"
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Range/createContextualFragment)
 */
-@send
+@throws(JsExn) @send
 external createContextualFragment: (t, string) => DOMTree.documentFragment =
   "createContextualFragment"

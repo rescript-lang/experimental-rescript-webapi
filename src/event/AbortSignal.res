@@ -21,5 +21,5 @@ external any: array<DOM.abortSignal> => DOM.abortSignal = "any"
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/AbortSignal/throwIfAborted)
 */
-@send
+@throws(JsExn) @send
 external throwIfAborted: DOM.abortSignal => unit = "throwIfAborted"

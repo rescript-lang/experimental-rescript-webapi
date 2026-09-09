@@ -26,40 +26,40 @@ type t = {
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/TreeWalker/parentNode)
 */
 @send
-external parentNode: t => DOMTree.node = "parentNode"
+external parentNode: t => Null.t<DOMTree.node> = "parentNode"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/TreeWalker/firstChild)
 */
 @send
-external firstChild: t => DOMTree.node = "firstChild"
+external firstChild: t => Null.t<DOMTree.node> = "firstChild"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/TreeWalker/lastChild)
 */
 @send
-external lastChild: t => DOMTree.node = "lastChild"
+external lastChild: t => Null.t<DOMTree.node> = "lastChild"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/TreeWalker/previousSibling)
 */
 @send
-external previousSibling: t => DOMTree.node = "previousSibling"
+external previousSibling: t => Null.t<DOMTree.node> = "previousSibling"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/TreeWalker/nextSibling)
 */
 @send
-external nextSibling: t => DOMTree.node = "nextSibling"
+external nextSibling: t => Null.t<DOMTree.node> = "nextSibling"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/TreeWalker/previousNode)
 */
 @send
-external previousNode: t => DOMTree.node = "previousNode"
+external previousNode: t => Null.t<DOMTree.node> = "previousNode"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/TreeWalker/nextNode)
 */
 @send
-external nextNode: t => DOMTree.node = "nextNode"
+external nextNode: t => Null.t<DOMTree.node> = "nextNode"

@@ -1,7 +1,7 @@
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/WritableStream)
 */
-@new
+@throws(JsExn) @new
 external make: (
   ~underlyingSink: FileTypes.underlyingSink<'w>=?,
   ~strategy: FileTypes.queuingStrategy<'w>=?,
@@ -22,6 +22,6 @@ external close: FileTypes.writableStream<'w> => promise<unit> = "close"
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/WritableStream/getWriter)
 */
-@send
+@throws(JsExn) @send
 external getWriter: FileTypes.writableStream<'w> => FileTypes.writableStreamDefaultWriter<'w> =
   "getWriter"

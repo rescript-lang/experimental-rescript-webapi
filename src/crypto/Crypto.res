@@ -1,7 +1,7 @@
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Crypto/getRandomValues)
 */
-@send
+@throws(JsExn) @send
 external getRandomValues: (WebCryptoTypes.crypto, 't) => 't = "getRandomValues"
 
 /**

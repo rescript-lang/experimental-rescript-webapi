@@ -68,7 +68,8 @@ type mediaCapabilitiesInfo = {
 
 type mediaCapabilitiesDecodingInfo = {
   ...mediaCapabilitiesInfo,
-  mutable configuration?: mediaDecodingConfiguration,
+  mutable keySystemAccess: Null.t<BaseEncryptedMediaExtensions.mediaKeySystemAccess>,
+  mutable configuration: mediaDecodingConfiguration,
 }
 
 type mediaEncodingConfiguration = {
@@ -78,5 +79,5 @@ type mediaEncodingConfiguration = {
 
 type mediaCapabilitiesEncodingInfo = {
   ...mediaCapabilitiesInfo,
-  mutable configuration?: mediaEncodingConfiguration,
+  mutable configuration: mediaEncodingConfiguration,
 }

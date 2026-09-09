@@ -37,10 +37,10 @@ type t = private {
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/XPathResult/iterateNext)
 */
 @send
-external iterateNext: t => DOMTree.node = "iterateNext"
+external iterateNext: t => Null.t<DOMTree.node> = "iterateNext"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/XPathResult/snapshotItem)
 */
 @send
-external snapshotItem: (t, int) => DOMTree.node = "snapshotItem"
+external snapshotItem: (t, int) => Null.t<DOMTree.node> = "snapshotItem"

@@ -17,7 +17,7 @@ external register: (
 external getRegistration: (
   ServiceWorkerTypes.serviceWorkerContainer,
   ~clientURL: string=?,
-) => Nullable.t<ServiceWorkerTypes.serviceWorkerRegistration> = "getRegistration"
+) => promise<option<ServiceWorkerTypes.serviceWorkerRegistration>> = "getRegistration"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/ServiceWorkerContainer/getRegistrations)
