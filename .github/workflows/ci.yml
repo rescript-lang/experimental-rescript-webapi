@@ -48,58 +48,6 @@ jobs:
         with:
           path: ./dist
 
-      - name: get-npm-version
-        id: package-version
-        uses: martinbeentjes/npm-get-version-action@v1.3.1
-
-      - name: Get short commit hash
-        id: vars
-        run: echo "COMMIT_HASH=$(git rev-parse --short HEAD)" >> $GITHUB_ENV
-
-      - name: Update package version to -<commit-hash>
-        env:
-          PACKAGE_VERSION: ${{ steps.package-version.outputs.current-version }}-alpha-${{ env.COMMIT_HASH }}
-        run: |
-          node <<'NODE'
-          const fs = require("node:fs");
-          const packageJsonPath = "package.json";
-          const packageJson = JSON.parse(fs.readFileSync(packageJsonPath, "utf8"));
-          packageJson.version = process.env.PACKAGE_VERSION;
-          fs.writeFileSync(packageJsonPath, `${JSON.stringify(packageJson, null, 2)}\n`);
-          NODE
-
-      - name: Package npm package
-        run: npm pack
-
-      - name: Upload npm package artifact
-        uses: actions/upload-artifact@v7
-        with:
-          name: npm-package
-          path: "*.tgz"
-
-  release:
-    needs: build
-    if: github.ref == 'refs/heads/main' && github.event_name == 'push'
-    runs-on: ubuntu-latest
-    permissions:
-      contents: read
-      id-token: write
-    steps:
-      - name: Setup Node.js
-        uses: actions/setup-node@v7
-        with:
-          node-version: "24"
-          registry-url: https://registry.npmjs.org
-          package-manager-cache: false
-
-      - name: Download npm package artifact
-        uses: actions/download-artifact@v8
-        with:
-          name: npm-package
-
-      - name: Publish npm package
-        run: npm publish ./rescript-webapi-*.tgz --access public --tag alpha
-
   deploy-docs:
     needs: build
     runs-on: ubuntu-latest
