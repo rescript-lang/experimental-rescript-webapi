@@ -144,9 +144,9 @@ files.sort();
 
 const pages = await Promise.all(files.map(processFile));
 const packageJson = await fs.readFile(path.join(import.meta.dirname, "../package.json"), "utf-8");
-let version = JSON.parse(packageJson).version;
+const version = JSON.parse(packageJson).version;
 const sha = await execAsync("git rev-parse --short HEAD").then(({ stdout }) => stdout.trim());
-const fullVersion = `${version}-experimental-${sha}`;
+const fullVersion = `${version}-alpha-${sha}`;
 const header = `Experimental ReScript WebAPI Documentation ${fullVersion}
 
 This is the API documentation for the experimental WebAPI module version ${fullVersion}.

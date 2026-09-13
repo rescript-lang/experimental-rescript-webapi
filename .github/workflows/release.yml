@@ -1,0 +1,86 @@
+name: Release
+
+on:
+  pull_request:
+    branches:
+      - main
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: Run npm publish without publishing the package
+        required: true
+        default: true
+        type: boolean
+
+permissions:
+  contents: read
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      id-token: write
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v7
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v7
+        with:
+          node-version: "26"
+          registry-url: https://registry.npmjs.org
+          package-manager-cache: false
+
+      - name: Setup npm
+        run: npm install --global npm@11.5.1
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Check formatting
+        run: npm run format:check
+
+      - name: Rebuild ReScript code
+        run: npm run build
+
+      - name: Check public feature builds
+        run: npm run check:features
+
+      - name: Run tests
+        run: npm test
+
+      - name: Build documentation
+        run: npm run build:docs
+
+      - name: get-npm-version
+        id: package-version
+        uses: martinbeentjes/npm-get-version-action@v1.3.1
+
+      - name: Get short commit hash
+        id: vars
+        run: echo "COMMIT_HASH=$(git rev-parse --short HEAD)" >> $GITHUB_ENV
+
+      - name: Update package version to -<commit-hash>
+        env:
+          PACKAGE_VERSION: ${{ steps.package-version.outputs.current-version }}-alpha-${{ env.COMMIT_HASH }}
+        run: |
+          node <<'NODE'
+          const fs = require("node:fs");
+          const packageJsonPath = "package.json";
+          const packageJson = JSON.parse(fs.readFileSync(packageJsonPath, "utf8"));
+          packageJson.version = process.env.PACKAGE_VERSION;
+          fs.writeFileSync(packageJsonPath, `${JSON.stringify(packageJson, null, 2)}\n`);
+          NODE
+
+      - name: Package npm package
+        run: npm pack
+
+      - name: Dry-run npm publish
+        if: github.event_name == 'pull_request' || inputs.dry_run
+        run: npm publish ./rescript-webapi-*.tgz --access public --tag alpha --dry-run
+
+      - name: Publish npm package
+        if: github.event_name == 'workflow_dispatch' && github.ref == 'refs/heads/main' && !inputs.dry_run
+        run: npm publish ./rescript-webapi-*.tgz --access public --tag alpha
