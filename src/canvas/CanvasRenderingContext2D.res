@@ -1,4 +1,29 @@
 /**
+[Read more on MDN](https://developer.mozilla.org/docs/Web/API/CanvasRenderingContext2D/fillStyle)
+*/
+@get
+external getFillStyle: DOM.canvasRenderingContext2D => CanvasTypes.fillStyle = "fillStyle"
+
+/**
+[Read more on MDN](https://developer.mozilla.org/docs/Web/API/CanvasRenderingContext2D/fillStyle)
+*/
+@set
+external setFillStyle: (DOM.canvasRenderingContext2D, CanvasTypes.fillStyle) => unit = "fillStyle"
+
+/**
+[Read more on MDN](https://developer.mozilla.org/docs/Web/API/CanvasRenderingContext2D/font)
+*/
+@set
+external setFont: (DOM.canvasRenderingContext2D, string) => unit = "font"
+
+/**
+[Read more on MDN](https://developer.mozilla.org/docs/Web/API/CanvasRenderingContext2D/textBaseline)
+*/
+@set
+external setTextBaseline: (DOM.canvasRenderingContext2D, CanvasTypes.canvasTextBaseline) => unit =
+  "textBaseline"
+
+/**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CanvasRenderingContext2D/save)
 */
 @send

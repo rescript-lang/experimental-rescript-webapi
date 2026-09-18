@@ -1,5 +1,4 @@
-external toHTMLInputElement: DOMTree.element => HTMLInputElement.t = "%identity"
-
-let input: HTMLInputElement.t =
-  DomGlobal.document->Document.createElement("input")->toHTMLInputElement
-let value = input.value
+let value = switch DomGlobal.document->Document.createElement("input")->HTMLInputElement.classify {
+| Some(input) => Some(input.value)
+| None => None
+}

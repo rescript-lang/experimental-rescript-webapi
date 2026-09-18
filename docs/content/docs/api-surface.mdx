@@ -319,13 +319,15 @@ let readInputValue = target =>
 
 The classifier parameter is polymorphic, so a library-owned target can be passed directly without an
 identity cast to a WebAPI type first. `Element.classify`, `Document.classify`,
-`HTMLElement.classify`, and `HTMLInputElement.classify` follow the same contract. Their matching
-`isInstanceOf` functions are available when only a boolean check is needed.
+`HTMLElement.classify`, `HTMLInputElement.classify`, `HTMLImageElement.classify`, and
+`HTMLCanvasElement.classify` follow the same contract. Their matching `isInstanceOf` functions are
+available when only a boolean check is needed.
 
 Classification uses the corresponding constructor from `globalThis`. It returns `None` rather than
 raising when that constructor is unavailable in a server or worker environment. Like JavaScript
 `instanceof`, it only recognizes values created in the current realm; values from another window or
-iframe may not match. Enable the `WebAPI.HTML` feature when using the HTML-specific classifiers.
+iframe may not match. Enable the `WebAPI.HTML` feature for HTML-specific classifiers and
+`WebAPI.Canvas` for `HTMLCanvasElement.classify`.
 
 ## Visual Viewport
 
