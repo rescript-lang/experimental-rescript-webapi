@@ -49,4 +49,19 @@ let element: WebAPI.Element.t = document->WebAPI.Document.createElement("div")
 let node: WebAPI.Node.t = element->WebAPI.Element.asNode
 ```
 
-Any other conversions should be treated as unsafe casts and used with caution, because the type system cannot guarantee they are valid at runtime.
+Converting in the other direction requires proving the runtime type. Broad DOM values commonly come
+from event libraries, selector APIs, or JavaScript bindings that cannot describe the concrete
+interface statically. Use the destination module's `classify` function for that downcast instead of
+calling `Obj.magic` directly.
+
+```ReScript
+switch target->WebAPI.HTMLInputElement.classify {
+| Some(input) => Some(input.value)
+| None => None
+}
+```
+
+Classifiers return an `option` because a runtime value may not implement the requested interface.
+They also return `None` when the browser constructor is unavailable. The checked cast remains inside
+the binding, so application code handles absence explicitly and receives the concrete public
+interface type only after a successful check.

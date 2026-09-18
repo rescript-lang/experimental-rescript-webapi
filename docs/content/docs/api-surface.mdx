@@ -300,6 +300,33 @@ let element = document->WebAPI.Document.createElement("div")
 let node = element->WebAPI.Element.asNode
 ```
 
+### Classifying DOM values
+
+Event libraries and browser APIs sometimes return a type that is broader than the value present at
+runtime. A React form event target, for example, does not tell ReScript whether the target is an
+input, select, or another element. Calling an input-specific API then requires narrowing that value.
+
+Use `classify` instead of repeating an `instanceof` binding and an unchecked `Obj.magic` cast. The
+classifier performs the runtime check and returns the correctly typed value as an `option`.
+
+```ReScript
+let readInputValue = target =>
+  switch target->WebAPI.HTMLInputElement.classify {
+  | Some(input) => Some(input.value)
+  | None => None
+  }
+```
+
+The classifier parameter is polymorphic, so a library-owned target can be passed directly without an
+identity cast to a WebAPI type first. `Element.classify`, `Document.classify`,
+`HTMLElement.classify`, and `HTMLInputElement.classify` follow the same contract. Their matching
+`isInstanceOf` functions are available when only a boolean check is needed.
+
+Classification uses the corresponding constructor from `globalThis`. It returns `None` rather than
+raising when that constructor is unavailable in a server or worker environment. Like JavaScript
+`instanceof`, it only recognizes values created in the current realm; values from another window or
+iframe may not match. Enable the `WebAPI.HTML` feature when using the HTML-specific classifiers.
+
 ## Visual Viewport
 
 `Window.visualViewport` returns a nullable `WebAPI.VisualViewport.t`.

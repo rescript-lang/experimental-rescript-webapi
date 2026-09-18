@@ -506,11 +506,32 @@ Returns true if qualifiedName is now present, and false otherwise.
 
 include Impl({type t = t})
 
+/**
+`isInstanceOf(value)`
+
+Returns whether `value` is an `Element` created in the current JavaScript realm.
+
+This is a runtime check. It returns `false` when `globalThis.Element` is unavailable, such as in
+some server or worker environments.
+*/
 let isInstanceOf = (_: 'value): bool =>
   %raw(`typeof globalThis.Element === "function" && param instanceof globalThis.Element`)
 
 /**
-Returns the value as an Element when it is an Element in the current realm, and None otherwise.
+`classify(value)`
+
+Safely narrows a value from a broad DOM or library type to `Element.t`.
+
+Use this when an event target, JavaScript binding, or union-like API cannot express its concrete DOM
+type statically. Returns `Some(element)` when the value is an `Element` in the current realm, and
+`None` when it is not or when the `Element` constructor is unavailable.
+
+```res
+switch value->Element.classify {
+| Some(element) => element->Element.hasAttribute("data-ready")
+| None => false
+}
+```
 */
 let classify = (value: 'value): option<t> =>
   if value->isInstanceOf {

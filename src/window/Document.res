@@ -460,11 +460,29 @@ external hasStorageAccess: DOM.document => promise<bool> = "hasStorageAccess"
 @send
 external requestStorageAccess: DOM.document => promise<unit> = "requestStorageAccess"
 
+/**
+`isInstanceOf(value)`
+
+Returns whether `value` is a `Document` created in the current JavaScript realm.
+
+This is a runtime check. It returns `false` when `globalThis.Document` is unavailable, such as in
+some server or worker environments.
+*/
 let isInstanceOf = (_: 'value): bool =>
   %raw(`typeof globalThis.Document === "function" && param instanceof globalThis.Document`)
 
 /**
-Returns the value as a Document when it is a Document in the current realm, and None otherwise.
+`classify(value)`
+
+Safely narrows a value from a broad DOM or library type to `DOM.document`.
+
+Use this when a JavaScript binding or union-like API can contain a document but cannot express that
+concrete type statically. Returns `Some(document)` when the value is a `Document` in the current
+realm, and `None` when it is not or when the `Document` constructor is unavailable.
+
+```res
+let document = value->Document.classify
+```
 */
 let classify = (value: 'value): option<DOM.document> =>
   if value->isInstanceOf {
