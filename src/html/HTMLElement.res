@@ -106,3 +106,16 @@ rather than relying on coercion.
 }
 
 include Impl({type t = t})
+
+let isInstanceOf = (_: 'value): bool =>
+  %raw(`typeof globalThis.HTMLElement === "function" && param instanceof globalThis.HTMLElement`)
+
+/**
+Returns the value as an HTMLElement when it is an HTMLElement in the current realm, and None otherwise.
+*/
+let classify = (value: 'value): option<t> =>
+  if value->isInstanceOf {
+    Some(Obj.magic(value))
+  } else {
+    None
+  }

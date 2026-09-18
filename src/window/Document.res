@@ -460,7 +460,18 @@ external hasStorageAccess: DOM.document => promise<bool> = "hasStorageAccess"
 @send
 external requestStorageAccess: DOM.document => promise<unit> = "requestStorageAccess"
 
-let isInstanceOf = (_: 't): bool => %raw(`param instanceof Document`)
+let isInstanceOf = (_: 'value): bool =>
+  %raw(`typeof globalThis.Document === "function" && param instanceof globalThis.Document`)
+
+/**
+Returns the value as a Document when it is a Document in the current realm, and None otherwise.
+*/
+let classify = (value: 'value): option<DOM.document> =>
+  if value->isInstanceOf {
+    Some(Obj.magic(value))
+  } else {
+    None
+  }
 
 /**
 Returns the Location associated with this document, which provides information about the current URL and methods for navigating to another URL.

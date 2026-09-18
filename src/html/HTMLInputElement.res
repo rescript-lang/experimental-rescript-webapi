@@ -230,6 +230,19 @@ type t = {
 
 include HTMLElement.Impl({type t = t})
 
+let isInstanceOf = (_: 'value): bool =>
+  %raw(`typeof globalThis.HTMLInputElement === "function" && param instanceof globalThis.HTMLInputElement`)
+
+/**
+Returns the value as an HTMLInputElement when it is an HTMLInputElement in the current realm, and None otherwise.
+*/
+let classify = (value: 'value): option<t> =>
+  if value->isInstanceOf {
+    Some(Obj.magic(value))
+  } else {
+    None
+  }
+
 /**
 Increments a range input control's value by the value given by the Step attribute. If the optional parameter is used, will increment the input control's value by that value.
 @param n Value to increment the value by.

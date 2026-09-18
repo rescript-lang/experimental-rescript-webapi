@@ -12,6 +12,7 @@ const rescriptConfig = JSON.parse(fs.readFileSync(path.join(repoRoot, "rescript.
 const compiledSuffix = rescriptConfig.suffix ?? ".js";
 
 const runtimeTests = [
+  "DOMAPI/Classify__test.res",
   "FetchAPI/Headers__test.res",
   "FetchAPI/Request__test.res",
   "FetchAPI/Response__test.res",

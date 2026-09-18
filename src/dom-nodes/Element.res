@@ -506,4 +506,15 @@ Returns true if qualifiedName is now present, and false otherwise.
 
 include Impl({type t = t})
 
-let isInstanceOf = (_: 't): bool => %raw(`param instanceof Element`)
+let isInstanceOf = (_: 'value): bool =>
+  %raw(`typeof globalThis.Element === "function" && param instanceof globalThis.Element`)
+
+/**
+Returns the value as an Element when it is an Element in the current realm, and None otherwise.
+*/
+let classify = (value: 'value): option<t> =>
+  if value->isInstanceOf {
+    Some(Obj.magic(value))
+  } else {
+    None
+  }
