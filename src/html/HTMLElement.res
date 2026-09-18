@@ -106,3 +106,37 @@ rather than relying on coercion.
 }
 
 include Impl({type t = t})
+
+/**
+`isInstanceOf(value)`
+
+Returns whether `value` is an `HTMLElement` created in the current JavaScript realm.
+
+This is a runtime check. It returns `false` when `globalThis.HTMLElement` is unavailable, such as in
+some server or worker environments.
+*/
+let isInstanceOf = (_: 'value): bool =>
+  %raw(`typeof globalThis.HTMLElement === "function" && param instanceof globalThis.HTMLElement`)
+
+/**
+`classify(value)`
+
+Safely narrows a value from a broad DOM or library type to `HTMLElement.t`.
+
+Use this when an event target or element-returning API does not distinguish HTML elements from SVG
+or other element kinds. Returns `Some(element)` for an `HTMLElement` in the current realm, and
+`None` when the value is not an HTML element or when the `HTMLElement` constructor is unavailable.
+
+```res
+switch value->HTMLElement.classify {
+| Some(element) => element->HTMLElement.focus
+| None => ()
+}
+```
+*/
+let classify = (value: 'value): option<t> =>
+  if value->isInstanceOf {
+    Some(Obj.magic(value))
+  } else {
+    None
+  }

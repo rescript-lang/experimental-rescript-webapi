@@ -20,6 +20,40 @@ type t = {
 include HTMLElement.Impl({type t = t})
 
 /**
+`isInstanceOf(value)`
+
+Returns whether `value` is an `HTMLCanvasElement` created in the current JavaScript realm.
+
+This is a runtime check. It returns `false` when `globalThis.HTMLCanvasElement` is unavailable, such
+as in some server or worker environments.
+*/
+let isInstanceOf = (_: 'value): bool =>
+  %raw(`typeof globalThis.HTMLCanvasElement === "function" && param instanceof globalThis.HTMLCanvasElement`)
+
+/**
+`classify(value)`
+
+Safely narrows a value from a broad DOM element type to `HTMLCanvasElement.t`.
+
+Use this for values returned by APIs such as `Document.getElementById`. Returns `Some(canvas)` for
+an `HTMLCanvasElement` in the current realm, and `None` when the value is not a canvas or when the
+`HTMLCanvasElement` constructor is unavailable.
+
+```res
+switch element->HTMLCanvasElement.classify {
+| Some(canvas) => canvas->HTMLCanvasElement.getContext2D
+| None => Null
+}
+```
+*/
+let classify = (value: 'value): option<t> =>
+  if value->isInstanceOf {
+    Some(Obj.magic(value))
+  } else {
+    None
+  }
+
+/**
 Returns an object that provides methods and properties for drawing and manipulating images and graphics on a canvas element in a document. A context object includes information about colors, line widths, fonts, and other graphic parameters that can be drawn on a canvas.
 Creates a CanvasRenderingContext2D object representing a two-dimensional rendering context.
 

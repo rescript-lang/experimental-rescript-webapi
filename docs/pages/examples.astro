@@ -19,8 +19,8 @@ const headings = testFiles.map(({ name }) => ({
     The best example of usage of these bindings are the <a href="./06-testing"
       >tests</a
     >. <br />
-    These typically contain tweaks made to the generated bindings to make them more
-    ergonomic.
+    These exercise the public bindings directly. Reusable Web API bindings and conversion
+    helpers belong in the library rather than in individual examples.
   </p>
   {
     testFiles.map(({ source, output, name }) => {

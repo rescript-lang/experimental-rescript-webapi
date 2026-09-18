@@ -231,6 +231,40 @@ type t = {
 include HTMLElement.Impl({type t = t})
 
 /**
+`isInstanceOf(value)`
+
+Returns whether `value` is an `HTMLInputElement` created in the current JavaScript realm.
+
+This is a runtime check. It returns `false` when `globalThis.HTMLInputElement` is unavailable, such
+as in some server or worker environments.
+*/
+let isInstanceOf = (_: 'value): bool =>
+  %raw(`typeof globalThis.HTMLInputElement === "function" && param instanceof globalThis.HTMLInputElement`)
+
+/**
+`classify(value)`
+
+Safely narrows a value from a broad event target or element type to `HTMLInputElement.t`.
+
+Use this for values such as React form event targets, which are typed more broadly than the input
+element that emitted the event. Returns `Some(input)` for an `HTMLInputElement` in the current realm,
+and `None` when the value is not an input or when the `HTMLInputElement` constructor is unavailable.
+
+```res
+switch target->HTMLInputElement.classify {
+| Some(input) => Some(input.value)
+| None => None
+}
+```
+*/
+let classify = (value: 'value): option<t> =>
+  if value->isInstanceOf {
+    Some(Obj.magic(value))
+  } else {
+    None
+  }
+
+/**
 Increments a range input control's value by the value given by the Step attribute. If the optional parameter is used, will increment the input control's value by that value.
 @param n Value to increment the value by.
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLInputElement/stepUp)

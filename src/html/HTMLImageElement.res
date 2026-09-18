@@ -343,6 +343,40 @@ type t = {
 include HTMLElement.Impl({type t = t})
 
 /**
+`isInstanceOf(value)`
+
+Returns whether `value` is an `HTMLImageElement` created in the current JavaScript realm.
+
+This is a runtime check. It returns `false` when `globalThis.HTMLImageElement` is unavailable, such
+as in some server or worker environments.
+*/
+let isInstanceOf = (_: 'value): bool =>
+  %raw(`typeof globalThis.HTMLImageElement === "function" && param instanceof globalThis.HTMLImageElement`)
+
+/**
+`classify(value)`
+
+Safely narrows a value from a broad DOM element type to `HTMLImageElement.t`.
+
+Use this for values returned by element-creating or selector APIs. Returns `Some(image)` for an
+`HTMLImageElement` in the current realm, and `None` when the value is not an image or when the
+`HTMLImageElement` constructor is unavailable.
+
+```res
+switch element->HTMLImageElement.classify {
+| Some(image) => Some(image.src)
+| None => None
+}
+```
+*/
+let classify = (value: 'value): option<t> =>
+  if value->isInstanceOf {
+    Some(Obj.magic(value))
+  } else {
+    None
+  }
+
+/**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLImageElement/decode)
 */
 @send
