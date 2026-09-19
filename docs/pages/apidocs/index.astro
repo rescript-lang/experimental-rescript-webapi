@@ -18,12 +18,10 @@ const headings = [
 <StarlightPage frontmatter={frontmatter} headings={headings}>
   <h2 id="web-apis">Web APIs</h2>
   <ul>
-    {
-      apiModules.map(({ moduleName, link }) => (
-        <li>
-          <a href={`${import.meta.env.BASE_URL}/${link}`}>{moduleName}</a>
-        </li>
-      ))
-    }
+    {apiModules.map(({ moduleName, link }) => (
+      <li>
+        <a href={`${import.meta.env.BASE_URL}/${link}`}>{moduleName}</a>
+      </li>
+    ))}
   </ul>
 </StarlightPage>

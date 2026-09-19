@@ -16,29 +16,26 @@ const headings = testFiles.map(({ name }) => ({
 
 <StarlightPage frontmatter={frontmatter} headings={headings}>
   <p>
-    The best example of usage of these bindings are the <a href="./06-testing"
-      >tests</a
-    >. <br />
-    These exercise the public bindings directly. Reusable Web API bindings and conversion
-    helpers belong in the library rather than in individual examples.
+    The best example of usage of these bindings are the{" "}
+    <a href="./06-testing">tests</a>. <br />
+    These exercise the public bindings directly. Reusable Web API bindings and
+    conversion helpers belong in the library rather than in individual examples.
   </p>
-  {
-    testFiles.map(({ source, output, name }) => {
-      return (
-        <div class="example" id={name}>
-          <h2>{name}</h2>
-          <Tabs>
-            <TabItem label="ReScript">
-              <Code code={source} lang="ReScript" frame="none" />
-            </TabItem>
-            <TabItem label="JS Output">
-              <Code code={output} lang="js" frame="none" />
-            </TabItem>
-          </Tabs>
-        </div>
-      );
-    })
-  }
+  {testFiles.map(({ source, output, name }) => {
+    return (
+      <div class="example" id={name}>
+        <h2>{name}</h2>
+        <Tabs>
+          <TabItem label="ReScript">
+            <Code code={source} lang="ReScript" frame="none" />
+          </TabItem>
+          <TabItem label="JS Output">
+            <Code code={output} lang="js" frame="none" />
+          </TabItem>
+        </Tabs>
+      </div>
+    );
+  })}
 </StarlightPage>
 <style>
   .example {
