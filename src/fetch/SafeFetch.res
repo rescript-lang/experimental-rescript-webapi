@@ -25,7 +25,7 @@ let checkOk = (response: Response.t): result<Response.t, httpError> =>
 
 let fetch = async (url: string, ~init: option<Request.requestInit>=?) => {
   try {
-    let response = await Fetch.fetch(url, ~init?)
+    let response = await SafeFetchRaw.fromUrl(url, ~init?)
     response->checkOk->Result.mapError(error => ResponseNotOk(error))
   } catch {
   | cause => Error(FetchRejected(cause))
@@ -34,7 +34,7 @@ let fetch = async (url: string, ~init: option<Request.requestInit>=?) => {
 
 let fetchWithRequest = async (request: Request.t, ~init: option<Request.requestInit>=?) => {
   try {
-    let response = await Fetch.fetchWithRequest(request, ~init?)
+    let response = await SafeFetchRaw.fromRequest(request, ~init?)
     response->checkOk->Result.mapError(error => ResponseNotOk(error))
   } catch {
   | cause => Error(FetchRejected(cause))
