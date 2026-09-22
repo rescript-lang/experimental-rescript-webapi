@@ -16,6 +16,7 @@ const runtimeTests = [
   "FetchAPI/Headers__test.res",
   "FetchAPI/Request__test.res",
   "FetchAPI/Response__test.res",
+  "FetchAPI/SafeFetch__test.res",
   "FetchAPI/URLSearchParams__test.res",
   "URLAPI/URL__test.res",
 ];

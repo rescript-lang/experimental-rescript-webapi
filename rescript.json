@@ -330,7 +330,8 @@
         "Headers",
         "HeadersInit",
         "Request",
-        "Response"
+        "Response",
+        "SafeFetch"
       ]
     },
     {
