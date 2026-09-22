@@ -116,8 +116,20 @@ let text = await response->WebAPI.Response.text
 ### Result-based workflows
 
 `WebAPI.Fetch` and `WebAPI.Response` are the raw browser bindings. Use the opt-in
-`WebAPI.SafeFetch` helpers when expected request, HTTP status, and body-reading failures should be
-handled as `result` values instead of rejected promises.
+`WebAPI.SafeFetch` helpers when request, HTTP status, and body-reading failures should be handled as
+`result` values. The wrapper keeps those failure stages separate and preserves the native values
+needed to inspect each outcome.
+
+| Stage                   | Result                             | Preserved context               |
+| ----------------------- | ---------------------------------- | ------------------------------- |
+| Fetch throws or rejects | `Error(FetchRejected(cause))`      | Original rejection as `exn`     |
+| Response is not OK      | `Error(ResponseNotOk({response}))` | Complete response               |
+| Body reader rejects     | `Error({response, cause})`         | Response and original rejection |
+
+`SafeFetch.fetch` accepts a URL, while `SafeFetch.fetchWithRequest` accepts an existing
+`WebAPI.Request.t`. Both promises fulfill with a `result` for these expected failures. A fulfilled
+response is classified with the platform's `response.ok` value, so a 404 or 500 is distinct from a
+request that did not produce a response.
 
 ```ReScript
 switch await WebAPI.SafeFetch.fetch("https://example.com/api/users") {
@@ -131,14 +143,39 @@ switch await WebAPI.SafeFetch.fetch("https://example.com/api/users") {
 }
 ```
 
-`FetchRejected` means the native Fetch operation rejected before producing a response.
-`ResponseNotOk` means Fetch produced a response whose `ok` field is `false`, so its headers and body
-remain available. A body-reader error retains both the response and the original rejection cause.
-Successful readers also retain the response, whose body has then been consumed according to the
-native Fetch contract.
+Use `checkOk` to classify a response obtained from the raw API without reading its body.
+
+```ReScript
+let response = await WebAPI.Fetch.fetch("https://example.com/api/users")
+
+switch response->WebAPI.SafeFetch.checkOk {
+| Ok(response) => useResponse(response)
+| Error({response}) => handleHttpError(response.status)
+}
+```
+
+A non-OK response remains readable. This is useful when a server returns structured error details.
+
+```ReScript
+switch await WebAPI.SafeFetch.fetch("https://example.com/api/users/42") {
+| Error(WebAPI.SafeFetch.ResponseNotOk({response})) =>
+  switch await response->WebAPI.SafeFetch.text {
+  | Ok({body}) => Console.error(body)
+  | Error(_) => Console.error(`Request failed with ${Int.toString(response.status)}`)
+  }
+| Error(WebAPI.SafeFetch.FetchRejected(cause)) => reportUnavailable(cause)
+| Ok(response) => useResponse(response)
+}
+```
+
+The safe body readers cover `arrayBuffer`, `blob`, `bytes`, `formData`, `json`, and `text`. A
+successful read contains both the body and original response, preserving status, headers, URL, and
+other metadata. Reading consumes the native body; clone the response before reading when another
+consumer also needs it.
 
 `SafeFetch.json` returns `JSON.t`; validating that JSON against an application's domain types remains
-the application's responsibility.
+the application's responsibility. This keeps malformed JSON text, which becomes a `readError`,
+separate from valid JSON that does not match an application schema.
 
 `BodyInit` has constructors for the common JavaScript body shapes.
 
