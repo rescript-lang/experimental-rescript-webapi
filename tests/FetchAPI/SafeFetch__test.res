@@ -21,7 +21,19 @@ globalThis.fetch = (_input, init) => {
 }
 `)
 
+let request = Request.fromURL("https://example.com/request")
+
 switch await SafeFetch.fetch("https://example.com/ok", ~init={method: "POST"}) {
+| Ok(response) => {
+    let expected: Response.t = %raw(`globalThis.__safeFetchResponse`)
+    let method: string = %raw(`globalThis.__safeFetchInit.method`)
+    assert(isSame(response, expected))
+    assert(method == "POST")
+  }
+| Error(_) => assert(false)
+}
+
+switch await SafeFetch.fetchWithRequest(request, ~init={method: "POST"}) {
 | Ok(response) => {
     let expected: Response.t = %raw(`globalThis.__safeFetchResponse`)
     let method: string = %raw(`globalThis.__safeFetchInit.method`)
@@ -44,6 +56,14 @@ switch await SafeFetch.fetch("https://example.com/missing") {
 | Error(FetchRejected(_)) | Ok(_) => assert(false)
 }
 
+switch await SafeFetch.fetchWithRequest(request) {
+| Error(ResponseNotOk({response})) => {
+    let expected: Response.t = %raw(`globalThis.__safeFetchResponse`)
+    assert(isSame(response, expected))
+  }
+| Error(FetchRejected(_)) | Ok(_) => assert(false)
+}
+
 %%raw(`
 globalThis.__safeFetchCause = new TypeError("request rejected")
 globalThis.fetch = () => Promise.reject(globalThis.__safeFetchCause)
@@ -58,7 +78,14 @@ switch await SafeFetch.fetch("https://example.com/rejected") {
 | Error(ResponseNotOk(_)) | Ok(_) => assert(false)
 }
 
-let request = Request.fromURL("https://example.com/synchronous")
+switch await SafeFetch.fetchWithRequest(request) {
+| Error(FetchRejected(cause)) =>
+  switch cause->JsExn.fromException {
+  | Some(rawCause) => assert(isSame(rawCause, %raw(`globalThis.__safeFetchCause`)))
+  | None => assert(false)
+  }
+| Error(ResponseNotOk(_)) | Ok(_) => assert(false)
+}
 
 %%raw(`
 globalThis.__safeFetchCause = new TypeError("request threw")
@@ -66,6 +93,15 @@ globalThis.fetch = () => { throw globalThis.__safeFetchCause }
 `)
 
 switch await SafeFetch.fetchWithRequest(request) {
+| Error(FetchRejected(cause)) =>
+  switch cause->JsExn.fromException {
+  | Some(rawCause) => assert(isSame(rawCause, %raw(`globalThis.__safeFetchCause`)))
+  | None => assert(false)
+  }
+| Error(ResponseNotOk(_)) | Ok(_) => assert(false)
+}
+
+switch await SafeFetch.fetch("https://example.com/synchronous") {
 | Error(FetchRejected(cause)) =>
   switch cause->JsExn.fromException {
   | Some(rawCause) => assert(isSame(rawCause, %raw(`globalThis.__safeFetchCause`)))

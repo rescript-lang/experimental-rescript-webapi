@@ -23,10 +23,14 @@ let checkOk = (response: Response.t): result<Response.t, httpError> =>
     Error({response: response})
   }
 
-let fetch = async (url: string, ~init: option<Request.requestInit>=?) => {
+let fetchUrl = async (url: string, ~init: option<Request.requestInit>=?) => {
   try {
-    let response = await SafeFetchRaw.fromUrl(url, ~init?)
-    response->checkOk->Result.mapError(error => ResponseNotOk(error))
+    let response = await Fetch.fetch(url, ~init?)
+    if response.ok {
+      Ok(response)
+    } else {
+      Error(ResponseNotOk({response: response}))
+    }
   } catch {
   | cause => Error(FetchRejected(cause))
   }
@@ -34,12 +38,19 @@ let fetch = async (url: string, ~init: option<Request.requestInit>=?) => {
 
 let fetchWithRequest = async (request: Request.t, ~init: option<Request.requestInit>=?) => {
   try {
-    let response = await SafeFetchRaw.fromRequest(request, ~init?)
-    response->checkOk->Result.mapError(error => ResponseNotOk(error))
+    let response = await Fetch.fetchWithRequest(request, ~init?)
+    if response.ok {
+      Ok(response)
+    } else {
+      Error(ResponseNotOk({response: response}))
+    }
   } catch {
   | cause => Error(FetchRejected(cause))
   }
 }
+
+// Bind the public name after both native calls so it cannot shadow JavaScript fetch.
+let fetch = fetchUrl
 
 let read = async (response: Response.t, readBody: Response.t => promise<'body>) => {
   try {
