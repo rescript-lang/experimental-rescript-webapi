@@ -45,13 +45,18 @@ switch await SafeFetch.fetchWithRequest(request, ~init={method: "POST"}) {
 
 %%raw(`
 globalThis.__safeFetchResponse = new Response("missing", {status: 404})
-globalThis.fetch = () => Promise.resolve(globalThis.__safeFetchResponse)
+globalThis.fetch = (_input, init) => {
+  globalThis.__safeFetchInit = init
+  return Promise.resolve(globalThis.__safeFetchResponse)
+}
 `)
 
 switch await SafeFetch.fetch("https://example.com/missing") {
 | Error(ResponseNotOk({response})) => {
     let expected: Response.t = %raw(`globalThis.__safeFetchResponse`)
     assert(isSame(response, expected))
+    let initOmitted: bool = %raw(`globalThis.__safeFetchInit === undefined`)
+    assert(initOmitted)
   }
 | Error(FetchRejected(_)) | Ok(_) => assert(false)
 }
@@ -60,6 +65,8 @@ switch await SafeFetch.fetchWithRequest(request) {
 | Error(ResponseNotOk({response})) => {
     let expected: Response.t = %raw(`globalThis.__safeFetchResponse`)
     assert(isSame(response, expected))
+    let initOmitted: bool = %raw(`globalThis.__safeFetchInit === undefined`)
+    assert(initOmitted)
   }
 | Error(FetchRejected(_)) | Ok(_) => assert(false)
 }

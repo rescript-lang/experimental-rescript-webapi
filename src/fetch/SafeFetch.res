@@ -25,7 +25,12 @@ let checkOk = (response: Response.t): result<Response.t, httpError> =>
 
 let fetchUrl = async (url: string, ~init: option<Request.requestInit>=?) => {
   try {
-    let response = await Fetch.fetch(url, ~init?)
+    let response = await (
+      switch init {
+      | Some(init) => Fetch.fetch(url, ~init)
+      | None => Fetch.fetch(url)
+      }
+    )
     if response.ok {
       Ok(response)
     } else {
@@ -38,7 +43,12 @@ let fetchUrl = async (url: string, ~init: option<Request.requestInit>=?) => {
 
 let fetchWithRequest = async (request: Request.t, ~init: option<Request.requestInit>=?) => {
   try {
-    let response = await Fetch.fetchWithRequest(request, ~init?)
+    let response = await (
+      switch init {
+      | Some(init) => Fetch.fetchWithRequest(request, ~init)
+      | None => Fetch.fetchWithRequest(request)
+      }
+    )
     if response.ok {
       Ok(response)
     } else {
