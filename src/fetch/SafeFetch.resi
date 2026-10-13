@@ -12,7 +12,9 @@ Describes an expected failure while producing or classifying a response.
 
 - `FetchRejected(cause)` means the native Fetch operation threw or its promise rejected. Fetch does
   not expose a reliable browser-independent distinction between network, abort, permission, and
-  other request failures.
+  other request failures. The `exn` preserves the original JavaScript rejection value; use
+  `JsExn.fromException` to retrieve it. A custom abort reason can be any JavaScript value, so the
+  cause is not restricted to `JsError.t`.
 - `ResponseNotOk({response})` means Fetch fulfilled with a response whose `ok` field is `false`.
   The response remains available for inspection and body reading.
 */

@@ -13,6 +13,33 @@ switch notOkResponse->SafeFetch.checkOk {
 | Ok(_) => assert(false)
 }
 
+// Exercise native Fetch with already-aborted signals before installing the mocks.
+// Fetch must not make a network request for either signal.
+switch await SafeFetch.fetch(
+  "https://example.com/aborted",
+  ~init={signal: Nullable.make(AbortSignal.abort())},
+) {
+| Error(FetchRejected(cause)) =>
+  switch cause->JsExn.fromException {
+  | Some(rawCause) => assert(JsExn.name(rawCause) == Some("AbortError"))
+  | None => assert(false)
+  }
+| Error(ResponseNotOk(_)) | Ok(_) => assert(false)
+}
+
+let customAbortSignal = AbortSignal.abort(~reason=JSON.Encode.string("cancelled"))
+switch await SafeFetch.fetch(
+  "https://example.com/aborted",
+  ~init={signal: Nullable.make(customAbortSignal)},
+) {
+| Error(FetchRejected(cause)) =>
+  switch cause->JsExn.fromException {
+  | Some(rawCause) => assert(isSame(rawCause, %raw(`"cancelled"`)))
+  | None => assert(false)
+  }
+| Error(ResponseNotOk(_)) | Ok(_) => assert(false)
+}
+
 %%raw(`
 globalThis.__safeFetchResponse = new Response("ok", {status: 200})
 globalThis.fetch = (_input, init) => {
