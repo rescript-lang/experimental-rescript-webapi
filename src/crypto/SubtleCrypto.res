@@ -1,195 +1,3 @@
-/**
-[Read more on MDN](https://developer.mozilla.org/docs/Web/API/SubtleCrypto/encrypt)
-*/
-@send
-external encrypt: (
-  WebCryptoTypes.subtleCrypto,
-  ~algorithm: WebCryptoTypes.algorithm,
-  ~key: WebCryptoTypes.cryptoKey,
-  ~data: ArrayBufferTypedArrayOrDataView.t,
-) => promise<ArrayBuffer.t> = "encrypt"
-
-/**
-[Read more on MDN](https://developer.mozilla.org/docs/Web/API/SubtleCrypto/decrypt)
-*/
-@send
-external decrypt: (
-  WebCryptoTypes.subtleCrypto,
-  ~algorithm: WebCryptoTypes.algorithm,
-  ~key: WebCryptoTypes.cryptoKey,
-  ~data: ArrayBufferTypedArrayOrDataView.t,
-) => promise<ArrayBuffer.t> = "decrypt"
-
-/**
-[Read more on MDN](https://developer.mozilla.org/docs/Web/API/SubtleCrypto/sign)
-*/
-@send
-external sign: (
-  WebCryptoTypes.subtleCrypto,
-  ~algorithm: WebCryptoTypes.algorithm,
-  ~key: WebCryptoTypes.cryptoKey,
-  ~data: ArrayBufferTypedArrayOrDataView.t,
-) => promise<ArrayBuffer.t> = "sign"
-
-/**
-[Read more on MDN](https://developer.mozilla.org/docs/Web/API/SubtleCrypto/verify)
-*/
-@send
-external verify: (
-  WebCryptoTypes.subtleCrypto,
-  ~algorithm: WebCryptoTypes.algorithm,
-  ~key: WebCryptoTypes.cryptoKey,
-  ~signature: ArrayBufferTypedArrayOrDataView.t,
-  ~data: ArrayBufferTypedArrayOrDataView.t,
-) => promise<bool> = "verify"
-
-/**
-[Read more on MDN](https://developer.mozilla.org/docs/Web/API/SubtleCrypto/digest)
-*/
-@send
-external digest: (
-  WebCryptoTypes.subtleCrypto,
-  ~algorithm: WebCryptoTypes.algorithm,
-  ~data: ArrayBufferTypedArrayOrDataView.t,
-) => promise<ArrayBuffer.t> = "digest"
-
-/**
-[Read more on MDN](https://developer.mozilla.org/docs/Web/API/SubtleCrypto/generateKey)
-*/
-@send
-external generateKey: (
-  WebCryptoTypes.subtleCrypto,
-  ~algorithm: WebCryptoTypes.algorithm,
-  ~extractable: bool,
-  ~keyUsages: array<WebCryptoTypes.keyUsage>,
-) => promise<unknown> = "generateKey"
-
-/**
-[Read more on MDN](https://developer.mozilla.org/docs/Web/API/SubtleCrypto/generateKey)
-*/
-@send
-external generateKey2: (
-  WebCryptoTypes.subtleCrypto,
-  ~algorithm: string,
-  ~extractable: bool,
-  ~keyUsages: array<WebCryptoTypes.keyUsage>,
-) => promise<unknown> = "generateKey"
-
-@send
-external generateKeySymmetric: (
-  WebCryptoTypes.subtleCrypto,
-  ~algorithm: WebCryptoTypes.algorithm,
-  ~extractable: bool,
-  ~keyUsages: array<WebCryptoTypes.keyUsage>,
-) => promise<WebCryptoTypes.cryptoKey> = "generateKey"
-
-/**
-Generates a public/private key pair. Use for algorithms whose native result is a CryptoKeyPair.
-*/
-@send
-external generateKeyPair: (
-  WebCryptoTypes.subtleCrypto,
-  ~algorithm: WebCryptoTypes.algorithm,
-  ~extractable: bool,
-  ~keyUsages: array<WebCryptoTypes.keyUsage>,
-) => promise<WebCryptoTypes.cryptoKeyPair> = "generateKey"
-
-/**
-[Read more on MDN](https://developer.mozilla.org/docs/Web/API/SubtleCrypto/deriveKey)
-*/
-@send
-external deriveKey: (
-  WebCryptoTypes.subtleCrypto,
-  ~algorithm: WebCryptoTypes.algorithm,
-  ~baseKey: WebCryptoTypes.cryptoKey,
-  ~derivedKeyType: WebCryptoTypes.algorithm,
-  ~extractable: bool,
-  ~keyUsages: array<WebCryptoTypes.keyUsage>,
-) => promise<WebCryptoTypes.cryptoKey> = "deriveKey"
-
-/**
-[Read more on MDN](https://developer.mozilla.org/docs/Web/API/SubtleCrypto/deriveBits)
-*/
-@send
-external deriveBits: (
-  WebCryptoTypes.subtleCrypto,
-  ~algorithm: WebCryptoTypes.algorithm,
-  ~baseKey: WebCryptoTypes.cryptoKey,
-  ~length: int=?,
-) => promise<ArrayBuffer.t> = "deriveBits"
-
-/**
-[Read more on MDN](https://developer.mozilla.org/docs/Web/API/SubtleCrypto/deriveBits)
-*/
-@send
-external deriveBits2: (
-  WebCryptoTypes.subtleCrypto,
-  ~algorithm: string,
-  ~baseKey: WebCryptoTypes.cryptoKey,
-  ~length: int=?,
-) => promise<ArrayBuffer.t> = "deriveBits"
-
-/**
-[Read more on MDN](https://developer.mozilla.org/docs/Web/API/SubtleCrypto/importKey)
-*/
-@send
-external importKey: (
-  WebCryptoTypes.subtleCrypto,
-  ~format: WebCryptoTypes.keyFormat,
-  ~keyData: ArrayBufferTypedArrayOrDataView.t,
-  ~algorithm: WebCryptoTypes.algorithm,
-  ~extractable: bool,
-  ~keyUsages: array<WebCryptoTypes.keyUsage>,
-) => promise<WebCryptoTypes.cryptoKey> = "importKey"
-
-/**
-[Read more on MDN](https://developer.mozilla.org/docs/Web/API/SubtleCrypto/exportKey)
-*/
-@send
-external exportKey: (
-  WebCryptoTypes.subtleCrypto,
-  ~format: WebCryptoTypes.keyFormat,
-  ~key: WebCryptoTypes.cryptoKey,
-) => promise<unknown> = "exportKey"
-
-/**
-[Read more on MDN](https://developer.mozilla.org/docs/Web/API/SubtleCrypto/wrapKey)
-*/
-@send
-external wrapKey: (
-  WebCryptoTypes.subtleCrypto,
-  ~format: WebCryptoTypes.keyFormat,
-  ~key: WebCryptoTypes.cryptoKey,
-  ~wrappingKey: WebCryptoTypes.cryptoKey,
-  ~wrapAlgorithm: WebCryptoTypes.algorithm,
-) => promise<ArrayBuffer.t> = "wrapKey"
-
-/**
-[Read more on MDN](https://developer.mozilla.org/docs/Web/API/SubtleCrypto/wrapKey)
-*/
-@send
-external wrapKey2: (
-  WebCryptoTypes.subtleCrypto,
-  ~format: WebCryptoTypes.keyFormat,
-  ~key: WebCryptoTypes.cryptoKey,
-  ~wrappingKey: WebCryptoTypes.cryptoKey,
-  ~wrapAlgorithm: string,
-) => promise<ArrayBuffer.t> = "wrapKey"
-
-/**
-[Read more on MDN](https://developer.mozilla.org/docs/Web/API/SubtleCrypto/unwrapKey)
-*/
-@send
-external unwrapKey: (
-  WebCryptoTypes.subtleCrypto,
-  ~format: WebCryptoTypes.keyFormat,
-  ~wrappedKey: ArrayBufferTypedArrayOrDataView.t,
-  ~unwrappingKey: WebCryptoTypes.cryptoKey,
-  ~unwrapAlgorithm: WebCryptoTypes.algorithm,
-  ~unwrappedKeyAlgorithm: WebCryptoTypes.algorithm,
-  ~extractable: bool,
-  ~keyUsages: array<WebCryptoTypes.keyUsage>,
-) => promise<WebCryptoTypes.cryptoKey> = "unwrapKey"
 type t = WebCryptoTypes.subtleCrypto
 type binaryData = ArrayBufferTypedArrayOrDataView.t
 type keyType = WebCryptoTypes.keyType
@@ -206,6 +14,200 @@ type algorithm = WebCryptoTypes.algorithm
 type cryptoKey = WebCryptoTypes.cryptoKey
 type cryptoKeyPair = WebCryptoTypes.cryptoKeyPair
 
+/**
+[Read more on MDN](https://developer.mozilla.org/docs/Web/API/SubtleCrypto/encrypt)
+*/
+@send
+external encrypt: (
+  t,
+  ~algorithm: algorithm,
+  ~key: cryptoKey,
+  ~data: ArrayBufferTypedArrayOrDataView.t,
+) => promise<ArrayBuffer.t> = "encrypt"
+
+/**
+[Read more on MDN](https://developer.mozilla.org/docs/Web/API/SubtleCrypto/decrypt)
+*/
+@send
+external decrypt: (
+  t,
+  ~algorithm: algorithm,
+  ~key: cryptoKey,
+  ~data: ArrayBufferTypedArrayOrDataView.t,
+) => promise<ArrayBuffer.t> = "decrypt"
+
+/**
+[Read more on MDN](https://developer.mozilla.org/docs/Web/API/SubtleCrypto/sign)
+*/
+@send
+external sign: (
+  t,
+  ~algorithm: algorithm,
+  ~key: cryptoKey,
+  ~data: ArrayBufferTypedArrayOrDataView.t,
+) => promise<ArrayBuffer.t> = "sign"
+
+/**
+[Read more on MDN](https://developer.mozilla.org/docs/Web/API/SubtleCrypto/verify)
+*/
+@send
+external verify: (
+  t,
+  ~algorithm: algorithm,
+  ~key: cryptoKey,
+  ~signature: ArrayBufferTypedArrayOrDataView.t,
+  ~data: ArrayBufferTypedArrayOrDataView.t,
+) => promise<bool> = "verify"
+
+/**
+[Read more on MDN](https://developer.mozilla.org/docs/Web/API/SubtleCrypto/digest)
+*/
+@send
+external digest: (
+  t,
+  ~algorithm: algorithm,
+  ~data: ArrayBufferTypedArrayOrDataView.t,
+) => promise<ArrayBuffer.t> = "digest"
+
+/**
+[Read more on MDN](https://developer.mozilla.org/docs/Web/API/SubtleCrypto/generateKey)
+*/
+@send
+external generateKey: (
+  t,
+  ~algorithm: algorithm,
+  ~extractable: bool,
+  ~keyUsages: array<keyUsage>,
+) => promise<unknown> = "generateKey"
+
+/**
+[Read more on MDN](https://developer.mozilla.org/docs/Web/API/SubtleCrypto/generateKey)
+*/
+@send
+external generateKey2: (
+  t,
+  ~algorithm: string,
+  ~extractable: bool,
+  ~keyUsages: array<keyUsage>,
+) => promise<unknown> = "generateKey"
+
+let generateKeySymmetric = (
+  subtle: t,
+  ~hash: algorithmIdentifier,
+  ~length: int,
+  ~extractable: bool,
+  ~keyUsages: array<keyUsage>,
+): promise<cryptoKey> => {
+  let _ = (subtle, hash, length, extractable, keyUsages)
+  %raw(`subtle.generateKey({name: "HMAC", hash, length}, extractable, keyUsages)`)
+}
+
+/**
+Generates an ECDSA public/private key pair. The fixed algorithm guarantees the native result shape.
+*/
+let generateEcdsaKeyPair = (
+  subtle: t,
+  ~namedCurve: string,
+  ~extractable: bool,
+  ~keyUsages: array<keyUsage>,
+): promise<cryptoKeyPair> => {
+  let _ = (subtle, namedCurve, extractable, keyUsages)
+  %raw(`subtle.generateKey({name: "ECDSA", namedCurve}, extractable, keyUsages)`)
+}
+
+/**
+[Read more on MDN](https://developer.mozilla.org/docs/Web/API/SubtleCrypto/deriveKey)
+*/
+@send
+external deriveKey: (
+  t,
+  ~algorithm: algorithm,
+  ~baseKey: cryptoKey,
+  ~derivedKeyType: algorithm,
+  ~extractable: bool,
+  ~keyUsages: array<keyUsage>,
+) => promise<cryptoKey> = "deriveKey"
+
+/**
+[Read more on MDN](https://developer.mozilla.org/docs/Web/API/SubtleCrypto/deriveBits)
+*/
+@send
+external deriveBits: (
+  t,
+  ~algorithm: algorithm,
+  ~baseKey: cryptoKey,
+  ~length: int=?,
+) => promise<ArrayBuffer.t> = "deriveBits"
+
+/**
+[Read more on MDN](https://developer.mozilla.org/docs/Web/API/SubtleCrypto/deriveBits)
+*/
+@send
+external deriveBits2: (
+  t,
+  ~algorithm: string,
+  ~baseKey: cryptoKey,
+  ~length: int=?,
+) => promise<ArrayBuffer.t> = "deriveBits"
+
+/**
+[Read more on MDN](https://developer.mozilla.org/docs/Web/API/SubtleCrypto/importKey)
+*/
+@send
+external importKey: (
+  t,
+  ~format: keyFormat,
+  ~keyData: ArrayBufferTypedArrayOrDataView.t,
+  ~algorithm: algorithm,
+  ~extractable: bool,
+  ~keyUsages: array<keyUsage>,
+) => promise<cryptoKey> = "importKey"
+
+/**
+[Read more on MDN](https://developer.mozilla.org/docs/Web/API/SubtleCrypto/exportKey)
+*/
+@send
+external exportKey: (t, ~format: keyFormat, ~key: cryptoKey) => promise<unknown> = "exportKey"
+
+/**
+[Read more on MDN](https://developer.mozilla.org/docs/Web/API/SubtleCrypto/wrapKey)
+*/
+@send
+external wrapKey: (
+  t,
+  ~format: keyFormat,
+  ~key: cryptoKey,
+  ~wrappingKey: cryptoKey,
+  ~wrapAlgorithm: algorithm,
+) => promise<ArrayBuffer.t> = "wrapKey"
+
+/**
+[Read more on MDN](https://developer.mozilla.org/docs/Web/API/SubtleCrypto/wrapKey)
+*/
+@send
+external wrapKey2: (
+  t,
+  ~format: keyFormat,
+  ~key: cryptoKey,
+  ~wrappingKey: cryptoKey,
+  ~wrapAlgorithm: string,
+) => promise<ArrayBuffer.t> = "wrapKey"
+
+/**
+[Read more on MDN](https://developer.mozilla.org/docs/Web/API/SubtleCrypto/unwrapKey)
+*/
+@send
+external unwrapKey: (
+  t,
+  ~format: keyFormat,
+  ~wrappedKey: ArrayBufferTypedArrayOrDataView.t,
+  ~unwrappingKey: cryptoKey,
+  ~unwrapAlgorithm: algorithm,
+  ~unwrappedKeyAlgorithm: algorithm,
+  ~extractable: bool,
+  ~keyUsages: array<keyUsage>,
+) => promise<cryptoKey> = "unwrapKey"
+
 let decryptUsage = WebCryptoTypes.Decrypt
 let deriveBitsUsage = WebCryptoTypes.DeriveBits
 let deriveKeyUsage = WebCryptoTypes.DeriveKey
@@ -220,15 +222,8 @@ external binaryDataFromArrayBuffer: ArrayBuffer.t => binaryData = "%identity"
 external binaryDataFromDataView: DataView.t => binaryData = "%identity"
 
 @send
-external exportKeyBinary: (
-  WebCryptoTypes.subtleCrypto,
-  ~format: binaryKeyFormat,
-  ~key: WebCryptoTypes.cryptoKey,
-) => promise<ArrayBuffer.t> = "exportKey"
+external exportKeyBinary: (t, ~format: binaryKeyFormat, ~key: cryptoKey) => promise<ArrayBuffer.t> =
+  "exportKey"
 
 @send
-external exportKeyJwk: (
-  WebCryptoTypes.subtleCrypto,
-  ~format: jwkKeyFormat,
-  ~key: WebCryptoTypes.cryptoKey,
-) => promise<JSON.t> = "exportKey"
+external exportKeyJwk: (t, ~format: jwkKeyFormat, ~key: cryptoKey) => promise<JSON.t> = "exportKey"

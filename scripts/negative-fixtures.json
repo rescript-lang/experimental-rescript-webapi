@@ -4,5 +4,35 @@
     "fixture": "scripts/fixtures/negative/DiagnosticMatching.res",
     "features": null,
     "expectedDiagnostic": "This has type: string"
+  },
+  {
+    "name": "native request bytes are not an ordinary array",
+    "fixture": "scripts/fixtures/negative/BytesAreNotArray.res",
+    "features": ["WebAPI.Fetch"],
+    "expectedDiagnostic": "This has type:"
+  },
+  {
+    "name": "closest cannot narrow to an unrelated element type",
+    "fixture": "scripts/fixtures/negative/ClosestCannotNarrow.res",
+    "features": ["WebAPI.HTML"],
+    "expectedDiagnostic": "This has type:"
+  },
+  {
+    "name": "custom element definition rejects element instances",
+    "fixture": "scripts/fixtures/negative/CustomElementRequiresConstructor.res",
+    "features": ["WebAPI.Window"],
+    "expectedDiagnostic": "This has type:"
+  },
+  {
+    "name": "symmetric key generation fixes the algorithm",
+    "fixture": "scripts/fixtures/negative/GenerateSymmetricRejectsAlgorithm.res",
+    "features": ["WebAPI.Crypto"],
+    "expectedDiagnostic": "This function call is incorrect. The function has type:"
+  },
+  {
+    "name": "key-pair generation fixes the algorithm",
+    "fixture": "scripts/fixtures/negative/GeneratePairRejectsAlgorithm.res",
+    "features": ["WebAPI.Crypto"],
+    "expectedDiagnostic": "This function call is incorrect. The function has type:"
   }
 ]
