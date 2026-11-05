@@ -8,6 +8,7 @@ let stream = ReadableStream.make()
 let response = Response.fromNull(~init={status: 204, headers})
 
 let response1 = Response.fromString("pong", ~init={status: 200, headers})
+assert((await response1->Response.clone->Response.text) == "pong")
 
 let response2 = Response.fromBlob(blob)
 let response3 = Response.fromFile(file)

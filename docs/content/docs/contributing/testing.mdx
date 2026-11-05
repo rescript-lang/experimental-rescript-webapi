@@ -4,14 +4,18 @@ description: Learn more about testing the bindings for @rescript/webapi.
 slug: "06-testing"
 ---
 
-import { Aside, FileTree } from "@astrojs/starlight/components";
+import { FileTree } from "@astrojs/starlight/components";
 
 Adding some unit tests is a great way to ensure that the bindings work as expected.
 It illustrates how the bindings are supposed to be used and can help to catch regressions.
 
 ## Testing the bindings
 
-Create a new help in the `test` folder with the same name as the module you want to test, followed by `_test.res`.
+Add a ReScript fixture under `tests/`, following the source module's directory structure. Register
+each fixture in exactly one category in `tests/fixtures.json`: `compileOnly`, `nodeRuntime`, or
+`browserRuntime`. `npm test` fails if a fixture is missing from the manifest or appears in multiple
+categories, compiles all fixtures, and executes only the Node runtime modules. Compile-only
+examples are never executed.
 
 <FileTree>
 
@@ -21,7 +25,9 @@ Create a new help in the `test` folder with the same name as the module you want
     - HTMLCanvasElement.res
 - tests
   - DOMAPI
-    - HTMLCanvasElement_test.res
+    - Classify\_\_test.res
+  - FetchAPI
+    - Headers\_\_test.res
 
 </FileTree>
 
@@ -33,12 +39,18 @@ git add tests
 npm test
 ```
 
-If any of the existing tests have different ouput JavaScript, you will see a diff in the output and the test will fail.
+Run the focused checks that match your fixture:
 
-<Aside>
-  Depending on your use-case, it might be okay to have slightly different output JavaScript. The
-  maintainers will help you to decide if the change is acceptable.
-</Aside>
+```shell
+npm test                 # compile fixtures and execute Node-compatible runtime tests
+npm run test:browser     # execute native-browser regressions in Chromium
+npm run test:negative    # verify expected compiler failures and diagnostics
+```
+
+Use the browser suite for APIs that require a real browser. Node's built-in Fetch support is useful
+for Node runtime coverage, but is not a substitute for Chromium validation; DOM emulators are not
+browser evidence either. Keep examples that need special setup, such as a GET request with a body,
+compile-only unless they are deliberately configured as a runtime fixture.
 
 ## Why add tests?
 
