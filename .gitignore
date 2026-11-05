@@ -3,6 +3,7 @@
 .bsb.lock
 .astro
 dist/
+.release/
 tmp/
 docs/public/llm.txt
 .playwright/
