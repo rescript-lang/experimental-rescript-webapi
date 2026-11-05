@@ -1,6 +1,9 @@
 {
   "name": "@rescript/webapi",
   "namespace": "WebAPI",
+  "experimental-features": {
+    "LetUnwrap": true
+  },
   "features": {
     "WebAPI.DOM": ["DOM"],
     "WebAPI.Event": ["WebAPI.DOM", "Event"],
@@ -55,6 +58,7 @@
     "WebAPI.File": ["WebAPI.Event", "File"],
     "WebAPI.URL": ["WebAPI.DOM", "URL"],
     "WebAPI.Fetch": ["WebAPI.Event", "WebAPI.File", "WebAPI.URL", "Fetch"],
+    "WebAPI.SafeFetch": ["WebAPI.Fetch", "SafeFetch"],
     "WebAPI.CSSFontLoading": ["WebAPI.Event", "CSSFontLoading"],
     "WebAPI.Device": ["WebAPI.Event", "Device"],
     "WebAPI.Messaging": ["WebAPI.Event", "WebAPI.File", "Messaging"],
@@ -332,6 +336,12 @@
         "Request",
         "Response"
       ]
+    },
+    {
+      "dir": "src/safe-fetch",
+      "subdirs": true,
+      "feature": "SafeFetch",
+      "public": ["SafeFetch"]
     },
     {
       "dir": "src/file",

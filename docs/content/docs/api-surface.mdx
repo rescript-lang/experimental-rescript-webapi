@@ -70,10 +70,30 @@ WebAPI.URL                 WebAPI.Fetch           WebAPI.UIEvents
 WebAPI.Observers           WebAPI.Media           WebAPI.WebAudio
 WebAPI.Storage             WebAPI.Messaging       WebAPI.Workers
 WebAPI.Crypto              WebAPI.Performance     WebAPI.ViewTransitions
+WebAPI.SafeFetch
 ```
 
 The package owns each bundle as one internal source folder. Those internal folder feature
 names are an implementation detail; consumers should use only the qualified names above.
+`WebAPI.SafeFetch` transitively enables `WebAPI.Fetch`, so consumers that want the result-based
+helpers can select only the safe feature:
+
+```json
+{
+  "experimental-features": {
+    "LetUnwrap": true
+  },
+  "dependencies": [
+    {
+      "name": "@rescript/webapi",
+      "features": ["WebAPI.SafeFetch"]
+    }
+  ]
+}
+```
+
+The `let?` examples below require the experimental `LetUnwrap` setting with the current ReScript 13
+alpha compiler. The SafeFetch API itself can also be used with ordinary `switch` expressions.
 
 ## Fetch
 
@@ -112,6 +132,109 @@ let response = await WebAPI.Fetch.fetch(
 
 let text = await response->WebAPI.Response.text
 ```
+
+### Result-based workflows
+
+`WebAPI.Fetch` and `WebAPI.Response` are the raw browser bindings and remain unchanged. Use the
+separate, opt-in `WebAPI.SafeFetch` module when request, HTTP status, and body-reading failures should
+be handled as `result` values. The separate feature is an intentional breaking change for consumers
+that restrict enabled features: add `WebAPI.SafeFetch` to use these helpers. Existing raw Fetch
+clients are unaffected.
+
+| Stage                   | Result                                        | Preserved context               |
+| ----------------------- | --------------------------------------------- | ------------------------------- |
+| Fetch throws or rejects | `Error(#FetchRejected(cause))`                | Original rejection as `exn`     |
+| Response is not OK      | `Error(#ResponseNotOk({response}))`           | Complete response               |
+| Body reader rejects     | `Error(#BodyReadRejected({response, cause}))` | Response and original rejection |
+
+`SafeFetch.fetch` accepts a URL, while `SafeFetch.fetchWithRequest` accepts an existing
+`WebAPI.Request.t`. Both promises fulfill with a `result` for these expected failures. A fulfilled
+response is classified with the platform's `response.ok` value, so a 404 or 500 is distinct from a
+request that did not produce a response. The public `fetchError` type contains `#FetchRejected(exn)`
+and `#ResponseNotOk({response})`; `bodyError` contains `#BodyReadRejected(readError)`. `readError` has
+`response` and `cause` fields, and `response<'body>` retains the original response alongside the
+successful body. The function signatures expose extensible error rows (`[> fetchError]` and
+`[> bodyError]`), so application errors can be added directly with `let?`, without `mapError`.
+
+```ReScript
+let fetchJson = async url => {
+  let? Ok(response) = await WebAPI.SafeFetch.fetch(url)
+  let? Ok({body}) = await response->WebAPI.SafeFetch.json
+  Ok(body)
+}
+```
+
+The body reader reports malformed JSON as `#BodyReadRejected`; valid JSON with the wrong shape is an
+application decoding failure instead. Here is one way to compose the stages and retain an application
+error variant in the result:
+
+```ReScript
+type user = {name: string}
+
+let decodeUser = json =>
+  switch json {
+  | JSON.Object(dict{"name": JSON.String(name)}) => Ok({name: name})
+  | _ => Error(#InvalidUser)
+  }
+
+let loadUser = async url => {
+  let? Ok(response) = await WebAPI.SafeFetch.fetch(url)
+  let? Ok({body}) = await response->WebAPI.SafeFetch.json
+  let? Ok(user) = body->decodeUser
+  Ok(user)
+}
+```
+
+The composed result has open error rows, so its caller can handle each stage exhaustively, including
+the application-specific `#InvalidUser`:
+
+```ReScript
+switch await loadUser("https://example.com/api/users/42") {
+| Error(#FetchRejected(cause)) => reportUnavailable(cause)
+| Error(#ResponseNotOk({response})) => handleHttpError(response.status)
+| Error(#BodyReadRejected({response, cause})) => handleInvalidBody(response.status, cause)
+| Error(#InvalidUser) => handleInvalidUser()
+| Ok(user) => showUser(user)
+}
+```
+
+Use `checkOk` to classify a response obtained from the raw API without reading its body. Its
+non-success result is tagged as `#ResponseNotOk({response})`.
+
+```ReScript
+let response = await WebAPI.Fetch.fetch("https://example.com/api/users")
+
+switch response->WebAPI.SafeFetch.checkOk {
+| Ok(response) => useResponse(response)
+| Error(#ResponseNotOk({response})) => handleHttpError(response.status)
+}
+```
+
+A non-OK response remains readable. This is useful when a server returns structured error details;
+reading that body can itself fail with `#BodyReadRejected`.
+
+```ReScript
+switch await WebAPI.SafeFetch.fetch("https://example.com/api/users/42") {
+| Error(#ResponseNotOk({response})) =>
+  switch await response->WebAPI.SafeFetch.text {
+  | Ok({body}) => Console.error(body)
+  | Error(#BodyReadRejected(_)) =>
+    Console.error(`Request failed with ${Int.toString(response.status)}`)
+  }
+| Error(#FetchRejected(cause)) => reportUnavailable(cause)
+| Ok(response) => useResponse(response)
+}
+```
+
+The safe body readers cover `arrayBuffer`, `blob`, `bytes`, `formData`, `json`, and `text`. A
+successful read contains both the body and original response, preserving status, headers, URL, and
+other metadata. Reading consumes the native body; clone the response before reading when another
+consumer also needs it.
+
+`SafeFetch.json` returns `JSON.t`; validating that JSON against an application's domain types remains
+the application's responsibility. A body read preserves its `response` and original rejection in
+the `readError` payload. This keeps malformed JSON text separate from valid JSON that does not match
+an application schema.
 
 `BodyInit` has constructors for the common JavaScript body shapes.
 
