@@ -37,25 +37,31 @@
   },
   "scripts": {
     "test": "node tests/index.js",
+    "test:browser": "playwright test",
     "build": "rescript",
     "check:features": "node --test scripts/check-features.test.mjs && node scripts/check-features.mjs",
-    "format": "rescript format && oxfmt ./tests/index.js ./scripts/check-features.mjs ./scripts/check-features.test.mjs ./package.json ./docs && prettier --write ./docs/pages",
-    "format:check": "rescript format --check && oxfmt ./tests/index.js ./scripts/check-features.mjs ./scripts/check-features.test.mjs ./package.json ./docs --check && prettier --check ./docs/pages",
+    "format": "rescript format && oxfmt ./tests/index.js ./tests/fixtures.json ./tests/browser/native-api.spec.mjs ./tests/browser/server.mjs ./playwright.config.mjs ./scripts/check-features.mjs ./scripts/check-features.test.mjs ./package.json ./docs && prettier --write ./docs/pages",
+    "format:check": "rescript format --check && oxfmt ./tests/index.js ./tests/fixtures.json ./tests/browser/native-api.spec.mjs ./tests/browser/server.mjs ./playwright.config.mjs ./scripts/check-features.mjs ./scripts/check-features.test.mjs ./package.json ./docs --check && prettier --check ./docs/pages",
     "docs": "astro dev",
     "prebuild:docs": "node docs/llm.js",
     "build:docs": "astro build"
   },
   "devDependencies": {
     "@astrojs/starlight": "0.42.8",
+    "@playwright/test": "^1.64.1",
     "astro": "^7.2.9",
     "micromark": "^4.0.1",
     "oxfmt": "^0.75.0",
     "prettier": "^3.8.3",
     "prettier-plugin-astro": "^1.0.0",
-    "rescript": "^13.0.0-alpha.4",
+    "rescript": "13.0.0-alpha.5",
     "sharp": "^0.35.3"
   },
   "peerDependencies": {
-    "rescript": ">=13"
+    "rescript": ">=13.0.0-alpha.5 <13.0.0"
+  },
+  "overrides": {
+    "mdast-util-to-hast": "^13.2.1",
+    "postcss-selector-parser": "^6.1.5"
   }
 }

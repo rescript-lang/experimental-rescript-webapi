@@ -2,8 +2,6 @@ name: Release
 
 on:
   pull_request:
-    branches:
-      - main
   workflow_dispatch:
     inputs:
       dry_run:
@@ -50,6 +48,12 @@ jobs:
 
       - name: Run tests
         run: npm test
+
+      - name: Install Chromium
+        run: npx playwright install --with-deps chromium
+
+      - name: Run browser tests
+        run: npm run test:browser
 
       - name: Build documentation
         run: npm run build:docs
