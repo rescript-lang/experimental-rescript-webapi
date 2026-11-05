@@ -1,0 +1,62 @@
+---
+title: Alpha releases
+description: Maintainer guidance for validating and releasing a numbered WebAPI alpha.
+slug: "08-alpha-releases"
+---
+
+The release checklist for `@rescript/webapi` is tracked in
+[#382](https://github.com/rescript-lang/experimental-rescript-webapi/issues/382). ReScript
+`13.0.0-alpha.5` is the tested compiler baseline. A stable compiler is not a prerequisite;
+library alpha releases may include breaking changes between versions.
+
+## Prepare a candidate
+
+The release version is the synchronized `version` in `package.json` and `package-lock.json`.
+Use the repository's release validation before changing that version:
+
+```shell
+npm run format:check
+npm run build
+npm run check:features
+npm test
+npm run test:browser
+npm run build:docs
+npm run check:docs-links
+npm run check:consumer
+npm run check:release
+```
+
+The browser suite runs Chromium only; it is not an exhaustive browser compatibility matrix.
+The consumer check compiles the packed artifact in a fresh project. A successful source build
+alone is not evidence that package installation works.
+
+Update `package.json` and `package-lock.json` together to the next `1.0.0-alpha.N` version.
+Update this package's `CHANGELOG.md` with the user-visible changes and migration notes. Run
+`npm run check:release` again to check that the exact version is not already published, then
+create the matching Git tag `v1.0.0-alpha.N` from the validated release commit.
+
+## Validate and publish
+
+Use the Release workflow's `workflow_dispatch` with `dry_run: true` first. Review the workflow
+results and the package archive checks. Only an authorized maintainer should dispatch a real
+publication from `main` with `dry_run: false`; alpha publication uses the `alpha` dist-tag and
+must not advance `latest`.
+
+After a real publish, verify the registry dist-tags:
+
+```shell
+npm view @rescript/webapi dist-tags --json
+```
+
+The workflow requests npm provenance through GitHub Actions OIDC. Before the first real
+publication, maintainers must configure and verify npm trusted publishing for this repository
+and workflow in npm's publishing settings. The expected trusted-publisher tuple is:
+
+- Package: `@rescript/webapi`
+- Repository: `rescript-lang/experimental-rescript-webapi`
+- Workflow: `.github/workflows/release.yml`
+- GitHub environment: none
+
+In npm's package settings, **Trusted publishing** should show that exact repository and workflow
+with no environment configured; provenance should be enabled. These external npm account settings
+have not been verified from the repository. The workflow cannot confirm them by itself.

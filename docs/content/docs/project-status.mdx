@@ -4,22 +4,56 @@ description: Learn more about the current status of @rescript/webapi.
 slug: "project-status"
 ---
 
-This project is highly experimental and subject to change.  
-It is a work in progress and might not cover every API.  
-The core idea is to prioritize ground coverage based on community needs.  
-We aim to focus on the most used APIs first and then expand from there.
+This project is an experimental ReScript 13 alpha package, not a stable or exhaustive set of
+browser bindings. It exposes a broad collection of Web API bindings, but implementation depth
+varies by API and browser support is determined by the host runtime, not by whether a ReScript
+module compiles.
+
+`@rescript/webapi` alpha versions can make breaking API changes between releases. ReScript
+`13.0.0-alpha.5` is the tested compiler baseline. The package peer range accepts
+`>=13.0.0-alpha.5 <13.0.0`, which allows later `13.0.0` prereleases but does not claim each one
+is tested; stable ReScript is not currently included in that range or required to ship this
+alpha.
 
 ## Contributions
 
 [Contributions](../01-getting-started) are welcome! Please [open an issue](https://github.com/rescript-lang/experimental-rescript-webapi/issues/new/choose) if you have a specific API you would like to see added.  
 This really helps prioritize our work and ensures that the most important APIs are addressed first.
 
-## Current Status
+## Architecture and validation
 
-All bindings were generated using a modified version of [TypeScript-DOM-lib-generator](https://github.com/microsoft/TypeScript-DOM-lib-generator).  
-The next step is to manual tweak these files so they can enhance the developer experience.
+The source is organized into API-family directories, while consumers use the flat `WebAPI`
+namespace and public modules such as `WebAPI.Request` and `WebAPI.Response`. Generated
+implementation modules and internal type-holder modules are not part of that public surface.
+Bindings are maintained and corrected by hand as well as generated; the generator is not a
+reproducible source of truth for every checked-in binding.
 
-## Future
+Some bindings still carry private-record TODOs; a blanket private-record conversion is deferred
+because the current compiler reports mutation warning 111. Generator reproducibility is also
+follow-up work, not an alpha release gate.
 
-Our goal is to make this a true community project. Consumers of the bindings should be able to contribute back to the project with minimal hassle.  
-This means that the project should be easy to understand and contribute to. Once a contribution is accepted, a new release will follow shortly.
+CI uses Node 26 for ReScript compilation and Node runtime fixtures. Its Chromium suite currently
+executes a compiled URL fixture; this is a smoke check, not broad browser-runtime coverage of the
+bindings. There is no Firefox, WebKit, or browser-version matrix. API availability,
+secure-context requirements, permissions, and user activation still depend on the browser and
+execution context.
+
+## Historical backlog
+
+Several long-standing requests remain useful references but are not individually alpha release
+gates. [#236 constructor naming](https://github.com/rescript-lang/experimental-rescript-webapi/issues/236)
+and [#27 overload improvements](https://github.com/rescript-lang/experimental-rescript-webapi/issues/27)
+remain incremental API cleanup. Several named constructor families now use semantic names,
+including `FontFace`, `MediaStream`, `Path2D`, and `WebSocket`; the broader overload lists are
+not complete. [#237 module/type simplification](https://github.com/rescript-lang/experimental-rescript-webapi/issues/237)
+has completed groundwork and DOM/event/observer work, while fetch/file/canvas/URL/socket,
+capability access, media, and final integration items remain tracked there.
+
+[#23 API overview](https://github.com/rescript-lang/experimental-rescript-webapi/issues/23) is a
+stale point-in-time MDN coverage checklist; use the current public API documentation and source
+manifest instead. [#4 error modeling](https://github.com/rescript-lang/experimental-rescript-webapi/issues/4)
+and [#5 extension helpers](https://github.com/rescript-lang/experimental-rescript-webapi/issues/5)
+are open design proposals without a settled project-wide direction. None of these historical
+issues is automatically closed or made a blocker by this status page.
+
+For the current release checklist and explicitly deferred work, see [#382](https://github.com/rescript-lang/experimental-rescript-webapi/issues/382).
