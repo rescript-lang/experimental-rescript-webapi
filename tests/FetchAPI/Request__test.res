@@ -1,5 +1,3 @@
-let req = Request.fromURL("https://example.com")
-
 let blob = Blob.make(~blobParts=[])
 let file = File.make(~fileBits=[], ~fileName="hello.txt")
 let params = URLSearchParams.fromString("greeting=hello")
@@ -28,4 +26,4 @@ let formDataReq = Request.fromURL(
 )
 let _formData: FormData.t = await formDataReq->Request.formData
 
-Console.log(await req2->Request.text)
+assert((await req2->Request.text) == "hello")
