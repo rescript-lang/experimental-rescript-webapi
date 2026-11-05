@@ -52,11 +52,19 @@ Browser fixtures with asynchronous behavior must await all assertions and callba
 the ReScript module finishes evaluating; the browser runner awaits module evaluation and treats
 rejections and uncaught page errors as failures.
 
+Put expected-failure consumer sources under `scripts/fixtures/negative/`, outside the recursively
+compiled `tests/` tree. Register each in `scripts/negative-fixtures.json` with its feature set and a
+distinctive compiler diagnostic substring. The negative command must observe both compilation failure
+and that expected diagnostic; an unrelated compiler failure does not pass the check.
+
 ## Installed package consumers
 
 Run `npm run check:consumer` to pack the current package, install that artifact with the supported
 ReScript compiler in a fresh temporary project, and compile representative feature consumers.
 This verifies the installed tarball rather than copied source files or local compiler links.
+The development compiler and the exact version exercised by this check are ReScript
+`13.0.0-alpha.5`. The peer range `>=13.0.0-alpha.5 <13.0.0` admits later `13.0.0` prereleases;
+it does not claim support for earlier compilers or stable `13.0.0`.
 
 ## Why add tests?
 
