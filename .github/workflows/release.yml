@@ -58,33 +58,37 @@ jobs:
       - name: Build documentation
         run: npm run build:docs
 
-      - name: get-npm-version
-        id: package-version
-        uses: martinbeentjes/npm-get-version-action@v1.3.1
+      - name: Run negative compiler consumers
+        run: npm run test:negative
 
-      - name: Get short commit hash
-        id: vars
-        run: echo "COMMIT_HASH=$(git rev-parse --short HEAD)" >> $GITHUB_ENV
+      - name: Validate explicit alpha version and unpublished state
+        run: npm run check:release
 
-      - name: Update package version to -<commit-hash>
-        env:
-          PACKAGE_VERSION: ${{ steps.package-version.outputs.current-version }}-alpha-${{ env.COMMIT_HASH }}
+      - name: Package release artifact
+        id: package
         run: |
-          node <<'NODE'
-          const fs = require("node:fs");
-          const packageJsonPath = "package.json";
-          const packageJson = JSON.parse(fs.readFileSync(packageJsonPath, "utf8"));
-          packageJson.version = process.env.PACKAGE_VERSION;
-          fs.writeFileSync(packageJsonPath, `${JSON.stringify(packageJson, null, 2)}\n`);
-          NODE
+          mkdir -p .release
+          npm pack --json --pack-destination .release > .release/metadata.json
+          artifact="$(node -e 'process.stdout.write(JSON.parse(require("node:fs").readFileSync(".release/metadata.json", "utf8"))[0].filename)')"
+          echo "artifact=.release/$artifact" >> "$GITHUB_OUTPUT"
 
-      - name: Package npm package
-        run: npm pack
+      - name: Verify packed consumers and tarball contents
+        run: npm run check:consumer -- "${{ steps.package.outputs.artifact }}"
 
       - name: Dry-run npm publish
         if: github.event_name == 'pull_request' || inputs.dry_run
-        run: npm publish ./rescript-webapi-*.tgz --access public --tag alpha --dry-run
+        run: npm publish "${{ steps.package.outputs.artifact }}" --access public --tag alpha --dry-run
 
-      - name: Publish npm package
+      - name: Reject real publication from non-main branches
+        if: github.event_name == 'workflow_dispatch' && !inputs.dry_run && github.ref != 'refs/heads/main'
+        run: |
+          echo "Real alpha publication is permitted only from main."
+          exit 1
+
+      - name: Verify publication guard
         if: github.event_name == 'workflow_dispatch' && github.ref == 'refs/heads/main' && !inputs.dry_run
-        run: npm publish ./rescript-webapi-*.tgz --access public --tag alpha
+        run: npm run check:release -- --publish
+
+      - name: Publish alpha artifact
+        if: github.event_name == 'workflow_dispatch' && github.ref == 'refs/heads/main' && !inputs.dry_run
+        run: npm publish "${{ steps.package.outputs.artifact }}" --access public --tag alpha --provenance
