@@ -2,28 +2,28 @@ type httpError = {
   response: Response.t,
 }
 
-type fetchError =
-  | FetchRejected(exn)
-  | ResponseNotOk(httpError)
+type fetchError = [#FetchRejected(exn) | #ResponseNotOk(httpError)]
 
 type readError = {
   response: Response.t,
   cause: exn,
 }
 
+type bodyError = [#BodyReadRejected(readError)]
+
 type response<'body> = {
   response: Response.t,
   body: 'body,
 }
 
-let checkOk = (response: Response.t): result<Response.t, httpError> =>
+let checkOk = (response: Response.t) =>
   if response.ok {
     Ok(response)
   } else {
-    Error({response: response})
+    Error(#ResponseNotOk({response: response}))
   }
 
-let fetchUrl = async (url: string, ~init: option<Request.requestInit>=?) => {
+let fetchUrl = async (url, ~init=?) => {
   try {
     let response = await (
       switch init {
@@ -34,14 +34,14 @@ let fetchUrl = async (url: string, ~init: option<Request.requestInit>=?) => {
     if response.ok {
       Ok(response)
     } else {
-      Error(ResponseNotOk({response: response}))
+      Error(#ResponseNotOk({response: response}))
     }
   } catch {
-  | cause => Error(FetchRejected(cause))
+  | cause => Error(#FetchRejected(cause))
   }
 }
 
-let fetchWithRequest = async (request: Request.t, ~init: option<Request.requestInit>=?) => {
+let fetchWithRequest = async (request, ~init=?) => {
   try {
     let response = await (
       switch init {
@@ -52,21 +52,21 @@ let fetchWithRequest = async (request: Request.t, ~init: option<Request.requestI
     if response.ok {
       Ok(response)
     } else {
-      Error(ResponseNotOk({response: response}))
+      Error(#ResponseNotOk({response: response}))
     }
   } catch {
-  | cause => Error(FetchRejected(cause))
+  | cause => Error(#FetchRejected(cause))
   }
 }
 
 // Bind the public name after both native calls so it cannot shadow JavaScript fetch.
 let fetch = fetchUrl
 
-let read = async (response: Response.t, readBody: Response.t => promise<'body>) => {
+let read = async (response, readBody) => {
   try {
     Ok({response, body: await readBody(response)})
   } catch {
-  | cause => Error({response, cause})
+  | cause => Error(#BodyReadRejected({response, cause}))
   }
 }
 

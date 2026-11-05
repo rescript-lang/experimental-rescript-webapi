@@ -1,4 +1,15 @@
-import { existsSync, readFileSync } from "node:fs";
+import {
+  cpSync,
+  existsSync,
+  mkdtempSync,
+  mkdirSync,
+  readFileSync,
+  rmSync,
+  statSync,
+  symlinkSync,
+  writeFileSync,
+} from "node:fs";
+import os from "node:os";
 import path from "node:path";
 import { spawnSync } from "node:child_process";
 import { fileURLToPath } from "node:url";
@@ -25,6 +36,7 @@ const expectedFeatureOwners = new Map([
   ["WebAPI.Canvas", "Canvas"],
   ["WebAPI.URL", "URL"],
   ["WebAPI.Fetch", "Fetch"],
+  ["WebAPI.SafeFetch", "SafeFetch"],
   ["WebAPI.UIEvents", "UIEvents"],
   ["WebAPI.Observers", "Observers"],
   ["WebAPI.Media", "Media"],
@@ -129,7 +141,9 @@ const validateSources = (sourceEntries) => {
   return [
     ...(sameMembers(sourceFeatures, expectedInternalFeatures)
       ? []
-      : ["Source features do not match the 27 expected internal folder features."]),
+      : [
+          `Source features do not match the ${expectedInternalFeatures.length} expected internal folder features.`,
+        ]),
     ...(duplicateFeatures.length === 0
       ? []
       : [`Duplicate source features: ${duplicateFeatures.join(", ")}`]),
@@ -246,6 +260,64 @@ const runRescript = (args) =>
     encoding: "utf8",
   });
 
+const prepareConsumer = (directory, features, fixture) => {
+  const packageDirectory = path.join(directory, "node_modules", "@rescript", "webapi");
+  mkdirSync(packageDirectory, { recursive: true });
+  cpSync(path.join(repoRoot, "src"), path.join(packageDirectory, "src"), {
+    recursive: true,
+    filter: (source) => statSync(source).isDirectory() || /\.resi?$/.test(source),
+  });
+  for (const file of ["package.json", "rescript.json"]) {
+    cpSync(path.join(repoRoot, file), path.join(packageDirectory, file));
+  }
+  for (const dependency of ["rescript", "@rescript/runtime"]) {
+    symlinkSync(
+      path.join(repoRoot, "node_modules", dependency),
+      path.join(directory, "node_modules", dependency),
+      "junction",
+    );
+  }
+  mkdirSync(path.join(directory, "src"));
+  cpSync(path.join(path.dirname(scriptPath), fixture), path.join(directory, "src", "Consumer.res"));
+  writeFileSync(
+    path.join(directory, "rescript.json"),
+    JSON.stringify({
+      name: "safe-fetch-consumer-check",
+      sources: [{ dir: "src" }],
+      dependencies: [{ name: "@rescript/webapi", features }],
+      "experimental-features": { LetUnwrap: true },
+      warnings: { error: "+8" },
+      "package-specs": { module: "esmodule", "in-source": true },
+    }),
+  );
+};
+
+export const isMissingSafeFetchDiagnostic = (output) =>
+  /The module or file (?:WebAPI\.)?SafeFetch can't be found\./.test(output.replace(/\s+/g, " "));
+
+const runConsumerCheck = ({ name, features, fixture, shouldCompile }) => {
+  const directory = mkdtempSync(path.join(os.tmpdir(), "webapi-feature-consumer-"));
+  try {
+    prepareConsumer(directory, features, fixture);
+    const result = spawnSync(process.execPath, [rescriptCliPath, "build", "--prod"], {
+      cwd: directory,
+      encoding: "utf8",
+    });
+    const output = `${result.stdout ?? ""}\n${result.stderr ?? ""}`;
+    const passed = shouldCompile
+      ? result.status === 0
+      : result.status !== null && result.status !== 0 && isMissingSafeFetchDiagnostic(output);
+    return passed
+      ? { _tag: "Success" }
+      : {
+          _tag: "Failure",
+          message: `${name} did not ${shouldCompile ? "compile" : "reject the unavailable SafeFetch module"}.\n${result.error?.message ?? ""}\n${output.trim()}`,
+        };
+  } finally {
+    rmSync(directory, { recursive: true, force: true });
+  }
+};
+
 const formatProcessFailure = (featureName, command, result) =>
   [`${featureName} failed during ${command}.`, result.stdout?.trim(), result.stderr?.trim()]
     .filter(Boolean)
@@ -285,5 +357,33 @@ if (process.argv[1] !== undefined && path.resolve(process.argv[1]) === scriptPat
       process.exit(1);
     }
     console.log(`[ok] ${featureName}`);
+  }
+
+  for (const consumer of [
+    {
+      name: "SafeFetch consumer",
+      features: ["WebAPI.SafeFetch"],
+      fixture: "consumer-safe-fetch.res",
+      shouldCompile: true,
+    },
+    {
+      name: "Raw Fetch consumer",
+      features: ["WebAPI.Fetch"],
+      fixture: "consumer-fetch.res",
+      shouldCompile: true,
+    },
+    {
+      name: "Fetch-only consumer rejection",
+      features: ["WebAPI.Fetch"],
+      fixture: "consumer-safe-fetch-disabled.res",
+      shouldCompile: false,
+    },
+  ]) {
+    const result = runConsumerCheck(consumer);
+    if (result._tag === "Failure") {
+      console.error(result.message);
+      process.exit(1);
+    }
+    console.log(`[ok] ${consumer.name}`);
   }
 }
