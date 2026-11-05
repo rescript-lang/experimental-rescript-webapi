@@ -34,6 +34,12 @@ jobs:
       - name: Check public feature builds
         run: npm run check:features
 
+      - name: Verify packed consumers
+        run: npm run check:consumer
+
+      - name: Run negative compiler consumers
+        run: npm run test:negative
+
       - name: Run tests
         run: npm test
 

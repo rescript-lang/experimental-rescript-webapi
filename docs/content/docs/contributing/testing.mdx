@@ -12,20 +12,17 @@ It illustrates how the bindings are supposed to be used and can help to catch re
 ## Testing the bindings
 
 Add a ReScript fixture under `tests/`, following the source module's directory structure. Register
-each fixture in exactly one category in `tests/fixtures.json`: `compileOnly`, `nodeRuntime`, or
-`browserRuntime`. `npm test` fails if a fixture is missing from the manifest or appears in multiple
-categories, compiles all fixtures, and executes only the Node runtime modules. Compile-only
-examples are never executed.
+each fixture in exactly one category in `tests/fixtures.json`: `compileOnly`,
+`documentationExamples`, `nodeRuntime`, or `browserRuntime`. `npm test` fails if a fixture is missing
+from the manifest or appears in multiple categories, compiles all fixtures, and executes only the
+Node runtime modules. Compile-only fixtures and documentation examples are never executed.
 
 <FileTree>
 
 - src
-  - DOMAPI.res
-  - DOMAPI
-    - HTMLCanvasElement.res
+  - fetch
+    - Headers.res
 - tests
-  - DOMAPI
-    - Classify\_\_test.res
   - FetchAPI
     - Headers\_\_test.res
 
@@ -51,6 +48,15 @@ Use the browser suite for APIs that require a real browser. Node's built-in Fetc
 for Node runtime coverage, but is not a substitute for Chromium validation; DOM emulators are not
 browser evidence either. Keep examples that need special setup, such as a GET request with a body,
 compile-only unless they are deliberately configured as a runtime fixture.
+Browser fixtures with asynchronous behavior must await all assertions and callback completion before
+the ReScript module finishes evaluating; the browser runner awaits module evaluation and treats
+rejections and uncaught page errors as failures.
+
+## Installed package consumers
+
+Run `npm run check:consumer` to pack the current package, install that artifact with the supported
+ReScript compiler in a fresh temporary project, and compile representative feature consumers.
+This verifies the installed tarball rather than copied source files or local compiler links.
 
 ## Why add tests?
 

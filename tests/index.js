@@ -27,6 +27,7 @@ const discoveredFixtures = discoverFixtures(testsDir)
   .sort();
 const categorizedFixtures = [
   ...fixtureCategories.compileOnly,
+  ...fixtureCategories.documentationExamples,
   ...fixtureCategories.nodeRuntime,
   ...fixtureCategories.browserRuntime,
 ].sort();
