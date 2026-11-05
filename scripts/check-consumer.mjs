@@ -166,6 +166,21 @@ const checkConsumers = async () => {
         "Packed artifact name/version does not match the explicit alpha package metadata.",
       );
     }
+    const publishLifecycleScripts = [
+      "prepare",
+      "prepack",
+      "prepublishOnly",
+      "publish",
+      "postpublish",
+    ];
+    const configuredPublishScripts = publishLifecycleScripts.filter(
+      (scriptName) => packedMetadata.scripts?.[scriptName] !== undefined,
+    );
+    if (configuredPublishScripts.length > 0) {
+      throw new Error(
+        `Packed artifact has lifecycle scripts that would execute during publish: ${configuredPublishScripts.join(", ")}.`,
+      );
+    }
     const projectDirectory = path.join(tempDirectory, "project");
     mkdirSync(projectDirectory);
     writeFileSync(path.join(projectDirectory, "package.json"), '{"type":"module"}\n');
