@@ -69,3 +69,18 @@ test("ignores URL-like markup in code and script text", () => {
 
   assert.deepEqual(checkDocumentLinks(pages, "/docs-site/"), []);
 });
+
+test("checks local CSS imports, url() assets, and inline styles", () => {
+  const pages = new Map([
+    [
+      "index.html",
+      '<link rel="stylesheet" href="/docs-site/styles/site.css"><div style="background:url(/docs-site/assets/inline.svg)"></div><style>.icon{background:url("/docs-site/assets/inline.svg")}</style>',
+    ],
+    ["styles/site.css", '@import "../theme.css"; .icon { background: url("../assets/icon.svg"); }'],
+    ["theme.css", "body { color: black; }"],
+    ["assets/inline.svg", "<svg></svg>"],
+    ["assets/icon.svg", "<svg></svg>"],
+  ]);
+
+  assert.deepEqual(checkDocumentLinks(pages, "/docs-site/"), []);
+});
