@@ -47,6 +47,12 @@ const parseElements = (html) => {
     if (rawTextElement !== "") {
       const closingTag = lowerHTML.indexOf(`</${rawTextElement}`, cursor);
       if (closingTag === -1) break;
+      if (rawTextElement === "style") {
+        elements.push({
+          name: "style-text",
+          attributes: new Map([["style-text", html.slice(cursor, closingTag)]]),
+        });
+      }
       cursor = closingTag;
       rawTextElement = "";
     }
@@ -91,8 +97,19 @@ const attributesFrom = (elements) =>
       .split(",")
       .map((candidate) => candidate.trim().split(/\s+/, 1)[0])
       .filter(Boolean);
-    return [...directReferences, ...sourceSetReferences];
+    const styleReferences = [
+      ...cssURLsFrom(attributes.get("style") ?? ""),
+      ...cssURLsFrom(attributes.get("style-text") ?? ""),
+    ];
+    return [...directReferences, ...sourceSetReferences, ...styleReferences];
   });
+
+const cssURLsFrom = (css) => [
+  ...[...css.matchAll(/url\(\s*(['"]?)(.*?)\1\s*\)/gi)].map((match) => decodeHTML(match[2] ?? "")),
+  ...[...css.matchAll(/@import\s+(?:"([^"]+)"|'([^']+)')/gi)].map((match) =>
+    decodeHTML(match[1] ?? match[2] ?? ""),
+  ),
+];
 
 const fragmentsFrom = (html) =>
   new Set(
@@ -129,8 +146,12 @@ export const checkDocumentLinks = (documents, base) => {
   const errors = [];
   const fragmentCache = new Map();
   for (const [source, html] of documents) {
-    if (!source.endsWith(".html")) continue;
-    for (const reference of attributesFrom(parseElements(html))) {
+    const references = source.endsWith(".html")
+      ? attributesFrom(parseElements(html))
+      : source.endsWith(".css")
+        ? cssURLsFrom(html)
+        : [];
+    for (const reference of references) {
       if (reference === "" || isExternal(reference)) continue;
       const target = resolveTarget(source, reference, base);
       if (target._tag === "Failure") {
