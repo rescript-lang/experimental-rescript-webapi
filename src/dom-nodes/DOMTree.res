@@ -191,11 +191,6 @@ TODO: mark as private once mutating fields of private records is allowed
     */
   mutable id: string,
   /**
-    Returns the value of element's class content attribute. Can be set to change it.
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/className)
-    */
-  mutable className: string,
-  /**
     Allows for manipulation of element's class content attribute as a set of whitespace-separated tokens through a DOMTokenList object.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/classList)
     */

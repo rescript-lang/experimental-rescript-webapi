@@ -4,7 +4,7 @@
 @send
 external encrypt: (
   WebCryptoTypes.subtleCrypto,
-  ~algorithm: WebCryptoTypes.algorithmIdentifier,
+  ~algorithm: WebCryptoTypes.algorithm,
   ~key: WebCryptoTypes.cryptoKey,
   ~data: ArrayBufferTypedArrayOrDataView.t,
 ) => promise<ArrayBuffer.t> = "encrypt"
@@ -15,7 +15,7 @@ external encrypt: (
 @send
 external decrypt: (
   WebCryptoTypes.subtleCrypto,
-  ~algorithm: WebCryptoTypes.algorithmIdentifier,
+  ~algorithm: WebCryptoTypes.algorithm,
   ~key: WebCryptoTypes.cryptoKey,
   ~data: ArrayBufferTypedArrayOrDataView.t,
 ) => promise<ArrayBuffer.t> = "decrypt"
@@ -26,10 +26,10 @@ external decrypt: (
 @send
 external sign: (
   WebCryptoTypes.subtleCrypto,
-  ~algorithm: WebCryptoTypes.algorithmIdentifier,
+  ~algorithm: WebCryptoTypes.algorithm,
   ~key: WebCryptoTypes.cryptoKey,
   ~data: ArrayBufferTypedArrayOrDataView.t,
-) => promise<JSON.t> = "sign"
+) => promise<ArrayBuffer.t> = "sign"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/SubtleCrypto/verify)
@@ -37,11 +37,11 @@ external sign: (
 @send
 external verify: (
   WebCryptoTypes.subtleCrypto,
-  ~algorithm: WebCryptoTypes.algorithmIdentifier,
+  ~algorithm: WebCryptoTypes.algorithm,
   ~key: WebCryptoTypes.cryptoKey,
   ~signature: ArrayBufferTypedArrayOrDataView.t,
   ~data: ArrayBufferTypedArrayOrDataView.t,
-) => promise<JSON.t> = "verify"
+) => promise<bool> = "verify"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/SubtleCrypto/digest)
@@ -49,9 +49,9 @@ external verify: (
 @send
 external digest: (
   WebCryptoTypes.subtleCrypto,
-  ~algorithm: WebCryptoTypes.algorithmIdentifier,
+  ~algorithm: WebCryptoTypes.algorithm,
   ~data: ArrayBufferTypedArrayOrDataView.t,
-) => promise<JSON.t> = "digest"
+) => promise<ArrayBuffer.t> = "digest"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/SubtleCrypto/generateKey)
@@ -62,7 +62,7 @@ external generateKey: (
   ~algorithm: WebCryptoTypes.algorithm,
   ~extractable: bool,
   ~keyUsages: array<WebCryptoTypes.keyUsage>,
-) => promise<JSON.t> = "generateKey"
+) => promise<unknown> = "generateKey"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/SubtleCrypto/generateKey)
@@ -73,7 +73,26 @@ external generateKey2: (
   ~algorithm: string,
   ~extractable: bool,
   ~keyUsages: array<WebCryptoTypes.keyUsage>,
-) => promise<JSON.t> = "generateKey"
+) => promise<unknown> = "generateKey"
+
+@send
+external generateKeySymmetric: (
+  WebCryptoTypes.subtleCrypto,
+  ~algorithm: WebCryptoTypes.algorithm,
+  ~extractable: bool,
+  ~keyUsages: array<WebCryptoTypes.keyUsage>,
+) => promise<WebCryptoTypes.cryptoKey> = "generateKey"
+
+/**
+Generates a public/private key pair. Use for algorithms whose native result is a CryptoKeyPair.
+*/
+@send
+external generateKeyPair: (
+  WebCryptoTypes.subtleCrypto,
+  ~algorithm: WebCryptoTypes.algorithm,
+  ~extractable: bool,
+  ~keyUsages: array<WebCryptoTypes.keyUsage>,
+) => promise<WebCryptoTypes.cryptoKeyPair> = "generateKey"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/SubtleCrypto/deriveKey)
@@ -81,12 +100,12 @@ external generateKey2: (
 @send
 external deriveKey: (
   WebCryptoTypes.subtleCrypto,
-  ~algorithm: WebCryptoTypes.algorithmIdentifier,
+  ~algorithm: WebCryptoTypes.algorithm,
   ~baseKey: WebCryptoTypes.cryptoKey,
-  ~derivedKeyType: WebCryptoTypes.algorithmIdentifier,
+  ~derivedKeyType: WebCryptoTypes.algorithm,
   ~extractable: bool,
   ~keyUsages: array<WebCryptoTypes.keyUsage>,
-) => promise<JSON.t> = "deriveKey"
+) => promise<WebCryptoTypes.cryptoKey> = "deriveKey"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/SubtleCrypto/deriveBits)
@@ -116,9 +135,9 @@ external deriveBits2: (
 @send
 external importKey: (
   WebCryptoTypes.subtleCrypto,
-  ~format: unknown,
+  ~format: WebCryptoTypes.keyFormat,
   ~keyData: ArrayBufferTypedArrayOrDataView.t,
-  ~algorithm: WebCryptoTypes.algorithmIdentifier,
+  ~algorithm: WebCryptoTypes.algorithm,
   ~extractable: bool,
   ~keyUsages: array<WebCryptoTypes.keyUsage>,
 ) => promise<WebCryptoTypes.cryptoKey> = "importKey"
@@ -131,7 +150,7 @@ external exportKey: (
   WebCryptoTypes.subtleCrypto,
   ~format: WebCryptoTypes.keyFormat,
   ~key: WebCryptoTypes.cryptoKey,
-) => promise<JSON.t> = "exportKey"
+) => promise<unknown> = "exportKey"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/SubtleCrypto/wrapKey)
@@ -143,7 +162,7 @@ external wrapKey: (
   ~key: WebCryptoTypes.cryptoKey,
   ~wrappingKey: WebCryptoTypes.cryptoKey,
   ~wrapAlgorithm: WebCryptoTypes.algorithm,
-) => promise<JSON.t> = "wrapKey"
+) => promise<ArrayBuffer.t> = "wrapKey"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/SubtleCrypto/wrapKey)
@@ -155,7 +174,7 @@ external wrapKey2: (
   ~key: WebCryptoTypes.cryptoKey,
   ~wrappingKey: WebCryptoTypes.cryptoKey,
   ~wrapAlgorithm: string,
-) => promise<JSON.t> = "wrapKey"
+) => promise<ArrayBuffer.t> = "wrapKey"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/SubtleCrypto/unwrapKey)
@@ -166,8 +185,50 @@ external unwrapKey: (
   ~format: WebCryptoTypes.keyFormat,
   ~wrappedKey: ArrayBufferTypedArrayOrDataView.t,
   ~unwrappingKey: WebCryptoTypes.cryptoKey,
-  ~unwrapAlgorithm: WebCryptoTypes.algorithmIdentifier,
-  ~unwrappedKeyAlgorithm: WebCryptoTypes.algorithmIdentifier,
+  ~unwrapAlgorithm: WebCryptoTypes.algorithm,
+  ~unwrappedKeyAlgorithm: WebCryptoTypes.algorithm,
   ~extractable: bool,
   ~keyUsages: array<WebCryptoTypes.keyUsage>,
 ) => promise<WebCryptoTypes.cryptoKey> = "unwrapKey"
+type t = WebCryptoTypes.subtleCrypto
+type binaryData = ArrayBufferTypedArrayOrDataView.t
+type keyType = WebCryptoTypes.keyType
+type keyUsage = WebCryptoTypes.keyUsage
+type keyFormat = WebCryptoTypes.keyFormat
+type binaryKeyFormat =
+  | @as("raw") Raw
+  | @as("pkcs8") Pkcs8
+  | @as("spki") Spki
+type jwkKeyFormat = | @as("jwk") Jwk
+type keyAlgorithm = WebCryptoTypes.keyAlgorithm
+type algorithmIdentifier = WebCryptoTypes.algorithmIdentifier
+type algorithm = WebCryptoTypes.algorithm
+type cryptoKey = WebCryptoTypes.cryptoKey
+type cryptoKeyPair = WebCryptoTypes.cryptoKeyPair
+
+let decryptUsage = WebCryptoTypes.Decrypt
+let deriveBitsUsage = WebCryptoTypes.DeriveBits
+let deriveKeyUsage = WebCryptoTypes.DeriveKey
+let encryptUsage = WebCryptoTypes.Encrypt
+let signUsage = WebCryptoTypes.Sign
+let unwrapKeyUsage = WebCryptoTypes.UnwrapKey
+let verifyUsage = WebCryptoTypes.Verify
+let wrapKeyUsage = WebCryptoTypes.WrapKey
+
+external binaryDataFromUint8Array: Uint8Array.t => binaryData = "%identity"
+external binaryDataFromArrayBuffer: ArrayBuffer.t => binaryData = "%identity"
+external binaryDataFromDataView: DataView.t => binaryData = "%identity"
+
+@send
+external exportKeyBinary: (
+  WebCryptoTypes.subtleCrypto,
+  ~format: binaryKeyFormat,
+  ~key: WebCryptoTypes.cryptoKey,
+) => promise<ArrayBuffer.t> = "exportKey"
+
+@send
+external exportKeyJwk: (
+  WebCryptoTypes.subtleCrypto,
+  ~format: jwkKeyFormat,
+  ~key: WebCryptoTypes.cryptoKey,
+) => promise<JSON.t> = "exportKey"

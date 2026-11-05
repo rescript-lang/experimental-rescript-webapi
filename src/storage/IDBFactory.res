@@ -14,7 +14,7 @@ Attempts to delete the named database. If the database already exists and there 
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/IDBFactory/deleteDatabase)
 */
 @send
-external deleteDatabase: (IndexedDbTypes.idbFactory, string) => IndexedDbTypes.idbOpenDBRequest =
+external deleteDatabase: (IndexedDbTypes.idbFactory, string) => IndexedDbTypes.idbRequest<unit> =
   "deleteDatabase"
 
 /**

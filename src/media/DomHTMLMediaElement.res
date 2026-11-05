@@ -1,6 +1,7 @@
 type mediaProvider = unknown
 
 type canPlayTypeResult =
+  | @as("") Empty
   | @as("maybe") Maybe
   | @as("probably") Probably
 

@@ -1,6 +1,7 @@
 {
   "compileOnly": [
     "BindingAbsence__test.res",
+    "BindingByteTypes__test.res",
     "CanvasAPI/Path2D__test.res",
     "CSSFontLoadingAPI/FontFace__test.res",
     "DOMAPI/AddEventListener__test.res",
@@ -45,5 +46,5 @@
     "FetchAPI/URLSearchParams__test.res",
     "URLAPI/URL__test.res"
   ],
-  "browserRuntime": ["browser/NativeAPI__test.res"]
+  "browserRuntime": ["browser/BindingContracts__test.res", "browser/NativeAPI__test.res"]
 }

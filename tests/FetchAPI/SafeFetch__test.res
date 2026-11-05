@@ -197,7 +197,7 @@ let blobResult: result<
 assert(blobResult->Result.isOk)
 
 let bytesResult: result<
-  SafeFetch.response<array<int>>,
+  SafeFetch.response<Uint8Array.t>,
   [> SafeFetch.bodyError],
 > = await Response.fromString("bytes")->SafeFetch.bytes
 assert(bytesResult->Result.isOk)

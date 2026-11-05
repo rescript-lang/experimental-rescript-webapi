@@ -45,7 +45,7 @@ external asDOMMatrixReadOnly: DOM.domMatrix => DOM.domMatrixReadOnly = "%identit
 external fromMatrix: (~other: DOM.domMatrixInit=?) => DOM.domMatrixReadOnly = "fromMatrix"
 
 @throws(JsExn) @scope("DOMMatrix")
-external fromFloat32Array: array<float> => DOM.domMatrixReadOnly = "fromFloat32Array"
+external fromFloat32Array: Float32Array.t => DOM.domMatrixReadOnly = "fromFloat32Array"
 
 @throws(JsExn) @scope("DOMMatrix")
 external fromFloat64Array: Float64Array.t => DOM.domMatrixReadOnly = "fromFloat64Array"
@@ -123,7 +123,7 @@ external transformPoint: (DOM.domMatrix, ~point: DOM.domPointInit=?) => DOM.domP
   "transformPoint"
 
 @send
-external toFloat32Array: DOM.domMatrix => array<float> = "toFloat32Array"
+external toFloat32Array: DOM.domMatrix => Float32Array.t = "toFloat32Array"
 
 @send
 external toFloat64Array: DOM.domMatrix => Float64Array.t = "toFloat64Array"
@@ -135,7 +135,7 @@ external toJSON: DOM.domMatrix => Dict.t<string> = "toJSON"
 external fromMatrixD: (~other: DOM.domMatrixInit=?) => DOM.domMatrix = "fromMatrix"
 
 @throws(JsExn) @scope("DOMMatrix")
-external fromFloat32ArrayD: array<float> => DOM.domMatrix = "fromFloat32Array"
+external fromFloat32ArrayD: Float32Array.t => DOM.domMatrix = "fromFloat32Array"
 
 @throws(JsExn) @scope("DOMMatrix")
 external fromFloat64ArrayD: Float64Array.t => DOM.domMatrix = "fromFloat64Array"

@@ -41,6 +41,7 @@ let response = await self->Worker.fetch(myRequest)
 
 [Read more on MDN](https://developer.mozilla.org/en-US/docs/Web/API/WorkerGlobalScope/fetch)
 */
+  @send
   external fetchWithRequest: (T.t, Request.t, ~init: Request.requestInit=?) => promise<Response.t> =
     "fetch"
 }
