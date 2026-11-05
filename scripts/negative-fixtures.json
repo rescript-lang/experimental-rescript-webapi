@@ -1,0 +1,8 @@
+[
+  {
+    "name": "expected compiler diagnostic matching",
+    "fixture": "scripts/fixtures/negative/DiagnosticMatching.res",
+    "features": null,
+    "expectedDiagnostic": "This has type: string"
+  }
+]
