@@ -45,6 +45,9 @@ export default defineConfig({
           slug: "api-surface",
         },
         {
+          slug: "font-attribution",
+        },
+        {
           label: "Examples",
           link: "examples",
         },
@@ -75,7 +78,7 @@ export default defineConfig({
           },
         },
       ],
-      customCss: ["./docs/styles/fonts.css", "./docs/styles/theme.css"],
+      customCss: ["./docs/styles/theme.css"],
       expressiveCode: {
         shiki: {
           langs: [rescriptTM],
