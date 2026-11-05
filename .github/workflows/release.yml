@@ -5,7 +5,7 @@ on:
   workflow_dispatch:
     inputs:
       dry_run:
-        description: Run npm publish without publishing the package
+        description: Validate and dry-run without publishing
         required: true
         default: true
         type: boolean
@@ -14,11 +14,8 @@ permissions:
   contents: read
 
 jobs:
-  publish:
+  validate:
     runs-on: ubuntu-latest
-    permissions:
-      contents: read
-      id-token: write
 
     steps:
       - name: Checkout repository
@@ -46,6 +43,12 @@ jobs:
       - name: Check public feature builds
         run: npm run check:features
 
+      - name: Verify packed consumers
+        run: npm run check:consumer
+
+      - name: Run negative compiler consumers
+        run: npm run test:negative
+
       - name: Run tests
         run: npm test
 
@@ -57,9 +60,6 @@ jobs:
 
       - name: Build documentation
         run: npm run build:docs
-
-      - name: Run negative compiler consumers
-        run: npm run test:negative
 
       - name: Validate explicit alpha version and unpublished state
         run: npm run check:release
@@ -75,8 +75,7 @@ jobs:
       - name: Verify packed consumers and tarball contents
         run: npm run check:consumer -- "${{ steps.package.outputs.artifact }}"
 
-      - name: Dry-run npm publish
-        if: github.event_name == 'pull_request' || inputs.dry_run
+      - name: Dry-run publish the validated artifact
         run: npm publish "${{ steps.package.outputs.artifact }}" --access public --tag alpha --dry-run
 
       - name: Reject real publication from non-main branches
@@ -85,10 +84,83 @@ jobs:
           echo "Real alpha publication is permitted only from main."
           exit 1
 
-      - name: Verify publication guard
+      - name: Upload validated release artifact
         if: github.event_name == 'workflow_dispatch' && github.ref == 'refs/heads/main' && !inputs.dry_run
+        uses: actions/upload-artifact@v4
+        with:
+          name: alpha-release-artifact
+          path: ${{ steps.package.outputs.artifact }}
+          if-no-files-found: error
+          retention-days: 1
+
+  publish:
+    needs: validate
+    if: github.event_name == 'workflow_dispatch' && github.ref == 'refs/heads/main' && !inputs.dry_run
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      id-token: write
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v7
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v7
+        with:
+          node-version: "26"
+          registry-url: https://registry.npmjs.org
+          package-manager-cache: false
+
+      - name: Setup npm
+        run: npm install --global npm@11.5.1
+
+      - name: Download validated release artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: alpha-release-artifact
+          path: .release
+
+      - name: Verify downloaded artifact metadata
+        run: |
+          artifact=".release/rescript-webapi-$(node -p 'require("./package.json").version').tgz"
+          test -f "$artifact"
+          node --input-type=module <<'NODE'
+          import { execFileSync } from "node:child_process";
+          import { readFileSync } from "node:fs";
+          const { name, version, publishConfig } = JSON.parse(readFileSync("package.json", "utf8"));
+          const artifact = `.release/rescript-webapi-${version}.tgz`;
+          const packed = JSON.parse(execFileSync("tar", ["-xOf", artifact, "package/package.json"], { encoding: "utf8" }));
+          if (packed.name !== name || packed.version !== version || !/^1\.0\.0-alpha\.[1-9]\d*$/.test(version)) {
+            throw new Error("Downloaded artifact does not match the numbered alpha package metadata.");
+          }
+          if (publishConfig.access !== "public" || publishConfig.provenance !== true) {
+            throw new Error("Downloaded artifact is missing public/provenance publishing metadata.");
+          }
+          const publishLifecycleScripts = ["prepare", "prepack", "prepublishOnly", "publish", "postpublish"];
+          if (publishLifecycleScripts.some((script) => packed.scripts?.[script] !== undefined)) {
+            throw new Error("Downloaded artifact contains a publish lifecycle script.");
+          }
+          console.log(`Verified ${name}@${version} artifact before publishing with the alpha tag.`);
+          NODE
+
+      - name: Verify publication guard
         run: npm run check:release -- --publish
 
       - name: Publish alpha artifact
-        if: github.event_name == 'workflow_dispatch' && github.ref == 'refs/heads/main' && !inputs.dry_run
-        run: npm publish "${{ steps.package.outputs.artifact }}" --access public --tag alpha --provenance
+        run: npm publish ".release/rescript-webapi-$(node -p 'require("./package.json").version').tgz" --access public --tag alpha --provenance
+
+      - name: Verify alpha dist-tag
+        run: |
+          node <<'NODE'
+          const { execFileSync } = require("node:child_process");
+          const { name, version } = require("./package.json");
+          const tags = JSON.parse(execFileSync("npm", ["view", name, "dist-tags", "--json"], { encoding: "utf8" }));
+          if (tags.alpha !== version) {
+            throw new Error(`Expected alpha dist-tag ${version}, received ${tags.alpha ?? "missing"}.`);
+          }
+          if (tags.latest === version) {
+            throw new Error(`Alpha publication unexpectedly advanced latest to ${version}.`);
+          }
+          console.log(`Verified ${name}@${version} is tagged alpha and not latest.`);
+          NODE
