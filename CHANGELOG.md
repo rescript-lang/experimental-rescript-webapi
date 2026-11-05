@@ -25,6 +25,12 @@ versioning and publication.
   `verify` returns `bool`, and `deriveKey` returns `WebAPI.SubtleCrypto.cryptoKey`. Key and
   algorithm support types are exposed through `WebAPI.SubtleCrypto`, not the internal
   `WebCryptoTypes` module.
+- Generic `SubtleCrypto.generateKey` and `generateKey2` now return `unknown` because the result
+  depends on the algorithm. Use `generateKeySymmetric` for HMAC keys
+  (`SubtleCrypto.cryptoKey`) or `generateEcdsaKeyPair` for ECDSA pairs
+  (`SubtleCrypto.cryptoKeyPair`). Generic `exportKey` also returns `unknown`; use
+  `exportKeyBinary` for `Raw`, `Pkcs8`, or `Spki` formats (`ArrayBuffer.t`), and
+  `exportKeyJwk` for `Jwk` format (`JSON.t`).
   DOMMatrix float32-array conversions use `Float32Array.t`.
 - `DOMTree.element` no longer exposes a generic `className`. Specific HTML interfaces retain a
   string `className`; `SVGElement.t.className` is `SVGElement.svgAnimatedString` with
