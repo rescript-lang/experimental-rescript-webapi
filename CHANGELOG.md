@@ -37,8 +37,8 @@ versioning and publication.
   `baseVal` and `animVal`.
 - `CustomElementRegistry.define` takes a `DOM.customElementConstructor`; it does not take an
   element instance.
-- The `NotificationTypes.notification` type no longer contains a static permission field.
-  Read static permission through `WebAPI.Notification.permission`.
+- `WebAPI.Notification.t` no longer contains a static permission field. Read that value through
+  `WebAPI.Notification.permission`.
 
 For the intended installation, compiler range, runtime/browser checks, and known limitations,
 see the [project status](https://rescript-lang.github.io/experimental-rescript-webapi/project-status/)
