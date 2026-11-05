@@ -24,6 +24,12 @@
     "expectedDiagnostic": "This has type:"
   },
   {
+    "name": "resize observer rejects nested callbacks",
+    "fixture": "scripts/fixtures/negative/ResizeObserverRejectsCurriedCallback.res",
+    "features": ["WebAPI.Observers"],
+    "expectedDiagnostic": "This function is expected"
+  },
+  {
     "name": "symmetric key generation fixes the algorithm",
     "fixture": "scripts/fixtures/negative/GenerateSymmetricRejectsAlgorithm.res",
     "features": ["WebAPI.Crypto"],

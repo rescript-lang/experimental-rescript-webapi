@@ -1,6 +1,9 @@
 @scope("Object")
 external isSame: ('value, 'value) => bool = "is"
 
+let isBytesABC = _bytes =>
+  %raw(`_bytes instanceof Uint8Array && _bytes.length === 3 && _bytes[0] === 65 && _bytes[2] === 67`)
+
 let okResponse = Response.fromString("ok", ~init={status: 200})
 switch okResponse->SafeFetch.checkOk {
 | Ok(response) => assert(isSame(response, okResponse))
@@ -196,11 +199,18 @@ let blobResult: result<
 > = await Response.fromString("blob")->SafeFetch.blob
 assert(blobResult->Result.isOk)
 
+let bytesResponse = Response.fromString("ABC")
 let bytesResult: result<
   SafeFetch.response<Uint8Array.t>,
   [> SafeFetch.bodyError],
-> = await Response.fromString("bytes")->SafeFetch.bytes
-assert(bytesResult->Result.isOk)
+> = await bytesResponse->SafeFetch.bytes
+switch bytesResult {
+| Ok({response, body}) => {
+    assert(isSame(response, bytesResponse))
+    assert(isBytesABC(body))
+  }
+| Error(_) => assert(false)
+}
 
 let formDataResponse = Response.fromString(
   "fruit=peach",

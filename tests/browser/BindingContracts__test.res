@@ -100,6 +100,42 @@ appendChild(svg, circle)
 let broadSvgResult = svg->SVGElement.querySelector("circle")
 assert(%raw(`broadSvgResult !== null && typeof broadSvgResult.className === "object" && broadSvgResult.className.baseVal === ""`))
 
+let audioContext = OfflineAudioContext.fromChannelCountLengthAndSampleRate(
+  ~numberOfChannels=1,
+  ~length=128,
+  ~sampleRate=44100.,
+)
+let audioBuffer =
+  audioContext->OfflineAudioContext.createBuffer(
+    ~numberOfChannels=1,
+    ~length=128,
+    ~sampleRate=44100.,
+  )
+let sourceChannel: Float32Array.t = %raw(`new Float32Array([0.5, -0.25])`)
+audioBuffer->AudioBuffer.copyToChannel(~source=sourceChannel, ~channelNumber=0)
+let channelData = audioBuffer->AudioBuffer.getChannelData(0)
+assert(%raw(`channelData instanceof Float32Array && channelData[0] === 0.5 && channelData[1] === -0.25`))
+
+let destination: Float32Array.t = %raw(`new Float32Array(2)`)
+audioBuffer->AudioBuffer.copyFromChannel(~destination, ~channelNumber=0)
+assert(%raw(`destination instanceof Float32Array && destination[0] === 0.5 && destination[1] === -0.25`))
+
+let analyser = audioContext->OfflineAudioContext.createAnalyser
+let analyserBytes: Uint8Array.t = %raw(`new Uint8Array(32)`)
+analyser->AnalyserNode.getByteTimeDomainData(analyserBytes)
+assert(%raw(`analyserBytes instanceof Uint8Array && analyserBytes.length === 32 && analyserBytes[0] === 128`))
+
+let filter = audioContext->OfflineAudioContext.createBiquadFilter
+let frequencies: Float32Array.t = %raw(`new Float32Array([440, 880])`)
+let magnitudes: Float32Array.t = %raw(`new Float32Array(2)`)
+let phases: Float32Array.t = %raw(`new Float32Array(2)`)
+filter->BiquadFilterNode.getFrequencyResponse(
+  ~frequencyHz=frequencies,
+  ~magResponse=magnitudes,
+  ~phaseResponse=phases,
+)
+assert(%raw(`magnitudes instanceof Float32Array && phases instanceof Float32Array && magnitudes.length === 2 && phases.length === 2`))
+
 let deleteRequest = IDBFactory.deleteDatabase(indexedDB, "binding-contracts-regression")
 await withResolver(resolve =>
   onSuccess(deleteRequest, () => {

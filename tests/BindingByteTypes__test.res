@@ -13,4 +13,10 @@ let _analyserByte: (
 ) => unit = AnalyserNode.getByteTimeDomainData
 let _audioBuffer: (WebAudioTypes.audioBuffer, int) => Float32Array.t = AudioBuffer.getChannelData
 
-let _sign: SubtleCrypto.keyUsage = WebCryptoTypes.Sign
+let _sign: SubtleCrypto.keyUsage = SubtleCrypto.signUsage
+let _sendArrayBuffer = WebSocket.sendArrayBuffer
+let _sendBlob = WebSocket.sendBlob
+let _sendString = WebSocket.sendString
+let _workerRequestFetch = Worker.fetchWithRequest
+let _sharedWorkerRequestFetch = SharedWorkerScope.fetchWithRequest
+let _serviceWorkerRequestFetch = ServiceWorkerScope.fetchWithRequest
