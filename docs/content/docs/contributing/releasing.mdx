@@ -42,6 +42,13 @@ results and the package archive checks. Only an authorized maintainer should dis
 publication from `main` with `dry_run: false`; alpha publication uses the `alpha` dist-tag and
 must not advance `latest`.
 
+For a local publish dry-run, use the exact validated archive produced by the release workflow
+(do not repack a different candidate):
+
+```shell
+npm publish ./path/to/validated.tgz --access public --tag alpha --dry-run
+```
+
 After a real publish, verify the registry dist-tags:
 
 ```shell
@@ -53,10 +60,12 @@ publication, maintainers must configure and verify npm trusted publishing for th
 and workflow in npm's publishing settings. The expected trusted-publisher tuple is:
 
 - Package: `@rescript/webapi`
-- Repository: `rescript-lang/experimental-rescript-webapi`
-- Workflow: `.github/workflows/release.yml`
+- Owner: `rescript-lang`
+- Repository: `experimental-rescript-webapi`
+- Workflow filename: `release.yml`
 - GitHub environment: none
 
-In npm's package settings, **Trusted publishing** should show that exact repository and workflow
-with no environment configured; provenance should be enabled. These external npm account settings
-have not been verified from the repository. The workflow cannot confirm them by itself.
+In npm's package settings, **Trusted publishing** should show those exact owner, repository, and
+workflow filename fields, no GitHub environment, and allow direct `npm publish` actions.
+Provenance should be enabled. These external npm account settings have not been verified from the
+repository. The workflow cannot confirm them by itself.
