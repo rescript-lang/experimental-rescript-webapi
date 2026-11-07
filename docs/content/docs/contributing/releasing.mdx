@@ -41,9 +41,10 @@ change; it rejects an already-published version and checks the expected alpha me
 
 The Release workflow's unprivileged `validate` job checks and packs the candidate once. It runs
 `npm run check:consumer` and a publish dry-run against that exact `.tgz`; the PR and a manual
-`workflow_dispatch` with `dry_run: true` use this validation path. The workflow does not expose
-that runner-local archive for a later local download. If reproducing the artifact checks locally,
-pack once and pass the same path to both commands:
+`workflow_dispatch` with `dry_run: true` use this validation path. The archive is not exposed for
+a later local download on those paths; a real main-only publication transfers the same artifact
+internally from `validate` to `publish`. If reproducing the artifact checks locally, pack once
+and pass the same path to both commands:
 
 ```shell
 mkdir -p .release
