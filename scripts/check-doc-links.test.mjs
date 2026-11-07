@@ -243,6 +243,21 @@ test("decodes case-sensitive named HTML character references", () => {
   ]);
 });
 
+test("decodes full character references without changing ambiguous attribute references", () => {
+  const pages = new Map([
+    [
+      "index.html",
+      '<a href="/docs/guide/#caf%C3%B6x">named</a><a href="/docs/guide/#caf%C3%A9x">numeric</a><a href="/docs/guide/#caf&oumlX">ambiguous alphanumeric</a><a href="/docs/guide/#caf&ouml=">ambiguous equals</a>',
+    ],
+    [
+      "guide/index.html",
+      '<p id="caf&ouml;x"></p><p id="caf&#233x"></p><p id="caf&oumlX"></p><p id="caf&ouml="></p>',
+    ],
+  ]);
+
+  assert.deepEqual(checkDocumentLinks(pages, "/docs/"), []);
+});
+
 test("replaces invalid UTF-8 bytes without losing adjacent decoded fragment bytes", () => {
   const pages = new Map([
     ["index.html", '<a href="/docs/guide/#caf%C3%A9%FF%">replacement</a>'],
