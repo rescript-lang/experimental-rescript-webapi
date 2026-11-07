@@ -45,10 +45,13 @@ let onSuccess = (_request, _callback) =>
 let releaseLock = () => %raw(`globalThis.__releaseBindingLock()`)
 
 let isUint8ArrayWithABC = _bytes =>
-  %raw(`_bytes instanceof Uint8Array && _bytes.length === 3 && _bytes[0] === 65 && _bytes[2] === 67`)
+  %raw(`_bytes instanceof Uint8Array && _bytes.length === 3 && _bytes[0] === 65 && _bytes[1] === 66 && _bytes[2] === 67`)
 
 let isNonIdentityFloat32Matrix = _values =>
   %raw(`_values instanceof Float32Array && _values.length === 16 && _values[0] === 2 && _values[5] === 3 && _values[12] === 4 && _values[13] === 5 && _values[15] === 1`)
+
+let wrongMiddleBytes: Uint8Array.t = %raw(`new Uint8Array([65, 0, 67])`)
+assert(!isUint8ArrayWithABC(wrongMiddleBytes))
 
 let bytes = await Response.fromString("ABC")->Response.bytes
 assert(isUint8ArrayWithABC(bytes))
