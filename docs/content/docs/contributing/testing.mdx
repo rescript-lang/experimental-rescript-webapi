@@ -52,17 +52,6 @@ Browser fixtures with asynchronous behavior must await all assertions and callba
 the ReScript module finishes evaluating; the browser runner awaits module evaluation and treats
 rejections and uncaught page errors as failures.
 
-The local browser runner starts its own server on port `4173` by default and never reuses an existing
-server. If another worktree or local service already uses that port, choose a free port with
-`WEBAPI_TEST_PORT`; the same value configures both the test server and browser base URL:
-
-```shell
-WEBAPI_TEST_PORT=4192 npm run test:browser
-```
-
-Invalid port values fail before the runner starts, and an occupied port fails instead of attaching
-to potentially stale generated files from another checkout.
-
 Put expected-failure consumer sources under `scripts/fixtures/negative/`, outside the recursively
 compiled `tests/` tree. Register each in `scripts/negative-fixtures.json` with its feature set and a
 distinctive compiler diagnostic substring. The negative command must observe both compilation failure
