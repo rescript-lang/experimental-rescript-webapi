@@ -33,15 +33,16 @@ implementation modules and internal type-holder modules are not part of that pub
 Bindings are maintained and corrected by hand as well as generated; the generator is not a
 reproducible source of truth for every checked-in binding.
 
-Some bindings still carry private-record TODOs; a blanket private-record conversion is deferred
+Approximately 80 bindings still carry private-record TODOs; a blanket conversion is deferred
 because the current compiler reports mutation warning 111. Generator reproducibility is also
 follow-up work, not an alpha release gate.
 
-CI uses Node 26 for ReScript compilation and Node runtime fixtures. Its Chromium suite currently
-executes a compiled URL fixture; this is a smoke check, not broad browser-runtime coverage of the
-bindings. There is no Firefox, WebKit, or browser-version matrix. API availability,
-secure-context requirements, permissions, and user activation still depend on the browser and
-execution context.
+CI uses Node 26 for ReScript compilation and Node runtime fixtures. Its Playwright suite runs
+compiled Chromium regressions for the confirmed alpha contracts, including typed byte/audio
+buffers, DOM constructors and narrowing, nullable Canvas/Locks results, IndexedDB deletion,
+WebSocket receiver behavior, and worker Fetch. These targeted checks do not cover every binding.
+There is no Firefox, WebKit, or browser-version matrix. API availability, secure-context
+requirements, permissions, and user activation still depend on the browser and execution context.
 
 ## Historical backlog
 

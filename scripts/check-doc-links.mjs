@@ -1,6 +1,7 @@
 import { readFileSync, readdirSync } from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
+import { docsBase, docsSite } from "../docs/siteConfig.js";
 
 const scriptPath = fileURLToPath(import.meta.url);
 const repoRoot = path.resolve(path.dirname(scriptPath), "..");
@@ -22,7 +23,14 @@ const decodeHTML = (value) =>
       : "\ufffd";
   });
 
-const isExternal = (url) => /^(?:[a-z][a-z\d+.-]*:|\/\/)/i.test(url);
+const isExternal = (url, siteOrigin) => {
+  if (!/^(?:[a-z][a-z\d+.-]*:|\/\/)/i.test(url)) return false;
+  try {
+    return new URL(url, siteOrigin).origin !== siteOrigin;
+  } catch {
+    return true;
+  }
+};
 
 const parseAttributes = (text) => {
   const attributes = new Map();
@@ -101,16 +109,39 @@ const parseElements = (html) => {
   return elements;
 };
 
+const sourceSetReferencesFrom = (sourceSet) => {
+  const references = [];
+  let index = 0;
+  while (index < sourceSet.length) {
+    while (sourceSet[index] === "," || /\s/.test(sourceSet[index] ?? "")) index += 1;
+    if (index >= sourceSet.length) break;
+
+    const isDataURL = sourceSet.slice(index, index + 5).toLowerCase() === "data:";
+    let url = "";
+    while (
+      index < sourceSet.length &&
+      !/\s/.test(sourceSet[index] ?? "") &&
+      (isDataURL || sourceSet[index] !== ",")
+    ) {
+      url += sourceSet[index] ?? "";
+      index += 1;
+    }
+    if (url !== "") references.push(url);
+    while (index < sourceSet.length && sourceSet[index] !== ",") index += 1;
+    if (sourceSet[index] === ",") index += 1;
+  }
+  return references;
+};
+
 const attributesFrom = (elements) =>
-  elements.flatMap(({ attributes }) => {
+  elements.flatMap(({ name, attributes }) => {
+    // Canonical URLs describe a deployment's preferred host/path, not navigation or assets.
+    if (name === "link" && attributes.get("rel")?.split(/\s+/).includes("canonical")) return [];
     const directReferences = ["href", "src", "poster", "action", "data", "xlink:href"]
       .map((name) => attributes.get(name))
       .filter((value) => value !== undefined);
     const sourceSet = attributes.get("srcset") ?? "";
-    const sourceSetReferences = sourceSet
-      .split(",")
-      .map((candidate) => candidate.trim().split(/\s+/, 1)[0])
-      .filter(Boolean);
+    const sourceSetReferences = sourceSetReferencesFrom(sourceSet);
     const styleReferences = [
       ...cssURLsFrom(attributes.get("style") ?? ""),
       ...cssURLsFrom(attributes.get("style-text") ?? ""),
@@ -197,7 +228,10 @@ const readCSSURL = (css, start) => {
   let value = "";
   let index = contentStart;
   while (index < css.length && css[index] !== ")") {
-    if (css[index] === "\\") {
+    if (css.startsWith("/*", index)) {
+      const commentEnd = css.indexOf("*/", index + 2);
+      index = commentEnd === -1 ? css.length : commentEnd + 2;
+    } else if (css[index] === "\\") {
       const escaped = readCSSEscape(css, index);
       value += escaped.value;
       index = escaped.nextIndex;
@@ -237,12 +271,9 @@ const cssURLsFrom = (css) => {
 
     if (/[a-z_-]/i.test(character) || character === "\\") {
       const identifier = readCSSIdentifier(css, index);
-      if (
-        identifier.value.toLowerCase() === "url" &&
-        css[identifier.nextIndex] === "("
-      ) {
+      if (identifier.value.toLowerCase() === "url" && css[identifier.nextIndex] === "(") {
         const parsed = readCSSURL(css, identifier.nextIndex + 1);
-        if (parsed !== null && !parsed.value.startsWith("var(")) {
+        if (parsed !== null && !parsed.value.toLowerCase().startsWith("var(")) {
           references.push(parsed.value);
           index = parsed.nextIndex;
           continue;
@@ -304,7 +335,7 @@ const resolveTarget = (source, reference, base) => {
   }
 };
 
-export const checkDocumentLinks = (documents, base) => {
+export const checkDocumentLinks = (documents, base, siteOrigin = "https://docs.invalid") => {
   const errors = [];
   const fragmentCache = new Map();
   if (![...documents.keys()].some((source) => source.endsWith(".html"))) {
@@ -317,7 +348,7 @@ export const checkDocumentLinks = (documents, base) => {
         ? cssURLsFrom(html)
         : [];
     for (const reference of references) {
-      if (reference === "" || isExternal(reference)) continue;
+      if (reference === "" || isExternal(reference, siteOrigin)) continue;
       const target = resolveTarget(source, reference, base);
       if (target._tag === "Failure") {
         errors.push(`${source}: ${reference}: ${target.reason}`);
@@ -333,7 +364,7 @@ export const checkDocumentLinks = (documents, base) => {
         errors.push(`${source}: ${reference}: missing ${target.file}`);
         continue;
       }
-      if (target.fragment && routeFile.endsWith(".html")) {
+      if (target.fragment && /\.(?:html|svg)$/i.test(routeFile)) {
         const targetFragments = fragmentCache.get(routeFile) ?? fragmentsFrom(targetHTML);
         fragmentCache.set(routeFile, targetFragments);
         if (targetFragments.has(target.fragment)) continue;
@@ -352,19 +383,36 @@ const filesIn = (directory, relative = "") =>
     return entry.isDirectory() ? filesIn(directory, entryPath) : [entryPath];
   });
 
+export const requiredDocPages = [
+  "index.html",
+  "apidocs/index.html",
+  "examples/index.html",
+  "font-attribution/index.html",
+];
+
+export const missingRequiredDocPages = (documents) =>
+  requiredDocPages.filter((page) => !documents.has(page));
+
 if (process.argv[1] !== undefined && path.resolve(process.argv[1]) === scriptPath) {
   const outputDirectory = path.resolve(process.argv[2] ?? "dist");
-  const base = process.argv[3] ?? "/experimental-rescript-webapi/";
+  const siteURL = new URL(docsBase, docsSite);
+  const base = process.argv[3] ?? siteURL.pathname;
+  const siteOrigin = process.argv[4] ?? new URL(docsSite).origin;
   const documents = new Map(
     filesIn(outputDirectory).map((file) => [
       file,
       readFileSync(path.join(outputDirectory, file), "utf8"),
     ]),
   );
-  const errors = checkDocumentLinks(documents, base);
+  const missingPages = missingRequiredDocPages(documents).map(
+    (page) => `Missing required docs page ${page}.`,
+  );
+  const errors = [...missingPages, ...checkDocumentLinks(documents, base, siteOrigin)];
   if (errors.length > 0) {
     console.error(errors.join("\n"));
     process.exit(1);
   }
-  console.log(`Validated local links, assets, and fragments in ${documents.size} built files.`);
+  console.log(
+    `Validated local links, assets, and fragments in ${documents.size} built files. External and canonical URLs were not checked.`,
+  );
 }
