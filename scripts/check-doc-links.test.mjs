@@ -1,7 +1,19 @@
 import assert from "node:assert/strict";
 import test from "node:test";
+import { spawnSync } from "node:child_process";
+import { mkdirSync, mkdtempSync, rmSync, writeFileSync } from "node:fs";
+import os from "node:os";
+import path from "node:path";
+import { fileURLToPath } from "node:url";
 
-import { checkDocumentLinks, missingRequiredDocPages } from "./check-doc-links.mjs";
+import {
+  checkDocumentLinks,
+  emptyRequiredDocPages,
+  missingRequiredDocPages,
+  requiredDocPages,
+} from "./check-doc-links.mjs";
+
+const checkerPath = fileURLToPath(new URL("./check-doc-links.mjs", import.meta.url));
 
 test("validates page, asset, and fragment links under a deployment base", () => {
   const pages = new Map([
@@ -210,4 +222,49 @@ test("reports missing assets from actual CSS url() tokens", () => {
   assert.deepEqual(checkDocumentLinks(pages, "/docs-site/"), [
     "site.css: /docs-site/missing.svg: missing missing.svg",
   ]);
+});
+
+test("reports missing assets from escaped CSS @import keywords", () => {
+  const pages = new Map([
+    ["index.html", '<link rel="stylesheet" href="/docs-site/site.css">'],
+    [
+      "site.css",
+      String.raw`/* @import "/docs-site/comment.css"; */ @\69mport "/docs-site/missing.css";`,
+    ],
+  ]);
+
+  assert.deepEqual(checkDocumentLinks(pages, "/docs-site/"), [
+    "site.css: /docs-site/missing.css: missing missing.css",
+  ]);
+});
+
+test("rejects zero-byte required pages in the built-site CLI", () => {
+  const outputDirectory = mkdtempSync(path.join(os.tmpdir(), "webapi-empty-docs-"));
+  try {
+    for (const page of requiredDocPages) {
+      const filePath = path.join(outputDirectory, page);
+      mkdirSync(path.dirname(filePath), { recursive: true });
+      writeFileSync(filePath, "");
+    }
+    const result = spawnSync(process.execPath, [checkerPath, outputDirectory, "/docs-site/"], {
+      encoding: "utf8",
+    });
+    assert.notEqual(result.status, 0);
+    assert.match(result.stderr, /Required docs page index\.html is empty\./);
+  } finally {
+    rmSync(outputDirectory, { recursive: true, force: true });
+  }
+});
+
+test("requires all intended route pages and nonempty content", () => {
+  const completeArtifact = new Map(requiredDocPages.map((page) => [page, "<html></html>"]));
+  assert.deepEqual(missingRequiredDocPages(completeArtifact), []);
+  assert.deepEqual(emptyRequiredDocPages(completeArtifact), []);
+
+  const missingAttribution = new Map(
+    requiredDocPages
+      .filter((page) => page !== "font-attribution/index.html")
+      .map((page) => [page, "<html></html>"]),
+  );
+  assert.deepEqual(missingRequiredDocPages(missingAttribution), ["font-attribution/index.html"]);
 });

@@ -259,17 +259,21 @@ const cssURLsFrom = (css) => {
       continue;
     }
 
-    if (css.slice(index, index + 7).toLowerCase() === "@import") {
-      const importValue = skipCSSWhitespaceAndComments(css, index + 7);
-      if (css[importValue] === '"' || css[importValue] === "'") {
-        const parsed = readCSSString(css, importValue);
-        references.push(parsed.value);
-        index = parsed.nextIndex;
+    if (character === "@") {
+      const keyword = readCSSIdentifier(css, index + 1);
+      if (keyword.value.toLowerCase() === "import") {
+        const importValue = skipCSSWhitespaceAndComments(css, keyword.nextIndex);
+        if (css[importValue] === '"' || css[importValue] === "'") {
+          const parsed = readCSSString(css, importValue);
+          references.push(parsed.value);
+          index = parsed.nextIndex;
+        } else {
+          index = importValue;
+        }
         continue;
       }
-    }
-
-    if (/[a-z_-]/i.test(character) || character === "\\") {
+      index = Math.max(keyword.nextIndex, index + 1);
+    } else if (/[a-z_-]/i.test(character) || character === "\\") {
       const identifier = readCSSIdentifier(css, index);
       if (identifier.value.toLowerCase() === "url" && css[identifier.nextIndex] === "(") {
         const parsed = readCSSURL(css, identifier.nextIndex + 1);
@@ -393,6 +397,11 @@ export const requiredDocPages = [
 export const missingRequiredDocPages = (documents) =>
   requiredDocPages.filter((page) => !documents.has(page));
 
+export const emptyRequiredDocPages = (documents) =>
+  requiredDocPages.filter(
+    (page) => documents.has(page) && (documents.get(page) ?? "").trim() === "",
+  );
+
 if (process.argv[1] !== undefined && path.resolve(process.argv[1]) === scriptPath) {
   const outputDirectory = path.resolve(process.argv[2] ?? "dist");
   const siteURL = new URL(docsBase, docsSite);
@@ -407,7 +416,14 @@ if (process.argv[1] !== undefined && path.resolve(process.argv[1]) === scriptPat
   const missingPages = missingRequiredDocPages(documents).map(
     (page) => `Missing required docs page ${page}.`,
   );
-  const errors = [...missingPages, ...checkDocumentLinks(documents, base, siteOrigin)];
+  const emptyPages = emptyRequiredDocPages(documents).map(
+    (page) => `Required docs page ${page} is empty.`,
+  );
+  const errors = [
+    ...missingPages,
+    ...emptyPages,
+    ...checkDocumentLinks(documents, base, siteOrigin),
+  ];
   if (errors.length > 0) {
     console.error(errors.join("\n"));
     process.exit(1);
