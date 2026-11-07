@@ -25,9 +25,10 @@ const decodeHTML = (value) =>
   });
 
 const isExternal = (url, siteOrigin) => {
-  if (!/^(?:[a-z][a-z\d+.-]*:|\/\/)/i.test(url)) return false;
+  const normalizedURL = url.trim();
+  if (!/^(?:[a-z][a-z\d+.-]*:|\/\/)/i.test(normalizedURL)) return false;
   try {
-    return new URL(url, siteOrigin).origin !== siteOrigin;
+    return new URL(normalizedURL, siteOrigin).origin !== siteOrigin;
   } catch {
     return true;
   }
@@ -135,7 +136,12 @@ const sourceSetReferencesFrom = (sourceSet) => {
 const attributesFrom = (elements) =>
   elements.flatMap(({ name, attributes }) => {
     // Canonical URLs describe a deployment's preferred host/path, not navigation or assets.
-    if (name === "link" && attributes.get("rel")?.split(/\s+/).includes("canonical")) return [];
+    if (
+      name === "link" &&
+      attributes.get("rel")?.toLowerCase().split(/\s+/).includes("canonical")
+    ) {
+      return [];
+    }
     const directReferences = ["href", "src", "poster", "action", "data", "xlink:href"]
       .map((name) => attributes.get(name))
       .filter((value) => value !== undefined);
@@ -215,8 +221,12 @@ const readCSSIdentifier = (css, start) => {
   return { value, nextIndex: index };
 };
 
+const isCSSNameCharacter = (character) =>
+  /[a-z\d_-]/i.test(character) || character === "\\" || character.charCodeAt(0) >= 0x80;
+
 const readCSSURL = (css, start) => {
-  const contentStart = skipCSSWhitespaceAndComments(css, start);
+  let contentStart = start;
+  while (/\s/.test(css[contentStart] ?? "")) contentStart += 1;
   const quote = css[contentStart];
   if (quote === '"' || quote === "'") {
     const parsed = readCSSString(css, contentStart);
@@ -227,10 +237,7 @@ const readCSSURL = (css, start) => {
   let value = "";
   let index = contentStart;
   while (index < css.length && css[index] !== ")") {
-    if (css.startsWith("/*", index)) {
-      const commentEnd = css.indexOf("*/", index + 2);
-      index = commentEnd === -1 ? css.length : commentEnd + 2;
-    } else if (css[index] === "\\") {
+    if (css[index] === "\\") {
       const escaped = readCSSEscape(css, index);
       value += escaped.value;
       index = escaped.nextIndex;
@@ -272,7 +279,10 @@ const cssURLsFrom = (css) => {
         continue;
       }
       index = Math.max(keyword.nextIndex, index + 1);
-    } else if (/[a-z_-]/i.test(character) || character === "\\") {
+    } else if (
+      (/[a-z_-]/i.test(character) || character === "\\" || character.charCodeAt(0) >= 0x80) &&
+      !isCSSNameCharacter(css[index - 1] ?? "")
+    ) {
       const identifier = readCSSIdentifier(css, index);
       if (identifier.value.toLowerCase() === "url" && css[identifier.nextIndex] === "(") {
         const parsed = readCSSURL(css, identifier.nextIndex + 1);

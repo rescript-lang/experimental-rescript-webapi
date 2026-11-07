@@ -26,6 +26,7 @@ The bindings are exposed under the `WebAPI` namespace with the same flat module 
 ```ReScript
 open WebAPI.DOM
 
+let document = WebAPI.DOM.window->WebAPI.Window.document
 let myElement: WebAPI.Element.t = document->WebAPI.Document.createElement("div")
 ```
 
@@ -50,6 +51,7 @@ In some cases, type conversion will be required. Subtypes can safely be cast to 
 ```ReScript
 open WebAPI.DOM
 
+let document = WebAPI.DOM.window->WebAPI.Window.document
 let element: WebAPI.Element.t = document->WebAPI.Document.createElement("div")
 let node: WebAPI.Node.t = element->WebAPI.Element.asNode
 ```

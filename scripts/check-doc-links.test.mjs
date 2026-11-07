@@ -80,7 +80,10 @@ test("does not strip an accidentally duplicated base path from relative URLs", (
 
 test("does not treat external links as local routes", () => {
   const pages = new Map([
-    ["index.html", '<a href="https://example.com/missing#target">external</a>'],
+    [
+      "index.html",
+      '<a href="https://example.com/missing#target">external</a><a href=" https://example.com/also-missing ">trimmed external</a>',
+    ],
   ]);
 
   assert.deepEqual(checkDocumentLinks(pages, "/docs-site/"), []);
@@ -99,7 +102,7 @@ test("does not treat canonical metadata as a navigational route", () => {
   const pages = new Map([
     [
       "index.html",
-      '<link rel="canonical" href="https://docs.invalid/docs-site/preferred/"><a href="/docs-site/guide/">guide</a>',
+      '<link rel="CANONICAL" href="https://docs.invalid/docs-site/preferred/"><a href="/docs-site/guide/">guide</a>',
     ],
     ["guide/index.html", "<p>Guide</p>"],
   ]);
@@ -139,6 +142,16 @@ test("preserves commas in srcset URLs and checks candidates after data URLs", ()
 
   assert.deepEqual(checkDocumentLinks(pages, "/docs-site/"), [
     "index.html: /docs-site/missing.svg: missing missing.svg",
+  ]);
+});
+
+test("checks srcset candidates after a comma-terminated data URL", () => {
+  const pages = new Map([
+    ["index.html", '<img srcset="data:image/svg+xml,%3Csvg%3E, /docs/missing.svg 2x">'],
+  ]);
+
+  assert.deepEqual(checkDocumentLinks(pages, "/docs/"), [
+    "index.html: /docs/missing.svg: missing missing.svg",
   ]);
 });
 
@@ -244,6 +257,21 @@ test("reports missing assets from actual CSS url() tokens", () => {
 
   assert.deepEqual(checkDocumentLinks(pages, "/docs-site/"), [
     "site.css: /docs-site/missing.svg: missing missing.svg",
+  ]);
+});
+
+test("preserves comment-like characters in unquoted CSS URLs and honors token boundaries", () => {
+  const pages = new Map([
+    ["index.html", '<link rel="stylesheet" href="/docs/site.css">'],
+    [
+      "site.css",
+      String.raw`.comment{background:url(/*old*/assets/icon.svg)}.unicode{background:éurl("/docs/missing.svg")}.dimension{background:1url("/docs/also-missing.svg")}`,
+    ],
+    ["assets/icon.svg", "<svg></svg>"],
+  ]);
+
+  assert.deepEqual(checkDocumentLinks(pages, "/docs/"), [
+    "site.css: /*old*/assets/icon.svg: link resolves outside base path /docs/",
   ]);
 });
 
