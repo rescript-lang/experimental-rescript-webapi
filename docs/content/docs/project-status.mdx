@@ -16,9 +16,11 @@ is tested; stable ReScript is not currently included in that range or required t
 alpha.
 
 The install example uses the `alpha` dist-tag intended for `1.0.0-alpha.1`. At the time of this
-candidate, npm's public `alpha` tag still resolves to `0.1.0-alpha-b1d58f9`; the candidate is
-validated from its packed tarball, but has not been published. After an authorized publication,
-the same `@alpha` install command will resolve to the new candidate.
+candidate, npm's public `alpha` tag still resolves to `0.1.0-alpha-b1d58f9` with the old
+`rescript: >=13` peer range, which excludes prerelease compilers. The `1.0.0-alpha.1` candidate is
+validated from its packed tarball but has not been published. Use the README's `@alpha` install
+command after an authorized publication moves that tag to the new candidate; a live registry
+install of the candidate has not been verified here.
 
 ## Contributions
 
@@ -43,6 +45,7 @@ buffers, DOM constructors and narrowing, nullable Canvas/Locks results, IndexedD
 WebSocket receiver behavior, and worker Fetch. These targeted checks do not cover every binding.
 There is no Firefox, WebKit, or browser-version matrix. API availability, secure-context
 requirements, permissions, and user activation still depend on the browser and execution context.
+See the [testing guide](../06-testing/) for the fixture categories and commands.
 
 ## Historical backlog
 

@@ -51,4 +51,5 @@ The namespace is flat under `WebAPI`; internal implementation modules are not pu
 
 More information can be found on https://rescript-lang.github.io/experimental-rescript-webapi/.
 See the [alpha release checklist](https://github.com/rescript-lang/experimental-rescript-webapi/issues/382)
-and [migration notes](CHANGELOG.md) for known limitations and breaking changes.
+and [migration notes](https://github.com/rescript-lang/experimental-rescript-webapi/blob/main/CHANGELOG.md)
+for known limitations and breaking changes.

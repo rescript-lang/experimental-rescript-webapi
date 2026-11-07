@@ -28,6 +28,10 @@ npm run check:release
 ```
 
 The browser suite runs Chromium only; it is not an exhaustive browser compatibility matrix.
+Run it sequentially on the configured local server port. The dedicated `WEBAPI_TEST_PORT` and
+matching base-URL override are pending integration from the browser-runner work in #399; do not
+use a port override until that implementation is present in the binding stack.
+
 The consumer check compiles the packed artifact in a fresh project. A successful source build
 alone is not evidence that package installation works.
 

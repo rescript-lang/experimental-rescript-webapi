@@ -18,7 +18,8 @@ versioning and publication.
 - `WebAPI.Request.bytes`, `WebAPI.Response.bytes`, `WebAPI.Blob.bytes`,
   `WebAPI.Blob.stream`, and `WebAPI.SafeFetch.bytes` expose
   native `Uint8Array.t` values or chunks instead of `array<int>`. Use the typed-array API
-  directly; the bytes are not copied into a ReScript integer array.
+  directly; the bytes are not copied into a ReScript integer array. `SafeFetch.bytes` keeps its
+  existing result and response wrapper; only the byte payload changes.
 - `ResizeObserver` callbacks now receive `(entries, observer)` as two arguments rather than a
   curried callback.
 - Web Audio analyser float buffers, `AudioBuffer` channel and copy APIs, and Biquad/IIR filter
@@ -28,8 +29,9 @@ versioning and publication.
 - `Element.closest` returns `Null.t<DOMTree.element>` and is no longer polymorphic. Narrow the
   result with the relevant public classifier when a more specific HTML interface is required.
 - WebCrypto signatures now reflect native results: `sign` and `digest` return `ArrayBuffer.t`,
-  `verify` returns `bool`, and `deriveKey` returns `WebAPI.SubtleCrypto.cryptoKey`. Key and
-  algorithm support types are available through `WebAPI.SubtleCrypto`.
+  `verify` returns `bool`, `deriveKey` returns `WebAPI.SubtleCrypto.cryptoKey`, and `deriveBits`
+  and `wrapKey` return `ArrayBuffer.t`. Key and algorithm support types are available through
+  `WebAPI.SubtleCrypto`.
 - Generic `SubtleCrypto.generateKey` and `generateKey2` now return `unknown` because the result
   depends on the algorithm. Use `generateKeySymmetric` for HMAC keys
   (`SubtleCrypto.cryptoKey`) or `generateEcdsaKeyPair` for ECDSA pairs
