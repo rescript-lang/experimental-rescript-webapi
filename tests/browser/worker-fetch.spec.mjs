@@ -27,7 +27,7 @@ const startWorkerHttpServer = () =>
 test("Worker Request fetch forwards its receiver, request, and initializer", async ({ page }) => {
   const server = await startWorkerHttpServer();
   try {
-    await page.goto("http://127.0.0.1:4173/tests/browser/index.html");
+    await page.goto("/tests/browser/index.html");
     const response = await page.evaluate(
       (port) =>
         new Promise((resolve, reject) => {

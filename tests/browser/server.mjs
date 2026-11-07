@@ -10,7 +10,7 @@ const contentTypes = new Map([
   [".mjs", "text/javascript"],
 ]);
 
-createServer(async (request, response) => {
+const server = createServer(async (request, response) => {
   const pathname = new URL(request.url ?? "/", "http://localhost").pathname;
   const file = path.resolve(root, `.${decodeURIComponent(pathname)}`);
   if (!file.startsWith(`${root}${path.sep}`)) {
@@ -26,4 +26,10 @@ createServer(async (request, response) => {
   } catch {
     response.writeHead(404).end();
   }
-}).listen(4173, "127.0.0.1");
+});
+
+const port = Number(process.env.WEBAPI_TEST_PORT ?? "4173");
+if (!Number.isInteger(port) || port < 1 || port > 65535) {
+  throw new Error("WEBAPI_TEST_PORT must be an integer from 1 to 65535.");
+}
+server.listen(port, "127.0.0.1");

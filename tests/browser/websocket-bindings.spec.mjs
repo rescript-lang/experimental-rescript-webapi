@@ -29,7 +29,7 @@ test("WebSocket binding sends text, ArrayBuffer, and Blob payloads through a nat
 }) => {
   const server = await startWebSocketServer();
   try {
-    await page.goto("http://127.0.0.1:4173/tests/browser/index.html");
+    await page.goto("/tests/browser/index.html");
     const received = await page.evaluate(async (port) => {
       const bindings = await import("/tests/browser/WebSocketBindings.js");
       return new Promise((resolve, reject) => {
