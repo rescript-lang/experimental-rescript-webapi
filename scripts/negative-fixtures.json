@@ -94,5 +94,35 @@
     "fixture": "scripts/fixtures/negative/RawIsNotJwkKeyFormat.res",
     "features": ["WebAPI.Crypto"],
     "expectedDiagnostic": "belongs to the variant type"
+  },
+  {
+    "name": "sign returns binary data, not JSON",
+    "fixture": "scripts/fixtures/negative/WebCryptoSignReturnsBinary.res",
+    "features": ["WebAPI.Crypto"],
+    "expectedDiagnostic": "This has type:"
+  },
+  {
+    "name": "digest returns binary data, not JSON",
+    "fixture": "scripts/fixtures/negative/WebCryptoDigestReturnsBinary.res",
+    "features": ["WebAPI.Crypto"],
+    "expectedDiagnostic": "This has type:"
+  },
+  {
+    "name": "verify returns boolean, not JSON",
+    "fixture": "scripts/fixtures/negative/WebCryptoVerifyReturnsBoolean.res",
+    "features": ["WebAPI.Crypto"],
+    "expectedDiagnostic": "This has type:"
+  },
+  {
+    "name": "generic generateKey result is algorithm-dependent",
+    "fixture": "scripts/fixtures/negative/WebCryptoGenerateKeyDoesNotReturnJSON.res",
+    "features": ["WebAPI.Crypto"],
+    "expectedDiagnostic": "This has type:"
+  },
+  {
+    "name": "generic exportKey result is format-dependent",
+    "fixture": "scripts/fixtures/negative/WebCryptoExportKeyFormatHasUnknownResult.res",
+    "features": ["WebAPI.Crypto"],
+    "expectedDiagnostic": "This has type:"
   }
 ]
