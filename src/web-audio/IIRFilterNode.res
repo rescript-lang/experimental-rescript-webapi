@@ -15,7 +15,7 @@ external make: (
 @throws(JsExn) @send
 external getFrequencyResponse: (
   WebAudioTypes.iirFilterNode,
-  ~frequencyHz: array<float>,
-  ~magResponse: array<float>,
-  ~phaseResponse: array<float>,
+  ~frequencyHz: Float32Array.t,
+  ~magResponse: Float32Array.t,
+  ~phaseResponse: Float32Array.t,
 ) => unit = "getFrequencyResponse"

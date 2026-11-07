@@ -56,19 +56,19 @@ external send: (t, DataView.t) => unit = "send"
 Transmits data using the WebSocket connection. data can be a string, a Blob, an ArrayBuffer, or an ArrayBufferView.
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/WebSocket/send)
 */
-@throws(JsExn)
+@throws(JsExn) @send
 external sendArrayBuffer: (t, ArrayBuffer.t) => unit = "send"
 
 /**
 Transmits data using the WebSocket connection. data can be a string, a Blob, an ArrayBuffer, or an ArrayBufferView.
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/WebSocket/send)
 */
-@throws(JsExn)
+@throws(JsExn) @send
 external sendBlob: (t, Blob.t) => unit = "send"
 
 /**
 Transmits data using the WebSocket connection. data can be a string, a Blob, an ArrayBuffer, or an ArrayBufferView.
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/WebSocket/send)
 */
-@throws(JsExn)
+@throws(JsExn) @send
 external sendString: (t, string) => unit = "send"

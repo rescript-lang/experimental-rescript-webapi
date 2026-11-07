@@ -199,6 +199,11 @@ const checkConsumers = async () => {
           features: ["WebAPI.SafeFetch"],
         },
         {
+          name: "Crypto",
+          fixture: "scripts/consumer-crypto.res",
+          features: ["WebAPI.Crypto"],
+        },
+        {
           name: "Fetch-only SafeFetch rejection",
           fixture: "scripts/consumer-safe-fetch-disabled.res",
           features: ["WebAPI.Fetch"],

@@ -95,11 +95,11 @@ Returns the body with the original response, or a `bodyError` when the native re
 let blob: Response.t => promise<result<response<Blob.t>, [> bodyError]>>
 
 /**
-Reads the response body as an array of bytes.
+Reads the response body as a native `Uint8Array.t`.
 
 Returns the body with the original response, or a `bodyError` when the native reader rejects.
 */
-let bytes: Response.t => promise<result<response<array<int>>, [> bodyError]>>
+let bytes: Response.t => promise<result<response<Uint8Array.t>, [> bodyError]>>
 
 /**
 Reads the response body as `FormData.t`.
