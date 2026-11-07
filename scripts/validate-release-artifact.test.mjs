@@ -11,6 +11,7 @@ const publishJob = workflow.slice(workflow.indexOf("\n  publish:"));
 const expected = {
   name: "@rescript/webapi",
   version: "1.0.0-alpha.1",
+  publishConfig: { access: "public", provenance: true },
 };
 
 const validArtifact = {
