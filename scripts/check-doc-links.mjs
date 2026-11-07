@@ -1,28 +1,11 @@
 import { readFileSync, readdirSync } from "node:fs";
+import { decodeHTMLAttribute } from "entities";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { docsBase, docsSite } from "../docs/siteConfig.js";
 
 const scriptPath = fileURLToPath(import.meta.url);
 const repoRoot = path.resolve(path.dirname(scriptPath), "..");
-
-const decodeHTML = (value) =>
-  value.replace(/&(#x[\da-f]+|#\d+|amp|quot|apos|lt|gt|nbsp|eacute);/gi, (entity, reference) => {
-    const normalized = reference.toLowerCase();
-    if (normalized === "amp") return "&";
-    if (normalized === "quot") return '"';
-    if (normalized === "apos" || normalized === "#39") return "'";
-    if (normalized === "lt") return "<";
-    if (normalized === "gt") return ">";
-    if (normalized === "nbsp") return "\u00a0";
-    if (normalized === "eacute") return "\u00e9";
-    const codePoint = normalized.startsWith("#x")
-      ? Number.parseInt(normalized.slice(2), 16)
-      : Number.parseInt(normalized.slice(1), 10);
-    return codePoint > 0 && codePoint <= 0x10ffff && !(codePoint >= 0xd800 && codePoint <= 0xdfff)
-      ? String.fromCodePoint(codePoint)
-      : "\ufffd";
-  });
 
 const isExternal = (url, siteOrigin) => {
   const normalizedURL = url.trim();
@@ -40,7 +23,7 @@ const parseAttributes = (text) => {
   for (const match of text.matchAll(pattern)) {
     attributes.set(
       (match[1] ?? "").toLowerCase(),
-      decodeHTML(match[2] ?? match[3] ?? match[4] ?? ""),
+      decodeHTMLAttribute(match[2] ?? match[3] ?? match[4] ?? ""),
     );
   }
   return attributes;
@@ -315,11 +298,10 @@ const normalizeBase = (base) => {
 
 const decodeFragment = (fragment) => {
   return fragment.replace(/(?:%[\da-f]{2})+/gi, (encodedBytes) => {
-    try {
-      return decodeURIComponent(encodedBytes);
-    } catch {
-      return encodedBytes;
-    }
+    const bytes = Uint8Array.from(encodedBytes.match(/[\da-f]{2}/gi) ?? [], (byte) =>
+      Number.parseInt(byte, 16),
+    );
+    return new TextDecoder().decode(bytes);
   });
 };
 

@@ -74,6 +74,27 @@ type t = Internal.real`,
   );
 });
 
+test("continues masking nested declarations after a closed string", () => {
+  assert.deepEqual(
+    parsePublicTypeAliases(
+      "PublicOwner",
+      `let text = "closed string"
+module Impl = {
+type hidden = Internal.secret
+}
+type t = Internal.real`,
+    ),
+    [
+      {
+        moduleName: "PublicOwner",
+        typeName: "t",
+        backingModule: "Internal",
+        backingType: "real",
+      },
+    ],
+  );
+});
+
 test("only links backing types with one public owner", () => {
   const targets = createPublicTypeTargets([
     {

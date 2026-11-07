@@ -188,7 +188,7 @@ test("reports malformed percent-encoding and rejects an empty build", () => {
   ]);
 
   assert.deepEqual(checkDocumentLinks(pages, "/docs-site/"), [
-    "index.html: #%E0%A4%A: missing fragment #%E0%A4%A in index.html",
+    "index.html: #%E0%A4%A: missing fragment #�%A in index.html",
     "index.html: bad%: invalid URL or percent-encoding (URI malformed)",
   ]);
   assert.deepEqual(checkDocumentLinks(new Map(), "/docs-site/"), [
@@ -222,6 +222,31 @@ test("decodes valid fragment bytes while preserving malformed percent and named 
   const pages = new Map([
     ["index.html", '<a href="/docs/guide/#caf%C3%A9%">accent</a>'],
     ["guide/index.html", '<p id="caf&eacute;%"></p>'],
+  ]);
+
+  assert.deepEqual(checkDocumentLinks(pages, "/docs/"), []);
+});
+
+test("decodes case-sensitive named HTML character references", () => {
+  const validPages = new Map([
+    ["index.html", '<a href="/docs/guide/#caf%C3%B6">umlaut</a>'],
+    ["guide/index.html", '<p id="caf&ouml;"></p>'],
+  ]);
+  const wrongCasePages = new Map([
+    ["index.html", '<a href="/docs/guide/#caf%C3%A9">accent</a>'],
+    ["guide/index.html", '<p id="caf&Eacute;"></p>'],
+  ]);
+
+  assert.deepEqual(checkDocumentLinks(validPages, "/docs/"), []);
+  assert.deepEqual(checkDocumentLinks(wrongCasePages, "/docs/"), [
+    "index.html: /docs/guide/#caf%C3%A9: missing fragment #café in guide/index.html",
+  ]);
+});
+
+test("replaces invalid UTF-8 bytes without losing adjacent decoded fragment bytes", () => {
+  const pages = new Map([
+    ["index.html", '<a href="/docs/guide/#caf%C3%A9%FF%">replacement</a>'],
+    ["guide/index.html", '<p id="café�%"></p>'],
   ]);
 
   assert.deepEqual(checkDocumentLinks(pages, "/docs/"), []);

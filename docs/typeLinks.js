@@ -30,7 +30,7 @@ const stripReScriptComments = (source) => {
       }
     } else if (source[index] === '"' || source[index] === "`") {
       quote = source[index] ?? "";
-      output.push(quote);
+      output.push(" ");
       index += 1;
     } else if (source.startsWith("//", index)) {
       while (index < source.length && source[index] !== "\n") index += 1;
