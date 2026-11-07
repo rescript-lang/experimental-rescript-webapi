@@ -1,77 +1,49 @@
 ---
 title: Module Type Structure
-description: Learn more about the module structure of @rescript/webapi.
+description: How public interface modules represent values and operations.
 slug: "03-module-type-structure"
 ---
 
-import { Aside, FileTree, Code } from "@astrojs/starlight/components";
+import { FileTree } from "@astrojs/starlight/components";
 
-Every interface in a Web API module can potentially contain methods. These methods are modeled in a separate module named after the interface.
-
-The primary reason for this separation is to handle method overloads.
-As explained in the [Design Philosophy](../design-philosophy) section, ReScript does not permit records to define the same properties more than once.
-Therefore, methods with overloads cannot be modeled within the same record type.
-
-## Bindings
-
-Another advantage of having a separate file is that these bindings can utilize all types defined in the API module.
-Under normal circumstances, the type module only contains `@send` bindings where the type is the first parameter.
+The public package is flat under `WebAPI`. Concrete interface modules commonly keep the
+interface's `t` type and its operations together in one source file. For example, the
+`HTMLButtonElement` binding lives in the HTML family directory:
 
 <FileTree>
 
-- DOMAPI
-  - HTMLButtonElement.res
+- src
+  - html
+    - HTMLButtonElement.res
 
 </FileTree>
 
+An interface value is passed as the first argument to its operation. Consumer code uses the
+public owner module:
+
 ```ReScript
-/**
-Returns whether a form will validate when it is submitted, without having to submit it.
-[Read more on MDN](
-  https://developer.mozilla.org/docs/Web/API/HTMLButtonElement/checkValidity)
-*/
-@send
-external checkValidity: htmlButtonElement => bool = "checkValidity"
+let button: WebAPI.HTMLButtonElement.t = getButton()
+let isValid = button->WebAPI.HTMLButtonElement.checkValidity
 ```
 
-## Inheritance
+The corresponding binding follows the same shape:
 
-When an interface inherits from another interface, the base interface methods can be [included](https://rescript-lang.org/syntax-lookup#include) into the inheriting interface.  
-All methods from [HTMLElement](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement#instance_methods) should also be available on [HTMLButtonElement](https://developer.mozilla.org/en-US/docs/Web/API/HTMLButtonElement#instance_methods).
-
-export const htmlElementModule = `
-open DOMAPI
-
-// A concrete type for \`T.t\` is passed later using the \`include\` keyword.
-module Impl = (T: { type t }) => {
-
-/\*_
-[Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/focus)
-_/
-@send
-external focus: (T.t, ~options: focusOptions=?) => unit = "focus"
-
+```ReScript
+type rec t = {
+  ...DOMTree.htmlElement,
+  disabled: bool,
 }
 
-include Impl({ type t = htmlElement })
-`;
-
-<Code code={htmlElementModule} title="DOMAPI/HTMLElement.res" lang="ReScript"></Code>
-
-export const buttonModule = `
-open DOMAPI
-
-// Include all the methods from HTMLElement
-include HTMLElement.Impl({ type t = htmlButtonElement })
-
-// Add additional methods specific to HTMLButtonElement:
-
-/\*_
-Returns whether a form will validate when it is submitted, without having to submit it.
-[Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLButtonElement/checkValidity)
-_/
 @send
-external checkValidity: htmlButtonElement => bool = "checkValidity"
-`;
+external checkValidity: t => bool = "checkValidity"
+```
 
-<Code code={buttonModule} title="DOMAPI/HTMLButtonElement.res" lang="ReScript"></Code>
+Some DOM bindings reuse inherited operations through existing `Impl` helpers, but those are
+implementation details, not additional consumer namespaces. Do not add `include` directives
+just to expose internal modules. Prefer a concrete public owner module and selectively expose
+only the aliases consumers need.
+
+Not every public module represents an interface value or exports `t`; some modules provide
+operations or auxiliary types only. Internal `*Types` modules are implementation details. See
+the [API module structure](../02-api-module-structure/) and
+[public API surface](../api-surface/) for the package's current module layout.

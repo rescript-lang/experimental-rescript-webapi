@@ -17,6 +17,10 @@ npm install @rescript/webapi@alpha
 npm install --save-dev rescript@13.0.0-alpha.5
 ```
 
+The `@alpha` command targets the published alpha dist-tag. The planned `1.0.0-alpha.1` candidate
+is not published yet; see [project status](https://rescript-lang.github.io/experimental-rescript-webapi/project-status/)
+for the current tag and note that candidate installation is verified from its packed tarball.
+
 Add a source directory and the package dependency to `rescript.json`:
 
 ```json
