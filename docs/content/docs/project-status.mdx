@@ -15,6 +15,11 @@ module compiles.
 is tested; stable ReScript is not currently included in that range or required to ship this
 alpha.
 
+The install example uses the `alpha` dist-tag intended for `1.0.0-alpha.1`. At the time of this
+candidate, npm's public `alpha` tag still resolves to `0.1.0-alpha-b1d58f9`; the candidate is
+validated from its packed tarball, but has not been published. After an authorized publication,
+the same `@alpha` install command will resolve to the new candidate.
+
 ## Contributions
 
 [Contributions](../01-getting-started) are welcome! Please [open an issue](https://github.com/rescript-lang/experimental-rescript-webapi/issues/new/choose) if you have a specific API you would like to see added.  
@@ -42,18 +47,30 @@ execution context.
 
 Several long-standing requests remain useful references but are not individually alpha release
 gates. [#236 constructor naming](https://github.com/rescript-lang/experimental-rescript-webapi/issues/236)
-and [#27 overload improvements](https://github.com/rescript-lang/experimental-rescript-webapi/issues/27)
-remain incremental API cleanup. Several named constructor families now use semantic names,
-including `FontFace`, `MediaStream`, `Path2D`, and `WebSocket`; the broader overload lists are
-not complete. [#237 module/type simplification](https://github.com/rescript-lang/experimental-rescript-webapi/issues/237)
-has completed groundwork and DOM/event/observer work, while fetch/file/canvas/URL/socket,
-capability access, media, and final integration items remain tracked there.
+remains open, although a maintainer comment says it may be ready to close. The listed constructor
+families now use semantic names in `FontFace`, `VideoFrame`, `MediaStream`, `Path2D`, `DOMMatrix`,
+`DOMMatrixReadOnly`, `WebSocket`, and `OfflineAudioContext`. `ReadableStream.fromUnderlyingSource`
+still combines an optional strategy rather than splitting it into a separately named variant.
+Do not treat the issue's old checklist or comment as a recorded closure.
+
+[#27 overload improvements](https://github.com/rescript-lang/experimental-rescript-webapi/issues/27)
+also remains open. Its long checklist predates the current module layout and overlaps constructor
+work in #236; numbered overloads such as `Path2D.roundRect2` and `roundRect3` still exist. This
+is incremental cleanup, not an alpha gate.
+
+[#237 module/type simplification](https://github.com/rescript-lang/experimental-rescript-webapi/issues/237)
+is still open, but its implementation slices #240, #241, #242, and #243 are closed (as are #238
+and #239). The current source has no root `src/*API.res` type-holder files or
+`Global.window`/`Global.navigator` references. The parent checklist has not been refreshed; the
+refactor appears complete in code, but its tracker remains open.
 
 [#23 API overview](https://github.com/rescript-lang/experimental-rescript-webapi/issues/23) is a
 stale point-in-time MDN coverage checklist; use the current public API documentation and source
 manifest instead. [#4 error modeling](https://github.com/rescript-lang/experimental-rescript-webapi/issues/4)
-and [#5 extension helpers](https://github.com/rescript-lang/experimental-rescript-webapi/issues/5)
-are open design proposals without a settled project-wide direction. None of these historical
+remains an open design discussion: comments disagree about whether DOMException should be modeled
+separately from `Error`, citing different TypeScript DOM declarations. [#5 extension helpers](https://github.com/rescript-lang/experimental-rescript-webapi/issues/5)
+also remains open; comments differ on whether typed helper APIs belong in owner modules or
+separate extension modules. Neither has a settled project-wide design. None of these historical
 issues is automatically closed or made a blocker by this status page.
 
 For the current release checklist and explicitly deferred work, see [#382](https://github.com/rescript-lang/experimental-rescript-webapi/issues/382).

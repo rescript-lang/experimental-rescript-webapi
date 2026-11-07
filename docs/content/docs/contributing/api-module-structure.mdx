@@ -25,8 +25,9 @@ are described in the [API surface guide](../api-surface/).
 
 ## Interface values and operations
 
-An interface's value type is exposed by its public owner module as `t`. Operations are
-functions in the corresponding public module, so a value can be piped into its operation:
+Concrete interface modules commonly expose their value type as `t`; helper or operation-only
+modules may not have a standalone value type. Operations live on their public owner module, so
+an interface value can be piped into an operation:
 
 ```ReScript
 let request = WebAPI.Request.fromURL("https://example.com")

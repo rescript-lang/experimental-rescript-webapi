@@ -30,25 +30,31 @@ The browser suite runs Chromium only; it is not an exhaustive browser compatibil
 The consumer check compiles the packed artifact in a fresh project. A successful source build
 alone is not evidence that package installation works.
 
-Update `package.json` and `package-lock.json` together to the next `1.0.0-alpha.N` version.
-Update this package's `CHANGELOG.md` with the user-visible changes and migration notes. Run
-`npm run check:release` again to check that the exact version is not already published, then
-create the matching Git tag `v1.0.0-alpha.N` from the validated release commit.
+The initial candidate is `1.0.0-alpha.1`, tagged `v1.0.0-alpha.1`. For each later alpha, update
+`package.json` and `package-lock.json` together to the next `1.0.0-alpha.N` version, add the
+user-visible changes and migration guidance to `CHANGELOG.md`, and create the matching Git tag
+`v1.0.0-alpha.N` from the validated release commit. Run `npm run check:release` after the version
+change; it rejects an already-published version and checks the expected alpha metadata.
 
 ## Validate and publish
 
-Use the Release workflow's `workflow_dispatch` with `dry_run: true` first. Review the workflow
-results and the package archive checks. Only an authorized maintainer should dispatch a real
-publication from `main` with `dry_run: false`; alpha publication uses the `alpha` dist-tag and
-must not advance `latest`.
-
-For a local publish dry-run, use the exact validated archive produced by the release workflow
-(do not repack a different candidate):
+The Release workflow's unprivileged `validate` job checks and packs the candidate once. It runs
+`npm run check:consumer` and a publish dry-run against that exact `.tgz`; the PR and a manual
+`workflow_dispatch` with `dry_run: true` use this validation path. The workflow does not expose
+that runner-local archive for a later local download. If reproducing the artifact checks locally,
+pack once and pass the same path to both commands:
 
 ```shell
-npm publish ./path/to/validated.tgz --access public --tag alpha --dry-run
+mkdir -p .release
+npm pack --json --pack-destination .release > .release/metadata.json
+artifact=".release/$(node -e 'process.stdout.write(JSON.parse(require("node:fs").readFileSync(".release/metadata.json", "utf8"))[0].filename)')"
+npm run check:consumer -- "$artifact"
+npm publish "$artifact" --access public --tag alpha --dry-run --ignore-scripts
 ```
 
+Only an authorized maintainer should start a real publication with `workflow_dispatch` from
+`main` and `dry_run: false`. The separate publish job is main-only; it verifies and publishes the
+validated archive with the `alpha` dist-tag and `--provenance`, and must not advance `latest`.
 After a real publish, verify the registry dist-tags:
 
 ```shell

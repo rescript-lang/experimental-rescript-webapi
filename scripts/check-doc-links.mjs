@@ -6,7 +6,21 @@ const scriptPath = fileURLToPath(import.meta.url);
 const repoRoot = path.resolve(path.dirname(scriptPath), "..");
 
 const decodeHTML = (value) =>
-  value.replaceAll("&amp;", "&").replaceAll("&quot;", '"').replaceAll("&#39;", "'");
+  value.replace(/&(#x[\da-f]+|#\d+|amp|quot|apos|lt|gt|nbsp);/gi, (entity, reference) => {
+    const normalized = reference.toLowerCase();
+    if (normalized === "amp") return "&";
+    if (normalized === "quot") return '"';
+    if (normalized === "apos" || normalized === "#39") return "'";
+    if (normalized === "lt") return "<";
+    if (normalized === "gt") return ">";
+    if (normalized === "nbsp") return "\u00a0";
+    const codePoint = normalized.startsWith("#x")
+      ? Number.parseInt(normalized.slice(2), 16)
+      : Number.parseInt(normalized.slice(1), 10);
+    return codePoint > 0 && codePoint <= 0x10ffff && !(codePoint >= 0xd800 && codePoint <= 0xdfff)
+      ? String.fromCodePoint(codePoint)
+      : "\ufffd";
+  });
 
 const isExternal = (url) => /^(?:[a-z][a-z\d+.-]*:|\/\/)/i.test(url);
 
@@ -104,12 +118,143 @@ const attributesFrom = (elements) =>
     return [...directReferences, ...sourceSetReferences, ...styleReferences];
   });
 
-const cssURLsFrom = (css) => [
-  ...[...css.matchAll(/url\(\s*(['"]?)(.*?)\1\s*\)/gi)].map((match) => decodeHTML(match[2] ?? "")),
-  ...[...css.matchAll(/@import\s+(?:"([^"]+)"|'([^']+)')/gi)].map((match) =>
-    decodeHTML(match[1] ?? match[2] ?? ""),
-  ),
-];
+const skipCSSWhitespaceAndComments = (css, start) => {
+  let index = start;
+  while (index < css.length) {
+    if (/\s/.test(css[index] ?? "")) {
+      index += 1;
+    } else if (css.startsWith("/*", index)) {
+      const commentEnd = css.indexOf("*/", index + 2);
+      index = commentEnd === -1 ? css.length : commentEnd + 2;
+    } else {
+      break;
+    }
+  }
+  return index;
+};
+
+const readCSSEscape = (css, start) => {
+  const escaped = css.slice(start + 1);
+  const hex = /^[0-9a-f]{1,6}/i.exec(escaped)?.[0];
+  if (hex === undefined) {
+    return { value: escaped[0] ?? "", nextIndex: Math.min(start + 2, css.length) };
+  }
+  const codePoint = Number.parseInt(hex, 16);
+  let nextIndex = start + 1 + hex.length;
+  if (/\s/.test(css[nextIndex] ?? "")) nextIndex += 1;
+  const safeCodePoint =
+    codePoint === 0 || codePoint > 0x10ffff || (codePoint >= 0xd800 && codePoint <= 0xdfff)
+      ? 0xfffd
+      : codePoint;
+  return { value: String.fromCodePoint(safeCodePoint), nextIndex };
+};
+
+const readCSSString = (css, start) => {
+  const quote = css[start] ?? "";
+  let value = "";
+  let index = start + 1;
+  while (index < css.length && css[index] !== quote) {
+    if (css[index] === "\\") {
+      const escaped = readCSSEscape(css, index);
+      value += escaped.value;
+      index = escaped.nextIndex;
+    } else {
+      value += css[index] ?? "";
+      index += 1;
+    }
+  }
+  return { value, nextIndex: Math.min(index + 1, css.length) };
+};
+
+const readCSSIdentifier = (css, start) => {
+  let value = "";
+  let index = start;
+  while (index < css.length) {
+    const character = css[index] ?? "";
+    if (character === "\\") {
+      const escaped = readCSSEscape(css, index);
+      value += escaped.value;
+      index = escaped.nextIndex;
+    } else if (/[a-z0-9_-]/i.test(character) || character.charCodeAt(0) >= 0x80) {
+      value += character;
+      index += 1;
+    } else {
+      break;
+    }
+  }
+  return { value, nextIndex: index };
+};
+
+const readCSSURL = (css, start) => {
+  const contentStart = skipCSSWhitespaceAndComments(css, start);
+  const quote = css[contentStart];
+  if (quote === '"' || quote === "'") {
+    const parsed = readCSSString(css, contentStart);
+    const close = skipCSSWhitespaceAndComments(css, parsed.nextIndex);
+    return css[close] === ")" ? { ...parsed, nextIndex: close + 1 } : null;
+  }
+
+  let value = "";
+  let index = contentStart;
+  while (index < css.length && css[index] !== ")") {
+    if (css[index] === "\\") {
+      const escaped = readCSSEscape(css, index);
+      value += escaped.value;
+      index = escaped.nextIndex;
+    } else {
+      value += css[index] ?? "";
+      index += 1;
+    }
+  }
+  return css[index] === ")" ? { value: value.trim(), nextIndex: index + 1 } : null;
+};
+
+const cssURLsFrom = (css) => {
+  const references = [];
+  let index = 0;
+  while (index < css.length) {
+    if (css.startsWith("/*", index)) {
+      const commentEnd = css.indexOf("*/", index + 2);
+      index = commentEnd === -1 ? css.length : commentEnd + 2;
+      continue;
+    }
+
+    const character = css[index] ?? "";
+    if (character === '"' || character === "'") {
+      index = readCSSString(css, index).nextIndex;
+      continue;
+    }
+
+    if (css.slice(index, index + 7).toLowerCase() === "@import") {
+      const importValue = skipCSSWhitespaceAndComments(css, index + 7);
+      if (css[importValue] === '"' || css[importValue] === "'") {
+        const parsed = readCSSString(css, importValue);
+        references.push(parsed.value);
+        index = parsed.nextIndex;
+        continue;
+      }
+    }
+
+    if (/[a-z_-]/i.test(character) || character === "\\") {
+      const identifier = readCSSIdentifier(css, index);
+      if (
+        identifier.value.toLowerCase() === "url" &&
+        css[identifier.nextIndex] === "("
+      ) {
+        const parsed = readCSSURL(css, identifier.nextIndex + 1);
+        if (parsed !== null && !parsed.value.startsWith("var(")) {
+          references.push(parsed.value);
+          index = parsed.nextIndex;
+          continue;
+        }
+      }
+      index = Math.max(identifier.nextIndex, index + 1);
+    } else {
+      index += 1;
+    }
+  }
+  return references;
+};
 
 const fragmentsFrom = (html) =>
   new Set(
@@ -119,32 +264,52 @@ const fragmentsFrom = (html) =>
     ]),
   );
 
-const normalizeBase = (base) => `/${base.split("/").filter(Boolean).join("/")}/`;
+const normalizeBase = (base) => {
+  const segments = base.split("/").filter(Boolean);
+  return segments.length === 0 ? "/" : `/${segments.join("/")}/`;
+};
+
+const decodeFragment = (fragment) => {
+  try {
+    return decodeURIComponent(fragment);
+  } catch {
+    return fragment;
+  }
+};
 
 const resolveTarget = (source, reference, base) => {
   const basePath = normalizeBase(base);
-  const pageURL = `https://docs.invalid/${source.replace(/index\.html$/, "")}`;
-  const targetURL = new URL(reference, pageURL);
-  let targetPath = decodeURIComponent(targetURL.pathname);
-  if (targetPath.startsWith(basePath)) {
-    targetPath = targetPath.slice(basePath.length);
-  } else if (reference.startsWith("/")) {
-    return { _tag: "Failure", reason: `absolute link is outside base path ${basePath}` };
-  } else {
-    targetPath = targetPath.replace(/^\//, "");
+  try {
+    const pageURL = `https://docs.invalid${basePath}${source.replace(/index\.html$/, "")}`;
+    const targetURL = new URL(reference, pageURL);
+    const targetPath = decodeURIComponent(targetURL.pathname);
+    if (!targetPath.startsWith(basePath)) {
+      return { _tag: "Failure", reason: `link resolves outside base path ${basePath}` };
+    }
+    const relativePath = targetPath.slice(basePath.length);
+    const file =
+      relativePath === ""
+        ? "index.html"
+        : relativePath.endsWith("/")
+          ? `${relativePath}index.html`
+          : relativePath;
+    return {
+      _tag: "Success",
+      file,
+      fragment: decodeFragment(targetURL.hash.slice(1)),
+    };
+  } catch (error) {
+    const reason = error instanceof Error ? error.message : String(error);
+    return { _tag: "Failure", reason: `invalid URL or percent-encoding (${reason})` };
   }
-  const file =
-    targetPath === ""
-      ? "index.html"
-      : targetPath.endsWith("/")
-        ? `${targetPath}index.html`
-        : targetPath;
-  return { _tag: "Success", file, fragment: decodeURIComponent(targetURL.hash.slice(1)) };
 };
 
 export const checkDocumentLinks = (documents, base) => {
   const errors = [];
   const fragmentCache = new Map();
+  if (![...documents.keys()].some((source) => source.endsWith(".html"))) {
+    return ["No built HTML documents were found."];
+  }
   for (const [source, html] of documents) {
     const references = source.endsWith(".html")
       ? attributesFrom(parseElements(html))

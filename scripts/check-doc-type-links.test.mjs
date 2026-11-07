@@ -26,6 +26,29 @@ test("parses public aliases to backing module types, including generic aliases",
   );
 });
 
+test("ignores comment examples and nested-module aliases when finding public targets", () => {
+  assert.deepEqual(
+    parsePublicTypeAliases(
+      "PublicOwner",
+      `/**
+type example = Internal.real
+*/
+type t = Internal.real
+module Impl = {
+type hidden = Internal.secret
+}`,
+    ),
+    [
+      {
+        moduleName: "PublicOwner",
+        typeName: "t",
+        backingModule: "Internal",
+        backingType: "real",
+      },
+    ],
+  );
+});
+
 test("only links backing types with one public owner", () => {
   const targets = createPublicTypeTargets([
     {
