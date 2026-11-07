@@ -3,6 +3,7 @@ import { existsSync, mkdirSync, mkdtempSync, readFileSync, rmSync, writeFileSync
 import os from "node:os";
 import path from "node:path";
 import { fileURLToPath, pathToFileURL } from "node:url";
+import { validateReleaseArtifact } from "./validate-release-artifact.mjs";
 
 const repoRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const packageJson = JSON.parse(readFileSync(path.join(repoRoot, "package.json"), "utf8"));
@@ -157,29 +158,12 @@ const checkConsumers = async () => {
       suppliedArtifact === undefined
         ? packageJson
         : JSON.parse(runCommand("tar", ["-xOf", tarballPath, "package/package.json"], repoRoot));
-    if (
-      packedMetadata.name !== packageJson.name ||
-      packedMetadata.version !== packageJson.version ||
-      !/^1\.0\.0-alpha\.[1-9]\d*$/.test(packedMetadata.version)
-    ) {
-      throw new Error(
-        "Packed artifact name/version does not match the explicit alpha package metadata.",
-      );
-    }
-    const publishLifecycleScripts = [
-      "prepare",
-      "prepack",
-      "prepublishOnly",
-      "publish",
-      "postpublish",
-    ];
-    const configuredPublishScripts = publishLifecycleScripts.filter(
-      (scriptName) => packedMetadata.scripts?.[scriptName] !== undefined,
+    const artifactErrors = validateReleaseArtifact(
+      { name: packageJson.name, version: packageJson.version },
+      packedMetadata,
     );
-    if (configuredPublishScripts.length > 0) {
-      throw new Error(
-        `Packed artifact has lifecycle scripts that would execute during publish: ${configuredPublishScripts.join(", ")}.`,
-      );
+    if (artifactErrors.length > 0) {
+      throw new Error(`Packed artifact is not publishable:\n${artifactErrors.join("\n")}`);
     }
     const projectDirectory = path.join(tempDirectory, "project");
     mkdirSync(projectDirectory);

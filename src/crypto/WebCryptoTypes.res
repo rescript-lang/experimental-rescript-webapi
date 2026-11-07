@@ -66,6 +66,16 @@ type cryptoKey = {
   usages: array<keyUsage>,
 }
 
-type algorithmIdentifier = unknown
+type cryptoKeyPair = {
+  privateKey: cryptoKey,
+  publicKey: cryptoKey,
+}
 
-type algorithm = {mutable name: string}
+type algorithmIdentifier = {name: string}
+
+type algorithm = {
+  mutable name: string,
+  mutable hash?: algorithmIdentifier,
+  mutable length?: int,
+  mutable namedCurve?: string,
+}

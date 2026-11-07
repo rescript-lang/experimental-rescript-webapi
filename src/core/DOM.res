@@ -80,6 +80,7 @@ type remotePlaybackState =
   | @as("disconnected") Disconnected
 
 type referrerPolicy =
+  | @as("") Empty
   | @as("no-referrer") NoReferrer
   | @as("no-referrer-when-downgrade") NoReferrerWhenDowngrade
   | @as("origin") Origin

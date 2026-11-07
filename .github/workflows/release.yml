@@ -78,7 +78,7 @@ jobs:
         run: npm run check:consumer -- "${{ steps.package.outputs.artifact }}"
 
       - name: Dry-run publish the validated artifact
-        run: npm publish "${{ steps.package.outputs.artifact }}" --access public --tag alpha --dry-run
+        run: npm publish "${{ steps.package.outputs.artifact }}" --access public --tag alpha --dry-run --ignore-scripts
 
       - name: Reject real publication from non-main branches
         if: github.event_name == 'workflow_dispatch' && !inputs.dry_run && github.ref != 'refs/heads/main'
@@ -130,27 +130,22 @@ jobs:
           node --input-type=module <<'NODE'
           import { execFileSync } from "node:child_process";
           import { readFileSync } from "node:fs";
-          const { name, version, publishConfig } = JSON.parse(readFileSync("package.json", "utf8"));
+          import { validateReleaseArtifact } from "./scripts/validate-release-artifact.mjs";
+          const { name, version } = JSON.parse(readFileSync("package.json", "utf8"));
           const artifact = `.release/rescript-webapi-${version}.tgz`;
           const packed = JSON.parse(execFileSync("tar", ["-xOf", artifact, "package/package.json"], { encoding: "utf8" }));
-          if (packed.name !== name || packed.version !== version || !/^1\.0\.0-alpha\.[1-9]\d*$/.test(version)) {
-            throw new Error("Downloaded artifact does not match the numbered alpha package metadata.");
-          }
-          if (publishConfig.access !== "public" || publishConfig.provenance !== true) {
-            throw new Error("Downloaded artifact is missing public/provenance publishing metadata.");
-          }
-          const publishLifecycleScripts = ["prepare", "prepack", "prepublishOnly", "publish", "postpublish"];
-          if (publishLifecycleScripts.some((script) => packed.scripts?.[script] !== undefined)) {
-            throw new Error("Downloaded artifact contains a publish lifecycle script.");
+          const errors = validateReleaseArtifact({ name, version }, packed);
+          if (errors.length > 0) {
+            throw new Error(`Downloaded artifact is not publishable:\n${errors.join("\n")}`);
           }
           console.log(`Verified ${name}@${version} artifact before publishing with the alpha tag.`);
           NODE
 
       - name: Verify publication guard
-        run: npm run check:release -- --publish
+        run: node scripts/check-release.mjs --publish
 
       - name: Publish alpha artifact
-        run: npm publish ".release/rescript-webapi-$(node -p 'require("./package.json").version').tgz" --access public --tag alpha --provenance
+        run: npm publish ".release/rescript-webapi-$(node -p 'require("./package.json").version').tgz" --access public --tag alpha --provenance --ignore-scripts
 
       - name: Verify alpha dist-tag
         run: |
