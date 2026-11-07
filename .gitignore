@@ -3,8 +3,12 @@
 .bsb.lock
 .astro
 dist/
+.release/
 tmp/
 docs/public/llm.txt
+.playwright/
+/test-results/
+/playwright-report/
 .npm-cache/
 *.tgz
 *~

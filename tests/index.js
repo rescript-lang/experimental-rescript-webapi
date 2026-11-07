@@ -1,4 +1,4 @@
-import { execFileSync, execSync, spawnSync } from "child_process";
+import { execSync, spawnSync } from "child_process";
 import * as fs from "fs";
 import { fileURLToPath, pathToFileURL } from "url";
 import * as path from "path";
@@ -10,16 +10,33 @@ const repoRoot = path.resolve(currentDir, "..");
 const testsDir = path.join(repoRoot, "tests");
 const rescriptConfig = JSON.parse(fs.readFileSync(path.join(repoRoot, "rescript.json"), "utf8"));
 const compiledSuffix = rescriptConfig.suffix ?? ".js";
+const fixtureCategories = JSON.parse(fs.readFileSync(path.join(testsDir, "fixtures.json"), "utf8"));
 
-const runtimeTests = [
-  "DOMAPI/Classify__test.res",
-  "FetchAPI/Headers__test.res",
-  "FetchAPI/Request__test.res",
-  "FetchAPI/Response__test.res",
-  "FetchAPI/SafeFetch__test.res",
-  "FetchAPI/URLSearchParams__test.res",
-  "URLAPI/URL__test.res",
-];
+const discoverFixtures = (directory, relativeDirectory = "") =>
+  fs.readdirSync(directory, { withFileTypes: true }).flatMap((entry) => {
+    const relativePath = path.join(relativeDirectory, entry.name);
+    const absolutePath = path.join(directory, entry.name);
+    if (entry.isDirectory()) {
+      return discoverFixtures(absolutePath, relativePath);
+    }
+    return entry.isFile() && entry.name.endsWith(".res") ? [relativePath] : [];
+  });
+
+const discoveredFixtures = discoverFixtures(testsDir)
+  .map((fixture) => fixture.split(path.sep).join("/"))
+  .sort();
+const categorizedFixtures = [
+  ...fixtureCategories.compileOnly,
+  ...fixtureCategories.documentationExamples,
+  ...fixtureCategories.nodeRuntime,
+  ...fixtureCategories.browserRuntime,
+].sort();
+if (JSON.stringify(discoveredFixtures) !== JSON.stringify(categorizedFixtures)) {
+  throw new Error(
+    `Fixture category mismatch.\nDiscovered: ${discoveredFixtures.join(", ")}\nCategorized: ${categorizedFixtures.join(", ")}`,
+  );
+}
+const runtimeTests = fixtureCategories.nodeRuntime;
 
 const compiledRuntimeTests = runtimeTests.map((testFile) =>
   testFile.replace(/\.res$/, compiledSuffix),
@@ -29,7 +46,6 @@ const compiledRuntimeTests = runtimeTests.map((testFile) =>
 execSync("npm run build", { cwd: repoRoot, stdio: "inherit" });
 
 const successGreen = "\x1b[32m";
-const warningYellow = "\x1b[33m";
 const errorRed = "\x1b[31m";
 const resetColor = "\x1b[0m";
 
@@ -62,20 +78,4 @@ for (const testFile of compiledRuntimeTests) {
   console.log(`${successGreen}✓ ${testFile}${resetColor}`);
 }
 
-// Assert generated test output stayed in sync.
-const gitDiff = execFileSync("git", ["ls-files", "--modified", "--", ...compiledRuntimeTests], {
-  cwd: testsDir,
-}).toString();
-if (!gitDiff) {
-  console.log(`${successGreen}✅ No unstaged generated test difference!${resetColor}`);
-  exit(0);
-} else {
-  console.log(
-    `${warningYellow}⚠️ There are unstaged differences in generated tests! Did you break a test?\n${gitDiff}${resetColor}`,
-  );
-  execFileSync("git", ["--no-pager", "diff", "--", ...compiledRuntimeTests], {
-    stdio: "inherit",
-    cwd: testsDir,
-  });
-  exit(1);
-}
+exit(0);

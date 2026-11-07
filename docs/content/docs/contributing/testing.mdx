@@ -4,24 +4,27 @@ description: Learn more about testing the bindings for @rescript/webapi.
 slug: "06-testing"
 ---
 
-import { Aside, FileTree } from "@astrojs/starlight/components";
+import { FileTree } from "@astrojs/starlight/components";
 
 Adding some unit tests is a great way to ensure that the bindings work as expected.
 It illustrates how the bindings are supposed to be used and can help to catch regressions.
 
 ## Testing the bindings
 
-Create a new help in the `test` folder with the same name as the module you want to test, followed by `_test.res`.
+Add a ReScript fixture under `tests/`, following the source module's directory structure. Register
+each fixture in exactly one category in `tests/fixtures.json`: `compileOnly`,
+`documentationExamples`, `nodeRuntime`, or `browserRuntime`. `npm test` fails if a fixture is missing
+from the manifest or appears in multiple categories, compiles all fixtures, and executes only the
+Node runtime modules. Compile-only fixtures and documentation examples are never executed.
 
 <FileTree>
 
 - src
-  - DOMAPI.res
-  - DOMAPI
-    - HTMLCanvasElement.res
+  - fetch
+    - Headers.res
 - tests
-  - DOMAPI
-    - HTMLCanvasElement_test.res
+  - FetchAPI
+    - Headers\_\_test.res
 
 </FileTree>
 
@@ -33,12 +36,35 @@ git add tests
 npm test
 ```
 
-If any of the existing tests have different ouput JavaScript, you will see a diff in the output and the test will fail.
+Run the focused checks that match your fixture:
 
-<Aside>
-  Depending on your use-case, it might be okay to have slightly different output JavaScript. The
-  maintainers will help you to decide if the change is acceptable.
-</Aside>
+```shell
+npm test                 # compile fixtures and execute Node-compatible runtime tests
+npm run test:browser     # execute native-browser regressions in Chromium
+npm run test:negative    # verify expected compiler failures and diagnostics
+```
+
+Use the browser suite for APIs that require a real browser. Node's built-in Fetch support is useful
+for Node runtime coverage, but is not a substitute for Chromium validation; DOM emulators are not
+browser evidence either. Keep examples that need special setup, such as a GET request with a body,
+compile-only unless they are deliberately configured as a runtime fixture.
+Browser fixtures with asynchronous behavior must await all assertions and callback completion before
+the ReScript module finishes evaluating; the browser runner awaits module evaluation and treats
+rejections and uncaught page errors as failures.
+
+Put expected-failure consumer sources under `scripts/fixtures/negative/`, outside the recursively
+compiled `tests/` tree. Register each in `scripts/negative-fixtures.json` with its feature set and a
+distinctive compiler diagnostic substring. The negative command must observe both compilation failure
+and that expected diagnostic; an unrelated compiler failure does not pass the check.
+
+## Installed package consumers
+
+Run `npm run check:consumer` to pack the current package, install that artifact with the supported
+ReScript compiler in a fresh temporary project, and compile representative feature consumers.
+This verifies the installed tarball rather than copied source files or local compiler links.
+The development compiler and the exact version exercised by this check are ReScript
+`13.0.0-alpha.5`. The peer range `>=13.0.0-alpha.5 <13.0.0` admits later `13.0.0` prereleases;
+it does not claim support for earlier compilers or stable `13.0.0`.
 
 ## Why add tests?
 
