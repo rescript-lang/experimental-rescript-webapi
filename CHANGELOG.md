@@ -31,7 +31,9 @@ versioning and publication.
 - WebCrypto signatures now reflect native results: `sign` and `digest` return `ArrayBuffer.t`,
   `verify` returns `bool`, `deriveKey` returns `WebAPI.SubtleCrypto.cryptoKey`, and `deriveBits`
   and `wrapKey` return `ArrayBuffer.t`. Key and algorithm support types are available through
-  `WebAPI.SubtleCrypto`.
+  `WebAPI.SubtleCrypto`. Use `algorithmString` for a native algorithm name and `algorithmObject`
+  for parameter dictionaries such as AES-GCM's `iv` and `tagLength`; the object helper preserves
+  typed-array values rather than copying them into a closed algorithm-name variant.
 - Generic `SubtleCrypto.generateKey` and `generateKey2` now return `unknown` because the result
   depends on the algorithm. Use `generateKeySymmetric` for HMAC keys
   (`SubtleCrypto.cryptoKey`) or `generateEcdsaKeyPair` for ECDSA pairs
