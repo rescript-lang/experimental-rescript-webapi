@@ -33,6 +33,8 @@ let setSize = (_target: DOMTree.element, _pixels: int): unit =>
 
 let isNull = _value => %raw(`_value === null`)
 let isUndefined = _value => %raw(`_value === undefined`)
+let isKnownNotificationPermission = _permission =>
+  %raw(`_permission === "default" || _permission === "denied" || _permission === "granted"`)
 let containsABCByteChunk = _result =>
   %raw(`_result.value instanceof Uint8Array && _result.value.length === 3 && _result.value[0] === 65 && _result.value[2] === 67`)
 let appendChild = (_parent, _child) => %raw(`_parent.appendChild(_child)`)
@@ -73,9 +75,8 @@ let audio: HTMLAudioElement.t = %raw(`document.createElement("audio")`)
 assert(audio->HTMLAudioElement.canPlayType("application/x-webapi-unsupported") ==
   DomHTMLMediaElement.Empty)
 
-switch Notification.permission {
-| NotificationTypes.Default | NotificationTypes.Denied | NotificationTypes.Granted => ()
-}
+let permission = Notification.permission
+assert(isKnownNotificationPermission(permission))
 
 switch Document.createElement(document, "canvas")->HTMLCanvasElement.classify {
 | Some(canvas) => {

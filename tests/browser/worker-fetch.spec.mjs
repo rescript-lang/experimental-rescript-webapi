@@ -32,10 +32,15 @@ test("Worker Request fetch forwards its receiver, request, and initializer", asy
       (port) =>
         new Promise((resolve, reject) => {
           const worker = new Worker("/tests/browser/worker-fetch.mjs", { type: "module" });
-          const responses = [];
+          const responses = {};
           worker.addEventListener("message", (event) => {
-            responses.push(event.data);
-            if (responses.length === 2) {
+            if (event.data.error !== undefined) {
+              worker.terminate();
+              reject(new Error(event.data.error));
+              return;
+            }
+            responses[event.data.id] = event.data.response;
+            if (Object.keys(responses).length === 2) {
               worker.terminate();
               resolve(responses);
             }
@@ -49,13 +54,16 @@ test("Worker Request fetch forwards its receiver, request, and initializer", asy
             { once: true },
           );
           const url = `http://127.0.0.1:${port}/echo`;
-          worker.postMessage({ url, withInit: true });
-          worker.postMessage({ url, withInit: false });
+          worker.postMessage({ id: "initialized", url, withInit: true });
+          worker.postMessage({ id: "default", url, withInit: false });
         }),
       server.port,
     );
 
-    expect(response).toEqual(["POST|forwarded|binding-request-body", "GET||"]);
+    expect(response).toStrictEqual({
+      initialized: "POST|forwarded|binding-request-body",
+      default: "GET||",
+    });
   } finally {
     server.child.kill();
     await once(server.child, "exit");

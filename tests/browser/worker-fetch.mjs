@@ -10,8 +10,11 @@ self.addEventListener("message", async (event) => {
           body: "binding-request-body",
         })
       : WorkerFetchBinding.fetchWithRequestDefault(request));
-    self.postMessage(await WorkerFetchBinding.text(response));
+    self.postMessage({
+      id: event.data.id,
+      response: await WorkerFetchBinding.text(response),
+    });
   } catch (error) {
-    self.postMessage({ error: String(error) });
+    self.postMessage({ id: event.data.id, error: String(error) });
   }
 });
