@@ -2,10 +2,9 @@ import { readFileSync } from "node:fs";
 import { defineConfig } from "astro/config";
 import starlight from "@astrojs/starlight";
 import { apiModules } from "./docs/utils";
+import { docsBase, docsSite } from "./docs/siteConfig.js";
 
-const rescriptTM = JSON.parse(
-  readFileSync("./docs/assets/rescript.tmLanguage.json", "utf-8"),
-);
+const rescriptTM = JSON.parse(readFileSync("./docs/assets/rescript.tmLanguage.json", "utf-8"));
 
 const apiSidebarItems = apiModules.map(({ moduleName, link }) => ({
   label: moduleName,
@@ -15,8 +14,8 @@ const apiSidebarItems = apiModules.map(({ moduleName, link }) => ({
 export default defineConfig({
   srcDir: "docs",
   publicDir: "docs/public",
-  site: "https://rescript-lang.github.io",
-  base: "experimental-rescript-webapi",
+  site: docsSite,
+  base: docsBase,
   integrations: [
     starlight({
       title: "Experimental WebAPI",
@@ -31,8 +30,7 @@ export default defineConfig({
         },
       ],
       editLink: {
-        baseUrl:
-          "https://github.com/rescript-lang/experimental-rescript-webapi/edit/main/",
+        baseUrl: "https://github.com/rescript-lang/experimental-rescript-webapi/edit/main/",
       },
       sidebar: [
         {
