@@ -227,6 +227,17 @@ test("decodes valid fragment bytes while preserving malformed percent and named 
   assert.deepEqual(checkDocumentLinks(pages, "/docs/"), []);
 });
 
+test("does not recursively decode an ampersand entity inside an HTML attribute", () => {
+  const pages = new Map([
+    ["index.html", '<a href="/docs/guide/#caf%C3%A9">accent</a>'],
+    ["guide/index.html", '<p id="caf&amp;eacute;"></p>'],
+  ]);
+
+  assert.deepEqual(checkDocumentLinks(pages, "/docs/"), [
+    "index.html: /docs/guide/#caf%C3%A9: missing fragment #café in guide/index.html",
+  ]);
+});
+
 test("checks local CSS imports, url() assets, and inline styles", () => {
   const pages = new Map([
     [
