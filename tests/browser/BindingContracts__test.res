@@ -36,7 +36,7 @@ let isUndefined = _value => %raw(`_value === undefined`)
 let isKnownNotificationPermission = _permission =>
   %raw(`_permission === "default" || _permission === "denied" || _permission === "granted"`)
 let containsABCByteChunk = _result =>
-  %raw(`_result.value instanceof Uint8Array && _result.value.length === 3 && _result.value[0] === 65 && _result.value[2] === 67`)
+  %raw(`_result.value instanceof Uint8Array && _result.value.length === 3 && _result.value[0] === 65 && _result.value[1] === 66 && _result.value[2] === 67`)
 let appendChild = (_parent, _child) => %raw(`_parent.appendChild(_child)`)
 
 let appendToDocument = _target => %raw(`document.body.appendChild(_target)`)
@@ -52,6 +52,8 @@ let isNonIdentityFloat32Matrix = _values =>
 
 let wrongMiddleBytes: Uint8Array.t = %raw(`new Uint8Array([65, 0, 67])`)
 assert(!isUint8ArrayWithABC(wrongMiddleBytes))
+let wrongMiddleChunk: unknown = %raw(`({value: new Uint8Array([65, 0, 67])})`)
+assert(!containsABCByteChunk(wrongMiddleChunk))
 
 let bytes = await Response.fromString("ABC")->Response.bytes
 assert(isUint8ArrayWithABC(bytes))
