@@ -20,6 +20,9 @@ versioning and publication.
   native `Uint8Array.t` values or chunks instead of `array<int>`. Use the typed-array API
   directly; the bytes are not copied into a ReScript integer array. `SafeFetch.bytes` keeps its
   existing result and response wrapper; only the byte payload changes.
+- `BodyInit.fromReadableStream` and `Response.fromReadableStream` now require
+  `ReadableStream.t<Uint8Array.t>` input. These HTTP-body adapters accept byte chunks, not arbitrary
+  or string chunks; `ReadableStream` itself remains generic for other uses.
 - `ResizeObserver` callbacks now receive `(entries, observer)` as two arguments rather than a
   curried callback.
 - Web Audio analyser float buffers, `AudioBuffer` channel and copy APIs, and Biquad/IIR filter
