@@ -23,6 +23,13 @@ if (
 ) {
   throw new Error("Alpha packages must retain public access and provenance configuration.");
 }
+const publishRequested = process.argv.includes("--publish");
+if (publishRequested && process.env.GITHUB_REF !== "refs/heads/main") {
+  throw new Error("Real alpha publication is allowed only from refs/heads/main.");
+}
+if (publishRequested && process.env.GITHUB_EVENT_NAME !== "workflow_dispatch") {
+  throw new Error("Real alpha publication requires an explicit workflow_dispatch.");
+}
 
 const packageReference = `${packageJson.name}@${packageJson.version}`;
 const published = spawnSync("npm", ["view", packageReference, "version"], {
@@ -37,13 +44,7 @@ if (!/\bE404\b|404 Not Found/.test(registryOutput)) {
   throw new Error(`Unable to verify that ${packageReference} is unpublished:\n${registryOutput}`);
 }
 
-if (process.argv.includes("--publish")) {
-  if (process.env.GITHUB_REF !== "refs/heads/main") {
-    throw new Error("Real alpha publication is allowed only from refs/heads/main.");
-  }
-  if (process.env.GITHUB_EVENT_NAME !== "workflow_dispatch") {
-    throw new Error("Real alpha publication requires an explicit workflow_dispatch.");
-  }
+if (publishRequested) {
   console.log(`Verified unpublished alpha version ${packageReference} for the main branch.`);
 } else {
   console.log(`Verified unpublished alpha version ${packageReference}; expected dist-tag: alpha.`);
