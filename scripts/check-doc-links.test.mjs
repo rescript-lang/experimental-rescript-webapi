@@ -267,6 +267,23 @@ test("replaces invalid UTF-8 bytes without losing adjacent decoded fragment byte
   assert.deepEqual(checkDocumentLinks(pages, "/docs/"), []);
 });
 
+test("preserves an encoded BOM inside a fragment instead of treating it as a signature", () => {
+  const href = '<a href="/docs/guide/#caf%EF%BB%BF%C3%A9">BOM</a>';
+  const expected = new Map([
+    ["index.html", href],
+    ["guide/index.html", '<p id="caf&#xFEFF;é"></p>'],
+  ]);
+  const missing = new Map([
+    ["index.html", href],
+    ["guide/index.html", '<p id="café"></p>'],
+  ]);
+
+  assert.deepEqual(checkDocumentLinks(expected, "/docs/"), []);
+  assert.deepEqual(checkDocumentLinks(missing, "/docs/"), [
+    "index.html: /docs/guide/#caf%EF%BB%BF%C3%A9: missing fragment #caf\uFEFFé in guide/index.html",
+  ]);
+});
+
 test("does not recursively decode an ampersand entity inside an HTML attribute", () => {
   const pages = new Map([
     ["index.html", '<a href="/docs/guide/#caf%C3%A9">accent</a>'],

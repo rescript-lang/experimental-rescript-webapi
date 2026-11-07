@@ -6,6 +6,7 @@ import { docsBase, docsSite } from "../docs/siteConfig.js";
 
 const scriptPath = fileURLToPath(import.meta.url);
 const repoRoot = path.resolve(path.dirname(scriptPath), "..");
+const fragmentDecoder = new TextDecoder("utf-8", { ignoreBOM: true });
 
 const isExternal = (url, siteOrigin) => {
   const normalizedURL = url.trim();
@@ -301,7 +302,7 @@ const decodeFragment = (fragment) => {
     const bytes = Uint8Array.from(encodedBytes.match(/[\da-f]{2}/gi) ?? [], (byte) =>
       Number.parseInt(byte, 16),
     );
-    return new TextDecoder().decode(bytes);
+    return fragmentDecoder.decode(bytes);
   });
 };
 
