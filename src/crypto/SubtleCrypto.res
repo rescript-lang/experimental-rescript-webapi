@@ -3,16 +3,19 @@ type binaryData = ArrayBufferTypedArrayOrDataView.t
 type keyType = WebCryptoTypes.keyType
 type keyUsage = WebCryptoTypes.keyUsage
 type keyFormat = WebCryptoTypes.keyFormat
+type algorithmIdentifier = WebCryptoTypes.algorithmIdentifier
+type algorithm = WebCryptoTypes.algorithm
 type binaryKeyFormat =
   | @as("raw") Raw
   | @as("pkcs8") Pkcs8
   | @as("spki") Spki
 type jwkKeyFormat = | @as("jwk") Jwk
 type keyAlgorithm = WebCryptoTypes.keyAlgorithm
-type algorithmIdentifier = WebCryptoTypes.algorithmIdentifier
-type algorithm = WebCryptoTypes.algorithm
 type cryptoKey = WebCryptoTypes.cryptoKey
 type cryptoKeyPair = WebCryptoTypes.cryptoKeyPair
+
+external algorithmString: string => algorithmIdentifier = "%identity"
+external algorithmObject: algorithm => algorithmIdentifier = "%identity"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/SubtleCrypto/encrypt)
@@ -20,7 +23,7 @@ type cryptoKeyPair = WebCryptoTypes.cryptoKeyPair
 @send
 external encrypt: (
   t,
-  ~algorithm: algorithm,
+  ~algorithm: algorithmIdentifier,
   ~key: cryptoKey,
   ~data: ArrayBufferTypedArrayOrDataView.t,
 ) => promise<ArrayBuffer.t> = "encrypt"
@@ -31,7 +34,7 @@ external encrypt: (
 @send
 external decrypt: (
   t,
-  ~algorithm: algorithm,
+  ~algorithm: algorithmIdentifier,
   ~key: cryptoKey,
   ~data: ArrayBufferTypedArrayOrDataView.t,
 ) => promise<ArrayBuffer.t> = "decrypt"
@@ -42,7 +45,7 @@ external decrypt: (
 @send
 external sign: (
   t,
-  ~algorithm: algorithm,
+  ~algorithm: algorithmIdentifier,
   ~key: cryptoKey,
   ~data: ArrayBufferTypedArrayOrDataView.t,
 ) => promise<ArrayBuffer.t> = "sign"
@@ -53,7 +56,7 @@ external sign: (
 @send
 external verify: (
   t,
-  ~algorithm: algorithm,
+  ~algorithm: algorithmIdentifier,
   ~key: cryptoKey,
   ~signature: ArrayBufferTypedArrayOrDataView.t,
   ~data: ArrayBufferTypedArrayOrDataView.t,
@@ -65,7 +68,7 @@ external verify: (
 @send
 external digest: (
   t,
-  ~algorithm: algorithm,
+  ~algorithm: algorithmIdentifier,
   ~data: ArrayBufferTypedArrayOrDataView.t,
 ) => promise<ArrayBuffer.t> = "digest"
 
@@ -75,7 +78,7 @@ external digest: (
 @send
 external generateKey: (
   t,
-  ~algorithm: algorithm,
+  ~algorithm: algorithmIdentifier,
   ~extractable: bool,
   ~keyUsages: array<keyUsage>,
 ) => promise<unknown> = "generateKey"
@@ -121,9 +124,9 @@ let generateEcdsaKeyPair = (
 @send
 external deriveKey: (
   t,
-  ~algorithm: algorithm,
+  ~algorithm: algorithmIdentifier,
   ~baseKey: cryptoKey,
-  ~derivedKeyType: algorithm,
+  ~derivedKeyType: algorithmIdentifier,
   ~extractable: bool,
   ~keyUsages: array<keyUsage>,
 ) => promise<cryptoKey> = "deriveKey"
@@ -134,7 +137,7 @@ external deriveKey: (
 @send
 external deriveBits: (
   t,
-  ~algorithm: algorithm,
+  ~algorithm: algorithmIdentifier,
   ~baseKey: cryptoKey,
   ~length: int=?,
 ) => promise<ArrayBuffer.t> = "deriveBits"
@@ -158,7 +161,7 @@ external importKey: (
   t,
   ~format: keyFormat,
   ~keyData: ArrayBufferTypedArrayOrDataView.t,
-  ~algorithm: algorithm,
+  ~algorithm: algorithmIdentifier,
   ~extractable: bool,
   ~keyUsages: array<keyUsage>,
 ) => promise<cryptoKey> = "importKey"
@@ -178,7 +181,7 @@ external wrapKey: (
   ~format: keyFormat,
   ~key: cryptoKey,
   ~wrappingKey: cryptoKey,
-  ~wrapAlgorithm: algorithm,
+  ~wrapAlgorithm: algorithmIdentifier,
 ) => promise<ArrayBuffer.t> = "wrapKey"
 
 /**
@@ -202,8 +205,8 @@ external unwrapKey: (
   ~format: keyFormat,
   ~wrappedKey: ArrayBufferTypedArrayOrDataView.t,
   ~unwrappingKey: cryptoKey,
-  ~unwrapAlgorithm: algorithm,
-  ~unwrappedKeyAlgorithm: algorithm,
+  ~unwrapAlgorithm: algorithmIdentifier,
+  ~unwrappedKeyAlgorithm: algorithmIdentifier,
   ~extractable: bool,
   ~keyUsages: array<keyUsage>,
 ) => promise<cryptoKey> = "unwrapKey"
@@ -212,6 +215,10 @@ let decryptUsage = WebCryptoTypes.Decrypt
 let deriveBitsUsage = WebCryptoTypes.DeriveBits
 let deriveKeyUsage = WebCryptoTypes.DeriveKey
 let encryptUsage = WebCryptoTypes.Encrypt
+let rawKeyFormat = WebCryptoTypes.Raw
+let pkcs8KeyFormat = WebCryptoTypes.Pkcs8
+let spkiKeyFormat = WebCryptoTypes.Spki
+let jwkFormat = WebCryptoTypes.Jwk
 let signUsage = WebCryptoTypes.Sign
 let unwrapKeyUsage = WebCryptoTypes.UnwrapKey
 let verifyUsage = WebCryptoTypes.Verify

@@ -3,7 +3,7 @@ external crypto: WebAPI.Crypto.t = "crypto"
 
 let key = await WebAPI.SubtleCrypto.generateKeySymmetric(
   crypto.subtle,
-  ~hash={name: "SHA-256"},
+  ~hash=WebAPI.SubtleCrypto.algorithmObject({name: "SHA-256"}),
   ~length=256,
   ~extractable=true,
   ~keyUsages=[WebAPI.SubtleCrypto.signUsage],

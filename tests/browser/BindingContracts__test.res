@@ -245,7 +245,7 @@ target->Element.remove
 
 let subtle = crypto.subtle
 let digest = await subtle->SubtleCrypto.digest(
-  ~algorithm={name: "SHA-256"},
+  ~algorithm=SubtleCrypto.algorithmObject({name: "SHA-256"}),
   ~data=Uint8Array.fromArray([65, 66, 67])->SubtleCrypto.binaryDataFromUint8Array,
 )
 let digestBytes: Uint8Array.t = %raw(`new Uint8Array(digest)`)
@@ -253,15 +253,19 @@ assert(%raw(`digest.byteLength === 32 && digestBytes instanceof Uint8Array && di
 
 let data = Uint8Array.fromArray([65, 66, 67])->SubtleCrypto.binaryDataFromUint8Array
 let hmacKey = await subtle->SubtleCrypto.generateKeySymmetric(
-  ~hash={name: "SHA-256"},
+  ~hash=SubtleCrypto.algorithmObject({name: "SHA-256"}),
   ~length=256,
   ~extractable=true,
   ~keyUsages=[SubtleCrypto.signUsage, SubtleCrypto.verifyUsage],
 )
 let _publicHmacKey: SubtleCrypto.cryptoKey = hmacKey
-let signature = await subtle->SubtleCrypto.sign(~algorithm={name: "HMAC"}, ~key=hmacKey, ~data)
+let signature = await subtle->SubtleCrypto.sign(
+  ~algorithm=SubtleCrypto.algorithmObject({name: "HMAC"}),
+  ~key=hmacKey,
+  ~data,
+)
 let verified = await subtle->SubtleCrypto.verify(
-  ~algorithm={name: "HMAC"},
+  ~algorithm=SubtleCrypto.algorithmObject({name: "HMAC"}),
   ~key=hmacKey,
   ~signature=SubtleCrypto.binaryDataFromArrayBuffer(signature),
   ~data,
@@ -279,13 +283,64 @@ let keyPair = await subtle->SubtleCrypto.generateEcdsaKeyPair(
 )
 let _publicKeyPair: SubtleCrypto.cryptoKeyPair = keyPair
 let pairSignature = await subtle->SubtleCrypto.sign(
-  ~algorithm={name: "ECDSA", hash: {name: "SHA-256"}},
+  ~algorithm=SubtleCrypto.algorithmObject({name: "ECDSA", hash: {name: "SHA-256"}}),
   ~key=keyPair.privateKey,
   ~data,
 )
 assert(await subtle->SubtleCrypto.verify(
-  ~algorithm={name: "ECDSA", hash: {name: "SHA-256"}},
+  ~algorithm=SubtleCrypto.algorithmObject({name: "ECDSA", hash: {name: "SHA-256"}}),
   ~key=keyPair.publicKey,
   ~signature=SubtleCrypto.binaryDataFromArrayBuffer(pairSignature),
   ~data,
 ))
+
+let aesKeyData =
+  Uint8Array.fromArray([
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+  ])->SubtleCrypto.binaryDataFromUint8Array
+let aesKey = await subtle->SubtleCrypto.importKey(
+  ~format=SubtleCrypto.rawKeyFormat,
+  ~keyData=aesKeyData,
+  ~algorithm=SubtleCrypto.algorithmObject({name: "AES-GCM", length: 128}),
+  ~extractable=true,
+  ~keyUsages=[SubtleCrypto.encryptUsage, SubtleCrypto.decryptUsage],
+)
+let aesIv =
+  Uint8Array.fromArray([
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+  ])->SubtleCrypto.binaryDataFromUint8Array
+let aesAlgorithm = SubtleCrypto.algorithmObject({name: "AES-GCM", iv: aesIv, tagLength: 128})
+let ciphertext = await subtle->SubtleCrypto.encrypt(~algorithm=aesAlgorithm, ~key=aesKey, ~data)
+let plaintext = await subtle->SubtleCrypto.decrypt(
+  ~algorithm=aesAlgorithm,
+  ~key=aesKey,
+  ~data=SubtleCrypto.binaryDataFromArrayBuffer(ciphertext),
+)
+let plaintextBytes: Uint8Array.t = %raw(`new Uint8Array(plaintext)`)
+assert(isUint8ArrayWithABC(plaintextBytes))

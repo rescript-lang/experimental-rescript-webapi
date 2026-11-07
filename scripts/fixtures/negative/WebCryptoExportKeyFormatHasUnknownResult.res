@@ -1,12 +1,5 @@
-@scope("globalThis")
-external crypto: WebAPI.Crypto.t = "crypto"
-
-let key = await WebAPI.SubtleCrypto.generateKeySymmetric(
-  crypto.subtle,
-  ~hash={name: "SHA-256"},
-  ~length=256,
-  ~extractable=true,
-  ~keyUsages=[WebAPI.SubtleCrypto.signUsage],
-)
-let format: WebAPI.SubtleCrypto.keyFormat = %raw(`"raw"`)
-let _export: JSON.t = await crypto.subtle->WebAPI.SubtleCrypto.exportKey(~format, ~key)
+let _exportReturnedJson: (
+  WebAPI.WebCryptoTypes.subtleCrypto,
+  ~format: WebAPI.WebCryptoTypes.keyFormat,
+  ~key: WebAPI.WebCryptoTypes.cryptoKey,
+) => promise<JSON.t> = WebAPI.SubtleCrypto.exportKey

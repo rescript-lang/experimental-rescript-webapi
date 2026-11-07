@@ -71,11 +71,27 @@ type cryptoKeyPair = {
   publicKey: cryptoKey,
 }
 
-type algorithmIdentifier = {name: string}
+type algorithmIdentifier = unknown
 
 type algorithm = {
   mutable name: string,
-  mutable hash?: algorithmIdentifier,
+  mutable hash?: keyAlgorithm,
   mutable length?: int,
   mutable namedCurve?: string,
+  mutable iv?: ArrayBufferTypedArrayOrDataView.t,
+  mutable counter?: ArrayBufferTypedArrayOrDataView.t,
+  mutable additionalData?: ArrayBufferTypedArrayOrDataView.t,
+  mutable tagLength?: int,
+  mutable salt?: ArrayBufferTypedArrayOrDataView.t,
+  mutable iterations?: int,
+  mutable info?: ArrayBufferTypedArrayOrDataView.t,
+  @as("public")
+  mutable publicKey?: cryptoKey,
+  mutable saltLength?: int,
+  mutable modulusLength?: int,
+  mutable publicExponent?: Uint8Array.t,
+  mutable primeLength?: int,
+  mutable subprimeLength?: int,
+  mutable generator?: ArrayBufferTypedArrayOrDataView.t,
+  mutable label?: ArrayBufferTypedArrayOrDataView.t,
 }
