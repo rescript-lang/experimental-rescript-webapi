@@ -2,6 +2,7 @@
   "compileOnly": [
     "BindingAbsence__test.res",
     "BindingByteTypes__test.res",
+    "browser/WorkerFetchBinding.res",
     "CanvasAPI/Path2D__test.res",
     "CSSFontLoadingAPI/FontFace__test.res",
     "DOMAPI/AddEventListener__test.res",
@@ -30,6 +31,7 @@
     "ServiceWorkerAPI/ServiceWorker__test.res",
     "WebAudioAPI/AudioDestinationNode__.test.res",
     "WebAudioAPI/OfflineAudioContext__test.res",
+    "browser/WebSocketBindings.res",
     "WebSocketsAPI/WebSocket__test.res",
     "WebStorageAPI/Storage__test.res",
     "WebWorkersAPI/SharedWorkerScope__test.res",

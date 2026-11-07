@@ -23,6 +23,15 @@ let appendChild = (_parent, _child) => %raw(`_parent.appendChild(_child)`)
 let appendToDocument = _target => %raw(`document.body.appendChild(_target)`)
 let onSuccess = (_request, _callback) =>
   %raw(`_request.addEventListener("success", _callback, {once: true})`)
+let createWorker = () =>
+  %raw(`new Worker(new URL("/tests/browser/worker-fetch.mjs", location.href), {type: "module"})`)
+let awaitWorkerMessage = _worker =>
+  %raw(`new Promise((resolve, reject) => {
+    _worker.addEventListener("message", event => resolve(event.data), {once: true});
+    _worker.addEventListener("error", reject, {once: true});
+  })`)
+let postWorkerMessage = _worker => %raw(`_worker.postMessage(null)`)
+let stopWorker = _worker => %raw(`_worker.terminate()`)
 let releaseLock = () => %raw(`globalThis.__releaseBindingLock()`)
 
 let isUint8ArrayWithABC = _bytes =>
@@ -51,6 +60,13 @@ assert(audio->HTMLAudioElement.canPlayType("application/x-webapi-unsupported") =
   DomHTMLMediaElement.Empty)
 
 let _notificationPermission = Notification.permission
+
+let worker = createWorker()
+let workerResponse = awaitWorkerMessage(worker)
+postWorkerMessage(worker)
+let workerBody = await workerResponse
+stopWorker(worker)
+assert(%raw(`workerBody === "worker-fetch-body\n"`))
 
 switch Document.createElement(document, "canvas")->HTMLCanvasElement.classify {
 | Some(canvas) => {
