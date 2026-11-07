@@ -10,6 +10,14 @@ external indexedDB: IndexedDbTypes.idbFactory = "indexedDB"
 @scope("globalThis")
 external navigator: Navigator.t = "navigator"
 
+@send
+external readByteStreamChunk: FileTypes.readableStreamReader<Uint8Array.t> => promise<unknown> =
+  "read"
+
+@send
+external cancelByteStreamReader: FileTypes.readableStreamReader<Uint8Array.t> => promise<unit> =
+  "cancel"
+
 let withResolver = (_run: (unit => unit) => unit): promise<unit> =>
   %raw(`new Promise(resolve => _run(resolve))`)
 
@@ -18,6 +26,8 @@ let hasResizeCallbackArgs = (_entries, _observer) =>
 
 let isNull = _value => %raw(`_value === null`)
 let isUndefined = _value => %raw(`_value === undefined`)
+let containsABCByteChunk = _result =>
+  %raw(`_result.value instanceof Uint8Array && _result.value.length === 3 && _result.value[0] === 65 && _result.value[2] === 67`)
 let appendChild = (_parent, _child) => %raw(`_parent.appendChild(_child)`)
 
 let appendToDocument = _target => %raw(`document.body.appendChild(_target)`)
@@ -55,11 +65,19 @@ assert(%raw(`emptyStateRequest.destination === "" && emptyStateRequest.referrerP
 let blobBytes = await Blob.make(~blobParts=[String("ABC")])->Blob.bytes
 assert(isUint8ArrayWithABC(blobBytes))
 
+let byteStream = Blob.make(~blobParts=[String("ABC")])->Blob.stream
+let byteStreamReader = byteStream->ReadableStream.getReader
+let firstChunk = await byteStreamReader->readByteStreamChunk
+assert(containsABCByteChunk(firstChunk))
+await byteStreamReader->cancelByteStreamReader
+
 let audio: HTMLAudioElement.t = %raw(`document.createElement("audio")`)
 assert(audio->HTMLAudioElement.canPlayType("application/x-webapi-unsupported") ==
   DomHTMLMediaElement.Empty)
 
-let _notificationPermission = Notification.permission
+switch Notification.permission {
+| NotificationTypes.Default | NotificationTypes.Denied | NotificationTypes.Granted => ()
+}
 
 let worker = createWorker()
 let workerResponse = awaitWorkerMessage(worker)
@@ -151,6 +169,19 @@ filter->BiquadFilterNode.getFrequencyResponse(
   ~phaseResponse=phases,
 )
 assert(%raw(`magnitudes instanceof Float32Array && phases instanceof Float32Array && magnitudes.length === 2 && phases.length === 2 && !Number.isNaN(magnitudes[0])`))
+
+let iirFilter = IIRFilterNode.make(
+  ~context=audioContext->OfflineAudioContext.asBaseAudioContext,
+  ~options={feedforward: [1.], feedback: [1.]},
+)
+let iirMagnitudes: Float32Array.t = %raw(`new Float32Array(2)`)
+let iirPhases: Float32Array.t = %raw(`new Float32Array(2)`)
+iirFilter->IIRFilterNode.getFrequencyResponse(
+  ~frequencyHz=frequencies,
+  ~magResponse=iirMagnitudes,
+  ~phaseResponse=iirPhases,
+)
+assert(%raw(`iirMagnitudes instanceof Float32Array && !Number.isNaN(iirMagnitudes[0]) && iirPhases instanceof Float32Array`))
 
 let deleteRequest = IDBFactory.deleteDatabase(indexedDB, "binding-contracts-regression")
 await withResolver(resolve =>
