@@ -6,23 +6,32 @@ Experimental successor to [rescript-webapi](https://github.com/TheSpyder/rescrip
 
 ## Getting started
 
-Install the package using your favorite package manager:
+ReScript `13.0.0-alpha.5` is the tested compiler baseline. Library alpha releases may contain
+breaking changes. See the [project status](https://rescript-lang.github.io/experimental-rescript-webapi/project-status/)
+for the accepted peer range and its testing limits.
+
+Install the library and compiler in your application:
 
 ```shell
-npm i @rescript/webapi@alpha
+npm install @rescript/webapi@alpha
+npm install --save-dev rescript@13.0.0-alpha.5
 ```
 
-and add `@rescript/webapi` to your `rescript.json`:
+The `@alpha` command targets the published alpha dist-tag. The planned `1.0.0-alpha.1` candidate
+is not published yet; see [project status](https://rescript-lang.github.io/experimental-rescript-webapi/project-status/)
+for the current tag and note that candidate installation is verified from its packed tarball.
+
+Add a source directory and the package dependency to `rescript.json`:
 
 ```json
 {
-  "dependencies": [
-    "@rescript/webapi"
-  ]
+  "name": "webapi-consumer",
+  "sources": [{ "dir": "src" }],
+  "dependencies": ["@rescript/webapi"]
 }
 ```
 
-## Usage
+In `src/Main.res`:
 
 ```rescript
 let location = WebAPI.DOM.window->WebAPI.Window.location
@@ -30,6 +39,16 @@ let href = location.href
 location->WebAPI.Location.reload
 ```
 
+Compile the consumer with:
+
+```shell
+npx rescript build
+```
+
+The namespace is flat under `WebAPI`; internal implementation modules are not public API.
+
 ## Documentation
 
-More information can be found on https://rescript-lang.github.io/experimental-rescript-webapi/
+More information can be found on https://rescript-lang.github.io/experimental-rescript-webapi/.
+See the [alpha release checklist](https://github.com/rescript-lang/experimental-rescript-webapi/issues/382)
+and [migration notes](CHANGELOG.md) for known limitations and breaking changes.

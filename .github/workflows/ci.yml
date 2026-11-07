@@ -52,6 +52,9 @@ jobs:
       - name: Build documentation
         run: npm run build:docs
 
+      - name: Check documentation links
+        run: npm run check:docs-links
+
       - name: Upload documentation
         uses: actions/upload-pages-artifact@v5
         if: github.ref == 'refs/heads/main' && github.event_name == 'push'

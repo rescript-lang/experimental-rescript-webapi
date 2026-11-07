@@ -1,175 +1,65 @@
 ---
 title: API Modelling
-description: Learn more about the API modelling process of @rescript/webapi.
+description: How to model Web API operations in the flat public ReScript API.
 slug: "05-api-modelling"
 ---
 
-import { Aside, Code, Icon } from "@astrojs/starlight/components";
+Bindings follow the browser API where that gives consumers a useful, type-safe ReScript
+interface. Source files are grouped by API family, but applications use flat public owner
+modules such as `WebAPI.Fetch`, `WebAPI.Request`, and `WebAPI.Element`. Internal `*Types`
+modules are not application-facing namespaces.
 
-One of this projects goals is to provide a consistent and idiomatic API for the Web APIs.
-The interopt story of ReScript is quite good, but it it has limitations.
-JavaScript is a dynamic language and has a lot of flexibility.
-ReScript is a statically typed language and has to model the dynamic parts of JavaScript in a static way.
+## Method overloads
 
-## Dynamic parameters and properties
-
-Some Web APIs have a parameter or property that can be multiple things.
-In ReScript, you would model this as a variant type. This is an example wrapper around values with a key property to discriminate them.
-
-In JavaScript, this strictness is not enforced and you can pass a string where a number is expected.
-There are multiple strategies to model this in ReScript and it depends on the specific API which one is the best.
-
-### Overloads
-
-One example is [addEventListener](https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener).  
-This can access either a boolean or an object as the third parameter.
-
-```js
-addEventListener(type, listener);
-addEventListener(type, listener, options);
-addEventListener(type, listener, useCapture);
-```
-
-Because, this is a method, we can model this as an overloaded function in ReScript.  
-The first two overloads are the same, so we can merge them into one with an optional options parameter.
+JavaScript can expose several signatures for one operation. ReScript cannot overload one value
+name, so give variants distinct names that describe their input rather than appending numbers.
+For example, `fetch` takes a URL and `fetchWithRequest` takes a `Request`:
 
 ```ReScript
-@send
-external addEventListener: (
-  htmlButtonElement,
-  eventType,
-  eventListener<'event>,
-  ~options: addEventListenerOptions=?,
-) => unit = "addEventListener"
+let response = await WebAPI.Fetch.fetch("https://example.com")
+
+let request = WebAPI.Request.fromURL("https://example.com")
+let responseFromRequest = await WebAPI.Fetch.fetchWithRequest(request)
 ```
 
-The third overload takes a boolean and is worth using when you want to change the default of the `useCapture` boolean parameter.  
-We can use [a fixed argument](https://rescript-lang.org/docs/manual/latest/bind-to-js-function#fixed-arguments) to model this.
+When several signatures differ only by optional arguments, keep a single binding with an
+optional labeled argument when the browser API treats it as one operation.
+
+## Constructor overloads
+
+Constructors use a distinct naming convention:
+
+- Keep singleton constructors and true default constructors named `make`.
+- Name typed constructors `from*` after the source type, such as `fromString`,
+  `fromArrayBuffer`, or `fromURLWithProtocols`.
+- Split a hidden default constructor into `make()` plus typed `from*` constructors rather than
+  leaving optional input on `make`.
+
+For example, a `DOMMatrix` has a true default constructor alongside string and array forms:
 
 ```ReScript
-@send
-external addEventListenerWithCapture: (
-  htmlButtonElement,
-  ~type_: eventType,
-  ~callback: eventListener<'event>,
-  @as(json`true`) _,
-) => unit = "addEventListener"
+let identity = WebAPI.DOMMatrix.make()
+let fromTransform = WebAPI.DOMMatrix.fromString("matrix(1, 0, 0, 1, 0, 0)")
+let fromComponents = WebAPI.DOMMatrix.fromArray([1., 0., 0., 1., 0., 0.])
 ```
 
-When naming an overloaded function, we can use the `With` suffix to indicate that it is an overloaded function.
+Keep comments on each binding specific to the input shape and include its source type, a
+consumer example, and links to the relevant MDN or ReScript type documentation. See the
+[documentation guide](../07-documentation/) for the comment format.
 
-### Constructor overloads
+## Dynamic browser values
 
-Constructors follow a different naming rule than methods.
+Some browser properties are untagged unions in JavaScript. Model these as a small public
+conversion/decoding API when consumers need to distinguish their variants; do not expose the
+underlying implementation type just to make it nameable. For example, the public
+`WebAPI.FillStyle` module provides conversion helpers and a decoder for Canvas fill styles.
 
-- Keep singleton constructors named `make`.
-- Keep true no-argument default constructors named `make`, even when the constructor family also has typed overloads.
-- When a constructor family does not have a default constructor, use `from*` names for every overload, including the first one.
-- Base `from*` names on the source input type: `fromString`, `fromArrayBuffer`, `fromMediaStream`, `fromURLWithProtocols`, and so on.
-- If an optional labeled argument hides a real default constructor, split that binding into `make()` plus typed `from*` overloads instead of keeping the optional argument on `make`.
+Keep null and empty states explicit when they are part of the browser contract. Use `Null.t`
+for nullable results and variants for meaningful empty values; do not replace native results
+with invented defaults or unchecked casts.
 
-For example, these constructor families are easier to understand than numbered overloads:
+## Verification
 
-```ReScript
-@new
-external fromString: (~family: string, ~source: string) => fontFace = "FontFace"
-
-@new
-external fromDataView: (~family: string, ~source: DataView.t) => fontFace = "FontFace"
-
-@new
-external fromArrayBuffer: (~family: string, ~source: ArrayBuffer.t) => fontFace = "FontFace"
-```
-
-And if a constructor really does have a default form, split it instead of hiding it:
-
-```ReScript
-@new
-external make: unit => domMatrix = "DOMMatrix"
-
-@new
-external fromString: string => domMatrix = "DOMMatrix"
-
-@new
-external fromArray: array<float> => domMatrix = "DOMMatrix"
-```
-
-Single-source constructor variants should take the source value directly without a label.
-
-Keep `makeWith*` names for non-default convenience constructors that are not part of a source-type overload family.
-
-Constructor naming is currently verified with compile-coverage tests. Runtime verification for these constructor families will be added later when the Vitest and happy-dom harness lands.
-
-### Decoded variants
-
-We can be pragmatic with overloaded functions and use model them in various creative ways.  
-For properties, we **cannot do this unfortunately**. A propery can only be defined once and have a single type.
-
-The strategy here is to use a decoded variant.
-
-Example for the [fillStyle](https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/fillStyle) property of the `CanvasRenderingContext2D` interface can be either a:
-
-- `string`
-- `CanvasGradient`
-- `CanvasPattern`
-
-These types are not all primitives and thus we cannot define it as [untagged variants](https://rescript-lang.org/docs/manual/latest/variant#untagged-variants).  
-What we can do instead is represent the type as an empty type and use a helper module to interact with this.
-
-export const fillStyleDef = `
-type fillStyle
-
-type canvasRenderingContext2D = {
-// ... other propeties
-mutable fillStyle: fillStyle
-}
-`;
-
-<Code code={fillStyleDef} title="DOMAPI.res" lang="ReScript"></Code>
-
-When we wish to read and write the `fillStyle` property, we can use a helper module to lift the type to an actual ReScript variant:
-
-export const fillStyleModule = `
-open WebAPI
-
-external fromString: string => fillStyle = "%identity"
-external fromCanvasGradient: canvasGradient => fillStyle = "%identity"
-external fromCanvasPattern: canvasGradient => fillStyle = "%identity"
-
-type decoded =
-| String(string)
-| CanvasGradient(canvasGradient)
-| CanvasPattern(canvasPattern)
-
-let decode = (t: fillStyle): decoded => {
-if CanvasGradient.isInstanceOf(t) {
-CanvasGradient(unsafeConversation(t))
-} else if CanvasPattern.isInstanceOf(t) {
-CanvasPattern(unsafeConversation(t))
-} else {
-String(unsafeConversation(t))
-}
-}
-`
-
-<Code code={fillStyleModule} title="DOMAPI/FillStyle.res" lang="ReScript"></Code>
-
-We can now use `FillStyle.decode` to get the actual value of the `fillStyle` property.  
-And use `FillStyle.fromString`, `FillStyle.fromCanvasGradient`, and `FillStyle.fromCanvasPattern` to set the value.
-
-```ReScript
-let ctx = myCanvas->HTMLCanvasElement.getContext_2D
-
-// Write
-ctx.fillStyle = FillStyle.fromString("red")
-
-// Read
-switch ctx.fillStyle->FillStyle.decode {
-| FillStyle.String(color) => Console.log(`Color: ${color}`)
-| FillStyle.CanvasGradient(_) => Console.log("CanvasGradient")
-| FillStyle.CanvasPattern(_) => Console.log("CanvasPattern")
-}
-```
-
-<Icon name="information" color="var(--sl-color-text-accent)" class="inline-icon" size="1.5rem" />
-Try and use `decoded` and `decode` as conventions for the type and function names.
+Add compile-only, Node runtime, or browser runtime fixtures according to the API being modeled.
+The [testing guide](../06-testing/) explains `tests/fixtures.json`, `npm test`,
+`npm run test:browser`, and packed consumer checks.
