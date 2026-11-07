@@ -2,6 +2,7 @@ let _requestBytes: promise<Uint8Array.t> = Request.fromURL("/")->Request.bytes
 let _responseBytes: promise<Uint8Array.t> = Response.fromString("")->Response.bytes
 let _blobBytes: promise<Uint8Array.t> = Blob.make()->Blob.bytes
 let _blobStream: ReadableStream.t<Uint8Array.t> = Blob.make()->Blob.stream
+let _bodyInitFromByteStream: BodyInit.t = BodyInit.fromReadableStream(_blobStream)
 
 let _analyserFloat: (
   WebAudioTypes.analyserNode,

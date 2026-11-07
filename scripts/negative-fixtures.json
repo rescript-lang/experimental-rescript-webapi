@@ -12,6 +12,18 @@
     "expectedDiagnostic": "This has type:"
   },
   {
+    "name": "BodyInit rejects non-byte stream chunks",
+    "fixture": "scripts/fixtures/negative/BodyInitRejectsStringStream.res",
+    "features": ["WebAPI.Fetch"],
+    "expectedDiagnostic": "This has type:"
+  },
+  {
+    "name": "Response rejects non-byte stream chunks",
+    "fixture": "scripts/fixtures/negative/ResponseRejectsStringStream.res",
+    "features": ["WebAPI.Fetch"],
+    "expectedDiagnostic": "This has type:"
+  },
+  {
     "name": "closest cannot narrow to an unrelated element type",
     "fixture": "scripts/fixtures/negative/ClosestCannotNarrow.res",
     "features": ["WebAPI.HTML"],

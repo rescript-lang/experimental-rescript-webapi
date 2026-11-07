@@ -70,6 +70,11 @@ let byteStreamReader = byteStream->ReadableStream.getReader
 let firstChunk = await byteStreamReader->readByteStreamChunk
 assert(containsABCByteChunk(firstChunk))
 await byteStreamReader->cancelByteStreamReader
+let responseFromByteStream = Response.fromReadableStream(
+  Blob.make(~blobParts=[String("ABC")])->Blob.stream,
+)
+let responseStreamBytes = await responseFromByteStream->Response.bytes
+assert(isUint8ArrayWithABC(responseStreamBytes))
 
 let audio: HTMLAudioElement.t = %raw(`document.createElement("audio")`)
 assert(audio->HTMLAudioElement.canPlayType("application/x-webapi-unsupported") ==
