@@ -49,6 +49,31 @@ type hidden = Internal.secret
   );
 });
 
+test("ignores aliases inside nested comments and multiline template strings", () => {
+  assert.deepEqual(
+    parsePublicTypeAliases(
+      "PublicOwner",
+      `/* outer
+/* nested
+type fakeComment = Internal.fakeComment
+*/
+*/
+let example = \`a multiline string
+type fakeString = Internal.fakeString
+\`
+type t = Internal.real`,
+    ),
+    [
+      {
+        moduleName: "PublicOwner",
+        typeName: "t",
+        backingModule: "Internal",
+        backingType: "real",
+      },
+    ],
+  );
+});
+
 test("only links backing types with one public owner", () => {
   const targets = createPublicTypeTargets([
     {

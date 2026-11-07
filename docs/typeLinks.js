@@ -2,13 +2,27 @@ const stripReScriptComments = (source) => {
   const output = [];
   let index = 0;
   let quote = "";
+  let commentDepth = 0;
 
   while (index < source.length) {
-    if (quote !== "") {
+    if (commentDepth > 0) {
+      if (source.startsWith("/*", index)) {
+        commentDepth += 1;
+        output.push("  ");
+        index += 2;
+      } else if (source.startsWith("*/", index)) {
+        commentDepth -= 1;
+        output.push("  ");
+        index += 2;
+      } else {
+        output.push(source[index] === "\n" ? "\n" : " ");
+        index += 1;
+      }
+    } else if (quote !== "") {
       const character = source[index] ?? "";
-      output.push(character);
+      output.push(character === "\n" ? "\n" : " ");
       if (character === "\\" && index + 1 < source.length) {
-        output.push(source[index + 1] ?? "");
+        output.push(source[index + 1] === "\n" ? "\n" : " ");
         index += 2;
       } else {
         if (character === quote) quote = "";
@@ -21,13 +35,9 @@ const stripReScriptComments = (source) => {
     } else if (source.startsWith("//", index)) {
       while (index < source.length && source[index] !== "\n") index += 1;
     } else if (source.startsWith("/*", index)) {
+      commentDepth = 1;
+      output.push("  ");
       index += 2;
-      while (index < source.length && !source.startsWith("*/", index)) {
-        if (source[index] === "\n") output.push("\n");
-        index += 1;
-      }
-      index = Math.min(index + 2, source.length);
-      output.push(" ");
     } else {
       output.push(source[index] ?? "");
       index += 1;

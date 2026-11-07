@@ -128,6 +128,20 @@ test("does not split commas inside data URLs when checking srcset assets", () =>
   assert.deepEqual(checkDocumentLinks(pages, "/docs-site/"), []);
 });
 
+test("preserves commas in srcset URLs and checks candidates after data URLs", () => {
+  const pages = new Map([
+    [
+      "index.html",
+      '<img srcset="data:image/svg+xml,%3Csvg%3E 1x, /docs-site/assets/a,b.svg 2x, /docs-site/missing.svg 3x">',
+    ],
+    ["assets/a,b.svg", "<svg></svg>"],
+  ]);
+
+  assert.deepEqual(checkDocumentLinks(pages, "/docs-site/"), [
+    "index.html: /docs-site/missing.svg: missing missing.svg",
+  ]);
+});
+
 test("finds stale implementation-module links and accepts unlinked internal type text", () => {
   const pages = new Map([
     [
@@ -186,6 +200,15 @@ test("normalizes numeric HTML entities and literal percent fragments", () => {
       '<a href="/docs/guide/#caf%C3%A9">accent</a><a href="/docs/guide/#%26%23233%3B">entity text</a><a href="/docs/guide/#100%">percent</a>',
     ],
     ["guide/index.html", '<p id="caf&#233;"></p><p id="&amp;#233;"></p><p id="100%"></p>'],
+  ]);
+
+  assert.deepEqual(checkDocumentLinks(pages, "/docs/"), []);
+});
+
+test("decodes valid fragment bytes while preserving malformed percent and named entities", () => {
+  const pages = new Map([
+    ["index.html", '<a href="/docs/guide/#caf%C3%A9%">accent</a>'],
+    ["guide/index.html", '<p id="caf&eacute;%"></p>'],
   ]);
 
   assert.deepEqual(checkDocumentLinks(pages, "/docs/"), []);

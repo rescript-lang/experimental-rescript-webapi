@@ -7,7 +7,7 @@ const scriptPath = fileURLToPath(import.meta.url);
 const repoRoot = path.resolve(path.dirname(scriptPath), "..");
 
 const decodeHTML = (value) =>
-  value.replace(/&(#x[\da-f]+|#\d+|amp|quot|apos|lt|gt|nbsp);/gi, (entity, reference) => {
+  value.replace(/&(#x[\da-f]+|#\d+|amp|quot|apos|lt|gt|nbsp|eacute);/gi, (entity, reference) => {
     const normalized = reference.toLowerCase();
     if (normalized === "amp") return "&";
     if (normalized === "quot") return '"';
@@ -15,6 +15,7 @@ const decodeHTML = (value) =>
     if (normalized === "lt") return "<";
     if (normalized === "gt") return ">";
     if (normalized === "nbsp") return "\u00a0";
+    if (normalized === "eacute") return "\u00e9";
     const codePoint = normalized.startsWith("#x")
       ? Number.parseInt(normalized.slice(2), 16)
       : Number.parseInt(normalized.slice(1), 10);
@@ -116,17 +117,15 @@ const sourceSetReferencesFrom = (sourceSet) => {
     while (sourceSet[index] === "," || /\s/.test(sourceSet[index] ?? "")) index += 1;
     if (index >= sourceSet.length) break;
 
-    const isDataURL = sourceSet.slice(index, index + 5).toLowerCase() === "data:";
     let url = "";
-    while (
-      index < sourceSet.length &&
-      !/\s/.test(sourceSet[index] ?? "") &&
-      (isDataURL || sourceSet[index] !== ",")
-    ) {
+    while (index < sourceSet.length && !/\s/.test(sourceSet[index] ?? "")) {
       url += sourceSet[index] ?? "";
       index += 1;
     }
+    const endsCandidate = url.endsWith(",");
+    url = url.replace(/,+$/, "");
     if (url !== "") references.push(url);
+    if (endsCandidate) continue;
     while (index < sourceSet.length && sourceSet[index] !== ",") index += 1;
     if (sourceSet[index] === ",") index += 1;
   }
@@ -305,11 +304,13 @@ const normalizeBase = (base) => {
 };
 
 const decodeFragment = (fragment) => {
-  try {
-    return decodeURIComponent(fragment);
-  } catch {
-    return fragment;
-  }
+  return fragment.replace(/(?:%[\da-f]{2})+/gi, (encodedBytes) => {
+    try {
+      return decodeURIComponent(encodedBytes);
+    } catch {
+      return encodedBytes;
+    }
+  });
 };
 
 const resolveTarget = (source, reference, base) => {
