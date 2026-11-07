@@ -58,7 +58,8 @@
     "prettier": "^3.8.3",
     "prettier-plugin-astro": "^1.0.0",
     "rescript": "13.0.0-alpha.5",
-    "sharp": "^0.35.3"
+    "sharp": "^0.35.3",
+    "ws": "^8.22.1"
   },
   "peerDependencies": {
     "rescript": ">=13.0.0-alpha.5 <13.0.0"

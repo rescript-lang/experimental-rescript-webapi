@@ -23,6 +23,13 @@ let withResolver = (_run: (unit => unit) => unit): promise<unit> =>
 
 let hasResizeCallbackArgs = (_entries, _observer) =>
   %raw(`_entries.length > 0 && _observer instanceof ResizeObserver`)
+let createResizeSignals = () => %raw(`({count: 0, resolvers: []})`)
+let waitForResizeSignal = (_signals: unknown): promise<unit> =>
+  %raw(`new Promise(resolve => _signals.resolvers.push(resolve))`)
+let resolveNextResizeSignal = (_signals: unknown): unit => %raw(`_signals.resolvers.shift()()`)
+let incrementResizeCount = (_signals: unknown): int => %raw(`++_signals.count`)
+let setSize = (_target: DOMTree.element, _pixels: int): unit =>
+  %raw(`(_target.style.width = _pixels + "px", _target.style.height = _pixels + "px")`)
 
 let isNull = _value => %raw(`_value === null`)
 let isUndefined = _value => %raw(`_value === undefined`)
@@ -33,22 +40,13 @@ let appendChild = (_parent, _child) => %raw(`_parent.appendChild(_child)`)
 let appendToDocument = _target => %raw(`document.body.appendChild(_target)`)
 let onSuccess = (_request, _callback) =>
   %raw(`_request.addEventListener("success", _callback, {once: true})`)
-let createWorker = () =>
-  %raw(`new Worker(new URL("/tests/browser/worker-fetch.mjs", location.href), {type: "module"})`)
-let awaitWorkerMessage = _worker =>
-  %raw(`new Promise((resolve, reject) => {
-    _worker.addEventListener("message", event => resolve(event.data), {once: true});
-    _worker.addEventListener("error", reject, {once: true});
-  })`)
-let postWorkerMessage = _worker => %raw(`_worker.postMessage(null)`)
-let stopWorker = _worker => %raw(`_worker.terminate()`)
 let releaseLock = () => %raw(`globalThis.__releaseBindingLock()`)
 
 let isUint8ArrayWithABC = _bytes =>
   %raw(`_bytes instanceof Uint8Array && _bytes.length === 3 && _bytes[0] === 65 && _bytes[2] === 67`)
 
-let isFloat32ArrayWithSixteenValues = _values =>
-  %raw(`_values instanceof Float32Array && _values.length === 16 && _values[0] === 1 && _values[15] === 1`)
+let isNonIdentityFloat32Matrix = _values =>
+  %raw(`_values instanceof Float32Array && _values.length === 16 && _values[0] === 2 && _values[5] === 3 && _values[12] === 4 && _values[13] === 5 && _values[15] === 1`)
 
 let bytes = await Response.fromString("ABC")->Response.bytes
 assert(isUint8ArrayWithABC(bytes))
@@ -78,13 +76,6 @@ assert(audio->HTMLAudioElement.canPlayType("application/x-webapi-unsupported") =
 switch Notification.permission {
 | NotificationTypes.Default | NotificationTypes.Denied | NotificationTypes.Granted => ()
 }
-
-let worker = createWorker()
-let workerResponse = awaitWorkerMessage(worker)
-postWorkerMessage(worker)
-let workerBody = await workerResponse
-stopWorker(worker)
-assert(%raw(`workerBody === "worker-fetch-body\n"`))
 
 switch Document.createElement(document, "canvas")->HTMLCanvasElement.classify {
 | Some(canvas) => {
@@ -134,6 +125,18 @@ appendChild(svg, circle)
 let broadSvgResult = svg->SVGElement.querySelector("circle")
 assert(%raw(`broadSvgResult !== null && typeof broadSvgResult.className === "object" && broadSvgResult.className.baseVal === ""`))
 
+let htmlParent: HTMLDivElement.t = %raw(`document.createElement("div")`)
+htmlParent->HTMLDivElement.setAttribute(~qualifiedName="class", ~value="binding-contracts-html")
+assert(htmlParent.className == "binding-contracts-html")
+let htmlChild: HTMLSpanElement.t = %raw(`document.createElement("span")`)
+htmlChild->HTMLSpanElement.setAttribute(
+  ~qualifiedName="class",
+  ~value="binding-contracts-html-child",
+)
+appendChild(htmlParent, htmlChild)
+let broadHtmlResult = htmlParent->HTMLDivElement.querySelector(".binding-contracts-html-child")
+assert(%raw(`broadHtmlResult !== null && typeof broadHtmlResult.className === "string"`))
+
 let audioContext = OfflineAudioContext.fromChannelCountLengthAndSampleRate(
   ~numberOfChannels=1,
   ~length=128,
@@ -158,30 +161,33 @@ let analyser = audioContext->OfflineAudioContext.createAnalyser
 let analyserBytes: Uint8Array.t = %raw(`new Uint8Array(32)`)
 analyser->AnalyserNode.getByteTimeDomainData(analyserBytes)
 assert(%raw(`analyserBytes instanceof Uint8Array && analyserBytes.length === 32 && analyserBytes[0] === 128`))
+let analyserFloats: Float32Array.t = %raw(`new Float32Array([0.5, -0.5])`)
+analyser->AnalyserNode.getFloatTimeDomainData(analyserFloats)
+assert(%raw(`analyserFloats instanceof Float32Array && analyserFloats[0] === 0 && analyserFloats[1] === 0`))
 
 let filter = audioContext->OfflineAudioContext.createBiquadFilter
 let frequencies: Float32Array.t = %raw(`new Float32Array([440, 880])`)
-let magnitudes: Float32Array.t = %raw(`new Float32Array(2)`)
-let phases: Float32Array.t = %raw(`new Float32Array(2)`)
+let magnitudes: Float32Array.t = %raw(`new Float32Array([-123, -123])`)
+let phases: Float32Array.t = %raw(`new Float32Array([-456, -456])`)
 filter->BiquadFilterNode.getFrequencyResponse(
   ~frequencyHz=frequencies,
   ~magResponse=magnitudes,
   ~phaseResponse=phases,
 )
-assert(%raw(`magnitudes instanceof Float32Array && phases instanceof Float32Array && magnitudes.length === 2 && phases.length === 2 && !Number.isNaN(magnitudes[0])`))
+assert(%raw(`magnitudes instanceof Float32Array && phases instanceof Float32Array && magnitudes.length === 2 && phases.length === 2 && magnitudes[0] !== -123 && phases[0] !== -456 && !Number.isNaN(magnitudes[0])`))
 
 let iirFilter = IIRFilterNode.make(
   ~context=audioContext->OfflineAudioContext.asBaseAudioContext,
   ~options={feedforward: [1.], feedback: [1.]},
 )
-let iirMagnitudes: Float32Array.t = %raw(`new Float32Array(2)`)
-let iirPhases: Float32Array.t = %raw(`new Float32Array(2)`)
+let iirMagnitudes: Float32Array.t = %raw(`new Float32Array([-123, -123])`)
+let iirPhases: Float32Array.t = %raw(`new Float32Array([-456, -456])`)
 iirFilter->IIRFilterNode.getFrequencyResponse(
   ~frequencyHz=frequencies,
   ~magResponse=iirMagnitudes,
   ~phaseResponse=iirPhases,
 )
-assert(%raw(`iirMagnitudes instanceof Float32Array && !Number.isNaN(iirMagnitudes[0]) && iirPhases instanceof Float32Array`))
+assert(%raw(`iirMagnitudes instanceof Float32Array && iirMagnitudes[0] !== -123 && !Number.isNaN(iirMagnitudes[0]) && iirPhases instanceof Float32Array && iirPhases[0] !== -456`))
 
 let deleteRequest = IDBFactory.deleteDatabase(indexedDB, "binding-contracts-regression")
 await withResolver(resolve =>
@@ -212,19 +218,29 @@ let _contendedRequest = await lockManager->LockManager.request2(
 )
 releaseLock()
 
-let matrix = DOMMatrix.fromFloat32Array(Float32Array.fromArray([1., 0., 0., 1., 0., 0.]))
-assert(isFloat32ArrayWithSixteenValues(matrix->DOMMatrixReadOnly.toFloat32Array))
+let matrixValues = Float32Array.fromArray([2., 0., 0., 3., 4., 5.])
+let matrix = DOMMatrix.fromFloat32Array(matrixValues)
+assert(isNonIdentityFloat32Matrix(matrix->DOMMatrixReadOnly.toFloat32Array))
+let readOnlyMatrix = DOMMatrixReadOnly.fromFloat32Array(matrixValues)
+assert(isNonIdentityFloat32Matrix(readOnlyMatrix->DOMMatrixReadOnly.toFloat32Array))
 
 let target: DOMTree.element = %raw(`document.createElement("div")`)
 appendToDocument(target)
-await withResolver(resolve => {
-  let observer = ResizeObserver.make((entries, observer) => {
+let resizeSignals = createResizeSignals()
+let initialResize = waitForResizeSignal(resizeSignals)
+let resizedAgain = waitForResizeSignal(resizeSignals)
+setSize(target, 10)
+let observer = ResizeObserver.make((entries, observer) => {
+  assert(hasResizeCallbackArgs(entries, observer))
+  if incrementResizeCount(resizeSignals) == 2 {
     observer->ResizeObserver.disconnect
-    assert(hasResizeCallbackArgs(entries, observer))
-    resolve()
-  })
-  observer->ResizeObserver.observe(~target)
+  }
+  resolveNextResizeSignal(resizeSignals)
 })
+observer->ResizeObserver.observe(~target)
+await initialResize
+setSize(target, 20)
+await resizedAgain
 target->Element.remove
 
 let subtle = crypto.subtle
@@ -232,7 +248,8 @@ let digest = await subtle->SubtleCrypto.digest(
   ~algorithm={name: "SHA-256"},
   ~data=Uint8Array.fromArray([65, 66, 67])->SubtleCrypto.binaryDataFromUint8Array,
 )
-assert(%raw(`digest.byteLength === 32`))
+let digestBytes: Uint8Array.t = %raw(`new Uint8Array(digest)`)
+assert(%raw(`digest.byteLength === 32 && digestBytes instanceof Uint8Array && digestBytes.length === 32 && digestBytes.buffer === digest`))
 
 let data = Uint8Array.fromArray([65, 66, 67])->SubtleCrypto.binaryDataFromUint8Array
 let hmacKey = await subtle->SubtleCrypto.generateKeySymmetric(

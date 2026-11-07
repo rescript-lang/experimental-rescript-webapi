@@ -6,6 +6,8 @@ let data =
   WebAPI.SubtleCrypto.binaryDataFromUint8Array(Uint8Array.fromArray([65, 66, 67]))
 
 let digest: ArrayBuffer.t = await subtle->WebAPI.SubtleCrypto.digest(~algorithm={name: "SHA-256"}, ~data)
+let digestBytes: Uint8Array.t = %raw(`new Uint8Array(digest)`)
+assert(%raw(`digestBytes instanceof Uint8Array && digestBytes.buffer === digest`))
 
 let hmacKey: WebAPI.SubtleCrypto.cryptoKey = await subtle->WebAPI.SubtleCrypto.generateKeySymmetric(
   ~hash={name: "SHA-256"},

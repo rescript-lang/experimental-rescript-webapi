@@ -18,6 +18,36 @@
     "expectedDiagnostic": "This has type:"
   },
   {
+    "name": "broad Element has no platform-dependent className field",
+    "fixture": "scripts/fixtures/negative/BroadElementHasNoClassName.res",
+    "features": ["WebAPI.DOMNodes"],
+    "expectedDiagnostic": "The field className does not belong to type"
+  },
+  {
+    "name": "Canvas callback requires nullable Blob",
+    "fixture": "scripts/fixtures/negative/CanvasRejectsNonNullableCallback.res",
+    "features": ["WebAPI.Canvas"],
+    "expectedDiagnostic": "but a pattern was expected which matches values of type Null.t"
+  },
+  {
+    "name": "Notification permission is not an instance field",
+    "fixture": "scripts/fixtures/negative/NotificationHasNoInstancePermission.res",
+    "features": ["WebAPI.Messaging"],
+    "expectedDiagnostic": "The field permission does not belong to type"
+  },
+  {
+    "name": "IndexedDB delete result is not an opened database",
+    "fixture": "scripts/fixtures/negative/IDBDeleteResultIsNotDatabase.res",
+    "features": ["WebAPI.Storage"],
+    "expectedDiagnostic": "This has type:"
+  },
+  {
+    "name": "Web Locks callback accepts nullable Lock",
+    "fixture": "scripts/fixtures/negative/WebLocksRejectsNonNullableCallback.res",
+    "features": ["WebAPI.Navigator"],
+    "expectedDiagnostic": "Null.t<WebAPI.WebLocksTypes.lock>"
+  },
+  {
     "name": "custom element definition rejects element instances",
     "fixture": "scripts/fixtures/negative/CustomElementRequiresConstructor.res",
     "features": ["WebAPI.Window"],
@@ -52,5 +82,17 @@
     "fixture": "scripts/fixtures/negative/GeneratePairRejectsAlgorithm.res",
     "features": ["WebAPI.Crypto"],
     "expectedDiagnostic": "This function call is incorrect. The function has type:"
+  },
+  {
+    "name": "JWK format cannot be used for binary export",
+    "fixture": "scripts/fixtures/negative/JwkIsNotBinaryKeyFormat.res",
+    "features": ["WebAPI.Crypto"],
+    "expectedDiagnostic": "belongs to the variant type"
+  },
+  {
+    "name": "raw format cannot be used for JWK export",
+    "fixture": "scripts/fixtures/negative/RawIsNotJwkKeyFormat.res",
+    "features": ["WebAPI.Crypto"],
+    "expectedDiagnostic": "belongs to the variant type"
   }
 ]
