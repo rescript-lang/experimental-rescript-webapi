@@ -27,10 +27,14 @@ npm run check:consumer
 npm run check:release
 ```
 
-The browser suite runs Chromium only; it is not an exhaustive browser compatibility matrix.
-Run it sequentially on the configured local server port. The dedicated `WEBAPI_TEST_PORT` and
-matching base-URL override are pending integration from the browser-runner work in #399; do not
-use a port override until that implementation is present in the binding stack.
+The browser suite runs Chromium only; it is not an exhaustive browser compatibility matrix. Its
+fixture server and Playwright `baseURL` both use `WEBAPI_TEST_PORT`, and the runner refuses to
+reuse an unrelated server. If the default port is occupied during local parallel work, select an
+unused one:
+
+```shell
+WEBAPI_TEST_PORT=4192 npm run test:browser
+```
 
 The consumer check compiles the packed artifact in a fresh project. A successful source build
 alone is not evidence that package installation works.
