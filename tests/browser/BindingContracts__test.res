@@ -150,7 +150,7 @@ filter->BiquadFilterNode.getFrequencyResponse(
   ~magResponse=magnitudes,
   ~phaseResponse=phases,
 )
-assert(%raw(`magnitudes instanceof Float32Array && phases instanceof Float32Array && magnitudes.length === 2 && phases.length === 2`))
+assert(%raw(`magnitudes instanceof Float32Array && phases instanceof Float32Array && magnitudes.length === 2 && phases.length === 2 && !Number.isNaN(magnitudes[0])`))
 
 let deleteRequest = IDBFactory.deleteDatabase(indexedDB, "binding-contracts-regression")
 await withResolver(resolve =>

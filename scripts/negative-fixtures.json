@@ -30,6 +30,18 @@
     "expectedDiagnostic": "This function is expected"
   },
   {
+    "name": "DOMMatrix requires native Float32Array input",
+    "fixture": "scripts/fixtures/negative/DOMMatrixRejectsOrdinaryArray.res",
+    "features": ["WebAPI.Geometry"],
+    "expectedDiagnostic": "This has type:"
+  },
+  {
+    "name": "Analyser requires native Float32Array output buffer",
+    "fixture": "scripts/fixtures/negative/AnalyserRejectsOrdinaryArray.res",
+    "features": ["WebAPI.WebAudio"],
+    "expectedDiagnostic": "This has type:"
+  },
+  {
     "name": "symmetric key generation fixes the algorithm",
     "fixture": "scripts/fixtures/negative/GenerateSymmetricRejectsAlgorithm.res",
     "features": ["WebAPI.Crypto"],
