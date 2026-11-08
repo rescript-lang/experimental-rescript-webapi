@@ -129,15 +129,15 @@ type idbOpenDBRequest = {
 /**
 This example shows a variety of different uses of object stores, from updating the data structure with IDBObjectStore.createIndex inside an onupgradeneeded function, to adding a new item to our object store with IDBObjectStore.add. For a full working example, see our To-do Notifications app (view example live.)
 [See IDBObjectStore on MDN](https://developer.mozilla.org/docs/Web/API/IDBObjectStore)
-TODO: mark as private once mutating fields of private records is allowed
 */
 @editor.completeFrom(IDBObjectStore)
-type idbObjectStore = {
+type idbObjectStore = private {
   /**
     Returns the name of the store.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/IDBObjectStore/name)
     */
   @throws(JsExn)
+  @set
   mutable name: string,
   /**
     Returns the key path of the store, or null if none.
@@ -164,15 +164,15 @@ type idbObjectStore = {
 /**
 IDBIndex interface of the WebApiIndexedDB API provides asynchronous access to an index in a database. An index is a kind of object store for looking up records in another object store, called the referenced object store. You use this interface to retrieve data.
 [See IDBIndex on MDN](https://developer.mozilla.org/docs/Web/API/IDBIndex)
-TODO: mark as private once mutating fields of private records is allowed
 */
 @editor.completeFrom(IDBIndex)
-type idbIndex = {
+type idbIndex = private {
   /**
     Returns the name of the index.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/IDBIndex/name)
     */
   @throws(JsExn)
+  @set
   mutable name: string,
   /**
     Returns the IDBObjectStore the index belongs to.

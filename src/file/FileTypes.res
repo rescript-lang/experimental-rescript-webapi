@@ -37,7 +37,7 @@ This Streams API interface represents a readable stream of byte data. The WebApi
 [See ReadableStream on MDN](https://developer.mozilla.org/docs/Web/API/ReadableStream)
 */
 @editor.completeFrom(ReadableStream)
-type readableStream<'r> = {
+type readableStream<'r> = private {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/ReadableStream/locked)
     */
@@ -49,7 +49,7 @@ This Streams API interface provides a standard abstraction for writing streamin
 [See WritableStream on MDN](https://developer.mozilla.org/docs/Web/API/WritableStream)
 */
 @editor.completeFrom(WritableStream)
-type writableStream<'w> = {
+type writableStream<'w> = private {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/WritableStream/locked)
     */

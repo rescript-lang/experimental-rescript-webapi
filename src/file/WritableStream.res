@@ -1,5 +1,5 @@
 @editor.completeFrom(WritableStream)
-type t<'w> = FileTypes.writableStream<'w> = {...FileTypes.writableStream<'w>}
+type t<'w> = FileTypes.writableStream<'w> = private {...FileTypes.writableStream<'w>}
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/WritableStream)

@@ -11,6 +11,12 @@ module Impl = (
 
   external asNode: T.t => DOMTree.node = "%identity"
 
+  @set
+  external setNodeValue: (T.t, Null.t<string>) => unit = "nodeValue"
+
+  @set
+  external setTextContent: (T.t, Null.t<string>) => unit = "textContent"
+
   type getRootNodeOptions = {mutable composed?: bool}
 
   /**

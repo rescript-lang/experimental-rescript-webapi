@@ -9,10 +9,9 @@ type messageEventSource = unknown
 /**
 Provides the API for creating and managing a WebSocket connection to a server, as well as for sending and receiving data on the connection.
 [See WebSocket on MDN](https://developer.mozilla.org/docs/Web/API/WebSocket)
-TODO: mark as private once mutating fields of private records is allowed
 */
 @editor.completeFrom(WebSocket)
-type webSocket = {
+type webSocket = private {
   ...DOM.eventTarget,
   /**
     Returns the WebApiURL that was used to establish the WebSocket connection.
@@ -47,7 +46,7 @@ If the WebSocket connection is closed, this attribute's value will only increase
 Can be set, to change how binary data is returned. The default is "blob".
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/WebSocket/binaryType)
     */
-  mutable binaryType: binaryType,
+  binaryType: binaryType,
 }
 
 /**
