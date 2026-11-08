@@ -1,4 +1,4 @@
-type t = ClipboardTypes.clipboardItem
+type t = ClipboardTypes.clipboardItem = private {...ClipboardTypes.clipboardItem}
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/ClipboardItem)

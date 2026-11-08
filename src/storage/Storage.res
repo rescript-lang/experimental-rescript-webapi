@@ -1,5 +1,5 @@
 @editor.completeFrom(Storage)
-type t = WebStorageTypes.storage
+type t = WebStorageTypes.storage = private {...WebStorageTypes.storage}
 
 /**
 Returns the name of the nth key, or null if n is greater than or equal to the number of key/value pairs.

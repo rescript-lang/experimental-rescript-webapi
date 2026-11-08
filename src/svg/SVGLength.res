@@ -1,4 +1,4 @@
-type t = SVGElement.svgLength
+type t = SVGElement.svgLength = private {...SVGElement.svgLength}
 
 @throws(JsExn) @send
 external newValueSpecifiedUnits: (

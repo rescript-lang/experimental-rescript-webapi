@@ -1,4 +1,4 @@
-type t = WebLocksTypes.lockManager
+type t = WebLocksTypes.lockManager = private {...WebLocksTypes.lockManager}
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/LockManager/request)

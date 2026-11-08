@@ -1,4 +1,4 @@
-type t = SVGElement.svgGraphicsElement
+type t = SVGElement.svgGraphicsElement = private {...SVGElement.svgGraphicsElement}
 
 include SVGElement.Impl({type t = SVGElement.svgGraphicsElement})
 

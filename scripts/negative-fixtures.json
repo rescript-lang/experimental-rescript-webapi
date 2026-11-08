@@ -54,6 +54,12 @@
     "expectedDiagnostic": "This has type:"
   },
   {
+    "name": "private public-module records cannot be constructed",
+    "fixture": "scripts/fixtures/negative/PrivatePublicModuleRecordCannotBeConstructed.res",
+    "features": ["WebAPI.Canvas"],
+    "expectedDiagnostic": "Cannot create values of the"
+  },
+  {
     "name": "Web Locks callback accepts nullable Lock",
     "fixture": "scripts/fixtures/negative/WebLocksRejectsNonNullableCallback.res",
     "features": ["WebAPI.Navigator"],

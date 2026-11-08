@@ -1,4 +1,4 @@
-type t = GeolocationTypes.geolocationPosition
+type t = GeolocationTypes.geolocationPosition = private {...GeolocationTypes.geolocationPosition}
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/GeolocationPosition/toJSON)

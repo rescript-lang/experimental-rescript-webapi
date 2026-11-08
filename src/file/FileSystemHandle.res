@@ -1,4 +1,4 @@
-type t = FileTypes.fileSystemHandle
+type t = FileTypes.fileSystemHandle = private {...FileTypes.fileSystemHandle}
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/FileSystemHandle/isSameEntry)

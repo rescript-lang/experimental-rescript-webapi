@@ -1,4 +1,4 @@
-type t = PerformanceTypes.performanceMark
+type t = PerformanceTypes.performanceMark = private {...PerformanceTypes.performanceMark}
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/PerformanceMark)

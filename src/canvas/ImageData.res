@@ -1,4 +1,4 @@
-type t = DOM.imageData
+type t = DOM.imageData = private {...DOM.imageData}
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/ImageData)

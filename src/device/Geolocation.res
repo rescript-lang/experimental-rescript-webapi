@@ -1,5 +1,5 @@
 @editor.completeFrom(Geolocation)
-type t = GeolocationTypes.geolocation
+type t = GeolocationTypes.geolocation = private {...GeolocationTypes.geolocation}
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Geolocation/getCurrentPosition)

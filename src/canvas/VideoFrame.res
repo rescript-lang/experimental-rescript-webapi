@@ -1,4 +1,4 @@
-type t = DOM.videoFrame
+type t = DOM.videoFrame = private {...DOM.videoFrame}
 
 /**
 `fromHTMLImageElement(~image: HTMLImageElement.t, ~init: videoFrameInit=?)`

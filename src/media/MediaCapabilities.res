@@ -1,5 +1,7 @@
 @editor.completeFrom(MediaCapabilities)
-type t = MediaCapabilitiesTypes.mediaCapabilities
+type t = MediaCapabilitiesTypes.mediaCapabilities = private {
+  ...MediaCapabilitiesTypes.mediaCapabilities,
+}
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/MediaCapabilities/decodingInfo)

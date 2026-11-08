@@ -1,4 +1,4 @@
-type t = DOM.documentTimeline
+type t = DOM.documentTimeline = private {...DOM.documentTimeline}
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/DocumentTimeline)

@@ -1,4 +1,4 @@
-type t = DOM.domTokenList
+type t = DOM.domTokenList = {...DOM.domTokenList}
 
 /**
 Returns the token with index index.

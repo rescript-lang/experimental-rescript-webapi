@@ -1,4 +1,4 @@
-type t = DOM.domRect
+type t = DOM.domRect = private {...DOM.domRect}
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/DOMRect)

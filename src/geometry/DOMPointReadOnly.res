@@ -1,4 +1,4 @@
-type t = DOM.domPointReadOnly
+type t = DOM.domPointReadOnly = private {...DOM.domPointReadOnly}
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/DOMPointReadOnly)

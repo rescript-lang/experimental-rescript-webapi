@@ -1,4 +1,4 @@
-type t = DOM.domMatrix
+type t = DOM.domMatrix = private {...DOM.domMatrix}
 
 /**
 `make()`

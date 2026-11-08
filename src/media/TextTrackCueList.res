@@ -1,4 +1,4 @@
-type t = WebVttTypes.textTrackCueList
+type t = WebVttTypes.textTrackCueList = private {...WebVttTypes.textTrackCueList}
 
 /**
 Returns the first text track cue (in text track cue order) with text track cue identifier id.

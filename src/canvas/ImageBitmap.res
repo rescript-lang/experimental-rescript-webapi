@@ -1,4 +1,4 @@
-type t = CanvasTypes.imageBitmap
+type t = CanvasTypes.imageBitmap = private {...CanvasTypes.imageBitmap}
 
 /**
 Releases imageBitmap's underlying bitmap data.

@@ -1,4 +1,6 @@
-type t = FileAndDirectoryEntriesTypes.fileSystemDirectoryEntry
+type t = BaseFileAndDirectoryEntries.fileSystemDirectoryEntry = private {
+  ...BaseFileAndDirectoryEntries.fileSystemDirectoryEntry,
+}
 
 external asFileSystemEntry: FileAndDirectoryEntriesTypes.fileSystemDirectoryEntry => FileAndDirectoryEntriesTypes.fileSystemEntry =
   "%identity"

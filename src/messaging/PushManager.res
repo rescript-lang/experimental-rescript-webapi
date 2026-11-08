@@ -1,4 +1,4 @@
-type t = PushTypes.pushManager
+type t = PushTypes.pushManager = private {...PushTypes.pushManager}
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/PushManager/subscribe)

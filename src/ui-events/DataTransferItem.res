@@ -1,4 +1,4 @@
-type t = UiEventsTypes.dataTransferItem
+type t = UiEventsTypes.dataTransferItem = private {...UiEventsTypes.dataTransferItem}
 
 /**
 Invokes the callback with the string data as the argument, if the drag data item kind is text.

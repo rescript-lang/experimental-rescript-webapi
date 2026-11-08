@@ -1,5 +1,5 @@
 @editor.completeFrom(History)
-type t = HistoryTypes.history
+type t = HistoryTypes.history = {...HistoryTypes.history}
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/History/go)

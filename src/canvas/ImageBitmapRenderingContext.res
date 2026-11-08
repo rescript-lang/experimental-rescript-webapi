@@ -1,4 +1,6 @@
-type t = CanvasTypes.imageBitmapRenderingContext
+type t = CanvasTypes.imageBitmapRenderingContext = private {
+  ...CanvasTypes.imageBitmapRenderingContext,
+}
 
 /**
 Transfers the underlying bitmap data from imageBitmap to context, and the bitmap becomes the contents of the canvas element to which context is bound.

@@ -1,4 +1,4 @@
-type t = StyleSheet.cssRuleList
+type t = StyleSheet.cssRuleList = private {...StyleSheet.cssRuleList}
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CSSRuleList/item)

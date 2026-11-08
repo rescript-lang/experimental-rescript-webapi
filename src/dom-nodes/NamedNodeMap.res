@@ -1,5 +1,5 @@
 @editor.completeFrom(NamedNodeMap)
-type t = DOM.namedNodeMap
+type t = DOM.namedNodeMap = private {...DOM.namedNodeMap}
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/NamedNodeMap/item)

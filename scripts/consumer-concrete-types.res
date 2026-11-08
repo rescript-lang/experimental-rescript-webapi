@@ -98,3 +98,9 @@ let audioNode: WebAPI.AudioNode.t => WebAPI.AudioNode.t = value => value
 let baseAudioContext: WebAPI.BaseAudioContext.t => WebAPI.BaseAudioContext.t = value => value
 let periodicWave: WebAPI.PeriodicWave.t => WebAPI.PeriodicWave.t = value => value
 let worklet: WebAPI.Worklet.t => WebAPI.Worklet.t = value => value
+
+let makePublicUrl = () => {
+  let url: WebAPI.URL.t = WebAPI.URL.make(~url="https://example.invalid")
+  url.href = "https://example.com"
+  url.href
+}

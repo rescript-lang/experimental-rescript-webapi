@@ -1,6 +1,6 @@
 type domMatrix2DInit = DOM.domMatrix2DInit
 
-type t = CanvasTypes.canvasPattern
+type t = CanvasTypes.canvasPattern = private {...CanvasTypes.canvasPattern}
 
 /**
 Sets the transformation matrix that will be used when rendering the pattern during a fill or stroke painting operation.

@@ -1,4 +1,4 @@
-type t = UiEventsTypes.touch
+type t = UiEventsTypes.touch = private {...UiEventsTypes.touch}
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Touch)

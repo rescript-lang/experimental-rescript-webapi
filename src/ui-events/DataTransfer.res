@@ -1,4 +1,4 @@
-type t = UiEventsTypes.dataTransfer
+type t = UiEventsTypes.dataTransfer = {...UiEventsTypes.dataTransfer}
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/DataTransfer)

@@ -1,4 +1,4 @@
-type t = DOM.domMatrixReadOnly
+type t = DOM.domMatrixReadOnly = private {...DOM.domMatrixReadOnly}
 
 /**
 `make()`

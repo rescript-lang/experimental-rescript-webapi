@@ -1,4 +1,4 @@
-type t = WebAudioTypes.baseAudioContext
+type t = WebAudioTypes.baseAudioContext = private {...WebAudioTypes.baseAudioContext}
 
 module Impl = (
   T: {

@@ -1,4 +1,4 @@
-type t = DOM.idleDeadline
+type t = DOM.idleDeadline = private {...DOM.idleDeadline}
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/IdleDeadline/timeRemaining)

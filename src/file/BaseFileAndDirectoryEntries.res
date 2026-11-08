@@ -3,7 +3,7 @@
 /**
 [See FileSystemEntry on MDN](https://developer.mozilla.org/docs/Web/API/FileSystemEntry)
 */
-@editor.completeFrom(BaseFileAndDirectoryEntries.FileSystemEntry)
+@editor.completeFrom(FileSystemEntry)
 type rec fileSystemEntry = private {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/FileSystemEntry/isFile)
@@ -30,9 +30,7 @@ type rec fileSystemEntry = private {
 /**
 [See FileSystemDirectoryEntry on MDN](https://developer.mozilla.org/docs/Web/API/FileSystemDirectoryEntry)
 */
-@editor.completeFrom(
-  BaseFileAndDirectoryEntries.FileSystemDirectoryEntry
-) and fileSystemDirectoryEntry = private {
+@editor.completeFrom(FileSystemDirectoryEntry) and fileSystemDirectoryEntry = private {
   // Base properties from FileSystemEntry
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/FileSystemEntry/isFile)

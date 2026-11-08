@@ -1,4 +1,4 @@
-type t<'node> = DOM.nodeList<'node>
+type t<'node> = DOM.nodeList<'node> = private {...DOM.nodeList<'node>}
 
 /**
 Returns the node with index index from the collection. The nodes are sorted in tree order.

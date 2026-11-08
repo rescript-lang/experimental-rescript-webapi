@@ -1,4 +1,4 @@
-type t = CacheTypes.cache
+type t = CacheTypes.cache = private {...CacheTypes.cache}
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Cache/match)

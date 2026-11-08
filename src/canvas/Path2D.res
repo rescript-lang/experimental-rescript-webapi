@@ -1,6 +1,6 @@
 type domMatrix2DInit = DOM.domMatrix2DInit
 
-type t = CanvasTypes.path2D
+type t = CanvasTypes.path2D = private {...CanvasTypes.path2D}
 
 /**
 `make()`

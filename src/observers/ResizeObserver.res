@@ -1,5 +1,5 @@
 @editor.completeFrom(ResizeObserver)
-type t = ResizeObserverTypes.resizeObserver
+type t = ResizeObserverTypes.resizeObserver = private {...ResizeObserverTypes.resizeObserver}
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/ResizeObserver)
