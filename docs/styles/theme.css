@@ -1,6 +1,7 @@
 :root,
 ::backdrop {
-  --sl-font: "Inter", "Roboto Mono";
+  --sl-font: system-ui, sans-serif;
+  --sl-font-mono: ui-monospace, "Cascadia Code", "Segoe UI Mono", monospace;
   --sl-sidebar-width: 23rem;
   --sl-text-3xl: 1.5rem;
   --sl-text-2xl: 1.3rem;

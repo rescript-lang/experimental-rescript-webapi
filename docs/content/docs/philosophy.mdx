@@ -6,9 +6,14 @@ slug: "design-philosophy"
 
 The core idea of these ReScript bindings is that each interface is modeled as a record type. Where possible, inheritance is represented using record spreading, and methods are modeled as functions in a separate module. This design allows for greater familiarity with the underlying JavaScript APIs, making it more friendly for newcomers.
 
-## ReScript v12
+## ReScript 13 alpha compatibility
 
-These bindings utilize new features introduced in ReScript v12; thus, they are not compatible with older versions of ReScript.
+This project currently supports ReScript `13.0.0-alpha.5`. ReScript 13 is still an alpha, and
+the library may continue to publish `1.0.0-alpha.N` releases alongside it. Library alpha releases
+may include breaking API changes; a stable ReScript compiler is not required to use or release
+this library's alpha versions. See the [API surface](../api-surface/) for the public module layout
+and the [release readiness tracker](https://github.com/rescript-lang/experimental-rescript-webapi/issues/382)
+for the current release scope.
 
 ## Web APIs
 
@@ -21,6 +26,7 @@ The bindings are exposed under the `WebAPI` namespace with the same flat module 
 ```ReScript
 open WebAPI.DOM
 
+let document = WebAPI.DOM.window->WebAPI.Window.document
 let myElement: WebAPI.Element.t = document->WebAPI.Document.createElement("div")
 ```
 
@@ -45,6 +51,7 @@ In some cases, type conversion will be required. Subtypes can safely be cast to 
 ```ReScript
 open WebAPI.DOM
 
+let document = WebAPI.DOM.window->WebAPI.Window.document
 let element: WebAPI.Element.t = document->WebAPI.Document.createElement("div")
 let node: WebAPI.Node.t = element->WebAPI.Element.asNode
 ```

@@ -23,33 +23,28 @@ We recommend the following overall workflow when developing for this repository:
 - Always work in your fork
 - Always keep your fork up to date
 
-Before updating your fork, run this command:
+Add the upstream repository once, if it is not already configured:
 
 ```shell
 git remote add upstream https://github.com/rescript-lang/experimental-rescript-webapi.git
 ```
 
-This will make management of multiple forks and your own work easier over time.
+Check `git remote -v` first to avoid adding the same remote twice.
 
 ### Updating your fork
 
-We recommend the following commands to update your fork:
+Update `main` without deleting local files or untracked work:
 
 ```shell
 git checkout main
-git clean -xdf
 git fetch upstream
-git rebase upstream/main
+git merge --ff-only upstream/main
 git push
 ```
 
-Or more succinctly:
-
-```shell
-git checkout main && git clean -xdf && git fetch upstream && git rebase upstream/main && git push
-```
-
-This will update your fork with the latest from `rescript-lang/experimental-rescript-webapi` on your machine and push those updates to your remote fork.
+The fast-forward-only merge stops rather than rewriting history if your fork's `main` has
+diverged. Keep work on feature branches; commit or stash changes before switching branches.
+This updates your local `main` from upstream and pushes it to your fork's configured `origin`.
 
 ## Initial build
 

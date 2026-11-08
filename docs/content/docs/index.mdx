@@ -23,24 +23,40 @@ import { Tabs, TabItem, Code } from "@astrojs/starlight/components";
 
 ## Installation
 
-Install the package using your favorite package manager:
+ReScript `13.0.0-alpha.5` is the tested compiler baseline, and library alpha releases may
+include breaking changes. See [project status](./project-status/) for the accepted peer range
+and its testing limits.
+
+Install the package and tested compiler:
 
 <Tabs syncKey="package manager">
   <TabItem label="npm">
-    <Code lang="shell" frame="none" code="npm i @rescript/webapi@alpha" />
+    <Code
+      lang="shell"
+      frame="none"
+      code="npm install @rescript/webapi@alpha && npm install --save-dev rescript@13.0.0-alpha.5"
+    />
   </TabItem>
   <TabItem label="bun">
-    <Code lang="shell" frame="none" code="bun i @rescript/webapi@alpha" />
+    <Code
+      lang="shell"
+      frame="none"
+      code="bun i @rescript/webapi@alpha && bun add --dev rescript@13.0.0-alpha.5"
+    />
   </TabItem>
 </Tabs>
 
-and add `@rescript/webapi` to your `rescript.json`:
+The `@alpha` install command targets the published alpha dist-tag. The planned `1.0.0-alpha.1`
+candidate is not published yet; see [project status](./project-status/) for the current tag and
+note that candidate installation is verified from its packed tarball.
+
+Add the source directory and package dependency to `rescript.json`:
 
 export const rescriptJson = `
 {
-  "dependencies": [
-    "@rescript/webapi"
-  ]
+  "name": "webapi-consumer",
+  "sources": [{ "dir": "src" }],
+  "dependencies": ["@rescript/webapi"]
 }
 `;
 
@@ -81,3 +97,5 @@ export {
     <Code lang="js" frame="none" code={compiledSample} />
   </TabItem>
 </Tabs>
+
+Save the ReScript sample in `src/Main.res`, then compile it with `npx rescript build`.

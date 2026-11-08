@@ -1,5 +1,5 @@
 ---
-import { createAPIModuleLink } from "../utils.js";
+import { apiModules, createAPIModuleLink, publicTypeTargets } from "../utils.js";
 const { item, typesInOwnModule } = Astro.props;
 
 let link;
@@ -9,8 +9,18 @@ if (typesInOwnModule && typesInOwnModule.has(item.path)) {
 
 if (item.path.startsWith("WebAPI.")) {
   const paths = item.path.split(".");
-  if (paths.length === 3) {
-    link = `${import.meta.env.BASE_URL}/${createAPIModuleLink(paths[1])}#${paths[2]}`;
+  const moduleName = paths[1];
+  if (
+    paths.length === 3 &&
+    moduleName &&
+    apiModules.some((apiModule) => apiModule.moduleName === moduleName)
+  ) {
+    link = `${import.meta.env.BASE_URL}/${createAPIModuleLink(moduleName)}#${paths[2]}`;
+  } else if (paths.length === 3 && moduleName && paths[2]) {
+    const publicType = publicTypeTargets.get(`${moduleName}.${paths[2]}`);
+    if (publicType) {
+      link = `${import.meta.env.BASE_URL}/${createAPIModuleLink(publicType.moduleName)}#${publicType.typeName}`;
+    }
   }
 }
 

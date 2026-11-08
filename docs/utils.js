@@ -3,6 +3,7 @@ import { exec } from "node:child_process";
 import { promisify } from "node:util";
 import { readdirSync, existsSync, readFileSync } from "fs";
 import { micromark } from "micromark";
+import { createPublicTypeTargets, parsePublicTypeAliases } from "./typeLinks.js";
 
 const execAsync = promisify(exec);
 const rootDir = process.cwd();
@@ -43,6 +44,11 @@ export const apiModules = publicSourceEntries
   )
   .filter(({ filePath }) => existsSync(filePath))
   .sort((a, b) => a.moduleName.localeCompare(b.moduleName));
+
+const publicTypeAliases = apiModules.flatMap(({ filePath, moduleName }) =>
+  parsePublicTypeAliases(moduleName, readFileSync(filePath, "utf8")),
+);
+export const publicTypeTargets = createPublicTypeTargets(publicTypeAliases);
 
 async function getRescriptDoc(absoluteFilePath) {
   const { stdout, stderr } = await execAsync(`rescript-tools doc ${absoluteFilePath}`, {

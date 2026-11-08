@@ -60,6 +60,9 @@ jobs:
       - name: Build documentation
         run: npm run build:docs
 
+      - name: Check documentation links
+        run: npm run check:docs-links
+
       - name: Validate alpha package metadata
         run: npm run check:release
 
