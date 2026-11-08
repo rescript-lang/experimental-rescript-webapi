@@ -39,20 +39,25 @@ WEBAPI_TEST_PORT=4192 npm run test:browser
 The consumer check compiles the packed artifact in a fresh project. A successful source build
 alone is not evidence that package installation works.
 
+`npm run check:release` validates metadata without checking whether the version has been
+published. Ordinary pull requests can keep the current version after a release.
+
 The initial candidate is `1.0.0-alpha.1`, tagged `v1.0.0-alpha.1`. For each later alpha, update
 `package.json` and `package-lock.json` together to the next `1.0.0-alpha.N` version, add the
 user-visible changes and migration guidance to `CHANGELOG.md`, and create the matching Git tag
-`v1.0.0-alpha.N` from the validated release commit. Run `npm run check:release` after the version
-change; it rejects an already-published version and checks the expected alpha metadata.
+`v1.0.0-alpha.N` from the validated release commit. After changing the version, run
+`npm run check:release -- --check-unpublished` to validate the metadata and reject an
+already-published version.
 
 ## Validate and publish
 
 The Release workflow's unprivileged `validate` job checks and packs the candidate once. It runs
 `npm run check:consumer` and a publish dry-run against that exact `.tgz`; the PR and a manual
-`workflow_dispatch` with `dry_run: true` use this validation path. The archive is not exposed for
-a later local download on those paths; a real main-only publication transfers the same artifact
-internally from `validate` to `publish`. If reproducing the artifact checks locally, pack once
-and pass the same path to both commands:
+`workflow_dispatch` with `dry_run: true` use this validation path. Manual release runs also check
+that the version is unpublished; pull requests do not. The archive is not exposed for a later
+local download on those paths; a real main-only publication transfers the same artifact internally
+from `validate` to `publish`. If reproducing the artifact checks locally, pack once and pass the
+same path to both commands:
 
 ```shell
 mkdir -p .release
