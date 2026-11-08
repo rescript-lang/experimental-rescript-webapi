@@ -40,14 +40,14 @@ type mediaKeySystemAccess = private {
 This WebApiEncryptedMediaExtensions API interface the represents a set of keys that an associated HTMLMediaElement can use for decryption of media data during playback.
 [See MediaKeys on MDN](https://developer.mozilla.org/docs/Web/API/MediaKeys)
 */
-@editor.completeFrom(BaseEncryptedMediaExtensions.MediaKeys)
+@editor.completeFrom(MediaKeys)
 type mediaKeys = private {}
 
 /**
 This WebApiEncryptedMediaExtensions API interface is a read-only map of media key statuses by key IDs.
 [See MediaKeyStatusMap on MDN](https://developer.mozilla.org/docs/Web/API/MediaKeyStatusMap)
 */
-@editor.completeFrom(BaseEncryptedMediaExtensions.MediaKeyStatusMap)
+@editor.completeFrom(MediaKeyStatusMap)
 type mediaKeyStatusMap = private {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/MediaKeyStatusMap/size)

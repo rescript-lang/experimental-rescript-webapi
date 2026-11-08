@@ -48,7 +48,7 @@ type resizeObserverEntry = {
 /**
 [See WebApiResizeObserver on MDN](https://developer.mozilla.org/docs/Web/API/ResizeObserver)
 */
-@editor.completeFrom(WebApiResizeObserver)
+@editor.completeFrom(ResizeObserver)
 type resizeObserver = private {}
 
 type resizeObserverOptions = {mutable box?: resizeObserverBoxOptions}

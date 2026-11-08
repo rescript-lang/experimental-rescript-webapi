@@ -1,3 +1,5 @@
+type t = WebAudioTypes.periodicWave = private {...WebAudioTypes.periodicWave}
+
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/PeriodicWave)
 */

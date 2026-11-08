@@ -1,3 +1,7 @@
+type t = FileTypes.fileSystemWritableFileStream = private {
+  ...FileTypes.fileSystemWritableFileStream,
+}
+
 external asWritableStream: FileTypes.fileSystemWritableFileStream => FileTypes.writableStream<'w> =
   "%identity"
 /**

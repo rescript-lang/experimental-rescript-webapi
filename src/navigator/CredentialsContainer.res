@@ -1,3 +1,7 @@
+type t = CredentialManagementTypes.credentialsContainer = private {
+  ...CredentialManagementTypes.credentialsContainer,
+}
+
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CredentialsContainer/get)
 */

@@ -1,3 +1,5 @@
+type t = CanvasTypes.imageBitmap = private {...CanvasTypes.imageBitmap}
+
 /**
 Releases imageBitmap's underlying bitmap data.
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/ImageBitmap/close)

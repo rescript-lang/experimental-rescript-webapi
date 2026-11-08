@@ -1,3 +1,5 @@
+type t = WebAudioTypes.audioParam = {...WebAudioTypes.audioParam}
+
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/AudioParam/setValueAtTime)
 */

@@ -1,3 +1,7 @@
+type t = BaseFileAndDirectoryEntries.fileSystemEntry = private {
+  ...BaseFileAndDirectoryEntries.fileSystemEntry,
+}
+
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/FileSystemEntry/getParent)
 */

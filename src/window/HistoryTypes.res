@@ -9,7 +9,7 @@ Allows manipulation of the browser session history, that is the pages visited 
 [See WebApiHistory on MDN](https://developer.mozilla.org/docs/Web/API/History)
 TODO: mark as private once mutating fields of private records is allowed
 */
-@editor.completeFrom(WebApiHistory)
+@editor.completeFrom(History)
 type history = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/History/length)

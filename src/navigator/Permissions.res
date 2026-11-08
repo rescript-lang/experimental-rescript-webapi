@@ -1,3 +1,5 @@
+type t = PermissionsTypes.permissions = private {...PermissionsTypes.permissions}
+
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Permissions/query)
 */

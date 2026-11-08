@@ -1,3 +1,5 @@
+type t = FileTypes.fileSystemDirectoryHandle = private {...FileTypes.fileSystemDirectoryHandle}
+
 external asFileSystemHandle: FileTypes.fileSystemDirectoryHandle => FileTypes.fileSystemHandle =
   "%identity"
 /**

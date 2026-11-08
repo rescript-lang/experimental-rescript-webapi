@@ -1,3 +1,5 @@
+type t = IndexedDbTypes.idbObjectStore = {...IndexedDbTypes.idbObjectStore}
+
 /**
 Adds or updates a record in store with the given value and key.
 

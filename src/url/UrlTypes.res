@@ -16,7 +16,7 @@ The WebApiURL interface represents an object providing static methods used for 
 [See WebApiURL on MDN](https://developer.mozilla.org/docs/Web/API/URL)
 TODO: mark as private once mutating fields of private records is allowed
 */
-@editor.completeFrom(WebApiURL)
+@editor.completeFrom(URL)
 type url = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/URL/href)

@@ -189,6 +189,11 @@ const checkConsumers = async () => {
       const scenarios = [
         { name: "default", fixture: "scripts/consumer-default.res", features: null },
         {
+          name: "concrete public types",
+          fixture: "scripts/consumer-concrete-types.res",
+          features: null,
+        },
+        {
           name: "Fetch-only",
           fixture: "scripts/consumer-fetch.res",
           features: ["WebAPI.Fetch"],

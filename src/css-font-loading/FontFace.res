@@ -1,3 +1,5 @@
+type t = CssFontLoadingTypes.fontFace = {...CssFontLoadingTypes.fontFace}
+
 /**
 `fromString(~family: string, ~source: string, ~descriptors: fontFaceDescriptors=?)`
 

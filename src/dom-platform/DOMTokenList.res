@@ -1,3 +1,5 @@
+type t = DOM.domTokenList = {...DOM.domTokenList}
+
 /**
 Returns the token with index index.
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/DOMTokenList/item)

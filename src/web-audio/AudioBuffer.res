@@ -1,3 +1,5 @@
+type t = WebAudioTypes.audioBuffer = private {...WebAudioTypes.audioBuffer}
+
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/AudioBuffer)
 */

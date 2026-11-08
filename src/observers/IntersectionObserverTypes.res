@@ -7,7 +7,7 @@ type root
 provides a way to asynchronously observe changes in the intersection of a target element with an ancestor element or with a top-level document's viewport.
 [See WebApiIntersectionObserver on MDN](https://developer.mozilla.org/docs/Web/API/IntersectionObserver)
 */
-@editor.completeFrom(WebApiIntersectionObserver)
+@editor.completeFrom(IntersectionObserver)
 type intersectionObserver = private {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/IntersectionObserver/root)

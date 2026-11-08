@@ -1,3 +1,5 @@
+type t = DOM.canvasRenderingContext2D
+
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CanvasRenderingContext2D/fillStyle)
 */

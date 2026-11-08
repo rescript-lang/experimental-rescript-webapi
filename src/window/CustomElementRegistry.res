@@ -1,3 +1,5 @@
+type t = DOM.customElementRegistry = private {...DOM.customElementRegistry}
+
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CustomElementRegistry/define)
 */

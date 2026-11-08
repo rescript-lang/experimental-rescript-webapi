@@ -1,3 +1,7 @@
+type t = BaseEncryptedMediaExtensions.mediaKeyStatusMap = private {
+  ...BaseEncryptedMediaExtensions.mediaKeyStatusMap,
+}
+
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/MediaKeyStatusMap/has)
 */

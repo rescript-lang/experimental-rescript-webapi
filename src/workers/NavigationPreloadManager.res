@@ -1,3 +1,7 @@
+type t = ServiceWorkerTypes.navigationPreloadManager = private {
+  ...ServiceWorkerTypes.navigationPreloadManager,
+}
+
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/NavigationPreloadManager/enable)
 */

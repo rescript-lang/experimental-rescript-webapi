@@ -1,3 +1,5 @@
+type t = FetchTypes.headers = private {...FetchTypes.headers}
+
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Headers)
 */

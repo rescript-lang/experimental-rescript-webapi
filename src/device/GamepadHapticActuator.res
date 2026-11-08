@@ -1,3 +1,5 @@
+type t = GamepadTypes.gamepadHapticActuator = private {...GamepadTypes.gamepadHapticActuator}
+
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/GamepadHapticActuator/playEffect)
 */

@@ -1,3 +1,8 @@
+@editor.completeFrom(IntersectionObserver)
+type t = IntersectionObserverTypes.intersectionObserver = private {
+  ...IntersectionObserverTypes.intersectionObserver,
+}
+
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/IntersectionObserver)
 */

@@ -1,3 +1,5 @@
+type t = DOM.fileList = private {...DOM.fileList}
+
 /**
 Returns the `WebApiFile` at the specified index.
 
