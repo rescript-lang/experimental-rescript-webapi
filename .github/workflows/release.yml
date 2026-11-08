@@ -60,8 +60,12 @@ jobs:
       - name: Build documentation
         run: npm run build:docs
 
-      - name: Validate explicit alpha version and unpublished state
+      - name: Validate alpha package metadata
         run: npm run check:release
+
+      - name: Check unpublished release version
+        if: github.event_name == 'workflow_dispatch'
+        run: node scripts/check-release.mjs --check-unpublished
 
       - name: Package release artifact
         id: package

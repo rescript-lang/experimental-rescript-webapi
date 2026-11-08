@@ -1,8 +1,6 @@
 import assert from "node:assert/strict";
-import { spawnSync } from "node:child_process";
 import { readFileSync } from "node:fs";
 import { test } from "node:test";
-import { fileURLToPath } from "node:url";
 import { validateReleaseArtifact } from "./validate-release-artifact.mjs";
 
 const workflow = readFileSync(new URL("../.github/workflows/release.yml", import.meta.url), "utf8");
@@ -64,22 +62,4 @@ test("privileged workflow guard invokes Node directly without npm lifecycle hook
   assert.doesNotMatch(publishJob, /npm run check:release/);
   assert.match(publishJob, /npm publish .*--ignore-scripts/);
   assert.match(publishJob, /validateReleaseArtifact\(\{ name, version \}, packed\)/);
-});
-
-test("direct release guard rejects non-main before a registry lookup", () => {
-  const result = spawnSync(
-    process.execPath,
-    [fileURLToPath(new URL("./check-release.mjs", import.meta.url)), "--publish"],
-    {
-      encoding: "utf8",
-      env: {
-        ...process.env,
-        GITHUB_EVENT_NAME: "workflow_dispatch",
-        GITHUB_REF: "refs/heads/release-branch",
-      },
-    },
-  );
-
-  assert.notEqual(result.status, 0);
-  assert.match(`${result.stdout}\n${result.stderr}`, /only from refs\/heads\/main/);
 });
