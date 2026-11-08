@@ -4,6 +4,11 @@ Used for attributes of type SVGPreserveAspectRatio which can be animated.
 */
 type svgAnimatedPreserveAspectRatio = {}
 
+type svgAnimatedString = {
+  mutable baseVal: string,
+  animVal: string,
+}
+
 /**
 Correspond to the <length> basic data type.
 [See SVGLength on MDN](https://developer.mozilla.org/docs/Web/API/SVGLength)
@@ -32,6 +37,7 @@ All of the SVG WebApiDOM interfaces that correspond directly to elements in the 
 */
 type t = {
   ...DOMTree.element,
+  className: svgAnimatedString,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/dataset)
     */

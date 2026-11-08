@@ -2,12 +2,10 @@ name: Release
 
 on:
   pull_request:
-    branches:
-      - main
   workflow_dispatch:
     inputs:
       dry_run:
-        description: Run npm publish without publishing the package
+        description: Validate and dry-run without publishing
         required: true
         default: true
         type: boolean
@@ -16,7 +14,91 @@ permissions:
   contents: read
 
 jobs:
+  validate:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v7
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v7
+        with:
+          node-version: "26"
+          package-manager-cache: false
+
+      - name: Setup npm
+        run: npm install --global npm@11.5.1
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Check formatting
+        run: npm run format:check
+
+      - name: Rebuild ReScript code
+        run: npm run build
+
+      - name: Check public feature builds
+        run: npm run check:features
+
+      - name: Verify packed consumers
+        run: npm run check:consumer
+
+      - name: Run negative compiler consumers
+        run: npm run test:negative
+
+      - name: Run tests
+        run: npm test
+
+      - name: Install Chromium
+        run: npx playwright install --with-deps chromium
+
+      - name: Run browser tests
+        run: npm run test:browser
+
+      - name: Build documentation
+        run: npm run build:docs
+
+      - name: Validate alpha package metadata
+        run: npm run check:release
+
+      - name: Check unpublished release version
+        if: github.event_name == 'workflow_dispatch'
+        run: node scripts/check-release.mjs --check-unpublished
+
+      - name: Package release artifact
+        id: package
+        run: |
+          mkdir -p .release
+          npm pack --json --pack-destination .release > .release/metadata.json
+          artifact="$(node -e 'process.stdout.write(JSON.parse(require("node:fs").readFileSync(".release/metadata.json", "utf8"))[0].filename)')"
+          echo "artifact=.release/$artifact" >> "$GITHUB_OUTPUT"
+
+      - name: Verify packed consumers and tarball contents
+        run: npm run check:consumer -- "${{ steps.package.outputs.artifact }}"
+
+      - name: Dry-run publish the validated artifact
+        run: npm publish "${{ steps.package.outputs.artifact }}" --access public --tag alpha --dry-run --ignore-scripts
+
+      - name: Reject real publication from non-main branches
+        if: github.event_name == 'workflow_dispatch' && !inputs.dry_run && github.ref != 'refs/heads/main'
+        run: |
+          echo "Real alpha publication is permitted only from main."
+          exit 1
+
+      - name: Upload validated release artifact
+        if: github.event_name == 'workflow_dispatch' && github.ref == 'refs/heads/main' && !inputs.dry_run
+        uses: actions/upload-artifact@v4
+        with:
+          name: alpha-release-artifact
+          path: ${{ steps.package.outputs.artifact }}
+          if-no-files-found: error
+          retention-days: 1
+
   publish:
+    needs: validate
+    if: github.event_name == 'workflow_dispatch' && github.ref == 'refs/heads/main' && !inputs.dry_run
     runs-on: ubuntu-latest
     permissions:
       contents: read
@@ -36,51 +118,47 @@ jobs:
       - name: Setup npm
         run: npm install --global npm@11.5.1
 
-      - name: Install dependencies
-        run: npm ci
+      - name: Download validated release artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: alpha-release-artifact
+          path: .release
 
-      - name: Check formatting
-        run: npm run format:check
-
-      - name: Rebuild ReScript code
-        run: npm run build
-
-      - name: Check public feature builds
-        run: npm run check:features
-
-      - name: Run tests
-        run: npm test
-
-      - name: Build documentation
-        run: npm run build:docs
-
-      - name: get-npm-version
-        id: package-version
-        uses: martinbeentjes/npm-get-version-action@v1.3.1
-
-      - name: Get short commit hash
-        id: vars
-        run: echo "COMMIT_HASH=$(git rev-parse --short HEAD)" >> $GITHUB_ENV
-
-      - name: Update package version to -<commit-hash>
-        env:
-          PACKAGE_VERSION: ${{ steps.package-version.outputs.current-version }}-alpha-${{ env.COMMIT_HASH }}
+      - name: Verify downloaded artifact metadata
         run: |
-          node <<'NODE'
-          const fs = require("node:fs");
-          const packageJsonPath = "package.json";
-          const packageJson = JSON.parse(fs.readFileSync(packageJsonPath, "utf8"));
-          packageJson.version = process.env.PACKAGE_VERSION;
-          fs.writeFileSync(packageJsonPath, `${JSON.stringify(packageJson, null, 2)}\n`);
+          artifact=".release/rescript-webapi-$(node -p 'require("./package.json").version').tgz"
+          test -f "$artifact"
+          node --input-type=module <<'NODE'
+          import { execFileSync } from "node:child_process";
+          import { readFileSync } from "node:fs";
+          import { validateReleaseArtifact } from "./scripts/validate-release-artifact.mjs";
+          const { name, version } = JSON.parse(readFileSync("package.json", "utf8"));
+          const artifact = `.release/rescript-webapi-${version}.tgz`;
+          const packed = JSON.parse(execFileSync("tar", ["-xOf", artifact, "package/package.json"], { encoding: "utf8" }));
+          const errors = validateReleaseArtifact({ name, version }, packed);
+          if (errors.length > 0) {
+            throw new Error(`Downloaded artifact is not publishable:\n${errors.join("\n")}`);
+          }
+          console.log(`Verified ${name}@${version} artifact before publishing with the alpha tag.`);
           NODE
 
-      - name: Package npm package
-        run: npm pack
+      - name: Verify publication guard
+        run: node scripts/check-release.mjs --publish
 
-      - name: Dry-run npm publish
-        if: github.event_name == 'pull_request' || inputs.dry_run
-        run: npm publish ./rescript-webapi-*.tgz --access public --tag alpha --dry-run
+      - name: Publish alpha artifact
+        run: npm publish ".release/rescript-webapi-$(node -p 'require("./package.json").version').tgz" --access public --tag alpha --provenance --ignore-scripts
 
-      - name: Publish npm package
-        if: github.event_name == 'workflow_dispatch' && github.ref == 'refs/heads/main' && !inputs.dry_run
-        run: npm publish ./rescript-webapi-*.tgz --access public --tag alpha
+      - name: Verify alpha dist-tag
+        run: |
+          node <<'NODE'
+          const { execFileSync } = require("node:child_process");
+          const { name, version } = require("./package.json");
+          const tags = JSON.parse(execFileSync("npm", ["view", name, "dist-tags", "--json"], { encoding: "utf8" }));
+          if (tags.alpha !== version) {
+            throw new Error(`Expected alpha dist-tag ${version}, received ${tags.alpha ?? "missing"}.`);
+          }
+          if (tags.latest === version) {
+            throw new Error(`Alpha publication unexpectedly advanced latest to ${version}.`);
+          }
+          console.log(`Verified ${name}@${version} is tagged alpha and not latest.`);
+          NODE

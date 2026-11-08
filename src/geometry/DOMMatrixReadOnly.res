@@ -44,7 +44,7 @@ external fromArray: array<float> => DOM.domMatrixReadOnly = "DOMMatrixReadOnly"
 external fromMatrix: (~other: DOM.domMatrixInit=?) => DOM.domMatrixReadOnly = "fromMatrix"
 
 @throws(JsExn) @scope("DOMMatrixReadOnly")
-external fromFloat32Array: array<float> => DOM.domMatrixReadOnly = "fromFloat32Array"
+external fromFloat32Array: Float32Array.t => DOM.domMatrixReadOnly = "fromFloat32Array"
 
 @throws(JsExn) @scope("DOMMatrixReadOnly")
 external fromFloat64Array: Float64Array.t => DOM.domMatrixReadOnly = "fromFloat64Array"
@@ -131,7 +131,7 @@ external transformPoint: (DOM.domMatrixReadOnly, ~point: DOM.domPointInit=?) => 
   "transformPoint"
 
 @send
-external toFloat32Array: DOM.domMatrixReadOnly => array<float> = "toFloat32Array"
+external toFloat32Array: DOM.domMatrixReadOnly => Float32Array.t = "toFloat32Array"
 
 @send
 external toFloat64Array: DOM.domMatrixReadOnly => Float64Array.t = "toFloat64Array"

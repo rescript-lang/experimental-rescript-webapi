@@ -64,7 +64,8 @@ external fromFormData: (FormData.t, ~init: responseInit=?) => t = "Response"
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Response)
 */
 @new
-external fromReadableStream: (ReadableStream.t<'t>, ~init: responseInit=?) => t = "Response"
+external fromReadableStream: (ReadableStream.t<Uint8Array.t>, ~init: responseInit=?) => t =
+  "Response"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Request/arrayBuffer)
@@ -82,7 +83,7 @@ external blob: t => promise<Blob.t> = "blob"
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Request/bytes)
 */
 @send
-external bytes: t => promise<array<int>> = "bytes"
+external bytes: t => promise<Uint8Array.t> = "bytes"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Request/formData)
