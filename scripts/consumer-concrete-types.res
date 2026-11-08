@@ -101,6 +101,6 @@ let worklet: WebAPI.Worklet.t => WebAPI.Worklet.t = value => value
 
 let makePublicUrl = () => {
   let url: WebAPI.URL.t = WebAPI.URL.make(~url="https://example.invalid")
-  url.href = "https://example.com"
-  url.href
+  WebAPI.URL.setHref(url, "https://example.com")
+  WebAPI.URL.getHref(url)
 }

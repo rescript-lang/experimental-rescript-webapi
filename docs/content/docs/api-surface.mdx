@@ -114,12 +114,12 @@ when you already have a `WebAPI.Request.t`.
 ```ReScript
 let response = await WebAPI.Fetch.fetch("https://example.com/api/users")
 
-if response.ok {
+if WebAPI.Response.ok(response) {
   let body = await response->WebAPI.Response.json
   Console.log(body)
 } else {
   Console.log("Request failed")
-  Console.log(response.status)
+  Console.log(WebAPI.Response.status(response))
 }
 ```
 
@@ -146,11 +146,11 @@ let text = await response->WebAPI.Response.text
 
 ### Result-based workflows
 
-`WebAPI.Fetch` and `WebAPI.Response` are the raw browser bindings and remain unchanged. Use the
-separate, opt-in `WebAPI.SafeFetch` module when request, HTTP status, and body-reading failures should
-be handled as `result` values. The separate feature is an intentional breaking change for consumers
-that restrict enabled features: add `WebAPI.SafeFetch` to use these helpers. Existing raw Fetch
-clients are unaffected.
+`WebAPI.Fetch` and `WebAPI.Response` are the raw browser bindings. `Response.t` is an opaque native
+type, so read its properties through typed `WebAPI.Response` accessors instead of record fields.
+Use the separate, opt-in `WebAPI.SafeFetch` module when request, HTTP status, and body-reading
+failures should be handled as `result` values. The separate feature is an intentional breaking change
+for consumers that restrict enabled features: add `WebAPI.SafeFetch` to use these helpers.
 
 | Stage                   | Result                                        | Preserved context               |
 | ----------------------- | --------------------------------------------- | ------------------------------- |
@@ -160,8 +160,8 @@ clients are unaffected.
 
 `SafeFetch.fetch` accepts a URL, while `SafeFetch.fetchWithRequest` accepts an existing
 `WebAPI.Request.t`. Both promises fulfill with a `result` for these expected failures. A fulfilled
-response is classified with the platform's `response.ok` value, so a 404 or 500 is distinct from a
-request that did not produce a response. The public `fetchError` type contains `#FetchRejected(exn)`
+response is classified with the platform's `Response.ok(response)` value, so a 404 or 500 is distinct
+from a request that did not produce a response. The public `fetchError` type contains `#FetchRejected(exn)`
 and `#ResponseNotOk({response})`; `bodyError` contains `#BodyReadRejected(readError)`. `readError` has
 `response` and `cause` fields, and `response<'body>` retains the original response alongside the
 successful body. The function signatures expose extensible error rows (`[> fetchError]` and
@@ -202,8 +202,8 @@ the application-specific `#InvalidUser`:
 ```ReScript
 switch await loadUser("https://example.com/api/users/42") {
 | Error(#FetchRejected(cause)) => reportUnavailable(cause)
-| Error(#ResponseNotOk({response})) => handleHttpError(response.status)
-| Error(#BodyReadRejected({response, cause})) => handleInvalidBody(response.status, cause)
+| Error(#ResponseNotOk({response})) => handleHttpError(WebAPI.Response.status(response))
+| Error(#BodyReadRejected({response, cause})) => handleInvalidBody(WebAPI.Response.status(response), cause)
 | Error(#InvalidUser) => handleInvalidUser()
 | Ok(user) => showUser(user)
 }
@@ -217,7 +217,7 @@ let response = await WebAPI.Fetch.fetch("https://example.com/api/users")
 
 switch response->WebAPI.SafeFetch.checkOk {
 | Ok(response) => useResponse(response)
-| Error(#ResponseNotOk({response})) => handleHttpError(response.status)
+| Error(#ResponseNotOk({response})) => handleHttpError(WebAPI.Response.status(response))
 }
 ```
 
@@ -230,7 +230,7 @@ switch await WebAPI.SafeFetch.fetch("https://example.com/api/users/42") {
   switch await response->WebAPI.SafeFetch.text {
   | Ok({body}) => Console.error(body)
   | Error(#BodyReadRejected(_)) =>
-    Console.error(`Request failed with ${Int.toString(response.status)}`)
+    Console.error(`Request failed with ${Int.toString(WebAPI.Response.status(response))}`)
   }
 | Error(#FetchRejected(cause)) => reportUnavailable(cause)
 | Ok(response) => useResponse(response)
@@ -312,7 +312,7 @@ let initFromHeaders = WebAPI.HeadersInit.fromHeaders(clonedHeaders)
 Response headers are normal `Headers` values.
 
 ```ReScript
-let contentType = response.headers->WebAPI.Headers.get("Content-Type")
+let contentType = WebAPI.Response.headers(response)->WebAPI.Headers.get("Content-Type")
 
 switch contentType {
 | Null.Value(value) => Console.log(value)
@@ -384,15 +384,15 @@ let created = WebAPI.Response.fromString(
 let empty = WebAPI.Response.fromNull(~init={status: 204})
 ```
 
-Responses expose record fields for status metadata and methods for cloning or reading
-the body.
+Responses are opaque native objects. Read their status metadata with typed accessors such as
+`Response.ok` and `Response.status`; use module functions for cloning or reading the body.
 
 ```ReScript
-if created.ok {
+if WebAPI.Response.ok(created) {
   let text = await created->WebAPI.Response.text
   Console.log(text)
 } else {
-  Console.log(created.statusText)
+  Console.log(WebAPI.Response.statusText(created))
 }
 
 let copy = created->WebAPI.Response.clone
@@ -483,10 +483,13 @@ switch maybeViewport {
 ## URLs
 
 URL helpers expose constructors and static functions on the same public module.
+The native URL object is opaque; use typed accessors rather than direct property access.
 
 ```ReScript
 let url = WebAPI.URL.make(~url="/docs", ~base="https://rescript-lang.org")
 let canParse = WebAPI.URL.canParse(~url="/docs", ~base="https://rescript-lang.org")
+let href = WebAPI.URL.getHref(url)
+WebAPI.URL.setPathname(url, "/api")
 let json = url->WebAPI.URL.toJSON
 ```
 

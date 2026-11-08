@@ -254,7 +254,7 @@ setSize(target, 20)
 await resizedAgain
 target->Element.remove
 
-let subtle = crypto.subtle
+let subtle = crypto->Crypto.subtle
 let digest = await subtle->SubtleCrypto.digest(
   ~algorithm=SubtleCrypto.algorithmObject({name: "SHA-256"}),
   ~data=Uint8Array.fromArray([65, 66, 67])->SubtleCrypto.binaryDataFromUint8Array,

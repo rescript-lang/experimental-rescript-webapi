@@ -24,6 +24,30 @@
     "expectedDiagnostic": "This has type:"
   },
   {
+    "name": "Response cannot be made from an ordinary record coercion",
+    "fixture": "scripts/fixtures/negative/ResponseRecordCannotCoerce.res",
+    "features": ["WebAPI.Fetch"],
+    "expectedDiagnostic": "is not a subtype of WebAPI.Response.t"
+  },
+  {
+    "name": "Response cannot be constructed as an ordinary record literal",
+    "fixture": "scripts/fixtures/negative/ResponseLiteralCannotConstruct.res",
+    "features": ["WebAPI.Fetch"],
+    "expectedDiagnostic": "no corresponding record type is in scope"
+  },
+  {
+    "name": "Response has no record representation to spread",
+    "fixture": "scripts/fixtures/negative/ResponseTypeCannotBeSpread.res",
+    "features": ["WebAPI.Fetch"],
+    "expectedDiagnostic": "is not an object type"
+  },
+  {
+    "name": "Response factory returns an opaque instance",
+    "fixture": "scripts/fixtures/negative/ResponseInferredReturnHasNoFields.res",
+    "features": ["WebAPI.Fetch"],
+    "expectedDiagnostic": "Only records have fields that can be accessed"
+  },
+  {
     "name": "closest cannot narrow to an unrelated element type",
     "fixture": "scripts/fixtures/negative/ClosestCannotNarrow.res",
     "features": ["WebAPI.HTML"],

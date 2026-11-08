@@ -17,7 +17,7 @@ type response<'body> = {
 }
 
 let checkOk = (response: Response.t) =>
-  if response.ok {
+  if Response.ok(response) {
     Ok(response)
   } else {
     Error(#ResponseNotOk({response: response}))
@@ -31,7 +31,7 @@ let fetchUrl = async (url, ~init=?) => {
       | None => Fetch.fetch(url)
       }
     )
-    if response.ok {
+    if Response.ok(response) {
       Ok(response)
     } else {
       Error(#ResponseNotOk({response: response}))
@@ -49,7 +49,7 @@ let fetchWithRequest = async (request, ~init=?) => {
       | None => Fetch.fetchWithRequest(request)
       }
     )
-    if response.ok {
+    if Response.ok(response) {
       Ok(response)
     } else {
       Error(#ResponseNotOk({response: response}))

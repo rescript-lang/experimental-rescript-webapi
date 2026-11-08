@@ -50,7 +50,7 @@ const validateTarballFiles = (files) => {
   }
 };
 
-const writeProject = (directory, sourceFile, features) => {
+const writeProject = (directory, sourceFile, features, warningErrors = "+8") => {
   const sourceDirectory = path.join(directory, "src");
   const fixturePath = path.resolve(repoRoot, sourceFile);
   if (!fixturePath.startsWith(`${path.join(repoRoot, "scripts")}${path.sep}`)) {
@@ -67,7 +67,7 @@ const writeProject = (directory, sourceFile, features) => {
         dependencies:
           features === null ? ["@rescript/webapi"] : [{ name: "@rescript/webapi", features }],
         "experimental-features": { LetUnwrap: true },
-        warnings: { error: "+8" },
+        warnings: { error: warningErrors },
         "package-specs": { module: "esmodule", "in-source": true },
       },
       null,
@@ -192,6 +192,7 @@ const checkConsumers = async () => {
           name: "concrete public types",
           fixture: "scripts/consumer-concrete-types.res",
           features: null,
+          warningErrors: "+8+111",
         },
         {
           name: "Fetch-only",
@@ -217,7 +218,7 @@ const checkConsumers = async () => {
       ];
 
       for (const scenario of scenarios) {
-        writeProject(projectDirectory, scenario.fixture, scenario.features);
+        writeProject(projectDirectory, scenario.fixture, scenario.features, scenario.warningErrors);
         compile(projectDirectory, scenario.expectedFailure ?? null);
         console.log(`[ok] packed ${scenario.name} consumer`);
       }

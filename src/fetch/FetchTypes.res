@@ -163,45 +163,7 @@ This WebApiFetch API interface represents the response to a request.
 [See Response on MDN](https://developer.mozilla.org/docs/Web/API/Response)
 */
 @editor.completeFrom(Response)
-type response = private {
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Response/type)
-    */
-  @as("type")
-  type_: responseType,
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Response/url)
-    */
-  url: string,
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Response/redirected)
-    */
-  redirected: bool,
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Response/status)
-    */
-  status: int,
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Response/ok)
-    */
-  ok: bool,
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Response/statusText)
-    */
-  statusText: string,
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Response/headers)
-    */
-  headers: headers,
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Request/body)
-    */
-  body: Null.t<FileTypes.readableStream<Uint8Array.t>>,
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Request/bodyUsed)
-    */
-  bodyUsed: bool,
-}
+type response
 
 /**
 Provides a way to easily construct a set of key/value pairs representing form fields and their values, which can then be easily sent using the XMLHttpRequest.send() method. It uses the same format a form would use if the encoding type were set to "multipart/form-data".

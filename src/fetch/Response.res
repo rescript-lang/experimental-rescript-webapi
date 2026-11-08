@@ -1,7 +1,44 @@
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Response)
 */
-type t = FetchTypes.response = private {...FetchTypes.response}
+type t = FetchTypes.response
+
+/**
+[Read more on MDN](https://developer.mozilla.org/docs/Web/API/Response/type)
+*/
+@get external type_: t => FetchTypes.responseType = "type"
+/**
+[Read more on MDN](https://developer.mozilla.org/docs/Web/API/Response/url)
+*/
+@get external url: t => string = "url"
+/**
+[Read more on MDN](https://developer.mozilla.org/docs/Web/API/Response/redirected)
+*/
+@get external redirected: t => bool = "redirected"
+/**
+[Read more on MDN](https://developer.mozilla.org/docs/Web/API/Response/status)
+*/
+@get external status: t => int = "status"
+/**
+[Read more on MDN](https://developer.mozilla.org/docs/Web/API/Response/ok)
+*/
+@get external ok: t => bool = "ok"
+/**
+[Read more on MDN](https://developer.mozilla.org/docs/Web/API/Response/statusText)
+*/
+@get external statusText: t => string = "statusText"
+/**
+[Read more on MDN](https://developer.mozilla.org/docs/Web/API/Response/headers)
+*/
+@get external headers: t => FetchTypes.headers = "headers"
+/**
+[Read more on MDN](https://developer.mozilla.org/docs/Web/API/Response/body)
+*/
+@get external body: t => Null.t<FileTypes.readableStream<Uint8Array.t>> = "body"
+/**
+[Read more on MDN](https://developer.mozilla.org/docs/Web/API/Response/bodyUsed)
+*/
+@get external bodyUsed: t => bool = "bodyUsed"
 type responseInit = FetchTypes.responseInit
 type bodyInit = BodyInit.t
 type headersInit = HeadersInit.t

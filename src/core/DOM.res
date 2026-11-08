@@ -11,29 +11,14 @@ An abnormal event (called an exception) which occurs as a result of calling a me
 [See DOMException on MDN](https://developer.mozilla.org/docs/Web/API/DOMException)
 */
 @editor.completeFrom(DOMException)
-type domException = {
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/DOMException/name)
-    */
-  name: string,
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/DOMException/message)
-    */
-  message: string,
-}
+type domException
 
 /**
 A type returned by some APIs which contains a list of DOMString (strings).
 [See DOMStringList on MDN](https://developer.mozilla.org/docs/Web/API/DOMStringList)
 */
 @editor.completeFrom(DOMStringList)
-type domStringList = {
-  /**
-    Returns the number of strings in strings.
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/DOMStringList/length)
-    */
-  length: int,
-}
+type domStringList
 
 @editor.completeFrom(Window)
 type window = private {}
@@ -219,22 +204,8 @@ The state and the identity of the user agent. It allows scripts to query it and 
 @editor.completeFrom(Navigator)
 type navigator
 
-// TODO: mark as private once mutating fields of private records is allowed
 @editor.completeFrom(DOMTokenList)
-type domTokenList = {
-  /**
-    Returns the number of tokens.
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/DOMTokenList/length)
-    */
-  length: int,
-  /**
-    Returns the associated set as string.
-
-Can be set, to change the associated attribute.
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/DOMTokenList/value)
-    */
-  mutable value: string,
-}
+type domTokenList
 
 /**
 [See FragmentDirective on MDN](https://developer.mozilla.org/docs/Web/API/FragmentDirective)

@@ -1,0 +1,121 @@
+{
+  "revision": "4888db2cc601ad568b76af6ed2add60da0ad96cb",
+  "status": "partial",
+  "publicModuleCount": 291,
+  "sourceFeatureGroupCount": 28,
+  "convertedNativeInstances": [
+    {
+      "name": "Response",
+      "backingFile": "src/fetch/FetchTypes.res",
+      "backingType": "response",
+      "publicFile": "src/fetch/Response.res",
+      "publicAlias": "type t = FetchTypes.response",
+      "accessors": [
+        "type_",
+        "url",
+        "redirected",
+        "status",
+        "ok",
+        "statusText",
+        "headers",
+        "body",
+        "bodyUsed"
+      ]
+    },
+    {
+      "name": "URL",
+      "backingFile": "src/url/UrlTypes.res",
+      "backingType": "url",
+      "publicFile": "src/url/URL.res",
+      "publicAlias": "type t = UrlTypes.url",
+      "accessors": [
+        "getHref",
+        "setHref",
+        "getOrigin",
+        "getProtocol",
+        "setProtocol",
+        "getUsername",
+        "setUsername",
+        "getPassword",
+        "setPassword",
+        "getHost",
+        "setHost",
+        "getHostname",
+        "setHostname",
+        "getPort",
+        "setPort",
+        "getPathname",
+        "setPathname",
+        "getSearch",
+        "setSearch",
+        "getHash",
+        "setHash",
+        "getSearchParams"
+      ]
+    },
+    {
+      "name": "Crypto",
+      "backingFile": "src/crypto/WebCryptoTypes.res",
+      "backingType": "crypto",
+      "publicFile": "src/crypto/Crypto.res",
+      "publicAlias": "type t = WebCryptoTypes.crypto",
+      "accessors": ["subtle"]
+    },
+    {
+      "name": "CryptoKey",
+      "backingFile": "src/crypto/WebCryptoTypes.res",
+      "backingType": "cryptoKey",
+      "publicFile": "src/crypto/SubtleCrypto.res",
+      "publicAlias": "type cryptoKey = WebCryptoTypes.cryptoKey",
+      "accessors": [
+        "cryptoKeyType",
+        "cryptoKeyExtractable",
+        "cryptoKeyAlgorithm",
+        "cryptoKeyUsages"
+      ]
+    },
+    {
+      "name": "DOMException",
+      "backingFile": "src/core/DOM.res",
+      "backingType": "domException",
+      "publicFile": "src/dom-platform/DOMException.res",
+      "publicAlias": "type t = DOM.domException",
+      "accessors": ["name", "message"]
+    },
+    {
+      "name": "DOMStringList",
+      "backingFile": "src/core/DOM.res",
+      "backingType": "domStringList",
+      "publicFile": "src/dom-platform/DOMStringList.res",
+      "publicAlias": "type t = DOM.domStringList",
+      "accessors": ["length"]
+    },
+    {
+      "name": "DOMTokenList",
+      "backingFile": "src/core/DOM.res",
+      "backingType": "domTokenList",
+      "publicFile": "src/dom-platform/DOMTokenList.res",
+      "publicAlias": "type t = DOM.domTokenList",
+      "accessors": ["length", "value", "setValue"]
+    }
+  ],
+  "constructibleDataExceptions": [
+    "src/fetch/FetchTypes.res:requestInit",
+    "src/fetch/FetchTypes.res:responseInit",
+    "src/crypto/WebCryptoTypes.res:cryptoKeyPair",
+    "src/crypto/WebCryptoTypes.res:keyAlgorithm",
+    "src/crypto/WebCryptoTypes.res:algorithm"
+  ],
+  "unresolvedUnknownBackedHandles": [
+    "stream reader and writer types",
+    "worker context/source types modeled as unknown"
+  ],
+  "unconvertedNativeGroups": [
+    "DOMTree and DOM nodes",
+    "HTML, SVG, Canvas",
+    "Fetch Request, File/Streams",
+    "Storage/IDB, Workers, Messaging",
+    "CSSOM/Geometry/Animation",
+    "Media/WebAudio/Device/Performance/Navigator/Observers"
+  ]
+}

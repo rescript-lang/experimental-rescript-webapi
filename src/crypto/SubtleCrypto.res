@@ -14,6 +14,23 @@ type keyAlgorithm = WebCryptoTypes.keyAlgorithm
 type cryptoKey = WebCryptoTypes.cryptoKey
 type cryptoKeyPair = WebCryptoTypes.cryptoKeyPair
 
+/**
+[Read more on MDN](https://developer.mozilla.org/docs/Web/API/CryptoKey/type)
+*/
+@get external cryptoKeyType: cryptoKey => keyType = "type"
+/**
+[Read more on MDN](https://developer.mozilla.org/docs/Web/API/CryptoKey/extractable)
+*/
+@get external cryptoKeyExtractable: cryptoKey => bool = "extractable"
+/**
+[Read more on MDN](https://developer.mozilla.org/docs/Web/API/CryptoKey/algorithm)
+*/
+@get external cryptoKeyAlgorithm: cryptoKey => keyAlgorithm = "algorithm"
+/**
+[Read more on MDN](https://developer.mozilla.org/docs/Web/API/CryptoKey/usages)
+*/
+@get external cryptoKeyUsages: cryptoKey => array<keyUsage> = "usages"
+
 external algorithmString: string => algorithmIdentifier = "%identity"
 external algorithmObject: algorithm => algorithmIdentifier = "%identity"
 
