@@ -35,9 +35,13 @@ implementation modules and internal type-holder modules are not part of that pub
 Bindings are maintained and corrected by hand as well as generated; the generator is not a
 reproducible source of truth for every checked-in binding.
 
-Approximately 80 bindings still carry private-record TODOs; a blanket conversion is deferred
-because the current compiler reports mutation warning 111. Generator reproducibility is also
-follow-up work, not an alpha release gate.
+Native-instance privacy is being implemented in the private-record alternative for
+[#403](https://github.com/rescript-lang/experimental-rescript-webapi/issues/403). Protected
+instances retain direct reads and use typed setters for supported writes; caller-owned option and
+initializer records remain constructible. This is not yet complete across the package while the
+implementation is under review. The private-record representation also permits a deliberate
+explicit structural coercion (`:>`) from a recreated public shape, so it does not provide an
+unforgeable native-instance brand. Generator reproducibility remains separate follow-up work.
 
 CI uses Node 26 for ReScript compilation and Node runtime fixtures. Its Playwright suite runs
 compiled Chromium regressions for the confirmed alpha contracts, including typed byte/audio

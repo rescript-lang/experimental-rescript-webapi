@@ -459,7 +459,6 @@ Element is the most general base class from which all objects in a Document inhe
 /**
 A minimal document object that has no parent. It is used as a lightweight version of Document that stores a segment of a document structure comprised of nodes just like a standard document. The key difference is that because the document fragment isn't part of the active document tree structure, changes made to the fragment don't affect the document, cause reflow, or incur any performance impact that can occur when changes are made.
 [See DocumentFragment on MDN](https://developer.mozilla.org/docs/Web/API/DocumentFragment)
-TODO: mark as private once mutating fields of private records is allowed
 */
 @editor.completeFrom(DocumentFragment) and documentFragment = private {
   // Base properties from Node
@@ -699,7 +698,6 @@ Similarly, when the focused element is in a different node tree than documentOrS
 /**
 Any HTML element. Some elements directly implement this interface, while others implement it via an interface that inherits it.
 [See HTMLElement on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement)
-TODO: mark as private once mutating fields of private records is allowed
 */
 @editor.completeFrom(HTMLElement) and htmlElement = private {
   // Base properties from Element
@@ -992,7 +990,6 @@ TODO: mark as private once mutating fields of private records is allowed
 /**
 A <form> element in the WebApiDOM; it allows access to and in some cases modification of aspects of the form, as well as access to its component elements.
 [See HTMLFormElement on MDN](https://developer.mozilla.org/docs/Web/API/HTMLFormElement)
-TODO: mark as private once mutating fields of private records is allowed
 */
 @editor.completeFrom(HTMLFormElement) and htmlFormElement = private {
   // Base properties from HTMLElement

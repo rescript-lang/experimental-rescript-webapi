@@ -43,6 +43,45 @@ This getter never returns `null`.
   @get
   external hidden: T.t => hiddenState = "hidden"
 
+  @set
+  external setTitle: (T.t, string) => unit = "title"
+  @set
+  external setLang: (T.t, string) => unit = "lang"
+  @set
+  external setTranslate: (T.t, bool) => unit = "translate"
+  @set
+  external setDir: (T.t, string) => unit = "dir"
+  @set
+  external setInert: (T.t, bool) => unit = "inert"
+  @set
+  external setAccessKey: (T.t, string) => unit = "accessKey"
+  @set
+  external setDraggable: (T.t, bool) => unit = "draggable"
+  @set
+  external setSpellcheck: (T.t, bool) => unit = "spellcheck"
+  @set
+  external setAutocapitalize: (T.t, string) => unit = "autocapitalize"
+  @set
+  external setInnerText: (T.t, string) => unit = "innerText"
+  @set
+  external setOuterText: (T.t, string) => unit = "outerText"
+  @set
+  external setPopover: (T.t, Null.t<string>) => unit = "popover"
+  @set
+  external setContentEditable: (T.t, string) => unit = "contentEditable"
+  @set
+  external setEnterKeyHint: (T.t, string) => unit = "enterKeyHint"
+  @set
+  external setInputMode: (T.t, string) => unit = "inputMode"
+  @set
+  external setNonce: (T.t, string) => unit = "nonce"
+  @set
+  external setAutofocus: (T.t, bool) => unit = "autofocus"
+  @set
+  external setTabIndex: (T.t, int) => unit = "tabIndex"
+  @set
+  external setClassName: (T.t, string) => unit = "className"
+
   /**
 Sets the element's semantic hidden state.
 

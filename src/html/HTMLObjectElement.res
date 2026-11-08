@@ -3,7 +3,7 @@ Provides special properties and methods (beyond those on the HTMLElement interfa
 [See HTMLObjectElement on MDN](https://developer.mozilla.org/docs/Web/API/HTMLObjectElement)
 TODO: mark as private once mutating fields of private records is allowed
 */
-type t = {
+type t = private {
   ...DOMTree.htmlElement,
   /**
     Sets or retrieves the WebApiURL that references the data of the object.

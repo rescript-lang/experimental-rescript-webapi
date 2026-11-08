@@ -3,7 +3,7 @@ Reference information for external resources and the relationship of those resou
 [See HTMLLinkElement on MDN](https://developer.mozilla.org/docs/Web/API/HTMLLinkElement)
 TODO: mark as private once mutating fields of private records is allowed
 */
-type t = {
+type t = private {
   ...DOMTree.htmlElement,
   /**
     Sets or retrieves a destination WebApiURL or an anchor point.

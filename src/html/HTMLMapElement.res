@@ -3,7 +3,7 @@ Provides special properties and methods (beyond those of the regular object HTML
 [See HTMLMapElement on MDN](https://developer.mozilla.org/docs/Web/API/HTMLMapElement)
 TODO: mark as private once mutating fields of private records is allowed
 */
-type t = {
+type t = private {
   ...DOMTree.htmlElement,
   /**
     Sets or retrieves the name of the object.

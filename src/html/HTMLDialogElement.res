@@ -2,7 +2,7 @@
 [See HTMLDialogElement on MDN](https://developer.mozilla.org/docs/Web/API/HTMLDialogElement)
 TODO: mark as private once mutating fields of private records is allowed
 */
-type t = {
+type t = private {
   ...DOMTree.htmlElement,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLDialogElement/open)

@@ -136,8 +136,7 @@ type idbObjectStore = private {
     Returns the name of the store.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/IDBObjectStore/name)
     */
-  @throws(JsExn)
-  @set
+  @throws(JsExn) @set
   mutable name: string,
   /**
     Returns the key path of the store, or null if none.
@@ -171,8 +170,7 @@ type idbIndex = private {
     Returns the name of the index.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/IDBIndex/name)
     */
-  @throws(JsExn)
-  @set
+  @throws(JsExn) @set
   mutable name: string,
   /**
     Returns the IDBObjectStore the index belongs to.

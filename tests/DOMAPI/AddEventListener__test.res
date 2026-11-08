@@ -1,7 +1,9 @@
 let button = DomGlobal.document->Document.querySelector("button")->Null.toOption
 let h2 = DomGlobal.document->Document.querySelector("h2")->Null.toOption
 
-module AnyElement = Element.Impl({type t = Element.t})
+module AnyElement = Element.Impl({
+  type t = Element.t
+})
 
 switch (button, h2) {
 | (Some(button), Some(h2)) =>

@@ -1,5 +1,8 @@
 type t = IndexedDbTypes.idbObjectStore = private {...IndexedDbTypes.idbObjectStore}
 
+@throws(JsExn) @set
+external setName: (t, string) => unit = "name"
+
 /**
 Adds or updates a record in store with the given value and key.
 

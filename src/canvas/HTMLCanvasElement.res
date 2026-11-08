@@ -3,7 +3,7 @@ Provides properties and methods for manipulating the layout and presentation of 
 [See HTMLCanvasElement on MDN](https://developer.mozilla.org/docs/Web/API/HTMLCanvasElement)
 TODO: mark as private once mutating fields of private records is allowed
 */
-type t = {
+type t = private {
   ...DOMTree.htmlElement,
   /**
     Gets or sets the width of a canvas element on a document.
@@ -18,6 +18,12 @@ type t = {
 }
 
 include HTMLElement.Impl({type t = t})
+
+@set
+external setWidth: (t, int) => unit = "width"
+
+@set
+external setHeight: (t, int) => unit = "height"
 
 /**
 `isInstanceOf(value)`

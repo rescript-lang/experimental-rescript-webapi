@@ -3,7 +3,7 @@ Contains the base URI for a document. This object inherits all of the propertie
 [See HTMLBaseElement on MDN](https://developer.mozilla.org/docs/Web/API/HTMLBaseElement)
 TODO: mark as private once mutating fields of private records is allowed
 */
-type t = {
+type t = private {
   ...DOMTree.htmlElement,
   /**
     Gets or sets the baseline WebApiURL on which relative links are based.

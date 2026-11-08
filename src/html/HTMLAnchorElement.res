@@ -3,7 +3,7 @@ Hyperlink elements and provides special properties and methods (beyond those of 
 [See HTMLAnchorElement on MDN](https://developer.mozilla.org/docs/Web/API/HTMLAnchorElement)
 TODO: mark as private once mutating fields of private records is allowed
 */
-type t = {
+type t = private {
   // Base properties from HTMLElement
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/title)

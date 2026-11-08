@@ -1,5 +1,5 @@
 @editor.completeFrom(CSSStyleDeclaration)
-type t = {
+type t = private {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CSSStyleDeclaration/cssText)
     */
@@ -1701,6 +1701,13 @@ type t = {
     */
   mutable cssFloat: string,
 }
+
+/**
+Replaces the declaration block's complete serialized contents.
+[Read more on MDN](https://developer.mozilla.org/docs/Web/API/CSSStyleDeclaration/cssText)
+*/
+@set
+external setCssText: (t, string) => unit = "cssText"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CSSStyleDeclaration/item)

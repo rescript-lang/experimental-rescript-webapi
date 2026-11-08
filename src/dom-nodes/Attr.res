@@ -2,7 +2,7 @@
 A WebApiDOM element's attribute as an object. In most WebApiDOM methods, you will probably directly retrieve the attribute as a string (e.g., Element.getAttribute(), but certain functions (e.g., Element.getAttributeNode()) or means of iterating give Attr types.
 [See Attr on MDN](https://developer.mozilla.org/docs/Web/API/Attr)
 */
-type t = {
+type t = private {
   // Base properties from Node
   /**
     Returns the type of node.
@@ -99,3 +99,6 @@ type t = {
     */
   ownerElement: Null.t<DOMTree.element>,
 }
+
+@set
+external setValue: (t, string) => unit = "value"

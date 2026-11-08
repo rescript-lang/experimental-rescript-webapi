@@ -60,6 +60,42 @@
     "expectedDiagnostic": "Cannot create values of the"
   },
   {
+    "name": "native Response record updates are private",
+    "fixture": "scripts/fixtures/negative/NativeRecordUpdateIsPrivate.res",
+    "features": ["WebAPI.Fetch"],
+    "expectedDiagnostic": "Cannot create values of the"
+  },
+  {
+    "name": "DOMTokenList public view rejects record updates",
+    "fixture": "scripts/fixtures/negative/DOMTokenListPublicViewIsPrivate.res",
+    "features": ["WebAPI.DOMPlatform"],
+    "expectedDiagnostic": "Cannot create values of the"
+  },
+  {
+    "name": "DOM backing route rejects record updates",
+    "fixture": "scripts/fixtures/negative/DOMTokenListBackingRouteIsPrivate.res",
+    "features": ["WebAPI.DOM"],
+    "expectedDiagnostic": "Cannot create values of the"
+  },
+  {
+    "name": "HTML canvas record updates are private",
+    "fixture": "scripts/fixtures/negative/HTMLCanvasRecordUpdateIsPrivate.res",
+    "features": ["WebAPI.Canvas"],
+    "expectedDiagnostic": "Cannot create values of the"
+  },
+  {
+    "name": "DOMTree backing route rejects record updates",
+    "fixture": "scripts/fixtures/negative/DOMTreeElementBackingRouteIsPrivate.res",
+    "features": ["WebAPI.DOMNodes"],
+    "expectedDiagnostic": "Cannot create values of the"
+  },
+  {
+    "name": "generic native NodeList updates are private",
+    "fixture": "scripts/fixtures/negative/GenericNodeListUpdateIsPrivate.res",
+    "features": ["WebAPI.DOMNodes"],
+    "expectedDiagnostic": "Cannot create values of the"
+  },
+  {
     "name": "Web Locks callback accepts nullable Lock",
     "fixture": "scripts/fixtures/negative/WebLocksRejectsNonNullableCallback.res",
     "features": ["WebAPI.Navigator"],

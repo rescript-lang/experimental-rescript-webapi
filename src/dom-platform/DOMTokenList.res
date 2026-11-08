@@ -1,4 +1,7 @@
-type t = DOM.domTokenList = {...DOM.domTokenList}
+type t = DOM.domTokenList = private {...DOM.domTokenList}
+
+@set
+external setValue: (t, string) => unit = "value"
 
 /**
 Returns the token with index index.

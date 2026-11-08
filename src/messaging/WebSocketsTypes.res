@@ -46,7 +46,8 @@ If the WebSocket connection is closed, this attribute's value will only increase
 Can be set, to change how binary data is returned. The default is "blob".
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/WebSocket/binaryType)
     */
-  binaryType: binaryType,
+  @set
+  mutable binaryType: binaryType,
 }
 
 /**

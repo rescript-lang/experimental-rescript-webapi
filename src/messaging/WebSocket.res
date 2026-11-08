@@ -4,6 +4,9 @@ type messageEvent<'t> = WebSocketsTypes.messageEvent<'t> = {...WebSocketsTypes.m
 type closeEvent = WebSocketsTypes.closeEvent = private {...WebSocketsTypes.closeEvent}
 type messageEventSource = WebSocketsTypes.messageEventSource
 
+@set
+external setBinaryType: (t, binaryType) => unit = "binaryType"
+
 /**
 `fromURL(~url: string, ~protocols: string=?)`
 

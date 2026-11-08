@@ -3,7 +3,7 @@ The HTML <meter> elements expose the HTMLMeterElement interface, which provides 
 [See HTMLMeterElement on MDN](https://developer.mozilla.org/docs/Web/API/HTMLMeterElement)
 TODO: mark as private once mutating fields of private records is allowed
 */
-type t = {
+type t = private {
   ...DOMTree.htmlElement,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLMeterElement/value)

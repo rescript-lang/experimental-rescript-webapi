@@ -3,7 +3,7 @@ Enables access to the contents of an HTML <template> element.
 [See HTMLTemplateElement on MDN](https://developer.mozilla.org/docs/Web/API/HTMLTemplateElement)
 TODO: mark as private once mutating fields of private records is allowed
 */
-type t = {
+type t = private {
   ...DOMTree.htmlElement,
   /**
     Returns the template contents (a DocumentFragment).

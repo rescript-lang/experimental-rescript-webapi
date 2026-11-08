@@ -1,9 +1,8 @@
 /**
 The CharacterData abstract interface represents a Node object that contains characters. This is an abstract interface, meaning there aren't any object of type CharacterData: it is implemented by other interfaces, like Text, Comment, or ProcessingInstruction which aren't abstract.
 [See CharacterData on MDN](https://developer.mozilla.org/docs/Web/API/CharacterData)
-TODO: mark as private once mutating fields of private records is allowed
 */
-type t = {
+type t = private {
   // Base properties from Node
   /**
     Returns the type of node.
@@ -103,6 +102,9 @@ module Impl = (
   include Node.Impl({type t = T.t})
 
   external asCharacterData: T.t => t = "%identity"
+
+  @set
+  external setData: (T.t, string) => unit = "data"
 
   /**
 Inserts nodes just after node, while replacing strings in nodes with equivalent Text nodes.

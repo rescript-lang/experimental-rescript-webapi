@@ -3,7 +3,7 @@ Provides special properties (beyond the regular HTMLElement interface it also ha
 [See HTMLDataElement on MDN](https://developer.mozilla.org/docs/Web/API/HTMLDataElement)
 TODO: mark as private once mutating fields of private records is allowed
 */
-type t = {
+type t = private {
   ...DOMTree.htmlElement,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLDataElement/value)

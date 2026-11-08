@@ -3,7 +3,7 @@ Provides special properties and methods (beyond those of the HTMLElement interfa
 [See HTMLIFrameElement on MDN](https://developer.mozilla.org/docs/Web/API/HTMLIFrameElement)
 TODO: mark as private once mutating fields of private records is allowed
 */
-type t = {
+type t = private {
   ...DOMTree.htmlElement,
   /**
     Sets or retrieves a WebApiURL to be loaded by the object.

@@ -56,6 +56,12 @@ versioning and publication.
   browser's successful result is `undefined`, not a database.
 - `WebAPI.Notification.t` no longer contains a static permission field. Read that value through
   `WebAPI.Notification.permission`.
+- Native browser-instance record construction and record-update copies are being restricted with
+  private record views. Reads remain direct; writes to protected mutable properties migrate to
+  typed setters such as `canvas->WebAPI.HTMLCanvasElement.setWidth(640)`. Options, initializers,
+  callback dictionaries, and plain data records remain constructible. This compile-time restriction
+  does not prevent a deliberate explicit structural coercion (`:>`) from a recreated public record
+  shape, unsafe casts, or JavaScript fabrication.
 
 For the intended installation, compiler range, runtime/browser checks, and known limitations,
 see the [project status](https://rescript-lang.github.io/experimental-rescript-webapi/project-status/)

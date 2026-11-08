@@ -3,7 +3,7 @@ Provides special properties and methods (beyond those of the regular object HTML
 [See HTMLAreaElement on MDN](https://developer.mozilla.org/docs/Web/API/HTMLAreaElement)
 TODO: mark as private once mutating fields of private records is allowed
 */
-type t = {
+type t = private {
   // Base properties from HTMLElement
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/title)

@@ -3,7 +3,7 @@ HTML <script> elements expose the HTMLScriptElement interface, which provides sp
 [See HTMLScriptElement on MDN](https://developer.mozilla.org/docs/Web/API/HTMLScriptElement)
 TODO: mark as private once mutating fields of private records is allowed
 */
-type t = {
+type t = private {
   // Base properties from HTMLElement
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/title)

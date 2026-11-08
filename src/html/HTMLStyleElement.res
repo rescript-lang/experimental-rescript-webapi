@@ -3,7 +3,7 @@ A <style> element. It inherits properties and methods from its parent, HTMLEleme
 [See HTMLStyleElement on MDN](https://developer.mozilla.org/docs/Web/API/HTMLStyleElement)
 TODO: mark as private once mutating fields of private records is allowed
 */
-type t = {
+type t = private {
   ...DOMTree.htmlElement,
   /**
     Enables or disables the style sheet.

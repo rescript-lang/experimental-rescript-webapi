@@ -3,7 +3,7 @@ Provides special properties and methods for manipulating the options, layout, an
 [See HTMLInputElement on MDN](https://developer.mozilla.org/docs/Web/API/HTMLInputElement)
 TODO: mark as private once mutating fields of private records is allowed
 */
-type t = {
+type t = private {
   ...DOMTree.htmlElement,
   /**
     Sets or retrieves a comma-separated list of content types.
