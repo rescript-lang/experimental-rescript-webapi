@@ -1,3 +1,5 @@
+type t = IndexedDbTypes.idbFactory
+
 /**
 Attempts to open a connection to the named database with the current version, or 1 if it does not already exist. If the request is successful request's result will be the connection.
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/IDBFactory/open)

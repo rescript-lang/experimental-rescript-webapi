@@ -1,3 +1,5 @@
+type t = DOM.videoFrame
+
 /**
 `fromHTMLImageElement(~image: HTMLImageElement.t, ~init: videoFrameInit=?)`
 

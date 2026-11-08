@@ -1,3 +1,5 @@
+type t = FileAndDirectoryEntriesTypes.fileSystemDirectoryEntry
+
 external asFileSystemEntry: FileAndDirectoryEntriesTypes.fileSystemDirectoryEntry => FileAndDirectoryEntriesTypes.fileSystemEntry =
   "%identity"
 /**

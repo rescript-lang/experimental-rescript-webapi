@@ -1,3 +1,5 @@
+type t = DOM.documentTimeline
+
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/DocumentTimeline)
 */

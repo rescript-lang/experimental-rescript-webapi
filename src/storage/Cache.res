@@ -1,6 +1,8 @@
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Cache/match)
 */
+type t = CacheTypes.cache
+
 @send
 external match: (
   CacheTypes.cache,

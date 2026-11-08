@@ -1,3 +1,6 @@
+@editor.completeFrom(URL)
+type t = UrlTypes.url
+
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/URL)
 */

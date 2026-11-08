@@ -3,7 +3,7 @@
 An object able to programmatically obtain the position of the device. It gives Web content access to the location of the device. This allows a Web site or app to offer customized results based on the user's location.
 [See WebApiGeolocation on MDN](https://developer.mozilla.org/docs/Web/API/Geolocation)
 */
-@editor.completeFrom(WebApiGeolocation)
+@editor.completeFrom(Geolocation)
 type geolocation = private {}
 
 /**

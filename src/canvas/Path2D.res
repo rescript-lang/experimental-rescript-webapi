@@ -1,5 +1,7 @@
 type domMatrix2DInit = DOM.domMatrix2DInit
 
+type t = CanvasTypes.path2D
+
 /**
 `make()`
 

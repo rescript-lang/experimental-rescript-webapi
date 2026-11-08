@@ -1,6 +1,8 @@
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/MediaKeyStatusMap/has)
 */
+type t = EncryptedMediaExtensionsTypes.mediaKeyStatusMap
+
 @send
 external has: (EncryptedMediaExtensionsTypes.mediaKeyStatusMap, DataView.t) => bool = "has"
 

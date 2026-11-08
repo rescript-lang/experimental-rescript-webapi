@@ -26,7 +26,7 @@ type mediaEncodingType =
 /**
 [See WebApiMediaCapabilities on MDN](https://developer.mozilla.org/docs/Web/API/MediaCapabilities)
 */
-@editor.completeFrom(WebApiMediaCapabilities)
+@editor.completeFrom(MediaCapabilities)
 type mediaCapabilities = private {}
 
 type audioConfiguration = {

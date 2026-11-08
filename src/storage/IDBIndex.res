@@ -1,3 +1,5 @@
+type t = IndexedDbTypes.idbIndex
+
 /**
 Retrieves the value of the first record matching the given key or key range in query.
 

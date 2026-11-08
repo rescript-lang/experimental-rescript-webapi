@@ -1,3 +1,5 @@
+type t = WebAudioTypes.audioNode
+
 module Impl = (
   T: {
     type t

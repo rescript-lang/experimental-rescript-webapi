@@ -1,3 +1,5 @@
+type t = SVGElement.svgLength
+
 @throws(JsExn) @send
 external newValueSpecifiedUnits: (
   SVGElement.svgLength,

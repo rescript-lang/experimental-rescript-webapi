@@ -17,7 +17,7 @@ type permissionState =
 /**
 [See WebApiPermissions on MDN](https://developer.mozilla.org/docs/Web/API/Permissions)
 */
-@editor.completeFrom(WebApiPermissions)
+@editor.completeFrom(Permissions)
 type permissions = private {}
 
 /**

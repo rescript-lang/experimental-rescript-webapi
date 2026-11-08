@@ -1,3 +1,5 @@
+type t = DOM.domMatrix
+
 /**
 `make()`
 

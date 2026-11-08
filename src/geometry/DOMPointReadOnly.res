@@ -1,3 +1,5 @@
+type t = DOM.domPointReadOnly
+
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/DOMPointReadOnly)
 */

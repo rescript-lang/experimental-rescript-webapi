@@ -1,5 +1,7 @@
 type domMatrix2DInit = DOM.domMatrix2DInit
 
+type t = CanvasTypes.canvasPattern
+
 /**
 Sets the transformation matrix that will be used when rendering the pattern during a fill or stroke painting operation.
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CanvasPattern/setTransform)

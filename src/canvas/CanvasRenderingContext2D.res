@@ -1,6 +1,8 @@
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CanvasRenderingContext2D/fillStyle)
 */
+type t = DOM.canvasRenderingContext2D
+
 @get
 external getFillStyle: DOM.canvasRenderingContext2D => CanvasTypes.fillStyle = "fillStyle"
 

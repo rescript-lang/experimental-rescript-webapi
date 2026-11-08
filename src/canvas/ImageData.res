@@ -1,6 +1,8 @@
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/ImageData)
 */
+type t = DOM.imageData
+
 @throws(JsExn) @new
 external make: (~sw: int, ~sh: int, ~settings: DOM.imageDataSettings=?) => DOM.imageData =
   "ImageData"

@@ -1,3 +1,5 @@
+type t = DOM.abortController
+
 @new
 external make: unit => DOM.abortController = "AbortController"
 

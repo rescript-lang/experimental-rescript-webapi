@@ -1,3 +1,5 @@
+type t = ServiceWorkerTypes.clients
+
 type clientQueryOptions = {
   mutable includeUncontrolled?: bool,
   @as("type") mutable type_?: string,

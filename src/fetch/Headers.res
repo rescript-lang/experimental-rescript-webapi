@@ -1,6 +1,8 @@
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Headers)
 */
+type t = FetchTypes.headers
+
 @new
 external make: unit => FetchTypes.headers = "Headers"
 
