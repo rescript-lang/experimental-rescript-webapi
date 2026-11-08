@@ -13,12 +13,14 @@ versioning and publication.
 
 ### Migration notes
 
-- This draft makes `Response`, `URL`, `Crypto`, `CryptoKey`, `DOMException`, `DOMStringList`, and
-  `DOMTokenList` opaque native identities. Direct field access is replaced by typed module
-  accessors: for example, use `Response.ok(response)`, `URL.getHref(url)`,
-  `URL.setHref(url, href)`, `Crypto.subtle(crypto)`, and `SubtleCrypto.cryptoKeyType(key)`.
-  Initializers and option dictionaries remain constructible records. The package-wide migration is
-  incomplete; unconverted native instance types still expose the existing API.
+- This draft makes `Response`, `URL`, `Crypto`, `CryptoKey`, `DOMException`, `DOMStringList`,
+  `DOMTokenList`, `DOMStringMap`, `Headers`, `FormData`, `Cache`, `CacheStorage`, `IDBFactory`,
+  `StorageManager`, and `NavigationPreloadManager` opaque native identities. Direct property access
+  on the first group is replaced by typed module accessors: for example, use
+  `Response.ok(response)`, `URL.getHref(url)`, `URL.setHref(url, href)`, `Crypto.subtle(crypto)`,
+  and `SubtleCrypto.cryptoKeyType(key)`. Initializers and option dictionaries remain constructible
+  records. The package-wide migration is incomplete; unconverted native instance types still expose
+  the existing API.
 - WebSocket sends and worker `Request` fetches now preserve their native receiver (`this`) rather
   than calling receiver-bound methods unbound.
 - `WebAPI.Request.bytes`, `WebAPI.Response.bytes`, `WebAPI.Blob.bytes`,

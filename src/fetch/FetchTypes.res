@@ -75,7 +75,7 @@ type requestPriority =
 [See Headers on MDN](https://developer.mozilla.org/docs/Web/API/Headers)
 */
 @editor.completeFrom(Headers)
-type headers = private {}
+type headers
 
 /**
 This WebApiFetch API interface represents a resource request.
@@ -170,7 +170,7 @@ Provides a way to easily construct a set of key/value pairs representing form fi
 [See FormData on MDN](https://developer.mozilla.org/docs/Web/API/FormData)
 */
 @editor.completeFrom(FormData)
-type formData = private {}
+type formData
 
 @editor.completeFrom(HeadersInit) type headersInit
 

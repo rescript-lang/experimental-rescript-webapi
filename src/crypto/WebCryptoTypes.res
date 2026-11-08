@@ -28,7 +28,7 @@ This Web Crypto API interface provides a number of low-level cryptographic funct
 [See SubtleCrypto on MDN](https://developer.mozilla.org/docs/Web/API/SubtleCrypto)
 */
 @editor.completeFrom(SubtleCrypto)
-type subtleCrypto = private {}
+type subtleCrypto
 
 /**
 Basic cryptography features available in the current context. It allows access to a cryptographically strong random number generator and to cryptographic primitives.

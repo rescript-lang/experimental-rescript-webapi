@@ -23,6 +23,22 @@
       ]
     },
     {
+      "name": "Headers",
+      "backingFile": "src/fetch/FetchTypes.res",
+      "backingType": "headers",
+      "publicFile": "src/fetch/Headers.res",
+      "publicAlias": "type t = FetchTypes.headers",
+      "accessors": []
+    },
+    {
+      "name": "FormData",
+      "backingFile": "src/fetch/FetchTypes.res",
+      "backingType": "formData",
+      "publicFile": "src/fetch/FormData.res",
+      "publicAlias": "type t = FetchTypes.formData",
+      "accessors": []
+    },
+    {
       "name": "URL",
       "backingFile": "src/url/UrlTypes.res",
       "backingType": "url",
@@ -62,6 +78,14 @@
       "accessors": ["subtle"]
     },
     {
+      "name": "SubtleCrypto",
+      "backingFile": "src/crypto/WebCryptoTypes.res",
+      "backingType": "subtleCrypto",
+      "publicFile": "src/crypto/SubtleCrypto.res",
+      "publicAlias": "type t = WebCryptoTypes.subtleCrypto",
+      "accessors": []
+    },
+    {
       "name": "CryptoKey",
       "backingFile": "src/crypto/WebCryptoTypes.res",
       "backingType": "cryptoKey",
@@ -97,6 +121,54 @@
       "publicFile": "src/dom-platform/DOMTokenList.res",
       "publicAlias": "type t = DOM.domTokenList",
       "accessors": ["length", "value", "setValue"]
+    },
+    {
+      "name": "DOMStringMap",
+      "backingFile": "src/dom-platform/DOMStringMap.res",
+      "backingType": "t",
+      "publicFile": "src/dom-platform/DOMStringMap.res",
+      "publicAlias": "type t",
+      "accessors": []
+    },
+    {
+      "name": "Cache",
+      "backingFile": "src/storage/CacheTypes.res",
+      "backingType": "cache",
+      "publicFile": "src/storage/Cache.res",
+      "publicAlias": "type t = CacheTypes.cache",
+      "accessors": []
+    },
+    {
+      "name": "CacheStorage",
+      "backingFile": "src/storage/CacheTypes.res",
+      "backingType": "cacheStorage",
+      "publicFile": "src/storage/CacheStorage.res",
+      "publicAlias": "type t = CacheTypes.cacheStorage",
+      "accessors": []
+    },
+    {
+      "name": "IDBFactory",
+      "backingFile": "src/storage/IndexedDbTypes.res",
+      "backingType": "idbFactory",
+      "publicFile": "src/storage/IDBFactory.res",
+      "publicAlias": "type t = IndexedDbTypes.idbFactory",
+      "accessors": []
+    },
+    {
+      "name": "StorageManager",
+      "backingFile": "src/storage/StorageTypes.res",
+      "backingType": "storageManager",
+      "publicFile": "src/storage/StorageManager.res",
+      "publicAlias": "type t = StorageTypes.storageManager",
+      "accessors": []
+    },
+    {
+      "name": "NavigationPreloadManager",
+      "backingFile": "src/workers/ServiceWorkerTypes.res",
+      "backingType": "navigationPreloadManager",
+      "publicFile": "src/workers/NavigationPreloadManager.res",
+      "publicAlias": "type t = ServiceWorkerTypes.navigationPreloadManager",
+      "accessors": []
     }
   ],
   "constructibleDataExceptions": [
@@ -114,7 +186,7 @@
     "DOMTree and DOM nodes",
     "HTML, SVG, Canvas",
     "Fetch Request, File/Streams",
-    "Storage/IDB, Workers, Messaging",
+    "remaining Storage/IDB types, Workers other than NavigationPreloadManager, Messaging",
     "CSSOM/Geometry/Animation",
     "Media/WebAudio/Device/Performance/Navigator/Observers"
   ]

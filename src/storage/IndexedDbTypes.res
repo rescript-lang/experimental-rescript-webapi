@@ -25,7 +25,7 @@ In the following code snippet, we make a request to open a database, and include
 [See IDBFactory on MDN](https://developer.mozilla.org/docs/Web/API/IDBFactory)
 */
 @editor.completeFrom(IDBFactory)
-type idbFactory = private {}
+type idbFactory
 
 /**
 This WebApiIndexedDB API interface provides a connection to a database; you can use an IDBDatabase object to open a transaction on your database then create, manipulate, and delete objects (data) in that database. The interface provides the only way to get and manage versions of the database.

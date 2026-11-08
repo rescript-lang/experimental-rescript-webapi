@@ -38,7 +38,7 @@ type serviceWorker = private {
 [See NavigationPreloadManager on MDN](https://developer.mozilla.org/docs/Web/API/NavigationPreloadManager)
 */
 @editor.completeFrom(NavigationPreloadManager)
-type navigationPreloadManager = private {}
+type navigationPreloadManager
 
 /**
 This WebApiServiceWorker API interface represents the service worker registration. You register a service worker to control one or more pages that share the same origin.
