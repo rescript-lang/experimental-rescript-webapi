@@ -1,8 +1,8 @@
+type t = CacheTypes.cacheStorage
+
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CacheStorage/match)
 */
-type t = CacheTypes.cacheStorage
-
 @send
 external match: (
   CacheTypes.cacheStorage,

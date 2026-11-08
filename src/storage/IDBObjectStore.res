@@ -1,3 +1,5 @@
+type t = IndexedDbTypes.idbObjectStore
+
 /**
 Adds or updates a record in store with the given value and key.
 
@@ -8,8 +10,6 @@ If put() is used, any existing record with the key will be replaced. If add() is
 If successful, request's result will be the record's key.
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/IDBObjectStore/put)
 */
-type t = IndexedDbTypes.idbObjectStore
-
 @throws(JsExn) @send
 external put: (
   IndexedDbTypes.idbObjectStore,
