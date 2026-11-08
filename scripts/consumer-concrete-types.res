@@ -24,6 +24,7 @@ let imageData: WebAPI.ImageData.t => WebAPI.ImageData.t = value => value
 let videoColorSpace: WebAPI.VideoColorSpace.t => WebAPI.VideoColorSpace.t = value => value
 let videoFrame: WebAPI.VideoFrame.t => WebAPI.VideoFrame.t = value => value
 let abortController: WebAPI.AbortController.t => WebAPI.AbortController.t = value => value
+let headers: WebAPI.Headers.t = WebAPI.Headers.make()
 let pushManager: WebAPI.PushManager.t => WebAPI.PushManager.t = value => value
 let pushSubscription: WebAPI.PushSubscription.t => WebAPI.PushSubscription.t = value => value
 let clipboardItem: WebAPI.ClipboardItem.t => WebAPI.ClipboardItem.t = value => value
