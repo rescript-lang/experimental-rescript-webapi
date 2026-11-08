@@ -42,4 +42,4 @@ type lockOptions = {
   mutable signal?: DOM.abortSignal,
 }
 
-type lockGrantedCallback = lock => promise<JSON.t>
+type lockGrantedCallback = Null.t<lock> => promise<JSON.t>

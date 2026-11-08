@@ -43,4 +43,4 @@ external fromFormData: FormData.t => t = "%identity"
 /**
 [Read more on MDN](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch#setting_a_body)
  */
-external fromReadableStream: ReadableStream.t<'t> => t = "%identity"
+external fromReadableStream: ReadableStream.t<Uint8Array.t> => t = "%identity"

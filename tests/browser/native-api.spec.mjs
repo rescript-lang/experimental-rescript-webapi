@@ -9,7 +9,7 @@ const fixtures = JSON.parse(readFileSync(path.join(currentDirectory, "../fixture
 test("browser runtime fixtures execute in Chromium", async ({ page }) => {
   const errors = [];
   page.on("pageerror", (error) => errors.push({ message: error.message, stack: error.stack }));
-  await page.goto("http://127.0.0.1:4173/tests/browser/index.html");
+  await page.goto("/tests/browser/index.html");
   const results = await page.evaluate(async (paths) => {
     const { describeError } = await import("/tests/browser/describe-error.mjs");
     const outcomes = [];
@@ -30,7 +30,7 @@ test("browser runtime fixtures execute in Chromium", async ({ page }) => {
 });
 
 test("browser error details preserve BigInt and cyclic ReScript failures", async ({ page }) => {
-  await page.goto("http://127.0.0.1:4173/tests/browser/index.html");
+  await page.goto("/tests/browser/index.html");
   const failures = await page.evaluate(async () => {
     const { describeError } = await import("/tests/browser/describe-error.mjs");
     const bigIntFailure = describeError({

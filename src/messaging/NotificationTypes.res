@@ -18,10 +18,6 @@ This Notifications API interface is used to configure and display desktop notifi
 type notification = private {
   ...DOM.eventTarget,
   /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Notification/permission_static)
-    */
-  permission: notificationPermission,
-  /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Notification/title)
     */
   title: string,

@@ -100,7 +100,7 @@ Returns the first (starting at element) inclusive ancestor that matches selector
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/closest)
 */
   @throws(JsExn) @send
-  external closest: (T.t, string) => Null.t<'e> = "closest"
+  external closest: (T.t, string) => Null.t<DOMTree.element> = "closest"
 
   /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Element/computedStyleMap)

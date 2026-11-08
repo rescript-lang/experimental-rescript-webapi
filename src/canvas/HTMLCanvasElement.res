@@ -116,7 +116,7 @@ external toDataURL: (t, ~type_: string=?, ~quality: JSON.t=?) => string = "toDat
 @throws(JsExn) @send
 external toBlob: (
   t,
-  ~callback: FileTypes.blob => unit,
+  ~callback: Null.t<FileTypes.blob> => unit,
   ~type_: string=?,
   ~quality: JSON.t=?,
 ) => unit = "toBlob"

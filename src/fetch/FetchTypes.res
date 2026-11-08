@@ -9,6 +9,7 @@ type responseType =
   | @as("opaqueredirect") Opaqueredirect
 
 type requestDestination =
+  | @as("") Empty
   | @as("audio") Audio
   | @as("audioworklet") Audioworklet
   | @as("document") Document
@@ -30,6 +31,7 @@ type requestDestination =
   | @as("xslt") Xslt
 
 type referrerPolicy =
+  | @as("") Empty
   | @as("no-referrer") NoReferrer
   | @as("no-referrer-when-downgrade") NoReferrerWhenDowngrade
   | @as("origin") Origin
@@ -149,7 +151,7 @@ type request = private {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Request/body)
     */
-  body: Null.t<FileTypes.readableStream<array<int>>>,
+  body: Null.t<FileTypes.readableStream<Uint8Array.t>>,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Request/bodyUsed)
     */
@@ -194,7 +196,7 @@ type response = private {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Request/body)
     */
-  body: Null.t<FileTypes.readableStream<array<int>>>,
+  body: Null.t<FileTypes.readableStream<Uint8Array.t>>,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Request/bodyUsed)
     */
