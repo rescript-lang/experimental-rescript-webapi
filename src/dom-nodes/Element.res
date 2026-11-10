@@ -9,8 +9,6 @@ module Impl = (
 ) => {
   include Node.Impl({type t = T.t})
 
-  external asElement: T.t => DOMTree.element = "%identity"
-
   /**
 Inserts nodes just after node, while replacing strings in nodes with equivalent Text nodes.
 
@@ -505,6 +503,9 @@ Returns true if qualifiedName is now present, and false otherwise.
 }
 
 include Impl({type t = t})
+
+external asNode: t => DOMTree.node = "%identity"
+external asElement: t => DOMTree.element = "%identity"
 
 /**
 `isInstanceOf(value)`

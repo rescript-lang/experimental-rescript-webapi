@@ -45,6 +45,11 @@ literal construction, record spread, and ordinary `:>` coercion, plus a positive
 obtains a real instance through a factory and uses its accessors. Expected diagnostics must match
 the actual opacity boundary rather than an unrelated type or missing-module error.
 
+Do not expose an unconstrained generic `Impl(T)` helper that converts arbitrary `T.t` to a native
+base type with `%identity`. Keep a base conversion specialized to the concrete native receiver, or
+use a runtime classifier when the source type is broad. Test the generic-functor route in packed
+consumers as well as direct record construction.
+
 ## Constructor overloads
 
 Constructors use a distinct naming convention:

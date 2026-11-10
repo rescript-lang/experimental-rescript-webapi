@@ -1,7 +1,8 @@
-type t = FileTypes.fileSystemDirectoryHandle = private {...FileTypes.fileSystemDirectoryHandle}
+type t = FileTypes.fileSystemDirectoryHandle
 
-external asFileSystemHandle: FileTypes.fileSystemDirectoryHandle => FileTypes.fileSystemHandle =
-  "%identity"
+external asFileSystemHandle: t => FileSystemHandle.t = "%identity"
+@get external kind: t => FileTypes.fileSystemHandleKind = "kind"
+@get external name: t => string = "name"
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/FileSystemHandle/isSameEntry)
 */

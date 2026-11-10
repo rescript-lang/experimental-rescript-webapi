@@ -4,7 +4,7 @@
 Any web page loaded in the browser that serves as an entry point into the page's DOM tree.
 [See Document on MDN](https://developer.mozilla.org/docs/Web/API/Document)
 */
-type document = private {}
+type document
 
 /**
 An abnormal event (called an exception) which occurs as a result of calling a method or accessing a property of a web API.
@@ -21,7 +21,7 @@ A type returned by some APIs which contains a list of DOMString (strings).
 type domStringList
 
 @editor.completeFrom(Window)
-type window = private {}
+type window
 external window: window = "window"
 
 type autoFillBase =
@@ -159,22 +159,13 @@ type predefinedColorSpace =
 A file-like object of immutable, raw data.
 [See Blob on MDN](https://developer.mozilla.org/docs/Web/API/Blob)
 */
-type blob = private {
-  size: int,
-  @as("type")
-  type_: string,
-}
+type blob
 
 /**
 Provides information about a file selected by or available to the user.
 [See File on MDN](https://developer.mozilla.org/docs/Web/API/File)
 */
-type file = private {
-  ...blob,
-  name: string,
-  lastModified: int,
-  webkitRelativePath: string,
-}
+type file
 
 type shareData = {
   mutable files?: array<file>,
@@ -216,7 +207,7 @@ type fragmentDirective = {}
 [See CustomElementRegistry on MDN](https://developer.mozilla.org/docs/Web/API/CustomElementRegistry)
 */
 @editor.completeFrom(CustomElementRegistry)
-type customElementRegistry = private {}
+type customElementRegistry
 
 /**
 [See BarProp on MDN](https://developer.mozilla.org/docs/Web/API/BarProp)
@@ -314,13 +305,7 @@ A controller object that allows you to abort one or more WebApiDOM requests as a
 [See AbortController on MDN](https://developer.mozilla.org/docs/Web/API/AbortController)
 */
 @editor.completeFrom(AbortController)
-type rec abortController = private {
-  /**
-Returns the AbortSignal object associated with this object.
-[Read more on MDN](https://developer.mozilla.org/docs/Web/API/AbortController/signal)
-*/
-  signal: abortSignal,
-}
+type abortController
 /**
 A signal object that allows you to communicate with a WebApiDOM request (such as a WebApiFetch) and abort it if required via an AbortController object.
 [See AbortSignal on MDN](https://developer.mozilla.org/docs/Web/API/AbortSignal)
@@ -556,12 +541,7 @@ An object of this type is returned by the files property of the HTML <input> ele
 [See FileList on MDN](https://developer.mozilla.org/docs/Web/API/FileList)
 */
 @editor.completeFrom(FileList)
-type fileList = private {
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/FileList/length)
-    */
-  length: int,
-}
+type fileList
 
 /**
 A collection of Attr objects. Objects inside a NamedNodeMap are not in any particular order, unlike NodeList, although they may be accessed by an index as in an array.

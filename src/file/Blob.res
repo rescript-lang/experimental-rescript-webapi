@@ -1,9 +1,29 @@
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Blob)
 */
-type t = FileTypes.blob = private {...FileTypes.blob}
+type t = FileTypes.blob
 type blobPart = FileTypes.blobPart
 type blobPropertyBag = FileTypes.blobPropertyBag
+
+/**
+Creates a Blob part from a string without wrapping or copying the value.
+[Read more on MDN](https://developer.mozilla.org/docs/Web/API/Blob/Blob)
+*/
+external blobPartFromString: string => blobPart = "%identity"
+/**
+Creates a Blob part from an existing native Blob.
+[Read more on MDN](https://developer.mozilla.org/docs/Web/API/Blob/Blob)
+*/
+external blobPartFromBlob: t => blobPart = "%identity"
+
+/**
+[Read more on MDN](https://developer.mozilla.org/docs/Web/API/Blob/size)
+*/
+@get external size: t => int = "size"
+/**
+[Read more on MDN](https://developer.mozilla.org/docs/Web/API/Blob/type)
+*/
+@get external type_: t => string = "type"
 
 @new
 external make: (~blobParts: array<blobPart>=?, ~options: blobPropertyBag=?) => t = "Blob"
@@ -13,7 +33,6 @@ module Impl = (
     type t
   },
 ) => {
-  external asBlob: T.t => t = "%identity"
   /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Blob/slice)
 */

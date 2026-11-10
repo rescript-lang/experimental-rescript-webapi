@@ -20,118 +20,61 @@ A file-like object of immutable, raw data. Blobs represent data that isn't neces
 [See Blob on MDN](https://developer.mozilla.org/docs/Web/API/Blob)
 */
 @editor.completeFrom(Blob)
-type blob = DOM.blob = private {
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Blob/size)
-    */
-  size: int,
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Blob/type)
-    */
-  @as("type")
-  type_: string,
-}
+type blob = DOM.blob
 
 /**
 This Streams API interface represents a readable stream of byte data. The WebApiFetch API offers a concrete instance of a ReadableStream through the body property of a Response object.
 [See ReadableStream on MDN](https://developer.mozilla.org/docs/Web/API/ReadableStream)
 */
 @editor.completeFrom(ReadableStream)
-type readableStream<'r> = {
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/ReadableStream/locked)
-    */
-  locked: bool,
-}
+type readableStream<+'r>
 
 /**
 This Streams API interface provides a standard abstraction for writing streaming data to a destination, known as a sink. This object comes with built-in backpressure and queuing.
 [See WritableStream on MDN](https://developer.mozilla.org/docs/Web/API/WritableStream)
 */
 @editor.completeFrom(WritableStream)
-type writableStream<'w> = {
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/WritableStream/locked)
-    */
-  locked: bool,
-}
+type writableStream<+'w>
 
 /**
 This Streams API interface represents a controller allowing control of a WritableStream's state. When constructing a WritableStream, the underlying sink is given a corresponding WritableStreamDefaultController instance to manipulate.
 [See WritableStreamDefaultController on MDN](https://developer.mozilla.org/docs/Web/API/WritableStreamDefaultController)
 */
 @editor.completeFrom(WritableStreamDefaultController)
-type writableStreamDefaultController = private {
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/WritableStreamDefaultController/signal)
-    */
-  signal: DOM.abortSignal,
-}
+type writableStreamDefaultController
 
 /**
 Provides information about files and allows JavaScript in a web page to access their content.
 [See WebApiFile on MDN](https://developer.mozilla.org/docs/Web/API/File)
 */
 @editor.completeFrom(File)
-type file = DOM.file = private {
-  ...blob,
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/File/name)
-    */
-  name: string,
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/File/lastModified)
-    */
-  lastModified: int,
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/File/webkitRelativePath)
-    */
-  webkitRelativePath: string,
-}
+type file = DOM.file
 
 /**
 [See FileSystemHandle on MDN](https://developer.mozilla.org/docs/Web/API/FileSystemHandle)
 */
 @editor.completeFrom(FileSystemHandle)
-type fileSystemHandle = private {
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/FileSystemHandle/kind)
-    */
-  kind: fileSystemHandleKind,
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/FileSystemHandle/name)
-    */
-  name: string,
-}
+type fileSystemHandle
 
 /**
 [See FileSystemDirectoryHandle on MDN](https://developer.mozilla.org/docs/Web/API/FileSystemDirectoryHandle)
 */
 @editor.completeFrom(FileSystemDirectoryHandle)
-type fileSystemDirectoryHandle = private {
-  ...fileSystemHandle,
-}
+type fileSystemDirectoryHandle
 
 /**
 [See FileSystemFileHandle on MDN](https://developer.mozilla.org/docs/Web/API/FileSystemFileHandle)
 */
 @editor.completeFrom(FileSystemFileHandle)
-type fileSystemFileHandle = private {
-  ...fileSystemHandle,
-}
+type fileSystemFileHandle
 
 /**
 [See FileSystemWritableFileStream on MDN](https://developer.mozilla.org/docs/Web/API/FileSystemWritableFileStream)
 */
 @editor.completeFrom(FileSystemWritableFileStream)
-type fileSystemWritableFileStream = private {
-  ...writableStream<unknown>,
-}
+type fileSystemWritableFileStream
 
-@unboxed
-type blobPart =
-  | String(string)
-  | Blob(blob)
+type blobPart
 // | ArrayBuffer(ArrayBuffer.t)
 // | TypedArray(TypedArray.t<int>)
 

@@ -9,8 +9,6 @@ module Impl = (
 ) => {
   include EventTarget.Impl({type t = T.t})
 
-  external asNode: T.t => DOMTree.node = "%identity"
-
   type getRootNodeOptions = {mutable composed?: bool}
 
   /**
@@ -112,3 +110,5 @@ Returns true if other is an inclusive descendant of node, and false otherwise.
 }
 
 include Impl({type t = t})
+
+external asNode: t => DOMTree.node = "%identity"

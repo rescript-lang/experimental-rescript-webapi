@@ -2,7 +2,7 @@
 [See CSSStyleValue on MDN](https://developer.mozilla.org/docs/Web/API/CSSStyleValue)
 */
 @editor.completeFrom(CSSStyleValue)
-type t = private {}
+type t
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CSSStyleValue/parse_static)

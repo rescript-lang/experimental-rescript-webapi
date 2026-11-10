@@ -1,4 +1,9 @@
-type t = DOM.fileList = private {...DOM.fileList}
+type t = DOM.fileList
+
+/**
+[Read more on MDN](https://developer.mozilla.org/docs/Web/API/FileList/length)
+*/
+@get external length: t => int = "length"
 
 /**
 Returns the `WebApiFile` at the specified index.
@@ -15,4 +20,4 @@ for i in 0 to fileList.length - 1 {
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/FileList/item)
 */
 @send
-external item: (DOM.fileList, int) => Null.t<FileTypes.file> = "item"
+external item: (t, int) => Null.t<FileTypes.file> = "item"

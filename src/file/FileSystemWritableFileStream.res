@@ -1,9 +1,6 @@
-type t = FileTypes.fileSystemWritableFileStream = private {
-  ...FileTypes.fileSystemWritableFileStream,
-}
+type t = FileTypes.fileSystemWritableFileStream
 
-external asWritableStream: FileTypes.fileSystemWritableFileStream => FileTypes.writableStream<'w> =
-  "%identity"
+external asWritableStream: t => WritableStream.t<FileTypes.fileSystemWriteChunkType> = "%identity"
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/WritableStream/abort)
 */

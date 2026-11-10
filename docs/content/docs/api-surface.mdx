@@ -110,6 +110,7 @@ alpha compiler. The SafeFetch API itself can also be used with ordinary `switch`
 
 Use `WebAPI.Fetch.fetch` for string URLs and `WebAPI.Fetch.fetchWithRequest`
 when you already have a `WebAPI.Request.t`.
+Request properties are read through typed `WebAPI.Request` accessors, such as `Request.method(request)`.
 
 ```ReScript
 let response = await WebAPI.Fetch.fetch("https://example.com/api/users")
@@ -258,6 +259,27 @@ let stringBody = WebAPI.BodyInit.fromString("plain text")
 let paramsBody = WebAPI.BodyInit.fromURLSearchParams(params)
 let formDataBody = WebAPI.BodyInit.fromFormData(formData)
 let blobBody = WebAPI.BodyInit.fromBlob(blob)
+```
+
+Build Blob and File data parts with typed helpers, then inspect values returned by `FormData` with
+`FormDataEntryValue.decode`:
+
+```ReScript
+let parts = [
+  WebAPI.Blob.blobPartFromString("contents"),
+  WebAPI.Blob.blobPartFromBlob(blob),
+]
+let dataBlob = WebAPI.Blob.make(~blobParts=parts)
+
+switch WebAPI.FormData.get(formData, "upload")->Null.toOption {
+| Some(value) =>
+  switch WebAPI.FormDataEntryValue.decode(value) {
+  | Some(WebAPI.FormDataEntryValue.String(text)) => Console.log(text)
+  | Some(WebAPI.FormDataEntryValue.File(file)) => Console.log(WebAPI.File.name(file))
+  | None => Console.log("unsupported FormData value")
+  }
+| None => Console.log("missing upload")
+}
 ```
 
 ## Headers

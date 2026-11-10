@@ -67,16 +67,16 @@ assert(isUint8ArrayWithABC(requestBytes))
 let emptyStateRequest = Request.fromURL("https://example.invalid/")
 assert(%raw(`emptyStateRequest.destination === "" && emptyStateRequest.referrerPolicy === ""`))
 
-let blobBytes = await Blob.make(~blobParts=[String("ABC")])->Blob.bytes
+let blobBytes = await Blob.make(~blobParts=[Blob.blobPartFromString("ABC")])->Blob.bytes
 assert(isUint8ArrayWithABC(blobBytes))
 
-let byteStream = Blob.make(~blobParts=[String("ABC")])->Blob.stream
+let byteStream = Blob.make(~blobParts=[Blob.blobPartFromString("ABC")])->Blob.stream
 let byteStreamReader = byteStream->ReadableStream.getReader
 let firstChunk = await byteStreamReader->readByteStreamChunk
 assert(containsABCByteChunk(firstChunk))
 await byteStreamReader->cancelByteStreamReader
 let responseFromByteStream = Response.fromReadableStream(
-  Blob.make(~blobParts=[String("ABC")])->Blob.stream,
+  Blob.make(~blobParts=[Blob.blobPartFromString("ABC")])->Blob.stream,
 )
 let responseStreamBytes = await responseFromByteStream->Response.bytes
 assert(isUint8ArrayWithABC(responseStreamBytes))
@@ -90,14 +90,47 @@ assert(isKnownNotificationPermission(permission))
 
 switch Document.createElement(document, "canvas")->HTMLCanvasElement.classify {
 | Some(canvas) => {
-    canvas.width = 0
-    canvas.height = 0
+    canvas->HTMLCanvasElement.setWidth(320)
+    canvas->HTMLCanvasElement.setHeight(200)
+    assert(canvas->HTMLCanvasElement.width == 320)
+    assert(canvas->HTMLCanvasElement.height == 200)
+    canvas->HTMLCanvasElement.setHidden(HTMLElement.Hidden)
+    assert(canvas->HTMLCanvasElement.hidden == HTMLElement.Hidden)
+    canvas->HTMLCanvasElement.setHidden(HTMLElement.Visible)
+    switch canvas->HTMLCanvasElement.getContext2D {
+    | Null.Value(context) => context->CanvasRenderingContext2D.fillRect(~x=0., ~y=0., ~w=1., ~h=1.)
+    | Null => assert(false)
+    }
+    canvas->HTMLCanvasElement.setWidth(0)
+    canvas->HTMLCanvasElement.setHeight(0)
     await withResolver(resolve =>
       canvas->HTMLCanvasElement.toBlob(~callback=_blob => {
         assert(isNull(_blob))
         resolve()
       })
     )
+  }
+| None => assert(false)
+}
+
+let formData = FormData.make()
+FormData.append(formData, ~name="text", ~value="native string")
+switch FormData.get(formData, "text")->Null.toOption {
+| Some(value) =>
+  switch FormDataEntryValue.decode(value) {
+  | Some(FormDataEntryValue.String(text)) => assert(text == "native string")
+  | Some(FormDataEntryValue.File(_)) | None => assert(false)
+  }
+| None => assert(false)
+}
+
+let file = File.make(~fileBits=[Blob.blobPartFromString("native file")], ~fileName="contract.txt")
+FormData.appendBlob(formData, ~name="file", ~blobValue=File.asBlob(file), ~filename="contract.txt")
+switch FormData.get(formData, "file")->Null.toOption {
+| Some(value) =>
+  switch FormDataEntryValue.decode(value) {
+  | Some(FormDataEntryValue.File(decodedFile)) => assert(File.name(decodedFile) == "contract.txt")
+  | Some(FormDataEntryValue.String(_)) | None => assert(false)
   }
 | None => assert(false)
 }
