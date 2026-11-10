@@ -90,8 +90,18 @@ assert(isKnownNotificationPermission(permission))
 
 switch Document.createElement(document, "canvas")->HTMLCanvasElement.classify {
 | Some(canvas) => {
-    canvas.width = 0
-    canvas.height = 0
+    canvas->HTMLCanvasElement.setWidth(1)
+    canvas->HTMLCanvasElement.setHeight(1)
+    switch canvas->HTMLCanvasElement.getContext2D {
+    | Null => assert(false)
+    | Value(context) => {
+        context->CanvasRenderingContext2D.setFillStyle(FillStyle.fromString("red"))
+        let fillStyle = context->CanvasRenderingContext2D.getFillStyle->FillStyle.toString
+        assert(fillStyle != "")
+      }
+    }
+    canvas->HTMLCanvasElement.setWidth(0)
+    canvas->HTMLCanvasElement.setHeight(0)
     await withResolver(resolve =>
       canvas->HTMLCanvasElement.toBlob(~callback=_blob => {
         assert(isNull(_blob))
@@ -129,7 +139,7 @@ spanDescendant->Element.remove
 inputAncestor->Element.remove
 
 let svg: SVGElement.t = %raw(`document.createElementNS("http://www.w3.org/2000/svg", "svg")`)
-svg.className.baseVal = "binding-contracts-svg"
+svg.className->SVGElement.setAnimatedStringBaseVal("binding-contracts-svg")
 assert(svg.className.baseVal == "binding-contracts-svg")
 let circle: SVGElement.t = %raw(`document.createElementNS("http://www.w3.org/2000/svg", "circle")`)
 appendChild(svg, circle)

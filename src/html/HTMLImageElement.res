@@ -1,9 +1,8 @@
 /**
 Provides special properties and methods for manipulating <img> elements.
 [See HTMLImageElement on MDN](https://developer.mozilla.org/docs/Web/API/HTMLImageElement)
-TODO: mark as private once mutating fields of private records is allowed
 */
-type t = {
+type t = private {
   // Base properties from HTMLElement
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/title)
@@ -341,6 +340,20 @@ type t = {
 }
 
 include HTMLElement.Impl({type t = t})
+
+@set external setAlt: (t, string) => unit = "alt"
+@set external setSrc: (t, string) => unit = "src"
+@set external setSrcset: (t, string) => unit = "srcset"
+@set external setSizes: (t, string) => unit = "sizes"
+@set external setCrossOrigin: (t, Null.t<string>) => unit = "crossOrigin"
+@set external setUseMap: (t, string) => unit = "useMap"
+@set external setIsMap: (t, bool) => unit = "isMap"
+@set external setWidth: (t, int) => unit = "width"
+@set external setHeight: (t, int) => unit = "height"
+@set external setReferrerPolicy: (t, string) => unit = "referrerPolicy"
+@set external setDecoding: (t, string) => unit = "decoding"
+@set external setLoading: (t, string) => unit = "loading"
+@set external setFetchPriority: (t, string) => unit = "fetchPriority"
 
 /**
 `isInstanceOf(value)`

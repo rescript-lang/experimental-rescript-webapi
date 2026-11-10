@@ -3,18 +3,18 @@
 /**
 [See MIDIInputMap on MDN](https://developer.mozilla.org/docs/Web/API/MIDIInputMap)
 */
-type midiInputMap = {}
+type midiInputMap = private {}
 
 /**
 [See MIDIOutputMap on MDN](https://developer.mozilla.org/docs/Web/API/MIDIOutputMap)
 */
-type midiOutputMap = {}
+type midiOutputMap = private {}
 
 /**
 [See MIDIAccess on MDN](https://developer.mozilla.org/docs/Web/API/MIDIAccess)
 */
 @editor.completeFrom(WebMIDI)
-type midiAccess = {
+type midiAccess = private {
   ...DOM.eventTarget,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/MIDIAccess/inputs)

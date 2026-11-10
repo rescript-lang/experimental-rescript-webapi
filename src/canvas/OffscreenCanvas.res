@@ -4,6 +4,12 @@
 @new
 external make: (~width: int, ~height: int) => CanvasTypes.offscreenCanvas = "OffscreenCanvas"
 
+@set
+external setWidth: (CanvasTypes.offscreenCanvas, int) => unit = "width"
+
+@set
+external setHeight: (CanvasTypes.offscreenCanvas, int) => unit = "height"
+
 include EventTarget.Impl({type t = CanvasTypes.offscreenCanvas})
 
 /**

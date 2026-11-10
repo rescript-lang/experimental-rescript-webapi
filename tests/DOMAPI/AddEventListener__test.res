@@ -1,16 +1,20 @@
 let button = DomGlobal.document->Document.querySelector("button")->Null.toOption
 let h2 = DomGlobal.document->Document.querySelector("h2")->Null.toOption
 
+module AnyElement = Element.Impl({
+  type t = Element.t
+})
+
 switch (button, h2) {
 | (Some(button), Some(h2)) =>
   button->Element.addEventListener(EventType.Click, (e: UiEventsTypes.mouseEvent) => {
     Console.log(`Button clicked, ${Int.toString(e.button)}`)
     switch h2.textContent {
-    | Null => h2.textContent = Value("1")
+    | Null => h2->AnyElement.setTextContent(Value("1"))
     | Value(text) =>
       switch Int.fromString(text) {
-      | None => h2.textContent = Value("1")
-      | Some(number) => h2.textContent = Value(Int.toString(number + 1))
+      | None => h2->AnyElement.setTextContent(Value("1"))
+      | Some(number) => h2->AnyElement.setTextContent(Value(Int.toString(number + 1)))
       }
     }
   })

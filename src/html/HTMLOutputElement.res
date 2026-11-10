@@ -1,9 +1,8 @@
 /**
 Provides properties and methods (beyond those inherited from HTMLElement) for manipulating the layout and presentation of <output> elements.
 [See HTMLOutputElement on MDN](https://developer.mozilla.org/docs/Web/API/HTMLOutputElement)
-TODO: mark as private once mutating fields of private records is allowed
 */
-type t = {
+type t = private {
   ...DOMTree.htmlElement,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLOutputElement/htmlFor)
@@ -53,6 +52,11 @@ Can be set, to change the value.
 }
 
 include HTMLElement.Impl({type t = t})
+
+@set external setName: (t, string) => unit = "name"
+@set external setType: (t, string) => unit = "type"
+@set external setDefaultValue: (t, string) => unit = "defaultValue"
+@set external setValue: (t, string) => unit = "value"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLOutputElement/checkValidity)

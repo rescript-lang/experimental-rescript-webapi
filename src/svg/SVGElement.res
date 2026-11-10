@@ -2,12 +2,18 @@
 Used for attributes of type SVGPreserveAspectRatio which can be animated.
 [See SVGAnimatedPreserveAspectRatio on MDN](https://developer.mozilla.org/docs/Web/API/SVGAnimatedPreserveAspectRatio)
 */
-type svgAnimatedPreserveAspectRatio = {}
+type svgAnimatedPreserveAspectRatio = private {}
 
-type svgAnimatedString = {
+type svgAnimatedString = private {
   mutable baseVal: string,
   animVal: string,
 }
+
+/**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/SVGAnimatedString/baseVal)
+*/
+@set
+external setAnimatedStringBaseVal: (svgAnimatedString, string) => unit = "baseVal"
 
 /**
 Correspond to the <length> basic data type.
@@ -20,7 +26,7 @@ type svgLength = private {}
 Used for attributes of basic type <length> which can be animated.
 [See SVGAnimatedLength on MDN](https://developer.mozilla.org/docs/Web/API/SVGAnimatedLength)
 */
-type svgAnimatedLength = {
+type svgAnimatedLength = private {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/SVGAnimatedLength/baseVal)
     */
@@ -35,7 +41,7 @@ type svgAnimatedLength = {
 All of the SVG WebApiDOM interfaces that correspond directly to elements in the SVG language derive from the SVGElement interface.
 [See SVGElement on MDN](https://developer.mozilla.org/docs/Web/API/SVGElement)
 */
-type t = {
+type t = private {
   ...DOMTree.element,
   className: svgAnimatedString,
   /**
@@ -72,6 +78,16 @@ module Impl = (
   include Element.Impl({type t = T.t})
 
   external asSVGElement: T.t => t = "%identity"
+
+  /**
+  Writes the native string-valued nonce property. Pass an empty string to clear it.
+  */
+  @set
+  external setNonce: (T.t, string) => unit = "nonce"
+  @set
+  external setAutofocus: (T.t, bool) => unit = "autofocus"
+  @set
+  external setTabIndex: (T.t, int) => unit = "tabIndex"
 }
 
 include Impl({type t = t})
@@ -89,7 +105,7 @@ type svgGraphicsElement = private {
 Corresponds to the <image> element.
 [See SVGImageElement on MDN](https://developer.mozilla.org/docs/Web/API/SVGImageElement)
 */
-type svgImageElement = {
+type svgImageElement = private {
   ...svgGraphicsElement,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/SVGImageElement/x)

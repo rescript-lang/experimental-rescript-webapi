@@ -59,7 +59,7 @@ type geolocationPosition = private {
 /**
 [See GeolocationPositionError on MDN](https://developer.mozilla.org/docs/Web/API/GeolocationPositionError)
 */
-type geolocationPositionError = {
+type geolocationPositionError = private {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/GeolocationPositionError/code)
     */

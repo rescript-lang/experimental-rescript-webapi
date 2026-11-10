@@ -1,9 +1,8 @@
 /**
 Provides special properties and methods (beyond the regular HTMLElement interface it also has available to it by inheritance) for manipulating the layout and presentation of table cells, either header or data cells, in an HTML document.
 [See HTMLTableCellElement on MDN](https://developer.mozilla.org/docs/Web/API/HTMLTableCellElement)
-TODO: mark as private once mutating fields of private records is allowed
 */
-type t = {
+type t = private {
   ...DOMTree.htmlElement,
   /**
     Sets or retrieves the number columns in the table that the object should span.
@@ -38,3 +37,9 @@ type t = {
 }
 
 include HTMLElement.Impl({type t = t})
+
+@set external setColSpan: (t, int) => unit = "colSpan"
+@set external setRowSpan: (t, int) => unit = "rowSpan"
+@set external setHeaders: (t, string) => unit = "headers"
+@set external setScope: (t, string) => unit = "scope"
+@set external setAbbr: (t, string) => unit = "abbr"

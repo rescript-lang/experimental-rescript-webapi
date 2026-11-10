@@ -8,15 +8,14 @@ type slotAssignmentMode =
   | @as("manual") Manual
   | @as("named") Named
 
-type customStateSet = {}
+type customStateSet = private {}
 
 /**
 Node is an interface from which a number of WebApiDOM API object types inherit. It allows those types to be treated similarly; for example, inheriting the same set of methods, or being tested in the same way.
 [See Node on MDN](https://developer.mozilla.org/docs/Web/API/Node)
-TODO: mark as private once mutating fields of private records is allowed
 */
 @editor.completeFrom(Node)
-type rec node = {
+type rec node = private {
   ...DOM.eventTarget,
   /**
     Returns the type of node.
@@ -91,9 +90,8 @@ type rec node = {
 /**
 Element is the most general base class from which all objects in a Document inherit. It only has methods and properties common to all kinds of elements. More specific classes inherit from Element.
 [See Element on MDN](https://developer.mozilla.org/docs/Web/API/Element)
-TODO: mark as private once mutating fields of private records is allowed
 */
-@editor.completeFrom(Element) and element = {
+@editor.completeFrom(Element) and element = private {
   // Base properties from Node
   /**
     Returns the type of node.
@@ -461,9 +459,8 @@ TODO: mark as private once mutating fields of private records is allowed
 /**
 A minimal document object that has no parent. It is used as a lightweight version of Document that stores a segment of a document structure comprised of nodes just like a standard document. The key difference is that because the document fragment isn't part of the active document tree structure, changes made to the fragment don't affect the document, cause reflow, or incur any performance impact that can occur when changes are made.
 [See DocumentFragment on MDN](https://developer.mozilla.org/docs/Web/API/DocumentFragment)
-TODO: mark as private once mutating fields of private records is allowed
 */
-@editor.completeFrom(DocumentFragment) and documentFragment = {
+@editor.completeFrom(DocumentFragment) and documentFragment = private {
   // Base properties from Node
   /**
     Returns the type of node.
@@ -558,9 +555,8 @@ TODO: mark as private once mutating fields of private records is allowed
 
 /**
 [See ShadowRoot on MDN](https://developer.mozilla.org/docs/Web/API/ShadowRoot)
-TODO: mark as private once mutating fields of private records is allowed
 */
-@editor.completeFrom(ShadowRoot) and shadowRoot = {
+@editor.completeFrom(ShadowRoot) and shadowRoot = private {
   // Base properties from DocumentFragment
   // End base properties from DocumentFragment
 
@@ -701,9 +697,8 @@ Similarly, when the focused element is in a different node tree than documentOrS
 /**
 Any HTML element. Some elements directly implement this interface, while others implement it via an interface that inherits it.
 [See HTMLElement on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement)
-TODO: mark as private once mutating fields of private records is allowed
 */
-@editor.completeFrom(HTMLElement) and htmlElement = {
+@editor.completeFrom(HTMLElement) and htmlElement = private {
   // Base properties from Element
   /**
     Returns the namespace.
@@ -994,9 +989,8 @@ TODO: mark as private once mutating fields of private records is allowed
 /**
 A <form> element in the WebApiDOM; it allows access to and in some cases modification of aspects of the form, as well as access to its component elements.
 [See HTMLFormElement on MDN](https://developer.mozilla.org/docs/Web/API/HTMLFormElement)
-TODO: mark as private once mutating fields of private records is allowed
 */
-@editor.completeFrom(HTMLFormElement) and htmlFormElement = {
+@editor.completeFrom(HTMLFormElement) and htmlFormElement = private {
   // Base properties from HTMLElement
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/title)
@@ -1298,12 +1292,12 @@ TODO: mark as private once mutating fields of private records is allowed
 }
 
 @editor.completeFrom(HTMLFormControlsCollection)
-and htmlFormControlsCollection = {
+and htmlFormControlsCollection = private {
   length: int,
 }
 
 @editor.completeFrom(HTMLSlotElement)
-and htmlSlotElement = {
+and htmlSlotElement = private {
   // Base properties from Element
   /**
     Returns the namespace.
@@ -1596,7 +1590,7 @@ and htmlSlotElement = {
 }
 
 @editor.completeFrom(ElementInternals)
-and elementInternals = {
+and elementInternals = private {
   shadowRoot: Null.t<shadowRoot>,
   form: Null.t<htmlFormElement>,
   willValidate: bool,

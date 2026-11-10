@@ -1,8 +1,13 @@
 type t = WebSocketsTypes.webSocket = private {...WebSocketsTypes.webSocket}
 type binaryType = WebSocketsTypes.binaryType
-type messageEvent<'t> = WebSocketsTypes.messageEvent<'t> = {...WebSocketsTypes.messageEvent<'t>}
+type messageEvent<'t> = WebSocketsTypes.messageEvent<'t> = private {
+  ...WebSocketsTypes.messageEvent<'t>,
+}
 type closeEvent = WebSocketsTypes.closeEvent = private {...WebSocketsTypes.closeEvent}
 type messageEventSource = WebSocketsTypes.messageEventSource
+
+@set
+external setBinaryType: (t, binaryType) => unit = "binaryType"
 
 /**
 `fromURL(~url: string, ~protocols: string=?)`

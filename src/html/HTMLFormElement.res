@@ -4,6 +4,23 @@ type t = DOMTree.htmlFormElement = private {
 
 include HTMLElement.Impl({type t = t})
 
+@set
+external setAcceptCharset: (t, string) => unit = "acceptCharset"
+@set
+external setAction: (t, string) => unit = "action"
+@set
+external setAutocomplete: (t, DOM.autoFillBase) => unit = "autocomplete"
+@set
+external setEnctype: (t, string) => unit = "enctype"
+@set
+external setEncoding: (t, string) => unit = "encoding"
+@set
+external setMethod: (t, string) => unit = "method"
+@set
+external setName: (t, string) => unit = "name"
+@set
+external setTarget: (t, string) => unit = "target"
+
 /**
 Fires when a FORM is about to be submitted.
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLFormElement/submit)

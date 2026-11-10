@@ -1,9 +1,8 @@
 /**
 The location (WebApiURL) of the object it is linked to. Changes done on it are reflected on the object it relates to. Both the Document and Window interface have such a linked Location, accessible via Document.location and Window.location respectively.
 [See Location on MDN](https://developer.mozilla.org/docs/Web/API/Location)
-TODO: mark as private once mutating fields of private records is allowed
 */
-type t = {
+type t = private {
   /**
     Returns the Location object's URL.
 
@@ -71,6 +70,15 @@ Can be set, to navigate to the same WebApiURL with a changed fragment (ignores l
     */
   ancestorOrigins: DOM.domStringList,
 }
+
+@set external setHref: (t, string) => unit = "href"
+@set external setProtocol: (t, string) => unit = "protocol"
+@set external setHost: (t, string) => unit = "host"
+@set external setHostname: (t, string) => unit = "hostname"
+@set external setPort: (t, string) => unit = "port"
+@set external setPathname: (t, string) => unit = "pathname"
+@set external setSearch: (t, string) => unit = "search"
+@set external setHash: (t, string) => unit = "hash"
 
 /**
 Navigates to the given URL.

@@ -23,7 +23,7 @@ type permissions = private {}
 /**
 [See PermissionStatus on MDN](https://developer.mozilla.org/docs/Web/API/PermissionStatus)
 */
-type permissionStatus = {
+type permissionStatus = private {
   ...DOM.eventTarget,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/PermissionStatus/state)

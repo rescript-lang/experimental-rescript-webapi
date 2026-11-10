@@ -67,7 +67,7 @@ const writeProject = (directory, sourceFile, features) => {
         dependencies:
           features === null ? ["@rescript/webapi"] : [{ name: "@rescript/webapi", features }],
         "experimental-features": { LetUnwrap: true },
-        warnings: { error: "+8" },
+        warnings: { error: "+8+111" },
         "package-specs": { module: "esmodule", "in-source": true },
       },
       null,
@@ -79,6 +79,29 @@ const writeProject = (directory, sourceFile, features) => {
 
 const compilerCli = (directory) =>
   path.join(directory, "node_modules", "rescript", "cli", "rescript.js");
+
+const verifyPrivateRecordRelaxation = (directory) => {
+  const backingFile = path.join(
+    directory,
+    "node_modules",
+    "@rescript",
+    "webapi",
+    "src/core/DOM.res",
+  );
+  const source = readFileSync(backingFile, "utf8");
+  const privateDeclaration = "type domTokenList = private {";
+  if (source.split(privateDeclaration).length !== 2) {
+    throw new Error("Expected exactly one private DOM.domTokenList backing declaration.");
+  }
+  writeFileSync(backingFile, source.replace(privateDeclaration, "type domTokenList = {"));
+  writeProject(directory, "scripts/fixtures/negative/DOMTokenListBackingRouteIsPrivate.res", [
+    "WebAPI.DOM",
+  ]);
+  compile(directory);
+  console.log(
+    "[ok] DOM backing-route fixture compiles when only its privacy restriction is relaxed",
+  );
+};
 
 const compile = (directory, expectedFailure = null) => {
   const cli = compilerCli(directory);
@@ -194,6 +217,16 @@ const checkConsumers = async () => {
           features: null,
         },
         {
+          name: "native setters and constructible request options",
+          fixture: "scripts/consumer-native-setters.res",
+          features: null,
+        },
+        {
+          name: "documented private-record coercion limitation",
+          fixture: "scripts/consumer-private-coercion-caveat.res",
+          features: null,
+        },
+        {
           name: "Fetch-only",
           fixture: "scripts/consumer-fetch.res",
           features: ["WebAPI.Fetch"],
@@ -247,6 +280,7 @@ const checkConsumers = async () => {
       compile(projectDirectory, negativeCase.expectedDiagnostic);
       console.log(`[ok] expected rejection: ${negativeCase.name}`);
     }
+    verifyPrivateRecordRelaxation(projectDirectory);
     console.log(`[ok] tarball contents (${packagedFiles.length} files)`);
   } finally {
     rmSync(tempDirectory, { recursive: true, force: true });

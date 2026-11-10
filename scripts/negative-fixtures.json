@@ -60,6 +60,72 @@
     "expectedDiagnostic": "Cannot create values of the"
   },
   {
+    "name": "native Response record updates are private",
+    "fixture": "scripts/fixtures/negative/NativeRecordUpdateIsPrivate.res",
+    "features": ["WebAPI.Fetch"],
+    "expectedDiagnostic": "Cannot create values of the"
+  },
+  {
+    "name": "DOMTokenList public view rejects record updates",
+    "fixture": "scripts/fixtures/negative/DOMTokenListPublicViewIsPrivate.res",
+    "features": ["WebAPI.DOMPlatform"],
+    "expectedDiagnostic": "Cannot create values of the"
+  },
+  {
+    "name": "DOM backing route rejects record updates",
+    "fixture": "scripts/fixtures/negative/DOMTokenListBackingRouteIsPrivate.res",
+    "features": ["WebAPI.DOM"],
+    "expectedDiagnostic": "Cannot create values of the"
+  },
+  {
+    "name": "HTML canvas record updates are private",
+    "fixture": "scripts/fixtures/negative/HTMLCanvasRecordUpdateIsPrivate.res",
+    "features": ["WebAPI.Canvas"],
+    "expectedDiagnostic": "Cannot create values of the"
+  },
+  {
+    "name": "DOMTree backing route rejects record updates",
+    "fixture": "scripts/fixtures/negative/DOMTreeElementBackingRouteIsPrivate.res",
+    "features": ["WebAPI.DOMNodes"],
+    "expectedDiagnostic": "Cannot create values of the"
+  },
+  {
+    "name": "generic native NodeList updates are private",
+    "fixture": "scripts/fixtures/negative/GenericNodeListUpdateIsPrivate.res",
+    "features": ["WebAPI.DOMNodes"],
+    "expectedDiagnostic": "Cannot create values of the"
+  },
+  {
+    "name": "URL native record updates are private",
+    "fixture": "scripts/fixtures/negative/URLRecordUpdateIsPrivate.res",
+    "features": ["WebAPI.URL"],
+    "expectedDiagnostic": "Cannot create values of the"
+  },
+  {
+    "name": "CSSStyleDeclaration record updates are private",
+    "fixture": "scripts/fixtures/negative/CSSStyleDeclarationUpdateIsPrivate.res",
+    "features": ["WebAPI.CSSOM"],
+    "expectedDiagnostic": "Cannot create values of the"
+  },
+  {
+    "name": "AudioNode native record updates are private",
+    "fixture": "scripts/fixtures/negative/AudioNodeRecordUpdateIsPrivate.res",
+    "features": ["WebAPI.WebAudio"],
+    "expectedDiagnostic": "Cannot create values of the"
+  },
+  {
+    "name": "DataTransfer native record updates are private",
+    "fixture": "scripts/fixtures/negative/DataTransferRecordUpdateIsPrivate.res",
+    "features": ["WebAPI.UIEvents"],
+    "expectedDiagnostic": "Cannot create values of the"
+  },
+  {
+    "name": "MutationRecord native snapshot updates are private",
+    "fixture": "scripts/fixtures/negative/MutationRecordUpdateIsPrivate.res",
+    "features": ["WebAPI.Observers"],
+    "expectedDiagnostic": "Cannot create values of the"
+  },
+  {
     "name": "Web Locks callback accepts nullable Lock",
     "fixture": "scripts/fixtures/negative/WebLocksRejectsNonNullableCallback.res",
     "features": ["WebAPI.Navigator"],

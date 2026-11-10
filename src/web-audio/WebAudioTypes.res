@@ -105,10 +105,9 @@ type worklet = private {}
 /**
 A generic interface for representing an audio processing module. Examples include:
 [See AudioNode on MDN](https://developer.mozilla.org/docs/Web/API/AudioNode)
-TODO: mark as private once mutating fields of private records is allowed
 */
 @editor.completeFrom(AudioNode)
-type rec audioNode = {
+type rec audioNode = private {
   ...DOM.eventTarget,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/AudioNode/context)
@@ -140,7 +139,7 @@ type rec audioNode = {
 AudioDestinationNode has no output (as it is the output, no more AudioNode can be linked after it in the audio graph) and one input. The number of channels in the input must be between 0 and the maxChannelCount value or an exception is raised.
 [See AudioDestinationNode on MDN](https://developer.mozilla.org/docs/Web/API/AudioDestinationNode)
 */
-and audioDestinationNode = {
+and audioDestinationNode = private {
   // Base properties from AudioNode
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/AudioNode/context)
@@ -208,9 +207,8 @@ and audioDestinationNode = {
 /**
 A simple low-order filter, and is created using the AudioContext.createBiquadFilter() method. It is an AudioNode that can represent different kinds of filters, tone control devices, and graphic equalizers.
 [See BiquadFilterNode on MDN](https://developer.mozilla.org/docs/Web/API/BiquadFilterNode)
-TODO: mark as private once mutating fields of private records is allowed
 */
-@editor.completeFrom(BiquadFilterNode) and biquadFilterNode = {
+@editor.completeFrom(BiquadFilterNode) and biquadFilterNode = private {
   // Base properties from AudioNode
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/AudioNode/context)
@@ -266,7 +264,7 @@ TODO: mark as private once mutating fields of private records is allowed
 The position and orientation of the unique person listening to the audio scene, and is used in audio spatialization. All PannerNodes spatialize in relation to the AudioListener stored in the BaseAudioContext.listener attribute.
 [See AudioListener on MDN](https://developer.mozilla.org/docs/Web/API/AudioListener)
 */
-and audioListener = {
+and audioListener = private {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/AudioListener/positionX)
     */
@@ -308,16 +306,15 @@ and audioListener = {
 /**
 [See AudioWorklet on MDN](https://developer.mozilla.org/docs/Web/API/AudioWorklet)
 */
-and audioWorklet = {
+and audioWorklet = private {
   ...worklet,
 }
 
 /**
 The Web Audio API's AudioParam interface represents an audio-related parameter, usually a parameter of an AudioNode (such as GainNode.gain).
 [See AudioParam on MDN](https://developer.mozilla.org/docs/Web/API/AudioParam)
-TODO: mark as private once mutating fields of private records is allowed
 */
-@editor.completeFrom(AudioParam) and audioParam = {
+@editor.completeFrom(AudioParam) and audioParam = private {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/AudioParam/value)
     */
@@ -338,9 +335,8 @@ TODO: mark as private once mutating fields of private records is allowed
 
 /**
 [See AudioScheduledSourceNode on MDN](https://developer.mozilla.org/docs/Web/API/AudioScheduledSourceNode)
-TODO: mark as private once mutating fields of private records is allowed
 */
-@editor.completeFrom(AudioScheduledSourceNode) and audioScheduledSourceNode = {
+@editor.completeFrom(AudioScheduledSourceNode) and audioScheduledSourceNode = private {
   // Base properties from AudioNode
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/AudioNode/context)
@@ -372,9 +368,8 @@ TODO: mark as private once mutating fields of private records is allowed
 /**
 An AudioScheduledSourceNode which represents an audio source consisting of in-memory audio data, stored in an AudioBuffer. It's especially useful for playing back audio which has particularly stringent timing accuracy requirements, such as for sounds that must match a specific rhythm and can be kept in memory rather than being played from disk or the network.
 [See AudioBufferSourceNode on MDN](https://developer.mozilla.org/docs/Web/API/AudioBufferSourceNode)
-TODO: mark as private once mutating fields of private records is allowed
 */
-@editor.completeFrom(AudioBufferSourceNode) and audioBufferSourceNode = {
+@editor.completeFrom(AudioBufferSourceNode) and audioBufferSourceNode = private {
   // Base properties from AudioScheduledSourceNode
   // End base properties from AudioScheduledSourceNode
 
@@ -435,9 +430,8 @@ TODO: mark as private once mutating fields of private records is allowed
 /**
 The ChannelMergerNode interface, often used in conjunction with its opposite, ChannelSplitterNode, reunites different mono inputs into a single output. Each input is used to fill a channel of the output. This is useful for accessing each channels separately, e.g. for performing channel mixing where gain must be separately controlled on each channel.
 [See ChannelMergerNode on MDN](https://developer.mozilla.org/docs/Web/API/ChannelMergerNode)
-TODO: mark as private once mutating fields of private records is allowed
 */
-@editor.completeFrom(ChannelMergerNode) and channelMergerNode = {
+@editor.completeFrom(ChannelMergerNode) and channelMergerNode = private {
   // Base properties from AudioNode
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/AudioNode/context)
@@ -469,9 +463,8 @@ TODO: mark as private once mutating fields of private records is allowed
 /**
 The ChannelSplitterNode interface, often used in conjunction with its opposite, ChannelMergerNode, separates the different channels of an audio source into a set of mono outputs. This is useful for accessing each channel separately, e.g. for performing channel mixing where gain must be separately controlled on each channel.
 [See ChannelSplitterNode on MDN](https://developer.mozilla.org/docs/Web/API/ChannelSplitterNode)
-TODO: mark as private once mutating fields of private records is allowed
 */
-@editor.completeFrom(ChannelSplitterNode) and channelSplitterNode = {
+@editor.completeFrom(ChannelSplitterNode) and channelSplitterNode = private {
   // Base properties from AudioNode
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/AudioNode/context)
@@ -502,9 +495,8 @@ TODO: mark as private once mutating fields of private records is allowed
 
 /**
 [See ConstantSourceNode on MDN](https://developer.mozilla.org/docs/Web/API/ConstantSourceNode)
-TODO: mark as private once mutating fields of private records is allowed
 */
-@editor.completeFrom(ConstantSourceNode) and constantSourceNode = {
+@editor.completeFrom(ConstantSourceNode) and constantSourceNode = private {
   // Base properties from AudioScheduledSourceNode
   // End base properties from AudioScheduledSourceNode
 
@@ -544,9 +536,8 @@ TODO: mark as private once mutating fields of private records is allowed
 /**
 An AudioNode that performs a Linear Convolution on a given AudioBuffer, often used to achieve a reverb effect. A ConvolverNode always has exactly one input and one output.
 [See ConvolverNode on MDN](https://developer.mozilla.org/docs/Web/API/ConvolverNode)
-TODO: mark as private once mutating fields of private records is allowed
 */
-@editor.completeFrom(ConvolverNode) and convolverNode = {
+@editor.completeFrom(ConvolverNode) and convolverNode = private {
   // Base properties from AudioNode
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/AudioNode/context)
@@ -588,9 +579,8 @@ TODO: mark as private once mutating fields of private records is allowed
 /**
 A delay-line; an AudioNode audio-processing module that causes a delay between the arrival of an input data and its propagation to the output.
 [See DelayNode on MDN](https://developer.mozilla.org/docs/Web/API/DelayNode)
-TODO: mark as private once mutating fields of private records is allowed
 */
-@editor.completeFrom(DelayNode) and delayNode = {
+@editor.completeFrom(DelayNode) and delayNode = private {
   // Base properties from AudioNode
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/AudioNode/context)
@@ -627,9 +617,8 @@ TODO: mark as private once mutating fields of private records is allowed
 /**
 Inherits properties from its parent, AudioNode.
 [See DynamicsCompressorNode on MDN](https://developer.mozilla.org/docs/Web/API/DynamicsCompressorNode)
-TODO: mark as private once mutating fields of private records is allowed
 */
-@editor.completeFrom(DynamicsCompressorNode) and dynamicsCompressorNode = {
+@editor.completeFrom(DynamicsCompressorNode) and dynamicsCompressorNode = private {
   // Base properties from AudioNode
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/AudioNode/context)
@@ -686,9 +675,8 @@ TODO: mark as private once mutating fields of private records is allowed
 /**
 A change in volume. It is an AudioNode audio-processing module that causes a given gain to be applied to the input data before its propagation to the output. A GainNode always has exactly one input and one output, both with the same number of channels.
 [See GainNode on MDN](https://developer.mozilla.org/docs/Web/API/GainNode)
-TODO: mark as private once mutating fields of private records is allowed
 */
-@editor.completeFrom(GainNode) and gainNode = {
+@editor.completeFrom(GainNode) and gainNode = private {
   // Base properties from AudioNode
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/AudioNode/context)
@@ -725,9 +713,8 @@ TODO: mark as private once mutating fields of private records is allowed
 /**
 The IIRFilterNode interface of the Web Audio API is a AudioNode processor which implements a general infinite impulse response (IIR)  filter; this type of filter can be used to implement tone control devices and graphic equalizers as well. It lets the parameters of the filter response be specified, so that it can be tuned as needed.
 [See IIRFilterNode on MDN](https://developer.mozilla.org/docs/Web/API/IIRFilterNode)
-TODO: mark as private once mutating fields of private records is allowed
 */
-@editor.completeFrom(IIRFilterNode) and iirFilterNode = {
+@editor.completeFrom(IIRFilterNode) and iirFilterNode = private {
   // Base properties from AudioNode
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/AudioNode/context)
@@ -759,9 +746,8 @@ TODO: mark as private once mutating fields of private records is allowed
 /**
 The OscillatorNode interface represents a periodic waveform, such as a sine wave. It is an AudioScheduledSourceNode audio-processing module that causes a specified frequency of a given wave to be created—in effect, a constant tone.
 [See OscillatorNode on MDN](https://developer.mozilla.org/docs/Web/API/OscillatorNode)
-TODO: mark as private once mutating fields of private records is allowed
 */
-@editor.completeFrom(OscillatorNode) and oscillatorNode = {
+@editor.completeFrom(OscillatorNode) and oscillatorNode = private {
   // Base properties from AudioScheduledSourceNode
   // End base properties from AudioScheduledSourceNode
 
@@ -810,9 +796,8 @@ TODO: mark as private once mutating fields of private records is allowed
 /**
 A PannerNode always has exactly one input and one output: the input can be mono or stereo but the output is always stereo (2 channels); you can't have panning effects without at least two audio channels!
 [See PannerNode on MDN](https://developer.mozilla.org/docs/Web/API/PannerNode)
-TODO: mark as private once mutating fields of private records is allowed
 */
-@editor.completeFrom(PannerNode) and pannerNode = {
+@editor.completeFrom(PannerNode) and pannerNode = private {
   // Base properties from AudioNode
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/AudioNode/context)
@@ -905,10 +890,9 @@ TODO: mark as private once mutating fields of private records is allowed
 /**
 A node able to provide real-time frequency and time-domain analysis information. It is an AudioNode that passes the audio stream unchanged from the input to the output, but allows you to take the generated data, process it, and create audio visualizations.
 [See AnalyserNode on MDN](https://developer.mozilla.org/docs/Web/API/AnalyserNode)
-TODO: mark as private once mutating fields of private records is allowed
 */
 @editor.completeFrom(AnalyserNode)
-type analyserNode = {
+type analyserNode = private {
   ...audioNode,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/AnalyserNode/fftSize)
@@ -959,10 +943,9 @@ type stereoPannerNode = private {
 /**
 A WaveShaperNode always has exactly one input and one output.
 [See WaveShaperNode on MDN](https://developer.mozilla.org/docs/Web/API/WaveShaperNode)
-TODO: mark as private once mutating fields of private records is allowed
 */
 @editor.completeFrom(WaveShaperNode)
-type waveShaperNode = {
+type waveShaperNode = private {
   ...audioNode,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/WaveShaperNode/curve)
@@ -1032,7 +1015,7 @@ type mediaStreamAudioDestinationNode = private {
 /**
 [See AudioParamMap on MDN](https://developer.mozilla.org/docs/Web/API/AudioParamMap)
 */
-type audioParamMap = {}
+type audioParamMap = private {}
 
 /**
 [See AudioWorkletNode on MDN](https://developer.mozilla.org/docs/Web/API/AudioWorkletNode)

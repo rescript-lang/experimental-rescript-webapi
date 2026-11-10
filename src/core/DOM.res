@@ -11,7 +11,7 @@ An abnormal event (called an exception) which occurs as a result of calling a me
 [See DOMException on MDN](https://developer.mozilla.org/docs/Web/API/DOMException)
 */
 @editor.completeFrom(DOMException)
-type domException = {
+type domException = private {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/DOMException/name)
     */
@@ -27,7 +27,7 @@ A type returned by some APIs which contains a list of DOMString (strings).
 [See DOMStringList on MDN](https://developer.mozilla.org/docs/Web/API/DOMStringList)
 */
 @editor.completeFrom(DOMStringList)
-type domStringList = {
+type domStringList = private {
   /**
     Returns the number of strings in strings.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/DOMStringList/length)
@@ -201,7 +201,7 @@ type shareData = {
 /**
 [See UserActivation on MDN](https://developer.mozilla.org/docs/Web/API/UserActivation)
 */
-type userActivation = {
+type userActivation = private {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/UserActivation/hasBeenActive)
     */
@@ -219,9 +219,8 @@ The state and the identity of the user agent. It allows scripts to query it and 
 @editor.completeFrom(Navigator)
 type navigator
 
-// TODO: mark as private once mutating fields of private records is allowed
 @editor.completeFrom(DOMTokenList)
-type domTokenList = {
+type domTokenList = private {
   /**
     Returns the number of tokens.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/DOMTokenList/length)
@@ -239,7 +238,7 @@ Can be set, to change the associated attribute.
 /**
 [See FragmentDirective on MDN](https://developer.mozilla.org/docs/Web/API/FragmentDirective)
 */
-type fragmentDirective = {}
+type fragmentDirective = private {}
 
 /**
 [See CustomElementRegistry on MDN](https://developer.mozilla.org/docs/Web/API/CustomElementRegistry)
@@ -250,7 +249,7 @@ type customElementRegistry = private {}
 /**
 [See BarProp on MDN](https://developer.mozilla.org/docs/Web/API/BarProp)
 */
-type barProp = {
+type barProp = private {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/BarProp/visible)
     */
@@ -401,7 +400,7 @@ type screenOrientation = private {
 A screen, usually the one on which the current window is being rendered, and is obtained using window.screen.
 [See Screen on MDN](https://developer.mozilla.org/docs/Web/API/Screen)
 */
-type screen = {
+type screen = private {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Screen/availWidth)
     */
@@ -516,7 +515,7 @@ type domRect = private {
 The validity states that an element can be in, with respect to constraint validation. Together, they help explain why an element's value fails to validate, if it's not valid.
 [See ValidityState on MDN](https://developer.mozilla.org/docs/Web/API/ValidityState)
 */
-type validityState = {
+type validityState = private {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/ValidityState/valueMissing)
     */

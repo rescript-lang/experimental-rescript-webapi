@@ -22,7 +22,7 @@ type animationTimeline = private {
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Animation)
 */
-type rec t = {
+type rec t = private {
   ...DOM.eventTarget,
   /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Animation/id)
@@ -77,6 +77,13 @@ type rec t = {
 external make: (~effect: AnimationEffect.t=?, ~timeline: animationTimeline=?) => t = "Animation"
 
 include EventTarget.Impl({type t = t})
+
+@set external setId: (t, string) => unit = "id"
+@set external setEffect: (t, Null.t<AnimationEffect.t>) => unit = "effect"
+@set external setTimeline: (t, Null.t<animationTimeline>) => unit = "timeline"
+@set external setPlaybackRate: (t, float) => unit = "playbackRate"
+@set external setStartTime: (t, Null.t<float>) => unit = "startTime"
+@set external setCurrentTime: (t, Null.t<float>) => unit = "currentTime"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Animation/cancel)

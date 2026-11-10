@@ -1,9 +1,8 @@
 /**
 Contains descriptive metadata about a document. It inherits all of the properties and methods described in the HTMLElement interface.
 [See HTMLMetaElement on MDN](https://developer.mozilla.org/docs/Web/API/HTMLMetaElement)
-TODO: mark as private once mutating fields of private records is allowed
 */
-type t = {
+type t = private {
   ...DOMTree.htmlElement,
   /**
     Sets or retrieves the value specified in the content attribute of the meta object.
@@ -27,3 +26,12 @@ type t = {
 }
 
 include HTMLElement.Impl({type t = t})
+
+@set
+external setName: (t, string) => unit = "name"
+@set
+external setHttpEquiv: (t, string) => unit = "httpEquiv"
+@set
+external setContent: (t, string) => unit = "content"
+@set
+external setMedia: (t, string) => unit = "media"

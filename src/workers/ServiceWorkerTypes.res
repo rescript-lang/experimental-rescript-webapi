@@ -135,7 +135,7 @@ type serviceWorkerGlobalScope = private {
 The Client interface represents an executable context such as a Worker, or a SharedWorker. Window clients are represented by the more-specific WindowClient.
 [See Client on MDN](https://developer.mozilla.org/en-US/docs/Web/API/Client)
 */
-type client = {
+type client = private {
   /**
     [Read more on MDN](https://developer.mozilla.org/en-US/docs/Web/API/Client/id)
   */
@@ -148,6 +148,6 @@ type client = {
 The WindowClient interface of the WebApiServiceWorker API represents the scope of a service worker client that is a document in a browsing context, controlled by an active worker.
 [See WindowClient on MDN](https://developer.mozilla.org/en-US/docs/Web/API/WindowClient)
 */
-type windowClient = {
+type windowClient = private {
   ...client,
 }

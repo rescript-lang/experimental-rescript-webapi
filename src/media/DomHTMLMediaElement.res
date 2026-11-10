@@ -8,9 +8,8 @@ type canPlayTypeResult =
 /**
 Adds to HTMLElement the properties and methods needed to support basic media-related capabilities that are common to audio and video.
 [See HTMLMediaElement on MDN](https://developer.mozilla.org/docs/Web/API/HTMLMediaElement)
-TODO: mark as private once mutating fields of private records is allowed
 */
-type t = {
+type t = private {
   ...DOMTree.htmlElement,
   /**
     Returns an object representing the current error state of the audio or video element.
@@ -142,6 +141,22 @@ type t = {
     */
   mutable disableRemotePlayback: bool,
 }
+
+@set external setSrc: (t, string) => unit = "src"
+@set external setSrcObject: (t, Null.t<mediaProvider>) => unit = "srcObject"
+@set external setCrossOrigin: (t, Null.t<string>) => unit = "crossOrigin"
+@set external setPreload: (t, string) => unit = "preload"
+@set external setCurrentTime: (t, float) => unit = "currentTime"
+@set external setDefaultPlaybackRate: (t, float) => unit = "defaultPlaybackRate"
+@set external setPlaybackRate: (t, float) => unit = "playbackRate"
+@set external setPreservesPitch: (t, bool) => unit = "preservesPitch"
+@set external setAutoplay: (t, bool) => unit = "autoplay"
+@set external setLoop: (t, bool) => unit = "loop"
+@set external setControls: (t, bool) => unit = "controls"
+@set external setVolume: (t, float) => unit = "volume"
+@set external setMuted: (t, bool) => unit = "muted"
+@set external setDefaultMuted: (t, bool) => unit = "defaultMuted"
+@set external setDisableRemotePlayback: (t, bool) => unit = "disableRemotePlayback"
 
 module Impl = (
   T: {

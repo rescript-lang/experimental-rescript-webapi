@@ -11,6 +11,108 @@ module Impl = (
 
   external asElement: T.t => DOMTree.element = "%identity"
 
+  @set
+  external setId: (T.t, string) => unit = "id"
+
+  @set
+  external setSlot: (T.t, string) => unit = "slot"
+
+  @set
+  external setScrollTop: (T.t, float) => unit = "scrollTop"
+
+  @set
+  external setScrollLeft: (T.t, float) => unit = "scrollLeft"
+
+  @throws(JsExn) @set
+  external setInnerHTML: (T.t, string) => unit = "innerHTML"
+
+  @throws(JsExn) @set
+  external setOuterHTML: (T.t, string) => unit = "outerHTML"
+
+  @set
+  external setAriaAtomic: (T.t, Null.t<string>) => unit = "ariaAtomic"
+  @set
+  external setAriaAutoComplete: (T.t, Null.t<string>) => unit = "ariaAutoComplete"
+  @set
+  external setAriaBrailleLabel: (T.t, Null.t<string>) => unit = "ariaBrailleLabel"
+  @set
+  external setAriaBrailleRoleDescription: (T.t, Null.t<string>) => unit =
+    "ariaBrailleRoleDescription"
+  @set
+  external setAriaBusy: (T.t, Null.t<string>) => unit = "ariaBusy"
+  @set
+  external setAriaChecked: (T.t, Null.t<string>) => unit = "ariaChecked"
+  @set
+  external setAriaColCount: (T.t, Null.t<string>) => unit = "ariaColCount"
+  @set
+  external setAriaColIndex: (T.t, Null.t<string>) => unit = "ariaColIndex"
+  @set
+  external setAriaColIndexText: (T.t, Null.t<string>) => unit = "ariaColIndexText"
+  @set
+  external setAriaColSpan: (T.t, Null.t<string>) => unit = "ariaColSpan"
+  @set
+  external setAriaCurrent: (T.t, Null.t<string>) => unit = "ariaCurrent"
+  @set
+  external setAriaDescription: (T.t, Null.t<string>) => unit = "ariaDescription"
+  @set
+  external setAriaDisabled: (T.t, Null.t<string>) => unit = "ariaDisabled"
+  @set
+  external setAriaExpanded: (T.t, Null.t<string>) => unit = "ariaExpanded"
+  @set
+  external setAriaHasPopup: (T.t, Null.t<string>) => unit = "ariaHasPopup"
+  @set
+  external setAriaHidden: (T.t, Null.t<string>) => unit = "ariaHidden"
+  @set
+  external setAriaKeyShortcuts: (T.t, Null.t<string>) => unit = "ariaKeyShortcuts"
+  @set
+  external setAriaLabel: (T.t, Null.t<string>) => unit = "ariaLabel"
+  @set
+  external setAriaLevel: (T.t, Null.t<string>) => unit = "ariaLevel"
+  @set
+  external setAriaLive: (T.t, Null.t<string>) => unit = "ariaLive"
+  @set
+  external setAriaModal: (T.t, Null.t<string>) => unit = "ariaModal"
+  @set
+  external setAriaMultiLine: (T.t, Null.t<string>) => unit = "ariaMultiLine"
+  @set
+  external setAriaMultiSelectable: (T.t, Null.t<string>) => unit = "ariaMultiSelectable"
+  @set
+  external setAriaOrientation: (T.t, Null.t<string>) => unit = "ariaOrientation"
+  @set
+  external setAriaPlaceholder: (T.t, Null.t<string>) => unit = "ariaPlaceholder"
+  @set
+  external setAriaPosInSet: (T.t, Null.t<string>) => unit = "ariaPosInSet"
+  @set
+  external setAriaPressed: (T.t, Null.t<string>) => unit = "ariaPressed"
+  @set
+  external setAriaReadOnly: (T.t, Null.t<string>) => unit = "ariaReadOnly"
+  @set
+  external setAriaRequired: (T.t, Null.t<string>) => unit = "ariaRequired"
+  @set
+  external setAriaRoleDescription: (T.t, Null.t<string>) => unit = "ariaRoleDescription"
+  @set
+  external setAriaRowCount: (T.t, Null.t<string>) => unit = "ariaRowCount"
+  @set
+  external setAriaRowIndex: (T.t, Null.t<string>) => unit = "ariaRowIndex"
+  @set
+  external setAriaRowIndexText: (T.t, Null.t<string>) => unit = "ariaRowIndexText"
+  @set
+  external setAriaRowSpan: (T.t, Null.t<string>) => unit = "ariaRowSpan"
+  @set
+  external setAriaSelected: (T.t, Null.t<string>) => unit = "ariaSelected"
+  @set
+  external setAriaSetSize: (T.t, Null.t<string>) => unit = "ariaSetSize"
+  @set
+  external setAriaSort: (T.t, Null.t<string>) => unit = "ariaSort"
+  @set
+  external setAriaValueMax: (T.t, Null.t<string>) => unit = "ariaValueMax"
+  @set
+  external setAriaValueMin: (T.t, Null.t<string>) => unit = "ariaValueMin"
+  @set
+  external setAriaValueNow: (T.t, Null.t<string>) => unit = "ariaValueNow"
+  @set
+  external setAriaValueText: (T.t, Null.t<string>) => unit = "ariaValueText"
+
   /**
 Inserts nodes just after node, while replacing strings in nodes with equivalent Text nodes.
 

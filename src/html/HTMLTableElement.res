@@ -1,9 +1,8 @@
 /**
 Provides special properties and methods (beyond the regular HTMLElement object interface it also has available to it by inheritance) for manipulating the layout and presentation of tables in an HTML document.
 [See HTMLTableElement on MDN](https://developer.mozilla.org/docs/Web/API/HTMLTableElement)
-TODO: mark as private once mutating fields of private records is allowed
 */
-type rec t = {
+type t = private {
   ...DOMTree.htmlElement,
   /**
     Retrieves the caption object of a table.
@@ -33,6 +32,10 @@ type rec t = {
 }
 
 include HTMLElement.Impl({type t = t})
+
+@set external setCaption: (t, Null.t<HTMLTableCaptionElement.t>) => unit = "caption"
+@set external setTHead: (t, Null.t<HTMLTableSectionElement.t>) => unit = "tHead"
+@set external setTFoot: (t, Null.t<HTMLTableSectionElement.t>) => unit = "tFoot"
 
 /**
 Creates an empty caption element in the table.

@@ -1,7 +1,7 @@
 let assignedNodesForElement = (element: DOMTree.element) =>
   switch element.assignedSlot {
   | Value(slot) =>
-    slot.name = "content"
+    slot->HTMLSlotElement.setName("content")
     slot->HTMLSlotElement.assignedNodes
   | Null => []
   }
@@ -9,7 +9,7 @@ let assignedNodesForElement = (element: DOMTree.element) =>
 let assignedNodesForText = (text: Text.t) =>
   switch text.assignedSlot {
   | Value(slot) =>
-    slot.name = "content"
+    slot->HTMLSlotElement.setName("content")
     slot->HTMLSlotElement.assignedNodes
   | Null => []
   }

@@ -5,6 +5,20 @@ type t = DOMTree.shadowRoot = private {
 include DocumentFragment.Impl({type t = t})
 
 /**
+Sets the serialized HTML contents of this shadow root.
+[Read more on MDN](https://developer.mozilla.org/docs/Web/API/ShadowRoot/innerHTML)
+*/
+@throws(JsExn) @set
+external setInnerHTML: (t, string) => unit = "innerHTML"
+
+/**
+Sets the adopted style sheets for this shadow root.
+[Read more on MDN](https://developer.mozilla.org/docs/Web/API/Document/adoptedStyleSheets)
+*/
+@throws(JsExn) @set
+external setAdoptedStyleSheets: (t, array<StyleSheet.cssStyleSheet>) => unit = "adoptedStyleSheets"
+
+/**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Document/getAnimations)
 */
 @send

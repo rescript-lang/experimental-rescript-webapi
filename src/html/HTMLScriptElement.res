@@ -1,9 +1,8 @@
 /**
 HTML <script> elements expose the HTMLScriptElement interface, which provides special properties and methods for manipulating the behavior and execution of <script> elements (beyond the inherited HTMLElement interface).
 [See HTMLScriptElement on MDN](https://developer.mozilla.org/docs/Web/API/HTMLScriptElement)
-TODO: mark as private once mutating fields of private records is allowed
 */
-type t = {
+type t = private {
   // Base properties from HTMLElement
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLElement/title)
@@ -302,6 +301,27 @@ type t = {
 }
 
 include HTMLElement.Impl({type t = t})
+
+@set
+external setSrc: (t, string) => unit = "src"
+@set
+external setType: (t, string) => unit = "type"
+@set
+external setNoModule: (t, bool) => unit = "noModule"
+@set
+external setAsync: (t, bool) => unit = "async"
+@set
+external setDefer: (t, bool) => unit = "defer"
+@set
+external setCrossOrigin: (t, Null.t<string>) => unit = "crossOrigin"
+@set
+external setText: (t, string) => unit = "text"
+@set
+external setIntegrity: (t, string) => unit = "integrity"
+@set
+external setReferrerPolicy: (t, string) => unit = "referrerPolicy"
+@set
+external setFetchPriority: (t, string) => unit = "fetchPriority"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLScriptElement/supports_static)

@@ -4,7 +4,7 @@
 [See PictureInPictureWindow on MDN](https://developer.mozilla.org/docs/Web/API/PictureInPictureWindow)
 */
 @editor.completeFrom(PictureInPicture)
-type pictureInPictureWindow = {
+type pictureInPictureWindow = private {
   ...DOM.eventTarget,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/PictureInPictureWindow/width)

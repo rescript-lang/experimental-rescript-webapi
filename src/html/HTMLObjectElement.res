@@ -1,9 +1,8 @@
 /**
 Provides special properties and methods (beyond those on the HTMLElement interface it also has available to it by inheritance) for manipulating the layout and presentation of <object> element, representing external resources.
 [See HTMLObjectElement on MDN](https://developer.mozilla.org/docs/Web/API/HTMLObjectElement)
-TODO: mark as private once mutating fields of private records is allowed
 */
-type t = {
+type t = private {
   ...DOMTree.htmlElement,
   /**
     Sets or retrieves the WebApiURL that references the data of the object.
@@ -63,6 +62,17 @@ type t = {
 }
 
 include HTMLElement.Impl({type t = t})
+
+@set
+external setData: (t, string) => unit = "data"
+@set
+external setType: (t, string) => unit = "type"
+@set
+external setName: (t, string) => unit = "name"
+@set
+external setWidth: (t, string) => unit = "width"
+@set
+external setHeight: (t, string) => unit = "height"
 
 @send
 external getSVGDocument: t => Null.t<DOM.document> = "getSVGDocument"

@@ -87,7 +87,7 @@ type idbTransaction = private {
 The request object does not initially contain any information about the result of the operation, but once information becomes available, an event is fired on the request, and the information becomes available through the properties of the IDBRequest instance.
 [See IDBRequest on MDN](https://developer.mozilla.org/docs/Web/API/IDBRequest)
 */
-type idbRequest<'t> = {
+type idbRequest<'t> = private {
   ...DOM.eventTarget,
   /**
     When a request is completed, returns the result, or undefined if the request failed. Throws a "InvalidStateError" DOMException if the request is still pending.
@@ -122,22 +122,21 @@ type idbRequest<'t> = {
 Also inherits methods from its parents IDBRequest and EventTarget.
 [See IDBOpenDBRequest on MDN](https://developer.mozilla.org/docs/Web/API/IDBOpenDBRequest)
 */
-type idbOpenDBRequest = {
+type idbOpenDBRequest = private {
   ...idbRequest<idbDatabase>,
 }
 
 /**
 This example shows a variety of different uses of object stores, from updating the data structure with IDBObjectStore.createIndex inside an onupgradeneeded function, to adding a new item to our object store with IDBObjectStore.add. For a full working example, see our To-do Notifications app (view example live.)
 [See IDBObjectStore on MDN](https://developer.mozilla.org/docs/Web/API/IDBObjectStore)
-TODO: mark as private once mutating fields of private records is allowed
 */
 @editor.completeFrom(IDBObjectStore)
-type idbObjectStore = {
+type idbObjectStore = private {
   /**
     Returns the name of the store.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/IDBObjectStore/name)
     */
-  @throws(JsExn)
+  @throws(JsExn) @set
   mutable name: string,
   /**
     Returns the key path of the store, or null if none.
@@ -164,15 +163,14 @@ type idbObjectStore = {
 /**
 IDBIndex interface of the WebApiIndexedDB API provides asynchronous access to an index in a database. An index is a kind of object store for looking up records in another object store, called the referenced object store. You use this interface to retrieve data.
 [See IDBIndex on MDN](https://developer.mozilla.org/docs/Web/API/IDBIndex)
-TODO: mark as private once mutating fields of private records is allowed
 */
 @editor.completeFrom(IDBIndex)
-type idbIndex = {
+type idbIndex = private {
   /**
     Returns the name of the index.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/IDBIndex/name)
     */
-  @throws(JsExn)
+  @throws(JsExn) @set
   mutable name: string,
   /**
     Returns the IDBObjectStore the index belongs to.

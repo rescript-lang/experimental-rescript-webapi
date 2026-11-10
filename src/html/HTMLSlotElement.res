@@ -7,6 +7,9 @@ type t = DOMTree.htmlSlotElement = private {
 
 include HTMLElement.Impl({type t = t})
 
+@set
+external setName: (t, string) => unit = "name"
+
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLSlotElement/assignedNodes)
 */

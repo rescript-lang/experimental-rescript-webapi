@@ -15,7 +15,9 @@ type fileSystemDirectoryEntry = BaseFileAndDirectoryEntries.fileSystemDirectoryE
 /**
 [See FileSystem on MDN](https://developer.mozilla.org/docs/Web/API/FileSystem)
 */
-type fileSystem = BaseFileAndDirectoryEntries.fileSystem
+type fileSystem = BaseFileAndDirectoryEntries.fileSystem = private {
+  ...BaseFileAndDirectoryEntries.fileSystem,
+}
 
 /**
 [See FileSystemDirectoryReader on MDN](https://developer.mozilla.org/docs/Web/API/FileSystemDirectoryReader)

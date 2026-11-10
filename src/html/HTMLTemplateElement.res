@@ -1,9 +1,8 @@
 /**
 Enables access to the contents of an HTML <template> element.
 [See HTMLTemplateElement on MDN](https://developer.mozilla.org/docs/Web/API/HTMLTemplateElement)
-TODO: mark as private once mutating fields of private records is allowed
 */
-type t = {
+type t = private {
   ...DOMTree.htmlElement,
   /**
     Returns the template contents (a DocumentFragment).
@@ -13,7 +12,7 @@ type t = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLTemplateElement/shadowRootMode)
     */
-  mutable shadowRootMode: string,
+  mutable shadowRootMode: DOMTree.shadowRootMode,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLTemplateElement/shadowRootDelegatesFocus)
     */
@@ -29,3 +28,15 @@ type t = {
 }
 
 include HTMLElement.Impl({type t = t})
+
+@set
+external setShadowRootMode: (t, DOMTree.shadowRootMode) => unit = "shadowRootMode"
+
+@set
+external setShadowRootDelegatesFocus: (t, bool) => unit = "shadowRootDelegatesFocus"
+
+@set
+external setShadowRootClonable: (t, bool) => unit = "shadowRootClonable"
+
+@set
+external setShadowRootSerializable: (t, bool) => unit = "shadowRootSerializable"

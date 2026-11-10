@@ -13,7 +13,7 @@ type lockManager = private {}
 /**
 [See Lock on MDN](https://developer.mozilla.org/docs/Web/API/Lock)
 */
-type lock = {
+type lock = private {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Lock/name)
     */

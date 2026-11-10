@@ -58,6 +58,46 @@ Keep null and empty states explicit when they are part of the browser contract. 
 for nullable results and variants for meaningful empty values; do not replace native results
 with invented defaults or unchecked casts.
 
+## Native instance types
+
+Model browser-owned objects as private records at both the backing declaration and every public
+record view. Keep direct field reads when useful, but expose typed native setters for writable
+properties instead of asking callers to mutate a private field:
+
+```ReScript
+let canvas = WebAPI.Document.createElement(document, "canvas")->WebAPI.HTMLCanvasElement.classify
+switch canvas {
+| Some(canvas) =>
+  let width = canvas.width
+  canvas->WebAPI.HTMLCanvasElement.setWidth(width + 1)
+| None => ()
+}
+```
+
+Use names such as `setWidth`, preserve the JavaScript property name and existing field type, and
+keep throwing behavior on setters whose native operation can throw. Put shared properties on the
+existing `Impl` chain so derived interfaces reuse their base setters. Do not make initializer
+dictionaries, option records, callback data, or ordinary result records private merely because they
+are exported beside a native interface.
+
+For `CSSStyleDeclaration`, keep direct reads but use its existing `setProperty` operation for
+individual declarations, using CSS property names such as `"background-color"` rather than the
+camel-cased IDL field name. Both `float` and `cssFloat` address the `"float"` CSS property.
+Replacing the complete declaration block uses `CSSStyleDeclaration.setCssText`; do not route that
+operation through `setProperty`.
+
+```ReScript
+style->WebAPI.CSSStyleDeclaration.setProperty(~property="background-color", ~value="red")
+style->WebAPI.CSSStyleDeclaration.setProperty(~property="float", ~value="left")
+style->WebAPI.CSSStyleDeclaration.setCssText("background-color: blue")
+```
+
+Private records prevent ordinary literals and record-update copies, but ReScript currently permits
+a deliberate explicit structural coercion such as `ordinaryRecord :> Native.t` when a caller
+recreates the full public shape. This representation is not an unforgeable native brand; do not
+describe it as preventing deliberate coercions, unsafe casts, or JavaScript fabrication. A stronger
+guarantee requires an opaque representation and corresponding getter APIs.
+
 ## Verification
 
 Add compile-only, Node runtime, or browser runtime fixtures according to the API being modeled.

@@ -1,7 +1,7 @@
 /**
 [See AbstractRange on MDN](https://developer.mozilla.org/docs/Web/API/AbstractRange)
 */
-type t = {
+type t = private {
   /**
     Returns range's start node.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/AbstractRange/startContainer)

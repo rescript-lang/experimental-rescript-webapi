@@ -1,4 +1,15 @@
-type t = CssFontLoadingTypes.fontFace = {...CssFontLoadingTypes.fontFace}
+type t = CssFontLoadingTypes.fontFace = private {...CssFontLoadingTypes.fontFace}
+
+@set external setFamily: (t, string) => unit = "family"
+@set external setStyle: (t, string) => unit = "style"
+@set external setWeight: (t, string) => unit = "weight"
+@set external setStretch: (t, string) => unit = "stretch"
+@set external setUnicodeRange: (t, string) => unit = "unicodeRange"
+@set external setFeatureSettings: (t, string) => unit = "featureSettings"
+@set external setDisplay: (t, CssFontLoadingTypes.fontDisplay) => unit = "display"
+@set external setAscentOverride: (t, string) => unit = "ascentOverride"
+@set external setDescentOverride: (t, string) => unit = "descentOverride"
+@set external setLineGapOverride: (t, string) => unit = "lineGapOverride"
 
 /**
 `fromString(~family: string, ~source: string, ~descriptors: fontFaceDescriptors=?)`

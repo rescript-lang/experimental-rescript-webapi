@@ -1,5 +1,15 @@
 include AudioNode.Impl({type t = WebAudioTypes.analyserNode})
 
+@throws(JsExn) @set
+external setFftSize: (WebAudioTypes.analyserNode, int) => unit = "fftSize"
+@throws(JsExn) @set
+external setMinDecibels: (WebAudioTypes.analyserNode, float) => unit = "minDecibels"
+@throws(JsExn) @set
+external setMaxDecibels: (WebAudioTypes.analyserNode, float) => unit = "maxDecibels"
+@throws(JsExn) @set
+external setSmoothingTimeConstant: (WebAudioTypes.analyserNode, float) => unit =
+  "smoothingTimeConstant"
+
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/AnalyserNode)
 */

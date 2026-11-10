@@ -1,4 +1,5 @@
-include EventTarget.Impl({type t = DOM.screenOrientation})
+type t = DOM.screenOrientation = private {...DOM.screenOrientation}
+include EventTarget.Impl({type t = t})
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/ScreenOrientation/unlock)

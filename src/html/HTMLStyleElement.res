@@ -1,9 +1,8 @@
 /**
 A <style> element. It inherits properties and methods from its parent, HTMLElement, and from LinkStyle.
 [See HTMLStyleElement on MDN](https://developer.mozilla.org/docs/Web/API/HTMLStyleElement)
-TODO: mark as private once mutating fields of private records is allowed
 */
-type t = {
+type t = private {
   ...DOMTree.htmlElement,
   /**
     Enables or disables the style sheet.
@@ -22,3 +21,8 @@ type t = {
 }
 
 include HTMLElement.Impl({type t = t})
+
+@set
+external setDisabled: (t, bool) => unit = "disabled"
+@set
+external setMedia: (t, string) => unit = "media"

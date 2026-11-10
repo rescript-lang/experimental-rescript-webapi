@@ -1,5 +1,8 @@
 @editor.completeFrom(History)
-type t = HistoryTypes.history = {...HistoryTypes.history}
+type t = HistoryTypes.history = private {...HistoryTypes.history}
+
+@set
+external setScrollRestoration: (t, HistoryTypes.scrollRestoration) => unit = "scrollRestoration"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/History/go)

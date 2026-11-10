@@ -24,10 +24,9 @@ type mediaImage = {
 
 /**
 [See MediaMetadata on MDN](https://developer.mozilla.org/docs/Web/API/MediaMetadata)
-TODO: mark as private once mutating fields of private records is allowed
 */
 @editor.completeFrom(MediaMetadata)
-type mediaMetadata = {
+type mediaMetadata = private {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/MediaMetadata/title)
     */
@@ -48,10 +47,9 @@ type mediaMetadata = {
 
 /**
 [See WebApiMediaSession on MDN](https://developer.mozilla.org/docs/Web/API/MediaSession)
-TODO: mark as private once mutating fields of private records is allowed
 */
 @editor.completeFrom(MediaSession)
-type mediaSession = {
+type mediaSession = private {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/MediaSession/metadata)
     */
@@ -61,6 +59,13 @@ type mediaSession = {
     */
   mutable playbackState: mediaSessionPlaybackState,
 }
+
+@set external setTitle: (mediaMetadata, string) => unit = "title"
+@set external setArtist: (mediaMetadata, string) => unit = "artist"
+@set external setAlbum: (mediaMetadata, string) => unit = "album"
+@set external setArtwork: (mediaMetadata, array<mediaImage>) => unit = "artwork"
+@set external setMetadata: (mediaSession, Null.t<mediaMetadata>) => unit = "metadata"
+@set external setPlaybackState: (mediaSession, mediaSessionPlaybackState) => unit = "playbackState"
 
 type mediaMetadataInit = {
   mutable title?: string,

@@ -3,9 +3,10 @@ let strategy: FileTypes.queuingStrategy<string> = Obj.magic()
 
 let _make: ReadableStream.t<string> = ReadableStream.make()
 
-let _fromUnderlyingSource = ReadableStream.fromUnderlyingSource(underlyingSource)
-
-let _fromUnderlyingSourceWithStrategy = ReadableStream.fromUnderlyingSource(
+let _fromUnderlyingSource: ReadableStream.t<string> = ReadableStream.fromUnderlyingSource(
   underlyingSource,
-  ~strategy,
 )
+
+let _fromUnderlyingSourceWithStrategy: ReadableStream.t<
+  string,
+> = ReadableStream.fromUnderlyingSource(underlyingSource, ~strategy)

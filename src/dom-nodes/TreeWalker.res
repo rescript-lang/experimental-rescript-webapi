@@ -1,9 +1,8 @@
 /**
 The nodes of a document subtree and a position within them.
 [See TreeWalker on MDN](https://developer.mozilla.org/docs/Web/API/TreeWalker)
-TODO: mark as private once mutating fields of private records is allowed
 */
-type t = {
+type t = private {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/TreeWalker/root)
     */
@@ -21,6 +20,9 @@ type t = {
     */
   mutable currentNode: DOMTree.node,
 }
+
+@set
+external setCurrentNode: (t, DOMTree.node) => unit = "currentNode"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/TreeWalker/parentNode)

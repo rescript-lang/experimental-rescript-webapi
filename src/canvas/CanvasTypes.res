@@ -118,10 +118,9 @@ type webGLPowerPreference =
 
 /**
 [See OffscreenCanvas on MDN](https://developer.mozilla.org/docs/Web/API/OffscreenCanvas)
-TODO: mark as private once mutating fields of private records is allowed
 */
 @editor.completeFrom(OffscreenCanvas)
-type offscreenCanvas = {
+type offscreenCanvas = private {
   ...DOM.eventTarget,
   /**
     These attributes return the dimensions of the OffscreenCanvas object's bitmap.
@@ -159,7 +158,7 @@ type imageBitmap = private {
 /**
 [See OffscreenCanvasRenderingContext2D on MDN](https://developer.mozilla.org/docs/Web/API/OffscreenCanvasRenderingContext2D)
 */
-type offscreenCanvasRenderingContext2D = {
+type offscreenCanvasRenderingContext2D = private {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CanvasRenderingContext2D/canvas)
     */
@@ -286,7 +285,7 @@ type imageBitmapRenderingContext = private {
 Provides an interface to the OpenGL ES 2.0 graphics rendering context for the drawing surface of an HTML <canvas> element.
 [See WebGLRenderingContext on MDN](https://developer.mozilla.org/docs/Web/API/WebGLRenderingContext)
 */
-type webGLRenderingContext = {
+type webGLRenderingContext = private {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/WebGLRenderingContext/canvas)
     */
@@ -312,7 +311,7 @@ type webGLRenderingContext = {
 /**
 [See WebGL2RenderingContext on MDN](https://developer.mozilla.org/docs/Web/API/WebGL2RenderingContext)
 */
-type webGL2RenderingContext = {
+type webGL2RenderingContext = private {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/WebGLRenderingContext/canvas)
     */
@@ -360,7 +359,7 @@ type path2D = private {}
 The dimensions of a piece of text in the canvas, as created by the CanvasRenderingContext2D.measureText() method.
 [See TextMetrics on MDN](https://developer.mozilla.org/docs/Web/API/TextMetrics)
 */
-type textMetrics = {
+type textMetrics = private {
   /**
     Returns the measurement described below.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/TextMetrics/width)

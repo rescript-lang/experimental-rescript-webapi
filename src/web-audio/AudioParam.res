@@ -1,4 +1,7 @@
-type t = WebAudioTypes.audioParam = {...WebAudioTypes.audioParam}
+type t = WebAudioTypes.audioParam = private {...WebAudioTypes.audioParam}
+
+@set
+external setValue: (t, float) => unit = "value"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/AudioParam/setValueAtTime)

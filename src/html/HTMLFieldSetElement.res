@@ -1,9 +1,8 @@
 /**
 Provides special properties and methods (beyond the regular HTMLElement interface it also has available to it by inheritance) for manipulating the layout and presentation of <fieldset> elements.
 [See HTMLFieldSetElement on MDN](https://developer.mozilla.org/docs/Web/API/HTMLFieldSetElement)
-TODO: mark as private once mutating fields of private records is allowed
 */
-type t = {
+type t = private {
   ...DOMTree.htmlElement,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLFieldSetElement/disabled)
@@ -47,6 +46,9 @@ type t = {
 }
 
 include HTMLElement.Impl({type t = t})
+
+@set external setDisabled: (t, bool) => unit = "disabled"
+@set external setName: (t, string) => unit = "name"
 
 /**
 Returns whether a form will validate when it is submitted, without having to submit it.

@@ -8,7 +8,7 @@ type t = private {}
 A Node containing a doctype.
 [See DocumentType on MDN](https://developer.mozilla.org/docs/Web/API/DocumentType)
 */
-type documentType = {
+type documentType = private {
   // Base properties from Node
   /**
     Returns the type of node.
@@ -98,7 +98,7 @@ type documentType = {
 An XML document. It inherits from the generic Document and does not add any specific methods or properties to it: nevertheless, several algorithms behave differently with the two types of documents.
 [See XMLDocument on MDN](https://developer.mozilla.org/docs/Web/API/XMLDocument)
 */
-type xmlDocument = {
+type xmlDocument = private {
   ...DOM.document,
 }
 

@@ -1,9 +1,8 @@
 /**
 Contains the base URI for a document. This object inherits all of the properties and methods as described in the HTMLElement interface.
 [See HTMLBaseElement on MDN](https://developer.mozilla.org/docs/Web/API/HTMLBaseElement)
-TODO: mark as private once mutating fields of private records is allowed
 */
-type t = {
+type t = private {
   ...DOMTree.htmlElement,
   /**
     Gets or sets the baseline WebApiURL on which relative links are based.
@@ -18,3 +17,6 @@ type t = {
 }
 
 include HTMLElement.Impl({type t = t})
+
+@set external setHref: (t, string) => unit = "href"
+@set external setTarget: (t, string) => unit = "target"

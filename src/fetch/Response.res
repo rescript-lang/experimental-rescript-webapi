@@ -1,6 +1,11 @@
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Response)
 */
+/**
+This private view prevents record construction through this module's public type.
+ReScript's explicit structural coercion (`:>`) can still escape this restriction;
+this is not an opaque brand guarantee.
+*/
 type t = FetchTypes.response = private {...FetchTypes.response}
 type responseInit = FetchTypes.responseInit
 type bodyInit = BodyInit.t

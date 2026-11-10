@@ -1,9 +1,8 @@
 /**
 HTMLOptionsCollection is an interface representing a collection of HTML option elements (in document order) and offers methods and properties for traversing the list as well as optionally altering its items. This type is returned solely by the "options" property of select.
 [See HTMLOptionsCollection on MDN](https://developer.mozilla.org/docs/Web/API/HTMLOptionsCollection)
-TODO: mark as private once mutating fields of private records is allowed
 */
-type t = {
+type t = private {
   ...HTMLCollection.t<HTMLOptionElement.t>,
   /**
     Returns the index of the first selected item, if any, or -1 if there is no selected item.
@@ -13,6 +12,8 @@ Can be set, to change the selection.
     */
   mutable selectedIndex: int,
 }
+
+@set external setSelectedIndex: (t, int) => unit = "selectedIndex"
 
 /**
 Inserts element before the DOMTree.node given by before.

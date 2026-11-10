@@ -1,4 +1,4 @@
-type t = DOM.domStringList
+type t = DOM.domStringList = private {...DOM.domStringList}
 
 /**
 Returns the string with index index from strings.

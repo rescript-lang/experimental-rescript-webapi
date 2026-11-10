@@ -1,9 +1,8 @@
 /**
 Reference information for external resources and the relationship of those resources to a document and vice-versa. This object inherits all of the properties and methods of the HTMLElement interface.
 [See HTMLLinkElement on MDN](https://developer.mozilla.org/docs/Web/API/HTMLLinkElement)
-TODO: mark as private once mutating fields of private records is allowed
 */
-type t = {
+type t = private {
   ...DOMTree.htmlElement,
   /**
     Sets or retrieves a destination WebApiURL or an anchor point.
@@ -67,3 +66,26 @@ type t = {
 }
 
 include HTMLElement.Impl({type t = t})
+
+@set
+external setHref: (t, string) => unit = "href"
+@set
+external setCrossOrigin: (t, Null.t<string>) => unit = "crossOrigin"
+@set
+external setRel: (t, string) => unit = "rel"
+@set
+external setAs: (t, string) => unit = "as"
+@set
+external setMedia: (t, string) => unit = "media"
+@set
+external setIntegrity: (t, string) => unit = "integrity"
+@set
+external setHreflang: (t, string) => unit = "hreflang"
+@set
+external setType: (t, string) => unit = "type"
+@set
+external setReferrerPolicy: (t, string) => unit = "referrerPolicy"
+@set
+external setDisabled: (t, bool) => unit = "disabled"
+@set
+external setFetchPriority: (t, string) => unit = "fetchPriority"

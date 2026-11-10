@@ -1,5 +1,16 @@
 @editor.completeFrom(URL)
-type t = UrlTypes.url = {...UrlTypes.url}
+type t = UrlTypes.url = private {...UrlTypes.url}
+
+@set external setHref: (t, string) => unit = "href"
+@set external setProtocol: (t, string) => unit = "protocol"
+@set external setUsername: (t, string) => unit = "username"
+@set external setPassword: (t, string) => unit = "password"
+@set external setHost: (t, string) => unit = "host"
+@set external setHostname: (t, string) => unit = "hostname"
+@set external setPort: (t, string) => unit = "port"
+@set external setPathname: (t, string) => unit = "pathname"
+@set external setSearch: (t, string) => unit = "search"
+@set external setHash: (t, string) => unit = "hash"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/URL)

@@ -1,4 +1,4 @@
-type t = DOM.domException
+type t = DOM.domException = private {...DOM.domException}
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/DOMException)

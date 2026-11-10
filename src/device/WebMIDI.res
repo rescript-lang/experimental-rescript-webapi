@@ -1,4 +1,4 @@
-type t = WebMidiTypes.midiAccess = {...WebMidiTypes.midiAccess}
+type t = WebMidiTypes.midiAccess = private {...WebMidiTypes.midiAccess}
 
 include EventTarget.Impl({type t = t})
 
