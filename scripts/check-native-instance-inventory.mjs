@@ -19,7 +19,7 @@ const sourceFiles = (directory) =>
     const entryPath = path.join(directory, entry.name);
     return entry.isDirectory()
       ? sourceFiles(entryPath)
-      : entry.isFile() && entry.name.endsWith(".res")
+      : entry.isFile() && /\.(?:res|resi)$/.test(entry.name)
         ? [entryPath]
         : [];
   });

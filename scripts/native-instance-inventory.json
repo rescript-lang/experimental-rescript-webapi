@@ -60,8 +60,8 @@
       }
     }
   },
-  "sourceTypeDeclarationCount": 866,
-  "sourceTypeDeclarationSha256": "5a86a435b4e90304cb166424308f8f9ef6db6ba91ca0c42300965c2e33a7c8a9",
+  "sourceTypeDeclarationCount": 871,
+  "sourceTypeDeclarationSha256": "15e6f06b9b8280d016d7cd749e65803c70c5d6716d790b03b9ae5788a583de2f",
   "nativeBackings": {
     "src/core/DOM.res": [
       "document",
@@ -816,7 +816,8 @@
     "src/workers/SharedWorker.res": ["workerOptions"],
     "src/workers/ServiceWorkerTypes.res": ["navigationPreloadState", "registrationOptions"],
     "src/workers/Clients.res": ["clientQueryOptions"],
-    "src/safe-fetch/SafeFetch.res": ["httpError", "readError", "bodyError", "response"]
+    "src/safe-fetch/SafeFetch.res": ["httpError", "readError", "bodyError", "response"],
+    "src/safe-fetch/SafeFetch.resi": ["httpError", "readError", "bodyError", "response"]
   },
   "writablePropertyInventory": {
     "sharedImplementations": {
