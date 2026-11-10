@@ -1,4 +1,4 @@
-type t = PictureInPictureTypes.pictureInPictureWindow = {
+type t = PictureInPictureTypes.pictureInPictureWindow = private {
   ...PictureInPictureTypes.pictureInPictureWindow,
 }
 

@@ -1,7 +1,6 @@
 /**
 Provides special properties and methods for manipulating the options, layout, and presentation of <input> elements.
 [See HTMLInputElement on MDN](https://developer.mozilla.org/docs/Web/API/HTMLInputElement)
-TODO: mark as private once mutating fields of private records is allowed
 */
 type t = private {
   ...DOMTree.htmlElement,
@@ -229,6 +228,46 @@ type t = private {
 }
 
 include HTMLElement.Impl({type t = t})
+
+@set external setAccept: (t, string) => unit = "accept"
+@set external setAlt: (t, string) => unit = "alt"
+@set external setAutocomplete: (t, string) => unit = "autocomplete"
+@set external setDefaultChecked: (t, bool) => unit = "defaultChecked"
+@set external setChecked: (t, bool) => unit = "checked"
+@set external setDisabled: (t, bool) => unit = "disabled"
+@set external setFiles: (t, Null.t<DOM.fileList>) => unit = "files"
+@set external setFormAction: (t, string) => unit = "formAction"
+@set external setFormEnctype: (t, string) => unit = "formEnctype"
+@set external setFormMethod: (t, string) => unit = "formMethod"
+@set external setHeight: (t, int) => unit = "height"
+@set external setIndeterminate: (t, bool) => unit = "indeterminate"
+@set external setMax: (t, string) => unit = "max"
+@set external setMaxLength: (t, int) => unit = "maxLength"
+@set external setMin: (t, string) => unit = "min"
+@set external setMinLength: (t, int) => unit = "minLength"
+@set external setMultiple: (t, bool) => unit = "multiple"
+@set external setName: (t, string) => unit = "name"
+@set external setPattern: (t, string) => unit = "pattern"
+@set external setPlaceholder: (t, string) => unit = "placeholder"
+@set external setReadOnly: (t, bool) => unit = "readOnly"
+@set external setRequired: (t, bool) => unit = "required"
+@set external setSize: (t, int) => unit = "size"
+@set external setSrc: (t, string) => unit = "src"
+@set external setStep: (t, string) => unit = "step"
+@set external setType: (t, string) => unit = "type"
+@set external setDefaultValue: (t, string) => unit = "defaultValue"
+@set @throws(JsExn) external setValue: (t, string) => unit = "value"
+@set @throws(JsExn) external setValueAsDate: (t, Null.t<Date.t>) => unit = "valueAsDate"
+@set @throws(JsExn) external setValueAsNumber: (t, float) => unit = "valueAsNumber"
+@set external setWidth: (t, int) => unit = "width"
+@set @throws(JsExn) external setSelectionStart: (t, Null.t<int>) => unit = "selectionStart"
+@set @throws(JsExn) external setSelectionEnd: (t, Null.t<int>) => unit = "selectionEnd"
+@set @throws(JsExn)
+external setSelectionDirection: (t, Null.t<string>) => unit = "selectionDirection"
+@set external setWebkitdirectory: (t, bool) => unit = "webkitdirectory"
+@set external setCapture: (t, string) => unit = "capture"
+@set external setPopoverTargetElement: (t, Null.t<DOMTree.element>) => unit = "popoverTargetElement"
+@set external setPopoverTargetAction: (t, string) => unit = "popoverTargetAction"
 
 /**
 `isInstanceOf(value)`

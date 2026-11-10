@@ -26,7 +26,12 @@ type applicationServerKey
 /**
 [See PushSubscriptionOptions on MDN](https://developer.mozilla.org/docs/Web/API/PushSubscriptionOptions)
 */
-type pushSubscriptionOptions = {
+/**
+Although named Options, this is the native PushSubscriptionOptions instance.
+Like the other private native records here, an explicit structural coercion
+(`:>`) can bypass this boundary; it is not an opaque-type guarantee.
+*/
+type pushSubscriptionOptions = private {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/PushSubscriptionOptions/userVisibleOnly)
     */

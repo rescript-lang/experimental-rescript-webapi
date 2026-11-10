@@ -555,7 +555,6 @@ A minimal document object that has no parent. It is used as a lightweight versio
 
 /**
 [See ShadowRoot on MDN](https://developer.mozilla.org/docs/Web/API/ShadowRoot)
-TODO: mark as private once mutating fields of private records is allowed
 */
 @editor.completeFrom(ShadowRoot) and shadowRoot = private {
   // Base properties from DocumentFragment

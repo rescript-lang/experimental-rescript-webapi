@@ -1,7 +1,12 @@
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/ReadableStream)
 */
-type t<'r> = FileTypes.readableStream<'r>
+/**
+This private view prevents record construction through this module's public type.
+ReScript's explicit structural coercion (`:>`) can still escape this restriction;
+this is not an opaque brand guarantee.
+*/
+type t<'r> = FileTypes.readableStream<'r> = private {...FileTypes.readableStream<'r>}
 
 /**
 `make()`

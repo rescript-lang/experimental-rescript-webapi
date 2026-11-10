@@ -1,4 +1,7 @@
-type t = UiEventsTypes.dataTransfer = {...UiEventsTypes.dataTransfer}
+type t = UiEventsTypes.dataTransfer = private {...UiEventsTypes.dataTransfer}
+
+@set external setDropEffect: (t, string) => unit = "dropEffect"
+@set external setEffectAllowed: (t, string) => unit = "effectAllowed"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/DataTransfer)

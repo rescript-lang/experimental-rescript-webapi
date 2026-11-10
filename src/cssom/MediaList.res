@@ -1,5 +1,5 @@
 @editor.completeFrom(MediaList)
-type t = {
+type t = private {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/MediaList/mediaText)
     */
@@ -9,6 +9,9 @@ type t = {
     */
   length: int,
 }
+
+@set
+external setMediaText: (t, string) => unit = "mediaText"
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/MediaList/item)

@@ -1,7 +1,6 @@
 /**
 Provides special properties and methods (beyond those of the regular object HTMLElement interface it also has available to it by inheritance) for manipulating the layout and presentation of map elements.
 [See HTMLMapElement on MDN](https://developer.mozilla.org/docs/Web/API/HTMLMapElement)
-TODO: mark as private once mutating fields of private records is allowed
 */
 type t = private {
   ...DOMTree.htmlElement,
@@ -18,3 +17,6 @@ type t = private {
 }
 
 include HTMLElement.Impl({type t = t})
+
+@set
+external setName: (t, string) => unit = "name"

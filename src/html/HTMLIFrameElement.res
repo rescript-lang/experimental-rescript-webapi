@@ -1,7 +1,6 @@
 /**
 Provides special properties and methods (beyond those of the HTMLElement interface it also has available to it by inheritance) for manipulating the layout and presentation of inline frame elements.
 [See HTMLIFrameElement on MDN](https://developer.mozilla.org/docs/Web/API/HTMLIFrameElement)
-TODO: mark as private once mutating fields of private records is allowed
 */
 type t = private {
   ...DOMTree.htmlElement,
@@ -64,6 +63,17 @@ type t = private {
 }
 
 include HTMLElement.Impl({type t = t})
+
+@set external setSrc: (t, string) => unit = "src"
+@set @throws(JsExn)
+external setSrcdoc: (t, string) => unit = "srcdoc"
+@set external setName: (t, string) => unit = "name"
+@set external setAllow: (t, string) => unit = "allow"
+@set external setAllowFullscreen: (t, bool) => unit = "allowFullscreen"
+@set external setWidth: (t, string) => unit = "width"
+@set external setHeight: (t, string) => unit = "height"
+@set external setReferrerPolicy: (t, DOM.referrerPolicy) => unit = "referrerPolicy"
+@set external setLoading: (t, string) => unit = "loading"
 
 @send
 external getSVGDocument: t => Null.t<DOM.document> = "getSVGDocument"

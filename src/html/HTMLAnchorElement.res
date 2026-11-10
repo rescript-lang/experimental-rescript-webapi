@@ -1,7 +1,6 @@
 /**
 Hyperlink elements and provides special properties and methods (beyond those of the regular HTMLElement object interface that they inherit from) for manipulating the layout and presentation of such elements.
 [See HTMLAnchorElement on MDN](https://developer.mozilla.org/docs/Web/API/HTMLAnchorElement)
-TODO: mark as private once mutating fields of private records is allowed
 */
 type t = private {
   // Base properties from HTMLElement
@@ -371,3 +370,22 @@ Can be set, to change the WebApiURL's fragment (ignores leading "#").
 }
 
 include HTMLElement.Impl({type t = t})
+
+@set external setTarget: (t, string) => unit = "target"
+@set external setDownload: (t, string) => unit = "download"
+@set external setPing: (t, string) => unit = "ping"
+@set external setRel: (t, string) => unit = "rel"
+@set external setHreflang: (t, string) => unit = "hreflang"
+@set external setType: (t, string) => unit = "type"
+@set external setText: (t, string) => unit = "text"
+@set external setReferrerPolicy: (t, string) => unit = "referrerPolicy"
+@set external setHref: (t, string) => unit = "href"
+@set external setProtocol: (t, string) => unit = "protocol"
+@set external setUsername: (t, string) => unit = "username"
+@set external setPassword: (t, string) => unit = "password"
+@set external setHost: (t, string) => unit = "host"
+@set external setHostname: (t, string) => unit = "hostname"
+@set external setPort: (t, string) => unit = "port"
+@set external setPathname: (t, string) => unit = "pathname"
+@set external setSearch: (t, string) => unit = "search"
+@set external setHash: (t, string) => unit = "hash"

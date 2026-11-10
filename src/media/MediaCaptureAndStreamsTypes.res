@@ -62,10 +62,9 @@ type mediaStream = private {
 /**
 A single media track within a stream; typically, these are audio or video tracks, but other track types may exist as well.
 [See MediaStreamTrack on MDN](https://developer.mozilla.org/docs/Web/API/MediaStreamTrack)
-TODO: mark as private once mutating fields of private records is allowed
 */
 @editor.completeFrom(MediaStreamTrack)
-type mediaStreamTrack = {
+type mediaStreamTrack = private {
   ...DOM.eventTarget,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/MediaStreamTrack/kind)
@@ -96,6 +95,9 @@ type mediaStreamTrack = {
     */
   mutable contentHint: string,
 }
+
+@set external setEnabled: (mediaStreamTrack, bool) => unit = "enabled"
+@set external setContentHint: (mediaStreamTrack, string) => unit = "contentHint"
 
 type mediaTrackSupportedConstraints = {
   mutable width?: bool,

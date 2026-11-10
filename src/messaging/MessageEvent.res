@@ -1,11 +1,13 @@
-type event = DOM.event
-type eventTarget = DOM.eventTarget
+type event = DOM.event = private {...DOM.event}
+type eventTarget = DOM.eventTarget = private {...DOM.eventTarget}
 type messageEventSource = WebSocketsTypes.messageEventSource
 
-type messageEvent<'t> = WebSocketsTypes.messageEvent<'t>
+type messageEvent<'t> = WebSocketsTypes.messageEvent<'t> = private {
+  ...WebSocketsTypes.messageEvent<'t>,
+}
 type messageEventInit<'t> = WebSocketsTypes.messageEventInit<'t>
 
-type t<'t> = messageEvent<'t>
+type t<'t> = messageEvent<'t> = private {...messageEvent<'t>}
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/MessageEvent)

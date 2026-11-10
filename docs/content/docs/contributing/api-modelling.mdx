@@ -86,6 +86,12 @@ camel-cased IDL field name. Both `float` and `cssFloat` address the `"float"` CS
 Replacing the complete declaration block uses `CSSStyleDeclaration.setCssText`; do not route that
 operation through `setProperty`.
 
+```ReScript
+style->WebAPI.CSSStyleDeclaration.setProperty(~property="background-color", ~value="red")
+style->WebAPI.CSSStyleDeclaration.setProperty(~property="float", ~value="left")
+style->WebAPI.CSSStyleDeclaration.setCssText("background-color: blue")
+```
+
 Private records prevent ordinary literals and record-update copies, but ReScript currently permits
 a deliberate explicit structural coercion such as `ordinaryRecord :> Native.t` when a caller
 recreates the full public shape. This representation is not an unforgeable native brand; do not

@@ -14,9 +14,8 @@ type videoFrameCallbackMetadata = {
 /**
 Provides special properties and methods for manipulating video objects. It also inherits properties and methods of HTMLMediaElement and HTMLElement.
 [See HTMLVideoElement on MDN](https://developer.mozilla.org/docs/Web/API/HTMLVideoElement)
-TODO: mark as private once mutating fields of private records is allowed
 */
-type t = {
+type t = private {
   ...DomHTMLMediaElement.t,
   /**
     Gets or sets the width of the video element.
@@ -48,6 +47,11 @@ type t = {
     */
   mutable disablePictureInPicture: bool,
 }
+
+@set external setWidth: (t, int) => unit = "width"
+@set external setHeight: (t, int) => unit = "height"
+@set external setPoster: (t, string) => unit = "poster"
+@set external setDisablePictureInPicture: (t, bool) => unit = "disablePictureInPicture"
 
 include DomHTMLMediaElement.Impl({type t = t})
 

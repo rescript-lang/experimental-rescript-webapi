@@ -1,7 +1,6 @@
 /**
 The HTML <meter> elements expose the HTMLMeterElement interface, which provides special properties and methods (beyond the HTMLElement object interface they also have available to them by inheritance) for manipulating the layout and presentation of <meter> elements.
 [See HTMLMeterElement on MDN](https://developer.mozilla.org/docs/Web/API/HTMLMeterElement)
-TODO: mark as private once mutating fields of private records is allowed
 */
 type t = private {
   ...DOMTree.htmlElement,
@@ -36,3 +35,10 @@ type t = private {
 }
 
 include HTMLElement.Impl({type t = t})
+
+@set external setValue: (t, float) => unit = "value"
+@set external setMin: (t, float) => unit = "min"
+@set external setMax: (t, float) => unit = "max"
+@set external setLow: (t, float) => unit = "low"
+@set external setHigh: (t, float) => unit = "high"
+@set external setOptimum: (t, float) => unit = "optimum"

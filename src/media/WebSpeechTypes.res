@@ -25,7 +25,7 @@ type speechSynthesis = private {
 This Web Speech API interface represents a voice that the system supports. Every SpeechSynthesisVoice has its own relative speech service including information about language, name and URI.
 [See SpeechSynthesisVoice on MDN](https://developer.mozilla.org/docs/Web/API/SpeechSynthesisVoice)
 */
-type speechSynthesisVoice = {
+type speechSynthesisVoice = private {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/SpeechSynthesisVoice/voiceURI)
     */
@@ -51,10 +51,9 @@ type speechSynthesisVoice = {
 /**
 This Web Speech API interface represents a speech request. It contains the content the speech service should read and information about how to read it (e.g. language, pitch and volume.)
 [See SpeechSynthesisUtterance on MDN](https://developer.mozilla.org/docs/Web/API/SpeechSynthesisUtterance)
-TODO: mark as private once mutating fields of private records is allowed
 */
 @editor.completeFrom(SpeechSynthesisUtterance)
-type speechSynthesisUtterance = {
+type speechSynthesisUtterance = private {
   ...DOM.eventTarget,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/SpeechSynthesisUtterance/text)
@@ -81,3 +80,10 @@ type speechSynthesisUtterance = {
     */
   mutable pitch: float,
 }
+
+@set external setText: (speechSynthesisUtterance, string) => unit = "text"
+@set external setLang: (speechSynthesisUtterance, string) => unit = "lang"
+@set external setVoice: (speechSynthesisUtterance, Null.t<speechSynthesisVoice>) => unit = "voice"
+@set external setVolume: (speechSynthesisUtterance, float) => unit = "volume"
+@set external setRate: (speechSynthesisUtterance, float) => unit = "rate"
+@set external setPitch: (speechSynthesisUtterance, float) => unit = "pitch"

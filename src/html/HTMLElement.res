@@ -73,6 +73,9 @@ This getter never returns `null`.
   external setEnterKeyHint: (T.t, string) => unit = "enterKeyHint"
   @set
   external setInputMode: (T.t, string) => unit = "inputMode"
+  /**
+  Writes the native string-valued nonce property. Pass an empty string to clear it.
+  */
   @set
   external setNonce: (T.t, string) => unit = "nonce"
   @set

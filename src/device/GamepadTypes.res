@@ -15,7 +15,7 @@ type gamepadHapticsResult =
 An individual button of a gamepad or other controller, allowing access to the current state of different types of buttons available on the control device.
 [See GamepadButton on MDN](https://developer.mozilla.org/docs/Web/API/GamepadButton)
 */
-type gamepadButton = {
+type gamepadButton = private {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/GamepadButton/pressed)
     */
@@ -41,7 +41,7 @@ type gamepadHapticActuator = private {}
 This WebApiGamepad API interface defines an individual gamepad or other controller, allowing access to information such as button presses, axis positions, and id.
 [See WebApiGamepad on MDN](https://developer.mozilla.org/docs/Web/API/Gamepad)
 */
-type gamepad = {
+type gamepad = private {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Gamepad/id)
     */

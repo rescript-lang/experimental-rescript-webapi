@@ -4,7 +4,7 @@
 A single style sheet. CSS style sheets will further implement the more specialized CSSStyleSheet interface.
 [See StyleSheet on MDN](https://developer.mozilla.org/docs/Web/API/StyleSheet)
 */
-type rec t = {
+type rec t = private {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/StyleSheet/type)
     */
@@ -39,9 +39,8 @@ type rec t = {
 /**
 A single CSS style sheet. It inherits properties and methods from its parent, StyleSheet.
 [See CSSStyleSheet on MDN](https://developer.mozilla.org/docs/Web/API/CSSStyleSheet)
-TODO: mark as private once mutating fields of private records is allowed
 */
-@editor.completeFrom(CSSStyleSheet) and cssStyleSheet = {
+@editor.completeFrom(CSSStyleSheet) and cssStyleSheet = private {
   // Base properties from StyleSheet
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/StyleSheet/type)
@@ -88,7 +87,7 @@ TODO: mark as private once mutating fields of private records is allowed
 A single CSS rule. There are several types of rules, listed in the Type constants section below.
 [See CSSRule on MDN](https://developer.mozilla.org/docs/Web/API/CSSRule)
 */
-and cssRule = {
+and cssRule = private {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CSSRule/cssText)
     */
@@ -113,6 +112,10 @@ A CSSRuleList is an (indirect-modify only) array-like object containing an order
     */
   length: int,
 }
+
+@set external setDisabled: (t, bool) => unit = "disabled"
+@set external setCSSStyleSheetDisabled: (cssStyleSheet, bool) => unit = "disabled"
+@set external setCSSRuleCssText: (cssRule, string) => unit = "cssText"
 
 type init = {
   mutable baseURL?: string,

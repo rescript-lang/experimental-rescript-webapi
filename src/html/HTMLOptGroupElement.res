@@ -1,7 +1,6 @@
 /**
 Provides special properties and methods (beyond the regular HTMLElement object interface they also have available to them by inheritance) for manipulating the layout and presentation of <optgroup> elements.
 [See HTMLOptGroupElement on MDN](https://developer.mozilla.org/docs/Web/API/HTMLOptGroupElement)
-TODO: mark as private once mutating fields of private records is allowed
 */
 type t = private {
   ...DOMTree.htmlElement,
@@ -17,3 +16,6 @@ type t = private {
 }
 
 include HTMLElement.Impl({type t = t})
+
+@set external setDisabled: (t, bool) => unit = "disabled"
+@set external setLabel: (t, string) => unit = "label"

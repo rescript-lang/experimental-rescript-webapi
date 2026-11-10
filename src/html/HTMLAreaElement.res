@@ -1,7 +1,6 @@
 /**
 Provides special properties and methods (beyond those of the regular object HTMLElement interface it also has available to it by inheritance) for manipulating the layout and presentation of <area> elements.
 [See HTMLAreaElement on MDN](https://developer.mozilla.org/docs/Web/API/HTMLAreaElement)
-TODO: mark as private once mutating fields of private records is allowed
 */
 type t = private {
   // Base properties from HTMLElement
@@ -351,3 +350,18 @@ Can be set, to change the WebApiURL's fragment (ignores leading "#").
 }
 
 include HTMLElement.Impl({type t = t})
+
+@set external setTarget: (t, string) => unit = "target"
+@set external setPing: (t, string) => unit = "ping"
+@set external setRel: (t, string) => unit = "rel"
+@set external setReferrerPolicy: (t, string) => unit = "referrerPolicy"
+@set external setHref: (t, string) => unit = "href"
+@set external setProtocol: (t, string) => unit = "protocol"
+@set external setUsername: (t, string) => unit = "username"
+@set external setPassword: (t, string) => unit = "password"
+@set external setHost: (t, string) => unit = "host"
+@set external setHostname: (t, string) => unit = "hostname"
+@set external setPort: (t, string) => unit = "port"
+@set external setPathname: (t, string) => unit = "pathname"
+@set external setSearch: (t, string) => unit = "search"
+@set external setHash: (t, string) => unit = "hash"

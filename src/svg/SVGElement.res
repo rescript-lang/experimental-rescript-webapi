@@ -9,6 +9,9 @@ type svgAnimatedString = private {
   animVal: string,
 }
 
+/**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/SVGAnimatedString/baseVal)
+*/
 @set
 external setAnimatedStringBaseVal: (svgAnimatedString, string) => unit = "baseVal"
 
@@ -76,6 +79,9 @@ module Impl = (
 
   external asSVGElement: T.t => t = "%identity"
 
+  /**
+  Writes the native string-valued nonce property. Pass an empty string to clear it.
+  */
   @set
   external setNonce: (T.t, string) => unit = "nonce"
   @set

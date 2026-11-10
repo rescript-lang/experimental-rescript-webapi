@@ -1,5 +1,8 @@
 include AudioNode.Impl({type t = WebAudioTypes.biquadFilterNode})
 
+@set
+external setType: (WebAudioTypes.biquadFilterNode, WebAudioTypes.biquadFilterType) => unit = "type"
+
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/BiquadFilterNode)
 */

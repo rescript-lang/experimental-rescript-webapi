@@ -1,7 +1,6 @@
 /**
 A <select> HTML Element. These elements also share all of the properties and methods of other HTML elements via the HTMLElement interface.
 [See HTMLSelectElement on MDN](https://developer.mozilla.org/docs/Web/API/HTMLSelectElement)
-TODO: mark as private once mutating fields of private records is allowed
 */
 type t = private {
   ...DOMTree.htmlElement,
@@ -86,6 +85,15 @@ type t = private {
 }
 
 include HTMLElement.Impl({type t = t})
+
+@set external setDisabled: (t, bool) => unit = "disabled"
+@set external setMultiple: (t, bool) => unit = "multiple"
+@set external setName: (t, string) => unit = "name"
+@set external setRequired: (t, bool) => unit = "required"
+@set external setSize: (t, int) => unit = "size"
+@set external setLength: (t, int) => unit = "length"
+@set external setSelectedIndex: (t, int) => unit = "selectedIndex"
+@set external setValue: (t, string) => unit = "value"
 
 /**
 Retrieves a select object or an object from an options collection.

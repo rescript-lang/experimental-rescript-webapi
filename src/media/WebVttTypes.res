@@ -27,10 +27,9 @@ type textTrackCueList = private {
 /**
 TextTrackCues represent a string of text that will be displayed for some duration of time on a TextTrack. This includes the start and end times that the cue will be displayed. A TextTrackCue cannot be used directly, instead one of the derived types (e.g. VTTCue) must be used.
 [See TextTrackCue on MDN](https://developer.mozilla.org/docs/Web/API/TextTrackCue)
-TODO: mark as private once mutating fields of private records is allowed
 */
 @editor.completeFrom(TextTrack)
-type rec textTrackCue = {
+type rec textTrackCue = private {
   ...DOM.eventTarget,
   /**
     Returns the TextTrack object to which this text track cue belongs, if any, or null otherwise.
@@ -70,9 +69,8 @@ Can be set.
 /**
 This interface also inherits properties from EventTarget.
 [See TextTrack on MDN](https://developer.mozilla.org/docs/Web/API/TextTrack)
-TODO: mark as private once mutating fields of private records is allowed
 */
-@editor.completeFrom(TextTrack) and textTrack = {
+@editor.completeFrom(TextTrack) and textTrack = private {
   ...DOM.eventTarget,
   /**
     Returns the text track kind string.
@@ -121,3 +119,9 @@ Can be set, to change the mode.
     */
   activeCues: Null.t<textTrackCueList>,
 }
+
+@set external setCueId: (textTrackCue, string) => unit = "id"
+@set external setCueStartTime: (textTrackCue, float) => unit = "startTime"
+@set external setCueEndTime: (textTrackCue, float) => unit = "endTime"
+@set external setCuePauseOnExit: (textTrackCue, bool) => unit = "pauseOnExit"
+@set external setTextTrackMode: (textTrack, textTrackMode) => unit = "mode"

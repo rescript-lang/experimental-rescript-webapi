@@ -1,7 +1,6 @@
 /**
 Contains the title for a document. This element inherits all of the properties and methods of the HTMLElement interface.
 [See HTMLTitleElement on MDN](https://developer.mozilla.org/docs/Web/API/HTMLTitleElement)
-TODO: mark as private once mutating fields of private records is allowed
 */
 type t = private {
   ...DOMTree.htmlElement,
@@ -13,3 +12,6 @@ type t = private {
 }
 
 include HTMLElement.Impl({type t = t})
+
+@set
+external setText: (t, string) => unit = "text"

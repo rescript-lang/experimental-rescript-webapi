@@ -19,10 +19,9 @@ type fontFaceSetLoadStatus = BaseCSSFontLoading.fontFaceSetLoadStatus =
 
 /**
 [See FontFace on MDN](https://developer.mozilla.org/docs/Web/API/FontFace)
-TODO: mark as private once mutating fields of private records is allowed
 */
 @editor.completeFrom(FontFace)
-type rec fontFace = {
+type rec fontFace = private {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/FontFace/family)
     */
@@ -77,7 +76,7 @@ type rec fontFace = {
 [See FontFaceSet on MDN](https://developer.mozilla.org/docs/Web/API/FontFaceSet)
 */
 @editor.completeFrom(FontFaceSet)
-type fontFaceSet = BaseCSSFontLoading.fontFaceSet
+type fontFaceSet = BaseCSSFontLoading.fontFaceSet = private {...BaseCSSFontLoading.fontFaceSet}
 
 type fontFaceDescriptors = {
   mutable style?: string,

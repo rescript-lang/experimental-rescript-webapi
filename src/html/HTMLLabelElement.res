@@ -1,7 +1,6 @@
 /**
 Gives access to properties specific to <label> elements. It inherits methods and properties from the base HTMLElement interface.
 [See HTMLLabelElement on MDN](https://developer.mozilla.org/docs/Web/API/HTMLLabelElement)
-TODO: mark as private once mutating fields of private records is allowed
 */
 type t = private {
   ...DOMTree.htmlElement,
@@ -23,3 +22,5 @@ type t = private {
 }
 
 include HTMLElement.Impl({type t = t})
+
+@set external setHtmlFor: (t, string) => unit = "htmlFor"

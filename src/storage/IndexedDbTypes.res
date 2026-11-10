@@ -87,7 +87,7 @@ type idbTransaction = private {
 The request object does not initially contain any information about the result of the operation, but once information becomes available, an event is fired on the request, and the information becomes available through the properties of the IDBRequest instance.
 [See IDBRequest on MDN](https://developer.mozilla.org/docs/Web/API/IDBRequest)
 */
-type idbRequest<'t> = {
+type idbRequest<'t> = private {
   ...DOM.eventTarget,
   /**
     When a request is completed, returns the result, or undefined if the request failed. Throws a "InvalidStateError" DOMException if the request is still pending.
@@ -122,7 +122,7 @@ type idbRequest<'t> = {
 Also inherits methods from its parents IDBRequest and EventTarget.
 [See IDBOpenDBRequest on MDN](https://developer.mozilla.org/docs/Web/API/IDBOpenDBRequest)
 */
-type idbOpenDBRequest = {
+type idbOpenDBRequest = private {
   ...idbRequest<idbDatabase>,
 }
 

@@ -1,3 +1,8 @@
+/**
+This private view prevents record construction through this module's public type.
+ReScript's explicit structural coercion (`:>`) can still escape this restriction;
+this is not an opaque brand guarantee.
+*/
 @editor.completeFrom(WritableStream)
 type t<'w> = FileTypes.writableStream<'w> = private {...FileTypes.writableStream<'w>}
 

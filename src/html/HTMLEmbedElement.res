@@ -1,7 +1,6 @@
 /**
 Provides special properties (beyond the regular HTMLElement interface it also has available to it by inheritance) for manipulating <embed> elements.
 [See HTMLEmbedElement on MDN](https://developer.mozilla.org/docs/Web/API/HTMLEmbedElement)
-TODO: mark as private once mutating fields of private records is allowed
 */
 type t = private {
   // Base properties from HTMLElement
@@ -270,6 +269,10 @@ type t = private {
 }
 
 include HTMLElement.Impl({type t = t})
+
+@set external setSrc: (t, string) => unit = "src"
+@set external setWidth: (t, string) => unit = "width"
+@set external setHeight: (t, string) => unit = "height"
 
 @send
 external getSVGDocument: t => Null.t<DOM.document> = "getSVGDocument"

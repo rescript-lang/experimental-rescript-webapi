@@ -1,6 +1,11 @@
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Request)
 */
+/**
+This private view prevents record construction through this module's public type.
+ReScript's explicit structural coercion (`:>`) can still escape this restriction;
+this is not an opaque brand guarantee.
+*/
 type t = FetchTypes.request = private {...FetchTypes.request}
 type requestInit = FetchTypes.requestInit
 type bodyInit = BodyInit.t

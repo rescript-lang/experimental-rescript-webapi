@@ -219,7 +219,6 @@ The state and the identity of the user agent. It allows scripts to query it and 
 @editor.completeFrom(Navigator)
 type navigator
 
-// TODO: mark as private once mutating fields of private records is allowed
 @editor.completeFrom(DOMTokenList)
 type domTokenList = private {
   /**

@@ -1,7 +1,6 @@
 /**
 <option> elements and inherits all classes and methods of the HTMLElement interface.
 [See HTMLOptionElement on MDN](https://developer.mozilla.org/docs/Web/API/HTMLOptionElement)
-TODO: mark as private once mutating fields of private records is allowed
 */
 type t = private {
   ...DOMTree.htmlElement,
@@ -47,3 +46,10 @@ type t = private {
 }
 
 include HTMLElement.Impl({type t = t})
+
+@set external setDisabled: (t, bool) => unit = "disabled"
+@set external setLabel: (t, string) => unit = "label"
+@set external setDefaultSelected: (t, bool) => unit = "defaultSelected"
+@set external setSelected: (t, bool) => unit = "selected"
+@set external setValue: (t, string) => unit = "value"
+@set external setText: (t, string) => unit = "text"

@@ -1,5 +1,17 @@
 include AudioScheduledSourceNode.Impl({type t = WebAudioTypes.audioBufferSourceNode})
 
+@throws(JsExn) @set
+external setBuffer: (
+  WebAudioTypes.audioBufferSourceNode,
+  Null.t<WebAudioTypes.audioBuffer>,
+) => unit = "buffer"
+@set
+external setLoop: (WebAudioTypes.audioBufferSourceNode, bool) => unit = "loop"
+@set
+external setLoopStart: (WebAudioTypes.audioBufferSourceNode, float) => unit = "loopStart"
+@set
+external setLoopEnd: (WebAudioTypes.audioBufferSourceNode, float) => unit = "loopEnd"
+
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/AudioBufferSourceNode)
 */

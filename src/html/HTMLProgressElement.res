@@ -1,7 +1,6 @@
 /**
 Provides special properties and methods (beyond the regular HTMLElement interface it also has available to it by inheritance) for manipulating the layout and presentation of <progress> elements.
 [See HTMLProgressElement on MDN](https://developer.mozilla.org/docs/Web/API/HTMLProgressElement)
-TODO: mark as private once mutating fields of private records is allowed
 */
 type t = private {
   ...DOMTree.htmlElement,
@@ -27,3 +26,6 @@ type t = private {
 }
 
 include HTMLElement.Impl({type t = t})
+
+@set external setValue: (t, float) => unit = "value"
+@set external setMax: (t, float) => unit = "max"

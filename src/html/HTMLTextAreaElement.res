@@ -1,7 +1,6 @@
 /**
 Provides special properties and methods for manipulating the layout and presentation of <textarea> elements.
 [See HTMLTextAreaElement on MDN](https://developer.mozilla.org/docs/Web/API/HTMLTextAreaElement)
-TODO: mark as private once mutating fields of private records is allowed
 */
 type t = private {
   ...DOMTree.htmlElement,
@@ -118,6 +117,24 @@ type t = private {
 }
 
 include HTMLElement.Impl({type t = t})
+
+@set external setAutocomplete: (t, string) => unit = "autocomplete"
+@set external setCols: (t, int) => unit = "cols"
+@set external setDisabled: (t, bool) => unit = "disabled"
+@set external setMaxLength: (t, int) => unit = "maxLength"
+@set external setMinLength: (t, int) => unit = "minLength"
+@set external setName: (t, string) => unit = "name"
+@set external setPlaceholder: (t, string) => unit = "placeholder"
+@set external setReadOnly: (t, bool) => unit = "readOnly"
+@set external setRequired: (t, bool) => unit = "required"
+@set external setRows: (t, int) => unit = "rows"
+@set external setWrap: (t, string) => unit = "wrap"
+@set external setType: (t, string) => unit = "type"
+@set external setDefaultValue: (t, string) => unit = "defaultValue"
+@set external setValue: (t, string) => unit = "value"
+@set external setSelectionStart: (t, int) => unit = "selectionStart"
+@set external setSelectionEnd: (t, int) => unit = "selectionEnd"
+@set external setSelectionDirection: (t, string) => unit = "selectionDirection"
 
 /**
 Returns whether a form will validate when it is submitted, without having to submit it.

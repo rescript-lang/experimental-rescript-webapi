@@ -3,7 +3,7 @@
 /**
 [See EventCounts on MDN](https://developer.mozilla.org/docs/Web/API/EventCounts)
 */
-type eventCounts = {}
+type eventCounts = private {}
 
 /**
 Provides access to performance-related information for the current page. It's part of the High Resolution Time API, but is enhanced by the WebApiPerformance Timeline API, the Navigation Timing API, the User Timing API, and the Resource Timing API.
@@ -63,7 +63,7 @@ type performanceMark = private {
 PerformanceMeasure is an abstract interface for PerformanceEntry objects with an entryType of "measure". Entries of this type are created by calling performance.measure() to add a named DOMHighResTimeStamp (the measure) between two marks to the browser's performance timeline.
 [See PerformanceMeasure on MDN](https://developer.mozilla.org/docs/Web/API/PerformanceMeasure)
 */
-type performanceMeasure = {
+type performanceMeasure = private {
   ...performanceEntry,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/PerformanceMeasure/detail)

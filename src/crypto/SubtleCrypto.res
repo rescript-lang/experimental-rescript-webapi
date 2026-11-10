@@ -1,4 +1,4 @@
-type t = WebCryptoTypes.subtleCrypto
+type t = WebCryptoTypes.subtleCrypto = private {...WebCryptoTypes.subtleCrypto}
 type binaryData = ArrayBufferTypedArrayOrDataView.t
 type keyType = WebCryptoTypes.keyType
 type keyUsage = WebCryptoTypes.keyUsage
@@ -11,7 +11,7 @@ type binaryKeyFormat =
   | @as("spki") Spki
 type jwkKeyFormat = | @as("jwk") Jwk
 type keyAlgorithm = WebCryptoTypes.keyAlgorithm
-type cryptoKey = WebCryptoTypes.cryptoKey
+type cryptoKey = WebCryptoTypes.cryptoKey = private {...WebCryptoTypes.cryptoKey}
 type cryptoKeyPair = WebCryptoTypes.cryptoKeyPair
 
 external algorithmString: string => algorithmIdentifier = "%identity"

@@ -1,4 +1,4 @@
-type t = DOM.window
+type t = DOM.window = private {...DOM.window}
 type windowPostMessageOptions = DOM.windowPostMessageOptions
 
 include EventTarget.Impl({type t = t})

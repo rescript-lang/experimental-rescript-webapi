@@ -2,7 +2,7 @@
 Represents an individual DOM mutation.
 [See MutationRecord on MDN](https://developer.mozilla.org/docs/Web/API/MutationRecord)
 */
-type mutationRecord = {
+type mutationRecord = private {
   /**
     Returns "attributes" if it was an attribute mutation. "characterData" if it was a mutation to a CharacterData node. And "childList" if it was a mutation to the tree of nodes.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/MutationRecord/type)

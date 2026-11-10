@@ -58,7 +58,7 @@ type rec fileSystemEntry = private {
 /**
 [See FileSystem on MDN](https://developer.mozilla.org/docs/Web/API/FileSystem)
 */
-and fileSystem = {
+and fileSystem = private {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/FileSystem/name)
     */
