@@ -22,6 +22,11 @@ let setCanvasSize = (canvas: WebAPI.HTMLCanvasElement.t) => {
   (canvas.width, canvas.height)
 }
 
+let setCanvasInheritedTitle = (canvas: WebAPI.HTMLCanvasElement.t) => {
+  canvas->WebAPI.HTMLCanvasElement.setTitle("example canvas")
+  canvas.title
+}
+
 let setInputProperties = (input: WebAPI.HTMLInputElement.t) => {
   input->WebAPI.HTMLInputElement.setType("text")
   input->WebAPI.HTMLInputElement.setValue("ready")
@@ -235,6 +240,7 @@ let _ = (
   setNodeText,
   setElementScroll,
   setCanvasSize,
+  setCanvasInheritedTitle,
   setInputProperties,
   setButtonProperties,
   setTemplateProperties,
