@@ -4,12 +4,14 @@ external myForm: DOMTree.htmlFormElement = "myForm"
 
 module EntryValue = FormDataEntryValue
 
-open EntryValue
-
 let logEntry = (~stringPrefix: string, ~filePrefix: string, entry: EntryValue.t) =>
-  switch entry {
-  | String(value) => Console.log(`${stringPrefix}${value}`)
-  | File(file) => Console.log(`${filePrefix}${file.name}`)
+  switch EntryValue.asString(entry) {
+  | Some(value) => Console.log(`${stringPrefix}${value}`)
+  | None =>
+    switch EntryValue.asFile(entry) {
+    | Some(file) => Console.log(`${filePrefix}${File.name(file)}`)
+    | None => Console.log("Unsupported FormData entry")
+    }
   }
 
 let formData: FormData.t = FormData.make(~form=myForm)
@@ -30,17 +32,31 @@ let _ =
     logEntry(~stringPrefix="String value: ", ~filePrefix="WebApiFile: ", entry)
   )
 
-// Create formDataEntryValue from string or file
-let stringEntry = EntryValue.String("test value")
+// Create actual string and file entries, then inspect the native results.
 let blob: Blob.t = Blob.make(~blobParts=[])
 let file: File.t = File.make(~fileBits=[], ~fileName="test.txt")
-let fileEntry = EntryValue.File(file)
 
+formData->FormData.append(~name="text-entry", ~value="test value")
+formData->FormData.appendBlob(
+  ~name="file-entry",
+  ~blobValue=File.asBlob(file),
+  ~filename="test.txt",
+)
 formData->FormData.appendBlob(~name="avatar", ~blobValue=blob)
 
-logEntry(~stringPrefix="String entry: ", ~filePrefix="Unexpected file entry: ", stringEntry)
+let stringEntry = formData->FormData.get("text-entry")
+let _ = switch stringEntry->Null.toOption {
+| Some(entry) =>
+  logEntry(~stringPrefix="String entry: ", ~filePrefix="Unexpected file entry: ", entry)
+| None => Console.log("No string entry")
+}
 
-logEntry(~stringPrefix="Unexpected string entry: ", ~filePrefix="File entry: ", fileEntry)
+let fileEntry = formData->FormData.get("file-entry")
+let _ = switch fileEntry->Null.toOption {
+| Some(entry) =>
+  logEntry(~stringPrefix="Unexpected string entry: ", ~filePrefix="File entry: ", entry)
+| None => Console.log("No file entry")
+}
 
 // Iterate over all entries in the FormData
 let entries: iterable<(string, EntryValue.t)> = formData->FormData.entries
@@ -48,8 +64,12 @@ let _ =
   entries
   ->Array.fromIterable
   ->Array.forEach(((key, value)) => {
-    switch value {
-    | String(s) => Console.log(`${key}: ${s}`)
-    | File(f) => Console.log(`${key}: [WebApiFile] ${f.name}`)
+    switch EntryValue.asString(value) {
+    | Some(s) => Console.log(`${key}: ${s}`)
+    | None =>
+      switch EntryValue.asFile(value) {
+      | Some(f) => Console.log(`${key}: [WebApiFile] ${File.name(f)}`)
+      | None => Console.log(`${key}: unsupported entry`)
+      }
     }
   })

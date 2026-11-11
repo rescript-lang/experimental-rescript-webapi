@@ -1,4 +1,10 @@
-type t = DOM.abortController = private {...DOM.abortController}
+type t = DOM.abortController
+
+/**
+Returns the AbortSignal object associated with this object.
+[Read more on MDN](https://developer.mozilla.org/docs/Web/API/AbortController/signal)
+*/
+@get external signal: t => DOM.abortSignal = "signal"
 
 @new
 external make: unit => DOM.abortController = "AbortController"

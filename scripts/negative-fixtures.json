@@ -24,6 +24,90 @@
     "expectedDiagnostic": "This has type:"
   },
   {
+    "name": "Response cannot be made from an ordinary record coercion",
+    "fixture": "scripts/fixtures/negative/ResponseRecordCannotCoerce.res",
+    "features": ["WebAPI.Fetch"],
+    "expectedDiagnostic": "is not a subtype of WebAPI.Response.t"
+  },
+  {
+    "name": "Request cannot be made from a complete ordinary record coercion",
+    "fixture": "scripts/fixtures/negative/RequestRecordCannotCoerce.res",
+    "features": ["WebAPI.Fetch"],
+    "expectedDiagnostic": "is not a subtype of WebAPI.Request.t"
+  },
+  {
+    "name": "Response cannot be constructed as an ordinary record literal",
+    "fixture": "scripts/fixtures/negative/ResponseLiteralCannotConstruct.res",
+    "features": ["WebAPI.Fetch"],
+    "expectedDiagnostic": "no corresponding record type is in scope"
+  },
+  {
+    "name": "Response has no record representation to spread",
+    "fixture": "scripts/fixtures/negative/ResponseTypeCannotBeSpread.res",
+    "features": ["WebAPI.Fetch"],
+    "expectedDiagnostic": "is not an object type"
+  },
+  {
+    "name": "Response backing type has no record representation to spread",
+    "fixture": "scripts/fixtures/negative/ResponseBackingTypeCannotBeSpread.res",
+    "features": ["WebAPI.Fetch"],
+    "expectedDiagnostic": "is not an object type"
+  },
+  {
+    "name": "Request has no record representation to spread",
+    "fixture": "scripts/fixtures/negative/RequestTypeCannotBeSpread.res",
+    "features": ["WebAPI.Fetch"],
+    "expectedDiagnostic": "is not an object type"
+  },
+  {
+    "name": "Canvas has no record representation to spread",
+    "fixture": "scripts/fixtures/negative/CanvasTypeCannotBeSpread.res",
+    "features": ["WebAPI.Canvas"],
+    "expectedDiagnostic": "is not an object type"
+  },
+  {
+    "name": "Node generic implementation cannot manufacture native instances",
+    "fixture": "scripts/fixtures/negative/NodeImplCannotForgeNativeType.res",
+    "features": ["WebAPI.DOMNodes"],
+    "expectedDiagnostic": "The value asNode can't be found"
+  },
+  {
+    "name": "Element generic implementation cannot manufacture native instances",
+    "fixture": "scripts/fixtures/negative/ElementImplCannotForgeNativeType.res",
+    "features": ["WebAPI.DOMNodes"],
+    "expectedDiagnostic": "The value asElement can't be found"
+  },
+  {
+    "name": "HTMLElement generic implementation cannot manufacture native instances",
+    "fixture": "scripts/fixtures/negative/HTMLElementImplCannotForgeNativeType.res",
+    "features": ["WebAPI.HTML"],
+    "expectedDiagnostic": "The value asHTMLElement can't be found"
+  },
+  {
+    "name": "Event generic implementation cannot manufacture native instances",
+    "fixture": "scripts/fixtures/negative/EventImplCannotForgeNativeType.res",
+    "features": ["WebAPI.Event"],
+    "expectedDiagnostic": "The value asEvent can't be found"
+  },
+  {
+    "name": "EventTarget generic implementation cannot manufacture native instances",
+    "fixture": "scripts/fixtures/negative/EventTargetImplCannotForgeNativeType.res",
+    "features": ["WebAPI.Event"],
+    "expectedDiagnostic": "The value asEventTarget can't be found"
+  },
+  {
+    "name": "ExtendableEvent generic implementation cannot manufacture native instances",
+    "fixture": "scripts/fixtures/negative/ExtendableEventImplCannotForgeNativeType.res",
+    "features": ["WebAPI.Event"],
+    "expectedDiagnostic": "The value asExtendableEvent can't be found"
+  },
+  {
+    "name": "Response factory returns an opaque instance",
+    "fixture": "scripts/fixtures/negative/ResponseInferredReturnHasNoFields.res",
+    "features": ["WebAPI.Fetch"],
+    "expectedDiagnostic": "Only records have fields that can be accessed"
+  },
+  {
     "name": "closest cannot narrow to an unrelated element type",
     "fixture": "scripts/fixtures/negative/ClosestCannotNarrow.res",
     "features": ["WebAPI.HTML"],

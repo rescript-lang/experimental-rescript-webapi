@@ -101,6 +101,27 @@ let worklet: WebAPI.Worklet.t => WebAPI.Worklet.t = value => value
 
 let makePublicUrl = () => {
   let url: WebAPI.URL.t = WebAPI.URL.make(~url="https://example.invalid")
-  url.href = "https://example.com"
-  url.href
+  WebAPI.URL.setHref(url, "https://example.com")
+  WebAPI.URL.getHref(url)
+}
+
+let makePublicCanvas = () => {
+  let document = WebAPI.DOM.window->WebAPI.Window.document
+  let element = document->WebAPI.Document.createElement("canvas")
+  switch element->WebAPI.HTMLCanvasElement.classify {
+  | Some(canvas) => {
+      WebAPI.HTMLCanvasElement.setWidth(canvas, 320)
+      WebAPI.HTMLCanvasElement.setHeight(canvas, 200)
+      (WebAPI.HTMLCanvasElement.width(canvas), WebAPI.HTMLCanvasElement.height(canvas))
+    }
+  | None => (0, 0)
+  }
+}
+
+let makePublicBlob = () => {
+  let textPart = WebAPI.Blob.blobPartFromString("text")
+  let sourceBlob = WebAPI.Blob.make(~blobParts=[textPart])
+  let blobPart = WebAPI.Blob.blobPartFromBlob(sourceBlob)
+  let composed = WebAPI.Blob.make(~blobParts=[blobPart])
+  WebAPI.Blob.size(composed)
 }

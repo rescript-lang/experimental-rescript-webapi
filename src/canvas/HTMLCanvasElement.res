@@ -1,21 +1,29 @@
 /**
 Provides properties and methods for manipulating the layout and presentation of <canvas> elements. The HTMLCanvasElement interface also inherits the properties and methods of the HTMLElement interface.
 [See HTMLCanvasElement on MDN](https://developer.mozilla.org/docs/Web/API/HTMLCanvasElement)
-TODO: mark as private once mutating fields of private records is allowed
 */
-type t = {
-  ...DOMTree.htmlElement,
-  /**
-    Gets or sets the width of a canvas element on a document.
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLCanvasElement/width)
-    */
-  mutable width: int,
-  /**
-    Gets or sets the height of a canvas element on a document.
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLCanvasElement/height)
-    */
-  mutable height: int,
-}
+type t
+
+/**
+Gets or sets the width of a canvas element on a document.
+[Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLCanvasElement/width)
+*/
+@get external width: t => int = "width"
+/**
+Gets or sets the width of a canvas element on a document.
+[Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLCanvasElement/width)
+*/
+@set external setWidth: (t, int) => unit = "width"
+/**
+Gets or sets the height of a canvas element on a document.
+[Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLCanvasElement/height)
+*/
+@get external height: t => int = "height"
+/**
+Gets or sets the height of a canvas element on a document.
+[Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLCanvasElement/height)
+*/
+@set external setHeight: (t, int) => unit = "height"
 
 include HTMLElement.Impl({type t = t})
 

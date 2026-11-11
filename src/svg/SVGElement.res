@@ -70,11 +70,12 @@ module Impl = (
   },
 ) => {
   include Element.Impl({type t = T.t})
-
-  external asSVGElement: T.t => t = "%identity"
 }
 
 include Impl({type t = t})
+
+external asNode: t => DOMTree.node = "%identity"
+external asElement: t => DOMTree.element = "%identity"
 
 /**
 SVG elements whose primary purpose is to directly render graphics into a group.

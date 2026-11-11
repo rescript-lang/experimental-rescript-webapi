@@ -2,7 +2,7 @@
 external crypto: WebAPI.Crypto.t = "crypto"
 
 let _pair = WebAPI.SubtleCrypto.generateEcdsaKeyPair(
-  crypto.subtle,
+  WebAPI.Crypto.subtle(crypto),
   ~algorithm=WebAPI.SubtleCrypto.algorithmObject({
     name: "HMAC",
     hash: {name: "SHA-256"},

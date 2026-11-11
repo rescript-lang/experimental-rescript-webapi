@@ -35,9 +35,21 @@ implementation modules and internal type-holder modules are not part of that pub
 Bindings are maintained and corrected by hand as well as generated; the generator is not a
 reproducible source of truth for every checked-in binding.
 
-Approximately 80 bindings still carry private-record TODOs; a blanket conversion is deferred
-because the current compiler reports mutation warning 111. Generator reproducibility is also
-follow-up work, not an alpha release gate.
+Approximately 80 bindings still carry private-record TODOs. The native-instance opacity migration
+is underway using abstract types and typed property accessors; it intentionally replaces direct
+record-field access for converted APIs. This draft covers only a small subset of the 291 public
+modules, so unconverted native records remain constructible and the package-wide guarantee is not
+yet complete. Do not infer opacity from a private record alone: ordinary structural coercion can
+bypass that restriction. Generator reproducibility is also follow-up work, not an alpha release
+gate.
+
+The partial [native-instance inventory](https://github.com/rescript-lang/experimental-rescript-webapi/blob/main/scripts/native-instance-inventory.json)
+records the converted set, intentional constructible dictionary/data examples, and unconverted
+groups. Stream reader/writer and worker context/source types still modeled as `unknown` have no
+native identity to protect yet; they are explicitly unresolved and are not counted as opaque.
+The inventory also tracks generic `Impl` upcasts that still accept arbitrary receiver types; these
+are unresolved construction routes, so package-wide opacity must not be inferred from the converted
+subset.
 
 CI uses Node 26 for ReScript compilation and Node runtime fixtures. Its Playwright suite runs
 compiled Chromium regressions for the confirmed alpha contracts, including typed byte/audio

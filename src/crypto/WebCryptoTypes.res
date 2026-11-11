@@ -28,43 +28,25 @@ This Web Crypto API interface provides a number of low-level cryptographic funct
 [See SubtleCrypto on MDN](https://developer.mozilla.org/docs/Web/API/SubtleCrypto)
 */
 @editor.completeFrom(SubtleCrypto)
-type subtleCrypto = private {}
+type subtleCrypto
 
 /**
 Basic cryptography features available in the current context. It allows access to a cryptographically strong random number generator and to cryptographic primitives.
 [See Crypto on MDN](https://developer.mozilla.org/docs/Web/API/Crypto)
 */
 @editor.completeFrom(Crypto)
-type crypto = private {
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Crypto/subtle)
-    */
-  subtle: subtleCrypto,
-}
+type crypto
+
+/**
+  [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Crypto/subtle)
+  */
+@get external cryptoSubtle: crypto => subtleCrypto = "subtle"
 
 /**
 The CryptoKey dictionary of the Web Crypto API represents a cryptographic key.
 [See CryptoKey on MDN](https://developer.mozilla.org/docs/Web/API/CryptoKey)
 */
-type cryptoKey = {
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CryptoKey/type)
-    */
-  @as("type")
-  type_: keyType,
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CryptoKey/extractable)
-    */
-  extractable: bool,
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CryptoKey/algorithm)
-    */
-  algorithm: keyAlgorithm,
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CryptoKey/usages)
-    */
-  usages: array<keyUsage>,
-}
+type cryptoKey
 
 type cryptoKeyPair = {
   privateKey: cryptoKey,

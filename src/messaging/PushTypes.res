@@ -79,10 +79,4 @@ type pushSubscriptionJSON = {
 type pushMessageData
 
 @editor.completeFrom(PushEvent)
-type pushEvent = private {
-  ...DOM.extendableEvent,
-  /**
-   [Read more on MDN](https://developer.mozilla.org/docs/Web/API/PushEvent/data)
-   */
-  data: Null.t<pushMessageData>,
-}
+type pushEvent

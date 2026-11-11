@@ -75,140 +75,28 @@ type requestPriority =
 [See Headers on MDN](https://developer.mozilla.org/docs/Web/API/Headers)
 */
 @editor.completeFrom(Headers)
-type headers = private {}
+type headers
 
 /**
 This WebApiFetch API interface represents a resource request.
 [See Request on MDN](https://developer.mozilla.org/docs/Web/API/Request)
 */
 @editor.completeFrom(Request)
-type request = private {
-  /**
-    Returns request's HTTP method, which is "GET" by default.
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Request/method)
-    */
-  method: string,
-  /**
-    Returns the WebApiURL of request as a string.
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Request/url)
-    */
-  url: string,
-  /**
-    Returns a Headers object consisting of the headers associated with request. Note that headers added in the network layer by the user agent will not be accounted for in this object, e.g., the "Host" header.
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Request/headers)
-    */
-  headers: headers,
-  /**
-    Returns the kind of resource requested by request, e.g., "document" or "script".
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Request/destination)
-    */
-  destination: requestDestination,
-  /**
-    Returns the referrer of request. Its value can be a same-origin WebApiURL if explicitly set in init, the empty string to indicate no referrer, and "about:client" when defaulting to the global's default. This is used during fetching to determine the value of the `Referer` header of the request being made.
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Request/referrer)
-    */
-  referrer: string,
-  /**
-    Returns the referrer policy associated with request. This is used during fetching to compute the value of the request's referrer.
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Request/referrerPolicy)
-    */
-  referrerPolicy: referrerPolicy,
-  /**
-    Returns the mode associated with request, which is a string indicating whether the request will use CORS, or will be restricted to same-origin URLs.
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Request/mode)
-    */
-  mode: requestMode,
-  /**
-    Returns the credentials mode associated with request, which is a string indicating whether credentials will be sent with the request always, never, or only when sent to a same-origin URL.
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Request/credentials)
-    */
-  credentials: requestCredentials,
-  /**
-    Returns the cache mode associated with request, which is a string indicating how the request will interact with the browser's cache when fetching.
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Request/cache)
-    */
-  cache: requestCache,
-  /**
-    Returns the redirect mode associated with request, which is a string indicating how redirects for the request will be handled during fetching. A request will follow redirects by default.
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Request/redirect)
-    */
-  redirect: requestRedirect,
-  /**
-    Returns request's subresource integrity metadata, which is a cryptographic hash of the resource being fetched. Its value consists of multiple hashes separated by whitespace. [SRI]
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Request/integrity)
-    */
-  integrity: string,
-  /**
-    Returns a boolean indicating whether or not request can outlive the global in which it was created.
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Request/keepalive)
-    */
-  keepalive: bool,
-  /**
-    Returns the signal associated with request, which is an AbortSignal object indicating whether or not request has been aborted, and its abort event handler.
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Request/signal)
-    */
-  signal: DOM.abortSignal,
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Request/body)
-    */
-  body: Null.t<FileTypes.readableStream<Uint8Array.t>>,
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Request/bodyUsed)
-    */
-  bodyUsed: bool,
-}
+type request
 
 /**
 This WebApiFetch API interface represents the response to a request.
 [See Response on MDN](https://developer.mozilla.org/docs/Web/API/Response)
 */
 @editor.completeFrom(Response)
-type response = private {
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Response/type)
-    */
-  @as("type")
-  type_: responseType,
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Response/url)
-    */
-  url: string,
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Response/redirected)
-    */
-  redirected: bool,
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Response/status)
-    */
-  status: int,
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Response/ok)
-    */
-  ok: bool,
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Response/statusText)
-    */
-  statusText: string,
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Response/headers)
-    */
-  headers: headers,
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Request/body)
-    */
-  body: Null.t<FileTypes.readableStream<Uint8Array.t>>,
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Request/bodyUsed)
-    */
-  bodyUsed: bool,
-}
+type response
 
 /**
 Provides a way to easily construct a set of key/value pairs representing form fields and their values, which can then be easily sent using the XMLHttpRequest.send() method. It uses the same format a form would use if the encoding type were set to "multipart/form-data".
 [See FormData on MDN](https://developer.mozilla.org/docs/Web/API/FormData)
 */
 @editor.completeFrom(FormData)
-type formData = private {}
+type formData
 
 @editor.completeFrom(HeadersInit) type headersInit
 
@@ -216,10 +104,8 @@ type formData = private {}
 
 type requestInfo = unknown
 
-@editor.completeFrom(FormDataEntryValue) @unboxed
-type formDataEntryValue =
-  | String(string)
-  | File(FileTypes.file)
+@editor.completeFrom(FormDataEntryValue)
+type formDataEntryValue
 
 type requestInit = {
   /**

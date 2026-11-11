@@ -1,7 +1,7 @@
 @scope("globalThis")
 external crypto: WebAPI.Crypto.t = "crypto"
 
-let subtle = crypto.subtle
+let subtle = WebAPI.Crypto.subtle(crypto)
 let data =
   WebAPI.SubtleCrypto.binaryDataFromUint8Array(Uint8Array.fromArray([65, 66, 67]))
 

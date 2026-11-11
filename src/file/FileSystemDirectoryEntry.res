@@ -1,9 +1,11 @@
-type t = BaseFileAndDirectoryEntries.fileSystemDirectoryEntry = private {
-  ...BaseFileAndDirectoryEntries.fileSystemDirectoryEntry,
-}
+type t = BaseFileAndDirectoryEntries.fileSystemDirectoryEntry
 
-external asFileSystemEntry: FileAndDirectoryEntriesTypes.fileSystemDirectoryEntry => FileAndDirectoryEntriesTypes.fileSystemEntry =
-  "%identity"
+external asFileSystemEntry: t => FileSystemEntry.t = "%identity"
+@get external isFile: t => bool = "isFile"
+@get external isDirectory: t => bool = "isDirectory"
+@get external name: t => string = "name"
+@get external fullPath: t => string = "fullPath"
+@get external filesystem: t => FileAndDirectoryEntriesTypes.fileSystem = "filesystem"
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/FileSystemEntry/getParent)
 */

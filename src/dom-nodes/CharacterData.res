@@ -102,8 +102,6 @@ module Impl = (
 ) => {
   include Node.Impl({type t = T.t})
 
-  external asCharacterData: T.t => t = "%identity"
-
   /**
 Inserts nodes just after node, while replacing strings in nodes with equivalent Text nodes.
 
@@ -197,3 +195,6 @@ Throws a "HierarchyRequestError" DOMException if the constraints of the node tre
 }
 
 include Impl({type t = t})
+
+external asNode: t => DOMTree.node = "%identity"
+external asCharacterData: t => t = "%identity"

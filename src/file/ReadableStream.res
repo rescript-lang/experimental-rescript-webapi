@@ -2,6 +2,10 @@
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/ReadableStream)
 */
 type t<'r> = FileTypes.readableStream<'r>
+/**
+[Read more on MDN](https://developer.mozilla.org/docs/Web/API/ReadableStream/locked)
+*/
+@get external locked: t<'r> => bool = "locked"
 
 /**
 `make()`

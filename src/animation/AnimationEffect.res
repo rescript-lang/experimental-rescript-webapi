@@ -1,7 +1,7 @@
 /**
 [See AnimationEffect on MDN](https://developer.mozilla.org/docs/Web/API/AnimationEffect)
 */
-type t = private {}
+type t
 
 type fillMode =
   | @as("auto") Auto

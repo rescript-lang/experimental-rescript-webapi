@@ -13,6 +13,24 @@ versioning and publication.
 
 ### Migration notes
 
+- This draft makes `Request`, `Response`, `URL`, `Crypto`, `SubtleCrypto`, `CryptoKey`,
+  `DOMException`, `DOMStringList`, `DOMTokenList`, `DOMStringMap`, `HTMLCanvasElement`,
+  `CSSStyleValue`, `AnimationEffect`, `XPathExpression`, `Headers`, `FormData`, `ReadableStream`, `WritableStream`,
+  `WritableStreamDefaultController`, `FileSystemWritableFileStream`, `Blob`, `File`, `FileList`,
+  `FileSystemEntry`, `FileSystemDirectoryEntry`, `FileSystemDirectoryReader`, `FileSystemHandle`,
+  `FileSystemDirectoryHandle`, `FileSystemFileHandle`, `Cache`, `CacheStorage`, `IDBFactory`,
+  `IDBDatabase`,
+  `StorageManager`, `NavigationPreloadManager`, `PushEvent`, `Document`, `Window`,
+  `CustomElementRegistry`, and `AbortController` opaque native identities. Direct property access is
+  replaced by typed module accessors: for example, use
+  `Request.method(request)`, `Response.ok(response)`, `URL.getHref(url)`, `URL.setHref(url, href)`,
+  `HTMLCanvasElement.setWidth(canvas, width)`, and `Crypto.subtle(crypto)`. Initializers and option
+  dictionaries remain constructible records. `Blob.make` and `File.make` input parts now use typed
+  `Blob.blobPartFromString`/`Blob.blobPartFromBlob` helpers, and `FormDataEntryValue.asString` /
+  `FormDataEntryValue.asFile` inspect returned values. Generic `Impl` as-base conversions that accepted
+  arbitrary receiver types have been removed from the DOM core; specialized concrete conversions
+  remain where provided, and some descendant helpers are still migrating. The package-wide migration
+  is incomplete; unconverted native instance types still expose the existing API.
 - WebSocket sends and worker `Request` fetches now preserve their native receiver (`this`) rather
   than calling receiver-bound methods unbound.
 - `WebAPI.Request.bytes`, `WebAPI.Response.bytes`, `WebAPI.Blob.bytes`,

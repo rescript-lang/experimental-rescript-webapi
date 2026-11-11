@@ -42,8 +42,6 @@ module Impl = (
     type t
   },
 ) => {
-  external asEvent: T.t => DOM.event = "%identity"
-
   /**
 Returns the invocation target objects of event's path (objects on which listeners will be invoked), except for any nodes in shadow trees of which the shadow root's mode is "closed" that are not reachable from event's currentTarget.
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Event/composedPath)
@@ -74,3 +72,5 @@ When dispatched in a tree, invoking this method prevents event from reaching any
 }
 
 include Impl({type t = DOM.event})
+
+external asEvent: DOM.event => DOM.event = "%identity"

@@ -3,14 +3,14 @@ Provides a storage mechanism for Request / Response object pairs that are cached
 [See Cache on MDN](https://developer.mozilla.org/docs/Web/API/Cache)
 */
 @editor.completeFrom(Cache)
-type cache = private {}
+type cache
 
 /**
 The storage for Cache objects.
 [See CacheStorage on MDN](https://developer.mozilla.org/docs/Web/API/CacheStorage)
 */
 @editor.completeFrom(CacheStorage)
-type cacheStorage = private {}
+type cacheStorage
 
 type cacheQueryOptions = {
   mutable ignoreSearch?: bool,

@@ -274,7 +274,7 @@ globalThis.fetch = () => Promise.resolve(globalThis.__safeFetchResponse)
 switch await loadUser("https://example.com/user", mustNotDecode) {
 | Error(#ResponseNotOk({response})) => {
     assert(isSame(response, %raw(`globalThis.__safeFetchResponse`)))
-    assert(!response.bodyUsed)
+    assert(!Response.bodyUsed(response))
   }
 | Error(#FetchRejected(_) | #BodyReadRejected(_)) | Ok(_) => assert(false)
 }
@@ -320,7 +320,7 @@ let uncheckedResponse = Response.fromString("not read", ~init={status: 500})
 switch await uncheckedResponse->readCheckedText {
 | Error(#ResponseNotOk({response})) => {
     assert(isSame(response, uncheckedResponse))
-    assert(!response.bodyUsed)
+    assert(!Response.bodyUsed(response))
   }
 | Error(#BodyReadRejected(_)) | Ok(_) => assert(false)
 }

@@ -4,7 +4,11 @@ description: Learn more about the design philosophy of @rescript/webapi.
 slug: "design-philosophy"
 ---
 
-The core idea of these ReScript bindings is that each interface is modeled as a record type. Where possible, inheritance is represented using record spreading, and methods are modeled as functions in a separate module. This design allows for greater familiarity with the underlying JavaScript APIs, making it more friendly for newcomers.
+The opaque native-object representation is being introduced across this package. For converted APIs,
+ordinary records cannot stand in for browser instances; properties are exposed through typed
+accessors and methods through separate module functions. Caller-owned dictionaries, options, and
+ordinary data values remain constructible records. This distinction preserves the native JavaScript
+object while making invalid lookalikes harder to express.
 
 ## ReScript 13 alpha compatibility
 
@@ -32,7 +36,12 @@ let myElement: WebAPI.Element.t = document->WebAPI.Document.createElement("div")
 
 ## Interfaces
 
-Since ReScript does not have the concept of classes or interfaces, the bindings represent the interfaces as record types. These record types can inherit properties from a "base" type through spreading. This can only be done if there are no circular references in the inheritance chain. If circular references exist, spreading is avoided, and the base properties are duplicated instead.
+For converted interfaces, native instances are modeled with abstract types and typed native property
+accessors. Other interfaces remain on their existing representation until migrated. Converted
+inheritance relationships use the same type identities as their backing Web API bindings; accessor
+receiver types remain compatible with base and derived interfaces. Do not use record spreading to
+model native instances. Caller-owned dictionaries and plain data containers continue to use record
+types.
 
 ## Methods
 

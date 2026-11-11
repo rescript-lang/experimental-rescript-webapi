@@ -25,6 +25,31 @@ let responseFromRequest = await WebAPI.Fetch.fetchWithRequest(request)
 When several signatures differ only by optional arguments, keep a single binding with an
 optional labeled argument when the browser API treats it as one operation.
 
+## Native instances and record values
+
+Represent browser-owned objects as abstract native types in their canonical backing module
+(`type response`, with no record representation). Public modules should alias that same type
+identity and expose properties through typed native `@get` and `@set` bindings. Do not expose
+record fields or create record-spread inheritance for native instances: a caller-defined record
+must not be coercible to the native type with `:>`. Preserve native property names with `@as`,
+nullable and generic types, throwing behavior, and field documentation on the accessor.
+
+This is intentionally different from dictionaries and data values. Request/Response initializers,
+options, descriptors, callback dictionaries, and ordinary result records remain constructible
+records when the browser accepts them as input or data. Classify each type by its runtime role,
+not by a module or type name.
+
+When changing an existing instance API, migrate direct field reads and writes to the module's
+typed accessors and document that source-level break. Add packed-consumer negative fixtures for
+literal construction, record spread, and ordinary `:>` coercion, plus a positive consumer that
+obtains a real instance through a factory and uses its accessors. Expected diagnostics must match
+the actual opacity boundary rather than an unrelated type or missing-module error.
+
+Do not expose an unconstrained generic `Impl(T)` helper that converts arbitrary `T.t` to a native
+base type with `%identity`. Keep a base conversion specialized to the concrete native receiver, or
+use a runtime classifier when the source type is broad. Test the generic-functor route in packed
+consumers as well as direct record construction.
+
 ## Constructor overloads
 
 Constructors use a distinct naming convention:

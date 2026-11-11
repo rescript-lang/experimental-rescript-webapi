@@ -1,6 +1,13 @@
 type t = DOM.domStringList
 
 /**
+Returns the number of strings in strings.
+[Read more on MDN](https://developer.mozilla.org/docs/Web/API/DOMStringList/length)
+*/
+@get
+external length: t => int = "length"
+
+/**
 Returns the string with index index from strings.
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/DOMStringList/item)
 */

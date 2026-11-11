@@ -10,3 +10,8 @@ external getRandomValues: (WebCryptoTypes.crypto, 't) => 't = "getRandomValues"
 @send
 external randomUUID: WebCryptoTypes.crypto => string = "randomUUID"
 type t = WebCryptoTypes.crypto
+
+/**
+[Read more on MDN](https://developer.mozilla.org/docs/Web/API/Crypto/subtle)
+*/
+let subtle = WebCryptoTypes.cryptoSubtle

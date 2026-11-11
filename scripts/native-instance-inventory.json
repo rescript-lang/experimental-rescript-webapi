@@ -1,0 +1,467 @@
+{
+  "revision": "4888db2cc601ad568b76af6ed2add60da0ad96cb",
+  "status": "partial",
+  "publicModuleCount": 291,
+  "sourceFeatureGroupCount": 28,
+  "expectedConvertedNativeInstanceCount": 40,
+  "convertedNativeInstances": [
+    {
+      "name": "Response",
+      "backingFile": "src/fetch/FetchTypes.res",
+      "backingType": "response",
+      "publicFile": "src/fetch/Response.res",
+      "publicAlias": "type t = FetchTypes.response",
+      "accessors": [
+        { "name": "type_", "kind": "get", "property": "type" },
+        { "name": "url", "kind": "get", "property": "url" },
+        { "name": "redirected", "kind": "get", "property": "redirected" },
+        { "name": "status", "kind": "get", "property": "status" },
+        { "name": "ok", "kind": "get", "property": "ok" },
+        { "name": "statusText", "kind": "get", "property": "statusText" },
+        { "name": "headers", "kind": "get", "property": "headers" },
+        { "name": "body", "kind": "get", "property": "body" },
+        { "name": "bodyUsed", "kind": "get", "property": "bodyUsed" }
+      ]
+    },
+    {
+      "name": "Request",
+      "backingFile": "src/fetch/FetchTypes.res",
+      "backingType": "request",
+      "publicFile": "src/fetch/Request.res",
+      "publicAlias": "type t = FetchTypes.request",
+      "accessors": [
+        { "name": "method", "kind": "get", "property": "method" },
+        { "name": "url", "kind": "get", "property": "url" },
+        { "name": "headers", "kind": "get", "property": "headers" },
+        { "name": "destination", "kind": "get", "property": "destination" },
+        { "name": "referrer", "kind": "get", "property": "referrer" },
+        { "name": "referrerPolicy", "kind": "get", "property": "referrerPolicy" },
+        { "name": "mode", "kind": "get", "property": "mode" },
+        { "name": "credentials", "kind": "get", "property": "credentials" },
+        { "name": "cache", "kind": "get", "property": "cache" },
+        { "name": "redirect", "kind": "get", "property": "redirect" },
+        { "name": "integrity", "kind": "get", "property": "integrity" },
+        { "name": "keepalive", "kind": "get", "property": "keepalive" },
+        { "name": "signal", "kind": "get", "property": "signal" },
+        { "name": "body", "kind": "get", "property": "body" },
+        { "name": "bodyUsed", "kind": "get", "property": "bodyUsed" }
+      ]
+    },
+    {
+      "name": "HTMLCanvasElement",
+      "backingFile": "src/canvas/HTMLCanvasElement.res",
+      "backingType": "t",
+      "publicFile": "src/canvas/HTMLCanvasElement.res",
+      "publicAlias": "type t",
+      "accessors": [
+        { "name": "width", "kind": "get", "property": "width" },
+        { "name": "setWidth", "kind": "set", "property": "width" },
+        { "name": "height", "kind": "get", "property": "height" },
+        { "name": "setHeight", "kind": "set", "property": "height" }
+      ]
+    },
+    {
+      "name": "CSSStyleValue",
+      "backingFile": "src/cssom/CSSStyleValue.res",
+      "backingType": "t",
+      "publicFile": "src/cssom/CSSStyleValue.res",
+      "publicAlias": "type t",
+      "accessors": []
+    },
+    {
+      "name": "AnimationEffect",
+      "backingFile": "src/animation/AnimationEffect.res",
+      "backingType": "t",
+      "publicFile": "src/animation/AnimationEffect.res",
+      "publicAlias": "type t",
+      "accessors": []
+    },
+    {
+      "name": "XPathExpression",
+      "backingFile": "src/window/XPathExpression.res",
+      "backingType": "t",
+      "publicFile": "src/window/XPathExpression.res",
+      "publicAlias": "type t",
+      "accessors": []
+    },
+    {
+      "name": "Headers",
+      "backingFile": "src/fetch/FetchTypes.res",
+      "backingType": "headers",
+      "publicFile": "src/fetch/Headers.res",
+      "publicAlias": "type t = FetchTypes.headers",
+      "accessors": []
+    },
+    {
+      "name": "FormData",
+      "backingFile": "src/fetch/FetchTypes.res",
+      "backingType": "formData",
+      "publicFile": "src/fetch/FormData.res",
+      "publicAlias": "type t = FetchTypes.formData",
+      "accessors": []
+    },
+    {
+      "name": "ReadableStream",
+      "backingFile": "src/file/FileTypes.res",
+      "backingType": "readableStream",
+      "publicFile": "src/file/ReadableStream.res",
+      "publicAlias": "type t<'r> = FileTypes.readableStream<'r>",
+      "accessors": [{ "name": "locked", "kind": "get", "property": "locked" }]
+    },
+    {
+      "name": "WritableStream",
+      "backingFile": "src/file/FileTypes.res",
+      "backingType": "writableStream",
+      "publicFile": "src/file/WritableStream.res",
+      "publicAlias": "type t<'w> = FileTypes.writableStream<'w>",
+      "accessors": [{ "name": "locked", "kind": "get", "property": "locked" }]
+    },
+    {
+      "name": "WritableStreamDefaultController",
+      "backingFile": "src/file/FileTypes.res",
+      "backingType": "writableStreamDefaultController",
+      "publicFile": "src/file/WritableStreamDefaultController.res",
+      "publicAlias": "type t = FileTypes.writableStreamDefaultController",
+      "accessors": [{ "name": "signal", "kind": "get", "property": "signal" }]
+    },
+    {
+      "name": "FileSystemWritableFileStream",
+      "backingFile": "src/file/FileTypes.res",
+      "backingType": "fileSystemWritableFileStream",
+      "publicFile": "src/file/FileSystemWritableFileStream.res",
+      "publicAlias": "type t = FileTypes.fileSystemWritableFileStream",
+      "accessors": []
+    },
+    {
+      "name": "Blob",
+      "backingFile": "src/core/DOM.res",
+      "backingType": "blob",
+      "publicFile": "src/file/Blob.res",
+      "publicAlias": "type t = FileTypes.blob",
+      "accessors": [
+        { "name": "size", "kind": "get", "property": "size" },
+        { "name": "type_", "kind": "get", "property": "type" }
+      ]
+    },
+    {
+      "name": "File",
+      "backingFile": "src/core/DOM.res",
+      "backingType": "file",
+      "publicFile": "src/file/File.res",
+      "publicAlias": "type t = FileTypes.file",
+      "accessors": [
+        { "name": "size", "kind": "get", "property": "size" },
+        { "name": "type_", "kind": "get", "property": "type" },
+        { "name": "name", "kind": "get", "property": "name" },
+        { "name": "lastModified", "kind": "get", "property": "lastModified" },
+        { "name": "webkitRelativePath", "kind": "get", "property": "webkitRelativePath" }
+      ]
+    },
+    {
+      "name": "FileList",
+      "backingFile": "src/core/DOM.res",
+      "backingType": "fileList",
+      "publicFile": "src/file/FileList.res",
+      "publicAlias": "type t = DOM.fileList",
+      "accessors": [{ "name": "length", "kind": "get", "property": "length" }]
+    },
+    {
+      "name": "FileSystemEntry",
+      "backingFile": "src/file/BaseFileAndDirectoryEntries.res",
+      "backingType": "fileSystemEntry",
+      "publicFile": "src/file/FileSystemEntry.res",
+      "publicAlias": "type t = BaseFileAndDirectoryEntries.fileSystemEntry",
+      "accessors": [
+        { "name": "isFile", "kind": "get", "property": "isFile" },
+        { "name": "isDirectory", "kind": "get", "property": "isDirectory" },
+        { "name": "name", "kind": "get", "property": "name" },
+        { "name": "fullPath", "kind": "get", "property": "fullPath" },
+        { "name": "filesystem", "kind": "get", "property": "filesystem" }
+      ]
+    },
+    {
+      "name": "FileSystemDirectoryEntry",
+      "backingFile": "src/file/BaseFileAndDirectoryEntries.res",
+      "backingType": "fileSystemDirectoryEntry",
+      "publicFile": "src/file/FileSystemDirectoryEntry.res",
+      "publicAlias": "type t = BaseFileAndDirectoryEntries.fileSystemDirectoryEntry",
+      "accessors": [
+        { "name": "isFile", "kind": "get", "property": "isFile" },
+        { "name": "isDirectory", "kind": "get", "property": "isDirectory" },
+        { "name": "name", "kind": "get", "property": "name" },
+        { "name": "fullPath", "kind": "get", "property": "fullPath" },
+        { "name": "filesystem", "kind": "get", "property": "filesystem" }
+      ]
+    },
+    {
+      "name": "FileSystemDirectoryReader",
+      "backingFile": "src/file/FileAndDirectoryEntriesTypes.res",
+      "backingType": "fileSystemDirectoryReader",
+      "publicFile": "src/file/FileSystemDirectoryReader.res",
+      "publicAlias": "type t = FileAndDirectoryEntriesTypes.fileSystemDirectoryReader",
+      "accessors": []
+    },
+    {
+      "name": "FileSystemHandle",
+      "backingFile": "src/file/FileTypes.res",
+      "backingType": "fileSystemHandle",
+      "publicFile": "src/file/FileSystemHandle.res",
+      "publicAlias": "type t = FileTypes.fileSystemHandle",
+      "accessors": [
+        { "name": "kind", "kind": "get", "property": "kind" },
+        { "name": "name", "kind": "get", "property": "name" }
+      ]
+    },
+    {
+      "name": "FileSystemDirectoryHandle",
+      "backingFile": "src/file/FileTypes.res",
+      "backingType": "fileSystemDirectoryHandle",
+      "publicFile": "src/file/FileSystemDirectoryHandle.res",
+      "publicAlias": "type t = FileTypes.fileSystemDirectoryHandle",
+      "accessors": [
+        { "name": "kind", "kind": "get", "property": "kind" },
+        { "name": "name", "kind": "get", "property": "name" }
+      ]
+    },
+    {
+      "name": "FileSystemFileHandle",
+      "backingFile": "src/file/FileTypes.res",
+      "backingType": "fileSystemFileHandle",
+      "publicFile": "src/file/FileSystemFileHandle.res",
+      "publicAlias": "type t = FileTypes.fileSystemFileHandle",
+      "accessors": [
+        { "name": "kind", "kind": "get", "property": "kind" },
+        { "name": "name", "kind": "get", "property": "name" }
+      ]
+    },
+    {
+      "name": "URL",
+      "backingFile": "src/url/UrlTypes.res",
+      "backingType": "url",
+      "publicFile": "src/url/URL.res",
+      "publicAlias": "type t = UrlTypes.url",
+      "accessors": [
+        { "name": "getHref", "kind": "get", "property": "href" },
+        { "name": "setHref", "kind": "set", "property": "href" },
+        { "name": "getOrigin", "kind": "get", "property": "origin" },
+        { "name": "getProtocol", "kind": "get", "property": "protocol" },
+        { "name": "setProtocol", "kind": "set", "property": "protocol" },
+        { "name": "getUsername", "kind": "get", "property": "username" },
+        { "name": "setUsername", "kind": "set", "property": "username" },
+        { "name": "getPassword", "kind": "get", "property": "password" },
+        { "name": "setPassword", "kind": "set", "property": "password" },
+        { "name": "getHost", "kind": "get", "property": "host" },
+        { "name": "setHost", "kind": "set", "property": "host" },
+        { "name": "getHostname", "kind": "get", "property": "hostname" },
+        { "name": "setHostname", "kind": "set", "property": "hostname" },
+        { "name": "getPort", "kind": "get", "property": "port" },
+        { "name": "setPort", "kind": "set", "property": "port" },
+        { "name": "getPathname", "kind": "get", "property": "pathname" },
+        { "name": "setPathname", "kind": "set", "property": "pathname" },
+        { "name": "getSearch", "kind": "get", "property": "search" },
+        { "name": "setSearch", "kind": "set", "property": "search" },
+        { "name": "getHash", "kind": "get", "property": "hash" },
+        { "name": "setHash", "kind": "set", "property": "hash" },
+        { "name": "getSearchParams", "kind": "get", "property": "searchParams" }
+      ]
+    },
+    {
+      "name": "Crypto",
+      "backingFile": "src/crypto/WebCryptoTypes.res",
+      "backingType": "crypto",
+      "publicFile": "src/crypto/Crypto.res",
+      "publicAlias": "type t = WebCryptoTypes.crypto",
+      "accessors": [
+        {
+          "name": "subtle",
+          "kind": "alias",
+          "property": "subtle",
+          "backingAccessor": "cryptoSubtle"
+        }
+      ]
+    },
+    {
+      "name": "SubtleCrypto",
+      "backingFile": "src/crypto/WebCryptoTypes.res",
+      "backingType": "subtleCrypto",
+      "publicFile": "src/crypto/SubtleCrypto.res",
+      "publicAlias": "type t = WebCryptoTypes.subtleCrypto",
+      "accessors": []
+    },
+    {
+      "name": "CryptoKey",
+      "backingFile": "src/crypto/WebCryptoTypes.res",
+      "backingType": "cryptoKey",
+      "publicFile": "src/crypto/SubtleCrypto.res",
+      "publicAlias": "type cryptoKey = WebCryptoTypes.cryptoKey",
+      "accessors": [
+        { "name": "cryptoKeyType", "kind": "get", "property": "type" },
+        { "name": "cryptoKeyExtractable", "kind": "get", "property": "extractable" },
+        { "name": "cryptoKeyAlgorithm", "kind": "get", "property": "algorithm" },
+        { "name": "cryptoKeyUsages", "kind": "get", "property": "usages" }
+      ]
+    },
+    {
+      "name": "DOMException",
+      "backingFile": "src/core/DOM.res",
+      "backingType": "domException",
+      "publicFile": "src/dom-platform/DOMException.res",
+      "publicAlias": "type t = DOM.domException",
+      "accessors": [
+        { "name": "name", "kind": "get", "property": "name" },
+        { "name": "message", "kind": "get", "property": "message" }
+      ]
+    },
+    {
+      "name": "DOMStringList",
+      "backingFile": "src/core/DOM.res",
+      "backingType": "domStringList",
+      "publicFile": "src/dom-platform/DOMStringList.res",
+      "publicAlias": "type t = DOM.domStringList",
+      "accessors": [{ "name": "length", "kind": "get", "property": "length" }]
+    },
+    {
+      "name": "DOMTokenList",
+      "backingFile": "src/core/DOM.res",
+      "backingType": "domTokenList",
+      "publicFile": "src/dom-platform/DOMTokenList.res",
+      "publicAlias": "type t = DOM.domTokenList",
+      "accessors": [
+        { "name": "length", "kind": "get", "property": "length" },
+        { "name": "value", "kind": "get", "property": "value" },
+        { "name": "setValue", "kind": "set", "property": "value" }
+      ]
+    },
+    {
+      "name": "DOMStringMap",
+      "backingFile": "src/dom-platform/DOMStringMap.res",
+      "backingType": "t",
+      "publicFile": "src/dom-platform/DOMStringMap.res",
+      "publicAlias": "type t",
+      "accessors": []
+    },
+    {
+      "name": "Cache",
+      "backingFile": "src/storage/CacheTypes.res",
+      "backingType": "cache",
+      "publicFile": "src/storage/Cache.res",
+      "publicAlias": "type t = CacheTypes.cache",
+      "accessors": []
+    },
+    {
+      "name": "CacheStorage",
+      "backingFile": "src/storage/CacheTypes.res",
+      "backingType": "cacheStorage",
+      "publicFile": "src/storage/CacheStorage.res",
+      "publicAlias": "type t = CacheTypes.cacheStorage",
+      "accessors": []
+    },
+    {
+      "name": "IDBFactory",
+      "backingFile": "src/storage/IndexedDbTypes.res",
+      "backingType": "idbFactory",
+      "publicFile": "src/storage/IDBFactory.res",
+      "publicAlias": "type t = IndexedDbTypes.idbFactory",
+      "accessors": []
+    },
+    {
+      "name": "IDBDatabase",
+      "backingFile": "src/storage/IndexedDbTypes.res",
+      "backingType": "idbDatabase",
+      "publicFile": "src/storage/IDBDatabase.res",
+      "publicAlias": "type t = IndexedDbTypes.idbDatabase",
+      "accessors": [
+        { "name": "name", "kind": "get", "property": "name" },
+        { "name": "version", "kind": "get", "property": "version" },
+        { "name": "objectStoreNames", "kind": "get", "property": "objectStoreNames" }
+      ]
+    },
+    {
+      "name": "StorageManager",
+      "backingFile": "src/storage/StorageTypes.res",
+      "backingType": "storageManager",
+      "publicFile": "src/storage/StorageManager.res",
+      "publicAlias": "type t = StorageTypes.storageManager",
+      "accessors": []
+    },
+    {
+      "name": "NavigationPreloadManager",
+      "backingFile": "src/workers/ServiceWorkerTypes.res",
+      "backingType": "navigationPreloadManager",
+      "publicFile": "src/workers/NavigationPreloadManager.res",
+      "publicAlias": "type t = ServiceWorkerTypes.navigationPreloadManager",
+      "accessors": []
+    },
+    {
+      "name": "PushEvent",
+      "backingFile": "src/messaging/PushTypes.res",
+      "backingType": "pushEvent",
+      "publicFile": "src/messaging/PushEvent.res",
+      "publicAlias": "type t = PushTypes.pushEvent",
+      "accessors": [{ "name": "data", "kind": "get", "property": "data" }]
+    },
+    {
+      "name": "Document",
+      "backingFile": "src/core/DOM.res",
+      "backingType": "document",
+      "publicFile": "src/core/DOM.res",
+      "publicAlias": "type document",
+      "accessors": []
+    },
+    {
+      "name": "Window",
+      "backingFile": "src/core/DOM.res",
+      "backingType": "window",
+      "publicFile": "src/window/Window.res",
+      "publicAlias": "type t = DOM.window",
+      "accessors": []
+    },
+    {
+      "name": "CustomElementRegistry",
+      "backingFile": "src/core/DOM.res",
+      "backingType": "customElementRegistry",
+      "publicFile": "src/window/CustomElementRegistry.res",
+      "publicAlias": "type t = DOM.customElementRegistry",
+      "accessors": []
+    },
+    {
+      "name": "AbortController",
+      "backingFile": "src/core/DOM.res",
+      "backingType": "abortController",
+      "publicFile": "src/event/AbortController.res",
+      "publicAlias": "type t = DOM.abortController",
+      "accessors": [{ "name": "signal", "kind": "get", "property": "signal" }]
+    }
+  ],
+  "constructibleDataExceptions": [
+    "src/fetch/FetchTypes.res:requestInit",
+    "src/fetch/FetchTypes.res:responseInit",
+    "src/file/FileTypes.res:blobPart (built with Blob.blobPartFromString/Blob.blobPartFromBlob)",
+    "src/crypto/WebCryptoTypes.res:cryptoKeyPair",
+    "src/crypto/WebCryptoTypes.res:keyAlgorithm",
+    "src/crypto/WebCryptoTypes.res:algorithm"
+  ],
+  "dataResultUnionModels": [
+    "src/fetch/FetchTypes.res:formDataEntryValue is abstract and inspected with FormDataEntryValue.asString/asFile because the compiler cannot unbox an abstract File payload"
+  ],
+  "unresolvedUnknownBackedHandles": [
+    "stream reader and writer types",
+    "worker context/source types modeled as unknown"
+  ],
+  "knownUncheckedPublicGenericImplConversions": [
+    "DomHTMLMediaElement.Impl.asHTMLMediaElement",
+    "MouseEvent.Impl.asMouseEvent",
+    "UIEvent.Impl.asUIEvent",
+    "AudioNode.Impl.asAudioNode",
+    "AudioScheduledSourceNode.Impl.asAudioScheduledSourceNode",
+    "BaseAudioContext.Impl.asBaseAudioContext"
+  ],
+  "unconvertedNativeGroups": [
+    "DOMTree and DOM nodes",
+    "HTML, SVG, Canvas",
+    "File/Streams",
+    "remaining Storage/IDB types, Workers other than NavigationPreloadManager, Messaging",
+    "CSSOM/Geometry/Animation",
+    "Media/WebAudio/Device/Performance/Navigator/Observers"
+  ]
+}

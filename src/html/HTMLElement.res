@@ -23,8 +23,6 @@ module Impl = (
 ) => {
   include Element.Impl({type t = T.t})
 
-  external asHTMLElement: T.t => DOMTree.htmlElement = "%identity"
-
   /**
 Returns the element's current hidden state.
 
@@ -106,6 +104,10 @@ rather than relying on coercion.
 }
 
 include Impl({type t = t})
+
+external asNode: t => DOMTree.node = "%identity"
+external asElement: t => DOMTree.element = "%identity"
+external asHTMLElement: t => DOMTree.htmlElement = "%identity"
 
 /**
 `isInstanceOf(value)`
