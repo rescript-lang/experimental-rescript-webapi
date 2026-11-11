@@ -3,7 +3,7 @@ const expectedInventory = {
   status: "partial",
   publicModuleCount: 291,
   sourceFeatureGroupCount: 28,
-  convertedCount: 39,
+  convertedCount: 40,
   names: [
     "Response",
     "Request",
@@ -28,6 +28,7 @@ const expectedInventory = {
     "Cache",
     "CacheStorage",
     "IDBFactory",
+    "IDBDatabase",
     "StorageManager",
     "NavigationPreloadManager",
     "PushEvent",

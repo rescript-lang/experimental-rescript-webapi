@@ -32,24 +32,7 @@ This WebApiIndexedDB API interface provides a connection to a database; you can 
 [See IDBDatabase on MDN](https://developer.mozilla.org/docs/Web/API/IDBDatabase)
 */
 @editor.completeFrom(IDBDatabase)
-type idbDatabase = private {
-  ...DOM.eventTarget,
-  /**
-    Returns the name of the database.
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/IDBDatabase/name)
-    */
-  name: string,
-  /**
-    Returns the version of the database.
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/IDBDatabase/version)
-    */
-  version: int,
-  /**
-    Returns a list of the names of object stores in the database.
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/IDBDatabase/objectStoreNames)
-    */
-  objectStoreNames: DOM.domStringList,
-}
+type idbDatabase
 
 /**
 [See IDBTransaction on MDN](https://developer.mozilla.org/docs/Web/API/IDBTransaction)

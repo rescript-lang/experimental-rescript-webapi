@@ -4,13 +4,14 @@ external myForm: DOMTree.htmlFormElement = "myForm"
 
 module EntryValue = FormDataEntryValue
 
-open EntryValue
-
 let logEntry = (~stringPrefix: string, ~filePrefix: string, entry: EntryValue.t) =>
-  switch EntryValue.decode(entry) {
-  | Some(String(value)) => Console.log(`${stringPrefix}${value}`)
-  | Some(File(file)) => Console.log(`${filePrefix}${File.name(file)}`)
-  | None => Console.log("Unsupported FormData entry")
+  switch EntryValue.asString(entry) {
+  | Some(value) => Console.log(`${stringPrefix}${value}`)
+  | None =>
+    switch EntryValue.asFile(entry) {
+    | Some(file) => Console.log(`${filePrefix}${File.name(file)}`)
+    | None => Console.log("Unsupported FormData entry")
+    }
   }
 
 let formData: FormData.t = FormData.make(~form=myForm)
@@ -31,7 +32,7 @@ let _ =
     logEntry(~stringPrefix="String value: ", ~filePrefix="WebApiFile: ", entry)
   )
 
-// Create actual string and file entries, then decode the native results.
+// Create actual string and file entries, then inspect the native results.
 let blob: Blob.t = Blob.make(~blobParts=[])
 let file: File.t = File.make(~fileBits=[], ~fileName="test.txt")
 
@@ -63,9 +64,12 @@ let _ =
   entries
   ->Array.fromIterable
   ->Array.forEach(((key, value)) => {
-    switch EntryValue.decode(value) {
-    | Some(String(s)) => Console.log(`${key}: ${s}`)
-    | Some(File(f)) => Console.log(`${key}: [WebApiFile] ${File.name(f)}`)
-    | None => Console.log(`${key}: unsupported entry`)
+    switch EntryValue.asString(value) {
+    | Some(s) => Console.log(`${key}: ${s}`)
+    | None =>
+      switch EntryValue.asFile(value) {
+      | Some(f) => Console.log(`${key}: [WebApiFile] ${File.name(f)}`)
+      | None => Console.log(`${key}: unsupported entry`)
+      }
     }
   })

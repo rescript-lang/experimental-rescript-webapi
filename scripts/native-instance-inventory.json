@@ -3,7 +3,7 @@
   "status": "partial",
   "publicModuleCount": 291,
   "sourceFeatureGroupCount": 28,
-  "expectedConvertedNativeInstanceCount": 39,
+  "expectedConvertedNativeInstanceCount": 40,
   "convertedNativeInstances": [
     {
       "name": "Response",
@@ -365,6 +365,18 @@
       "accessors": []
     },
     {
+      "name": "IDBDatabase",
+      "backingFile": "src/storage/IndexedDbTypes.res",
+      "backingType": "idbDatabase",
+      "publicFile": "src/storage/IDBDatabase.res",
+      "publicAlias": "type t = IndexedDbTypes.idbDatabase",
+      "accessors": [
+        { "name": "name", "kind": "get", "property": "name" },
+        { "name": "version", "kind": "get", "property": "version" },
+        { "name": "objectStoreNames", "kind": "get", "property": "objectStoreNames" }
+      ]
+    },
+    {
       "name": "StorageManager",
       "backingFile": "src/storage/StorageTypes.res",
       "backingType": "storageManager",
@@ -430,7 +442,7 @@
     "src/crypto/WebCryptoTypes.res:algorithm"
   ],
   "dataResultUnionModels": [
-    "src/fetch/FetchTypes.res:formDataEntryValue is abstract and decoded with FormDataEntryValue.decode because the compiler cannot unbox an abstract File payload"
+    "src/fetch/FetchTypes.res:formDataEntryValue is abstract and inspected with FormDataEntryValue.asString/asFile because the compiler cannot unbox an abstract File payload"
   ],
   "unresolvedUnknownBackedHandles": [
     "stream reader and writer types",

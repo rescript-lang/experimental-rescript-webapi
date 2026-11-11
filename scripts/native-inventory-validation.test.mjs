@@ -86,8 +86,8 @@ test("prevents inventory metadata from silently shrinking or declaring completio
       status: "partial",
       publicModuleCount: 291,
       sourceFeatureGroupCount: 28,
-      expectedConvertedNativeInstanceCount: 39,
-      convertedNativeInstances: Array.from({ length: 39 }, (_, index) => ({
+      expectedConvertedNativeInstanceCount: 40,
+      convertedNativeInstances: Array.from({ length: 40 }, (_, index) => ({
         name: [
           "Response",
           "Request",
@@ -112,6 +112,7 @@ test("prevents inventory metadata from silently shrinking or declaring completio
           "Cache",
           "CacheStorage",
           "IDBFactory",
+          "IDBDatabase",
           "StorageManager",
           "NavigationPreloadManager",
           "PushEvent",

@@ -1,4 +1,24 @@
+type t = IndexedDbTypes.idbDatabase
+
 include EventTarget.Impl({type t = IndexedDbTypes.idbDatabase})
+
+/**
+Returns the name of the database.
+[Read more on MDN](https://developer.mozilla.org/docs/Web/API/IDBDatabase/name)
+*/
+@get external name: t => string = "name"
+
+/**
+Returns the version of the database.
+[Read more on MDN](https://developer.mozilla.org/docs/Web/API/IDBDatabase/version)
+*/
+@get external version: t => int = "version"
+
+/**
+Returns a list of the names of object stores in the database.
+[Read more on MDN](https://developer.mozilla.org/docs/Web/API/IDBDatabase/objectStoreNames)
+*/
+@get external objectStoreNames: t => DOM.domStringList = "objectStoreNames"
 
 /**
 Returns a new transaction with the given mode ("readonly" or "readwrite") and scope which can be a single object store name or an array of names.

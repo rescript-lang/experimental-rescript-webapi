@@ -117,9 +117,9 @@ let formData = FormData.make()
 FormData.append(formData, ~name="text", ~value="native string")
 switch FormData.get(formData, "text")->Null.toOption {
 | Some(value) =>
-  switch FormDataEntryValue.decode(value) {
-  | Some(FormDataEntryValue.String(text)) => assert(text == "native string")
-  | Some(FormDataEntryValue.File(_)) | None => assert(false)
+  switch FormDataEntryValue.asString(value) {
+  | Some(text) => assert(text == "native string")
+  | None => assert(false)
   }
 | None => assert(false)
 }
@@ -128,9 +128,9 @@ let file = File.make(~fileBits=[Blob.blobPartFromString("native file")], ~fileNa
 FormData.appendBlob(formData, ~name="file", ~blobValue=File.asBlob(file), ~filename="contract.txt")
 switch FormData.get(formData, "file")->Null.toOption {
 | Some(value) =>
-  switch FormDataEntryValue.decode(value) {
-  | Some(FormDataEntryValue.File(decodedFile)) => assert(File.name(decodedFile) == "contract.txt")
-  | Some(FormDataEntryValue.String(_)) | None => assert(false)
+  switch FormDataEntryValue.asFile(value) {
+  | Some(decodedFile) => assert(File.name(decodedFile) == "contract.txt")
+  | None => assert(false)
   }
 | None => assert(false)
 }
