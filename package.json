@@ -51,7 +51,7 @@
     "build:docs": "astro build"
   },
   "devDependencies": {
-    "@astrojs/starlight": "0.42.8",
+    "@astrojs/starlight": "0.42.10",
     "@playwright/test": "^1.64.1",
     "astro": "^7.2.9",
     "entities": "4.5.0",
