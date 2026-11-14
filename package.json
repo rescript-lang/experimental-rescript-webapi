@@ -59,7 +59,7 @@
     "oxfmt": "^0.76.0",
     "prettier": "^3.8.3",
     "prettier-plugin-astro": "^1.0.0",
-    "rescript": "13.0.0-alpha.5",
+    "rescript": "13.0.0-alpha.7",
     "sharp": "^0.35.3",
     "ws": "^8.22.1"
   },
