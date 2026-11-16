@@ -127,6 +127,7 @@ type init = {
 external make: (~options: init=?) => cssStyleSheet = "CSSStyleSheet"
 
 external asStyleSheet: cssStyleSheet => t = "%identity"
+
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CSSStyleSheet/insertRule)
 */

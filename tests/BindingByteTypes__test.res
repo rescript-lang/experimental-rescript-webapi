@@ -8,10 +8,12 @@ let _analyserFloat: (
   WebAudioTypes.analyserNode,
   Float32Array.t,
 ) => unit = AnalyserNode.getFloatTimeDomainData
+
 let _analyserByte: (
   WebAudioTypes.analyserNode,
   Uint8Array.t,
 ) => unit = AnalyserNode.getByteTimeDomainData
+
 let _audioBuffer: (WebAudioTypes.audioBuffer, int) => Float32Array.t = AudioBuffer.getChannelData
 
 let _sign: SubtleCrypto.keyUsage = SubtleCrypto.signUsage

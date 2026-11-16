@@ -2,6 +2,7 @@
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Blob)
 */
 type t = FileTypes.blob = private {...FileTypes.blob}
+
 type blobPart = FileTypes.blobPart
 type blobPropertyBag = FileTypes.blobPropertyBag
 
@@ -14,6 +15,7 @@ module Impl = (
   },
 ) => {
   external asBlob: T.t => t = "%identity"
+
   /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Blob/slice)
 */

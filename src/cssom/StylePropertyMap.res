@@ -7,6 +7,7 @@ type t = private {
 }
 
 external asStylePropertyMapReadOnly: t => StylePropertyMapReadOnly.t = "%identity"
+
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/StylePropertyMapReadOnly/getAll)
 */

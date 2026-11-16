@@ -132,6 +132,7 @@ type fileSystemWritableFileStream = private {
 type blobPart =
   | String(string)
   | Blob(blob)
+
 // | ArrayBuffer(ArrayBuffer.t)
 // | TypedArray(TypedArray.t<int>)
 
