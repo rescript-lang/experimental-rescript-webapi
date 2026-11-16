@@ -67,6 +67,17 @@ test("retains support for parsed record field signatures", () => {
   );
 });
 
+test("preserves callback field syntax without linking the arrow as part of a type", () => {
+  const signature = "(WebAPI.DOMTree.node, ~value: option<'t>) => array<WebAPI.Element.t>";
+  const parts = signatureParts({ kind: "rendered", signature });
+  assert.equal(signatureText(parts), signature);
+  assert.deepEqual(
+    parts.filter((part) => part.path?.startsWith("WebAPI.")).map((part) => part.path),
+    ["WebAPI.DOMTree.node", "WebAPI.Element.t"],
+  );
+  assert.ok(!parts.some((part) => part.path === "t"));
+});
+
 test("fails visibly on an unsupported compiler signature kind", () => {
   assert.throws(
     () => signatureParts({ kind: "unexpected" }),
