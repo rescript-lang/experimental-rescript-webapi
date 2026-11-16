@@ -43,16 +43,26 @@ Native-instance privacy is being implemented in the private-record alternative f
 [#403](https://github.com/rescript-lang/experimental-rescript-webapi/issues/403). Protected
 instances retain direct reads and use typed setters for supported writes; caller-owned option and
 initializer records remain constructible. This is not yet complete across the package while the
-implementation is under review. The private-record representation also permits a deliberate
-explicit structural coercion (`:>`) from a recreated public shape, so it does not provide an
-unforgeable native-instance brand. Generator reproducibility remains separate follow-up work.
+implementation is under review. ReScript `13.0.0-alpha.7` rejects ordinary explicit coercions
+(`:>`) into private records, including structural upcasts between distinct private-record types;
+supported native conversions use concrete-receiver helpers rather than unrestricted `Impl`
+identity conversions. Dictionaries remain public, including the caller-implemented `NodeFilter`
+callback interface. This compile-time restriction is not a security boundary against JavaScript or
+unsafe casts. Generator reproducibility remains separate follow-up work.
 
-Some signatures still use `unknown` placeholders instead of a modeled native identity. In
-particular, stream reader/writer types, DOM/Canvas rendering-context unions, and the performance
-entry-list handle are not protected by this record policy. Input and mixed placeholders such as
-stream source/sink/strategy types, request information, IDB keys, media providers, and algorithm
-identifiers are also not native-instance guarantees. See the checked native-instance inventory for
-the exact current disposition; these placeholders must not be counted as protected records.
+Stream readers/writers and the rendering-context placeholder types now have abstract native
+identities. Performance entry lists are ordinary arrays containing private native entries, not
+branded containers. Checked Canvas style and intersection-root conversions return options.
+
+The migration still does not establish package-wide native-instance soundness. Event listeners
+allow caller-selected payload types unrelated to the event descriptor, and public generic binding
+functors need a broader receiver-constraint audit beyond their removed identity conversions.
+Unknown native unions and result positions remain in canvas owners, stylesheet owner nodes,
+IndexedDB sources/cursors, DOM label lists, media providers, message sources, and generic crypto
+results. Additional inherited write/conversion routes also remain under review. Input placeholders
+such as stream source/sink/strategy types, request information, IDB keys, and algorithm identifiers
+remain separate modeling work. The checked native-instance inventory records these gaps explicitly;
+passing its declaration checks is not proof that every exported binding is sound.
 
 CI uses Node 26 for ReScript compilation and Node runtime fixtures. Its Playwright suite runs
 compiled Chromium regressions for the confirmed alpha contracts, including typed byte/audio

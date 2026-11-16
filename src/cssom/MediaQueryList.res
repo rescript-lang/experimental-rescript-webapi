@@ -16,3 +16,5 @@ type t = private {
 }
 
 include EventTarget.Impl({type t = t})
+
+external asEventTarget: t => DOM.eventTarget = "%identity"

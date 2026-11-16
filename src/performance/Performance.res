@@ -1,5 +1,7 @@
 include EventTarget.Impl({type t = PerformanceTypes.performance})
 
+external asEventTarget: PerformanceTypes.performance => DOM.eventTarget = "%identity"
+
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Performance/now)
 */

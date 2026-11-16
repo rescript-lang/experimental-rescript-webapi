@@ -77,10 +77,10 @@ The development compiler and the exact version exercised by this check are ReScr
 `13.0.0-alpha.7`. The peer range `>=13.0.0-alpha.7 <13.0.0` admits later `13.0.0` prereleases;
 it does not claim support for earlier compilers or stable `13.0.0`.
 
-The consumer checks reject installation with ReScript 12 and the former alpha.5 baseline.
-They also verify that a public record shape cannot be coerced into the private native Response
-type, while native construction, field reads, outward coercion to a public shape, and the
-supported File-to-Blob conversion still work.
+The consumer checks reject installation with ReScript 12 and verify private-record behavior on
+alpha.7: ordinary coercions into private records, including structural upcasts between distinct
+private-record types, are rejected. Native construction, field reads, outward coercion to a public
+shape, and supported typed conversions such as File-to-Blob remain available.
 
 ## Why add tests?
 

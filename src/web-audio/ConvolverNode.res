@@ -1,8 +1,12 @@
 include AudioNode.Impl({type t = WebAudioTypes.convolverNode})
 
+external asEventTarget: WebAudioTypes.convolverNode => DOM.eventTarget = "%identity"
+external asAudioNode: WebAudioTypes.convolverNode => WebAudioTypes.audioNode = "%identity"
+
 @throws(JsExn) @set
 external setBuffer: (WebAudioTypes.convolverNode, Null.t<WebAudioTypes.audioBuffer>) => unit =
   "buffer"
+
 @set
 external setNormalize: (WebAudioTypes.convolverNode, bool) => unit = "normalize"
 

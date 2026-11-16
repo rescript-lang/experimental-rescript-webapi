@@ -1,5 +1,8 @@
 include EventTarget.Impl({type t = ServiceWorkerTypes.serviceWorkerRegistration})
 
+external asEventTarget: ServiceWorkerTypes.serviceWorkerRegistration => DOM.eventTarget =
+  "%identity"
+
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/ServiceWorkerRegistration/update)
 */

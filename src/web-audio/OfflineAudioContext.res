@@ -1,5 +1,10 @@
 include BaseAudioContext.Impl({type t = WebAudioTypes.offlineAudioContext})
 
+external asEventTarget: WebAudioTypes.offlineAudioContext => DOM.eventTarget = "%identity"
+
+external asBaseAudioContext: WebAudioTypes.offlineAudioContext => WebAudioTypes.baseAudioContext =
+  "%identity"
+
 /**
 `fromOptions(offlineAudioContextOptions)`
 

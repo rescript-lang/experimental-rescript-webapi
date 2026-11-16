@@ -1,5 +1,7 @@
 include EventTarget.Impl({type t = IndexedDbTypes.idbTransaction})
 
+external asEventTarget: IndexedDbTypes.idbTransaction => DOM.eventTarget = "%identity"
+
 /**
 Returns an IDBObjectStore in the transaction's scope.
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/IDBTransaction/objectStore)

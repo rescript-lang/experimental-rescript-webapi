@@ -1,5 +1,8 @@
 include AudioNode.Impl({type t = WebAudioTypes.biquadFilterNode})
 
+external asEventTarget: WebAudioTypes.biquadFilterNode => DOM.eventTarget = "%identity"
+external asAudioNode: WebAudioTypes.biquadFilterNode => WebAudioTypes.audioNode = "%identity"
+
 @set
 external setType: (WebAudioTypes.biquadFilterNode, WebAudioTypes.biquadFilterType) => unit = "type"
 

@@ -63,14 +63,23 @@ type t = private {
 
 include HTMLElement.Impl({type t = t})
 
+external asEventTarget: t => DOM.eventTarget = "%identity"
+external asNode: t => DOMTree.node = "%identity"
+external asElement: t => DOMTree.element = "%identity"
+external asHTMLElement: t => DOMTree.htmlElement = "%identity"
+
 @set
 external setData: (t, string) => unit = "data"
+
 @set
 external setType: (t, string) => unit = "type"
+
 @set
 external setName: (t, string) => unit = "name"
+
 @set
 external setWidth: (t, string) => unit = "width"
+
 @set
 external setHeight: (t, string) => unit = "height"
 

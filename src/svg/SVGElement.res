@@ -77,20 +77,25 @@ module Impl = (
 ) => {
   include Element.Impl({type t = T.t})
 
-  external asSVGElement: T.t => t = "%identity"
-
   /**
   Writes the native string-valued nonce property. Pass an empty string to clear it.
   */
   @set
   external setNonce: (T.t, string) => unit = "nonce"
+
   @set
   external setAutofocus: (T.t, bool) => unit = "autofocus"
+
   @set
   external setTabIndex: (T.t, int) => unit = "tabIndex"
 }
 
 include Impl({type t = t})
+
+external asEventTarget: t => DOM.eventTarget = "%identity"
+external asNode: t => DOMTree.node = "%identity"
+external asElement: t => DOMTree.element = "%identity"
+external asSVGElement: t => t = "%identity"
 
 /**
 SVG elements whose primary purpose is to directly render graphics into a group.

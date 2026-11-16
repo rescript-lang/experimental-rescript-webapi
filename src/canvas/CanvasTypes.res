@@ -422,7 +422,7 @@ type textMetrics = private {
   ideographicBaseline: float,
 }
 
-type offscreenRenderingContext = unknown
+type offscreenRenderingContext = DOM.offscreenRenderingContext
 
 type imageEncodeOptions = {
   @as("type") mutable type_?: string,

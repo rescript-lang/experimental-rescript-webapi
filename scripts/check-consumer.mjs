@@ -228,6 +228,16 @@ const checkConsumers = async () => {
           features: null,
         },
         {
+          name: "public media, DOM, and geometry setters",
+          fixture: "scripts/consumer-native-setter-gaps.res",
+          features: null,
+        },
+        {
+          name: "concrete native upcasts and handle identities",
+          fixture: "scripts/consumer-native-identities.res",
+          features: null,
+        },
+        {
           name: "Fetch-only",
           fixture: "scripts/consumer-fetch.res",
           features: ["WebAPI.Fetch"],

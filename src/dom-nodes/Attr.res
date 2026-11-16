@@ -100,5 +100,11 @@ type t = private {
   ownerElement: Null.t<DOMTree.element>,
 }
 
+external asNode: t => DOMTree.node = "%identity"
+external asEventTarget: t => DOM.eventTarget = "%identity"
+
+@set external setNodeValue: (t, Null.t<string>) => unit = "nodeValue"
+@set external setTextContent: (t, Null.t<string>) => unit = "textContent"
+
 @set
 external setValue: (t, string) => unit = "value"

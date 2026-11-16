@@ -1,5 +1,11 @@
 include AudioScheduledSourceNode.Impl({type t = WebAudioTypes.oscillatorNode})
 
+external asEventTarget: WebAudioTypes.oscillatorNode => DOM.eventTarget = "%identity"
+external asAudioNode: WebAudioTypes.oscillatorNode => WebAudioTypes.audioNode = "%identity"
+
+external asAudioScheduledSourceNode: WebAudioTypes.oscillatorNode => WebAudioTypes.audioScheduledSourceNode =
+  "%identity"
+
 @set
 external setType: (WebAudioTypes.oscillatorNode, WebAudioTypes.oscillatorType) => unit = "type"
 

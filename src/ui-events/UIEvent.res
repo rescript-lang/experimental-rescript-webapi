@@ -12,9 +12,10 @@ module Impl = (
     type t
   },
 ) => {
-  external asUIEvent: T.t => UiEventsTypes.uiEvent = "%identity"
-
   include Event.Impl({type t = T.t})
 }
 
 include Impl({type t = UiEventsTypes.uiEvent})
+
+external asEvent: UiEventsTypes.uiEvent => DOM.event = "%identity"
+external asUIEvent: UiEventsTypes.uiEvent => UiEventsTypes.uiEvent = "%identity"

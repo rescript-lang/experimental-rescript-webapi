@@ -1,5 +1,7 @@
 include EventTarget.Impl({type t = WebSpeechTypes.speechSynthesis})
 
+external asEventTarget: WebSpeechTypes.speechSynthesis => DOM.eventTarget = "%identity"
+
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/SpeechSynthesis/speak)
 */

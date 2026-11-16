@@ -27,11 +27,19 @@ type t = private {
 
 include HTMLElement.Impl({type t = t})
 
+external asEventTarget: t => DOM.eventTarget = "%identity"
+external asNode: t => DOMTree.node = "%identity"
+external asElement: t => DOMTree.element = "%identity"
+external asHTMLElement: t => DOMTree.htmlElement = "%identity"
+
 @set
 external setName: (t, string) => unit = "name"
+
 @set
 external setHttpEquiv: (t, string) => unit = "httpEquiv"
+
 @set
 external setContent: (t, string) => unit = "content"
+
 @set
 external setMedia: (t, string) => unit = "media"

@@ -4,20 +4,32 @@ type t = DOMTree.htmlFormElement = private {
 
 include HTMLElement.Impl({type t = t})
 
+external asEventTarget: t => DOM.eventTarget = "%identity"
+external asNode: t => DOMTree.node = "%identity"
+external asElement: t => DOMTree.element = "%identity"
+external asHTMLElement: t => DOMTree.htmlElement = "%identity"
+
 @set
 external setAcceptCharset: (t, string) => unit = "acceptCharset"
+
 @set
 external setAction: (t, string) => unit = "action"
+
 @set
 external setAutocomplete: (t, DOM.autoFillBase) => unit = "autocomplete"
+
 @set
 external setEnctype: (t, string) => unit = "enctype"
+
 @set
 external setEncoding: (t, string) => unit = "encoding"
+
 @set
 external setMethod: (t, string) => unit = "method"
+
 @set
 external setName: (t, string) => unit = "name"
+
 @set
 external setTarget: (t, string) => unit = "target"
 

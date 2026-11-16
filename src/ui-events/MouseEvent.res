@@ -12,8 +12,6 @@ module Impl = (
     type t
   },
 ) => {
-  external asMouseEvent: T.t => UiEventsTypes.mouseEvent = "%identity"
-
   include UIEvent.Impl({type t = T.t})
 
   /**
@@ -24,3 +22,7 @@ module Impl = (
 }
 
 include Impl({type t = UiEventsTypes.mouseEvent})
+
+external asEvent: UiEventsTypes.mouseEvent => DOM.event = "%identity"
+external asUIEvent: UiEventsTypes.mouseEvent => UiEventsTypes.uiEvent = "%identity"
+external asMouseEvent: UiEventsTypes.mouseEvent => UiEventsTypes.mouseEvent = "%identity"

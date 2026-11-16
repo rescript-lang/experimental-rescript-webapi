@@ -1,5 +1,7 @@
 include EventTarget.Impl({type t = DOM.abortSignal})
 
+external asEventTarget: DOM.abortSignal => DOM.eventTarget = "%identity"
+
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/AbortSignal/abort_static)
 */

@@ -341,6 +341,11 @@ type t = private {
 
 include HTMLElement.Impl({type t = t})
 
+external asEventTarget: t => DOM.eventTarget = "%identity"
+external asNode: t => DOMTree.node = "%identity"
+external asElement: t => DOMTree.element = "%identity"
+external asHTMLElement: t => DOMTree.htmlElement = "%identity"
+
 @set external setAlt: (t, string) => unit = "alt"
 @set external setSrc: (t, string) => unit = "src"
 @set external setSrcset: (t, string) => unit = "srcset"

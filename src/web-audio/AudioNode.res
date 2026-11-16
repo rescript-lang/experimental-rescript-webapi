@@ -7,8 +7,6 @@ module Impl = (
 ) => {
   include EventTarget.Impl({type t = T.t})
 
-  external asAudioNode: T.t => WebAudioTypes.audioNode = "%identity"
-
   /**
   Sets the AudioNode channel count. Values outside the node's supported range may throw.
   */

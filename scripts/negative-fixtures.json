@@ -1,5 +1,119 @@
 [
   {
+    "name": "WaveShaper curve requires a native Float32Array",
+    "fixture": "scripts/fixtures/negative/WaveShaperCurveRejectsOrdinaryArray.res",
+    "features": null,
+    "expectedDiagnostic": "Float32Array.t"
+  },
+  {
+    "name": "output type has no writable setter",
+    "fixture": "scripts/fixtures/negative/OutputTypeIsReadOnly.res",
+    "features": null,
+    "expectedDiagnostic": "The value setType can't be found"
+  },
+  {
+    "name": "textarea type has no writable setter",
+    "fixture": "scripts/fixtures/negative/TextAreaTypeIsReadOnly.res",
+    "features": null,
+    "expectedDiagnostic": "The value setType can't be found"
+  },
+  {
+    "name": "Node functors cannot forge native nodes",
+    "fixture": "scripts/fixtures/negative/NodeImplCannotForgeNativeType.res",
+    "features": null,
+    "expectedDiagnostic": "The value asNode can't be found in Fake"
+  },
+  {
+    "name": "Blob functors cannot forge native blobs",
+    "fixture": "scripts/fixtures/negative/BlobImplCannotForgeNativeType.res",
+    "features": null,
+    "expectedDiagnostic": "The value asBlob can't be found in Fake"
+  },
+  {
+    "name": "Event functors cannot forge native events",
+    "fixture": "scripts/fixtures/negative/EventImplCannotForgeNativeType.res",
+    "features": null,
+    "expectedDiagnostic": "The value asEvent can't be found in Fake"
+  },
+  {
+    "name": "HTML functors cannot forge native elements",
+    "fixture": "scripts/fixtures/negative/HTMLElementImplCannotForgeNativeType.res",
+    "features": null,
+    "expectedDiagnostic": "The value asHTMLElement can't be found in Fake"
+  },
+  {
+    "name": "SVG functors cannot forge native elements",
+    "fixture": "scripts/fixtures/negative/SVGElementImplCannotForgeNativeType.res",
+    "features": null,
+    "expectedDiagnostic": "The value asSVGElement can't be found in Fake"
+  },
+  {
+    "name": "Audio functors cannot forge native nodes",
+    "fixture": "scripts/fixtures/negative/AudioNodeImplCannotForgeNativeType.res",
+    "features": null,
+    "expectedDiagnostic": "The value asAudioNode can't be found in Fake"
+  },
+  {
+    "name": "Audio context functors cannot forge native contexts",
+    "fixture": "scripts/fixtures/negative/BaseAudioContextImplCannotForgeNativeType.res",
+    "features": null,
+    "expectedDiagnostic": "The value asBaseAudioContext can't be found in Fake"
+  },
+  {
+    "name": "native stream readers reject strings",
+    "fixture": "scripts/fixtures/negative/NativeReaderCannotBeString.res",
+    "features": null,
+    "expectedDiagnostic": "WebAPI.FileTypes.readableStreamReader"
+  },
+  {
+    "name": "native stream writers reject strings",
+    "fixture": "scripts/fixtures/negative/NativeWriterCannotBeString.res",
+    "features": null,
+    "expectedDiagnostic": "WebAPI.FileTypes.writableStreamDefaultWriter"
+  },
+  {
+    "name": "native rendering contexts reject strings",
+    "fixture": "scripts/fixtures/negative/NativeRenderingContextCannotBeString.res",
+    "features": null,
+    "expectedDiagnostic": "WebAPI.DOM.renderingContext"
+  },
+  {
+    "name": "native offscreen contexts reject strings",
+    "fixture": "scripts/fixtures/negative/NativeOffscreenContextCannotBeString.res",
+    "features": null,
+    "expectedDiagnostic": "WebAPI.CanvasTypes.offscreenRenderingContext"
+  },
+  {
+    "name": "fill styles require checked gradient narrowing",
+    "fixture": "scripts/fixtures/negative/FillStyleCannotForgeGradient.res",
+    "features": null,
+    "expectedDiagnostic": "option<WebAPI.CanvasTypes.canvasGradient>"
+  },
+  {
+    "name": "observer roots require checked element narrowing",
+    "fixture": "scripts/fixtures/negative/ObserverRootCannotForgeElement.res",
+    "features": null,
+    "expectedDiagnostic": "option<WebAPI.DOMTree.element>"
+  },
+  {
+    "name": "media key access has a fixed native result",
+    "fixture": "scripts/fixtures/negative/MediaKeyAccessCannotBeResponse.res",
+    "features": null,
+    "expectedDiagnostic": "mediaKeySystemAccess"
+  },
+  {
+    "name": "omitted MessageEvent data is nullable",
+    "fixture": "scripts/fixtures/negative/MessageEventDefaultCannotBeResponse.res",
+    "features": null,
+    "expectedDiagnostic": "Null.t<"
+  },
+  {
+    "name": "distinct private records require supported native upcast helpers",
+    "fixture": "scripts/fixtures/negative/FileCannotStructurallyCoerceToBlob.res",
+    "features": null,
+    "expectedDiagnostic": "is private: its values can only be built in the module that defines it"
+  },
+  {
     "name": "expected compiler diagnostic matching",
     "fixture": "scripts/fixtures/negative/DiagnosticMatching.res",
     "features": null,

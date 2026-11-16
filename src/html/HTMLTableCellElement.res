@@ -38,6 +38,11 @@ type t = private {
 
 include HTMLElement.Impl({type t = t})
 
+external asEventTarget: t => DOM.eventTarget = "%identity"
+external asNode: t => DOMTree.node = "%identity"
+external asElement: t => DOMTree.element = "%identity"
+external asHTMLElement: t => DOMTree.htmlElement = "%identity"
+
 @set external setColSpan: (t, int) => unit = "colSpan"
 @set external setRowSpan: (t, int) => unit = "rowSpan"
 @set external setHeaders: (t, string) => unit = "headers"

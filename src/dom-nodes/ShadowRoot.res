@@ -4,6 +4,10 @@ type t = DOMTree.shadowRoot = private {
 
 include DocumentFragment.Impl({type t = t})
 
+external asEventTarget: t => DOM.eventTarget = "%identity"
+external asNode: t => DOMTree.node = "%identity"
+external asDocumentFragment: t => DOMTree.documentFragment = "%identity"
+
 /**
 Sets the serialized HTML contents of this shadow root.
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/ShadowRoot/innerHTML)

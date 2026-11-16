@@ -5,15 +5,18 @@ type messageEventSource = WebSocketsTypes.messageEventSource
 type messageEvent<'t> = WebSocketsTypes.messageEvent<'t> = private {
   ...WebSocketsTypes.messageEvent<'t>,
 }
+
 type messageEventInit<'t> = WebSocketsTypes.messageEventInit<'t>
 
 type t<'t> = messageEvent<'t> = private {...messageEvent<'t>}
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/MessageEvent)
+The native default for omitted data is null, so constructor results have nullable payloads.
 */
 @new
-external make: (~type_: string, ~eventInitDict: messageEventInit<'t>=?) => t<'t> = "MessageEvent"
+external make: (~type_: string, ~eventInitDict: messageEventInit<'t>=?) => t<Null.t<'t>> =
+  "MessageEvent"
 
 external asEvent: t<'t> => event = "%identity"
 

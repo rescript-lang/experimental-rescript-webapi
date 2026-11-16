@@ -1,5 +1,10 @@
 include BaseAudioContext.Impl({type t = WebAudioTypes.audioContext})
 
+external asEventTarget: WebAudioTypes.audioContext => DOM.eventTarget = "%identity"
+
+external asBaseAudioContext: WebAudioTypes.audioContext => WebAudioTypes.baseAudioContext =
+  "%identity"
+
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/AudioContext)
 */

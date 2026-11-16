@@ -302,24 +302,38 @@ type t = private {
 
 include HTMLElement.Impl({type t = t})
 
-@set
+external asEventTarget: t => DOM.eventTarget = "%identity"
+external asNode: t => DOMTree.node = "%identity"
+external asElement: t => DOMTree.element = "%identity"
+external asHTMLElement: t => DOMTree.htmlElement = "%identity"
+
+@throws(JsExn) @set
 external setSrc: (t, string) => unit = "src"
+
 @set
 external setType: (t, string) => unit = "type"
+
 @set
 external setNoModule: (t, bool) => unit = "noModule"
+
 @set
 external setAsync: (t, bool) => unit = "async"
+
 @set
 external setDefer: (t, bool) => unit = "defer"
+
 @set
 external setCrossOrigin: (t, Null.t<string>) => unit = "crossOrigin"
-@set
+
+@throws(JsExn) @set
 external setText: (t, string) => unit = "text"
+
 @set
 external setIntegrity: (t, string) => unit = "integrity"
+
 @set
 external setReferrerPolicy: (t, string) => unit = "referrerPolicy"
+
 @set
 external setFetchPriority: (t, string) => unit = "fetchPriority"
 

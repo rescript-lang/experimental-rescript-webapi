@@ -10,4 +10,5 @@ Sets the transformation matrix that will be used when rendering the pattern duri
 external setTransform: (CanvasTypes.canvasPattern, ~transform: domMatrix2DInit=?) => unit =
   "setTransform"
 
-let isInstanceOf = (_: 't): bool => %raw(`param instanceof CanvasPattern`)
+let isInstanceOf = (_: 't): bool =>
+  %raw(`typeof globalThis.CanvasPattern === "function" && param instanceof globalThis.CanvasPattern`)

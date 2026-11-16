@@ -1,5 +1,10 @@
 include AudioNode.Impl({type t = WebAudioTypes.mediaStreamAudioSourceNode})
 
+external asEventTarget: WebAudioTypes.mediaStreamAudioSourceNode => DOM.eventTarget = "%identity"
+
+external asAudioNode: WebAudioTypes.mediaStreamAudioSourceNode => WebAudioTypes.audioNode =
+  "%identity"
+
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/MediaStreamAudioSourceNode)
 */

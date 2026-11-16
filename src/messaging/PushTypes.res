@@ -27,9 +27,10 @@ type applicationServerKey
 [See PushSubscriptionOptions on MDN](https://developer.mozilla.org/docs/Web/API/PushSubscriptionOptions)
 */
 /**
-Although named Options, this is the native PushSubscriptionOptions instance.
-Like the other private native records here, an explicit structural coercion
-(`:>`) can bypass this boundary; it is not an opaque-type guarantee.
+Although named Options, this is the native PushSubscriptionOptions instance. Alpha.7 rejects
+ordinary explicit coercions (`:>`) into private records, including structural upcasts between
+distinct private-record types. This compile-time restriction is not a security boundary against
+unsafe casts or JavaScript fabrication.
 */
 type pushSubscriptionOptions = private {
   /**

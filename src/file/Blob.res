@@ -14,8 +14,6 @@ module Impl = (
     type t
   },
 ) => {
-  external asBlob: T.t => t = "%identity"
-
   /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Blob/slice)
 */
@@ -48,3 +46,5 @@ module Impl = (
 }
 
 include Impl({type t = t})
+
+external asBlob: t => t = "%identity"

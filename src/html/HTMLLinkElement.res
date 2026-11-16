@@ -67,25 +67,40 @@ type t = private {
 
 include HTMLElement.Impl({type t = t})
 
+external asEventTarget: t => DOM.eventTarget = "%identity"
+external asNode: t => DOMTree.node = "%identity"
+external asElement: t => DOMTree.element = "%identity"
+external asHTMLElement: t => DOMTree.htmlElement = "%identity"
+
 @set
 external setHref: (t, string) => unit = "href"
+
 @set
 external setCrossOrigin: (t, Null.t<string>) => unit = "crossOrigin"
+
 @set
 external setRel: (t, string) => unit = "rel"
+
 @set
 external setAs: (t, string) => unit = "as"
+
 @set
 external setMedia: (t, string) => unit = "media"
+
 @set
 external setIntegrity: (t, string) => unit = "integrity"
+
 @set
 external setHreflang: (t, string) => unit = "hreflang"
+
 @set
 external setType: (t, string) => unit = "type"
+
 @set
 external setReferrerPolicy: (t, string) => unit = "referrerPolicy"
+
 @set
 external setDisabled: (t, bool) => unit = "disabled"
+
 @set
 external setFetchPriority: (t, string) => unit = "fetchPriority"

@@ -10,4 +10,5 @@ Throws an "IndexSizeError" DOMException if the offset is out of range. Throws a 
 external addColorStop: (CanvasTypes.canvasGradient, ~offset: float, ~color: string) => unit =
   "addColorStop"
 
-let isInstanceOf = (_: 't): bool => %raw(`param instanceof CanvasGradient`)
+let isInstanceOf = (_: 't): bool =>
+  %raw(`typeof globalThis.CanvasGradient === "function" && param instanceof globalThis.CanvasGradient`)

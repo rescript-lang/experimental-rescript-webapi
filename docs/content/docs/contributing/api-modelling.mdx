@@ -92,11 +92,18 @@ style->WebAPI.CSSStyleDeclaration.setProperty(~property="float", ~value="left")
 style->WebAPI.CSSStyleDeclaration.setCssText("background-color: blue")
 ```
 
-Private records prevent ordinary literals and record-update copies, but ReScript currently permits
-a deliberate explicit structural coercion such as `ordinaryRecord :> Native.t` when a caller
-recreates the full public shape. This representation is not an unforgeable native brand; do not
-describe it as preventing deliberate coercions, unsafe casts, or JavaScript fabrication. A stronger
-guarantee requires an opaque representation and corresponding getter APIs.
+ReScript `13.0.0-alpha.7` rejects ordinary explicit coercions (`:>`) into private records, including
+structural upcasts between distinct private-record types. Use the existing typed conversion helpers
+for supported native derived-to-base conversions. Field reads remain available; callers must use
+typed setters for protected writes to avoid warning 111. Dictionaries and caller-owned data records
+remain public. Private records are a compile-time restriction, not a security boundary against
+unsafe casts or JavaScript fabrication.
+
+Do not put unconstrained native identity conversions in public `Impl(T)` functors. Keep upcast
+helpers on the concrete modules with a concrete native receiver type, including inherited helpers.
+Use checked narrowing for union projections instead of `%identity` downcasts. The inventory also
+tracks broader callback, generic-method, and unknown-result modeling gaps; private records alone
+do not make those bindings sound.
 
 ## Verification
 

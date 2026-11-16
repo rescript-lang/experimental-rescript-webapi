@@ -10,6 +10,12 @@ external indexedDB: IndexedDbTypes.idbFactory = "indexedDB"
 @scope("globalThis")
 external navigator: Navigator.t = "navigator"
 
+@scope("globalThis")
+external performance: PerformanceTypes.performance = "performance"
+
+@send
+external closeWriter: FileTypes.writableStreamDefaultWriter<string> => promise<unit> = "close"
+
 @send
 external readByteStreamChunk: FileTypes.readableStreamReader<Uint8Array.t> => promise<unknown> =
   "read"
@@ -101,16 +107,80 @@ assert(audio->HTMLAudioElement.canPlayType("application/x-webapi-unsupported") =
 let permission = Notification.permission
 assert(isKnownNotificationPermission(permission))
 
+let writeStream: WritableStream.t<string> = WritableStream.make()
+await writeStream->WritableStream.getWriter->closeWriter
+let emptyMessage: MessageEvent.t<Null.t<unknown>> = MessageEvent.make(~type_="message")
+assert(emptyMessage.data == Null)
+let textMessage = MessageEvent.make(~type_="message", ~eventInitDict={data: "native message"})
+assert(textMessage.data->Null.getOr("") == "native message")
+
+let template: HTMLTemplateElement.t = %raw(`document.createElement("template")`)
+assert(template.shadowRootMode == "")
+template->HTMLTemplateElement.setShadowRootMode("open")
+assert(template.shadowRootMode == "open")
+template->HTMLTemplateElement.setShadowRootMode("")
+assert(template.shadowRootMode == "")
+
+let point = DOMPoint.make()
+point->DOMPoint.setX(3.)
+point->DOMPoint.setY(4.)
+assert(point.x == 3. && point.y == 4.)
+let rect = DOMRect.make()
+rect->DOMRect.setWidth(12.)
+assert(rect.width == 12.)
+
+assert(IntersectionObserverRoot.fromNull->IntersectionObserverRoot.toElement == None)
+assert(IntersectionObserverRoot.fromNull->IntersectionObserverRoot.toDocument == None)
+
+switch document->IntersectionObserverRoot.fromDocument->IntersectionObserverRoot.toDocument {
+| Some(nativeDocument) => assert(nativeDocument == document)
+| None => assert(false)
+}
+
+let markName = "private-record-native-entry"
+let _ = Performance.mark(performance, ~markName)
+let entries = Performance.getEntriesByName(performance, ~name=markName)
+assert(entries->Array.some(entry => entry.name == markName))
+Performance.clearMarks(performance, ~markName)
+
 switch Document.createElement(document, "canvas")->HTMLCanvasElement.classify {
 | Some(canvas) =>
   canvas->HTMLCanvasElement.setWidth(1)
   canvas->HTMLCanvasElement.setHeight(1)
+  assert(canvas.width == 1 && canvas.height == 1)
+  assert((canvas->HTMLCanvasElement.asNode).nodeName == "CANVAS")
+  let filter: NodeFilter.t = {
+    acceptNode: node =>
+      if node.nodeName == "CANVAS" {
+        1
+      } else {
+        2
+      },
+  }
+  assert(NodeFilter.acceptNode(filter, canvas->HTMLCanvasElement.asNode) == 1)
+  switch canvas
+  ->HTMLCanvasElement.asElement
+  ->IntersectionObserverRoot.fromElement
+  ->IntersectionObserverRoot.toElement {
+  | Some(element) => assert(element == canvas->HTMLCanvasElement.asElement)
+  | None => assert(false)
+  }
   switch canvas->HTMLCanvasElement.getContext2D {
   | Null => assert(false)
   | Value(context) =>
     context->CanvasRenderingContext2D.setFillStyle(FillStyle.fromString("red"))
     let fillStyle = context->CanvasRenderingContext2D.getFillStyle->FillStyle.toString
     assert(fillStyle != "")
+    assert(FillStyle.fromString("red")->FillStyle.toCanvasGradient == None)
+    assert(FillStyle.fromString("red")->FillStyle.toCanvasPattern == None)
+    let gradient =
+      context->CanvasRenderingContext2D.createLinearGradient(~x0=0., ~y0=0., ~x1=1., ~y1=1.)
+    switch gradient->FillStyle.fromCanvasGradient->FillStyle.toCanvasGradient {
+    | Some(nativeGradient) =>
+      assert(nativeGradient == gradient)
+      nativeGradient->CanvasGradient.addColorStop(~offset=0., ~color="red")
+    | None => assert(false)
+    }
   }
   canvas->HTMLCanvasElement.setWidth(0)
   canvas->HTMLCanvasElement.setHeight(0)
@@ -178,6 +248,16 @@ let audioContext = OfflineAudioContext.fromChannelCountLengthAndSampleRate(
   ~length=128,
   ~sampleRate=44100.,
 )
+
+let waveShaper = audioContext->OfflineAudioContext.createWaveShaper
+waveShaper->WaveShaperNode.setCurve(Null.Value(Float32Array.fromArray([-1., 1.])))
+
+switch waveShaper.curve {
+| Null.Value(curve) => assert(curve->Float32Array.length == 2)
+| Null => assert(false)
+}
+
+waveShaper->WaveShaperNode.setCurve(Null)
 
 let audioBuffer =
   audioContext->OfflineAudioContext.createBuffer(

@@ -3,6 +3,8 @@ type windowPostMessageOptions = DOM.windowPostMessageOptions
 
 include EventTarget.Impl({type t = t})
 
+external asEventTarget: t => DOM.eventTarget = "%identity"
+
 external current: t = "window"
 
 /**

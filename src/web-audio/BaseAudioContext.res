@@ -7,8 +7,6 @@ module Impl = (
 ) => {
   include EventTarget.Impl({type t = T.t})
 
-  external asBaseAudioContext: T.t => WebAudioTypes.baseAudioContext = "%identity"
-
   /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/BaseAudioContext/createAnalyser)
 */

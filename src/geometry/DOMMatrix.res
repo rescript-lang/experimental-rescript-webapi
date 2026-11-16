@@ -1,5 +1,28 @@
 type t = DOM.domMatrix = private {...DOM.domMatrix}
 
+@set external setA: (t, float) => unit = "a"
+@set external setB: (t, float) => unit = "b"
+@set external setC: (t, float) => unit = "c"
+@set external setD: (t, float) => unit = "d"
+@set external setE: (t, float) => unit = "e"
+@set external setF: (t, float) => unit = "f"
+@set external setM11: (t, float) => unit = "m11"
+@set external setM12: (t, float) => unit = "m12"
+@set external setM13: (t, float) => unit = "m13"
+@set external setM14: (t, float) => unit = "m14"
+@set external setM21: (t, float) => unit = "m21"
+@set external setM22: (t, float) => unit = "m22"
+@set external setM23: (t, float) => unit = "m23"
+@set external setM24: (t, float) => unit = "m24"
+@set external setM31: (t, float) => unit = "m31"
+@set external setM32: (t, float) => unit = "m32"
+@set external setM33: (t, float) => unit = "m33"
+@set external setM34: (t, float) => unit = "m34"
+@set external setM41: (t, float) => unit = "m41"
+@set external setM42: (t, float) => unit = "m42"
+@set external setM43: (t, float) => unit = "m43"
+@set external setM44: (t, float) => unit = "m44"
+
 /**
 `make()`
 

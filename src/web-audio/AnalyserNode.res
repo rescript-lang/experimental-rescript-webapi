@@ -1,11 +1,17 @@
 include AudioNode.Impl({type t = WebAudioTypes.analyserNode})
 
+external asEventTarget: WebAudioTypes.analyserNode => DOM.eventTarget = "%identity"
+external asAudioNode: WebAudioTypes.analyserNode => WebAudioTypes.audioNode = "%identity"
+
 @throws(JsExn) @set
 external setFftSize: (WebAudioTypes.analyserNode, int) => unit = "fftSize"
+
 @throws(JsExn) @set
 external setMinDecibels: (WebAudioTypes.analyserNode, float) => unit = "minDecibels"
+
 @throws(JsExn) @set
 external setMaxDecibels: (WebAudioTypes.analyserNode, float) => unit = "maxDecibels"
+
 @throws(JsExn) @set
 external setSmoothingTimeConstant: (WebAudioTypes.analyserNode, float) => unit =
   "smoothingTimeConstant"

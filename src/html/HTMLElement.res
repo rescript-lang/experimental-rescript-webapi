@@ -23,8 +23,6 @@ module Impl = (
 ) => {
   include Element.Impl({type t = T.t})
 
-  external asHTMLElement: T.t => DOMTree.htmlElement = "%identity"
-
   /**
 Returns the element's current hidden state.
 
@@ -45,43 +43,61 @@ This getter never returns `null`.
 
   @set
   external setTitle: (T.t, string) => unit = "title"
+
   @set
   external setLang: (T.t, string) => unit = "lang"
+
   @set
   external setTranslate: (T.t, bool) => unit = "translate"
+
   @set
   external setDir: (T.t, string) => unit = "dir"
+
   @set
   external setInert: (T.t, bool) => unit = "inert"
+
   @set
   external setAccessKey: (T.t, string) => unit = "accessKey"
+
   @set
   external setDraggable: (T.t, bool) => unit = "draggable"
+
   @set
   external setSpellcheck: (T.t, bool) => unit = "spellcheck"
+
   @set
   external setAutocapitalize: (T.t, string) => unit = "autocapitalize"
+
   @set
   external setInnerText: (T.t, string) => unit = "innerText"
+
   @set
   external setOuterText: (T.t, string) => unit = "outerText"
+
   @set
   external setPopover: (T.t, Null.t<string>) => unit = "popover"
+
   @set
   external setContentEditable: (T.t, string) => unit = "contentEditable"
+
   @set
   external setEnterKeyHint: (T.t, string) => unit = "enterKeyHint"
+
   @set
   external setInputMode: (T.t, string) => unit = "inputMode"
+
   /**
   Writes the native string-valued nonce property. Pass an empty string to clear it.
   */
   @set
   external setNonce: (T.t, string) => unit = "nonce"
+
   @set
   external setAutofocus: (T.t, bool) => unit = "autofocus"
+
   @set
   external setTabIndex: (T.t, int) => unit = "tabIndex"
+
   @set
   external setClassName: (T.t, string) => unit = "className"
 
@@ -148,6 +164,11 @@ rather than relying on coercion.
 }
 
 include Impl({type t = t})
+
+external asEventTarget: t => DOM.eventTarget = "%identity"
+external asNode: t => DOMTree.node = "%identity"
+external asElement: t => DOMTree.element = "%identity"
+external asHTMLElement: t => DOMTree.htmlElement = "%identity"
 
 /**
 `isInstanceOf(value)`

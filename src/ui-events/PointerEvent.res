@@ -22,3 +22,7 @@ external getPredictedEvents: UiEventsTypes.pointerEvent => array<UiEventsTypes.p
   "getPredictedEvents"
 
 include MouseEvent.Impl({type t = UiEventsTypes.pointerEvent})
+
+external asEvent: UiEventsTypes.pointerEvent => DOM.event = "%identity"
+external asUIEvent: UiEventsTypes.pointerEvent => UiEventsTypes.uiEvent = "%identity"
+external asMouseEvent: UiEventsTypes.pointerEvent => UiEventsTypes.mouseEvent = "%identity"

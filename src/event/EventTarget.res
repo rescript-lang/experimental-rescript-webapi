@@ -6,8 +6,6 @@ module Impl = (
     type t
   },
 ) => {
-  external asEventTarget: T.t => DOM.eventTarget = "%identity"
-
   /**
 Appends an event listener for events whose type attribute value is type. The callback argument sets the callback that will be invoked when the event is dispatched.
 
@@ -89,3 +87,5 @@ Dispatches a synthetic event event to target and returns true if either event's 
 }
 
 include Impl({type t = DOM.eventTarget})
+
+external asEventTarget: DOM.eventTarget => DOM.eventTarget = "%identity"

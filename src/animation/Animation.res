@@ -78,6 +78,8 @@ external make: (~effect: AnimationEffect.t=?, ~timeline: animationTimeline=?) =>
 
 include EventTarget.Impl({type t = t})
 
+external asEventTarget: t => DOM.eventTarget = "%identity"
+
 @set external setId: (t, string) => unit = "id"
 @set external setEffect: (t, Null.t<AnimationEffect.t>) => unit = "effect"
 @set external setTimeline: (t, Null.t<animationTimeline>) => unit = "timeline"

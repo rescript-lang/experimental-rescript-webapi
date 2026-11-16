@@ -1,7 +1,11 @@
 include AudioNode.Impl({type t = WebAudioTypes.waveShaperNode})
 
-@set
-external setCurve: (WebAudioTypes.waveShaperNode, Null.t<array<float>>) => unit = "curve"
+external asEventTarget: WebAudioTypes.waveShaperNode => DOM.eventTarget = "%identity"
+external asAudioNode: WebAudioTypes.waveShaperNode => WebAudioTypes.audioNode = "%identity"
+
+@throws(JsExn) @set
+external setCurve: (WebAudioTypes.waveShaperNode, Null.t<Float32Array.t>) => unit = "curve"
+
 @set
 external setOversample: (WebAudioTypes.waveShaperNode, WebAudioTypes.overSampleType) => unit =
   "oversample"

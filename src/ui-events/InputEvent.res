@@ -14,3 +14,6 @@ external make: (
 external getTargetRanges: UiEventsTypes.inputEvent => array<StaticRange.t> = "getTargetRanges"
 
 include UIEvent.Impl({type t = UiEventsTypes.inputEvent})
+
+external asEvent: UiEventsTypes.inputEvent => DOM.event = "%identity"
+external asUIEvent: UiEventsTypes.inputEvent => UiEventsTypes.uiEvent = "%identity"

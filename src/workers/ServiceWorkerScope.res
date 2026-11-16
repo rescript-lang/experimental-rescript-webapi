@@ -4,6 +4,8 @@ type t = ServiceWorkerTypes.serviceWorkerGlobalScope = private {
 
 include Worker.Impl({type t = t})
 
+external asEventTarget: t => DOM.eventTarget = "%identity"
+
 /**
 Forces the waiting service worker to become the active service worker.
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/ServiceWorkerGlobalScope/skipWaiting)

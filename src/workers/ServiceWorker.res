@@ -2,6 +2,8 @@ type t = ServiceWorkerTypes.serviceWorker = private {...ServiceWorkerTypes.servi
 
 include EventTarget.Impl({type t = t})
 
+external asEventTarget: t => DOM.eventTarget = "%identity"
+
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/ServiceWorker/postMessage)
 */

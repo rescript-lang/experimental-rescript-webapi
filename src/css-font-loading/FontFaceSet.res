@@ -1,5 +1,7 @@
 include EventTarget.Impl({type t = CssFontLoadingTypes.fontFaceSet})
 
+external asEventTarget: CssFontLoadingTypes.fontFaceSet => DOM.eventTarget = "%identity"
+
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/FontFaceSet/add)
 */

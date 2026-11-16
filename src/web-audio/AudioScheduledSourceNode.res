@@ -5,8 +5,6 @@ module Impl = (
 ) => {
   include AudioNode.Impl({type t = T.t})
 
-  external asAudioScheduledSourceNode: T.t => WebAudioTypes.audioScheduledSourceNode = "%identity"
-
   /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/AudioScheduledSourceNode/start)
 */
@@ -21,3 +19,11 @@ module Impl = (
 }
 
 include Impl({type t = WebAudioTypes.audioScheduledSourceNode})
+
+external asEventTarget: WebAudioTypes.audioScheduledSourceNode => DOM.eventTarget = "%identity"
+
+external asAudioNode: WebAudioTypes.audioScheduledSourceNode => WebAudioTypes.audioNode =
+  "%identity"
+
+external asAudioScheduledSourceNode: WebAudioTypes.audioScheduledSourceNode => WebAudioTypes.audioScheduledSourceNode =
+  "%identity"

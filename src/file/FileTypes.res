@@ -142,9 +142,9 @@ type underlyingSink<'t> = unknown
 
 type underlyingSource<'t> = unknown
 
-type readableStreamReader<'t> = unknown
+type readableStreamReader<'t>
 
-type writableStreamDefaultWriter<'t> = unknown
+type writableStreamDefaultWriter<'t>
 
 type fileSystemWriteChunkType = unknown
 

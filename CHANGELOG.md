@@ -65,11 +65,24 @@ versioning and publication.
 - `WebAPI.Notification.t` no longer contains a static permission field. Read that value through
   `WebAPI.Notification.permission`.
 - Native browser-instance record construction and record-update copies are being restricted with
-  private record views. Reads remain direct; writes to protected mutable properties migrate to
-  typed setters such as `canvas->WebAPI.HTMLCanvasElement.setWidth(640)`. Options, initializers,
-  callback dictionaries, and plain data records remain constructible. This compile-time restriction
-  does not prevent a deliberate explicit structural coercion (`:>`) from a recreated public record
-  shape, unsafe casts, or JavaScript fabrication.
+  private record views. Reads remain direct; writes to protected mutable properties require typed
+  setters such as `canvas->WebAPI.HTMLCanvasElement.setWidth(640)` to avoid warning 111. ReScript
+  `13.0.0-alpha.7` rejects ordinary explicit coercions (`:>`) into private records, including
+  structural upcasts between distinct private-record types; use supported typed conversion helpers.
+  Options, initializers, callback dictionaries, and plain data records remain public. This is a
+  compile-time restriction, not a security boundary against unsafe casts or JavaScript fabrication.
+- Native `asNode`/`asBlob`/event/audio upcasts now require concrete native receivers. Use the
+  helpers on concrete modules; public `Impl` functors no longer export unrestricted identity casts.
+- `FillStyle.toCanvasGradient`/`toCanvasPattern` and
+  `IntersectionObserverRoot.toElement`/`toDocument` now return checked options. The checks recognize
+  instances in the current JavaScript realm; alternatively use each module's `decode` function.
+- Stream readers/writers and rendering-context placeholders have abstract identities rather than
+  `unknown`. Performance entry lists are arrays of native entries. `NodeFilter.t` is a public
+  `{acceptNode: node => int}` callback dictionary rather than a private empty record.
+- `MessageEvent.make` returns a nullable payload (`t<Null.t<'t>>`) because omitted data defaults
+  to null. `Navigator.requestMediaKeySystemAccess` returns the concrete native access type rather
+  than a caller-selected type. Public media, DOM-node, and geometry setters preserve supported
+  writes without private-field warnings.
 
 For the intended installation, compiler range, runtime/browser checks, and known limitations,
 see the [project status](https://rescript-lang.github.io/experimental-rescript-webapi/project-status/)

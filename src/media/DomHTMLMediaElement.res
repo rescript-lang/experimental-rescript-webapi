@@ -147,13 +147,13 @@ type t = private {
 @set external setCrossOrigin: (t, Null.t<string>) => unit = "crossOrigin"
 @set external setPreload: (t, string) => unit = "preload"
 @set external setCurrentTime: (t, float) => unit = "currentTime"
-@set external setDefaultPlaybackRate: (t, float) => unit = "defaultPlaybackRate"
-@set external setPlaybackRate: (t, float) => unit = "playbackRate"
+@throws(JsExn) @set external setDefaultPlaybackRate: (t, float) => unit = "defaultPlaybackRate"
+@throws(JsExn) @set external setPlaybackRate: (t, float) => unit = "playbackRate"
 @set external setPreservesPitch: (t, bool) => unit = "preservesPitch"
 @set external setAutoplay: (t, bool) => unit = "autoplay"
 @set external setLoop: (t, bool) => unit = "loop"
 @set external setControls: (t, bool) => unit = "controls"
-@set external setVolume: (t, float) => unit = "volume"
+@throws(JsExn) @set external setVolume: (t, float) => unit = "volume"
 @set external setMuted: (t, bool) => unit = "muted"
 @set external setDefaultMuted: (t, bool) => unit = "defaultMuted"
 @set external setDisableRemotePlayback: (t, bool) => unit = "disableRemotePlayback"
@@ -164,8 +164,6 @@ module Impl = (
   },
 ) => {
   include HTMLElement.Impl({type t = T.t})
-
-  external asHTMLMediaElement: T.t => t = "%identity"
 
   /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLMediaElement/addTextTrack)
@@ -220,3 +218,9 @@ Loads and starts playback of a media resource.
 }
 
 include Impl({type t = t})
+
+external asEventTarget: t => DOM.eventTarget = "%identity"
+external asNode: t => DOMTree.node = "%identity"
+external asElement: t => DOMTree.element = "%identity"
+external asHTMLElement: t => DOMTree.htmlElement = "%identity"
+external asHTMLMediaElement: t => t = "%identity"

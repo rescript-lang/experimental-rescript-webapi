@@ -22,7 +22,13 @@ type t = private {
 
 include HTMLElement.Impl({type t = t})
 
+external asEventTarget: t => DOM.eventTarget = "%identity"
+external asNode: t => DOMTree.node = "%identity"
+external asElement: t => DOMTree.element = "%identity"
+external asHTMLElement: t => DOMTree.htmlElement = "%identity"
+
 @set external setReversed: (t, bool) => unit = "reversed"
 @set external setStart: (t, int) => unit = "start"
+
 @set
 external setType: (t, string) => unit = "type"

@@ -13,3 +13,11 @@ type t = private {
     */
   sheet: Null.t<StyleSheet.cssStyleSheet>,
 }
+
+external asCharacterData: t => CharacterData.t = "%identity"
+external asNode: t => DOMTree.node = "%identity"
+external asEventTarget: t => DOM.eventTarget = "%identity"
+
+@set external setNodeValue: (t, Null.t<string>) => unit = "nodeValue"
+@set external setTextContent: (t, Null.t<string>) => unit = "textContent"
+@set external setData: (t, string) => unit = "data"

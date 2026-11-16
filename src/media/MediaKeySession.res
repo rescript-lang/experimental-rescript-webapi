@@ -1,5 +1,8 @@
 include EventTarget.Impl({type t = EncryptedMediaExtensionsTypes.mediaKeySession})
 
+external asEventTarget: EncryptedMediaExtensionsTypes.mediaKeySession => DOM.eventTarget =
+  "%identity"
+
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/MediaKeySession/generateRequest)
 */

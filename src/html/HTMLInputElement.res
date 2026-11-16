@@ -229,6 +229,11 @@ type t = private {
 
 include HTMLElement.Impl({type t = t})
 
+external asEventTarget: t => DOM.eventTarget = "%identity"
+external asNode: t => DOMTree.node = "%identity"
+external asElement: t => DOMTree.element = "%identity"
+external asHTMLElement: t => DOMTree.htmlElement = "%identity"
+
 @set external setAccept: (t, string) => unit = "accept"
 @set external setAlt: (t, string) => unit = "alt"
 @set external setAutocomplete: (t, string) => unit = "autocomplete"
@@ -262,8 +267,10 @@ include HTMLElement.Impl({type t = t})
 @set external setWidth: (t, int) => unit = "width"
 @set @throws(JsExn) external setSelectionStart: (t, Null.t<int>) => unit = "selectionStart"
 @set @throws(JsExn) external setSelectionEnd: (t, Null.t<int>) => unit = "selectionEnd"
+
 @set @throws(JsExn)
 external setSelectionDirection: (t, Null.t<string>) => unit = "selectionDirection"
+
 @set external setWebkitdirectory: (t, bool) => unit = "webkitdirectory"
 @set external setCapture: (t, string) => unit = "capture"
 @set external setPopoverTargetElement: (t, Null.t<DOMTree.element>) => unit = "popoverTargetElement"

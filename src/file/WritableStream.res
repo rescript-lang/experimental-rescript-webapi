@@ -1,7 +1,7 @@
 /**
-This private view prevents record construction through this module's public type.
-ReScript's explicit structural coercion (`:>`) can still escape this restriction;
-this is not an opaque brand guarantee.
+Alpha.7 rejects ordinary explicit coercions (`:>`) into private records, including structural
+upcasts between distinct private-record types. This compile-time restriction is not a security
+boundary against unsafe casts or JavaScript fabrication.
 */
 @editor.completeFrom(WritableStream)
 type t<'w> = FileTypes.writableStream<'w> = private {...FileTypes.writableStream<'w>}

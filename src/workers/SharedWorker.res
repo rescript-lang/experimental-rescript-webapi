@@ -4,6 +4,8 @@ type workerOptions = WebWorkersTypes.workerOptions = {...WebWorkersTypes.workerO
 
 include EventTarget.Impl({type t = t})
 
+external asEventTarget: t => DOM.eventTarget = "%identity"
+
 /**
 `make(string)`
 

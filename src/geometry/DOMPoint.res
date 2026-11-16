@@ -1,5 +1,10 @@
 type t = DOM.domPoint = private {...DOM.domPoint}
 
+@set external setX: (t, float) => unit = "x"
+@set external setY: (t, float) => unit = "y"
+@set external setZ: (t, float) => unit = "z"
+@set external setW: (t, float) => unit = "w"
+
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/DOMPoint)
 */

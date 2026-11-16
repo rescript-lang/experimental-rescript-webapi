@@ -14,3 +14,6 @@ external make: (
 external getModifierState: (UiEventsTypes.keyboardEvent, string) => bool = "getModifierState"
 
 include UIEvent.Impl({type t = UiEventsTypes.keyboardEvent})
+
+external asEvent: UiEventsTypes.keyboardEvent => DOM.event = "%identity"
+external asUIEvent: UiEventsTypes.keyboardEvent => UiEventsTypes.uiEvent = "%identity"

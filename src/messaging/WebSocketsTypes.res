@@ -79,9 +79,9 @@ A message received by a target object.
 [See MessageEvent on MDN](https://developer.mozilla.org/docs/Web/API/MessageEvent)
 */
 /**
-Native event records are private to prevent ordinary structural construction.
-ReScript's explicit structural coercion (`:>`) can still bypass this boundary;
-this is not an opaque-type guarantee.
+Alpha.7 rejects ordinary explicit coercions (`:>`) into private records, including structural
+upcasts between distinct private-record types. This compile-time restriction is not a security
+boundary against unsafe casts or JavaScript fabrication.
 */
 type messageEvent<'t> = private {
   ...DOM.event,

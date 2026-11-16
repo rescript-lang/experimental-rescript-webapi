@@ -6,3 +6,8 @@ Contains the descriptive information, or metadata, for a document. This object i
 type t = private {...DOMTree.htmlElement}
 
 include HTMLElement.Impl({type t = t})
+
+external asEventTarget: t => DOM.eventTarget = "%identity"
+external asNode: t => DOMTree.node = "%identity"
+external asElement: t => DOMTree.element = "%identity"
+external asHTMLElement: t => DOMTree.htmlElement = "%identity"

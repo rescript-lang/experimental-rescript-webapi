@@ -16,6 +16,11 @@ type mediaTrackSettings = MediaCaptureAndStreamsTypes.mediaTrackSettings = {
 
 include EventTarget.Impl({type t = t})
 
+external asEventTarget: t => DOM.eventTarget = "%identity"
+
+@set external setEnabled: (t, bool) => unit = "enabled"
+@set external setContentHint: (t, string) => unit = "contentHint"
+
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/MediaStreamTrack/clone)
 */

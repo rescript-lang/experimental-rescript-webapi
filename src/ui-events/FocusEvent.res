@@ -8,3 +8,6 @@ external make: (
 ) => UiEventsTypes.focusEvent = "FocusEvent"
 
 include UIEvent.Impl({type t = UiEventsTypes.focusEvent})
+
+external asEvent: UiEventsTypes.focusEvent => DOM.event = "%identity"
+external asUIEvent: UiEventsTypes.focusEvent => UiEventsTypes.uiEvent = "%identity"

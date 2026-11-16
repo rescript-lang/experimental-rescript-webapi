@@ -47,3 +47,5 @@ let response = await self->Worker.fetch(myRequest)
 }
 
 include Impl({type t = WebWorkersTypes.workerGlobalScope})
+
+external asEventTarget: WebWorkersTypes.workerGlobalScope => DOM.eventTarget = "%identity"

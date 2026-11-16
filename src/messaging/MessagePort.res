@@ -3,6 +3,8 @@ type structuredSerializeOptions = ChannelMessagingTypes.structuredSerializeOptio
 
 include EventTarget.Impl({type t = t})
 
+external asEventTarget: t => DOM.eventTarget = "%identity"
+
 /**
 Posts a message through the channel. Objects listed in transfer are transferred, not just cloned, meaning that they are no longer usable on the sending side.
 

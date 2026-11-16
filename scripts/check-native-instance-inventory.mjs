@@ -203,7 +203,10 @@ const verifyPublicInstanceTypes = () => {
       const firstRecord = headerText.indexOf("{");
       if (firstRecord === -1) continue;
       const header = headerText.slice(0, firstRecord);
-      if (!/\bprivate\b/.test(header)) {
+      if (
+        !/\bprivate\b/.test(header) &&
+        !inventory.constructibleRecordExceptions[file]?.includes("t")
+      ) {
         failures.push(`Public module ${file} exposes a constructible record t.`);
       }
     }
@@ -400,6 +403,49 @@ for (const [file, names] of Object.entries(inventory.constructibleRecordExceptio
   }
 }
 
+const nativeTypeSource = (qualifiedName) => {
+  const [module, name] = qualifiedName.split(".");
+  const file = sourcePaths.find((filePath) => path.basename(filePath) === `${module}.res`);
+  if (!file) throw new Error(`Missing inventoried native type module: ${qualifiedName}`);
+  return { name, source: stripComments(readFileSync(file, "utf8")) };
+};
+
+for (const type of inventory.abstractNativeTypes) {
+  const { name, source } = nativeTypeSource(type);
+  const declaration = new RegExp(`\\btype\\s+${name}(?:<[^>\\n]*>)?[ \\t]*$`, "m");
+  if (!declaration.test(source)) failures.push(`Native type ${type} must remain abstract.`);
+}
+
+for (const [type, target] of Object.entries(inventory.nativeTypeAliases)) {
+  const { name, source } = nativeTypeSource(type);
+  const declaration = new RegExp(`\\btype\\s+${name}\\s*=\\s*${target.replaceAll(".", "\\.")}\\b`);
+  if (!declaration.test(source)) failures.push(`Native alias ${type} must preserve ${target}.`);
+}
+
+for (const [file, names] of Object.entries(inventory.publicSetterRoutes)) {
+  const exportedSetters = setterNames(file);
+  for (const name of names) {
+    if (!exportedSetters.has(name)) failures.push(`Public setter ${file}:${name} is missing.`);
+  }
+}
+
+const unknownAliases = [];
+for (const file of sourcePaths) {
+  const source = stripComments(readFileSync(file, "utf8"));
+  for (const match of source.matchAll(/\btype\s+(\w+)(?:<[^>\n]*>)?\s*=\s*unknown\b/g)) {
+    unknownAliases.push(`${path.basename(file, ".res")}.${match[1]}`);
+  }
+  if (/external\s+as\w+\s*:\s*T\.t\s*=>[^=]+=\s*"%identity"/.test(source)) {
+    failures.push(`${path.relative(root, file)} exposes an unconstrained native Impl upcast.`);
+  }
+}
+const expectedUnknowns = Object.values(inventory.unknownBackedDispositions).flat();
+if (JSON.stringify(unknownAliases.sort()) !== JSON.stringify(expectedUnknowns.sort())) {
+  failures.push(
+    "Unknown-backed aliases changed; explicitly classify every remaining modeling gap.",
+  );
+}
+
 if (failures.length > 0) {
   console.error(failures.map((failure) => `- ${failure}`).join("\n"));
   process.exitCode = 1;
@@ -411,10 +457,16 @@ if (failures.length > 0) {
     `Verified ${publicModules.length} public modules, ${declarationCount} inventoried type declarations, ${protectedCount} private native backings, ${viewCount} private public views, and ${exceptionCount} constructible record exceptions.`,
   );
   console.log(
-    `Explicit unprotected unknown-backed native handles: ${inventory.unknownBackedDispositions.notProtectedNativeHandles.join(", ")}.`,
+    `Explicit unprotected unknown-backed native handles: ${inventory.unknownBackedDispositions.notProtectedNativeHandles.join(", ") || "none"}.`,
   );
   console.log(`Abstract native types retained: ${inventory.abstractNativeTypes.join(", ")}.`);
   console.log(
     `Unmodeled input/mixed unknown placeholders: ${inventory.unknownBackedDispositions.unmodeledInputOrMixedPlaceholders.join(", ")}.`,
+  );
+  console.log(
+    `Unmodeled native unions: ${inventory.unknownBackedDispositions.unmodeledNativeUnions.join(", ")}.`,
+  );
+  console.log(
+    `Remaining API modeling gaps: ${inventory.remainingModelingGaps.length}; this inventory does not prove package-wide soundness.`,
   );
 }

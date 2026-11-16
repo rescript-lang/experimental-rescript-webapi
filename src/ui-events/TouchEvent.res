@@ -8,3 +8,6 @@ external make: (
 ) => UiEventsTypes.touchEvent = "TouchEvent"
 
 include UIEvent.Impl({type t = UiEventsTypes.touchEvent})
+
+external asEvent: UiEventsTypes.touchEvent => DOM.event = "%identity"
+external asUIEvent: UiEventsTypes.touchEvent => UiEventsTypes.uiEvent = "%identity"

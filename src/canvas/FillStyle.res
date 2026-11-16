@@ -3,8 +3,22 @@ external fromCanvasGradient: CanvasTypes.canvasGradient => CanvasTypes.fillStyle
 external fromCanvasPattern: CanvasTypes.canvasPattern => CanvasTypes.fillStyle = "%identity"
 
 external toString: CanvasTypes.fillStyle => string = "%identity"
-external toCanvasGradient: CanvasTypes.fillStyle => CanvasTypes.canvasGradient = "%identity"
-external toCanvasPattern: CanvasTypes.fillStyle => CanvasTypes.canvasPattern = "%identity"
+
+/** Returns a gradient only when the value is a native CanvasGradient in the current realm. */
+let toCanvasGradient = (value: CanvasTypes.fillStyle): option<CanvasTypes.canvasGradient> =>
+  if CanvasGradient.isInstanceOf(value) {
+    Some(Obj.magic(value))
+  } else {
+    None
+  }
+
+/** Returns a pattern only when the value is a native CanvasPattern in the current realm. */
+let toCanvasPattern = (value: CanvasTypes.fillStyle): option<CanvasTypes.canvasPattern> =>
+  if CanvasPattern.isInstanceOf(value) {
+    Some(Obj.magic(value))
+  } else {
+    None
+  }
 
 /**
 Represents a decoded version of the abstract `fillStyle` type, used in Context2D.
@@ -15,11 +29,12 @@ type decoded =
   | CanvasPattern(CanvasTypes.canvasPattern)
 
 let decode = (t: CanvasTypes.fillStyle): decoded => {
-  if CanvasGradient.isInstanceOf(t) {
-    CanvasGradient(toCanvasGradient(t))
-  } else if CanvasPattern.isInstanceOf(t) {
-    CanvasPattern(toCanvasPattern(t))
-  } else {
-    String(toString(t))
+  switch toCanvasGradient(t) {
+  | Some(gradient) => CanvasGradient(gradient)
+  | None =>
+    switch toCanvasPattern(t) {
+    | Some(pattern) => CanvasPattern(pattern)
+    | None => String(toString(t))
+    }
   }
 }

@@ -1,5 +1,7 @@
 include EventTarget.Impl({type t = IndexedDbTypes.idbDatabase})
 
+external asEventTarget: IndexedDbTypes.idbDatabase => DOM.eventTarget = "%identity"
+
 /**
 Returns a new transaction with the given mode ("readonly" or "readwrite") and scope which can be a single object store name or an array of names.
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/IDBDatabase/transaction)

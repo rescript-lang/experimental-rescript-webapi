@@ -1,8 +1,10 @@
 type t = WebSocketsTypes.webSocket = private {...WebSocketsTypes.webSocket}
 type binaryType = WebSocketsTypes.binaryType
+
 type messageEvent<'t> = WebSocketsTypes.messageEvent<'t> = private {
   ...WebSocketsTypes.messageEvent<'t>,
 }
+
 type closeEvent = WebSocketsTypes.closeEvent = private {...WebSocketsTypes.closeEvent}
 type messageEventSource = WebSocketsTypes.messageEventSource
 
@@ -42,6 +44,8 @@ let socket =
 external fromURLWithProtocols: (~url: string, ~protocols: array<string>) => t = "WebSocket"
 
 include EventTarget.Impl({type t = t})
+
+external asEventTarget: t => DOM.eventTarget = "%identity"
 
 /**
 Closes the WebSocket connection, optionally using code as the the WebSocket connection close code and reason as the the WebSocket connection close reason.

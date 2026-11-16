@@ -437,9 +437,9 @@ type vibratePattern =
   | Int(int)
   | IntArray(array<int>)
 
-type renderingContext = unknown
+type renderingContext
 
-type offscreenRenderingContext = unknown
+type offscreenRenderingContext
 
 /**
 [See DocumentTimeline on MDN](https://developer.mozilla.org/docs/Web/API/DocumentTimeline)

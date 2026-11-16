@@ -33,6 +33,11 @@ type t = private {
 
 include HTMLElement.Impl({type t = t})
 
+external asEventTarget: t => DOM.eventTarget = "%identity"
+external asNode: t => DOMTree.node = "%identity"
+external asElement: t => DOMTree.element = "%identity"
+external asHTMLElement: t => DOMTree.htmlElement = "%identity"
+
 @set external setCaption: (t, Null.t<HTMLTableCaptionElement.t>) => unit = "caption"
 @set external setTHead: (t, Null.t<HTMLTableSectionElement.t>) => unit = "tHead"
 @set external setTFoot: (t, Null.t<HTMLTableSectionElement.t>) => unit = "tFoot"

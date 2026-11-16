@@ -5,8 +5,10 @@ type t = DOMTree.elementInternals = private {
 @set external setAriaAtomic: (t, Null.t<string>) => unit = "ariaAtomic"
 @set external setAriaAutoComplete: (t, Null.t<string>) => unit = "ariaAutoComplete"
 @set external setAriaBrailleLabel: (t, Null.t<string>) => unit = "ariaBrailleLabel"
+
 @set
 external setAriaBrailleRoleDescription: (t, Null.t<string>) => unit = "ariaBrailleRoleDescription"
+
 @set external setAriaBusy: (t, Null.t<string>) => unit = "ariaBusy"
 @set external setAriaChecked: (t, Null.t<string>) => unit = "ariaChecked"
 @set external setAriaColCount: (t, Null.t<string>) => unit = "ariaColCount"

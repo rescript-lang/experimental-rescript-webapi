@@ -1,6 +1,6 @@
 {
   "inventoryVersion": 1,
-  "baseline": "4888db2cc601ad568b76af6ed2add60da0ad96cb",
+  "baseline": "014e7d930be142c859b77c1c6894c7d860eb9fb5",
   "issue": 403,
   "publicModules": {
     "baselineCount": 291,
@@ -60,8 +60,8 @@
       }
     }
   },
-  "sourceTypeDeclarationCount": 871,
-  "sourceTypeDeclarationSha256": "15e6f06b9b8280d016d7cd749e65803c70c5d6716d790b03b9ae5788a583de2f",
+  "sourceTypeDeclarationCount": 867,
+  "sourceTypeDeclarationSha256": "ccd67406c1f683b3186f6b5d608a7b9c4853de9c18aafddf79e12c823186c86d",
   "nativeBackings": {
     "src/core/DOM.res": [
       "document",
@@ -177,7 +177,6 @@
     "src/dom-nodes/Comment.res": ["t"],
     "src/dom-nodes/DOMImplementation.res": ["documentType", "xmlDocument"],
     "src/dom-nodes/HTMLCollection.res": ["t"],
-    "src/dom-nodes/NodeFilter.res": ["t"],
     "src/dom-nodes/NodeIterator.res": ["t"],
     "src/dom-nodes/ProcessingInstruction.res": ["t"],
     "src/dom-nodes/Range.res": ["t"],
@@ -501,7 +500,6 @@
     "src/dom-nodes/DOMImplementation.res": ["t"],
     "src/dom-nodes/HTMLCollection.res": ["t"],
     "src/dom-nodes/NamedNodeMap.res": ["t"],
-    "src/dom-nodes/NodeFilter.res": ["t"],
     "src/dom-nodes/NodeIterator.res": ["t"],
     "src/dom-nodes/NodeList.res": ["t"],
     "src/dom-nodes/ProcessingInstruction.res": ["t"],
@@ -591,6 +589,7 @@
     "src/window/XPathResult.res": ["t"]
   },
   "constructibleRecordExceptions": {
+    "src/dom-nodes/NodeFilter.res": ["t"],
     "src/core/DOM.res": [
       "shareData",
       "eventInit",
@@ -811,7 +810,11 @@
       "offlineAudioContextOptions",
       "workletOptions"
     ],
-    "src/performance/PerformanceTypes.res": ["performanceMarkOptions", "performanceMeasureOptions"],
+    "src/performance/PerformanceTypes.res": [
+      "performanceMarkOptions",
+      "performanceMeasureOptions",
+      "performanceEntryList"
+    ],
     "src/workers/WebWorkersTypes.res": ["workerOptions"],
     "src/workers/SharedWorker.res": ["workerOptions"],
     "src/workers/ServiceWorkerTypes.res": ["navigationPreloadState", "registrationOptions"],
@@ -1352,6 +1355,10 @@
     }
   },
   "abstractNativeTypes": [
+    "FileTypes.readableStreamReader",
+    "FileTypes.writableStreamDefaultWriter",
+    "DOM.renderingContext",
+    "DOM.offscreenRenderingContext",
     "WebWorkersTypes.sharedWorker",
     "PushTypes.pushMessageData",
     "DOM.navigator",
@@ -1359,14 +1366,61 @@
     "MutationObserver.t",
     "ServiceWorkerTypes.clients"
   ],
+  "nativeTypeAliases": {
+    "CanvasTypes.offscreenRenderingContext": "DOM.offscreenRenderingContext"
+  },
+  "publicSetterRoutes": {
+    "src/media/MediaStreamTrack.res": ["setEnabled", "setContentHint"],
+    "src/media/SpeechSynthesisUtterance.res": [
+      "setText",
+      "setLang",
+      "setVoice",
+      "setVolume",
+      "setRate",
+      "setPitch"
+    ],
+    "src/media/TextTrack.res": [
+      "setTextTrackMode",
+      "setCueId",
+      "setCueStartTime",
+      "setCueEndTime",
+      "setCuePauseOnExit"
+    ],
+    "src/dom-nodes/Attr.res": ["setNodeValue", "setTextContent", "setValue"],
+    "src/dom-nodes/CDATASection.res": ["setNodeValue", "setTextContent", "setData"],
+    "src/dom-nodes/ProcessingInstruction.res": ["setNodeValue", "setTextContent", "setData"],
+    "src/geometry/DOMPoint.res": ["setX", "setY", "setZ", "setW"],
+    "src/geometry/DOMRect.res": ["setX", "setY", "setWidth", "setHeight"],
+    "src/geometry/DOMMatrix.res": [
+      "setA",
+      "setB",
+      "setC",
+      "setD",
+      "setE",
+      "setF",
+      "setM11",
+      "setM12",
+      "setM13",
+      "setM14",
+      "setM21",
+      "setM22",
+      "setM23",
+      "setM24",
+      "setM31",
+      "setM32",
+      "setM33",
+      "setM34",
+      "setM41",
+      "setM42",
+      "setM43",
+      "setM44"
+    ]
+  },
   "unknownBackedDispositions": {
-    "notProtectedNativeHandles": [
-      "FileTypes.readableStreamReader",
-      "FileTypes.writableStreamDefaultWriter",
-      "DOM.renderingContext",
-      "DOM.offscreenRenderingContext",
-      "CanvasTypes.offscreenRenderingContext",
-      "PerformanceTypes.performanceEntryList"
+    "notProtectedNativeHandles": [],
+    "unmodeledNativeUnions": [
+      "WebSocketsTypes.messageEventSource",
+      "DomHTMLMediaElement.mediaProvider"
     ],
     "unmodeledInputOrMixedPlaceholders": [
       "FileTypes.queuingStrategy",
@@ -1376,9 +1430,17 @@
       "FetchTypes.requestInfo",
       "ServiceWorkerTypes.requestInfo",
       "IndexedDbTypes.idbValidKey",
-      "WebSocketsTypes.messageEventSource",
-      "DomHTMLMediaElement.mediaProvider",
       "WebCryptoTypes.algorithmIdentifier"
     ]
-  }
+  },
+  "remainingModelingGaps": [
+    "Public generic Impl native-returning methods need a receiver-constraint audit beyond the removed identity upcasts; arbitrary receivers remain possible.",
+    "EventTarget listeners accept caller-selected event payload types unrelated to EventType.t; choosing typed descriptors versus base-event callbacks requires an API policy decision.",
+    "CanvasTypes context canvas owners remain unknown HTMLCanvasElement/OffscreenCanvas unions.",
+    "StyleSheet ownerNode remains an unknown Element/ProcessingInstruction union.",
+    "IndexedDbTypes request sources and IDBIndex/IDBObjectStore cursor results remain unknown.",
+    "DOMTree label lists use nodeList<unknown> instead of native HTMLLabelElement identities.",
+    "Generic SubtleCrypto.generateKey results remain unknown; use operation-specific helpers.",
+    "DOMImplementation documentType/xmlDocument, HTMLOptionsCollection and AudioWorklet need additional inherited public conversion/write routes."
+  ]
 }

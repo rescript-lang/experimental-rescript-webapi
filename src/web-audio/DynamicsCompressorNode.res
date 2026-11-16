@@ -1,5 +1,8 @@
 include AudioNode.Impl({type t = WebAudioTypes.dynamicsCompressorNode})
 
+external asEventTarget: WebAudioTypes.dynamicsCompressorNode => DOM.eventTarget = "%identity"
+external asAudioNode: WebAudioTypes.dynamicsCompressorNode => WebAudioTypes.audioNode = "%identity"
+
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/DynamicsCompressorNode)
 */

@@ -64,9 +64,16 @@ type t = private {
 
 include HTMLElement.Impl({type t = t})
 
+external asEventTarget: t => DOM.eventTarget = "%identity"
+external asNode: t => DOMTree.node = "%identity"
+external asElement: t => DOMTree.element = "%identity"
+external asHTMLElement: t => DOMTree.htmlElement = "%identity"
+
 @set external setSrc: (t, string) => unit = "src"
+
 @set @throws(JsExn)
 external setSrcdoc: (t, string) => unit = "srcdoc"
+
 @set external setName: (t, string) => unit = "name"
 @set external setAllow: (t, string) => unit = "allow"
 @set external setAllowFullscreen: (t, bool) => unit = "allowFullscreen"

@@ -9,8 +9,6 @@ module Impl = (
 ) => {
   include EventTarget.Impl({type t = T.t})
 
-  external asNode: T.t => DOMTree.node = "%identity"
-
   @set
   external setNodeValue: (T.t, Null.t<string>) => unit = "nodeValue"
 
@@ -118,3 +116,6 @@ Returns true if other is an inclusive descendant of node, and false otherwise.
 }
 
 include Impl({type t = t})
+
+external asEventTarget: t => DOM.eventTarget = "%identity"
+external asNode: t => DOMTree.node = "%identity"

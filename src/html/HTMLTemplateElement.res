@@ -12,7 +12,7 @@ type t = private {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLTemplateElement/shadowRootMode)
     */
-  mutable shadowRootMode: DOMTree.shadowRootMode,
+  mutable shadowRootMode: string,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLTemplateElement/shadowRootDelegatesFocus)
     */
@@ -29,8 +29,13 @@ type t = private {
 
 include HTMLElement.Impl({type t = t})
 
+external asEventTarget: t => DOM.eventTarget = "%identity"
+external asNode: t => DOMTree.node = "%identity"
+external asElement: t => DOMTree.element = "%identity"
+external asHTMLElement: t => DOMTree.htmlElement = "%identity"
+
 @set
-external setShadowRootMode: (t, DOMTree.shadowRootMode) => unit = "shadowRootMode"
+external setShadowRootMode: (t, string) => unit = "shadowRootMode"
 
 @set
 external setShadowRootDelegatesFocus: (t, bool) => unit = "shadowRootDelegatesFocus"

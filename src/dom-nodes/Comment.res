@@ -8,6 +8,10 @@ type t = private {
 
 include CharacterData.Impl({type t = t})
 
+external asEventTarget: t => DOM.eventTarget = "%identity"
+external asNode: t => DOMTree.node = "%identity"
+external asCharacterData: t => CharacterData.t = "%identity"
+
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Comment)
 */

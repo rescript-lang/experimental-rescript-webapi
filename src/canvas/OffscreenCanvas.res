@@ -12,6 +12,8 @@ external setHeight: (CanvasTypes.offscreenCanvas, int) => unit = "height"
 
 include EventTarget.Impl({type t = CanvasTypes.offscreenCanvas})
 
+external asEventTarget: CanvasTypes.offscreenCanvas => DOM.eventTarget = "%identity"
+
 /**
 Returns an object that exposes an API for drawing on the OffscreenCanvas object. contextId specifies the desired API: "2d", "bitmaprenderer", "webgl", or "webgl2". options is handled by that API.
 

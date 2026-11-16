@@ -1,5 +1,10 @@
 type t = DOM.domRect = private {...DOM.domRect}
 
+@set external setX: (t, float) => unit = "x"
+@set external setY: (t, float) => unit = "y"
+@set external setWidth: (t, float) => unit = "width"
+@set external setHeight: (t, float) => unit = "height"
+
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/DOMRect)
 */

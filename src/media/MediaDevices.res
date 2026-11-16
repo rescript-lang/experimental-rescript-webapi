@@ -16,6 +16,8 @@ type displayMediaStreamOptions = MediaCaptureAndStreamsTypes.displayMediaStreamO
 
 include EventTarget.Impl({type t = t})
 
+external asEventTarget: t => DOM.eventTarget = "%identity"
+
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/MediaDevices/enumerateDevices)
 */

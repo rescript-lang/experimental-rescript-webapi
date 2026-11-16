@@ -950,7 +950,7 @@ type waveShaperNode = private {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/WaveShaperNode/curve)
     */
-  mutable curve: Null.t<array<float>>,
+  mutable curve: Null.t<Float32Array.t>,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/WaveShaperNode/oversample)
     */

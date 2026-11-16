@@ -1,5 +1,7 @@
 include Event.Impl({type t = WebAudioTypes.offlineAudioCompletionEvent})
 
+external asEvent: WebAudioTypes.offlineAudioCompletionEvent => DOM.event = "%identity"
+
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/OfflineAudioCompletionEvent)
 */

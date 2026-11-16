@@ -53,8 +53,12 @@ Can be set, to change the value.
 
 include HTMLElement.Impl({type t = t})
 
+external asEventTarget: t => DOM.eventTarget = "%identity"
+external asNode: t => DOMTree.node = "%identity"
+external asElement: t => DOMTree.element = "%identity"
+external asHTMLElement: t => DOMTree.htmlElement = "%identity"
+
 @set external setName: (t, string) => unit = "name"
-@set external setType: (t, string) => unit = "type"
 @set external setDefaultValue: (t, string) => unit = "defaultValue"
 @set external setValue: (t, string) => unit = "value"
 

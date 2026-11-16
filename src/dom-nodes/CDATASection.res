@@ -5,3 +5,12 @@ A CDATA section that can be used within XML to include extended portions of unes
 type t = private {
   ...Text.t,
 }
+
+external asText: t => Text.t = "%identity"
+external asCharacterData: t => CharacterData.t = "%identity"
+external asNode: t => DOMTree.node = "%identity"
+external asEventTarget: t => DOM.eventTarget = "%identity"
+
+@set external setNodeValue: (t, Null.t<string>) => unit = "nodeValue"
+@set external setTextContent: (t, Null.t<string>) => unit = "textContent"
+@set external setData: (t, string) => unit = "data"

@@ -3,6 +3,8 @@ type remotePlaybackAvailabilityCallback = RemotePlaybackTypes.remotePlaybackAvai
 
 include EventTarget.Impl({type t = t})
 
+external asEventTarget: t => DOM.eventTarget = "%identity"
+
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/RemotePlayback/watchAvailability)
 */

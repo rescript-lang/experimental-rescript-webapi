@@ -27,3 +27,5 @@ self -> SharedWorkerScope.close
 }
 
 include Impl({type t = t})
+
+external asEventTarget: t => DOM.eventTarget = "%identity"

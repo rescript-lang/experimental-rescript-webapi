@@ -71,7 +71,8 @@ type performanceMeasure = private {
   detail: JSON.t,
 }
 
-type performanceEntryList = unknown
+// The platform returns an ordinary array containing native PerformanceEntry instances.
+type performanceEntryList = array<performanceEntry>
 
 type performanceMarkOptions = {
   mutable detail?: JSON.t,

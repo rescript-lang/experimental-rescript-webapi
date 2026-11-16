@@ -101,8 +101,6 @@ module Impl = (
 ) => {
   include Node.Impl({type t = T.t})
 
-  external asCharacterData: T.t => t = "%identity"
-
   @set
   external setData: (T.t, string) => unit = "data"
 
@@ -199,3 +197,7 @@ Throws a "HierarchyRequestError" DOMException if the constraints of the node tre
 }
 
 include Impl({type t = t})
+
+external asEventTarget: t => DOM.eventTarget = "%identity"
+external asNode: t => DOMTree.node = "%identity"
+external asCharacterData: t => t = "%identity"

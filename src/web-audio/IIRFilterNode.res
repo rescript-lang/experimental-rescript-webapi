@@ -1,5 +1,8 @@
 include AudioNode.Impl({type t = WebAudioTypes.iirFilterNode})
 
+external asEventTarget: WebAudioTypes.iirFilterNode => DOM.eventTarget = "%identity"
+external asAudioNode: WebAudioTypes.iirFilterNode => WebAudioTypes.audioNode = "%identity"
+
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/IIRFilterNode)
 */

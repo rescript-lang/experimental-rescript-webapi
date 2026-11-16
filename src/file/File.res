@@ -2,6 +2,8 @@ type t = FileTypes.file = private {...FileTypes.file}
 
 include Blob.Impl({type t = t})
 
+external asBlob: t => Blob.t = "%identity"
+
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/File)
 */

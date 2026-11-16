@@ -75,22 +75,35 @@ type rec t = private {
 
 include HTMLElement.Impl({type t = t})
 
+external asEventTarget: t => DOM.eventTarget = "%identity"
+external asNode: t => DOMTree.node = "%identity"
+external asElement: t => DOMTree.element = "%identity"
+external asHTMLElement: t => DOMTree.htmlElement = "%identity"
+
 @set
 external setDisabled: (t, bool) => unit = "disabled"
+
 @set
 external setFormAction: (t, string) => unit = "formAction"
+
 @set
 external setFormEnctype: (t, string) => unit = "formEnctype"
+
 @set
 external setFormMethod: (t, string) => unit = "formMethod"
+
 @set
 external setName: (t, string) => unit = "name"
+
 @set
 external setType: (t, string) => unit = "type"
+
 @set
 external setValue: (t, string) => unit = "value"
+
 @set
 external setPopoverTargetElement: (t, Null.t<DOMTree.element>) => unit = "popoverTargetElement"
+
 @set
 external setPopoverTargetAction: (t, string) => unit = "popoverTargetAction"
 

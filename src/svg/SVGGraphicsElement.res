@@ -2,6 +2,11 @@ type t = SVGElement.svgGraphicsElement = private {...SVGElement.svgGraphicsEleme
 
 include SVGElement.Impl({type t = SVGElement.svgGraphicsElement})
 
+external asEventTarget: SVGElement.svgGraphicsElement => DOM.eventTarget = "%identity"
+external asNode: SVGElement.svgGraphicsElement => DOMTree.node = "%identity"
+external asElement: SVGElement.svgGraphicsElement => DOMTree.element = "%identity"
+external asSVGElement: SVGElement.svgGraphicsElement => SVGElement.t = "%identity"
+
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/SVGGraphicsElement/getBBox)
 */

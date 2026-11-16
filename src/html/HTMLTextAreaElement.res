@@ -118,6 +118,11 @@ type t = private {
 
 include HTMLElement.Impl({type t = t})
 
+external asEventTarget: t => DOM.eventTarget = "%identity"
+external asNode: t => DOMTree.node = "%identity"
+external asElement: t => DOMTree.element = "%identity"
+external asHTMLElement: t => DOMTree.htmlElement = "%identity"
+
 @set external setAutocomplete: (t, string) => unit = "autocomplete"
 @set external setCols: (t, int) => unit = "cols"
 @set external setDisabled: (t, bool) => unit = "disabled"
@@ -129,7 +134,6 @@ include HTMLElement.Impl({type t = t})
 @set external setRequired: (t, bool) => unit = "required"
 @set external setRows: (t, int) => unit = "rows"
 @set external setWrap: (t, string) => unit = "wrap"
-@set external setType: (t, string) => unit = "type"
 @set external setDefaultValue: (t, string) => unit = "defaultValue"
 @set external setValue: (t, string) => unit = "value"
 @set external setSelectionStart: (t, int) => unit = "selectionStart"
