@@ -152,13 +152,13 @@
   {
     "name": "private DOM collection cannot be constructed",
     "fixture": "scripts/fixtures/negative/DOMCollectionCannotBeConstructed.res",
-    "features": ["WebAPI.DOM"],
+    "features": ["WebAPI.DOMTree"],
     "expectedDiagnostic": "Cannot create values of the"
   },
   {
     "name": "private DOM style map cannot be constructed",
     "fixture": "scripts/fixtures/negative/DOMStyleMapCannotBeConstructed.res",
-    "features": ["WebAPI.DOM"],
+    "features": ["WebAPI.CSSOMTypes"],
     "expectedDiagnostic": "Cannot create values of the"
   }
 ]

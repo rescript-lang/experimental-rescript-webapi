@@ -1,5 +1,5 @@
 @editor.completeFrom(CSSStyleDeclaration)
-type t = DOM.cssStyleDeclaration = {...DOM.cssStyleDeclaration}
+type t = CSSOMTypes.cssStyleDeclaration = {...CSSOMTypes.cssStyleDeclaration}
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CSSStyleDeclaration/item)

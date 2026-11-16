@@ -10,8 +10,11 @@
     "WebAPI.DOMPlatform": ["WebAPI.Event", "DOMPlatform"],
     "WebAPI.Animation": ["WebAPI.Event", "Animation"],
     "WebAPI.Geometry": ["WebAPI.DOM", "Geometry"],
-    "WebAPI.CSSOM": ["WebAPI.Event", "CSSOM"],
+    "WebAPI.CSSOMTypes": ["CSSOMTypes"],
+    "WebAPI.CSSOM": ["WebAPI.Event", "WebAPI.CSSOMTypes", "CSSOM"],
+    "WebAPI.DOMTree": ["WebAPI.DOM", "WebAPI.CSSOMTypes", "DOMTree"],
     "WebAPI.DOMNodes": [
+      "WebAPI.DOMTree",
       "WebAPI.DOMPlatform",
       "WebAPI.Animation",
       "WebAPI.CSSOM",
@@ -91,6 +94,18 @@
       ]
     },
     {
+      "dir": "src/cssom-types",
+      "subdirs": true,
+      "feature": "CSSOMTypes",
+      "public": ["CSSOMTypes"]
+    },
+    {
+      "dir": "src/dom-tree",
+      "subdirs": true,
+      "feature": "DOMTree",
+      "public": ["DOMTree"]
+    },
+    {
       "dir": "src/dom-nodes",
       "subdirs": true,
       "feature": "DOMNodes",
@@ -102,7 +117,6 @@
         "CharacterData",
         "Comment",
         "DOMImplementation",
-        "DOMTree",
         "DocumentFragment",
         "Element",
         "ElementInternals",

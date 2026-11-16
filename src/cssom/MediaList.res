@@ -1,5 +1,5 @@
 @editor.completeFrom(MediaList)
-type t = DOM.mediaList = {...DOM.mediaList}
+type t = CSSOMTypes.mediaList = {...CSSOMTypes.mediaList}
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/MediaList/item)

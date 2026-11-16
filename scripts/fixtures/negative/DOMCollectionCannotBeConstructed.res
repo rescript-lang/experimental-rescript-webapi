@@ -1,1 +1,1 @@
-let invalid: WebAPI.DOM.htmlCollection<WebAPI.DOM.element> = {length: 0}
+let invalid: WebAPI.DOMTree.htmlCollection<int> = {length: 0}

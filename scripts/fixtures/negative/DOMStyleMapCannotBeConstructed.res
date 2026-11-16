@@ -1,1 +1,1 @@
-let invalid: WebAPI.DOM.stylePropertyMap = {size: 0}
+let invalid: WebAPI.CSSOMTypes.stylePropertyMap = {size: 0}

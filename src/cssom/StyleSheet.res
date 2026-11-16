@@ -1,15 +1,15 @@
 @@warning("-30")
 
 @editor.completeFrom(StyleSheet)
-type t = DOM.styleSheet = {...DOM.styleSheet}
+type t = CSSOMTypes.styleSheet = {...CSSOMTypes.styleSheet}
 
 @editor.completeFrom(CSSStyleSheet)
-type cssStyleSheet = DOM.cssStyleSheet = {...DOM.cssStyleSheet}
+type cssStyleSheet = CSSOMTypes.cssStyleSheet = {...CSSOMTypes.cssStyleSheet}
 
-type cssRule = DOM.cssRule = {...DOM.cssRule}
+type cssRule = CSSOMTypes.cssRule = {...CSSOMTypes.cssRule}
 
 @editor.completeFrom(CSSRuleList)
-type cssRuleList = DOM.cssRuleList = private {...DOM.cssRuleList}
+type cssRuleList = CSSOMTypes.cssRuleList = private {...CSSOMTypes.cssRuleList}
 
 type init = {
   mutable baseURL?: string,
