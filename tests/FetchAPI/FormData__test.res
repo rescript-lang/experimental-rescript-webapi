@@ -25,6 +25,7 @@ let _ = switch phoneEntry->Null.toOption {
 
 // Get all values for a field (useful for multi-select or multiple file inputs)
 let allImages: array<EntryValue.t> = formData->FormData.getAll("images")
+
 let _ =
   allImages->Array.forEach(entry =>
     logEntry(~stringPrefix="String value: ", ~filePrefix="WebApiFile: ", entry)
@@ -44,6 +45,7 @@ logEntry(~stringPrefix="Unexpected string entry: ", ~filePrefix="File entry: ", 
 
 // Iterate over all entries in the FormData
 let entries: iterable<(string, EntryValue.t)> = formData->FormData.entries
+
 let _ =
   entries
   ->Array.fromIterable

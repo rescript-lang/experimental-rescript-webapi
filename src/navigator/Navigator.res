@@ -64,34 +64,42 @@ type t = DOM.navigator
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Navigator/language)
     */
 @get external language: t => string = "language"
+
 /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Navigator/languages)
     */
 @get external languages: t => array<string> = "languages"
+
 /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Navigator/onLine)
     */
 @get external onLine: t => bool = "onLine"
+
 /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Navigator/cookieEnabled)
     */
 @get external cookieEnabled: t => bool = "cookieEnabled"
+
 /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Navigator/pdfViewerEnabled)
     */
 @get external pdfViewerEnabled: t => bool = "pdfViewerEnabled"
+
 /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Navigator/hardwareConcurrency)
     */
 @get external hardwareConcurrency: t => int = "hardwareConcurrency"
+
 /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Navigator/storage)
     */
 @get external storage: t => StorageTypes.storageManager = "storage"
+
 /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Navigator/locks)
     */
 @get external locks: t => WebLocksTypes.lockManager = "locks"
+
 /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Navigator/webdriver)
     */

@@ -43,6 +43,7 @@ let matrix = DOMMatrix.fromArray([1., 0., 0., 1., 0., 0.])
 external fromArray: array<float> => DOM.domMatrix = "DOMMatrix"
 
 external asDOMMatrixReadOnly: DOM.domMatrix => DOM.domMatrixReadOnly = "%identity"
+
 @scope("DOMMatrix")
 external fromMatrix: (~other: DOM.domMatrixInit=?) => DOM.domMatrixReadOnly = "fromMatrix"
 

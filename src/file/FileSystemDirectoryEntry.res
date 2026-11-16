@@ -4,6 +4,7 @@ type t = BaseFileAndDirectoryEntries.fileSystemDirectoryEntry = private {
 
 external asFileSystemEntry: FileAndDirectoryEntriesTypes.fileSystemDirectoryEntry => FileAndDirectoryEntriesTypes.fileSystemEntry =
   "%identity"
+
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/FileSystemEntry/getParent)
 */

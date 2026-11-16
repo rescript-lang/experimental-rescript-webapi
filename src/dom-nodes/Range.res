@@ -14,6 +14,7 @@ type t = private {
 external make: unit => t = "Range"
 
 external asAbstractRange: t => AbstractRange.t = "%identity"
+
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Range/setStart)
 */

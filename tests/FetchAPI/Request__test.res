@@ -24,6 +24,7 @@ let formDataReq = Request.fromURL(
   "https://example.com/form",
   ~init={method: "POST", body: formDataBody->Nullable.make},
 )
+
 let _formData: FormData.t = await formDataReq->Request.formData
 
 assert((await req2->Request.text) == "hello")

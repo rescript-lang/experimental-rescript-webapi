@@ -1,12 +1,15 @@
 type t = MediaCaptureAndStreamsTypes.mediaStreamTrack = private {
   ...MediaCaptureAndStreamsTypes.mediaStreamTrack,
 }
+
 type mediaTrackCapabilities = MediaCaptureAndStreamsTypes.mediaTrackCapabilities = {
   ...MediaCaptureAndStreamsTypes.mediaTrackCapabilities,
 }
+
 type mediaTrackConstraints = MediaCaptureAndStreamsTypes.mediaTrackConstraints = {
   ...MediaCaptureAndStreamsTypes.mediaTrackConstraints,
 }
+
 type mediaTrackSettings = MediaCaptureAndStreamsTypes.mediaTrackSettings = {
   ...MediaCaptureAndStreamsTypes.mediaTrackSettings,
 }
