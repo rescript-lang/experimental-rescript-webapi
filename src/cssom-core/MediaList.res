@@ -1,5 +1,14 @@
 @editor.completeFrom(MediaList)
-type t = CSSOMTypes.mediaList = {...CSSOMTypes.mediaList}
+type t = {
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/MediaList/mediaText)
+    */
+  mutable mediaText: string,
+  /**
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/MediaList/length)
+    */
+  length: int,
+}
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/MediaList/item)

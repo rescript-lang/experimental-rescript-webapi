@@ -2,7 +2,9 @@
 [See StylePropertyMap on MDN](https://developer.mozilla.org/docs/Web/API/StylePropertyMap)
 */
 @editor.completeFrom(StylePropertyMap)
-type t = CSSOMTypes.stylePropertyMap = private {...CSSOMTypes.stylePropertyMap}
+type t = private {
+  ...StylePropertyMapReadOnly.t,
+}
 
 external asStylePropertyMapReadOnly: t => StylePropertyMapReadOnly.t = "%identity"
 

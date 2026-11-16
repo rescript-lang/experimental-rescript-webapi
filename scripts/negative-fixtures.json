@@ -158,7 +158,7 @@
   {
     "name": "private DOM style map cannot be constructed",
     "fixture": "scripts/fixtures/negative/DOMStyleMapCannotBeConstructed.res",
-    "features": ["WebAPI.CSSOMTypes"],
+    "features": ["WebAPI.CSSOMCore"],
     "expectedDiagnostic": "Cannot create values of the"
   }
 ]

@@ -1,165 +1,5 @@
-@@warning("-30")
-
-/**
-[See StylePropertyMapReadOnly on MDN](https://developer.mozilla.org/docs/Web/API/StylePropertyMapReadOnly)
-*/
-@editor.completeFrom(StylePropertyMapReadOnly)
-type stylePropertyMapReadOnly = private {
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/StylePropertyMapReadOnly/size)
-    */
-  size: int,
-}
-
-/**
-[See StylePropertyMap on MDN](https://developer.mozilla.org/docs/Web/API/StylePropertyMap)
-*/
-@editor.completeFrom(StylePropertyMap)
-type stylePropertyMap = private {
-  ...stylePropertyMapReadOnly,
-}
-
-@editor.completeFrom(MediaList)
-type mediaList = {
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/MediaList/mediaText)
-    */
-  mutable mediaText: string,
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/MediaList/length)
-    */
-  length: int,
-}
-
-/**
-A list of StyleSheet.
-[See StyleSheetList on MDN](https://developer.mozilla.org/docs/Web/API/StyleSheetList)
-*/
-@editor.completeFrom(StyleSheetList)
-type styleSheetList = private {
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/StyleSheetList/length)
-    */
-  length: int,
-}
-
-/**
-A single style sheet. CSS style sheets will further implement the more specialized CSSStyleSheet interface.
-[See StyleSheet on MDN](https://developer.mozilla.org/docs/Web/API/StyleSheet)
-*/
-@editor.completeFrom(StyleSheet)
-type rec styleSheet = {
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/StyleSheet/type)
-    */
-  @as("type")
-  type_: string,
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/StyleSheet/href)
-    */
-  href: Null.t<string>,
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/StyleSheet/ownerNode)
-    */
-  ownerNode: Null.t<unknown>,
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/StyleSheet/parentStyleSheet)
-    */
-  parentStyleSheet: Null.t<cssStyleSheet>,
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/StyleSheet/title)
-    */
-  title: Null.t<string>,
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/StyleSheet/media)
-    */
-  media: mediaList,
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/StyleSheet/disabled)
-    */
-  mutable disabled: bool,
-}
-
-/**
-A single CSS style sheet. It inherits properties and methods from its parent, StyleSheet.
-[See CSSStyleSheet on MDN](https://developer.mozilla.org/docs/Web/API/CSSStyleSheet)
-TODO: mark as private once mutating fields of private records is allowed
-*/
-@editor.completeFrom(CSSStyleSheet) and cssStyleSheet = {
-  // Base properties from StyleSheet
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/StyleSheet/type)
-    */
-  @as("type")
-  type_: string,
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/StyleSheet/href)
-    */
-  href: Null.t<string>,
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/StyleSheet/ownerNode)
-    */
-  ownerNode: Null.t<unknown>,
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/StyleSheet/parentStyleSheet)
-    */
-  parentStyleSheet: Null.t<cssStyleSheet>,
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/StyleSheet/title)
-    */
-  title: Null.t<string>,
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/StyleSheet/media)
-    */
-  media: mediaList,
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/StyleSheet/disabled)
-    */
-  mutable disabled: bool,
-  // End base properties from StyleSheet
-
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CSSStyleSheet/ownerRule)
-    */
-  ownerRule: Null.t<cssRule>,
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CSSStyleSheet/cssRules)
-    */
-  cssRules: cssRuleList,
-}
-
-/**
-A single CSS rule. There are several types of rules, listed in the Type constants section below.
-[See CSSRule on MDN](https://developer.mozilla.org/docs/Web/API/CSSRule)
-*/
-and cssRule = {
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CSSRule/cssText)
-    */
-  mutable cssText: string,
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CSSRule/parentRule)
-    */
-  parentRule: Null.t<cssRule>,
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CSSRule/parentStyleSheet)
-    */
-  parentStyleSheet: Null.t<cssStyleSheet>,
-}
-
-/**
-A CSSRuleList is an (indirect-modify only) array-like object containing an ordered collection of CSSRule objects.
-[See CSSRuleList on MDN](https://developer.mozilla.org/docs/Web/API/CSSRuleList)
-*/
-@editor.completeFrom(CSSRuleList) and cssRuleList = private {
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CSSRuleList/length)
-    */
-  length: int,
-}
-
 @editor.completeFrom(CSSStyleDeclaration)
-type cssStyleDeclaration = {
+type t = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CSSStyleDeclaration/cssText)
     */
@@ -171,7 +11,7 @@ type cssStyleDeclaration = {
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/CSSStyleDeclaration/parentRule)
     */
-  parentRule: Null.t<cssRule>,
+  parentRule: Null.t<StyleSheet.cssRule>,
   /**
     [Read more on MDN](https://developer.mozilla.org/docs/Web/CSS/cx)
     */
@@ -1861,3 +1701,34 @@ type cssStyleDeclaration = {
     */
   mutable cssFloat: string,
 }
+
+/**
+[Read more on MDN](https://developer.mozilla.org/docs/Web/API/CSSStyleDeclaration/item)
+*/
+@send
+external item: (t, int) => string = "item"
+
+/**
+[Read more on MDN](https://developer.mozilla.org/docs/Web/API/CSSStyleDeclaration/getPropertyValue)
+*/
+@send
+external getPropertyValue: (t, string) => string = "getPropertyValue"
+
+/**
+[Read more on MDN](https://developer.mozilla.org/docs/Web/API/CSSStyleDeclaration/getPropertyPriority)
+*/
+@send
+external getPropertyPriority: (t, string) => string = "getPropertyPriority"
+
+/**
+[Read more on MDN](https://developer.mozilla.org/docs/Web/API/CSSStyleDeclaration/setProperty)
+*/
+@throws(JsExn) @send
+external setProperty: (t, ~property: string, ~value: string, ~priority: string=?) => unit =
+  "setProperty"
+
+/**
+[Read more on MDN](https://developer.mozilla.org/docs/Web/API/CSSStyleDeclaration/removeProperty)
+*/
+@throws(JsExn) @send
+external removeProperty: (t, string) => string = "removeProperty"

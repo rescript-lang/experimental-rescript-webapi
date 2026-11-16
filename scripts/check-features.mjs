@@ -29,7 +29,7 @@ const expectedFeatureOwners = new Map([
   ["WebAPI.History", "History"],
   ["WebAPI.Location", "Location"],
   ["WebAPI.Window", "Window"],
-  ["WebAPI.CSSOMTypes", "CSSOMTypes"],
+  ["WebAPI.CSSOMCore", "CSSOMCore"],
   ["WebAPI.CSSOM", "CSSOM"],
   ["WebAPI.CSSFontLoading", "CSSFontLoading"],
   ["WebAPI.Geometry", "Geometry"],
@@ -409,9 +409,9 @@ if (process.argv[1] !== undefined && path.resolve(process.argv[1]) === scriptPat
       shouldCompile: true,
     },
     {
-      name: "CSS-only type consumer",
-      features: ["WebAPI.CSSOMTypes"],
-      fixture: "consumer-cssom-types.res",
+      name: "CSS declaration consumer",
+      features: ["WebAPI.CSSOMCore"],
+      fixture: "consumer-cssom-core.res",
       shouldCompile: true,
     },
     {
