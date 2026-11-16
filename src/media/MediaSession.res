@@ -1,8 +1,10 @@
 type t = MediaSessionTypes.mediaSession = private {...MediaSessionTypes.mediaSession}
 type mediaSessionAction = MediaSessionTypes.mediaSessionAction
+
 type mediaPositionState = MediaSessionTypes.mediaPositionState = {
   ...MediaSessionTypes.mediaPositionState,
 }
+
 type mediaSessionActionHandler = MediaSessionTypes.mediaSessionActionHandler
 
 /**

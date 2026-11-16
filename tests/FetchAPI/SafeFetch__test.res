@@ -5,12 +5,14 @@ let isBytesABC = _bytes =>
   %raw(`_bytes instanceof Uint8Array && _bytes.length === 3 && _bytes[0] === 65 && _bytes[2] === 67`)
 
 let okResponse = Response.fromString("ok", ~init={status: 200})
+
 switch okResponse->SafeFetch.checkOk {
 | Ok(response) => assert(isSame(response, okResponse))
 | Error(#ResponseNotOk(_)) => assert(false)
 }
 
 let notOkResponse = Response.fromString("missing", ~init={status: 404})
+
 switch notOkResponse->SafeFetch.checkOk {
 | Error(#ResponseNotOk({response})) => assert(isSame(response, notOkResponse))
 | Ok(_) => assert(false)
@@ -31,6 +33,7 @@ switch await SafeFetch.fetch(
 }
 
 let customAbortSignal = AbortSignal.abort(~reason=JSON.Encode.string("cancelled"))
+
 switch await SafeFetch.fetch(
   "https://example.com/aborted",
   ~init={signal: Nullable.make(customAbortSignal)},
@@ -54,22 +57,20 @@ globalThis.fetch = (_input, init) => {
 let request = Request.fromURL("https://example.com/request")
 
 switch await SafeFetch.fetch("https://example.com/ok", ~init={method: "POST"}) {
-| Ok(response) => {
-    let expected: Response.t = %raw(`globalThis.__safeFetchResponse`)
-    let method: string = %raw(`globalThis.__safeFetchInit.method`)
-    assert(isSame(response, expected))
-    assert(method == "POST")
-  }
+| Ok(response) =>
+  let expected: Response.t = %raw(`globalThis.__safeFetchResponse`)
+  let method: string = %raw(`globalThis.__safeFetchInit.method`)
+  assert(isSame(response, expected))
+  assert(method == "POST")
 | Error(_) => assert(false)
 }
 
 switch await SafeFetch.fetchWithRequest(request, ~init={method: "POST"}) {
-| Ok(response) => {
-    let expected: Response.t = %raw(`globalThis.__safeFetchResponse`)
-    let method: string = %raw(`globalThis.__safeFetchInit.method`)
-    assert(isSame(response, expected))
-    assert(method == "POST")
-  }
+| Ok(response) =>
+  let expected: Response.t = %raw(`globalThis.__safeFetchResponse`)
+  let method: string = %raw(`globalThis.__safeFetchInit.method`)
+  assert(isSame(response, expected))
+  assert(method == "POST")
 | Error(_) => assert(false)
 }
 
@@ -82,22 +83,20 @@ globalThis.fetch = (_input, init) => {
 `)
 
 switch await SafeFetch.fetch("https://example.com/missing") {
-| Error(#ResponseNotOk({response})) => {
-    let expected: Response.t = %raw(`globalThis.__safeFetchResponse`)
-    assert(isSame(response, expected))
-    let initOmitted: bool = %raw(`globalThis.__safeFetchInit === undefined`)
-    assert(initOmitted)
-  }
+| Error(#ResponseNotOk({response})) =>
+  let expected: Response.t = %raw(`globalThis.__safeFetchResponse`)
+  assert(isSame(response, expected))
+  let initOmitted: bool = %raw(`globalThis.__safeFetchInit === undefined`)
+  assert(initOmitted)
 | Error(#FetchRejected(_)) | Ok(_) => assert(false)
 }
 
 switch await SafeFetch.fetchWithRequest(request) {
-| Error(#ResponseNotOk({response})) => {
-    let expected: Response.t = %raw(`globalThis.__safeFetchResponse`)
-    assert(isSame(response, expected))
-    let initOmitted: bool = %raw(`globalThis.__safeFetchInit === undefined`)
-    assert(initOmitted)
-  }
+| Error(#ResponseNotOk({response})) =>
+  let expected: Response.t = %raw(`globalThis.__safeFetchResponse`)
+  assert(isSame(response, expected))
+  let initOmitted: bool = %raw(`globalThis.__safeFetchInit === undefined`)
+  assert(initOmitted)
 | Error(#FetchRejected(_)) | Ok(_) => assert(false)
 }
 
@@ -148,24 +147,25 @@ switch await SafeFetch.fetch("https://example.com/synchronous") {
 }
 
 let textResponse = Response.fromString("hello")
+
 switch await textResponse->SafeFetch.text {
-| Ok({response, body}) => {
-    assert(isSame(response, textResponse))
-    assert(body == "hello")
-  }
+| Ok({response, body}) =>
+  assert(isSame(response, textResponse))
+  assert(body == "hello")
 | Error(_) => assert(false)
 }
 
 let jsonResponse = Response.fromString(`{"name":"Ada"}`)
+
 switch await jsonResponse->SafeFetch.json {
-| Ok({response, body}) => {
-    let _json: JSON.t = body
-    assert(isSame(response, jsonResponse))
-  }
+| Ok({response, body}) =>
+  let _json: JSON.t = body
+  assert(isSame(response, jsonResponse))
 | Error(_) => assert(false)
 }
 
 let malformedResponse = Response.fromString("not json")
+
 switch await malformedResponse->SafeFetch.json {
 | Error(#BodyReadRejected({response, cause: _})) => assert(isSame(response, malformedResponse))
 | Ok(_) => assert(false)
@@ -173,17 +173,18 @@ switch await malformedResponse->SafeFetch.json {
 
 let consumedResponse = Response.fromString("once")
 let _ = await consumedResponse->Response.text
+
 switch await consumedResponse->SafeFetch.text {
 | Error(#BodyReadRejected({response, cause: _})) => assert(isSame(response, consumedResponse))
 | Ok(_) => assert(false)
 }
 
 let errorBodyResponse = Response.fromString("details", ~init={status: 500})
+
 switch await errorBodyResponse->SafeFetch.text {
-| Ok({response, body}) => {
-    assert(isSame(response, errorBodyResponse))
-    assert(body == "details")
-  }
+| Ok({response, body}) =>
+  assert(isSame(response, errorBodyResponse))
+  assert(body == "details")
 | Error(_) => assert(false)
 }
 
@@ -191,24 +192,27 @@ let arrayBufferResult: result<
   SafeFetch.response<ArrayBuffer.t>,
   [> SafeFetch.bodyError],
 > = await Response.fromString("buffer")->SafeFetch.arrayBuffer
+
 assert(arrayBufferResult->Result.isOk)
 
 let blobResult: result<
   SafeFetch.response<Blob.t>,
   [> SafeFetch.bodyError],
 > = await Response.fromString("blob")->SafeFetch.blob
+
 assert(blobResult->Result.isOk)
 
 let bytesResponse = Response.fromString("ABC")
+
 let bytesResult: result<
   SafeFetch.response<Uint8Array.t>,
   [> SafeFetch.bodyError],
 > = await bytesResponse->SafeFetch.bytes
+
 switch bytesResult {
-| Ok({response, body}) => {
-    assert(isSame(response, bytesResponse))
-    assert(isBytesABC(body))
-  }
+| Ok({response, body}) =>
+  assert(isSame(response, bytesResponse))
+  assert(isBytesABC(body))
 | Error(_) => assert(false)
 }
 
@@ -218,10 +222,12 @@ let formDataResponse = Response.fromString(
     headers: HeadersInit.fromDict(dict{"Content-Type": "application/x-www-form-urlencoded"}),
   },
 )
+
 let formDataResult: result<
   SafeFetch.response<FormData.t>,
   [> SafeFetch.bodyError],
 > = await formDataResponse->SafeFetch.formData
+
 assert(formDataResult->Result.isOk)
 
 type user = {name: string}
@@ -272,10 +278,9 @@ globalThis.fetch = () => Promise.resolve(globalThis.__safeFetchResponse)
 `)
 
 switch await loadUser("https://example.com/user", mustNotDecode) {
-| Error(#ResponseNotOk({response})) => {
-    assert(isSame(response, %raw(`globalThis.__safeFetchResponse`)))
-    assert(!response.bodyUsed)
-  }
+| Error(#ResponseNotOk({response})) =>
+  assert(isSame(response, %raw(`globalThis.__safeFetchResponse`)))
+  assert(!response.bodyUsed)
 | Error(#FetchRejected(_) | #BodyReadRejected(_)) | Ok(_) => assert(false)
 }
 
@@ -285,12 +290,11 @@ globalThis.fetch = () => Promise.resolve(globalThis.__safeFetchResponse)
 `)
 
 switch await loadUser("https://example.com/user", mustNotDecode) {
-| Error(#BodyReadRejected({response, cause})) => {
-    assert(isSame(response, %raw(`globalThis.__safeFetchResponse`)))
-    switch cause->JsExn.fromException {
-    | Some(rawCause) => assert(JsExn.name(rawCause) == Some("SyntaxError"))
-    | None => assert(false)
-    }
+| Error(#BodyReadRejected({response, cause})) =>
+  assert(isSame(response, %raw(`globalThis.__safeFetchResponse`)))
+  switch cause->JsExn.fromException {
+  | Some(rawCause) => assert(JsExn.name(rawCause) == Some("SyntaxError"))
+  | None => assert(false)
   }
 | Error(#FetchRejected(_) | #ResponseNotOk(_)) | Ok(_) => assert(false)
 }
@@ -317,10 +321,10 @@ switch await Response.fromString("checked")->readCheckedText {
 }
 
 let uncheckedResponse = Response.fromString("not read", ~init={status: 500})
+
 switch await uncheckedResponse->readCheckedText {
-| Error(#ResponseNotOk({response})) => {
-    assert(isSame(response, uncheckedResponse))
-    assert(!response.bodyUsed)
-  }
+| Error(#ResponseNotOk({response})) =>
+  assert(isSame(response, uncheckedResponse))
+  assert(!response.bodyUsed)
 | Error(#BodyReadRejected(_)) | Ok(_) => assert(false)
 }

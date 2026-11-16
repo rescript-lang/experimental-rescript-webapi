@@ -1,44 +1,34 @@
 ---
 import { apiModules, createAPIModuleLink, publicTypeTargets } from "../utils.js";
+import { signatureParts } from "../signatureParts.js";
 const { item, typesInOwnModule } = Astro.props;
 
-let link;
-if (typesInOwnModule && typesInOwnModule.has(item.path)) {
-  link = `#${item.path}`;
-}
-
-if (item.path.startsWith("WebAPI.")) {
-  const paths = item.path.split(".");
-  const moduleName = paths[1];
-  if (
-    paths.length === 3 &&
-    moduleName &&
-    apiModules.some((apiModule) => apiModule.moduleName === moduleName)
-  ) {
-    link = `${import.meta.env.BASE_URL}/${createAPIModuleLink(moduleName)}#${paths[2]}`;
-  } else if (paths.length === 3 && moduleName && paths[2]) {
-    const publicType = publicTypeTargets.get(`${moduleName}.${paths[2]}`);
-    if (publicType) {
-      link = `${import.meta.env.BASE_URL}/${createAPIModuleLink(publicType.moduleName)}#${publicType.typeName}`;
+function typeLink(typePath) {
+  if (!typePath) return;
+  if (typesInOwnModule?.has(typePath)) return `#${typePath}`;
+  if (typePath.startsWith("WebAPI.")) {
+    const paths = typePath.split(".");
+    const moduleName = paths[1];
+    if (
+      paths.length === 3 &&
+      moduleName &&
+      apiModules.some((apiModule) => apiModule.moduleName === moduleName)
+    ) {
+      return `${import.meta.env.BASE_URL}/${createAPIModuleLink(moduleName)}#${paths[2]}`;
+    } else if (paths.length === 3 && moduleName && paths[2]) {
+      const publicType = publicTypeTargets.get(`${moduleName}.${paths[2]}`);
+      if (publicType) {
+        return `${import.meta.env.BASE_URL}/${createAPIModuleLink(publicType.moduleName)}#${publicType.typeName}`;
+      }
     }
   }
 }
 
-const genericTypeParameters = item.genericTypeParameters || [];
+const parts = signatureParts(item).map((part) => ({ ...part, link: typeLink(part.path) }));
 ---
 
 <span>
-  {link ? <a href={link}>{item.path}</a> : item.path}{
-    genericTypeParameters.length > 0 && (
-      <>
-        {"<"}
-        {genericTypeParameters.map((subItem) => (
-          <Astro.self typesInOwnModule={typesInOwnModule} item={subItem} />
-        ))}
-        {">"}
-      </>
-    )
-  }
+  {parts.map((part) => part.link ? <a href={part.link}>{part.text}</a> : part.text)}
 </span>
 <style>
   span {

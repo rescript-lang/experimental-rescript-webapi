@@ -19,4 +19,5 @@ let response6 = Response.fromReadableStream(stream)
 let _blob: Blob.t = await response1
 ->Response.clone
 ->Response.blob
+
 let _formData: FormData.t = await response5->Response.formData

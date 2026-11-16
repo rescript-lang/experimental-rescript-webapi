@@ -1,4 +1,5 @@
 @@warning("-30")
+
 type gamepadMappingType =
   | @as("standard") Standard
   | @as("xr-standard") XrStandard

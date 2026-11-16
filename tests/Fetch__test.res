@@ -36,6 +36,7 @@ let registrationResult = await Window.current
 ->Window.navigator
 ->Navigator.serviceWorker
 ->ServiceWorkerContainer.register("/sw.js")
+
 let subscription = await registrationResult.pushManager->PushManager.subscribe(
   ~options={
     userVisibleOnly: true,
@@ -44,8 +45,10 @@ let subscription = await registrationResult.pushManager->PushManager.subscribe(
 )
 
 let pushSubscriptionJSON = subscription->PushSubscription.toJSON
+
 let (auth, p256dh) = switch pushSubscriptionJSON.keys {
 | None => ("?", "?")
 | Some(keys) => (keys.auth, keys.p256dh)
 }
+
 Console.log(`For subscription ${subscription.endpoint}, auth is ${auth} and p256dh is ${p256dh}`)

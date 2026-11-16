@@ -3,10 +3,9 @@ module MObserver = MutationObserver
 let observer = MObserver.make((mutations, obs) => {
   let button = DomGlobal.document->Document.querySelector("button")
   switch button->Null.toOption {
-  | Some(button) => {
-      Console.log(button)
-      obs->MObserver.disconnect
-    }
+  | Some(button) =>
+    Console.log(button)
+    obs->MObserver.disconnect
   | None => ()
   }
   Console.log(mutations)

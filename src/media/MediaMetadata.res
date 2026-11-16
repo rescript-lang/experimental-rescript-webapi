@@ -1,4 +1,5 @@
 type t = MediaSessionTypes.mediaMetadata = private {...MediaSessionTypes.mediaMetadata}
+
 type mediaMetadataInit = MediaSessionTypes.mediaMetadataInit = {
   ...MediaSessionTypes.mediaMetadataInit,
 }

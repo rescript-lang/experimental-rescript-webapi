@@ -2,6 +2,7 @@
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Request)
 */
 type t = FetchTypes.request = private {...FetchTypes.request}
+
 type requestInit = FetchTypes.requestInit
 type bodyInit = BodyInit.t
 type headersInit = HeadersInit.t

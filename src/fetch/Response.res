@@ -2,6 +2,7 @@
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Response)
 */
 type t = FetchTypes.response = private {...FetchTypes.response}
+
 type responseInit = FetchTypes.responseInit
 type bodyInit = BodyInit.t
 type headersInit = HeadersInit.t
