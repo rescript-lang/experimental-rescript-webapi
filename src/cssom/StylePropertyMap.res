@@ -2,9 +2,7 @@
 [See StylePropertyMap on MDN](https://developer.mozilla.org/docs/Web/API/StylePropertyMap)
 */
 @editor.completeFrom(StylePropertyMap)
-type t = private {
-  ...StylePropertyMapReadOnly.t,
-}
+type t = DOM.stylePropertyMap = private {...DOM.stylePropertyMap}
 
 external asStylePropertyMapReadOnly: t => StylePropertyMapReadOnly.t = "%identity"
 

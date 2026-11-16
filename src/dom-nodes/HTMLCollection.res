@@ -2,13 +2,7 @@
 A generic collection (array-like object similar to arguments) of elements (in document order) and offers methods and properties for selecting from the list.
 [See HTMLCollection on MDN](https://developer.mozilla.org/docs/Web/API/HTMLCollection)
 */
-type t<'item> = private {
-  /**
-    Sets or retrieves the number of objects in a collection.
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLCollection/length)
-    */
-  length: int,
-}
+type t<'item> = DOM.htmlCollection<'item> = private {...DOM.htmlCollection<'item>}
 
 /**
 Retrieves an object from various collections.

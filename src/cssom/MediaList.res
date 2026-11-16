@@ -1,14 +1,5 @@
 @editor.completeFrom(MediaList)
-type t = {
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/MediaList/mediaText)
-    */
-  mutable mediaText: string,
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/MediaList/length)
-    */
-  length: int,
-}
+type t = DOM.mediaList = {...DOM.mediaList}
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/MediaList/item)

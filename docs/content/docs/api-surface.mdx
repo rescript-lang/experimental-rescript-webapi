@@ -434,6 +434,17 @@ let redirect = WebAPI.Response.redirect(~url="/login", ~status=302)
 
 ## DOM
 
+`WebAPI.DOM` also exposes the core DOM record types for type-only consumers. For example,
+`WebAPI.DOM.element` includes recursive node fields and `WebAPI.DOM.htmlElement` exposes
+its CSS declaration style field without enabling DOM operation modules. Enable
+`WebAPI.DOMNodes` when you need node/element methods from modules such as `WebAPI.Element`;
+that bundle opts into those operations explicitly.
+
+```ReScript
+let parentNode = (element: WebAPI.DOM.element) => element.parentNode
+let style = (element: WebAPI.DOM.htmlElement) => element.style
+```
+
 DOM values are operated on through public interface modules.
 
 ```ReScript

@@ -2,12 +2,7 @@
 [See StylePropertyMapReadOnly on MDN](https://developer.mozilla.org/docs/Web/API/StylePropertyMapReadOnly)
 */
 @editor.completeFrom(StylePropertyMapReadOnly)
-type t = private {
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/StylePropertyMapReadOnly/size)
-    */
-  size: int,
-}
+type t = DOM.stylePropertyMapReadOnly = private {...DOM.stylePropertyMapReadOnly}
 
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/StylePropertyMapReadOnly/getAll)

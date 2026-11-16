@@ -142,5 +142,23 @@
     "fixture": "scripts/fixtures/negative/WebCryptoExportKeyFormatHasUnknownResult.res",
     "features": ["WebAPI.Crypto"],
     "expectedDiagnostic": "This has type:"
+  },
+  {
+    "name": "DOM and DOMTree slot assignment modes stay distinct",
+    "fixture": "scripts/fixtures/negative/DOMSlotModeIsDistinct.res",
+    "features": ["WebAPI.DOMNodes"],
+    "expectedDiagnostic": "belongs to the variant type WebAPI.DOMTree.slotAssignmentMode"
+  },
+  {
+    "name": "private DOM collection cannot be constructed",
+    "fixture": "scripts/fixtures/negative/DOMCollectionCannotBeConstructed.res",
+    "features": ["WebAPI.DOM"],
+    "expectedDiagnostic": "Cannot create values of the"
+  },
+  {
+    "name": "private DOM style map cannot be constructed",
+    "fixture": "scripts/fixtures/negative/DOMStyleMapCannotBeConstructed.res",
+    "features": ["WebAPI.DOM"],
+    "expectedDiagnostic": "Cannot create values of the"
   }
 ]
