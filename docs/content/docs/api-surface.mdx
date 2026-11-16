@@ -4,13 +4,13 @@ description: A practical summary of how to use the public @rescript/webapi modul
 slug: "api-surface"
 ---
 
-The package exposes browser APIs under the `WebAPI` namespace. ReScript `13.0.0-alpha.5` is
+The package exposes browser APIs under the `WebAPI` namespace. ReScript `13.0.0-alpha.7` is
 the tested compiler baseline, and alpha releases may contain breaking changes. See
 [project status](../project-status/) for the accepted peer range and its testing limits, and
 the [migration notes](https://github.com/rescript-lang/experimental-rescript-webapi/blob/main/CHANGELOG.md)
 for API changes.
 
-Install `@rescript/webapi@alpha` and `rescript@13.0.0-alpha.5`, then add the package dependency.
+Install `@rescript/webapi@alpha` and `rescript@13.0.0-alpha.7`, then add the package dependency.
 Feature bundles are optional when consumers need to restrict compiled modules:
 
 ```json
@@ -81,6 +81,7 @@ WebAPI.URL                 WebAPI.Fetch           WebAPI.UIEvents
 WebAPI.Observers           WebAPI.Media           WebAPI.WebAudio
 WebAPI.Storage             WebAPI.Messaging       WebAPI.Workers
 WebAPI.Crypto              WebAPI.Performance     WebAPI.ViewTransitions
+WebAPI.History             WebAPI.Location
 WebAPI.SafeFetch
 ```
 
@@ -105,6 +106,31 @@ helpers can select only the safe feature:
 
 The `let?` examples below require the experimental `LetUnwrap` setting with the current ReScript 13
 alpha compiler. The SafeFetch API itself can also be used with ordinary `switch` expressions.
+
+### DOM types without the Window bundle
+
+`WebAPI.History` independently exposes `WebAPI.History` and its existing
+`WebAPI.History.Types.history` type. `WebAPI.Location` exposes `WebAPI.Location`
+and depends only on the core `WebAPI.DOM` feature. `WebAPI.Window` includes both
+features, so existing Window consumers keep the same API and type identities.
+
+For React bindings that need element, event, window, document, history, and location
+types without the complete Window API, select:
+
+```json
+{
+  "dependencies": [
+    {
+      "name": "@rescript/webapi",
+      "features": ["WebAPI.DOMNodes", "WebAPI.History", "WebAPI.Location"]
+    }
+  ]
+}
+```
+
+DOMNodes already includes DOM transitively. This selection does not expose
+`WebAPI.Window` or `WebAPI.Document`; add `WebAPI.Window` if you need their methods.
+An unrestricted WebAPI dependency elsewhere in the dependency graph enables all features.
 
 ## Fetch
 

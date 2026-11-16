@@ -6,7 +6,7 @@ are maintained by the release workflow; see the [alpha release readiness tracker
 
 ## 1.0.0-alpha.1 (candidate)
 
-Planned first release in the `1.0.0-alpha.N` series. ReScript `13.0.0-alpha.5` is the tested
+Planned first release in the `1.0.0-alpha.N` series. ReScript `13.0.0-alpha.7` is the tested
 compiler baseline. This alpha is not a stable API; review the migration notes below before
 upgrading from earlier prereleases. The release workflow is the source of truth for actual
 versioning and publication.
