@@ -11,6 +11,7 @@ external make: (
 
 external asPerformanceEntry: PerformanceTypes.performanceMark => PerformanceTypes.performanceEntry =
   "%identity"
+
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/PerformanceEntry/toJSON)
 */

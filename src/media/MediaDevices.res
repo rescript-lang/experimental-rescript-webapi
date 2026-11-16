@@ -1,12 +1,15 @@
 type t = MediaCaptureAndStreamsTypes.mediaDevices = private {
   ...MediaCaptureAndStreamsTypes.mediaDevices,
 }
+
 type mediaTrackSupportedConstraints = MediaCaptureAndStreamsTypes.mediaTrackSupportedConstraints = {
   ...MediaCaptureAndStreamsTypes.mediaTrackSupportedConstraints,
 }
+
 type mediaStreamConstraints = MediaCaptureAndStreamsTypes.mediaStreamConstraints = {
   ...MediaCaptureAndStreamsTypes.mediaStreamConstraints,
 }
+
 type displayMediaStreamOptions = MediaCaptureAndStreamsTypes.displayMediaStreamOptions = {
   ...MediaCaptureAndStreamsTypes.displayMediaStreamOptions,
 }

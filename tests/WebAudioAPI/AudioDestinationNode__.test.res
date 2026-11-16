@@ -10,13 +10,16 @@ let osc = OscillatorNode.make(
     frequency: 440.0,
   },
 )
+
 let gain = GainNode.make(
   ~context,
   ~options={
     gain: 0.3,
   },
 )
+
 let _ = gain->GainNode.connect(~destinationNode)
+
 let _ =
   osc
   ->OscillatorNode.asAudioScheduledSourceNode

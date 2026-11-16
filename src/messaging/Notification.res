@@ -5,6 +5,7 @@ type notificationAction = NotificationTypes.notificationAction
 type notificationOptions = NotificationTypes.notificationOptions
 type getNotificationOptions = NotificationTypes.getNotificationOptions
 type notificationPermissionCallback = NotificationTypes.notificationPermissionCallback
+
 type notificationEvent = NotificationTypes.notificationEvent = private {
   ...NotificationTypes.notificationEvent,
 }

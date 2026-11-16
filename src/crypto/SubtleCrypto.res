@@ -5,10 +5,12 @@ type keyUsage = WebCryptoTypes.keyUsage
 type keyFormat = WebCryptoTypes.keyFormat
 type algorithmIdentifier = WebCryptoTypes.algorithmIdentifier
 type algorithm = WebCryptoTypes.algorithm
+
 type binaryKeyFormat =
   | @as("raw") Raw
   | @as("pkcs8") Pkcs8
   | @as("spki") Spki
+
 type jwkKeyFormat = | @as("jwk") Jwk
 type keyAlgorithm = WebCryptoTypes.keyAlgorithm
 type cryptoKey = WebCryptoTypes.cryptoKey = private {...WebCryptoTypes.cryptoKey}

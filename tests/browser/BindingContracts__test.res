@@ -23,25 +23,34 @@ let withResolver = (_run: (unit => unit) => unit): promise<unit> =>
 
 let hasResizeCallbackArgs = (_entries, _observer) =>
   %raw(`_entries.length > 0 && _observer instanceof ResizeObserver`)
+
 let createResizeSignals = () => %raw(`({count: 0, resolvers: []})`)
+
 let waitForResizeSignal = (_signals: unknown): promise<unit> =>
   %raw(`new Promise(resolve => _signals.resolvers.push(resolve))`)
+
 let resolveNextResizeSignal = (_signals: unknown): unit => %raw(`_signals.resolvers.shift()()`)
 let incrementResizeCount = (_signals: unknown): int => %raw(`++_signals.count`)
+
 let setSize = (_target: DOMTree.element, _pixels: int): unit =>
   %raw(`(_target.style.width = _pixels + "px", _target.style.height = _pixels + "px")`)
 
 let isNull = _value => %raw(`_value === null`)
 let isUndefined = _value => %raw(`_value === undefined`)
+
 let isKnownNotificationPermission = _permission =>
   %raw(`_permission === "default" || _permission === "denied" || _permission === "granted"`)
+
 let containsABCByteChunk = _result =>
   %raw(`_result.value instanceof Uint8Array && _result.value.length === 3 && _result.value[0] === 65 && _result.value[1] === 66 && _result.value[2] === 67`)
+
 let appendChild = (_parent, _child) => %raw(`_parent.appendChild(_child)`)
 
 let appendToDocument = _target => %raw(`document.body.appendChild(_target)`)
+
 let onSuccess = (_request, _callback) =>
   %raw(`_request.addEventListener("success", _callback, {once: true})`)
+
 let releaseLock = () => %raw(`globalThis.__releaseBindingLock()`)
 
 let isUint8ArrayWithABC = _bytes =>
@@ -62,6 +71,7 @@ let requestBytes = await Request.fromURL(
   "https://example.invalid/",
   ~init={method: "POST", body: Nullable.make(BodyInit.fromString("ABC"))},
 )->Request.bytes
+
 assert(isUint8ArrayWithABC(requestBytes))
 
 let emptyStateRequest = Request.fromURL("https://example.invalid/")
@@ -75,13 +85,16 @@ let byteStreamReader = byteStream->ReadableStream.getReader
 let firstChunk = await byteStreamReader->readByteStreamChunk
 assert(containsABCByteChunk(firstChunk))
 await byteStreamReader->cancelByteStreamReader
+
 let responseFromByteStream = Response.fromReadableStream(
   Blob.make(~blobParts=[String("ABC")])->Blob.stream,
 )
+
 let responseStreamBytes = await responseFromByteStream->Response.bytes
 assert(isUint8ArrayWithABC(responseStreamBytes))
 
 let audio: HTMLAudioElement.t = %raw(`document.createElement("audio")`)
+
 assert(audio->HTMLAudioElement.canPlayType("application/x-webapi-unsupported") ==
   DomHTMLMediaElement.Empty)
 
@@ -89,26 +102,24 @@ let permission = Notification.permission
 assert(isKnownNotificationPermission(permission))
 
 switch Document.createElement(document, "canvas")->HTMLCanvasElement.classify {
-| Some(canvas) => {
-    canvas->HTMLCanvasElement.setWidth(1)
-    canvas->HTMLCanvasElement.setHeight(1)
-    switch canvas->HTMLCanvasElement.getContext2D {
-    | Null => assert(false)
-    | Value(context) => {
-        context->CanvasRenderingContext2D.setFillStyle(FillStyle.fromString("red"))
-        let fillStyle = context->CanvasRenderingContext2D.getFillStyle->FillStyle.toString
-        assert(fillStyle != "")
-      }
-    }
-    canvas->HTMLCanvasElement.setWidth(0)
-    canvas->HTMLCanvasElement.setHeight(0)
-    await withResolver(resolve =>
-      canvas->HTMLCanvasElement.toBlob(~callback=_blob => {
-        assert(isNull(_blob))
-        resolve()
-      })
-    )
+| Some(canvas) =>
+  canvas->HTMLCanvasElement.setWidth(1)
+  canvas->HTMLCanvasElement.setHeight(1)
+  switch canvas->HTMLCanvasElement.getContext2D {
+  | Null => assert(false)
+  | Value(context) =>
+    context->CanvasRenderingContext2D.setFillStyle(FillStyle.fromString("red"))
+    let fillStyle = context->CanvasRenderingContext2D.getFillStyle->FillStyle.toString
+    assert(fillStyle != "")
   }
+  canvas->HTMLCanvasElement.setWidth(0)
+  canvas->HTMLCanvasElement.setHeight(0)
+  await withResolver(resolve =>
+    canvas->HTMLCanvasElement.toBlob(~callback=_blob => {
+      assert(isNull(_blob))
+      resolve()
+    })
+  )
 | None => assert(false)
 }
 
@@ -121,11 +132,13 @@ external customElements: DOM.customElementRegistry = "customElements"
 external bindingContractsConstructor: DOM.customElementConstructor = "BindingContractsElement"
 
 let customElementName = "webapi-binding-contracts"
+
 CustomElementRegistry.define(
   customElements,
   ~name=customElementName,
   ~constructor=bindingContractsConstructor,
 )
+
 let customElement = Document.createElement(document, customElementName)
 assert(%raw(`customElement instanceof globalThis.BindingContractsElement`))
 
@@ -150,10 +163,12 @@ let htmlParent: HTMLDivElement.t = %raw(`document.createElement("div")`)
 htmlParent->HTMLDivElement.setAttribute(~qualifiedName="class", ~value="binding-contracts-html")
 assert(htmlParent.className == "binding-contracts-html")
 let htmlChild: HTMLSpanElement.t = %raw(`document.createElement("span")`)
+
 htmlChild->HTMLSpanElement.setAttribute(
   ~qualifiedName="class",
   ~value="binding-contracts-html-child",
 )
+
 appendChild(htmlParent, htmlChild)
 let broadHtmlResult = htmlParent->HTMLDivElement.querySelector(".binding-contracts-html-child")
 assert(%raw(`broadHtmlResult !== null && typeof broadHtmlResult.className === "string"`))
@@ -163,12 +178,14 @@ let audioContext = OfflineAudioContext.fromChannelCountLengthAndSampleRate(
   ~length=128,
   ~sampleRate=44100.,
 )
+
 let audioBuffer =
   audioContext->OfflineAudioContext.createBuffer(
     ~numberOfChannels=1,
     ~length=128,
     ~sampleRate=44100.,
   )
+
 let sourceChannel: Float32Array.t = %raw(`new Float32Array([0.5, -0.25])`)
 audioBuffer->AudioBuffer.copyToChannel(~source=sourceChannel, ~channelNumber=0)
 let channelData = audioBuffer->AudioBuffer.getChannelData(0)
@@ -190,27 +207,33 @@ let filter = audioContext->OfflineAudioContext.createBiquadFilter
 let frequencies: Float32Array.t = %raw(`new Float32Array([440, 880])`)
 let magnitudes: Float32Array.t = %raw(`new Float32Array([-123, -123])`)
 let phases: Float32Array.t = %raw(`new Float32Array([-456, -456])`)
+
 filter->BiquadFilterNode.getFrequencyResponse(
   ~frequencyHz=frequencies,
   ~magResponse=magnitudes,
   ~phaseResponse=phases,
 )
+
 assert(%raw(`magnitudes instanceof Float32Array && phases instanceof Float32Array && magnitudes.length === 2 && phases.length === 2 && magnitudes[0] !== -123 && phases[0] !== -456 && !Number.isNaN(magnitudes[0])`))
 
 let iirFilter = IIRFilterNode.make(
   ~context=audioContext->OfflineAudioContext.asBaseAudioContext,
   ~options={feedforward: [1.], feedback: [1.]},
 )
+
 let iirMagnitudes: Float32Array.t = %raw(`new Float32Array([-123, -123])`)
 let iirPhases: Float32Array.t = %raw(`new Float32Array([-456, -456])`)
+
 iirFilter->IIRFilterNode.getFrequencyResponse(
   ~frequencyHz=frequencies,
   ~magResponse=iirMagnitudes,
   ~phaseResponse=iirPhases,
 )
+
 assert(%raw(`iirMagnitudes instanceof Float32Array && iirMagnitudes[0] !== -123 && !Number.isNaN(iirMagnitudes[0]) && iirPhases instanceof Float32Array && iirPhases[0] !== -456`))
 
 let deleteRequest = IDBFactory.deleteDatabase(indexedDB, "binding-contracts-regression")
+
 await withResolver(resolve =>
   onSuccess(deleteRequest, () => {
     assert(isUndefined(deleteRequest.result))
@@ -219,6 +242,7 @@ await withResolver(resolve =>
 )
 
 let lockManager = navigator->Navigator.locks
+
 await withResolver(resolve => {
   let _heldRequest = lockManager->LockManager.request(
     ~name="binding-contracts-contended-lock",
@@ -229,6 +253,7 @@ await withResolver(resolve => {
     },
   )
 })
+
 let _contendedRequest = await lockManager->LockManager.request2(
   ~name="binding-contracts-contended-lock",
   ~options={ifAvailable: true},
@@ -237,6 +262,7 @@ let _contendedRequest = await lockManager->LockManager.request2(
     %raw(`Promise.resolve(null)`)
   },
 )
+
 releaseLock()
 
 let matrixValues = Float32Array.fromArray([2., 0., 0., 3., 4., 5.])
@@ -251,6 +277,7 @@ let resizeSignals = createResizeSignals()
 let initialResize = waitForResizeSignal(resizeSignals)
 let resizedAgain = waitForResizeSignal(resizeSignals)
 setSize(target, 10)
+
 let observer = ResizeObserver.make((entries, observer) => {
   assert(hasResizeCallbackArgs(entries, observer))
   if incrementResizeCount(resizeSignals) == 2 {
@@ -258,6 +285,7 @@ let observer = ResizeObserver.make((entries, observer) => {
   }
   resolveNextResizeSignal(resizeSignals)
 })
+
 observer->ResizeObserver.observe(~target)
 await initialResize
 setSize(target, 20)
@@ -265,32 +293,39 @@ await resizedAgain
 target->Element.remove
 
 let subtle = crypto.subtle
+
 let digest = await subtle->SubtleCrypto.digest(
   ~algorithm=SubtleCrypto.algorithmObject({name: "SHA-256"}),
   ~data=Uint8Array.fromArray([65, 66, 67])->SubtleCrypto.binaryDataFromUint8Array,
 )
+
 let digestBytes: Uint8Array.t = %raw(`new Uint8Array(digest)`)
 assert(%raw(`digest.byteLength === 32 && digestBytes instanceof Uint8Array && digestBytes.length === 32 && digestBytes.buffer === digest`))
 
 let data = Uint8Array.fromArray([65, 66, 67])->SubtleCrypto.binaryDataFromUint8Array
+
 let hmacKey = await subtle->SubtleCrypto.generateKeySymmetric(
   ~hash=SubtleCrypto.algorithmObject({name: "SHA-256"}),
   ~length=256,
   ~extractable=true,
   ~keyUsages=[SubtleCrypto.signUsage, SubtleCrypto.verifyUsage],
 )
+
 let _publicHmacKey: SubtleCrypto.cryptoKey = hmacKey
+
 let signature = await subtle->SubtleCrypto.sign(
   ~algorithm=SubtleCrypto.algorithmObject({name: "HMAC"}),
   ~key=hmacKey,
   ~data,
 )
+
 let verified = await subtle->SubtleCrypto.verify(
   ~algorithm=SubtleCrypto.algorithmObject({name: "HMAC"}),
   ~key=hmacKey,
   ~signature=SubtleCrypto.binaryDataFromArrayBuffer(signature),
   ~data,
 )
+
 assert(verified)
 
 let rawKey = await subtle->SubtleCrypto.exportKeyBinary(~format=SubtleCrypto.Raw, ~key=hmacKey)
@@ -302,12 +337,15 @@ let keyPair = await subtle->SubtleCrypto.generateEcdsaKeyPair(
   ~extractable=true,
   ~keyUsages=[SubtleCrypto.signUsage, SubtleCrypto.verifyUsage],
 )
+
 let _publicKeyPair: SubtleCrypto.cryptoKeyPair = keyPair
+
 let pairSignature = await subtle->SubtleCrypto.sign(
   ~algorithm=SubtleCrypto.algorithmObject({name: "ECDSA", hash: {name: "SHA-256"}}),
   ~key=keyPair.privateKey,
   ~data,
 )
+
 assert(await subtle->SubtleCrypto.verify(
   ~algorithm=SubtleCrypto.algorithmObject({name: "ECDSA", hash: {name: "SHA-256"}}),
   ~key=keyPair.publicKey,
@@ -334,6 +372,7 @@ let aesKeyData =
     14,
     15,
   ])->SubtleCrypto.binaryDataFromUint8Array
+
 let aesKey = await subtle->SubtleCrypto.importKey(
   ~format=SubtleCrypto.rawKeyFormat,
   ~keyData=aesKeyData,
@@ -341,6 +380,7 @@ let aesKey = await subtle->SubtleCrypto.importKey(
   ~extractable=true,
   ~keyUsages=[SubtleCrypto.encryptUsage, SubtleCrypto.decryptUsage],
 )
+
 let aesIv =
   Uint8Array.fromArray([
     1,
@@ -356,12 +396,15 @@ let aesIv =
     11,
     12,
   ])->SubtleCrypto.binaryDataFromUint8Array
+
 let aesAlgorithm = SubtleCrypto.algorithmObject({name: "AES-GCM", iv: aesIv, tagLength: 128})
 let ciphertext = await subtle->SubtleCrypto.encrypt(~algorithm=aesAlgorithm, ~key=aesKey, ~data)
+
 let plaintext = await subtle->SubtleCrypto.decrypt(
   ~algorithm=aesAlgorithm,
   ~key=aesKey,
   ~data=SubtleCrypto.binaryDataFromArrayBuffer(ciphertext),
 )
+
 let plaintextBytes: Uint8Array.t = %raw(`new Uint8Array(plaintext)`)
 assert(isUint8ArrayWithABC(plaintextBytes))

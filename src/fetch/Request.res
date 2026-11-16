@@ -7,6 +7,7 @@ ReScript's explicit structural coercion (`:>`) can still escape this restriction
 this is not an opaque brand guarantee.
 */
 type t = FetchTypes.request = private {...FetchTypes.request}
+
 type requestInit = FetchTypes.requestInit
 type bodyInit = BodyInit.t
 type headersInit = HeadersInit.t

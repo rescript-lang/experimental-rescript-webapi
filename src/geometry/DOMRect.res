@@ -8,6 +8,7 @@ external make: (~x: float=?, ~y: float=?, ~width: float=?, ~height: float=?) => 
   "DOMRect"
 
 external asDOMRectReadOnly: DOM.domRect => DOM.domRectReadOnly = "%identity"
+
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/DOMRectReadOnly/fromRect_static)
 */

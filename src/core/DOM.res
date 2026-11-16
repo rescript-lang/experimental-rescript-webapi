@@ -37,6 +37,7 @@ type domStringList = private {
 
 @editor.completeFrom(Window)
 type window = private {}
+
 external window: window = "window"
 
 type autoFillBase =

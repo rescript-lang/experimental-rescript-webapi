@@ -27,14 +27,15 @@ switch observer2.root->Null.toOption {
   }
 | None => Console.log("Null")
 }
+
 let rootMargin2 = observer2.rootMargin
 
 let targetElement = DomGlobal.document->Document.querySelector("#targetElement")->Null.toOption
+
 switch targetElement {
-| Some(e) => {
-    observer2->IObserver.observe(e)
-    observer2->IObserver.unobserve(e)
-  }
+| Some(e) =>
+  observer2->IObserver.observe(e)
+  observer2->IObserver.unobserve(e)
 | _ => Console.log("Target element not found.")
 }
 

@@ -7,6 +7,7 @@ type t = DOM.domPoint = private {...DOM.domPoint}
 external make: (~x: float=?, ~y: float=?, ~z: float=?, ~w: float=?) => DOM.domPoint = "DOMPoint"
 
 external asDOMPointReadOnly: DOM.domPoint => DOM.domPointReadOnly = "%identity"
+
 /**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/DOMPointReadOnly/fromPoint_static)
 */

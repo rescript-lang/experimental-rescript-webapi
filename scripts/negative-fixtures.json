@@ -126,6 +126,12 @@
     "expectedDiagnostic": "Cannot create values of the"
   },
   {
+    "name": "ordinary records cannot coerce into a private native Response",
+    "fixture": "scripts/fixtures/negative/ResponseRecordCannotCoerce.res",
+    "features": ["WebAPI.Fetch"],
+    "expectedDiagnostic": "is private: its values can only be built in the module that defines it"
+  },
+  {
     "name": "Web Locks callback accepts nullable Lock",
     "fixture": "scripts/fixtures/negative/WebLocksRejectsNonNullableCallback.res",
     "features": ["WebAPI.Navigator"],
