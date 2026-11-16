@@ -2,6 +2,70 @@ import assert from "node:assert/strict";
 import test from "node:test";
 
 import { createPublicTypeTargets, parsePublicTypeAliases } from "../docs/typeLinks.js";
+import { getLinkedSignature } from "../docs/signatureTypes.js";
+
+test("unwraps compiler parameter metadata before linking signature types", () => {
+  const controller = {
+    kind: "constructor",
+    path: "WebAPI.DOM.abortController",
+    genericTypeParameters: [],
+  };
+  const json = { kind: "constructor", path: "JSON.t", genericTypeParameters: [] };
+  const unit = { kind: "constructor", path: "unit", genericTypeParameters: [] };
+  assert.deepEqual(
+    getLinkedSignature({
+      kind: "signature",
+      details: {
+        parameters: [
+          { optional: false, type: controller },
+          { label: "reason", optional: true, type: json },
+        ],
+        returnType: unit,
+      },
+    }),
+    { parameters: [controller, json], returnType: unit },
+  );
+});
+
+test("keeps recursively linkable generic return types", () => {
+  const type = { kind: "constructor", path: "WebAPI.Element.t", genericTypeParameters: [] };
+  const result = { kind: "constructor", path: "option", genericTypeParameters: [type] };
+  assert.deepEqual(
+    getLinkedSignature({
+      kind: "signature",
+      details: { parameters: [{ type }], returnType: result },
+    }),
+    { parameters: [type], returnType: result },
+  );
+});
+
+test("falls back to the full signature for unsupported or absent type detail", () => {
+  const unit = { path: "unit", genericTypeParameters: [] };
+  for (const type of [
+    { kind: "function" },
+    { path: "array", genericTypeParameters: [{ kind: "variable" }] },
+  ]) {
+    assert.equal(
+      getLinkedSignature({
+        kind: "signature",
+        details: { parameters: [{ type }], returnType: unit },
+      }),
+      null,
+    );
+    assert.equal(
+      getLinkedSignature({
+        kind: "signature",
+        details: { parameters: [{ type: unit }], returnType: type },
+      }),
+      null,
+    );
+  }
+  assert.equal(getLinkedSignature(undefined), null);
+  assert.equal(
+    getLinkedSignature({ kind: "signature", details: { parameters: [], returnType: unit } }),
+    null,
+  );
+});
 
 test("parses public aliases to backing module types, including generic aliases", () => {
   assert.deepEqual(
