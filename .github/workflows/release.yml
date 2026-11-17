@@ -122,7 +122,7 @@ jobs:
         run: npm install --global npm@11.5.1
 
       - name: Download validated release artifact
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v8
         with:
           name: alpha-release-artifact
           path: .release
