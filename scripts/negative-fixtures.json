@@ -180,10 +180,10 @@
     "expectedDiagnostic": "Cannot create values of the"
   },
   {
-    "name": "FormDataPrivate",
-    "fixture": "scripts/fixtures/negative/FormDataPrivate.res",
+    "name": "FormDataRejectsString",
+    "fixture": "scripts/fixtures/negative/FormDataRejectsString.res",
     "features": ["WebAPI.FormData"],
-    "expectedDiagnostic": "Cannot create values of the"
+    "expectedDiagnostic": "This has type:"
   },
   {
     "name": "TouchItemNullable",

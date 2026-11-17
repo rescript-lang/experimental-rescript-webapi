@@ -180,6 +180,11 @@ for its touch-type variant. Existing broad event and fetch APIs accept these
 same types without casts. FormDataEntryValue remains an **unboxed** union;
 it is not interchangeable with a separately defined boxed React variant.
 
+The declared private empty FormData representation is unchanged. ReScript
+13.0.0-alpha.7 still accepts an empty-record literal for this type, as it did
+before this split; use the FormData constructor rather than constructing records.
+The split does not claim to fix that existing compiler limitation.
+
 ## Fetch
 
 Use `WebAPI.Fetch.fetch` for string URLs and `WebAPI.Fetch.fetchWithRequest`

@@ -1,8 +1,11 @@
 let transfer = DataTransfer.make()
 transfer->DataTransfer.setData(~format="text/plain", ~data="clipboard")
 assert(transfer->DataTransfer.getData("text/plain") == "clipboard")
+// Chromium ignores drag-effect changes outside an active native drag session.
+// Keep the writable binding compile-checked, without assuming a synthetic session.
 transfer.dropEffect = "copy"
-assert(transfer.dropEffect == "copy")
+transfer->DataTransfer.clearData(~format="text/plain")
+assert(transfer->DataTransfer.getData("text/plain") == "")
 let file = File.make(~fileBits=[String("data")], ~fileName="transfer.txt")
 let item = transfer.items->DataTransferItemList.addFile(file)->Null.toOption
 
