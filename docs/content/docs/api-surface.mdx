@@ -82,6 +82,8 @@ WebAPI.Observers           WebAPI.Media           WebAPI.WebAudio
 WebAPI.Storage             WebAPI.Messaging       WebAPI.Workers
 WebAPI.Crypto              WebAPI.Performance     WebAPI.ViewTransitions
 WebAPI.DOMTree             WebAPI.CSSOMCore
+WebAPI.Touch               WebAPI.DataTransfer    WebAPI.FileEntries
+WebAPI.FormData
 WebAPI.History             WebAPI.Location
 WebAPI.SafeFetch
 ```
@@ -136,6 +138,52 @@ DOMNodes for element/node operations and CSSOM for the complete CSS API,
 and Window for Window or Document methods. Existing operation features include
 their required type features automatically.
 An unrestricted WebAPI dependency elsewhere in the dependency graph enables all features.
+
+## Narrow touch, clipboard and form-data features
+
+Select `WebAPI.Touch` for Touch/TouchList and `WebAPI.FormData` for FormData and
+its unboxed string/file entry values. Each depends only on basic DOM and compiles
+five source modules including that dependency.
+
+`WebAPI.DataTransfer` includes its item/list APIs, DOMTree for `setDragImage`,
+and `WebAPI.FileEntries` for the existing `webkitGetAsEntry` operation.
+FileEntries is the five-module legacy entry family, not the modern filesystem
+handle or stream APIs. UIEvents, Fetch, and File continue to include all their
+previous modules through these smaller features.
+
+For React bindings selecting DOMTree, History, and Location, adding Touch,
+DataTransfer, and FormData selects **27 WebAPI source modules**, rather than
+102 with broad UIEvents and Fetch. These are source counts, not speed claims.
+Basic DOM is unchanged. FileList operations still require WebAPI.File; a
+DataTransfer's `files` field exposes the core file-list type and its length.
+
+```json
+{
+  "dependencies": [
+    {
+      "name": "@rescript/webapi",
+      "features": [
+        "WebAPI.DOMTree",
+        "WebAPI.History",
+        "WebAPI.Location",
+        "WebAPI.Touch",
+        "WebAPI.DataTransfer",
+        "WebAPI.FormData"
+      ]
+    }
+  ]
+}
+```
+
+Use `Touch.init` for constructor options and `Touch.Direct` / `Touch.Stylus`
+for its touch-type variant. Existing broad event and fetch APIs accept these
+same types without casts. FormDataEntryValue remains an **unboxed** union;
+it is not interchangeable with a separately defined boxed React variant.
+
+The declared private empty FormData representation is unchanged. ReScript
+13.0.0-alpha.7 still accepts an empty-record literal for this type, as it did
+before this split; use the FormData constructor rather than constructing records.
+The split does not claim to fix that existing compiler limitation.
 
 ## Fetch
 

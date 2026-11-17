@@ -4,6 +4,7 @@ import {
   mkdtempSync,
   mkdirSync,
   readFileSync,
+  readdirSync,
   rmSync,
   statSync,
   symlinkSync,
@@ -13,6 +14,8 @@ import os from "node:os";
 import path from "node:path";
 import { spawnSync } from "node:child_process";
 import { fileURLToPath } from "node:url";
+
+import { dataFeatureConsumers } from "./data-feature-consumers.mjs";
 
 const scriptPath = fileURLToPath(import.meta.url);
 const repoRoot = path.resolve(path.dirname(scriptPath), "..");
@@ -42,6 +45,10 @@ const expectedFeatureOwners = new Map([
   ["WebAPI.Fetch", "Fetch"],
   ["WebAPI.SafeFetch", "SafeFetch"],
   ["WebAPI.UIEvents", "UIEvents"],
+  ["WebAPI.Touch", "Touch"],
+  ["WebAPI.FormData", "FormData"],
+  ["WebAPI.DataTransfer", "DataTransfer"],
+  ["WebAPI.FileEntries", "FileEntries"],
   ["WebAPI.Observers", "Observers"],
   ["WebAPI.Media", "Media"],
   ["WebAPI.WebAudio", "WebAudio"],
@@ -304,7 +311,14 @@ export const isMissingModuleDiagnostic = (output, moduleName) =>
 export const isMissingSafeFetchDiagnostic = (output) =>
   isMissingModuleDiagnostic(output, "SafeFetch");
 
-const runConsumerCheck = ({ name, features, fixture, shouldCompile, missingModule }) => {
+const runConsumerCheck = ({
+  name,
+  features,
+  fixture,
+  shouldCompile,
+  missingModule,
+  expectedSources,
+}) => {
   const directory = mkdtempSync(path.join(os.tmpdir(), "webapi-feature-consumer-"));
   try {
     prepareConsumer(directory, features, fixture);
@@ -313,6 +327,17 @@ const runConsumerCheck = ({ name, features, fixture, shouldCompile, missingModul
       encoding: "utf8",
     });
     const output = `${result.stdout ?? ""}\n${result.stderr ?? ""}`;
+    if (result.status === 0 && expectedSources !== undefined) {
+      const sourceArtifacts = path.join(directory, "node_modules/@rescript/webapi/lib/bs/src");
+      const count = readdirSync(sourceArtifacts, { recursive: true }).filter((file) =>
+        file.endsWith(".cmj"),
+      ).length;
+      if (count !== expectedSources)
+        return {
+          _tag: "Failure",
+          message: `${name}: expected ${expectedSources} sources, got ${count}`,
+        };
+    }
     const passed = shouldCompile
       ? result.status === 0
       : result.status !== null &&
@@ -371,6 +396,10 @@ if (process.argv[1] !== undefined && path.resolve(process.argv[1]) === scriptPat
   }
 
   for (const consumer of [
+    ...dataFeatureConsumers.map((consumer) => ({
+      ...consumer,
+      shouldCompile: consumer.missingModule === undefined,
+    })),
     {
       name: "SafeFetch consumer",
       features: ["WebAPI.SafeFetch"],
