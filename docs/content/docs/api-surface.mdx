@@ -81,6 +81,7 @@ WebAPI.URL                 WebAPI.Fetch           WebAPI.UIEvents
 WebAPI.Observers           WebAPI.Media           WebAPI.WebAudio
 WebAPI.Storage             WebAPI.Messaging       WebAPI.Workers
 WebAPI.Crypto              WebAPI.Performance     WebAPI.ViewTransitions
+WebAPI.DOMTree             WebAPI.CSSOMCore
 WebAPI.History             WebAPI.Location
 WebAPI.SafeFetch
 ```
@@ -115,21 +116,25 @@ and depends only on the core `WebAPI.DOM` feature. `WebAPI.Window` includes both
 features, so existing Window consumers keep the same API and type identities.
 
 For React bindings that need element, event, window, document, history, and location
-types without the complete Window API, select:
+types without the DOM operation modules, select:
 
 ```json
 {
   "dependencies": [
     {
       "name": "@rescript/webapi",
-      "features": ["WebAPI.DOMNodes", "WebAPI.History", "WebAPI.Location"]
+      "features": ["WebAPI.DOMTree", "WebAPI.History", "WebAPI.Location"]
     }
   ]
 }
 ```
 
-DOMNodes already includes DOM transitively. This selection does not expose
-`WebAPI.Window` or `WebAPI.Document`; add `WebAPI.Window` if you need their methods.
+DOMTree includes the lightweight DOM types and the shared CSSOMCore records.
+It does not enable Element, Node, or HTMLCollection operation modules. The small
+CSS declaration modules are kept intact, including their own operations. Select
+DOMNodes for element/node operations and CSSOM for the complete CSS API,
+and Window for Window or Document methods. Existing operation features include
+their required type features automatically.
 An unrestricted WebAPI dependency elsewhere in the dependency graph enables all features.
 
 ## Fetch
@@ -433,6 +438,17 @@ let redirect = WebAPI.Response.redirect(~url="/login", ~status=302)
 ```
 
 ## DOM
+
+`WebAPI.DOM` stays lightweight: it supplies basic types such as window, document,
+and event without pulling in the rich element or CSS declaration records.
+`WebAPI.DOMTree` is the independently selectable rich DOM type surface, including
+recursive element fields and HTML element styles. `WebAPI.CSSOMCore` supplies
+the required CSS declaration modules without selecting Event or DOMTree.
+
+```ReScript
+let parentNode = (element: WebAPI.DOMTree.element) => element.parentNode
+let style = (element: WebAPI.DOMTree.htmlElement) => element.style
+```
 
 DOM values are operated on through public interface modules.
 

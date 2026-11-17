@@ -10,8 +10,11 @@
     "WebAPI.DOMPlatform": ["WebAPI.Event", "DOMPlatform"],
     "WebAPI.Animation": ["WebAPI.Event", "Animation"],
     "WebAPI.Geometry": ["WebAPI.DOM", "Geometry"],
-    "WebAPI.CSSOM": ["WebAPI.Event", "CSSOM"],
+    "WebAPI.CSSOMCore": ["CSSOMCore"],
+    "WebAPI.CSSOM": ["WebAPI.Event", "WebAPI.CSSOMCore", "CSSOM"],
+    "WebAPI.DOMTree": ["WebAPI.DOM", "WebAPI.CSSOMCore", "DOMTree"],
     "WebAPI.DOMNodes": [
+      "WebAPI.DOMTree",
       "WebAPI.DOMPlatform",
       "WebAPI.Animation",
       "WebAPI.CSSOM",
@@ -91,6 +94,18 @@
       ]
     },
     {
+      "dir": "src/cssom-core",
+      "subdirs": true,
+      "feature": "CSSOMCore",
+      "public": ["CSSStyleDeclaration", "CSSStyleValue", "MediaList", "StylePropertyMap", "StylePropertyMapReadOnly", "StyleSheet", "StyleSheetList"]
+    },
+    {
+      "dir": "src/dom-tree",
+      "subdirs": true,
+      "feature": "DOMTree",
+      "public": ["DOMTree"]
+    },
+    {
       "dir": "src/dom-nodes",
       "subdirs": true,
       "feature": "DOMNodes",
@@ -102,7 +117,6 @@
         "CharacterData",
         "Comment",
         "DOMImplementation",
-        "DOMTree",
         "DocumentFragment",
         "Element",
         "ElementInternals",
@@ -138,14 +152,7 @@
       "feature": "CSSOM",
       "public": [
         "CSSRuleList",
-        "CSSStyleDeclaration",
-        "CSSStyleValue",
-        "MediaList",
-        "MediaQueryList",
-        "StylePropertyMap",
-        "StylePropertyMapReadOnly",
-        "StyleSheet",
-        "StyleSheetList"
+        "MediaQueryList"
       ]
     },
     {
