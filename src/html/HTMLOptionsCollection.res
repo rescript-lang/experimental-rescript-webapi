@@ -16,6 +16,16 @@ Can be set, to change the selection.
 @set external setSelectedIndex: (t, int) => unit = "selectedIndex"
 
 /**
+Setting length grows or truncates the native option list.
+[Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLOptionsCollection/length)
+*/
+@throws(JsExn) @set
+external setLength: (t, int) => unit = "length"
+
+/** Preserves the native collection and its option element type. */
+external asHTMLCollection: t => HTMLCollection.t<HTMLOptionElement.t> = "%identity"
+
+/**
 Inserts element before the DOMTree.node given by before.
 
 The before argument can be a number, in which case element is inserted before the item with that number, or an element from the collection, in which case element is inserted before that element.

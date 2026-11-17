@@ -1,7 +1,12 @@
 import assert from "node:assert/strict";
+import { readFileSync } from "node:fs";
 import test from "node:test";
 
-import { isMissingSafeFetchDiagnostic, parsePublicTypeAlias } from "./check-features.mjs";
+import {
+  isMissingSafeFetchDiagnostic,
+  parsePublicTypeAlias,
+  validateConfig,
+} from "./check-features.mjs";
 
 test("parses a public type alias without type parameters", () => {
   assert.deepEqual(parsePublicTypeAlias("type t = DOMTree.element"), {
@@ -15,6 +20,32 @@ test("parses a public type alias with type parameters", () => {
     backingModule: "FileTypes",
     backingType: "readableStream",
   });
+});
+
+const config = JSON.parse(readFileSync(new URL("../rescript.json", import.meta.url), "utf8"));
+
+test("validates independent History and Location feature ownership", () => {
+  assert.deepEqual(validateConfig(config), []);
+  assert.deepEqual(config.features["WebAPI.History"], ["History"]);
+  assert.deepEqual(config.features["WebAPI.Location"], ["WebAPI.DOM", "Location"]);
+  assert.ok(config.features["WebAPI.Window"].includes("WebAPI.History"));
+  assert.ok(config.features["WebAPI.Window"].includes("WebAPI.Location"));
+});
+
+test("rejects a missing History feature", () => {
+  const features = Object.fromEntries(
+    Object.entries(config.features).filter(([name]) => name !== "WebAPI.History"),
+  );
+  assert.ok(
+    validateConfig({ ...config, features }).some((error) => error.includes("Expected exactly")),
+  );
+});
+
+test("rejects duplicate Location public ownership", () => {
+  const sources = config.sources.map((source) =>
+    source.feature === "Window" ? { ...source, public: [...source.public, "Location"] } : source,
+  );
+  assert.ok(validateConfig({ ...config, sources }).includes("Duplicate public modules: Location"));
 });
 
 test("recognizes the unavailable SafeFetch module diagnostic across line breaks", () => {
@@ -32,4 +63,21 @@ test("does not accept an unrelated compiler failure mentioning SafeFetch", () =>
     false,
   );
   assert.equal(isMissingSafeFetchDiagnostic("SafeFetch consumer has a type error."), false);
+});
+
+test("narrow data features preserve broad feature umbrellas", () => {
+  assert.deepEqual(validateConfig(config), []);
+  assert.deepEqual(config.features["WebAPI.Touch"], ["WebAPI.DOM", "Touch"]);
+  assert.deepEqual(config.features["WebAPI.FormData"], ["WebAPI.DOM", "FormData"]);
+  assert.deepEqual(config.features["WebAPI.FileEntries"], ["WebAPI.DOM", "FileEntries"]);
+  assert.deepEqual(config.features["WebAPI.DataTransfer"], [
+    "WebAPI.DOMTree",
+    "WebAPI.FileEntries",
+    "DataTransfer",
+  ]);
+  assert.ok(config.features["WebAPI.UIEvents"].includes("WebAPI.Touch"));
+  assert.ok(config.features["WebAPI.UIEvents"].includes("WebAPI.DataTransfer"));
+  assert.ok(config.features["WebAPI.UIEvents"].includes("WebAPI.File"));
+  assert.ok(config.features["WebAPI.File"].includes("WebAPI.FileEntries"));
+  assert.ok(config.features["WebAPI.Fetch"].includes("WebAPI.FormData"));
 });

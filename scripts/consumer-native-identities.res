@@ -35,3 +35,14 @@ let nodeFilter: WebAPI.NodeFilter.t = {acceptNode: _ => 1}
 let attrToNode: WebAPI.Attr.t => WebAPI.Node.t = WebAPI.Attr.asNode
 let cdataToText: WebAPI.CDATASection.t => WebAPI.Text.t = WebAPI.CDATASection.asText
 let instructionToData: WebAPI.ProcessingInstruction.t => WebAPI.CharacterData.t = WebAPI.ProcessingInstruction.asCharacterData
+
+let documentTypeToNode: WebAPI.DOMImplementation.documentType => WebAPI.Node.t =
+  WebAPI.DOMImplementation.documentTypeAsNode
+let xmlToDocument: WebAPI.DOMImplementation.xmlDocument => WebAPI.DOM.document =
+  WebAPI.DOMImplementation.xmlDocumentAsDocument
+let optionsToCollection: WebAPI.HTMLOptionsCollection.t => WebAPI.HTMLCollection.t<WebAPI.HTMLOptionElement.t> =
+  WebAPI.HTMLOptionsCollection.asHTMLCollection
+let resizeOptions = (options: WebAPI.HTMLOptionsCollection.t) =>
+  options->WebAPI.HTMLOptionsCollection.setLength(0)
+let audioToWorklet = (context: WebAPI.BaseAudioContext.t): WebAPI.Worklet.t =>
+  context.audioWorklet->WebAPI.Worklet.fromAudioWorklet

@@ -4,6 +4,7 @@ import {
   mkdtempSync,
   mkdirSync,
   readFileSync,
+  readdirSync,
   rmSync,
   statSync,
   symlinkSync,
@@ -14,6 +15,8 @@ import path from "node:path";
 import { spawnSync } from "node:child_process";
 import { fileURLToPath } from "node:url";
 
+import { dataFeatureConsumers } from "./data-feature-consumers.mjs";
+
 const scriptPath = fileURLToPath(import.meta.url);
 const repoRoot = path.resolve(path.dirname(scriptPath), "..");
 const configPath = path.join(repoRoot, "rescript.json");
@@ -22,10 +25,14 @@ const expectedFeatureOwners = new Map([
   ["WebAPI.DOM", "DOM"],
   ["WebAPI.Event", "Event"],
   ["WebAPI.DOMPlatform", "DOMPlatform"],
+  ["WebAPI.DOMTree", "DOMTree"],
   ["WebAPI.DOMNodes", "DOMNodes"],
   ["WebAPI.File", "File"],
   ["WebAPI.HTML", "HTML"],
+  ["WebAPI.History", "History"],
+  ["WebAPI.Location", "Location"],
   ["WebAPI.Window", "Window"],
+  ["WebAPI.CSSOMCore", "CSSOMCore"],
   ["WebAPI.CSSOM", "CSSOM"],
   ["WebAPI.CSSFontLoading", "CSSFontLoading"],
   ["WebAPI.Geometry", "Geometry"],
@@ -38,6 +45,10 @@ const expectedFeatureOwners = new Map([
   ["WebAPI.Fetch", "Fetch"],
   ["WebAPI.SafeFetch", "SafeFetch"],
   ["WebAPI.UIEvents", "UIEvents"],
+  ["WebAPI.Touch", "Touch"],
+  ["WebAPI.FormData", "FormData"],
+  ["WebAPI.DataTransfer", "DataTransfer"],
+  ["WebAPI.FileEntries", "FileEntries"],
   ["WebAPI.Observers", "Observers"],
   ["WebAPI.Media", "Media"],
   ["WebAPI.WebAudio", "WebAudio"],
@@ -237,7 +248,7 @@ const validateCompletionAliases = (sourceEntries) => {
   );
 };
 
-const validateConfig = (config) => {
+export const validateConfig = (config) => {
   const featureEntries = Object.entries(config.features ?? {});
   const sourceEntries = (config.sources ?? []).filter(
     (source) => source !== null && typeof source === "object" && typeof source.feature === "string",
@@ -292,10 +303,22 @@ const prepareConsumer = (directory, features, fixture) => {
   );
 };
 
-export const isMissingSafeFetchDiagnostic = (output) =>
-  /The module or file (?:WebAPI\.)?SafeFetch can't be found\./.test(output.replace(/\s+/g, " "));
+export const isMissingModuleDiagnostic = (output, moduleName) =>
+  new RegExp(`The module or file (?:WebAPI\\.)?${escapeRegExp(moduleName)} can't be found\\.`).test(
+    output.replace(/\s+/g, " "),
+  );
 
-const runConsumerCheck = ({ name, features, fixture, shouldCompile }) => {
+export const isMissingSafeFetchDiagnostic = (output) =>
+  isMissingModuleDiagnostic(output, "SafeFetch");
+
+const runConsumerCheck = ({
+  name,
+  features,
+  fixture,
+  shouldCompile,
+  missingModule,
+  expectedSources,
+}) => {
   const directory = mkdtempSync(path.join(os.tmpdir(), "webapi-feature-consumer-"));
   try {
     prepareConsumer(directory, features, fixture);
@@ -304,14 +327,27 @@ const runConsumerCheck = ({ name, features, fixture, shouldCompile }) => {
       encoding: "utf8",
     });
     const output = `${result.stdout ?? ""}\n${result.stderr ?? ""}`;
+    if (result.status === 0 && expectedSources !== undefined) {
+      const sourceArtifacts = path.join(directory, "node_modules/@rescript/webapi/lib/bs/src");
+      const count = readdirSync(sourceArtifacts, { recursive: true }).filter((file) =>
+        file.endsWith(".cmj"),
+      ).length;
+      if (count !== expectedSources)
+        return {
+          _tag: "Failure",
+          message: `${name}: expected ${expectedSources} sources, got ${count}`,
+        };
+    }
     const passed = shouldCompile
       ? result.status === 0
-      : result.status !== null && result.status !== 0 && isMissingSafeFetchDiagnostic(output);
+      : result.status !== null &&
+        result.status !== 0 &&
+        isMissingModuleDiagnostic(output, missingModule ?? "SafeFetch");
     return passed
       ? { _tag: "Success" }
       : {
           _tag: "Failure",
-          message: `${name} did not ${shouldCompile ? "compile" : "reject the unavailable SafeFetch module"}.\n${result.error?.message ?? ""}\n${output.trim()}`,
+          message: `${name} did not ${shouldCompile ? "compile" : `reject the unavailable ${missingModule ?? "SafeFetch"} module`}.\n${result.error?.message ?? ""}\n${output.trim()}`,
         };
   } finally {
     rmSync(directory, { recursive: true, force: true });
@@ -360,6 +396,10 @@ if (process.argv[1] !== undefined && path.resolve(process.argv[1]) === scriptPat
   }
 
   for (const consumer of [
+    ...dataFeatureConsumers.map((consumer) => ({
+      ...consumer,
+      shouldCompile: consumer.missingModule === undefined,
+    })),
     {
       name: "SafeFetch consumer",
       features: ["WebAPI.SafeFetch"],
@@ -377,6 +417,44 @@ if (process.argv[1] !== undefined && path.resolve(process.argv[1]) === scriptPat
       features: ["WebAPI.Fetch"],
       fixture: "consumer-safe-fetch-disabled.res",
       shouldCompile: false,
+    },
+    {
+      name: "Basic DOM type consumer",
+      features: ["WebAPI.DOM"],
+      fixture: "consumer-dom-core.res",
+      shouldCompile: true,
+    },
+    {
+      name: "DOMTree feature does not expose Element operations",
+      features: ["WebAPI.DOMTree"],
+      fixture: "consumer-dom-element-disabled.res",
+      shouldCompile: false,
+      missingModule: "Element",
+    },
+    {
+      name: "DOM-tree type consumer",
+      features: ["WebAPI.DOMTree"],
+      fixture: "consumer-dom-tree.res",
+      shouldCompile: true,
+    },
+    {
+      name: "CSS declaration consumer",
+      features: ["WebAPI.CSSOMCore"],
+      fixture: "consumer-cssom-core.res",
+      shouldCompile: true,
+    },
+    {
+      name: "CSSOM does not enable DOMTree",
+      features: ["WebAPI.CSSOM"],
+      fixture: "consumer-dom-tree-disabled.res",
+      shouldCompile: false,
+      missingModule: "DOMTree",
+    },
+    {
+      name: "DOM moved type re-exports",
+      features: ["WebAPI.DOMNodes", "WebAPI.HTML", "WebAPI.Window", "WebAPI.CSSOM"],
+      fixture: "consumer-dom-reexports.res",
+      shouldCompile: true,
     },
   ]) {
     const result = runConsumerCheck(consumer);

@@ -256,23 +256,23 @@ verifySetterNames(
   inventory.writablePropertyInventory.url["src/url/UrlTypes.res"],
 );
 verifySetterNames(
-  "src/window/Location.res",
-  inventory.writablePropertyInventory.location["src/window/Location.res"],
+  "src/location/Location.res",
+  inventory.writablePropertyInventory.location["src/location/Location.res"],
 );
 verifySetterNames(
-  "src/window/History.res",
-  inventory.writablePropertyInventory.history["src/window/HistoryTypes.res"],
+  "src/history/History.res",
+  inventory.writablePropertyInventory.history["src/history/HistoryTypes.res"],
 );
 verifySetterNames(
   "src/animation/Animation.res",
   inventory.writablePropertyInventory.animation["Animation.t"],
 );
-verifySetterNames("src/cssom/MediaList.res", ["mediaText"]);
-verifySetterNames("src/cssom/StyleSheet.res", ["disabled"]);
-verifySetterNames("src/cssom/StyleSheet.res", ["disabled"], {
+verifySetterNames("src/cssom-core/MediaList.res", ["mediaText"]);
+verifySetterNames("src/cssom-core/StyleSheet.res", ["disabled"]);
+verifySetterNames("src/cssom-core/StyleSheet.res", ["disabled"], {
   disabled: "setCSSStyleSheetDisabled",
 });
-verifySetterNames("src/cssom/StyleSheet.res", ["cssText"], {
+verifySetterNames("src/cssom-core/StyleSheet.res", ["cssText"], {
   cssText: "setCSSRuleCssText",
 });
 verifySetterNames(
@@ -359,7 +359,7 @@ for (const [nativeType, fields] of Object.entries(inventory.writablePropertyInve
   verifySetterNames(file, fields, overrides);
 }
 
-verifySetterNames("src/ui-events/DataTransfer.res", ["dropEffect", "effectAllowed"]);
+verifySetterNames("src/data-transfer/DataTransfer.res", ["dropEffect", "effectAllowed"]);
 verifySetterNames("src/storage/IDBObjectStore.res", ["name"]);
 verifySetterNames("src/storage/IDBIndex.res", ["name"]);
 verifySetterNames("src/messaging/WebSocket.res", ["binaryType"]);

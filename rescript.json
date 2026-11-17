@@ -10,8 +10,11 @@
     "WebAPI.DOMPlatform": ["WebAPI.Event", "DOMPlatform"],
     "WebAPI.Animation": ["WebAPI.Event", "Animation"],
     "WebAPI.Geometry": ["WebAPI.DOM", "Geometry"],
-    "WebAPI.CSSOM": ["WebAPI.Event", "CSSOM"],
+    "WebAPI.CSSOMCore": ["CSSOMCore"],
+    "WebAPI.CSSOM": ["WebAPI.Event", "WebAPI.CSSOMCore", "CSSOM"],
+    "WebAPI.DOMTree": ["WebAPI.DOM", "WebAPI.CSSOMCore", "DOMTree"],
     "WebAPI.DOMNodes": [
+      "WebAPI.DOMTree",
       "WebAPI.DOMPlatform",
       "WebAPI.Animation",
       "WebAPI.CSSOM",
@@ -19,7 +22,11 @@
       "DOMNodes"
     ],
     "WebAPI.HTML": ["WebAPI.DOMNodes", "WebAPI.File", "HTML"],
+    "WebAPI.History": ["History"],
+    "WebAPI.Location": ["WebAPI.DOM", "Location"],
     "WebAPI.Window": [
+      "WebAPI.History",
+      "WebAPI.Location",
       "WebAPI.HTML",
       "WebAPI.Media",
       "WebAPI.Storage",
@@ -37,7 +44,9 @@
       "WebAPI.Geometry",
       "Observers"
     ],
-    "WebAPI.UIEvents": ["WebAPI.DOMNodes", "WebAPI.File", "UIEvents"],
+    "WebAPI.Touch": ["WebAPI.DOM", "Touch"],
+    "WebAPI.DataTransfer": ["WebAPI.DOMTree", "WebAPI.FileEntries", "DataTransfer"],
+    "WebAPI.UIEvents": ["WebAPI.DOMNodes", "WebAPI.File", "WebAPI.Touch", "WebAPI.DataTransfer", "UIEvents"],
     "WebAPI.Canvas": [
       "WebAPI.Geometry",
       "WebAPI.HTML",
@@ -55,9 +64,11 @@
       "WebAPI.Workers",
       "Navigator"
     ],
-    "WebAPI.File": ["WebAPI.Event", "File"],
+    "WebAPI.FileEntries": ["WebAPI.DOM", "FileEntries"],
+    "WebAPI.File": ["WebAPI.Event", "WebAPI.FileEntries", "File"],
     "WebAPI.URL": ["WebAPI.DOM", "URL"],
-    "WebAPI.Fetch": ["WebAPI.Event", "WebAPI.File", "WebAPI.URL", "Fetch"],
+    "WebAPI.FormData": ["WebAPI.DOM", "FormData"],
+    "WebAPI.Fetch": ["WebAPI.Event", "WebAPI.File", "WebAPI.URL", "WebAPI.FormData", "Fetch"],
     "WebAPI.SafeFetch": ["WebAPI.Fetch", "SafeFetch"],
     "WebAPI.CSSFontLoading": ["WebAPI.Event", "CSSFontLoading"],
     "WebAPI.Device": ["WebAPI.Event", "Device"],
@@ -87,6 +98,18 @@
       ]
     },
     {
+      "dir": "src/cssom-core",
+      "subdirs": true,
+      "feature": "CSSOMCore",
+      "public": ["CSSStyleDeclaration", "CSSStyleValue", "MediaList", "StylePropertyMap", "StylePropertyMapReadOnly", "StyleSheet", "StyleSheetList"]
+    },
+    {
+      "dir": "src/dom-tree",
+      "subdirs": true,
+      "feature": "DOMTree",
+      "public": ["DOMTree"]
+    },
+    {
       "dir": "src/dom-nodes",
       "subdirs": true,
       "feature": "DOMNodes",
@@ -98,7 +121,6 @@
         "CharacterData",
         "Comment",
         "DOMImplementation",
-        "DOMTree",
         "DocumentFragment",
         "Element",
         "ElementInternals",
@@ -134,14 +156,7 @@
       "feature": "CSSOM",
       "public": [
         "CSSRuleList",
-        "CSSStyleDeclaration",
-        "CSSStyleValue",
-        "MediaList",
-        "MediaQueryList",
-        "StylePropertyMap",
-        "StylePropertyMapReadOnly",
-        "StyleSheet",
-        "StyleSheetList"
+        "MediaQueryList"
       ]
     },
     {
@@ -298,15 +313,25 @@
       ]
     },
     {
+      "dir": "src/history",
+      "subdirs": true,
+      "feature": "History",
+      "public": ["History"]
+    },
+    {
+      "dir": "src/location",
+      "subdirs": true,
+      "feature": "Location",
+      "public": ["Location"]
+    },
+    {
       "dir": "src/window",
       "subdirs": true,
       "feature": "Window",
       "public": [
         "CustomElementRegistry",
         "Document",
-        "History",
         "IdleDeadline",
-        "Location",
         "VisualViewport",
         "Window",
         "XPathExpression",
@@ -332,8 +357,6 @@
       "public": [
         "BodyInit",
         "Fetch",
-        "FormData",
-        "FormDataEntryValue",
         "Headers",
         "HeadersInit",
         "Request",
@@ -354,10 +377,7 @@
         "Blob",
         "File",
         "FileList",
-        "FileSystemDirectoryEntry",
         "FileSystemDirectoryHandle",
-        "FileSystemDirectoryReader",
-        "FileSystemEntry",
         "FileSystemFileHandle",
         "FileSystemHandle",
         "FileSystemWritableFileStream",
@@ -471,22 +491,41 @@
       ]
     },
     {
+      "dir": "src/touch",
+      "subdirs": true,
+      "feature": "Touch",
+      "public": ["Touch", "TouchList"]
+    },
+    {
+      "dir": "src/form-data",
+      "subdirs": true,
+      "feature": "FormData",
+      "public": ["FormData", "FormDataEntryValue"]
+    },
+    {
+      "dir": "src/file-entries",
+      "subdirs": true,
+      "feature": "FileEntries",
+      "public": ["FileSystemEntry", "FileSystemDirectoryEntry", "FileSystemDirectoryReader"]
+    },
+    {
+      "dir": "src/data-transfer",
+      "subdirs": true,
+      "feature": "DataTransfer",
+      "public": ["DataTransfer", "DataTransferItem", "DataTransferItemList"]
+    },
+    {
       "dir": "src/ui-events",
       "subdirs": true,
       "feature": "UIEvents",
       "public": [
         "CompositionEvent",
-        "DataTransfer",
-        "DataTransferItem",
-        "DataTransferItemList",
         "FocusEvent",
         "InputEvent",
         "KeyboardEvent",
         "MouseEvent",
         "PointerEvent",
-        "Touch",
         "TouchEvent",
-        "TouchList",
         "UIEvent",
         "WheelEvent"
       ]

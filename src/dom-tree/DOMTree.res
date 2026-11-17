@@ -1,5 +1,18 @@
 @@warning("-30")
 
+/**
+A generic collection (array-like object similar to arguments) of elements (in document order) and offers methods and properties for selecting from the list.
+[See HTMLCollection on MDN](https://developer.mozilla.org/docs/Web/API/HTMLCollection)
+*/
+@editor.completeFrom(HTMLCollection)
+type htmlCollection<'item> = private {
+  /**
+    Sets or retrieves the number of objects in a collection.
+    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/HTMLCollection/length)
+    */
+  length: int,
+}
+
 type shadowRootMode =
   | @as("closed") Closed
   | @as("open") Open
@@ -261,7 +274,7 @@ Element is the most general base class from which all objects in a Document inhe
     Returns the child elements.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Document/children)
     */
-  children: HTMLCollection.t<element>,
+  children: htmlCollection<element>,
   /**
     Returns the first child that is an element, and null otherwise.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Document/firstElementChild)
@@ -536,7 +549,7 @@ A minimal document object that has no parent. It is used as a lightweight versio
     Returns the child elements.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Document/children)
     */
-  children: HTMLCollection.t<element>,
+  children: htmlCollection<element>,
   /**
     Returns the first child that is an element, and null otherwise.
     [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Document/firstElementChild)

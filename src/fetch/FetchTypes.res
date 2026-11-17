@@ -208,7 +208,7 @@ Provides a way to easily construct a set of key/value pairs representing form fi
 [See FormData on MDN](https://developer.mozilla.org/docs/Web/API/FormData)
 */
 @editor.completeFrom(FormData)
-type formData = private {}
+type formData = FormData.t = private {...FormData.t}
 
 @editor.completeFrom(HeadersInit) type headersInit
 
@@ -217,9 +217,7 @@ type formData = private {}
 type requestInfo = unknown
 
 @editor.completeFrom(FormDataEntryValue) @unboxed
-type formDataEntryValue =
-  | String(string)
-  | File(FileTypes.file)
+type formDataEntryValue = FormDataEntryValue.t = | ...FormDataEntryValue.t
 
 type requestInit = {
   /**

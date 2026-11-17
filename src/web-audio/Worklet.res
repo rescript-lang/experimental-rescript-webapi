@@ -1,5 +1,8 @@
 type t = WebAudioTypes.worklet = private {...WebAudioTypes.worklet}
 
+/** Uses a native AudioWorklet with the inherited Worklet operations without wrapping it. */
+external fromAudioWorklet: WebAudioTypes.audioWorklet => t = "%identity"
+
 /**
 Loads and executes the module script given by moduleURL into all of worklet's global scopes. It can also create additional global scopes as part of this process, depending on the worklet type. The returned promise will fulfill once the script has been successfully loaded and run in all global scopes.
 

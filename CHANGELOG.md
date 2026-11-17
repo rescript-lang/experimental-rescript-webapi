@@ -73,6 +73,8 @@ versioning and publication.
   compile-time restriction, not a security boundary against unsafe casts or JavaScript fabrication.
 - Native `asNode`/`asBlob`/event/audio upcasts now require concrete native receivers. Use the
   helpers on concrete modules; public `Impl` functors no longer export unrestricted identity casts.
+  Generic functor method receivers are not yet constrained; that separate boundary is tracked in
+  [#417](https://github.com/rescript-lang/experimental-rescript-webapi/issues/417).
 - `FillStyle.toCanvasGradient`/`toCanvasPattern` and
   `IntersectionObserverRoot.toElement`/`toDocument` now return checked options. The checks recognize
   instances in the current JavaScript realm; alternatively use each module's `decode` function.
@@ -83,6 +85,10 @@ versioning and publication.
   to null. `Navigator.requestMediaKeySystemAccess` returns the concrete native access type rather
   than a caller-selected type. Public media, DOM-node, and geometry setters preserve supported
   writes without private-field warnings.
+- Use `DOMImplementation.documentTypeAsNode` and `xmlDocumentAsDocument` for inherited DOM
+  operations, `HTMLOptionsCollection.asHTMLCollection` for typed collection access, and
+  `Worklet.fromAudioWorklet` for inherited worklet operations. `HTMLOptionsCollection.setLength`
+  preserves the native writable-length behavior.
 
 For the intended installation, compiler range, runtime/browser checks, and known limitations,
 see the [project status](https://rescript-lang.github.io/experimental-rescript-webapi/project-status/)

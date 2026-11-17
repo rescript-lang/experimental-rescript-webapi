@@ -4,6 +4,7 @@ import os from "node:os";
 import path from "node:path";
 import { fileURLToPath, pathToFileURL } from "node:url";
 import { validateReleaseArtifact } from "./validate-release-artifact.mjs";
+import { dataFeatureConsumers } from "./data-feature-consumers.mjs";
 
 const repoRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const packageJson = JSON.parse(readFileSync(path.join(repoRoot, "package.json"), "utf8"));
@@ -216,6 +217,14 @@ const checkConsumers = async () => {
 
     if (!negativeOnly) {
       const scenarios = [
+        ...dataFeatureConsumers.map((consumer) => ({
+          ...consumer,
+          fixture: `scripts/${consumer.fixture}`,
+          expectedFailure:
+            consumer.missingModule === undefined
+              ? null
+              : `The module or file WebAPI.${consumer.missingModule} can\'t be found.`,
+        })),
         { name: "default", fixture: "scripts/consumer-default.res", features: null },
         {
           name: "concrete public types",
@@ -278,6 +287,18 @@ const checkConsumers = async () => {
         projectDirectory,
       );
       console.log(`[ok] packed consumer runtime using ReScript ${compilerVersion}`);
+      writeProject(projectDirectory, "scripts/consumer-data-form-runtime.res", ["WebAPI.FormData"]);
+      compile(projectDirectory);
+      runCommand(
+        process.execPath,
+        [
+          "--input-type=module",
+          "--eval",
+          `await import(${JSON.stringify(pathToFileURL(path.join(projectDirectory, "src/Consumer.js")).href)} + "?formdata")`,
+        ],
+        projectDirectory,
+      );
+      console.log("[ok] packed narrow FormData runtime");
     }
 
     const negativeCases = JSON.parse(

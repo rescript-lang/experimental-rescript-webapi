@@ -10,6 +10,12 @@ external asEventTarget: DOM.document => DOM.eventTarget = "%identity"
 external asNode: DOM.document => DOMTree.node = "%identity"
 
 /**
+[Read more on MDN](https://developer.mozilla.org/docs/Web/API/Document/implementation)
+*/
+@get
+external implementation: DOM.document => DOMImplementation.t = "implementation"
+
+/**
 Returns the first element within node's descendants whose ID is elementId.
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Document/getElementById)
 */

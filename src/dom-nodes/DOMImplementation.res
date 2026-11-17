@@ -103,6 +103,16 @@ type xmlDocument = private {
 }
 
 /**
+Uses a native DocumentType with Node operations, including the inherited property setters.
+*/
+external documentTypeAsNode: documentType => DOMTree.node = "%identity"
+
+/**
+Uses a native XMLDocument with the ordinary Document operations.
+*/
+external xmlDocumentAsDocument: xmlDocument => DOM.document = "%identity"
+
+/**
 [Read more on MDN](https://developer.mozilla.org/docs/Web/API/DOMImplementation/createDocumentType)
 */
 @send

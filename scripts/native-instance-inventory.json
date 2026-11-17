@@ -1,6 +1,6 @@
 {
   "inventoryVersion": 1,
-  "baseline": "014e7d930be142c859b77c1c6894c7d860eb9fb5",
+  "baseline": "b04c3584b551d2a1e337400728f50c360ae24595",
   "issue": 403,
   "publicModules": {
     "baselineCount": 291,
@@ -10,10 +10,10 @@
       "WebGL2RenderingContext"
     ],
     "expectedCount": 294,
-    "manifestSha256": "cbc55d544278568bfea29dea325c0fe9c3be4dd12f0ab638e1cca04144b21854"
+    "manifestSha256": "94e2d7227341a677e6e536becfa79e40327eeff968fbb66772829d39d87c7631"
   },
   "publicTypesModuleAliases": {
-    "src/window/History.res": { "Types": "HistoryTypes" },
+    "src/history/History.res": { "Types": "HistoryTypes" },
     "src/url/URL.res": { "Types": "UrlTypes" },
     "src/observers/ResizeObserver.res": { "Types": "ResizeObserverTypes" },
     "src/device/Geolocation.res": { "Types": "GeolocationTypes" },
@@ -50,7 +50,7 @@
     }
   },
   "largeUniformWritableFamilies": {
-    "src/cssom/CSSStyleDeclaration.res": {
+    "src/cssom-core/CSSStyleDeclaration.res": {
       "nativeMutableStringFieldCount": 423,
       "ordinaryWritePath": "setProperty",
       "specialWritePaths": {
@@ -60,9 +60,15 @@
       }
     }
   },
-  "sourceTypeDeclarationCount": 867,
-  "sourceTypeDeclarationSha256": "ccd67406c1f683b3186f6b5d608a7b9c4853de9c18aafddf79e12c823186c86d",
+  "sourceTypeDeclarationCount": 870,
+  "sourceTypeDeclarationSha256": "1e0631d2b080d73aa999477cdbc33b2b98648ea4057ea694e9d9f2ba5e6d17bc",
   "nativeBackings": {
+    "src/data-transfer/DataTransfer.res": ["t"],
+    "src/data-transfer/DataTransferItem.res": ["t"],
+    "src/data-transfer/DataTransferItemList.res": ["t"],
+    "src/touch/Touch.res": ["t"],
+    "src/touch/TouchList.res": ["t"],
+    "src/form-data/FormData.res": ["t"],
     "src/core/DOM.res": [
       "document",
       "domException",
@@ -96,7 +102,7 @@
       "domPointReadOnly",
       "domPoint"
     ],
-    "src/dom-nodes/DOMTree.res": [
+    "src/dom-tree/DOMTree.res": [
       "customStateSet",
       "node",
       "element",
@@ -169,7 +175,7 @@
     "src/html/HTMLTitleElement.res": ["t"],
     "src/html/HTMLUListElement.res": ["t"],
     "src/html/HTMLUnknownElement.res": ["t"],
-    "src/dom-platform/DOMStringMap.res": ["t"],
+    "src/dom-tree/DOMStringMap.res": ["t"],
     "src/dom-nodes/AbstractRange.res": ["t"],
     "src/dom-nodes/Attr.res": ["t"],
     "src/dom-nodes/CDATASection.res": ["t"],
@@ -187,14 +193,14 @@
     "src/animation/Animation.res": ["animationTimeline", "t"],
     "src/animation/AnimationEffect.res": ["t"],
     "src/cssom/CSSRuleList.res": ["t"],
-    "src/cssom/CSSStyleDeclaration.res": ["t"],
-    "src/cssom/CSSStyleValue.res": ["t"],
-    "src/cssom/MediaList.res": ["t"],
+    "src/cssom-core/CSSStyleDeclaration.res": ["t"],
+    "src/cssom-core/CSSStyleValue.res": ["t"],
+    "src/cssom-core/MediaList.res": ["t"],
     "src/cssom/MediaQueryList.res": ["t"],
-    "src/cssom/StylePropertyMap.res": ["t"],
-    "src/cssom/StylePropertyMapReadOnly.res": ["t"],
-    "src/cssom/StyleSheet.res": ["t", "cssStyleSheet", "cssRule", "cssRuleList"],
-    "src/cssom/StyleSheetList.res": ["t"],
+    "src/cssom-core/StylePropertyMap.res": ["t"],
+    "src/cssom-core/StylePropertyMapReadOnly.res": ["t"],
+    "src/cssom-core/StyleSheet.res": ["t", "cssStyleSheet", "cssRule", "cssRuleList"],
+    "src/cssom-core/StyleSheetList.res": ["t"],
     "src/css-font-loading/CssFontLoadingTypes.res": ["fontFace"],
     "src/css-font-loading/BaseCSSFontLoading.res": ["fontFaceSet"],
     "src/geometry/DOMMatrix.res": ["t"],
@@ -281,9 +287,9 @@
     "src/device/LockManager.res": ["t"],
     "src/device/ScreenOrientation.res": ["t"],
     "src/device/WakeLock.res": ["t"],
-    "src/window/HistoryTypes.res": ["history"],
+    "src/history/HistoryTypes.res": ["history"],
     "src/window/VisualViewportTypes.res": ["visualViewport"],
-    "src/window/Location.res": ["t"],
+    "src/location/Location.res": ["t"],
     "src/window/XPathExpression.res": ["t"],
     "src/window/XPathResult.res": ["t"],
     "src/window/CustomElementRegistry.res": ["t"],
@@ -301,12 +307,12 @@
       "fileSystemFileHandle",
       "fileSystemWritableFileStream"
     ],
-    "src/file/BaseFileAndDirectoryEntries.res": [
+    "src/file-entries/BaseFileAndDirectoryEntries.res": [
       "fileSystemEntry",
       "fileSystemDirectoryEntry",
       "fileSystem"
     ],
-    "src/file/FileAndDirectoryEntriesTypes.res": ["fileSystemDirectoryReader"],
+    "src/file-entries/FileAndDirectoryEntriesTypes.res": ["fileSystemDirectoryReader"],
     "src/url/UrlTypes.res": ["urlSearchParams", "url"],
     "src/storage/IndexedDbTypes.res": [
       "idbFactory",
@@ -455,14 +461,14 @@
     "src/animation/AnimationEffect.res": ["t"],
     "src/animation/DocumentTimeline.res": ["t"],
     "src/cssom/CSSRuleList.res": ["t"],
-    "src/cssom/CSSStyleDeclaration.res": ["t"],
-    "src/cssom/CSSStyleValue.res": ["t"],
-    "src/cssom/MediaList.res": ["t"],
+    "src/cssom-core/CSSStyleDeclaration.res": ["t"],
+    "src/cssom-core/CSSStyleValue.res": ["t"],
+    "src/cssom-core/MediaList.res": ["t"],
     "src/cssom/MediaQueryList.res": ["t"],
-    "src/cssom/StylePropertyMap.res": ["t"],
-    "src/cssom/StylePropertyMapReadOnly.res": ["t"],
-    "src/cssom/StyleSheet.res": ["t"],
-    "src/cssom/StyleSheetList.res": ["t"],
+    "src/cssom-core/StylePropertyMap.res": ["t"],
+    "src/cssom-core/StylePropertyMapReadOnly.res": ["t"],
+    "src/cssom-core/StyleSheet.res": ["t"],
+    "src/cssom-core/StyleSheetList.res": ["t"],
     "src/canvas/OffscreenCanvasRenderingContext2D.res": [],
     "src/canvas/WebGLRenderingContext.res": [],
     "src/canvas/WebGL2RenderingContext.res": [],
@@ -527,19 +533,19 @@
     "src/svg/SVGElement.res": ["t", "svgGraphicsElement", "svgLength"],
     "src/svg/SVGGraphicsElement.res": ["t"],
     "src/svg/SVGLength.res": ["t"],
-    "src/ui-events/DataTransfer.res": ["t"],
-    "src/ui-events/DataTransferItem.res": ["t"],
-    "src/ui-events/DataTransferItemList.res": ["t"],
-    "src/ui-events/Touch.res": ["t"],
-    "src/ui-events/TouchList.res": ["t"],
+    "src/data-transfer/DataTransfer.res": ["t"],
+    "src/data-transfer/DataTransferItem.res": ["t"],
+    "src/data-transfer/DataTransferItemList.res": ["t"],
+    "src/touch/Touch.res": ["t"],
+    "src/touch/TouchList.res": ["t"],
     "src/event/AbortController.res": ["t"],
     "src/file/Blob.res": ["t"],
     "src/file/File.res": ["t"],
     "src/file/FileList.res": ["t"],
-    "src/file/FileSystemDirectoryEntry.res": ["t"],
+    "src/file-entries/FileSystemDirectoryEntry.res": ["t"],
     "src/file/FileSystemDirectoryHandle.res": ["t"],
-    "src/file/FileSystemDirectoryReader.res": ["t"],
-    "src/file/FileSystemEntry.res": ["t"],
+    "src/file-entries/FileSystemDirectoryReader.res": ["t"],
+    "src/file-entries/FileSystemEntry.res": ["t"],
     "src/file/FileSystemFileHandle.res": ["t"],
     "src/file/FileSystemHandle.res": ["t"],
     "src/file/FileSystemWritableFileStream.res": ["t"],
@@ -580,15 +586,16 @@
     "src/workers/WorkerLocation.res": ["t"],
     "src/view-transitions/ViewTransition.res": ["t"],
     "src/window/CustomElementRegistry.res": ["t"],
-    "src/window/History.res": ["t"],
+    "src/history/History.res": ["t"],
     "src/window/IdleDeadline.res": ["t"],
-    "src/window/Location.res": ["t"],
+    "src/location/Location.res": ["t"],
     "src/window/VisualViewport.res": ["t"],
     "src/window/Window.res": ["t"],
     "src/window/XPathExpression.res": ["t"],
     "src/window/XPathResult.res": ["t"]
   },
   "constructibleRecordExceptions": {
+    "src/touch/Touch.res": ["init"],
     "src/dom-nodes/NodeFilter.res": ["t"],
     "src/core/DOM.res": [
       "shareData",
@@ -635,7 +642,7 @@
     ],
     "src/animation/Animation.res": ["keyframeEffectOptions", "keyframeAnimationOptions"],
     "src/css-font-loading/CssFontLoadingTypes.res": ["fontFaceDescriptors"],
-    "src/cssom/StyleSheet.res": ["init"],
+    "src/cssom-core/StyleSheet.res": ["init"],
     "src/svg/SVGElement.res": ["svgBoundingBoxOptions"],
     "src/ui-events/UiEventsTypes.res": [
       "uiEventInit",
@@ -670,7 +677,7 @@
       "fileSystemCreateWritableOptions",
       "writeParams"
     ],
-    "src/file/FileAndDirectoryEntriesTypes.res": ["fileSystemFlags"],
+    "src/file-entries/FileAndDirectoryEntriesTypes.res": ["fileSystemFlags"],
     "src/storage/IndexedDbTypes.res": [
       "idbDatabaseInfo",
       "idbTransactionOptions",
@@ -1093,7 +1100,7 @@
       "HTMLObjectElement": ["data", "type_", "name", "width", "height"],
       "HTMLOptGroupElement": ["disabled", "label"],
       "HTMLOptionElement": ["disabled", "label", "defaultSelected", "selected", "value", "text"],
-      "HTMLOptionsCollection": ["selectedIndex"],
+      "HTMLOptionsCollection": ["selectedIndex", "length"],
       "HTMLOutputElement": ["name", "defaultValue", "value"],
       "HTMLProgressElement": ["value", "max"],
       "HTMLScriptElement": [
@@ -1150,7 +1157,7 @@
       "HTMLTitleElement": ["text"]
     },
     "cssStyleDeclaration": {
-      "file": "src/cssom/CSSStyleDeclaration.res",
+      "file": "src/cssom-core/CSSStyleDeclaration.res",
       "nativeMutableStringFieldCount": 423,
       "writes": {
         "ordinaryProperties": "CSSStyleDeclaration.setProperty with CSS property names",
@@ -1174,10 +1181,10 @@
       ]
     },
     "history": {
-      "src/window/HistoryTypes.res": ["scrollRestoration"]
+      "src/history/HistoryTypes.res": ["scrollRestoration"]
     },
     "location": {
-      "src/window/Location.res": [
+      "src/location/Location.res": [
         "href",
         "protocol",
         "host",
@@ -1433,6 +1440,11 @@
       "WebCryptoTypes.algorithmIdentifier"
     ]
   },
+  "contract": "Private-record literals, record updates, ordinary structural coercions, and audited supported write paths; not package-wide native-instance soundness.",
+  "followUpIssues": {
+    "publicFunctorBoundary": "https://github.com/rescript-lang/experimental-rescript-webapi/issues/417",
+    "broaderNativeTyping": "https://github.com/rescript-lang/experimental-rescript-webapi/issues/403"
+  },
   "remainingModelingGaps": [
     "Public generic Impl native-returning methods need a receiver-constraint audit beyond the removed identity upcasts; arbitrary receivers remain possible.",
     "EventTarget listeners accept caller-selected event payload types unrelated to EventType.t; choosing typed descriptors versus base-event callbacks requires an API policy decision.",
@@ -1440,7 +1452,6 @@
     "StyleSheet ownerNode remains an unknown Element/ProcessingInstruction union.",
     "IndexedDbTypes request sources and IDBIndex/IDBObjectStore cursor results remain unknown.",
     "DOMTree label lists use nodeList<unknown> instead of native HTMLLabelElement identities.",
-    "Generic SubtleCrypto.generateKey results remain unknown; use operation-specific helpers.",
-    "DOMImplementation documentType/xmlDocument, HTMLOptionsCollection and AudioWorklet need additional inherited public conversion/write routes."
+    "Generic SubtleCrypto.generateKey results remain unknown; use operation-specific helpers."
   ]
 }

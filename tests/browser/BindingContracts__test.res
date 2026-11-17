@@ -121,6 +121,47 @@ assert(template.shadowRootMode == "open")
 template->HTMLTemplateElement.setShadowRootMode("")
 assert(template.shadowRootMode == "")
 
+let implementation = document->Document.implementation
+
+let doctype =
+  implementation->DOMImplementation.createDocumentType(
+    ~qualifiedName="root",
+    ~publicId="",
+    ~systemId="",
+  )
+
+let doctypeNode = doctype->DOMImplementation.documentTypeAsNode
+assert(doctypeNode.nodeName == "root")
+doctypeNode->Node.setNodeValue(Null.Value("ignored for document types"))
+assert(doctypeNode.nodeValue == Null)
+
+let xml =
+  implementation->DOMImplementation.createDocument(
+    ~namespace="urn:webapi:private-record",
+    ~qualifiedName="root",
+    ~doctype,
+  )
+
+switch xml->DOMImplementation.xmlDocumentAsDocument->Document.querySelector("root") {
+| Null.Value(root) => assert(root.tagName == "root")
+| Null => assert(false)
+}
+
+let select: HTMLSelectElement.t = %raw(`document.createElement("select")`)
+select.options->HTMLOptionsCollection.setLength(2)
+let options = select.options->HTMLOptionsCollection.asHTMLCollection
+assert(options.length == 2)
+
+switch options->HTMLCollection.item(0) {
+| Null.Value(option) =>
+  option->HTMLOptionElement.setText("first")
+  assert(option.text == "first")
+| Null => assert(false)
+}
+
+select.options->HTMLOptionsCollection.setLength(0)
+assert(options.length == 0)
+
 let point = DOMPoint.make()
 point->DOMPoint.setX(3.)
 point->DOMPoint.setY(4.)
@@ -247,6 +288,14 @@ let audioContext = OfflineAudioContext.fromChannelCountLengthAndSampleRate(
   ~numberOfChannels=1,
   ~length=128,
   ~sampleRate=44100.,
+)
+
+let worklet = audioContext.audioWorklet->Worklet.fromAudioWorklet
+
+await worklet->Worklet.addModule(
+  ~moduleURL=`data:text/javascript,registerProcessor("private-record-processor", class extends AudioWorkletProcessor {
+    process() { return false; }
+  });`,
 )
 
 let waveShaper = audioContext->OfflineAudioContext.createWaveShaper
