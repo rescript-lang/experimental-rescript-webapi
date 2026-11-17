@@ -64,3 +64,20 @@ test("does not accept an unrelated compiler failure mentioning SafeFetch", () =>
   );
   assert.equal(isMissingSafeFetchDiagnostic("SafeFetch consumer has a type error."), false);
 });
+
+test("narrow data features preserve broad feature umbrellas", () => {
+  assert.deepEqual(validateConfig(config), []);
+  assert.deepEqual(config.features["WebAPI.Touch"], ["WebAPI.DOM", "Touch"]);
+  assert.deepEqual(config.features["WebAPI.FormData"], ["WebAPI.DOM", "FormData"]);
+  assert.deepEqual(config.features["WebAPI.FileEntries"], ["WebAPI.DOM", "FileEntries"]);
+  assert.deepEqual(config.features["WebAPI.DataTransfer"], [
+    "WebAPI.DOMTree",
+    "WebAPI.FileEntries",
+    "DataTransfer",
+  ]);
+  assert.ok(config.features["WebAPI.UIEvents"].includes("WebAPI.Touch"));
+  assert.ok(config.features["WebAPI.UIEvents"].includes("WebAPI.DataTransfer"));
+  assert.ok(config.features["WebAPI.UIEvents"].includes("WebAPI.File"));
+  assert.ok(config.features["WebAPI.File"].includes("WebAPI.FileEntries"));
+  assert.ok(config.features["WebAPI.Fetch"].includes("WebAPI.FormData"));
+});
