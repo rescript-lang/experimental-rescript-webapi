@@ -2,68 +2,75 @@ import assert from "node:assert/strict";
 import test from "node:test";
 
 import { createPublicTypeTargets, parsePublicTypeAliases } from "../docs/typeLinks.js";
-import { getLinkedSignature } from "../docs/signatureTypes.js";
+import { parameterParts, signatureParts } from "../docs/signatureParts.js";
 
-test("unwraps compiler parameter metadata before linking signature types", () => {
-  const controller = {
-    kind: "constructor",
-    path: "WebAPI.DOM.abortController",
-    genericTypeParameters: [],
-  };
-  const json = { kind: "constructor", path: "JSON.t", genericTypeParameters: [] };
-  const unit = { kind: "constructor", path: "unit", genericTypeParameters: [] };
-  assert.deepEqual(
-    getLinkedSignature({
-      kind: "signature",
-      details: {
-        parameters: [
-          { optional: false, type: controller },
-          { label: "reason", optional: true, type: json },
-        ],
-        returnType: unit,
-      },
-    }),
-    { parameters: [controller, json], returnType: unit },
-  );
+const signatureText = (parts) => parts.map((part) => part.text).join("");
+const constructor = (path, genericTypeParameters = []) => ({
+  kind: "constructor",
+  path,
+  genericTypeParameters,
 });
 
-test("keeps recursively linkable generic return types", () => {
-  const type = { kind: "constructor", path: "WebAPI.Element.t", genericTypeParameters: [] };
-  const result = { kind: "constructor", path: "option", genericTypeParameters: [type] };
-  assert.deepEqual(
-    getLinkedSignature({
-      kind: "signature",
-      details: { parameters: [{ type }], returnType: result },
-    }),
-    { parameters: [type], returnType: result },
-  );
-});
-
-test("falls back to the full signature for unsupported or absent type detail", () => {
-  const unit = { path: "unit", genericTypeParameters: [] };
-  for (const type of [
-    { kind: "function" },
-    { path: "array", genericTypeParameters: [{ kind: "variable" }] },
-  ]) {
-    assert.equal(
-      getLinkedSignature({
-        kind: "signature",
-        details: { parameters: [{ type }], returnType: unit },
-      }),
-      null,
-    );
-    assert.equal(
-      getLinkedSignature({
-        kind: "signature",
-        details: { parameters: [{ type: unit }], returnType: type },
-      }),
-      null,
-    );
-  }
-  assert.equal(getLinkedSignature(undefined), null);
+test("renders alpha.7 parameter types, labels, and optional markers", () => {
   assert.equal(
-    getLinkedSignature({ kind: "signature", details: { parameters: [], returnType: unit } }),
-    null,
+    signatureText(parameterParts({ optional: false, type: constructor("unit") })),
+    "unit",
+  );
+  assert.equal(
+    signatureText(parameterParts({ label: "reason", optional: true, type: constructor("JSON.t") })),
+    "~reason: JSON.t=?",
+  );
+});
+
+test("preserves link paths and separators in nested generic type signatures", () => {
+  const parts = signatureParts(
+    constructor("result", [
+      constructor("WebAPI.Response.t"),
+      constructor("option", [{ kind: "variable", name: "error", weak: false }]),
+    ]),
+  );
+  assert.equal(signatureText(parts), "result<WebAPI.Response.t, option<'error>>");
+  assert.deepEqual(
+    parts.filter((part) => part.path).map((part) => part.path),
+    ["result", "WebAPI.Response.t", "option"],
+  );
+});
+
+test("renders callbacks, tuple returns, and compiler-rendered type expressions", () => {
+  const callback = {
+    kind: "function",
+    parameters: [
+      {
+        label: "blob",
+        optional: true,
+        type: constructor("Null.t", [constructor("WebAPI.Blob.t")]),
+      },
+    ],
+    returnType: {
+      kind: "tuple",
+      elements: [
+        constructor("string"),
+        { kind: "rendered", signature: "[> #ResponseNotOk(httpError)]" },
+      ],
+    },
+  };
+  assert.equal(
+    signatureText(signatureParts(callback)),
+    "(~blob: Null.t<WebAPI.Blob.t>=?) => (string, [> #ResponseNotOk(httpError)])",
+  );
+});
+
+test("retains support for parsed record field signatures", () => {
+  assert.equal(
+    signatureText(signatureParts({ path: "array", genericTypeParameters: [{ path: "string" }] })),
+    "array<string>",
+  );
+});
+
+test("fails visibly on an unsupported compiler signature kind", () => {
+  assert.throws(
+    () => signatureParts({ kind: "unexpected" }),
+    /Unsupported documentation signature kind: unexpected/,
   );
 });
 

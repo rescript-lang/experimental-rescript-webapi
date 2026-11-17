@@ -10,10 +10,14 @@ varies by API and browser support is determined by the host runtime, not by whet
 module compiles.
 
 `@rescript/webapi` alpha versions can make breaking API changes between releases. ReScript
-`13.0.0-alpha.7` is the tested compiler baseline. The package peer range accepts
+`13.0.0-alpha.7` is the compiler baseline. The package peer range accepts
 `>=13.0.0-alpha.7 <13.0.0`, which allows later `13.0.0` prereleases but does not claim each one
 is tested; stable ReScript is not currently included in that range or required to ship this
 alpha.
+
+ReScript `13.0.0-alpha.7` no longer supports Intel Macs (`darwin-x64`), so this compiler
+baseline cannot compile the package natively on Intel Macs. CI validates Linux with Node 26;
+it does not establish a cross-platform compiler support matrix.
 
 The install example uses the `alpha` dist-tag intended for `1.0.0-alpha.1`. At the time of this
 candidate, npm's public `alpha` tag still resolves to `0.1.0-alpha-b1d58f9` with the old
