@@ -7,11 +7,10 @@ import { validateReleaseArtifact } from "./validate-release-artifact.mjs";
 
 const repoRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const packageJson = JSON.parse(readFileSync(path.join(repoRoot, "package.json"), "utf8"));
-const compilerVersion = packageJson.devDependencies.rescript;
-const compilerPeerRange = `>=${compilerVersion} <13.0.0`;
+const compilerVersion = "13.0.0-alpha.7";
 if (
-  !/^13\.0\.0-alpha\.\d+$/.test(compilerVersion) ||
-  packageJson.peerDependencies.rescript !== compilerPeerRange
+  packageJson.devDependencies.rescript !== compilerVersion ||
+  packageJson.peerDependencies.rescript !== ">=13.0.0-alpha.7 <13.0.0"
 ) {
   throw new Error("The tested compiler and package peer range are inconsistent.");
 }
@@ -108,19 +107,19 @@ const compile = (directory, expectedFailure = null) => {
   }
 };
 
-const verifyUnsupportedCompiler = (directory, tarballPath) => {
+const verifyUnsupportedCompiler = (directory, tarballPath, version) => {
   mkdirSync(directory);
   writeFileSync(path.join(directory, "package.json"), '{"type":"module"}\n');
   const result = spawnSync(
     "npm",
-    ["install", "--no-audit", "--no-fund", "--no-save", tarballPath, "rescript@12.3.1"],
+    ["install", "--no-audit", "--no-fund", "--no-save", tarballPath, `rescript@${version}`],
     { cwd: directory, encoding: "utf8" },
   );
   const output = `${result.stdout ?? ""}\n${result.stderr ?? ""}`;
   if (
     result.status === 0 ||
     !output.includes("@rescript/webapi") ||
-    !output.includes(compilerPeerRange)
+    !output.includes(">=13.0.0-alpha.7 <13.0.0")
   ) {
     throw new Error(
       `Unsupported compiler installation did not explain the peer constraint:\n${output}`,
@@ -183,8 +182,14 @@ const checkConsumers = async () => {
     );
     console.log(`[ok] installed tarball with supported ReScript ${compilerVersion}`);
 
-    verifyUnsupportedCompiler(path.join(tempDirectory, "unsupported"), tarballPath);
-    console.log("[ok] unsupported ReScript version rejected with peer-range diagnostic");
+    for (const version of ["12.3.1", "13.0.0-alpha.5"]) {
+      verifyUnsupportedCompiler(
+        path.join(tempDirectory, `unsupported-${version}`),
+        tarballPath,
+        version,
+      );
+      console.log(`[ok] unsupported ReScript ${version} rejected with peer-range diagnostic`);
+    }
 
     if (!negativeOnly) {
       const scenarios = [

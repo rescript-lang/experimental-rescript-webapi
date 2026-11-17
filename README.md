@@ -6,7 +6,7 @@ Experimental successor to [rescript-webapi](https://github.com/TheSpyder/rescrip
 
 ## Getting started
 
-ReScript `13.0.0-alpha.7` is the tested compiler baseline. Library alpha releases may contain
+ReScript `13.0.0-alpha.7` is the compiler baseline. Library alpha releases may contain
 breaking changes. See the [project status](https://rescript-lang.github.io/experimental-rescript-webapi/project-status/)
 for the accepted peer range and its testing limits.
 

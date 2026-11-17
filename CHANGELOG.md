@@ -13,6 +13,14 @@ versioning and publication.
 
 ### Migration notes
 
+- The minimum supported ReScript compiler is now `13.0.0-alpha.7` (peer range
+  `>=13.0.0-alpha.7 <13.0.0`). Coercing a different type into a private record is now rejected
+  by the compiler; use supported conversion helpers for native derived-to-base conversions.
+  This does not make all native records package-wide private. Typed arrays now have distinct
+  types: use their specific module operations, or explicitly upcast to `TypedArray.t` when a
+  binding requires the generic type.
+- ReScript `13.0.0-alpha.7` no longer supports Intel Macs (`darwin-x64`). This package's new
+  compiler minimum therefore also excludes native compilation on Intel Macs.
 - WebSocket sends and worker `Request` fetches now preserve their native receiver (`this`) rather
   than calling receiver-bound methods unbound.
 - `WebAPI.Request.bytes`, `WebAPI.Response.bytes`, `WebAPI.Blob.bytes`,

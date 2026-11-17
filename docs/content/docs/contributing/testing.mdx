@@ -77,6 +77,11 @@ The development compiler and the exact version exercised by this check are ReScr
 `13.0.0-alpha.7`. The peer range `>=13.0.0-alpha.7 <13.0.0` admits later `13.0.0` prereleases;
 it does not claim support for earlier compilers or stable `13.0.0`.
 
+The consumer checks reject installation with ReScript 12 and the former alpha.5 baseline.
+They also verify that a public record shape cannot be coerced into the private native Response
+type, while native construction, field reads, outward coercion to a public shape, and the
+supported File-to-Blob conversion still work.
+
 ## Why add tests?
 
 Sometimes adding a test can feel like a bit of a hassle. But we insist that you add tests for the following reasons:
