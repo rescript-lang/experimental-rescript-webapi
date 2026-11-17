@@ -19,7 +19,11 @@
       "DOMNodes"
     ],
     "WebAPI.HTML": ["WebAPI.DOMNodes", "WebAPI.File", "HTML"],
+    "WebAPI.History": ["History"],
+    "WebAPI.Location": ["WebAPI.DOM", "Location"],
     "WebAPI.Window": [
+      "WebAPI.History",
+      "WebAPI.Location",
       "WebAPI.HTML",
       "WebAPI.Media",
       "WebAPI.Storage",
@@ -295,15 +299,25 @@
       ]
     },
     {
+      "dir": "src/history",
+      "subdirs": true,
+      "feature": "History",
+      "public": ["History"]
+    },
+    {
+      "dir": "src/location",
+      "subdirs": true,
+      "feature": "Location",
+      "public": ["Location"]
+    },
+    {
       "dir": "src/window",
       "subdirs": true,
       "feature": "Window",
       "public": [
         "CustomElementRegistry",
         "Document",
-        "History",
         "IdleDeadline",
-        "Location",
         "VisualViewport",
         "Window",
         "XPathExpression",

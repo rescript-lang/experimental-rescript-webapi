@@ -25,6 +25,8 @@ const expectedFeatureOwners = new Map([
   ["WebAPI.DOMNodes", "DOMNodes"],
   ["WebAPI.File", "File"],
   ["WebAPI.HTML", "HTML"],
+  ["WebAPI.History", "History"],
+  ["WebAPI.Location", "Location"],
   ["WebAPI.Window", "Window"],
   ["WebAPI.CSSOM", "CSSOM"],
   ["WebAPI.CSSFontLoading", "CSSFontLoading"],
@@ -237,7 +239,7 @@ const validateCompletionAliases = (sourceEntries) => {
   );
 };
 
-const validateConfig = (config) => {
+export const validateConfig = (config) => {
   const featureEntries = Object.entries(config.features ?? {});
   const sourceEntries = (config.sources ?? []).filter(
     (source) => source !== null && typeof source === "object" && typeof source.feature === "string",
