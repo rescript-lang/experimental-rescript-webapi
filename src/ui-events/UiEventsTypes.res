@@ -1,8 +1,6 @@
 @@warning("-30")
 
-type touchType =
-  | @as("direct") Direct
-  | @as("stylus") Stylus
+type touchType = Touch.touchType = | ...Touch.touchType
 
 /**
 Simple user interface events.
@@ -52,32 +50,14 @@ One drag data item. During a drag operation, each drag event has a dataTransfer 
 [See DataTransferItem on MDN](https://developer.mozilla.org/docs/Web/API/DataTransferItem)
 */
 @editor.completeFrom(DataTransferItem)
-type dataTransferItem = private {
-  /**
-    Returns the drag data item kind, one of: "string", "file".
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/DataTransferItem/kind)
-    */
-  kind: string,
-  /**
-    Returns the drag data item type string.
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/DataTransferItem/type)
-    */
-  @as("type")
-  type_: string,
-}
+type dataTransferItem = DataTransferItem.t = private {...DataTransferItem.t}
 
 /**
 A list of DataTransferItem objects representing items being dragged. During a drag operation, each DragEvent has a dataTransfer property and that property is a DataTransferItemList.
 [See DataTransferItemList on MDN](https://developer.mozilla.org/docs/Web/API/DataTransferItemList)
 */
 @editor.completeFrom(DataTransferItemList)
-type dataTransferItemList = private {
-  /**
-    Returns the number of items in the drag data store.
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/DataTransferItemList/length)
-    */
-  length: int,
-}
+type dataTransferItemList = DataTransferItemList.t = private {...DataTransferItemList.t}
 
 /**
 Used to hold the data that is being dragged during a drag and drop operation. It may hold one or more data items, each of one or more data types. For more information about drag and drop, see HTML Drag and Drop API.
@@ -85,41 +65,7 @@ Used to hold the data that is being dragged during a drag and drop operation. It
 TODO: mark as private once mutating fields of private records is allowed
 */
 @editor.completeFrom(DataTransfer)
-type dataTransfer = {
-  /**
-    Returns the kind of operation that is currently selected. If the kind of operation isn't one of those that is allowed by the effectAllowed attribute, then the operation will fail.
-
-Can be set, to change the selected operation.
-
-The possible values are "none", "copy", "link", and "move".
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/DataTransfer/dropEffect)
-    */
-  mutable dropEffect: string,
-  /**
-    Returns the kinds of operations that are to be allowed.
-
-Can be set (during the dragstart event), to change the allowed operations.
-
-The possible values are "none", "copy", "copyLink", "copyMove", "link", "linkMove", "move", "all", and "uninitialized",
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/DataTransfer/effectAllowed)
-    */
-  mutable effectAllowed: string,
-  /**
-    Returns a DataTransferItemList object, with the drag data.
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/DataTransfer/items)
-    */
-  items: dataTransferItemList,
-  /**
-    Returns a frozen array listing the formats that were set in the dragstart event. In addition, if any files are being dragged, then one of the types will be the string "Files".
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/DataTransfer/types)
-    */
-  types: array<string>,
-  /**
-    Returns a FileList of the files being dragged, if any.
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/DataTransfer/files)
-    */
-  files: DOM.fileList,
-}
+type dataTransfer = DataTransfer.t = {...DataTransfer.t}
 
 /**
 [See InputEvent on MDN](https://developer.mozilla.org/docs/Web/API/InputEvent)
@@ -313,68 +259,14 @@ A single contact point on a touch-sensitive device. The contact point is commonl
 [See Touch on MDN](https://developer.mozilla.org/docs/Web/API/Touch)
 */
 @editor.completeFrom(Touch)
-type touch = private {
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Touch/identifier)
-    */
-  identifier: int,
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Touch/target)
-    */
-  target: DOM.eventTarget,
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Touch/screenX)
-    */
-  screenX: float,
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Touch/screenY)
-    */
-  screenY: float,
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Touch/clientX)
-    */
-  clientX: float,
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Touch/clientY)
-    */
-  clientY: float,
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Touch/pageX)
-    */
-  pageX: float,
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Touch/pageY)
-    */
-  pageY: float,
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Touch/radiusX)
-    */
-  radiusX: float,
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Touch/radiusY)
-    */
-  radiusY: float,
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Touch/rotationAngle)
-    */
-  rotationAngle: float,
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/Touch/force)
-    */
-  force: float,
-}
+type touch = Touch.t = private {...Touch.t}
 
 /**
 A list of contact points on a touch surface. For example, if the user has three fingers on the touch surface (such as a screen or trackpad), the corresponding TouchList object would have one Touch object for each finger, for a total of three entries.
 [See TouchList on MDN](https://developer.mozilla.org/docs/Web/API/TouchList)
 */
 @editor.completeFrom(TouchList)
-type touchList = private {
-  /**
-    [Read more on MDN](https://developer.mozilla.org/docs/Web/API/TouchList/length)
-    */
-  length: int,
-}
+type touchList = TouchList.t = private {...TouchList.t}
 
 /**
 An event sent when the state of contacts with a touch-sensitive surface changes. This surface can be a touch screen or trackpad, for example. The event can describe one or more points of contact with the screen and includes support for detecting movement, addition and removal of contact points, and so forth.
@@ -546,23 +438,7 @@ type inputEventInit = {
   mutable targetRanges?: array<StaticRange.t>,
 }
 
-type touchInit = {
-  mutable identifier: int,
-  mutable target: DOM.eventTarget,
-  mutable clientX?: float,
-  mutable clientY?: float,
-  mutable screenX?: float,
-  mutable screenY?: float,
-  mutable pageX?: float,
-  mutable pageY?: float,
-  mutable radiusX?: float,
-  mutable radiusY?: float,
-  mutable rotationAngle?: float,
-  mutable force?: float,
-  mutable altitudeAngle?: float,
-  mutable azimuthAngle?: float,
-  mutable touchType?: touchType,
-}
+type touchInit = Touch.init = {...Touch.init}
 
 type pointerEventInit = {
   ...mouseEventInit,
